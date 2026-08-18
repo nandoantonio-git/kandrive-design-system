@@ -70,6 +70,22 @@ const INTERACTIVE_STATES: readonly ImageItemState[] = [
  * não fixa largura no container externo (`content-stretch flex flex-col
  * items-center px-[4px]`, sem `w-*`). Trocado para `w-fit
  * min-w-[35.14px]` (acompanha o glifo como piso, cresce para o nome).
+ *
+ * Corrigido em 2026-08-18 (achado do usuário: retângulo de vidro
+ * deslocado). Tentativa inicial considerada — exportar o símbolo composto
+ * inteiro (retângulo já embutido) por estado — descartada depois de testar:
+ * o export do node inteiro trazia um retângulo de fundo `#393939` (artefato
+ * do canvas do Figma, não do design) e o nome ("Arquivo 2") bake-ado como
+ * vetor estático, quebrando a prop `name` dinâmica. Causa raiz real,
+ * confirmada via `get_design_context` em cada um dos 7 nós de estado: o
+ * retângulo de vidro **não tem a mesma posição em todo estado** — nos
+ * estados simples (idle/hover/pressed/disabled) fica em `top-4px left-10px`
+ * relativo à caixa do ícone (o que este componente já tinha, correto); nos
+ * 3 estados `selected*` ele vive dentro de um grid junto do badge de
+ * seleção, com origem bem mais perto do canto (`top-2px left-2px`,
+ * Figma-confirmado nos 3 nós). A implementação anterior usava a mesma
+ * posição pros dois grupos — por isso "deslocado" nos `selected*`.
+ * Corrigido para posição condicional por grupo, sem trocar assets.
  */
 function ImageItem({
   state = "idle",
@@ -97,7 +113,10 @@ function ImageItem({
         <img alt="" aria-hidden="true" className="absolute inset-0 size-full" src={IMAGE[state]} />
         <div
           aria-hidden="true"
-          className="absolute top-1 left-[10px] h-7 w-[31px] rounded bg-[var(--effect-glass-fill-light,rgba(250,250,250,0.6))]"
+          className={cn(
+            "absolute h-7 w-[31px] rounded bg-[var(--effect-glass-fill-light,rgba(250,250,250,0.6))]",
+            isSelected ? "top-[2px] left-[2px]" : "top-1 left-[10px]"
+          )}
         />
         {isSelected ? (
           <SelectState className="absolute right-[2px] bottom-0" />

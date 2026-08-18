@@ -18,6 +18,8 @@ Linha/card compacto pra representar **uma imagem** dentro de uma lista de arquiv
 
 Além do glifo por estado, um retângulo `28×31px` translúcido (`--effect-glass-fill-light`) fica sobreposto em **todos** os estados, não só nos selecionados.
 
+Corrigido em 2026-08-18 (achado do usuário: retângulo desalinhado): a posição **não é a mesma em todo estado** — `Idle`/`Hover`/`Pressed`/`Disabled` usam `top-4px left-10px` relativo à caixa do ícone; os 3 estados `Selected*` usam `top-2px left-2px` (Figma-confirmado nó a nó, o retângulo vive dentro de um grid junto do badge de seleção nesses 3). A implementação usava a mesma posição pros dois grupos.
+
 ## Estados
 
 `Idle` · `Hover` · `Pressed` · `Disabled` · `Selected` · `Selected-Hover` · `Selected-Pressed`. Sem loading/error.
