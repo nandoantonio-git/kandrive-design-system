@@ -30,3 +30,11 @@ export const Expanded: Story = {
 export const Disabled: Story = {
   args: { state: "disabled" },
 }
+
+export const ExpandedDynamicList: Story = {
+  args: {
+    state: "expanded",
+    value: "Contratos",
+    labels: ["Contratos", "Pessoal", "Fotos"],
+  },
+}

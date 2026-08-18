@@ -28,9 +28,9 @@ export interface PlanSelectionProps extends React.ComponentProps<"div"> {
 }
 
 const DEFAULT_PLANS: PlanSelectionPlan[] = [
-  { id: "starter", name: "Starter", storageLabel: "1 TB", monthlyPrice: "$3", annualPrice: "$30", actionLabel: "Downgrade" },
+  { id: "starter", name: "Starter", storageLabel: "1 TB", monthlyPrice: "$3", annualPrice: "$30", actionLabel: "Rebaixar" },
   { id: "pro", name: "Pro", storageLabel: "5 TB", monthlyPrice: "$12", annualPrice: "$120", isCurrent: true },
-  { id: "max", name: "Max", storageLabel: "10 TB", monthlyPrice: "$20", annualPrice: "$200", actionLabel: "Upgrade" },
+  { id: "max", name: "Max", storageLabel: "10 TB", monthlyPrice: "$20", annualPrice: "$200", actionLabel: "Melhorar" },
 ]
 
 /**
@@ -62,11 +62,19 @@ const DEFAULT_PLANS: PlanSelectionPlan[] = [
  * "✓ Active" e o footer começando com "Update"). A implementação estava
  * menor (`max-w-4xl`) e normalizava esses textos para PT-BR sem decisão
  * humana registrada; os defaults voltaram aos literais Figma-confirmados.
+ *
+ * 🔁 Revertido em 2026-08-18 (decisão humana explícita): a peça inteira
+ * volta a ser traduzida pra PT-BR — "Ativa"/"Mensal"/"Anual"/"Atual"/
+ * "Rebaixar"/"Melhorar" — consistente com o resto do produto, que é
+ * majoritariamente português (mesmo critério já usado em
+ * `organism/upload-popover`/`organism/Header`). Só os nomes de plano
+ * ("Starter"/"Pro"/"Max") continuam em inglês — são branding, não copy de
+ * interface.
  */
 function PlanSelection({
   plans = DEFAULT_PLANS,
   interval = "annual",
-  nextBillingLabel = "Next billing on Jul 8, 2026",
+  nextBillingLabel = "Próxima cobrança em 8 de jul. de 2026",
   onIntervalChange,
   onSelectPlan,
   onManageBilling,
@@ -92,7 +100,7 @@ function PlanSelection({
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <span className="inline-flex items-center rounded-full bg-brand-teal px-2.5 py-0.5 text-xs font-medium text-white">
-            Active
+            Ativa
           </span>
           <p className="text-[0.8125rem] text-zinc-500">{nextBillingLabel}</p>
         </div>
@@ -107,7 +115,7 @@ function PlanSelection({
               interval === "monthly" ? "bg-brand-teal text-white" : "text-zinc-500"
             )}
           >
-            Monthly
+            Mensal
           </button>
           <button
             type="button"
@@ -119,7 +127,7 @@ function PlanSelection({
               interval === "annual" ? "bg-brand-teal text-white" : "text-zinc-500"
             )}
           >
-            Annual
+            Anual
           </button>
         </div>
       </div>
@@ -127,7 +135,7 @@ function PlanSelection({
       <div className="flex w-full items-start gap-3">
         {plans.map((plan) => {
           const price = interval === "monthly" ? plan.monthlyPrice : plan.annualPrice
-          const priceSuffix = interval === "monthly" ? "/mo" : "/yr"
+          const priceSuffix = interval === "monthly" ? "/mês" : "/ano"
           return (
           <div
             key={plan.id}
@@ -138,7 +146,7 @@ function PlanSelection({
           >
             {plan.isCurrent ? (
               <span className="mb-1 inline-flex w-fit items-center rounded-full bg-brand-teal px-2 py-0.5 text-[0.6875rem] font-medium text-white">
-                Current
+                Atual
               </span>
             ) : null}
             <p className="text-base font-semibold text-zinc-950">{plan.name}</p>
@@ -150,7 +158,7 @@ function PlanSelection({
             {plan.isCurrent ? (
               <span className="flex items-center gap-1 text-[0.8125rem] font-medium text-brand-teal">
                 <Check className="size-3.5" aria-hidden="true" />
-                Active
+                Ativo
               </span>
             ) : (
               <PushButton
@@ -170,7 +178,7 @@ function PlanSelection({
 
       <div className="flex items-center justify-between gap-4">
         <p className="text-[0.8125rem] text-zinc-500">
-          Update método de pagamento, visualize ordens de pagamento, ou cancele no portal da Stripe
+          Atualize o método de pagamento, visualize ordens de pagamento, ou cancele no portal da Stripe
         </p>
         <PushButton
           variant="neutral"

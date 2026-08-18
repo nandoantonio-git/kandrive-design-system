@@ -12,6 +12,7 @@ import AutoArchiveGlyph from "@/assets/icons/ItemNodeAutoArchiveGlyph.svg?react"
 import ResultadoGlyph from "@/assets/icons/ItemNodeResultadoGlyph.svg?react"
 import ChevronGlyph from "@/assets/icons/ItemNodeChevron.svg?react"
 import PreviewChevronGlyph from "@/assets/icons/ItemNodePreviewChevron.svg?react"
+import FolderGlyph from "@/assets/icons/ItemNodeFolderGlyph.svg?react"
 
 export type FreeModeItemNodeVariant =
   | "juncao"
@@ -23,6 +24,7 @@ export type FreeModeItemNodeVariant =
   | "filtro-date"
   | "auto-archive"
   | "resultado"
+  | "folder"
 
 export interface FreeModeItemNodeProps extends React.ComponentProps<"div"> {
   variant: FreeModeItemNodeVariant
@@ -36,9 +38,15 @@ export interface FreeModeItemNodeProps extends React.ComponentProps<"div"> {
   fileNames?: readonly string[]
   label?: string
   subtitle?: string
+  /** Só `folder`: nome da pasta de destino (Figma-confirmado: "Pasta 1"). */
+  folderName?: string
+  /** Só `folder`: legenda de tamanho/contagem (Figma-confirmado: "4.2 GB • 128 Files"). */
+  folderMeta?: string
+  /** Só `folder`: percentual preenchido da barra de progresso, 0–100 (Figma-confirmado: ~66.66%). */
+  folderProgress?: number
 }
 
-type SimpleNodeVariant = Exclude<FreeModeItemNodeVariant, "auto-archive" | "resultado">
+type SimpleNodeVariant = Exclude<FreeModeItemNodeVariant, "auto-archive" | "resultado" | "folder">
 
 const SIMPLE_NODE_CONFIG: Record<
   SimpleNodeVariant,
@@ -72,6 +80,14 @@ const DEFAULT_FILE_NAMES = [
  * demais recebem o glifo dentro de uma caixa `bg-brand-teal` separada.
  * `auto-archive` e `resultado` têm anatomia própria (ver Figma) e não
  * compartilham o layout ícone+rótulo simples.
+ *
+ * `folder` (`Type=Folder`, node `1534:21103`) — variante nova adicionada
+ * pelo usuário em 2026-08-18: ícone de pasta + nome + legenda
+ * ("4.2 GB • 128 Files") + barra de progresso (~66,66% preenchida,
+ * Figma-confirmado). Anatomia própria, card mais largo (192px) e usa
+ * `neutral-border-default`/`neutral-surface-background` em vez do par
+ * zinc-500/zinc-100 dos demais nodos simples (Figma-confirmado, tokens
+ * distintos nesse node específico).
  */
 function FreeModeItemNode({
   variant,
@@ -83,24 +99,51 @@ function FreeModeItemNode({
   fileNames = DEFAULT_FILE_NAMES,
   label,
   subtitle,
+  folderName = "Pasta 1",
+  folderMeta = "4.2 GB • 128 Files",
+  folderProgress = 66.66,
   className,
   ...props
 }: FreeModeItemNodeProps) {
   const isResultado = variant === "resultado"
   const isExpandedResultado = isResultado && expanded
+  const isFolder = variant === "folder"
 
   return (
     <div
       data-slot="free-mode-item-node"
       data-variant={variant}
       className={cn(
-        "flex flex-col items-start rounded-lg border-2 border-zinc-500 bg-zinc-100 p-[18px] backdrop-blur-[6px]",
-        isExpandedResultado ? "w-[241px]" : isResultado ? "w-fit min-w-[174px]" : "w-[174px]",
+        "flex flex-col items-start rounded-lg p-[18px]",
+        isFolder
+          ? "gap-3 border-2 border-[var(--neutral-border-default,#707070)] bg-[var(--neutral-surface-background,#f3f3f3)] w-[192px]"
+          : "border-2 border-zinc-500 bg-zinc-100 backdrop-blur-[6px]",
+        !isFolder && (isExpandedResultado ? "w-[241px]" : isResultado ? "w-fit min-w-[174px]" : "w-[174px]"),
         className
       )}
       {...props}
     >
-      {variant === "auto-archive" ? (
+      {isFolder ? (
+        <>
+          <div className="flex w-full items-center gap-3">
+            <FolderGlyph aria-hidden="true" className="h-[34px] w-10 shrink-0" />
+            <div className="flex flex-col">
+              <p className="text-sm leading-5 font-semibold whitespace-nowrap text-[var(--neutral-text-secondary,#3f3f46)]">
+                {folderName}
+              </p>
+              <p className="text-[0.625rem] leading-[15px] whitespace-nowrap text-[var(--neutral-text-placeholder,#bfc7d2)]">
+                {folderMeta}
+              </p>
+            </div>
+          </div>
+          <div className="h-1 w-full overflow-hidden rounded-full bg-[var(--neutral-surface-muted,rgba(113,113,122,0.2))]">
+            <div
+              className="h-full rounded-full bg-[var(--brand-primary-default,#007e96)]"
+              style={{ width: `${Math.min(100, Math.max(0, folderProgress))}%` }}
+            />
+          </div>
+        </>
+      ) : variant === "auto-archive" ? (
         <div className="flex items-center gap-3">
           <AutoArchiveGlyph aria-hidden="true" className="size-[34px] shrink-0" />
           <div className="flex flex-col">

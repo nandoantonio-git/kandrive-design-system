@@ -15,12 +15,12 @@ Card de seleção/gestão de plano de assinatura (ciclo mensal/anual, forma de p
 ## Composição
 
 - Header "Assinatura" / "Gerencie seu plano de armazenamento"
-- Badge de status da assinatura ("Active") + data da próxima cobrança
-- Toggle "Monthly"/"Annual"
-- Cards de plano: "Starter" (1 TB, botão "Downgrade"), "Pro" (badge "Current", 5 TB, indicador "✓ Active"), "Max" (10 TB, botão "Upgrade")
+- Badge de status da assinatura ("Ativa") + data da próxima cobrança
+- Toggle "Mensal"/"Anual"
+- Cards de plano: "Starter" (1 TB, botão "Rebaixar"), "Pro" (badge "Atual", 5 TB, indicador "✓ Ativo"), "Max" (10 TB, botão "Melhorar")
 - Rodapé com texto sobre o portal de pagamento + botão "Editar plano" (renomeado de "Editar pagamento" em 2026-08-18, Figma-confirmado)
 
-Botões "Downgrade"/"Upgrade"/"Editar plano" usam `atom/PushButton` (`variant="neutral"`) — nenhum botão deste nó usa `isDestructive` (não há ação destrutiva nesta tela).
+Botões "Rebaixar"/"Melhorar"/"Editar plano" usam `atom/PushButton` (`variant="neutral"`) — nenhum botão deste nó usa `isDestructive` (não há ação destrutiva nesta tela).
 
 ## Cores
 
@@ -28,7 +28,7 @@ O card do plano corrente ("Pro") usa os tokens `border-brand-teal`/`bg-brand-tea
 
 ## Terminologia
 
-"Active", "Current", "Monthly", "Annual", "Downgrade" e "Upgrade" permanecem em inglês nesta peça — mesmo gap de idioma misto do Figma de origem, não termos proibidos. "Starter"/"Pro"/"Max" são nomes de plano, mantidos literais.
+Traduzido pra PT-BR em 2026-08-18 (decisão humana, reverte a leitura literal de 2026-08-13) — "Ativa"/"Mensal"/"Anual"/"Atual"/"Ativo"/"Rebaixar"/"Melhorar" substituem os literais em inglês do Figma de origem, consistente com o resto do produto. "Starter"/"Pro"/"Max" continuam em inglês — são nome de plano (branding), não copy de interface.
 
 ## Material
 
@@ -36,6 +36,6 @@ Container usa o material Liquid Glass — ver [Tokens/Materials](../tokens/Mater
 
 ## Estados
 
-- Toggle Monthly/Annual — controlado, `role="tablist"`/`aria-selected`
-- Plano atual (sem ação) vs. planos com ação — indicador "✓ Active" substitui o botão só no card corrente
+- Toggle Mensal/Anual — controlado, `role="tablist"`/`aria-selected`
+- Plano atual (sem ação) vs. planos com ação — indicador "✓ Ativo" substitui o botão só no card corrente
 - Hover/Active nos botões

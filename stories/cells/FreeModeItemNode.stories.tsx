@@ -48,3 +48,4 @@ export const FiltroDate: Story = { args: { variant: "filtro-date" } }
 export const AutoArchive: Story = { args: { variant: "auto-archive" } }
 export const ResultadoCollapsed: Story = { args: { variant: "resultado", expanded: false } }
 export const ResultadoExpanded: Story = { args: { variant: "resultado", expanded: true } }
+export const Folder: Story = { args: { variant: "folder" } }

@@ -8,34 +8,42 @@ import * as LabelStories from './Label.stories';
 ## Uso
 
 Pílula de dropdown de etiquetas. Use nos fluxos gerais de etiquetagem de
-arquivo; dentro do canvas de organização, o equivalente é
-`DropdownSelectLabel`.
+arquivo — inclusive dentro do canvas de organização, onde antes existia um
+componente separado (`DropdownSelectLabel`).
 
 <Canvas of={LabelStories.Default} />
 <Canvas of={LabelStories.Expanded} />
 <Canvas of={LabelStories.Disabled} />
+<Canvas of={LabelStories.ExpandedDynamicList} />
 <Controls />
 
 ## Anatomia
 
 Legenda "ETIQUETAR" + pílula com ícone de etiqueta, fundo Liquid Glass e
-chevron. Quando expandida, mostra um campo de busca mini, uma lista de
-badges por tipo de arquivo (Documentos/Imagens/Vídeos) e um item "+ Nova
-Etiqueta".
+chevron. Quando expandida, tem 2 modos (prop `labels`):
+- **Sem `labels`** (padrão) — campo de busca mini + lista fixa de badges por
+  tipo de arquivo (Documentos/Imagens/Vídeos) + item "+ Nova Etiqueta".
+- **Com `labels`** (mesmo array vazio) — lista dinâmica das etiquetas
+  informadas + item "+ Nova Etiqueta" (`onValueChange` seleciona).
 
-## Componente semelhante
+## Consolidado com `DropdownSelectLabel` (2026-08-18)
 
-`molecule/Label` e `DropdownSelectLabel` são visualmente muito parecidos
-(mesma legenda, mesma composição base) mas são dois componentes Figma
-distintos com pequenas diferenças: o chevron deste usa um glifo próprio
-(caret), enquanto `DropdownSelectLabel` usa uma seta triangular; e este
-tem os estados `Expanded`/`Disabled` confirmados de forma mais completa
-(busca + badges por tipo).
+`molecule/Label` (`1421:18687`) e `molecule/DropdownSelect/Label`
+(`1439:19650`) eram estruturalmente quase idênticos no Figma (mesma
+legenda, mesma pílula, mesmo item de rodapé) e viviam como 2 componentes
+de código separados — achado de duplicação registrado desde 2026-08-11
+(`docs/conflicts.md`). Consolidados numa API só: `dropdown-select-label.tsx`
+foi removido (sem consumidor real além da própria story) e absorvido aqui
+via a prop `labels`. Pequena divergência assumida conscientemente: o
+chevron caret (`LabelChevronGlyph`) deste node passou a ser usado nos 2
+modos, em vez da seta triangular (`ArrowDropDown`) que `DropdownSelectLabel`
+usava — não há mais 2 implementações pra manter sincronizadas.
 
 ## Estados
 
 - `default` — fechado
-- `expanded` — aberto, mostrando busca e lista de etiquetas
+- `expanded` — aberto, mostrando busca e lista de etiquetas (ou lista
+  dinâmica de `labels`, se informado)
 - `disabled`
 
 ## Terminologia

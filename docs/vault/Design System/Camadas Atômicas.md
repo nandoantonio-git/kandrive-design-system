@@ -26,7 +26,7 @@ Renomeada de "Celules" em 2026-08-18 (alinhamento semântico em inglês) — **o
 
 ## Molecules (22)
 
-Composições funcionais reutilizáveis: [[SearchInput]], `Label`, `FileArchiveCard`, [[FileList]], `FolderCard`, `Notification`/`PopoverNotification`, `DropdownSelectGroupBy`/`DropdownSelectLabel`, [[StorageStatus]], `StorageBar`, `ViewModeToggle`.
+Composições funcionais reutilizáveis: [[SearchInput]], `Label` (consolida o antigo `DropdownSelectLabel`, 2026-08-18), `FileArchiveCard`, [[FileList]], `FolderCard`, `Notification`/`PopoverNotification`, `DropdownSelectGroupBy`, [[StorageStatus]], `StorageBar`, `ViewModeToggle`.
 
 ## Organisms (23)
 

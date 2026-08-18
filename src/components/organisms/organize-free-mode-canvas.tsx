@@ -186,6 +186,12 @@ export interface OrganizeFreeModeCanvasProps extends React.ComponentProps<"div">
  * `FreeModeItemNode`. O celule mantém os defaults curtos do node base
  * (`1421:20108`) e o organism reproduz os textos específicos do node
  * composto (`1439:16906`).
+ *
+ * 🔧 Corrigido em 2026-08-18: o card "Pasta 1 / 4.2 GB · 128 Files" dentro
+ * do container "Arquivos" era markup duplicado à mão (Regra 10) — o
+ * usuário adicionou a variante real `Type=Folder` (`1534:21103`) em
+ * `celule/MainCanvas/Organization/FreeMode/ItemNode`; trocado pra
+ * `<FreeModeItemNode variant="folder" />` em vez de reimplementar.
  */
 function OrganizeFreeModeCanvas({
   rulesCount,
@@ -242,18 +248,7 @@ function OrganizeFreeModeCanvas({
         <span className="absolute -top-3 left-[98px] rounded-full bg-zinc-600 px-3 py-1 text-[0.625rem] font-bold text-brand-teal-light">
           Arquivos
         </span>
-        <div className="absolute top-[32px] left-[38px] flex h-[86px] w-[174px] flex-col rounded-xl border-2 border-zinc-600 bg-white p-[17px] shadow-sm">
-          <div className="flex items-center gap-3">
-            <div className="flex size-[34px] items-center justify-center rounded-md bg-brand-teal">
-              <span className="size-5 rounded-sm bg-brand-teal-light" />
-            </div>
-            <div>
-              <p className="text-sm leading-5 font-semibold text-zinc-700">Pasta 1</p>
-              <p className="text-[0.625rem] leading-[15px] text-brand-teal-light">4.2 GB · 128 Files</p>
-            </div>
-          </div>
-          <span className="mt-3 h-1.5 w-[105px] rounded-full bg-brand-teal" />
-        </div>
+        <FreeModeItemNode variant="folder" className="absolute top-[32px] left-[38px] shadow-sm" />
       </div>
 
       <FreeModeItemNode

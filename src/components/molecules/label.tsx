@@ -13,6 +13,14 @@ export interface LabelProps extends Omit<React.ComponentProps<"div">, "children"
   value?: string
   onExpandedChange?: (expanded: boolean) => void
   onCreateLabel?: () => void
+  /**
+   * Quando informado (mesmo array vazio), o `Expanded` vira lista dinâmica de
+   * etiquetas existentes (comportamento consolidado de
+   * `molecule/DropdownSelect/Label`, `1439:19650`) em vez das 3 linhas fixas
+   * de tipo de arquivo (Documentos/Imagem/Vídeo). Ver nota de consolidação.
+   */
+  labels?: string[]
+  onValueChange?: (label: string) => void
 }
 
 /**
@@ -40,20 +48,37 @@ export interface LabelProps extends Omit<React.ComponentProps<"div">, "children"
  * `Disabled` (pílula horizontal com opacidade reduzida).
  *
  * Chevron da pílula usa um glifo caret (`LabelChevronGlyph`, asset real
- * exportado) distinto de `atom/Icon/ArrowDropDown` (triângulo, usado em
- * `DropdownSelectLabel`) — formas Figma-confirmadas diferentes entre os
- * dois nodes, não a mesma peça reaproveitada.
+ * exportado) distinto de `atom/Icon/ArrowDropDown` (triângulo, usado no
+ * node de `DropdownSelectLabel`) — formas Figma-confirmadas diferentes
+ * entre os dois nodes, não a mesma peça reaproveitada.
+ *
+ * 🔧 **Consolidado em 2026-08-18 (decisão humana)**: `dropdown-select-label.tsx`
+ * foi removido e absorvido aqui via a prop `labels` — sem consumidor real
+ * na base de código (só a própria story), consolidar era estritamente
+ * seguro. Quando `labels` é informado, o `Expanded` renderiza a lista
+ * dinâmica de etiquetas (`DropdownSelectLabelItem` por item + "+ Nova
+ * Etiqueta", igual ao node `1439:19650`) em vez das 3 linhas fixas de tipo
+ * de arquivo do node `1421:18687`. A caixa de busca mini (`LabelSearchGlyph`)
+ * só aparece no modo de tipo de arquivo — não confirmada no node de
+ * `DropdownSelectLabel`, então não replicada lá (Regra 9, 🧩 não inventado).
+ * O chevron caret (`LabelChevronGlyph`) é usado nos dois modos agora —
+ * pequena divergência visual assumida conscientemente pro node de
+ * `DropdownSelectLabel` (que usava a seta triângulo `ArrowDropDown`), já
+ * que a API virou uma só.
  */
 function Label({
   state = "default",
   value = "Etiquetar",
   onExpandedChange,
   onCreateLabel,
+  labels,
+  onValueChange,
   className,
   ...props
 }: LabelProps) {
   const isExpanded = state === "expanded"
   const isDisabled = state === "disabled"
+  const isDynamicList = labels !== undefined
 
   return (
     <div
@@ -82,17 +107,36 @@ function Label({
             <span className="min-w-0 flex-1 whitespace-nowrap text-left">{value}</span>
             <LabelChevronGlyph aria-hidden="true" className="size-2 shrink-0" />
           </button>
-          <div className="flex w-full flex-1 flex-col items-center gap-1">
-            <div className="flex h-5 w-[86px] items-center gap-1.5 rounded-md bg-[#ccced6] px-1">
-              <LabelSearchGlyph aria-hidden="true" className="size-3 shrink-0 text-zinc-500" />
+          {isDynamicList ? (
+            <ul className="flex w-full flex-1 flex-col items-center">
+              {labels.map((label) => (
+                <li key={label} className="w-full">
+                  <DropdownSelectLabelItem
+                    label={label}
+                    aria-current={label === value}
+                    active={label === value}
+                    onClick={() => onValueChange?.(label)}
+                    className="mx-auto"
+                  />
+                </li>
+              ))}
+              <li className="w-full">
+                <DropdownSelectLabelItem onClick={onCreateLabel} className="mx-auto" />
+              </li>
+            </ul>
+          ) : (
+            <div className="flex w-full flex-1 flex-col items-center gap-1">
+              <div className="flex h-5 w-[86px] items-center gap-1.5 rounded-md bg-[#ccced6] px-1">
+                <LabelSearchGlyph aria-hidden="true" className="size-3 shrink-0 text-zinc-500" />
+              </div>
+              <div className="flex w-[109px] flex-col items-center gap-1 px-3 pb-1">
+                <FileTypeLabel kind="document" className="w-full" />
+                <FileTypeLabel kind="image" className="w-full" />
+                <FileTypeLabel kind="video" className="w-full" />
+                <DropdownSelectLabelItem onClick={onCreateLabel} />
+              </div>
             </div>
-            <div className="flex w-[109px] flex-col items-center gap-1 px-3 pb-1">
-              <FileTypeLabel kind="document" className="w-full" />
-              <FileTypeLabel kind="image" className="w-full" />
-              <FileTypeLabel kind="video" className="w-full" />
-              <DropdownSelectLabelItem onClick={onCreateLabel} />
-            </div>
-          </div>
+          )}
         </div>
       ) : (
         <button
