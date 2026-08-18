@@ -1,6 +1,7 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import { useCopy } from "@/components/tokens/token-swatch"
 
 export type ColorConfirmation = "figma" | "locked" | "inferred" | "conflict"
 
@@ -38,8 +39,13 @@ const CONFIRMATION_CLASS: Record<ColorConfirmation, string> = {
  * Puramente apresentacional: os dados (token/valor/papel/status) vêm de
  * `ColorPalette` abaixo, que espelha as tabelas já existentes no `.mdx`,
  * nenhum valor novo inventado aqui.
+ *
+ * Nome/valor copiáveis ao clicar (2026-08-18, `useCopy` de `token-swatch`)
+ * — mesma melhoria de experiência de dev levada pras outras 3 páginas de
+ * tokens.
  */
 function ColorSwatch({ token, variable, value, role, confirmation, note, className }: ColorEntry & { className?: string }) {
+  const { copied, copy } = useCopy()
   return (
     <div
       data-slot="color-swatch"
@@ -54,8 +60,22 @@ function ColorSwatch({ token, variable, value, role, confirmation, note, classNa
         style={{ background: value }}
       />
       <div className="flex flex-col gap-1.5">
-        <code className="text-[0.6875rem] leading-tight break-all text-zinc-500">{token}</code>
-        <code className="text-xs font-semibold text-zinc-900">{value}</code>
+        <button
+          type="button"
+          onClick={() => copy(token)}
+          className="cursor-pointer text-left text-[0.6875rem] leading-tight break-all text-zinc-500 hover:text-brand-teal"
+          title="Copiar nome do token"
+        >
+          {copied === token ? "Copiado!" : token}
+        </button>
+        <button
+          type="button"
+          onClick={() => copy(value)}
+          className="cursor-pointer text-left text-xs font-semibold text-zinc-900 hover:text-brand-teal"
+          title="Copiar valor"
+        >
+          {copied === value ? "Copiado!" : value}
+        </button>
         <span
           className={cn(
             "w-fit rounded-full px-1.5 py-0.5 text-[0.625rem] font-medium whitespace-nowrap",
@@ -65,7 +85,14 @@ function ColorSwatch({ token, variable, value, role, confirmation, note, classNa
           {CONFIRMATION_LABEL[confirmation]}
         </span>
         <p className="text-xs text-zinc-600">{role}</p>
-        <code className="text-[0.625rem] text-zinc-400">{variable}</code>
+        <button
+          type="button"
+          onClick={() => copy(variable)}
+          className="cursor-pointer text-left text-[0.625rem] text-zinc-400 hover:text-brand-teal"
+          title="Copiar variável CSS"
+        >
+          {copied === variable ? "Copiado!" : variable}
+        </button>
         {note ? <p className="text-[0.6875rem] text-zinc-400 italic">{note}</p> : null}
       </div>
     </div>

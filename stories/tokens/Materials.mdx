@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import { MaterialDemo } from '../../src/components/tokens/material-demo';
 
 <Meta title="Tokens/Materials" parameters={{ design: { type: 'figma', url: 'https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1431-17276' } }} />
 
@@ -7,15 +8,14 @@ import { Meta } from '@storybook/addon-docs/blocks';
 Spec **compartilhada** do material "Liquid Glass" (seção homônima da página
 Figma "✏️ Design Pattern", reaplicada em vários componentes — Regra 10).
 Todo componente que exibir esse efeito deve **referenciar esta página**, não
-reimplementar a especificação isoladamente.
+reimplementar a especificação isoladamente. Histórico de reconciliação:
+[`docs/audits/tokens/Materials.md`](../../docs/audits/tokens/Materials.md).
 
-> ✅ **Reconciliado com o Figma em 2026-08-09.** Os valores abaixo vêm de
-> `get_variable_defs` na seção "Material - Liquid Glass" (nó `1431:17276`,
-> component sets `Liquid Glass - Large/Medium/Small`, Mode=Dark/Light), mais
-> os tokens de cor de efeito (`effect-glass-*`, `effect-overlay-*`) lidos na
-> seção Pallete e confirmados em uso em `molecule/SearchBar`. Substitui a
-> versão anterior desta página, que era 100% inferida por falta de acesso ao
-> Figma.
+## Demo ao vivo — tints sobre fundo real
+
+O efeito só é visível de verdade com conteúdo atrás pra desfocar — clique na classe pra copiar.
+
+<MaterialDemo />
 
 ## Tokens do efeito "Liquid Glass" (Figma-confirmado)
 
@@ -70,47 +70,19 @@ entre Regular e Medium/Large.
 | `var(--effect-overlay-subtle)` | `#bfc7d21a` | Overlay muito sutil, tom azulado |
 | `var(--effect-overlay-secondary)` | `#6b6b6873` | Overlay secundário |
 
-🧩 **Inferido, não confirmado como parte da spec do material**: o nó da seção
-Material também retornou `Component Fill` (`#f5f5f5`), `Subcomponent Fill`
-(`#aaaaaa`) e `Subcomponent Stroke` (`#00000066`) — nomes genéricos sem
-prefixo `Liquid Glass`/`effect-glass`, prováveis fills de placeholder do
-symbol de demonstração `BG - Large UI` (`1439:16862`), não tokens do material
-em si. Não incluídos na tabela acima; sinalizados aqui para não perder o
-dado, caso uma revisão futura confirme o contrário.
+## Anatomia
 
-## Anatomia (Figma-confirmado + inferido)
+O material é composto por camadas empilhadas (ver raciocínio/nível de confiança de cada uma no histórico):
 
-O material é composto por camadas empilhadas, confirmado pela combinação dos
-tokens acima:
-
-1. **Camada de fundo (backdrop)** — o conteúdo atrás do vidro, sempre visível
-   e borrado através dele. 🧩 Inferido como conceito (o Figma não nomeia a
-   camada de backdrop separadamente, mas `Liquid Glass/Frost-*` e
-   `Refraction` só fazem sentido operando sobre um backdrop).
-2. **Camada de vidro (glass)** — o efeito nativo `Liquid Glass`
-   (`type: GLASS, radius: 10`) com `Refraction: 100`, `Dispersion: 0`,
-   modulado por `Depth`/`Splay`/`Frost` conforme o tamanho. ✅ Figma-confirmado.
-3. **Camada de tint** — as variáveis `effect-glass-white-*`/`effect-glass-dark-*`/
-   `effect-glass-light-*` aplicam a cor/opacidade de tint sobre o vidro,
-   variando por `Mode=Dark|Light`. ✅ Figma-confirmado (existência das
-   variáveis); o mapeamento exato de qual tint vai em qual tamanho/modo não
-   foi extraído variante-a-variante nesta reconciliação — 🧩 inferido por
-   nome.
-4. **Camada de borda (highlight)** — `Liquid Glass/Light Angle: -45` sugere
-   um highlight direcional simulando reflexo de luz. 🧩 Inferido: a
-   implementação exata (largura/opacidade da borda) não tem variável própria
-   identificada — pode estar embutida no efeito nativo `GLASS` do Figma, não
-   exposta como variável separada.
-5. **Camada de conteúdo** — texto/ícones acima do vidro. Não tem token de
-   material próprio; segue os tokens de `Tokens/Colors`/`Tokens/Typography`.
+1. **Camada de fundo (backdrop)** — o conteúdo atrás do vidro, sempre visível e borrado através dele.
+2. **Camada de vidro (glass)** — o efeito nativo `Liquid Glass` (`type: GLASS, radius: 10`) com `Refraction: 100`, `Dispersion: 0`, modulado por `Depth`/`Splay`/`Frost` conforme o tamanho.
+3. **Camada de tint** — as variáveis `effect-glass-white-*`/`effect-glass-dark-*`/`effect-glass-light-*` aplicam a cor/opacidade de tint sobre o vidro, variando por `Mode=Dark|Light`.
+4. **Camada de borda (highlight)** — `Liquid Glass/Light Angle: -45` sugere um highlight direcional simulando reflexo de luz.
+5. **Camada de conteúdo** — texto/ícones acima do vidro. Não tem token de material próprio; segue os tokens de `Tokens/Colors`/`Tokens/Typography`.
 
 ## Vibrancy / dark mode
 
-✅ Figma-confirmado: todos os 3 component sets (`Large`/`Medium`/`Small`) têm
-variante `Mode=Dark|Light` — o material responde ao tema. 🧩 Inferido: a
-implementação deve trocar o tint (`effect-glass-*` claro↔escuro) e manter
-`Frost`/`Depth`/`Splay` (que não variam por modo nas variáveis lidas) —
-mantém a mesma sensação de "vidro" nos dois modos.
+Os 3 component sets (`Large`/`Medium`/`Small`) têm variante `Mode=Dark|Light` — o material responde ao tema. A implementação deve trocar o tint (`effect-glass-*` claro↔escuro) e manter `Frost`/`Depth`/`Splay` (que não variam por modo nas variáveis lidas) — mantém a mesma sensação de "vidro" nos dois modos.
 
 ## reduced-motion
 
@@ -118,8 +90,7 @@ Regra 8 exige nota de `reduced-motion` para componentes animados/gestuais. O
 Liquid Glass em si é um material estático (blur/refração/frost), mas
 componentes que o usam frequentemente animam a transição de entrada/saída.
 **Não documentado no Figma** — nenhuma variável ou variante `reduced-motion`
-foi encontrada nos 3 component sets consultados (`get_variable_defs` nos nós
-`1431:17246`/`17253`/`17260` via o nó-pai `1431:17276`). Cada componente que
+foi encontrada nos 3 component sets consultados. Cada componente que
 referenciar este material deve repetir esse aviso em vez de assumir suporte
 a `reduced-motion`.
 

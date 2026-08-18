@@ -42,6 +42,7 @@
     "@vitest/coverage-v8": "latest",
     "oxlint": "^1.75.0",
     "playwright": "latest",
+    "remark-gfm": "^4.0.1",
     "storybook": "^10.5.7",
     "typescript": "~6.0.2",
     "vite": "^8.2.0",

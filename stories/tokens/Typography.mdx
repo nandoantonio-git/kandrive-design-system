@@ -1,4 +1,6 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import { TypeScale } from '../../src/components/tokens/type-specimen';
+import { TYPE_SCALE } from '../../src/components/tokens/type-scale-data';
 
 <Meta title="Tokens/Typography" parameters={{ design: { type: 'figma', url: 'https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1427-16951' } }} />
 
@@ -11,28 +13,9 @@ system.
 
 ## Escala tipográfica
 
-| Token | Peso | Tamanho | Line-height | Tracking |
-| --- | --- | --- | --- | --- |
-| `Type/Display` | Regular 400 | 50px | 100% | 0 |
-| `Type/H1` | Bold 700 | 40px | 100% | 0 |
-| `Type/H2` | SemiBold 600 | 32px | 100% | 0 |
-| `Type/H3` | Medium 500 | 25px | 100% | 0 |
-| `Type/Heading/MD` | Medium 500 | 20px | 28px | -0.2 |
-| `Type/Heading/SM` | SemiBold 600 | 16px | 22px | -0.1 |
-| `Type/Body/LG` | Bold 700 | 20px | 100% | 0.12 |
-| `Type/Body/MD` | Regular 400 | 16px | 100% | 0.12 |
-| `Type/Label/SM` | Medium 500 | 16px | 16px | 0.1 |
-| `Type/Button/MD` | Medium 500 | 16px | 20px | 0.1 |
-| `Type/Body/SM` | Regular 400 | 13px | 100% | 0.12 |
-| `Type/Caption/SM` | Regular 400 | 11px | 16px | 0.2 |
-| `Type/Body/XS` | Regular 400 | 10px (`0.625rem`) | 100% | 0.12 |
-| `Type/Body/XS/Bold` | Bold 700 | 10px (`0.625rem`) | 100% | 0.12 |
-| `Type/Tag` | Regular 400 | 11px | 100% | 0.12 |
+Clique no nome do token ou na classe pra copiar. Histórico de reconciliação: [`docs/audits/tokens/Typography.md`](../../docs/audits/tokens/Typography.md).
 
-Dois valores foram ajustados em relação ao tamanho original do arquivo de
-design: `Type/Button/MD` (rótulo de botão, texto de ação — não decorativo)
-sobe para 16px, e `Type/Tag` sobe para 11px. Ambos seguem a política de
-piso de acessibilidade abaixo.
+<TypeScale entries={TYPE_SCALE} />
 
 ## Piso de acessibilidade (16px)
 
