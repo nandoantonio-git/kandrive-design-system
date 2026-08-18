@@ -16,7 +16,9 @@ Navegação lateral persistente do produto — páginas, etiquetas e acesso ao a
 
 6 itens de navegação: Pessoal, Compartilhados, Recentes, Favoritos, Guardados, Lixeira. O item ativo tem fundo destacado e opacidade total; os demais ficam a 50% de opacidade (mesma cor de texto em todos, não muda de cor ao ficar ativo).
 
-Um botão no canto superior direito minimiza/colapsa a sidebar. Um botão "+ Adicionar" (`atom/PushButton`, ícone `plus`) fica entre o header e a lista de navegação.
+Um botão no canto superior direito minimiza/colapsa a sidebar de verdade (`collapsed`/`defaultCollapsed`/`onCollapsedChange`, controlado ou não) — o estado colapsado (Figma-confirmado, node `Size=SM`, `1421:18059`) não é o painel encolhido, é uma barra horizontal compacta: selo Kandrive + chip com ícone/nome da página ativa + botão de expandir. Um botão "+ Adicionar" (`atom/PushButton`, ícone `plus`) fica entre o header e a lista de navegação, só no estado expandido.
+
+<Canvas of={SidebarStories.Collapsed} />
 
 A seção "Etiquetas" (prop `tags`) renderiza [`atom/Sidebar/Tags/Items`](../atoms/SidebarTagsItem.mdx), com estados de hover/selecionado reais via prop `activeTag`/`onTagSelect`.
 

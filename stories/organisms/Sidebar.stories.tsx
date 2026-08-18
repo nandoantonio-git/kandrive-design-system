@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { useState } from "react"
 
 import { Sidebar } from "../../src/components/organisms/sidebar"
 
@@ -21,8 +22,26 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+export const Default: Story = {
+  render: (args) => {
+    function Controlled() {
+      const [collapsed, setCollapsed] = useState(false)
+      return <Sidebar {...args} collapsed={collapsed} onCollapsedChange={setCollapsed} />
+    }
+    return <Controlled />
+  },
+}
 
 export const WithoutTags: Story = {
   args: { tags: [] },
+}
+
+export const Collapsed: Story = {
+  render: (args) => {
+    function Controlled() {
+      const [collapsed, setCollapsed] = useState(true)
+      return <Sidebar {...args} collapsed={collapsed} onCollapsedChange={setCollapsed} />
+    }
+    return <Controlled />
+  },
 }

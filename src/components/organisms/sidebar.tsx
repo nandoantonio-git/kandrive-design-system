@@ -15,6 +15,8 @@ import { cn } from "@/lib/utils"
 import { PushButton } from "@/components/atoms/push-button"
 import { StorageSidebar, type StorageSidebarProps } from "@/components/organisms/storage-sidebar"
 import { SidebarTagsItem } from "@/components/atoms/sidebar-tags-item"
+import { Icon } from "@/components/atoms/icon"
+import kandriveMark from "@/assets/logo/kandrive-mark.svg"
 
 export type SidebarPage =
   | "Pessoal"
@@ -40,6 +42,11 @@ export interface SidebarProps extends React.ComponentProps<"nav"> {
   activeTag?: string
   onTagSelect?: (tag: string) => void
   storageProps: Omit<StorageSidebarProps, "className" | "manageSpaceLabel">
+  /** Controlado — se omitido, o componente gerencia o próprio estado (não-controlado, inicia expandido). */
+  collapsed?: boolean
+  defaultCollapsed?: boolean
+  onCollapsedChange?: (collapsed: boolean) => void
+  /** @deprecated Use `onCollapsedChange`. Mantido por compatibilidade — chamado junto em toda troca de estado. */
   onCollapse?: () => void
   onAdd?: () => void
 }
@@ -92,6 +99,16 @@ export interface SidebarProps extends React.ComponentProps<"nav"> {
  * Corrigido para `opacity-50` no item inativo (`opacity-100` no
  * hover/ativo) e texto sempre `text-zinc-900` (sem `text-brand-teal`
  * inventado).
+ *
+ * Corrigido em 2026-08-18 (achado do usuário: minimizar não fazia nada —
+ * o botão só disparava `onCollapse`, sem nenhum efeito visual próprio).
+ * `get_design_context` no node `Size=SM, Pages=Default` (`1421:18059`)
+ * confirma o estado colapsado real: não é o mesmo painel encolhido, é uma
+ * barra horizontal compacta — selo Kandrive + chip com o ícone/nome da
+ * página ativa + botão de expandir (mesmo SFSymbol `sidebar.left`).
+ * Implementado com estado controlado/não-controlado (`collapsed`/
+ * `defaultCollapsed`/`onCollapsedChange`) — sem `collapsed` explícito, o
+ * componente já alterna sozinho ao clicar, ao contrário de antes.
  */
 function Sidebar({
   activePage = "Pessoal",
@@ -100,14 +117,57 @@ function Sidebar({
   activeTag,
   onTagSelect,
   storageProps,
+  collapsed,
+  defaultCollapsed = false,
+  onCollapsedChange,
   onCollapse,
   onAdd,
   className,
   ...props
 }: SidebarProps) {
+  const [internalCollapsed, setInternalCollapsed] = React.useState(defaultCollapsed)
+  const isCollapsed = collapsed ?? internalCollapsed
+
+  const handleToggleCollapse = () => {
+    const next = !isCollapsed
+    if (collapsed === undefined) setInternalCollapsed(next)
+    onCollapsedChange?.(next)
+    onCollapse?.()
+  }
+
+  if (isCollapsed) {
+    return (
+      <nav
+        data-slot="sidebar"
+        data-collapsed="true"
+        className={cn(
+          "flex w-fit items-center gap-2 rounded-lg border border-zinc-200 bg-effect-glass-white-70 px-3 py-2 shadow-md backdrop-blur-md",
+          className
+        )}
+        {...props}
+      >
+        <img src={kandriveMark} alt="Kandrive" className="h-[18.664px] w-[14.99px] shrink-0" />
+        <span className="flex items-center gap-1.5 rounded-md bg-zinc-100 px-2.5 py-1 text-[0.625rem] whitespace-nowrap text-brand-secondary-dark">
+          <Icon name="Folder" aria-hidden="true" className="size-3.5 text-brand-teal" />
+          {activePage}
+        </span>
+        <button
+          type="button"
+          data-slot="sidebar-collapse"
+          aria-label="Expandir sidebar"
+          onClick={handleToggleCollapse}
+          className="flex size-6 shrink-0 items-center justify-center rounded-full text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-900 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50"
+        >
+          <PanelLeft aria-hidden="true" className="size-3.5" />
+        </button>
+      </nav>
+    )
+  }
+
   return (
     <nav
       data-slot="sidebar"
+      data-collapsed="false"
       className={cn(
         "relative flex w-72 flex-col gap-4 rounded-2xl border border-zinc-200 bg-effect-glass-surface-light px-4 pt-1 pb-4 backdrop-blur-md",
         className
@@ -119,7 +179,7 @@ function Sidebar({
           type="button"
           data-slot="sidebar-collapse"
           aria-label="Colapsar sidebar"
-          onClick={onCollapse}
+          onClick={handleToggleCollapse}
           className="flex size-6 items-center justify-center rounded-full text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-900 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50"
         >
           <PanelLeft aria-hidden="true" className="size-3.5" />

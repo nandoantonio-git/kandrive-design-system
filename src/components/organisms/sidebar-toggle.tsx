@@ -1,7 +1,8 @@
 import * as React from "react"
-import { ChevronDown, Cloud } from "lucide-react"
+import { ChevronDown } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/components/atoms/icon"
 
 export interface SidebarToggleProps extends Omit<React.ComponentProps<"button">, "onToggle"> {
   label?: string
@@ -21,10 +22,18 @@ export interface SidebarToggleProps extends Omit<React.ComponentProps<"button">,
  * comparado contra `get_design_context` mostrou o ícone à esquerda do
  * label ("Armazenamento") completamente ausente — o nó Figma usa um
  * SFSymbol sem `systemName` anotado (glifo de nuvem visível só no
- * screenshot, não exportável nó-a-nó). Implementado com `lucide-react`'s
- * `Cloud` (glifo visualmente equivalente ao screenshot), mesma convenção
- * já usada para outros SFSymbols sem vetor exportável neste design system
- * (ex.: `PanelLeft` em `organism/Sidebar`).
+ * screenshot, não exportável nó-a-nó). Implementado inicialmente com
+ * `lucide-react`'s `Cloud` como aproximação visual.
+ *
+ * Corrigido em 2026-08-18 (achado do usuário: ícone não alinhado ao
+ * Figma): o glifo real do screenshot é um contorno fino de nuvem, mais
+ * próximo do Material Symbol `cloud_queue` já exportado do Figma e
+ * registrado em `atom/Icon` (`CloudQueue`, usado noutros pontos do
+ * catálogo) do que da forma mais "cheia" do `lucide-react` `Cloud`.
+ * Trocado pro asset real — não é Figma-confirmado nó-a-nó (o SFSymbol
+ * segue sem `systemName`), mas é a correspondência visual mais fiel
+ * disponível no acervo de ícones já exportado, em vez de um substituto de
+ * biblioteca terceira.
  */
 function SidebarToggle({
   label = "Armazenamento",
@@ -51,7 +60,7 @@ function SidebarToggle({
       {...props}
     >
       <span className="flex items-center gap-1.5">
-        <Cloud aria-hidden="true" className="size-4 text-zinc-500" />
+        <Icon name="CloudQueue" aria-hidden="true" className="size-4 text-zinc-500" />
         {label}
       </span>
       <ChevronDown
