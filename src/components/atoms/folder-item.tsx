@@ -19,8 +19,14 @@ export type FolderItemState =
   | "selected-hover"
   | "selected-pressed"
 
-export interface FolderItemProps extends React.ComponentProps<"div"> {
+export interface FolderItemProps extends Omit<React.ComponentProps<"div">, "onSelect"> {
+  /** Fixa um estado específico (freeze-frame pra documentação/auditoria) — quando omitido, o componente reage a mouse/teclado de verdade. */
   state?: FolderItemState
+  /** Seleção controlada — quando omitido, o componente gerencia sozinho (não-controlado, alterna a cada clique). */
+  selected?: boolean
+  defaultSelected?: boolean
+  onSelectedChange?: (selected: boolean) => void
+  disabled?: boolean
   name?: string
   showName?: boolean
 }
@@ -41,13 +47,6 @@ const SELECTED_STATES: readonly FolderItemState[] = [
   "selected-pressed",
 ]
 
-const INTERACTIVE_STATES: readonly FolderItemState[] = [
-  "hover",
-  "pressed",
-  "selected-hover",
-  "selected-pressed",
-]
-
 /**
  * atom/FolderItem (`1440:24306`, Figma-confirmado) — "Simbolo para
  * representar pastas. Suporta seleção e badge de tier. Variantes: state e
@@ -57,27 +56,103 @@ const INTERACTIVE_STATES: readonly FolderItemState[] = [
  * separado como em Archive) — `Group8..12/15` (idle/hover/pressed/
  * disabled/default/static, os 2 últimos dobrados em `idle`) e
  * `Group13/14` (selected/selected-hover).
+ *
+ * Corrigido em 2026-08-19 (achado do usuário: `ArchiveItem`/`FolderItem`/
+ * `ImageItem`/`VideoItem` não reagiam a mouse/teclado — 100% controlados por
+ * prop `state`, impossível interagir de verdade entre os estados). Reescrito
+ * com o mesmo padrão já usado em `ImageItem`: `state` explícito continua
+ * funcionando (freeze-frame pra documentação/auditoria), mas quando omitido
+ * o componente rastreia hover/press reais e clique alterna seleção sozinho
+ * (`selected`/`defaultSelected`/`onSelectedChange`, controlado ou não).
  */
 function FolderItem({
-  state = "idle",
+  state: explicitState,
+  selected: controlledSelected,
+  defaultSelected = false,
+  onSelectedChange,
+  disabled = false,
   name = "Arquivo 1",
   showName = true,
   className,
+  onMouseEnter,
+  onMouseLeave,
+  onMouseDown,
+  onMouseUp,
+  onClick,
+  onKeyDown,
   ...props
 }: FolderItemProps) {
-  const isSelected = SELECTED_STATES.includes(state)
-  const isInteractive = INTERACTIVE_STATES.includes(state)
-  const isDisabled = state === "disabled"
+  const [isHovering, setIsHovering] = React.useState(false)
+  const [isPressing, setIsPressing] = React.useState(false)
+  const [internalSelected, setInternalSelected] = React.useState(defaultSelected)
+  const isSelected = explicitState ? SELECTED_STATES.includes(explicitState) : (controlledSelected ?? internalSelected)
+  const isDisabled = explicitState ? explicitState === "disabled" : disabled
+
+  const state: FolderItemState =
+    explicitState ??
+    (isDisabled
+      ? "disabled"
+      : isSelected
+        ? isPressing
+          ? "selected-pressed"
+          : isHovering
+            ? "selected-hover"
+            : "selected"
+        : isPressing
+          ? "pressed"
+          : isHovering
+            ? "hover"
+            : "idle")
+
+  const toggleSelected = () => {
+    if (isDisabled) return
+    const next = !isSelected
+    if (controlledSelected === undefined) setInternalSelected(next)
+    onSelectedChange?.(next)
+  }
 
   return (
     <div
       data-slot="folder-item"
       data-state={state}
+      role="button"
+      tabIndex={isDisabled ? -1 : 0}
+      aria-pressed={isSelected}
+      aria-disabled={isDisabled || undefined}
       className={cn(
         "relative flex w-[47px] flex-col items-center gap-1 py-0.5",
-        isInteractive && "cursor-pointer",
+        "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
+        isDisabled ? "cursor-not-allowed" : "cursor-pointer",
         className
       )}
+      onMouseEnter={(event) => {
+        if (!isDisabled) setIsHovering(true)
+        onMouseEnter?.(event)
+      }}
+      onMouseLeave={(event) => {
+        setIsHovering(false)
+        setIsPressing(false)
+        onMouseLeave?.(event)
+      }}
+      onMouseDown={(event) => {
+        if (!isDisabled) setIsPressing(true)
+        onMouseDown?.(event)
+      }}
+      onMouseUp={(event) => {
+        setIsPressing(false)
+        onMouseUp?.(event)
+      }}
+      onClick={(event) => {
+        toggleSelected()
+        onClick?.(event)
+      }}
+      onKeyDown={(event) => {
+        if (!isDisabled && (event.key === "Enter" || event.key === " ")) {
+          event.preventDefault()
+          toggleSelected()
+        }
+        onKeyDown?.(event)
+      }}
       {...props}
     >
       <div className="relative h-[41px] w-[46.35px] shrink-0">

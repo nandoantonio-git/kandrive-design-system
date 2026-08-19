@@ -77,3 +77,15 @@ export const AllStates: Story = {
     </div>
   ),
 }
+
+/** Sem `state` fixo — passe o mouse, clique/pressione Enter pra selecionar de verdade (não é freeze-frame). */
+export const Interactive: Story = {
+  args: { state: undefined },
+  render: (args) => (
+    <div className="flex items-end gap-3">
+      <VideoItem {...args} name="Arquivo 1" />
+      <VideoItem {...args} name="Arquivo 2" defaultSelected />
+      <VideoItem {...args} name="Arquivo 3" disabled />
+    </div>
+  ),
+}

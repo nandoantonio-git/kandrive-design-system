@@ -3,7 +3,6 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 import { SelectState } from "@/components/atoms/select-state"
 import imageIdle from "@/assets/illustrations/image-item-idle.svg"
-import imageIdleBadge from "@/assets/illustrations/image-item-idle-badge.svg"
 import imageHover from "@/assets/illustrations/image-item-hover.svg"
 import imagePressed from "@/assets/illustrations/image-item-pressed.svg"
 import imageDisabled from "@/assets/illustrations/image-item-disabled.svg"
@@ -87,19 +86,18 @@ const SELECTED_STATES: readonly ImageItemState[] = [
  * ícone é **a mesma nos 7 estados**: `top-[2px] left-[2.07px]`. Corrigido
  * pra posição única, sem condicional.
  *
- * Achado extra na mesma investigação: o estado `idle` tem um **segundo
- * elemento** (`Vector` `1442:8039`, badge menor no canto inferior-esquerdo
- * do ícone, mesma ilustração em miniatura) que nunca foi implementado —
- * visível só comparando o screenshot real do Figma em detalhe, não no
- * código de referência isolado. Posição Figma-confirmada via `get_metadata`:
- * `top-[22.5px] left-[9.64px]`, 15.86×18.5px. Adicionado como
- * `image-item-idle-badge.svg`, só no estado `idle`.
+ * Achado extra numa investigação anterior (2026-08-18): o estado `idle`
+ * tinha um **segundo elemento** (`Vector` `1442:8039`, badge menor no canto
+ * inferior-esquerdo do ícone) implementado como `image-item-idle-badge.svg`.
+ * Removido em 2026-08-19: o usuário editou o símbolo no Figma e ocultou esse
+ * vetor (`hidden="true"` confirmado via `get_metadata`) — não faz mais parte
+ * do estado `idle`. Asset e overlay retirados pra bater com o Figma atual.
  *
  * Corrigido em 2026-08-19 (achado do usuário, 2 pontos):
- * 1. O retângulo de vidro e o badge do canto não tinham borda — liam como
- *    "bufado"/borrado em vez de peças de vidro recortadas. Adicionada a
- *    borda real do material (`Subcomponent Stroke`, `#00000066`,
- *    Figma-confirmado — ver `Tokens/Materials`).
+ * 1. O retângulo de vidro não tinha borda — lia como "bufado"/borrado em vez
+ *    de peça de vidro recortada. Adicionada a borda real do material
+ *    (`Subcomponent Stroke`, `#00000066`, Figma-confirmado — ver
+ *    `Tokens/Materials`).
  * 2. O componente era 100% controlado por prop `state`, sem reagir a
  *    mouse/teclado — impossível interagir de verdade entre os estados.
  *    Reescrito com o mesmo padrão já usado em `Sidebar`/`CloseButton`:
@@ -204,14 +202,6 @@ function ImageItem({
           aria-hidden="true"
           className="absolute top-[2px] left-[2.07px] h-7 w-[31px] rounded border border-[#00000066] bg-[var(--effect-glass-fill-light,rgba(250,250,250,0.6))]"
         />
-        {state === "idle" ? (
-          <img
-            alt=""
-            aria-hidden="true"
-            className="absolute top-[22.5px] left-[9.64px] h-[18.5px] w-[15.86px] rounded-[3px] border border-[#00000066]"
-            src={imageIdleBadge}
-          />
-        ) : null}
         {SELECTED_STATES.includes(state) ? (
           <SelectState className="absolute right-[2px] bottom-0" />
         ) : null}

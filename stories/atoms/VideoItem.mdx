@@ -17,3 +17,9 @@ Linha/card compacto para representar um vídeo dentro de uma lista de arquivos �
 ## Estados
 
 `idle` · `hover` · `pressed` · `disabled` · `selected` · `selected-hover` · `selected-pressed` · `favicon-header-thumbnail`
+
+## Interação
+
+Sem `state` fixo — passe o mouse, clique/pressione Enter pra selecionar de verdade (não é freeze-frame). `state` continua disponível como override pra congelar um estado específico (é o único jeito de chegar em `favicon-header-thumbnail`, que não faz parte do ciclo real de interação).
+
+<Canvas of={VideoItemStories.Interactive} />

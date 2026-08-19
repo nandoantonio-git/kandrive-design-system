@@ -17,3 +17,9 @@ Linha/card compacto pra representar **uma pasta** dentro de uma lista de arquivo
 ## Estados
 
 `Idle` · `Hover` · `Pressed` · `Disabled` · `Selected` · `Selected-Hover` · `Selected-Pressed`. Sem loading/error — é um glifo de item estático.
+
+## Interação
+
+Sem `state` fixo — passe o mouse, clique/pressione Enter pra selecionar de verdade (não é freeze-frame). `state` continua disponível como override pra congelar um estado específico em documentação/auditoria.
+
+<Canvas of={FolderItemStories.Interactive} />

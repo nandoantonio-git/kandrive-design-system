@@ -26,6 +26,8 @@ Não existe uma prop `tier` neste componente. Pra mostrar o tier de armazenament
 
 `idle` · `hover` · `pressed` · `disabled` · `selected` · `selected-hover` · `selected-pressed`
 
-## Estado (mudança externa)
+## Interação
 
-A troca de estado é instantânea (troca de asset) e controlada por quem usa o componente (ex.: uma grade de arquivos gerenciando qual item está selecionado) — não há transição/animação própria.
+Sem `state` fixo — passe o mouse, clique/pressione Enter pra selecionar de verdade (não é freeze-frame). `state` continua disponível como override pra congelar um estado específico em documentação/auditoria.
+
+<Canvas of={ArchiveItemStories.Interactive} />

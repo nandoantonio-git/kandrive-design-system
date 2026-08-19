@@ -17,8 +17,14 @@ export type ArchiveItemState =
   | "selected-hover"
   | "selected-pressed"
 
-export interface ArchiveItemProps extends React.ComponentProps<"div"> {
+export interface ArchiveItemProps extends Omit<React.ComponentProps<"div">, "onSelect"> {
+  /** Fixa um estado específico (freeze-frame pra documentação/auditoria) — quando omitido, o componente reage a mouse/teclado de verdade. */
   state?: ArchiveItemState
+  /** Seleção controlada — quando omitido, o componente gerencia sozinho (não-controlado, alterna a cada clique). */
+  selected?: boolean
+  defaultSelected?: boolean
+  onSelectedChange?: (selected: boolean) => void
+  disabled?: boolean
   /** Nome exibido abaixo do glifo — `folderName` no Figma, apesar de ser um arquivo (nome de prop mantido lá; aqui só `name`). */
   name?: string
   /** Eixo `isNameOn` do Figma. */
@@ -45,13 +51,6 @@ const OVERLAY_IMAGE: Partial<Record<ArchiveItemState, string>> = {
 
 const SELECTED_STATES: readonly ArchiveItemState[] = [
   "selected",
-  "selected-hover",
-  "selected-pressed",
-]
-
-const INTERACTIVE_STATES: readonly ArchiveItemState[] = [
-  "hover",
-  "pressed",
   "selected-hover",
   "selected-pressed",
 ]
@@ -95,28 +94,105 @@ const INTERACTIVE_STATES: readonly ArchiveItemState[] = [
  * Elemento inteiro estava ausente do componente renderizado (confirmado no
  * screenshot do Storybook — cards sólidos sem nenhuma linha visível).
  * Adicionado como 3 `<div>` absolutos, replicando a spec exata do Figma.
+ *
+ * Corrigido em 2026-08-19 (achado do usuário: `ArchiveItem`/`FolderItem`/
+ * `ImageItem`/`VideoItem` não reagiam a mouse/teclado — 100% controlados por
+ * prop `state`, impossível interagir de verdade entre os estados). Reescrito
+ * com o mesmo padrão já usado em `ImageItem`: `state` explícito continua
+ * funcionando (freeze-frame pra documentação/auditoria), mas quando omitido
+ * o componente rastreia hover/press reais e clique alterna seleção sozinho
+ * (`selected`/`defaultSelected`/`onSelectedChange`, controlado ou não).
  */
 function ArchiveItem({
-  state = "idle",
+  state: explicitState,
+  selected: controlledSelected,
+  defaultSelected = false,
+  onSelectedChange,
+  disabled = false,
   name = "Arquivo 1",
   showName = true,
   className,
+  onMouseEnter,
+  onMouseLeave,
+  onMouseDown,
+  onMouseUp,
+  onClick,
+  onKeyDown,
   ...props
 }: ArchiveItemProps) {
-  const isSelected = SELECTED_STATES.includes(state)
-  const isInteractive = INTERACTIVE_STATES.includes(state)
-  const isDisabled = state === "disabled"
+  const [isHovering, setIsHovering] = React.useState(false)
+  const [isPressing, setIsPressing] = React.useState(false)
+  const [internalSelected, setInternalSelected] = React.useState(defaultSelected)
+  const isSelected = explicitState ? SELECTED_STATES.includes(explicitState) : (controlledSelected ?? internalSelected)
+  const isDisabled = explicitState ? explicitState === "disabled" : disabled
+
+  const state: ArchiveItemState =
+    explicitState ??
+    (isDisabled
+      ? "disabled"
+      : isSelected
+        ? isPressing
+          ? "selected-pressed"
+          : isHovering
+            ? "selected-hover"
+            : "selected"
+        : isPressing
+          ? "pressed"
+          : isHovering
+            ? "hover"
+            : "idle")
+
   const overlay = OVERLAY_IMAGE[state]
+
+  const toggleSelected = () => {
+    if (isDisabled) return
+    const next = !isSelected
+    if (controlledSelected === undefined) setInternalSelected(next)
+    onSelectedChange?.(next)
+  }
 
   return (
     <div
       data-slot="archive-item"
       data-state={state}
+      role="button"
+      tabIndex={isDisabled ? -1 : 0}
+      aria-pressed={isSelected}
+      aria-disabled={isDisabled || undefined}
       className={cn(
         "relative flex w-fit min-w-[36.68px] flex-col items-center gap-1 py-0.5",
-        isInteractive && "cursor-pointer",
+        "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
+        isDisabled ? "cursor-not-allowed" : "cursor-pointer",
         className
       )}
+      onMouseEnter={(event) => {
+        if (!isDisabled) setIsHovering(true)
+        onMouseEnter?.(event)
+      }}
+      onMouseLeave={(event) => {
+        setIsHovering(false)
+        setIsPressing(false)
+        onMouseLeave?.(event)
+      }}
+      onMouseDown={(event) => {
+        if (!isDisabled) setIsPressing(true)
+        onMouseDown?.(event)
+      }}
+      onMouseUp={(event) => {
+        setIsPressing(false)
+        onMouseUp?.(event)
+      }}
+      onClick={(event) => {
+        toggleSelected()
+        onClick?.(event)
+      }}
+      onKeyDown={(event) => {
+        if (!isDisabled && (event.key === "Enter" || event.key === " ")) {
+          event.preventDefault()
+          toggleSelected()
+        }
+        onKeyDown?.(event)
+      }}
       {...props}
     >
       <div className="relative h-[41px] w-[36.68px] shrink-0">

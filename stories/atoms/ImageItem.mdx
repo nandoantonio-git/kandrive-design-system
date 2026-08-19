@@ -18,10 +18,8 @@ Linha/card compacto pra representar **uma imagem** dentro de uma lista de arquiv
 
 Além do glifo por estado, um retângulo `28×31px` translúcido (`--effect-glass-fill-light`) fica sobreposto em **todos** os estados, não só nos selecionados, sempre na mesma posição (`top-2px left-2.07px` relativo à caixa do ícone — Figma-confirmado via `get_metadata`, coordenadas absolutas dentro do símbolo, idêntico nos 7 estados). Uma correção anterior tentou uma posição condicional por grupo lida do CSS de referência do `get_design_context` — esses valores eram relativos ao container flex externo (com padding), não ao box do ícone, e só bateram por acidente nos `selected*`; a versão atual usa coordenada única, extraída direto do `get_metadata`.
 
-## Badge extra do estado `Idle`
-
-Só o estado `Idle` tem um segundo elemento: uma miniatura da mesma ilustração (`image-item-idle-badge.svg`) sobreposta no canto inferior-esquerdo do ícone (Figma-confirmado, node `1442:8039`, posição `top-22.5px left-9.64px`, 15.86×18.5px). Achado tardio — só ficou visível comparando o screenshot real do Figma em detalhe; o código de referência isolado por estado não deixava claro que era um elemento visualmente distinto, não uma duplicata/sombra.
-
 ## Estados
 
 `Idle` · `Hover` · `Pressed` · `Disabled` · `Selected` · `Selected-Hover` · `Selected-Pressed`. Sem loading/error.
+
+Sem `state` fixo — passe o mouse, clique/pressione Enter pra selecionar de verdade (não é freeze-frame). Ver a story `Interactive`.
