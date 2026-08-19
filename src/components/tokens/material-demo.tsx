@@ -36,11 +36,18 @@ export const GLASS_TINTS: GlassTintEntry[] = [
   { token: "effect-glass-white-05", className: "bg-effect-glass-white-05", value: "#ffffff0d", role: "Tint branco, opacidade mínima" },
 ]
 
+/** Borda real do material (`Subcomponent Stroke`, Figma-confirmado via `get_variable_defs`) — sem ela o vidro lê como borrado sem definição, não como uma peça recortada. */
+const GLASS_BORDER_CLASS = "border border-[#00000066]"
+
 /**
  * Demo ao vivo do material Liquid Glass — cada tint renderizado como
- * painel de vidro real (`backdrop-blur-md` + o tint) sobre um fundo fixo
- * com textura, não como amostra de cor sólida (que não mostraria
+ * painel de vidro real (`backdrop-blur-md` + tint + borda) sobre um fundo
+ * fixo com textura, não como amostra de cor sólida (que não mostraria
  * blur/transparência nenhuma). Classe copiável no clique.
+ *
+ * Corrigido em 2026-08-19 (achado do usuário): faltava a borda
+ * (`Subcomponent Stroke`) — sem ela o painel lia como um blur genérico,
+ * não como vidro com edge definido.
  */
 function MaterialDemo() {
   return (
@@ -51,12 +58,12 @@ function MaterialDemo() {
           token={tint.token}
           value={tint.value}
           role={tint.role}
-          cssSnippet={cn(tint.className, "backdrop-blur-md")}
+          cssSnippet={cn(tint.className, "backdrop-blur-md", GLASS_BORDER_CLASS)}
           preview={
             <GlassBackdrop>
               <div
                 aria-hidden="true"
-                className={cn("size-full rounded-lg backdrop-blur-md", tint.className)}
+                className={cn("size-full rounded-lg backdrop-blur-md", tint.className, GLASS_BORDER_CLASS)}
               />
             </GlassBackdrop>
           }

@@ -70,6 +70,21 @@ entre Regular e Medium/Large.
 | `var(--effect-overlay-subtle)` | `#bfc7d21a` | Overlay muito sutil, tom azulado |
 | `var(--effect-overlay-secondary)` | `#6b6b6873` | Overlay secundário |
 
+## Borda (Figma-confirmado, `get_variable_defs`)
+
+| Token Figma | Valor | Papel |
+| --- | --- | --- |
+| `Subcomponent Stroke` | `#00000066` | Borda de 1px em todo componente Liquid Glass — é o que faz a camada de vidro ler como uma peça definida, não uma superfície lisa |
+| `Subcomponent Fill` | `#aaaaaa` | Fill do subcomponente de demonstração — não é o fill do vidro em si (esse já vem de `effect-glass-*` acima) |
+
+Achado em 2026-08-09 (US-005), tratado então como "provável placeholder do
+symbol de demonstração" (ver histórico) — **revisto em 2026-08-19**: a
+ausência dessa borda nos componentes já implementados é exatamente o que
+lia como "vidro borrado sem definição" em vez de uma peça de vidro
+recortada com precisão (achado do usuário). `Subcomponent Stroke` é
+aplicada aqui como a borda real do material: `border border-[#00000066]`
+sobre a camada de Glass Effect.
+
 ## Anatomia
 
 O material é composto por camadas empilhadas (ver raciocínio/nível de confiança de cada uma no histórico):
@@ -77,7 +92,7 @@ O material é composto por camadas empilhadas (ver raciocínio/nível de confian
 1. **Camada de fundo (backdrop)** — o conteúdo atrás do vidro, sempre visível e borrado através dele.
 2. **Camada de vidro (glass)** — o efeito nativo `Liquid Glass` (`type: GLASS, radius: 10`) com `Refraction: 100`, `Dispersion: 0`, modulado por `Depth`/`Splay`/`Frost` conforme o tamanho.
 3. **Camada de tint** — as variáveis `effect-glass-white-*`/`effect-glass-dark-*`/`effect-glass-light-*` aplicam a cor/opacidade de tint sobre o vidro, variando por `Mode=Dark|Light`.
-4. **Camada de borda (highlight)** — `Liquid Glass/Light Angle: -45` sugere um highlight direcional simulando reflexo de luz.
+4. **Camada de borda** — `border border-[#00000066]` (`Subcomponent Stroke`, Figma-confirmado via `get_variable_defs`) recorta a peça de vidro do fundo. `Liquid Glass/Light Angle: -45` sugere que o efeito nativo `GLASS` do Figma ainda modula essa borda com um highlight direcional simulando reflexo de luz — a intensidade exata desse highlight não tem variável própria isolada (🧩 inferido), só a cor/espessura base da borda é Figma-confirmada.
 5. **Camada de conteúdo** — texto/ícones acima do vidro. Não tem token de material próprio; segue os tokens de `Tokens/Colors`/`Tokens/Typography`.
 
 ## Vibrancy / dark mode

@@ -12,14 +12,21 @@ Mode=Dark/Light), mais os tokens de cor de efeito (`effect-glass-*`,
 `molecule/SearchBar`. Substitui a versão anterior desta página, que era
 100% inferida por falta de acesso ao Figma.
 
-## Achado não incluído na spec
+## Achado não incluído na spec (2026-08-09) — revisto em 2026-08-19
 
 O nó da seção Material também retornou `Component Fill` (`#f5f5f5`),
 `Subcomponent Fill` (`#aaaaaa`) e `Subcomponent Stroke` (`#00000066`) —
-nomes genéricos sem prefixo `Liquid Glass`/`effect-glass`, prováveis fills
-de placeholder do symbol de demonstração `BG - Large UI` (`1439:16862`),
-não tokens do material em si. Não incluídos na spec ativa; registrados
-aqui caso uma revisão futura confirme o contrário.
+nomes genéricos sem prefixo `Liquid Glass`/`effect-glass`, tratados então
+como prováveis fills de placeholder do symbol de demonstração `BG - Large
+UI` (`1439:16862`), não tokens do material em si.
+
+**Revisão de 2026-08-19 (achado do usuário)**: componentes com Liquid
+Glass sem nenhuma borda liam como "vidro borrado sem definição" — a
+ausência de `Subcomponent Stroke` explicava exatamente isso. Reclassificada
+de "provável placeholder" pra "borda real do material" — ver seção
+"Borda" no `.mdx` ativo. `Subcomponent Fill` (`#aaaaaa`) segue fora da
+spec (é fill do symbol de demonstração, não do vidro em si — o fill real
+já vem de `effect-glass-*`).
 
 ## Anatomia — raciocínio por trás da conclusão de 5 camadas
 

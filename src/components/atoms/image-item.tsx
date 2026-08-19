@@ -20,8 +20,14 @@ export type ImageItemState =
   | "selected-hover"
   | "selected-pressed"
 
-export interface ImageItemProps extends React.ComponentProps<"div"> {
+export interface ImageItemProps extends Omit<React.ComponentProps<"div">, "onSelect"> {
+  /** Fixa um estado específico (freeze-frame pra documentação/auditoria) — quando omitido, o componente reage a mouse/teclado de verdade. */
   state?: ImageItemState
+  /** Seleção controlada — quando omitido, o componente gerencia sozinho (não-controlado, alterna a cada clique). */
+  selected?: boolean
+  defaultSelected?: boolean
+  onSelectedChange?: (selected: boolean) => void
+  disabled?: boolean
   /** `itemName` no Figma. */
   name?: string
   showName?: boolean
@@ -39,13 +45,6 @@ const IMAGE: Record<ImageItemState, string> = {
 
 const SELECTED_STATES: readonly ImageItemState[] = [
   "selected",
-  "selected-hover",
-  "selected-pressed",
-]
-
-const INTERACTIVE_STATES: readonly ImageItemState[] = [
-  "hover",
-  "pressed",
   "selected-hover",
   "selected-pressed",
 ]
@@ -95,44 +94,125 @@ const INTERACTIVE_STATES: readonly ImageItemState[] = [
  * código de referência isolado. Posição Figma-confirmada via `get_metadata`:
  * `top-[22.5px] left-[9.64px]`, 15.86×18.5px. Adicionado como
  * `image-item-idle-badge.svg`, só no estado `idle`.
+ *
+ * Corrigido em 2026-08-19 (achado do usuário, 2 pontos):
+ * 1. O retângulo de vidro e o badge do canto não tinham borda — liam como
+ *    "bufado"/borrado em vez de peças de vidro recortadas. Adicionada a
+ *    borda real do material (`Subcomponent Stroke`, `#00000066`,
+ *    Figma-confirmado — ver `Tokens/Materials`).
+ * 2. O componente era 100% controlado por prop `state`, sem reagir a
+ *    mouse/teclado — impossível interagir de verdade entre os estados.
+ *    Reescrito com o mesmo padrão já usado em `Sidebar`/`CloseButton`:
+ *    `state` explícito continua funcionando (freeze-frame pra
+ *    documentação), mas quando omitido o componente rastreia hover/press
+ *    reais e clique alterna seleção sozinho (`selected`/`defaultSelected`/
+ *    `onSelectedChange`, controlado ou não).
  */
 function ImageItem({
-  state = "idle",
+  state: explicitState,
+  selected: controlledSelected,
+  defaultSelected = false,
+  onSelectedChange,
+  disabled = false,
   name = "Arquivo 2",
   showName = true,
   className,
+  onMouseEnter,
+  onMouseLeave,
+  onMouseDown,
+  onMouseUp,
+  onClick,
+  onKeyDown,
   ...props
 }: ImageItemProps) {
-  const isSelected = SELECTED_STATES.includes(state)
-  const isInteractive = INTERACTIVE_STATES.includes(state)
-  const isDisabled = state === "disabled"
+  const [isHovering, setIsHovering] = React.useState(false)
+  const [isPressing, setIsPressing] = React.useState(false)
+  const [internalSelected, setInternalSelected] = React.useState(defaultSelected)
+  const isSelected = explicitState ? SELECTED_STATES.includes(explicitState) : (controlledSelected ?? internalSelected)
+  const isDisabled = explicitState ? explicitState === "disabled" : disabled
+
+  const state: ImageItemState =
+    explicitState ??
+    (isDisabled
+      ? "disabled"
+      : isSelected
+        ? isPressing
+          ? "selected-pressed"
+          : isHovering
+            ? "selected-hover"
+            : "selected"
+        : isPressing
+          ? "pressed"
+          : isHovering
+            ? "hover"
+            : "idle")
+
+  const toggleSelected = () => {
+    if (isDisabled) return
+    const next = !isSelected
+    if (controlledSelected === undefined) setInternalSelected(next)
+    onSelectedChange?.(next)
+  }
 
   return (
     <div
       data-slot="image-item"
       data-state={state}
+      role="button"
+      tabIndex={isDisabled ? -1 : 0}
+      aria-pressed={isSelected}
+      aria-disabled={isDisabled || undefined}
       className={cn(
         "relative flex w-fit min-w-[35.14px] flex-col items-center gap-1 px-1 py-0.5",
-        isInteractive && "cursor-pointer",
+        "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
+        isDisabled ? "cursor-not-allowed" : "cursor-pointer",
         className
       )}
+      onMouseEnter={(event) => {
+        if (!isDisabled) setIsHovering(true)
+        onMouseEnter?.(event)
+      }}
+      onMouseLeave={(event) => {
+        setIsHovering(false)
+        setIsPressing(false)
+        onMouseLeave?.(event)
+      }}
+      onMouseDown={(event) => {
+        if (!isDisabled) setIsPressing(true)
+        onMouseDown?.(event)
+      }}
+      onMouseUp={(event) => {
+        setIsPressing(false)
+        onMouseUp?.(event)
+      }}
+      onClick={(event) => {
+        toggleSelected()
+        onClick?.(event)
+      }}
+      onKeyDown={(event) => {
+        if (!isDisabled && (event.key === "Enter" || event.key === " ")) {
+          event.preventDefault()
+          toggleSelected()
+        }
+        onKeyDown?.(event)
+      }}
       {...props}
     >
       <div className="relative h-[41px] w-[35.14px] shrink-0">
         <img alt="" aria-hidden="true" className="absolute inset-0 size-full" src={IMAGE[state]} />
         <div
           aria-hidden="true"
-          className="absolute top-[2px] left-[2.07px] h-7 w-[31px] rounded bg-[var(--effect-glass-fill-light,rgba(250,250,250,0.6))]"
+          className="absolute top-[2px] left-[2.07px] h-7 w-[31px] rounded border border-[#00000066] bg-[var(--effect-glass-fill-light,rgba(250,250,250,0.6))]"
         />
         {state === "idle" ? (
           <img
             alt=""
             aria-hidden="true"
-            className="absolute top-[22.5px] left-[9.64px] h-[18.5px] w-[15.86px]"
+            className="absolute top-[22.5px] left-[9.64px] h-[18.5px] w-[15.86px] rounded-[3px] border border-[#00000066]"
             src={imageIdleBadge}
           />
         ) : null}
-        {isSelected ? (
+        {SELECTED_STATES.includes(state) ? (
           <SelectState className="absolute right-[2px] bottom-0" />
         ) : null}
       </div>
