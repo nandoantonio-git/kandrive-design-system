@@ -15,7 +15,7 @@ const meta = {
       options: ["juncao", "subtracao", "intersseccao", "exclusao", "filtro-tamanho", "filtro-formato", "filtro-data"],
     },
     selected: { control: "boolean" },
-    state: { control: "select", options: ["idle", "hover", "clicked"] },
+    state: { control: "select", options: ["idle", "hover", "pressed"] },
   },
   args: { operation: "juncao" },
   decorators: [
@@ -39,7 +39,7 @@ export const Hover: Story = { args: { state: "hover" } }
 export const AllOperations: Story = {
   render: () => (
     <div className="flex flex-col gap-1">
-      {(["idle", "hover", "clicked"] as const).flatMap((state) =>
+      {(["idle", "hover", "pressed"] as const).flatMap((state) =>
         ([
           "juncao",
           "subtracao",

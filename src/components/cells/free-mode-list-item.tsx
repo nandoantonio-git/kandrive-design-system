@@ -34,8 +34,8 @@ const OPERATION_CONFIG: Record<
 export interface FreeModeListItemProps extends Omit<React.ComponentProps<"button">, "onSelect"> {
   operation: FreeModeListItemOperation
   /** Eixo `state` do Figma. Use `hover` só para cobertura estática de Storybook/teste visual. */
-  state?: "idle" | "hover" | "clicked"
-  /** Eixo `state=Clicked` do Figma — linha persistida como selecionada. */
+  state?: "idle" | "hover" | "pressed"
+  /** Eixo `state=Clicked` do Figma (normalizado pra `pressed` no código) — linha persistida como selecionada. */
   selected?: boolean
   onSelect?: () => void
 }
@@ -47,9 +47,14 @@ export interface FreeModeListItemProps extends Omit<React.ComponentProps<"button
  * Interssecção/Exclusão + 3 filtros). Eixo `state` do Figma
  * (`idle`/`hover`/`Clicked`) mapeado para `state` para permitir captura
  * visual estática; o hover real continua disponível via CSS. A prop legada
- * `selected` ainda força `Clicked` para consumidores existentes (
+ * `selected` ainda força `pressed` para consumidores existentes (
  * `bg-effect-overlay-md` ≈ `bg-black/14`, mesmo tratamento de
  * `atom/Label/Storage/Alert`).
+ *
+ * Normalizado em 2026-08-19 (achado do usuário: `pressed`/`clicked` são o
+ * mesmo conceito): Figma chama esse eixo de `Clicked` nesse node, mas a
+ * maioria do catálogo usa `Pressed`. Valor de código normalizado —
+ * citação Figma acima preserva o nome original (Regra 9).
  */
 function FreeModeListItem({
   operation,
@@ -60,18 +65,18 @@ function FreeModeListItem({
   ...props
 }: FreeModeListItemProps) {
   const { label, Glyph } = OPERATION_CONFIG[operation]
-  const visualState = selected ? "clicked" : state
+  const visualState = selected ? "pressed" : state
   return (
     <button
       type="button"
       data-slot="free-mode-list-item"
       data-operation={operation}
       data-state={visualState}
-      aria-pressed={visualState === "clicked"}
+      aria-pressed={visualState === "pressed"}
       onClick={onSelect}
       className={cn(
         "flex h-8 w-full items-center gap-3 rounded-md px-4 text-left text-base font-medium tracking-[0.1px] text-zinc-700 transition-colors",
-        visualState === "clicked"
+        visualState === "pressed"
           ? "bg-black/14"
           : visualState === "hover"
             ? "bg-zinc-500/45"

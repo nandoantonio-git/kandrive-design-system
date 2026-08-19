@@ -6,10 +6,10 @@ import { cn } from "@/lib/utils"
 export interface DropListItemProps
   extends Omit<React.ComponentProps<"button">, "onClick"> {
   label?: string
-  /** `state=clicked` (Figma-confirmado, fundo `effect-overlay-md`). */
+  /** Figma chama esse eixo de `state=Clicked`; normalizado pra `pressed` no código (fundo `effect-overlay-md`) — bate com o resto do catálogo (`atom/PushButton`/`atom/CloseButton`/etc. usam `Pressed`). */
   active?: boolean
   /** Estado estático Figma-confirmado para auditoria visual. */
-  state?: "idle" | "hover" | "clicked"
+  state?: "idle" | "hover" | "pressed"
   onClick?: () => void
 }
 
@@ -23,6 +23,13 @@ export interface DropListItemProps
  * `w-full` — 🧩 inferido, item de lista deve esticar para a largura do
  * `organism/dropList` que o contém, não ficar travado num valor de
  * amostra do canvas.
+ *
+ * Normalizado em 2026-08-19 (achado do usuário: `pressed`/`clicked` são o
+ * mesmo conceito, terminologia deveria ser única): Figma chama esse eixo
+ * de `Clicked` nesse node específico, mas a maioria dos outros átomos do
+ * catálogo usa `Pressed` pro mesmo estado de imprensão. Valor de código
+ * normalizado pra `pressed` — a citação Figma acima preserva o nome
+ * original (Regra 9).
  */
 function DropListItem({
   label = "Nova pasta",
@@ -32,18 +39,18 @@ function DropListItem({
   onClick,
   ...props
 }: DropListItemProps) {
-  const resolvedState = state ?? (active ? "clicked" : "idle")
+  const resolvedState = state ?? (active ? "pressed" : "idle")
 
   return (
     <button
       type="button"
       data-slot="drop-list-item"
       data-state={resolvedState}
-      data-active={resolvedState === "clicked" || undefined}
+      data-active={resolvedState === "pressed" || undefined}
       onClick={onClick}
       className={cn(
         "flex h-8 w-full items-center gap-3 px-4 py-3 text-left transition-colors",
-        resolvedState === "clicked"
+        resolvedState === "pressed"
           ? "bg-black/14"
           : resolvedState === "hover"
             ? "bg-[#ececf0]"

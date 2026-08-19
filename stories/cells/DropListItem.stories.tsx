@@ -35,5 +35,5 @@ export const Hover: Story = {
 }
 
 export const Active: Story = {
-  args: { state: "clicked" },
+  args: { state: "pressed" },
 }

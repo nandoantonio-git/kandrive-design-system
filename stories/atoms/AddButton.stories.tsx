@@ -27,7 +27,7 @@ export const AllStates: Story = {
   args: { label: "Label" },
   render: (args) => (
     <div className="flex flex-col gap-2 rounded-lg bg-[var(--neutral-surface-background,#f3f3f3)] p-5">
-      {(["idle", "hover", "clicked", "disabled"] as const).map((state) => (
+      {(["idle", "hover", "pressed", "disabled"] as const).map((state) => (
         <AddButton key={state} {...args} state={state} />
       ))}
     </div>

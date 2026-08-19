@@ -3,7 +3,7 @@ import { Plus } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
-export type AddButtonState = "idle" | "hover" | "clicked" | "disabled"
+export type AddButtonState = "idle" | "hover" | "pressed" | "disabled"
 
 export interface AddButtonProps extends React.ComponentProps<"button"> {
   label?: string
@@ -17,14 +17,21 @@ export interface AddButtonProps extends React.ComponentProps<"button"> {
  * fluxo do criar template de organização modo livre ao adicionar novas
  * regras de filtro no menu contextual do canva/tela." `style="Bordered
  * Neutral"` único estilo confirmado; `state` Idle\|Hover\|Clicked\|Disabled
- * mapeado para pseudo-classes nativas (mesmo padrão dos demais átomos de
- * botão do catálogo). Label Figma é o placeholder genérico "Label" — cada
- * uso passa um label real (`children`/`label`), sem inventar cópia.
- * Compact (`h-8`) — label a `text-xs` segue a mesma decisão humana já
- * documentada em `docs/conflicts.md` para botões compactos (Regra 4).
- * Reconciliado em uso real dentro de `organism/SaveLongTermFileStorage`
- * (US-016) — antes o botão "Adicionar arquivos" duplicava essa mesma
- * anatomia inline.
+ * (Figma-confirmado, `Clicked` normalizado pra `pressed` no código — ver
+ * nota abaixo) mapeado para pseudo-classes nativas (mesmo padrão dos
+ * demais átomos de botão do catálogo). Label Figma é o placeholder
+ * genérico "Label" — cada uso passa um label real (`children`/`label`),
+ * sem inventar cópia. Compact (`h-8`) — label a `text-xs` segue a mesma
+ * decisão humana já documentada em `docs/conflicts.md` para botões
+ * compactos (Regra 4). Reconciliado em uso real dentro de
+ * `organism/SaveLongTermFileStorage` (US-016) — antes o botão "Adicionar
+ * arquivos" duplicava essa mesma anatomia inline.
+ *
+ * Normalizado em 2026-08-19 (achado do usuário: `pressed`/`clicked` são o
+ * mesmo conceito, terminologia deveria ser única no catálogo): Figma
+ * chama esse eixo de `Clicked` nesse node, mas a maioria dos outros
+ * átomos de botão usa `Pressed`. Valor de código normalizado pra
+ * `pressed` — a citação Figma acima preserva o nome original (Regra 9).
  */
 function AddButton({
   label = "Adicionar",
@@ -46,7 +53,7 @@ function AddButton({
         "inline-flex h-8 shrink-0 items-center justify-center gap-2 rounded-md border border-zinc-300/70 bg-effect-glass-white-05 px-4 text-xs text-brand-teal transition-colors",
         state === "idle" && "hover:bg-zinc-500/15 active:bg-brand-teal active:text-white",
         state === "hover" && "bg-zinc-500/15",
-        state === "clicked" && "bg-brand-teal text-white",
+        state === "pressed" && "bg-brand-teal text-white",
         "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
         "disabled:pointer-events-none disabled:text-zinc-300 disabled:opacity-60",
         className
