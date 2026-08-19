@@ -62,7 +62,7 @@ function NodeContextMenu({
       className={cn("relative w-[393px] overflow-hidden rounded-[2.375rem] shadow-[0_8px_20px_rgba(0,0,0,0.12)]", className)}
       {...props}
     >
-      <div aria-hidden="true" className="absolute inset-0 rounded-[2.375rem] bg-effect-glass-white-50 mix-blend-screen" />
+      <div aria-hidden="true" className="absolute inset-0 rounded-[2.375rem] border border-[#00000066] bg-effect-glass-white-50 mix-blend-screen" />
       <div className="relative flex flex-col gap-3 px-6 py-2.5">
         <div className="flex items-center gap-2">
           <NodeContextMenuFilter aria-hidden="true" className="h-[15.193px] w-[15.111px]" />

@@ -267,7 +267,7 @@ function FaqInfoCardCollapsed({ topic = "FirstSteps", className, ...props }: Faq
       data-slot="faq-info-card-collapsed"
       data-topic={topic}
       className={cn(
-        "flex w-full max-w-[927px] flex-col gap-6 overflow-hidden rounded-3xl bg-effect-glass-white-50 py-6",
+        "flex w-full max-w-[927px] flex-col gap-6 overflow-hidden rounded-3xl border border-[#00000066] bg-effect-glass-white-50 py-6",
         className
       )}
       {...props}

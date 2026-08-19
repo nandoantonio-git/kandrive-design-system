@@ -44,7 +44,7 @@ function CardLogin({
     <div
       data-slot="card-login"
       className={cn(
-        "flex h-[591px] w-[400px] max-w-none flex-col items-center gap-8 rounded-3xl bg-effect-glass-white-36 px-9 py-4",
+        "flex h-[591px] w-[400px] max-w-none flex-col items-center gap-8 rounded-3xl border border-[#00000066] bg-effect-glass-white-36 px-9 py-4",
         className
       )}
       {...props}

@@ -52,7 +52,7 @@ function ActionPill({ actions, disabled, className, ...props }: ActionPillProps)
       )}
       {...props}
     >
-      <div className="absolute inset-0 rounded-full bg-effect-glass-surface-light" aria-hidden="true" />
+      <div className="absolute inset-0 rounded-full border border-[#00000066] bg-effect-glass-surface-light" aria-hidden="true" />
       {actions.map(({ name, label, onClick }) => (
         <button
           key={name + label}

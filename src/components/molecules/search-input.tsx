@@ -73,7 +73,7 @@ function SearchInput({
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 rounded-full bg-effect-glass-surface-light shadow-[0px_8px_40px_0px_rgba(0,0,0,0.12)] backdrop-blur-md"
+        className="absolute inset-0 rounded-full border border-[#00000066] bg-effect-glass-surface-light shadow-[0px_8px_40px_0px_rgba(0,0,0,0.12)] backdrop-blur-md"
       />
       {loading ? (
         <Loader2Icon

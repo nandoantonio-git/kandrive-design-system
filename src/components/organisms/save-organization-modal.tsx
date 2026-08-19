@@ -80,7 +80,7 @@ function SaveOrganizationModal({
       role="dialog"
       aria-label="Escolher método de organização"
       className={cn(
-        "flex h-[577px] w-[931px] max-w-none flex-col gap-4 overflow-hidden rounded-[32px] bg-effect-glass-white-70 p-6 shadow-[0px_8px_20px_rgba(0,0,0,0.12)] backdrop-blur-md",
+        "flex h-[577px] w-[931px] max-w-none flex-col gap-4 overflow-hidden rounded-[32px] border border-[#00000066] bg-effect-glass-white-70 p-6 shadow-[0px_8px_20px_rgba(0,0,0,0.12)] backdrop-blur-md",
         className
       )}
       {...props}

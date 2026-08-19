@@ -96,7 +96,7 @@ function Label({
       </span>
 
       {isExpanded ? (
-        <div className="flex h-[145px] w-full flex-col items-center justify-center gap-2 rounded-xl bg-effect-glass-light-45 px-px py-2">
+        <div className="flex h-[145px] w-full flex-col items-center justify-center gap-2 rounded-xl border border-[#00000066] bg-effect-glass-light-45 px-px py-2">
           <button
             type="button"
             aria-expanded="true"
@@ -144,7 +144,7 @@ function Label({
           data-slot="label-trigger"
           disabled={isDisabled}
           onClick={() => onExpandedChange?.(true)}
-          className="flex h-[35px] w-full cursor-pointer items-center gap-2 rounded-xl bg-effect-glass-light-45 px-3 py-2 text-[0.625rem] text-zinc-700 disabled:cursor-not-allowed"
+          className="flex h-[35px] w-full cursor-pointer items-center gap-2 rounded-xl border border-[#00000066] bg-effect-glass-light-45 px-3 py-2 text-[0.625rem] text-zinc-700 disabled:cursor-not-allowed"
         >
           <Icon name="Label" className="size-3 shrink-0" />
           <span className="min-w-0 flex-1 whitespace-nowrap text-left">{value}</span>

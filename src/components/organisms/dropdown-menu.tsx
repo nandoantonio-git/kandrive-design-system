@@ -59,7 +59,7 @@ function DropdownMenu({ variant = "sidebar", onItemSelect, className, ...props }
       data-slot="dropdown-menu"
       role="menu"
       className={cn(
-        "flex flex-col overflow-hidden rounded-md bg-effect-glass-white-70 py-1 shadow-lg backdrop-blur-md",
+        "flex flex-col overflow-hidden rounded-md border border-[#00000066] bg-effect-glass-white-70 py-1 shadow-lg backdrop-blur-md",
         variant === "sidebar" ? "w-[191px]" : "w-[217px]",
         className
       )}

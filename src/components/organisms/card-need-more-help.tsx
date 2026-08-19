@@ -16,7 +16,7 @@ function CardNeedMoreHelp({ onContactSupport, className, ...props }: CardNeedMor
     <div
       data-slot="card-need-more-help"
       className={cn(
-        "flex w-[927px] max-w-none flex-col items-center gap-6 rounded-3xl bg-effect-glass-white-50 py-6",
+        "flex w-[927px] max-w-none flex-col items-center gap-6 rounded-3xl border border-[#00000066] bg-effect-glass-white-50 py-6",
         className
       )}
       {...props}

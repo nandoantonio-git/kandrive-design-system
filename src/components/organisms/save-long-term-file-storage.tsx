@@ -75,7 +75,7 @@ function SaveLongTermFileStorage({
       role="dialog"
       aria-label="Guardar no longo prazo"
       className={cn(
-        "flex w-[700px] flex-col gap-5 overflow-hidden rounded-3xl bg-effect-glass-white-70 p-6 shadow-lg",
+        "flex w-[700px] flex-col gap-5 overflow-hidden rounded-3xl border border-[#00000066] bg-effect-glass-white-70 p-6 shadow-lg",
         className
       )}
       {...props}

@@ -67,7 +67,7 @@ function DropdownSelectGroupBy({
       {...props}
     >
       <span className="px-1 text-[0.625rem] font-bold tracking-wide text-zinc-500">AGRUPAR</span>
-      <div className="flex w-full flex-col items-start gap-1 rounded-xl bg-effect-glass-light-45 py-2 backdrop-blur-sm">
+      <div className="flex w-full flex-col items-start gap-1 rounded-xl border border-[#00000066] bg-effect-glass-light-45 py-2 backdrop-blur-sm">
         <button
           type="button"
           data-slot="dropdown-select-group-by-trigger"

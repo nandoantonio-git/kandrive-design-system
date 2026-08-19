@@ -119,3 +119,20 @@ uma linha como:
 
 Nunca copiar os valores desta tabela para dentro do componente sem apontar
 de volta para esta página (Regra 10).
+
+## Propagação da borda (2026-08-19)
+
+`border border-[#00000066]` foi aplicada em 2026-08-19 em todo componente
+que já usava algum token `effect-glass-*`/`backdrop-blur` e ainda não
+tinha borda própria — `Label`, `ContextHeader`, `PopoverNotification`,
+`ViewModeToggle`, `DropdownSelectGroupBy`, `Notification`, `ActionPill`,
+`SearchInput`, `NodeContextMenu`, `ArchiveBrowserModalSearch`,
+`SaveOrganizationModal`, `ArchiveBrowserModal`, `CardNeedMoreHelp`,
+`CardLogin`, `DropNewTag`, `DropdownMenu`, `FaqInfoCard`,
+`FaqInfoCardCollapsed`, `OrganizePanelDropZone`, `TemplateReviewModal`,
+`OrganizeFreeModeCanvas`, `SaveLongTermFileStorage`. Componentes que já
+tinham borda própria (`border-zinc-200`, `border-brand-teal/20` etc. —
+`PreviewPane`, `CleanSpaceStorage`, `UploadPopover`, `Sidebar`,
+`PlanSelection`, `ThumbnailLarge`) não foram alterados — já resolviam o
+problema visual, só com cor diferente; não reclassificados
+retroativamente como Figma-confirmado sem verificação nó-a-nó.

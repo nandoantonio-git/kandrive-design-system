@@ -40,7 +40,7 @@ function DropNewTag({
     >
       <div
         aria-hidden="true"
-        className="absolute top-0 left-0 h-11 w-[100px] rounded-br-md rounded-bl-md rounded-tr-md bg-effect-glass-white-70 shadow-[0px_0px_0px_1px_rgba(0,0,0,0.05),0px_16px_32px_rgba(0,0,0,0.1)] backdrop-blur-md"
+        className="absolute top-0 left-0 h-11 w-[100px] rounded-br-md rounded-bl-md rounded-tr-md border border-[#00000066] bg-effect-glass-white-70 shadow-[0px_0px_0px_1px_rgba(0,0,0,0.05),0px_16px_32px_rgba(0,0,0,0.1)] backdrop-blur-md"
       />
       <div className="absolute top-2.5 left-2.5 h-[25px] w-20 overflow-hidden">
       <input

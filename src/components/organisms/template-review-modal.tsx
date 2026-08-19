@@ -95,7 +95,7 @@ function TemplateReviewModal({ items, onCancel, onContinue, className, ...props 
       role="dialog"
       aria-label="Revisar Organização"
       className={cn(
-        "flex h-[613px] w-[768px] max-w-none flex-col overflow-hidden rounded-xl bg-effect-glass-white-70 shadow-[0px_8px_20px_rgba(0,0,0,0.12)] backdrop-blur-md",
+        "flex h-[613px] w-[768px] max-w-none flex-col overflow-hidden rounded-xl border border-[#00000066] bg-effect-glass-white-70 shadow-[0px_8px_20px_rgba(0,0,0,0.12)] backdrop-blur-md",
         className
       )}
       {...props}
