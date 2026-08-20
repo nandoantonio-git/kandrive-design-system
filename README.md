@@ -15,8 +15,8 @@ Storybook 10 (CSF3 + MDX).
 
 ## O que tem aqui
 
-~85 componentes organizados por camada atômica (atoms → cells → molecules
-→ organisms), cada um com:
+~85 componentes organizados por camada atômica (atoms → molecules →
+organisms), cada um com:
 
 - Estados reais e interativos (hover/press/seleção via mouse e teclado —
   não só uma prop `state` congelada pra documentação)

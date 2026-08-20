@@ -8,7 +8,7 @@ tags: [componente, organism]
 
 - **Código:** `src/components/organisms/organize-free-mode-canvas.tsx`
 
-## Composição (várias cells)
+## Composição (várias moléculas)
 
 Nós de filtro/operação/resultado arrastáveis (`FreeModeItemNode`), toolbar inferior (`FreeModeButtons`), lista de tipos de nó (`FreeModeListItem`), nó de destino final (`FreeModeOutputNode`), menu contextual do nó selecionado (`molecule/nodoContextMenu` + `celule/nodoContextMenuItem`).
 

@@ -21,14 +21,13 @@ Athena-Framework/                    # raiz — scaffold Ralph Loop
     │
     ├── src/components/
     │   ├── atoms/                   # 29 componentes
-    │   ├── cells/                   # 10 — camada real entre atom e molecule (renomeada de celules em 2026-08-18)
-    │   ├── molecules/               # 22
+    │   ├── molecules/               # 32 (22 originais + 10 vindos de `cells`, extinta em 2026-08-20)
     │   ├── organisms/               # 23
     │   ├── tokens/                  # ColorSwatch/ColorPalette (paleta visual)
     │   └── ui/                      # primitivos shadcn (não usados diretamente pelo produto)
     │
     ├── stories/
-    │   ├── atoms/, cells/, molecules/, organisms/   # 1 .stories.tsx + 1 .mdx por componente
+    │   ├── atoms/, molecules/, organisms/   # 1 .stories.tsx + 1 .mdx por componente
     │   └── tokens/                  # Colors.mdx, Typography.mdx, Spacing.mdx, Materials.mdx, unused.mdx
     │
     ├── src/assets/
@@ -53,9 +52,9 @@ Athena-Framework/                    # raiz — scaffold Ralph Loop
 
 `kebab-case` pro código-fonte (`push-button.tsx`), `PascalCase` pras stories/docs (`PushButton.stories.tsx`, `PushButton.mdx`) — espelhando 1:1 o nome do componente.
 
-## `cells` (renomeada de `celules`) não é typo
+## `cells` foi extinta em 2026-08-20
 
-É uma camada real e intencional entre atoms e molecules. O nome do código foi renomeado de `celules` pra `cells` em 2026-08-18 (alinhamento semântico em inglês); as citações Figma continuam usando o prefixo literal `celule/...` (Regra 9 — não traduzido), já que é assim que o arquivo fonte nomeia essas camadas. Não é uma categoria inventada. Ver [[Camadas Atômicas]].
+Existiu como camada real entre atoms e molecules (renomeada de `celules` pra `cells` em 2026-08-18), espelhando o prefixo `celule/...` do arquivo Figma fonte. **Decisão do usuário em 2026-08-20**: `celule` foi um erro de nomenclatura no próprio Figma — todas as 10 peças eram moléculas. Os 10 componentes (e stories/docs correspondentes) foram movidos pra `molecules/`; o Figma ainda não foi corrigido (ajuste manual planejado pelo usuário pra depois), então as citações `celule/...` nos comentários desses componentes continuam aparecendo por enquanto — são citação literal do estado atual do Figma (Regra 9), não um erro de código. Ver [[Camadas Atômicas]].
 
 ## Ver também
 

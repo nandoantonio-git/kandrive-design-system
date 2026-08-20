@@ -4,29 +4,26 @@ tags: [design-system, moc]
 
 # Camadas Atômicas
 
-O catálogo tem **84 componentes** em 4 camadas, espelhando a hierarquia real do arquivo Figma (não uma taxonomia atômica pura de livro-texto — ver a ressalva sobre `cells` abaixo).
+O catálogo tem **84 componentes** em 3 camadas, espelhando a hierarquia real do arquivo Figma pra atoms/molecules/organisms (não uma taxonomia atômica pura de livro-texto, que também teria templates/pages).
 
 ```mermaid
 graph TD
     Tokens[Tokens: Cor/Tipografia/Espaçamento/Liquid Glass] --> Atoms
-    Atoms[Atoms — 29] --> Cells[Cells — 10]
-    Atoms --> Molecules[Molecules — 22]
-    Cells --> Molecules
-    Cells --> Organisms[Organisms — 23]
-    Molecules --> Organisms
+    Atoms[Atoms — 29] --> Molecules[Molecules — 32]
+    Molecules --> Organisms[Organisms — 23]
 ```
 
 ## Atoms (29)
 
 Elementos indivisíveis: botões de ícone (`CloseButton`, `ClearButton`, `KeepButton`...), badges (`TypeLabel`, `StorageTierBadge`, `TagOrgMode`), o [[PushButton]] único. Ver `stories/atoms/`.
 
-## Cells (10)
+## Molecules (32)
 
-Renomeada de "Celules" em 2026-08-18 (alinhamento semântico em inglês) — **o nome do código muda, mas não é typo continuar vendo `celule/...` nas citações Figma abaixo**: esse prefixo vem literalmente do arquivo Figma fonte (`docs/figma-inventory.md`, achado #7) e é preservado como citação (Regra 9), mesmo com a camada de código agora chamada `cells`. Peças de composição intermediárias que não são nem um átomo isolado nem uma molécula completa: `Callout`, `TagColor`, `DropListItem`, a família `OrganizeFreeModeCanvas/*` do canvas de organização (`ItemNode`, `OutputNode`, `Buttons`, `ListItem`), `NodeContextMenuItem`, `PageLead`, `CleanSpaceListSelection`.
+Composições funcionais reutilizáveis: [[SearchInput]], `Label` (consolida o antigo `DropdownSelectLabel`, 2026-08-18), `FileArchiveCard`, [[FileList]], `FolderCard`, `Notification`/`PopoverNotification`, `DropdownSelectGroupBy`, [[StorageStatus]], `StorageBar`, `ViewModeToggle`, e mais 10 vindas de uma camada `Cells` extinta em 2026-08-20 (ver nota abaixo): `Callout`, `TagColor`, `DropListItem`, a família `OrganizeFreeModeCanvas/*` (`ItemNode`, `OutputNode`, `Buttons`, `ListItem`), `NodeContextMenuItem`, `PageLead`, `CleanSpaceListSelection`.
 
-## Molecules (22)
+### Nota histórica: extinção da camada `Cells` (2026-08-20)
 
-Composições funcionais reutilizáveis: [[SearchInput]], `Label` (consolida o antigo `DropdownSelectLabel`, 2026-08-18), `FileArchiveCard`, [[FileList]], `FolderCard`, `Notification`/`PopoverNotification`, `DropdownSelectGroupBy`, [[StorageStatus]], `StorageBar`, `ViewModeToggle`.
+Até 2026-08-19 essas 10 peças viviam numa 4ª camada, `cells` (espelhando o prefixo `celule/...` do arquivo Figma fonte — `docs/figma-inventory.md`, achado #7). **Decisão do usuário**: `celule` foi um erro de nomenclatura no próprio Figma, não uma categoria real — todas as 10 peças eram moléculas. Código, stories e docs foram movidos pra `molecules/`; o Figma ainda não foi corrigido (ajuste manual planejado pelo usuário pra depois de propagar aqui primeiro). Enquanto isso não acontece, os comentários desses componentes continuam citando `celule/...` como nome literal do Figma (Regra 9) — não é resíduo esquecido, é o estado real da fonte até a correção manual.
 
 ## Organisms (23)
 

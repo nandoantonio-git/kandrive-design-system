@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
 import { useState } from "react"
 
-import { NodeContextMenuItem } from "../../src/components/cells/node-context-menu-item"
+import { NodeContextMenuItem } from "../../src/components/molecules/node-context-menu-item"
 
 const meta = {
-  title: "Cells/NodeContextMenu/Item",
+  title: "Molecules/NodeContextMenu/Item",
   component: NodeContextMenuItem,
   parameters: {
     layout: "centered",

@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
 
-import { FreeModeButtons } from "../../src/components/cells/free-mode-buttons"
+import { FreeModeButtons } from "../../src/components/molecules/free-mode-buttons"
 
 const meta = {
-  title: "Cells/OrganizeFreeModeCanvas/Buttons",
+  title: "Molecules/OrganizeFreeModeCanvas/Buttons",
   component: FreeModeButtons,
   parameters: {
     layout: "centered",

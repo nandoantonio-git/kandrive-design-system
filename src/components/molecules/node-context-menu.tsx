@@ -4,7 +4,7 @@ import { X, Info } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { PushButton } from "@/components/atoms/push-button"
 import { AddButton } from "@/components/atoms/add-button"
-import { NodeContextMenuItem } from "@/components/cells/node-context-menu-item"
+import { NodeContextMenuItem } from "@/components/molecules/node-context-menu-item"
 import NodeContextMenuFilter from "@/assets/icons/NodeContextMenuFilter.svg?react"
 
 export type NodeContextMenuLogicalOperator = "and" | "or"
