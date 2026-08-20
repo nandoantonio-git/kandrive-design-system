@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/addon-docs/blocks';
-import { MaterialDemo } from '../../src/components/tokens/material-demo';
+import { MaterialDemo, MaterialFrostDemo, MaterialTintedDemo, MaterialDarkModeDemo } from '../../src/components/tokens/material-demo';
 
 <Meta title="Tokens/Materials" parameters={{ design: { type: 'figma', url: 'https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1431-17276' } }} />
 
@@ -13,7 +13,7 @@ reimplementar a especificação isoladamente. Histórico de reconciliação:
 
 ## Demo ao vivo — tints sobre fundo real
 
-O efeito só é visível de verdade com conteúdo atrás pra desfocar — clique na classe pra copiar.
+O efeito só é visível de verdade com conteúdo atrás pra desfocar — clique na classe pra copiar. Fundo em faixas verticais da paleta de marca (`Tokens/Colors`), não um gradiente genérico — a transição nítida entre cores é o que deixa blur/frost visíveis.
 
 <MaterialDemo />
 
@@ -39,6 +39,16 @@ Três tamanhos de componente confirmados como component sets formais:
 `Small` tem adicionalmente `State=Primary|Default`. Frost é o único parâmetro
 que varia por tamanho (Regular/Medium/Large); Depth e Splay são idênticos
 entre Regular e Medium/Large.
+
+### Demo ao vivo — os 3 tamanhos lado a lado
+
+`Frost` é o parâmetro do motor de render nativo do Figma sem equivalente
+direto em CSS — cada swatch abaixo usa o número do Figma como raio de
+`backdrop-blur` em px (`blur-[7px]`/`[12px]`/`[14px]`), uma aproximação
+deliberada (decisão humana), não uma conversão Figma-confirmada. Tint fixo
+(`effect-glass-white-50`) em todos os 3 pra isolar só a variável de tamanho.
+
+<MaterialFrostDemo />
 
 ## Sombras associadas (Figma-confirmado)
 
@@ -98,6 +108,16 @@ O material é composto por camadas empilhadas (ver raciocínio/nível de confian
 ## Vibrancy / dark mode
 
 Os 3 component sets (`Large`/`Medium`/`Small`) têm variante `Mode=Dark|Light` — o material responde ao tema. A implementação deve trocar o tint (`effect-glass-*` claro↔escuro) e manter `Frost`/`Depth`/`Splay` (que não variam por modo nas variáveis lidas) — mantém a mesma sensação de "vidro" nos dois modos.
+
+**Escopo (decisão 2026-08-20):** nenhum componente implementado usa modo escuro hoje — o design system não tem dark theme real. O preview abaixo é só conceitual/ilustrativo, usando o token `effect-glass-surface-dark` (Figma-confirmado, mas sem consumidor real ainda). Não confundir com um toggle de tema funcional.
+
+<MaterialDarkModeDemo />
+
+## Tint dinâmico (exemplo)
+
+O material aceita qualquer cor de tint, não só os 6 neutros documentados acima. O swatch abaixo é ilustrativo — usa `--brand-teal` (cor real da marca) pra mostrar o conceito, não é um token novo nem confirmado no arquivo Kandrive.
+
+<MaterialTintedDemo />
 
 ## reduced-motion
 

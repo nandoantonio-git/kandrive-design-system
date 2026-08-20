@@ -63,6 +63,7 @@
     --color-effect-glass-white-05: var(--effect-glass-white-05);
     --color-effect-glass-dark-20: var(--effect-glass-dark-20);
     --color-effect-glass-surface-light: var(--effect-glass-surface-light);
+    --color-effect-glass-surface-dark: var(--effect-glass-surface-dark);
     --color-effect-overlay-subtle: var(--effect-overlay-subtle);
     --radius-sm: calc(var(--radius) * 0.6);
     --radius-md: calc(var(--radius) * 0.8);
@@ -163,6 +164,13 @@
     --effect-glass-white-05: #ffffff0d;
     --effect-glass-dark-20: #00000033;
     --effect-glass-surface-light: #fafafa99;
+    /* cor/efeito/vidro/superfície-escura — Figma-confirmado (Tokens/Materials,
+       get_variable_defs em 1427:16958), já documentado na tabela de
+       Materials.mdx mas nunca ligado a uma variável CSS real: nenhum
+       componente implementado usa modo escuro (decisão de escopo
+       2026-08-20 — ver Materials.mdx "Preview de modo escuro", só
+       ilustrativo, não um dark theme real do app). */
+    --effect-glass-surface-dark: #262626;
     --effect-overlay-subtle: #bfc7d21a;
 }
 

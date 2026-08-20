@@ -49,3 +49,56 @@ níveis de confiança diferentes:
    `GLASS`, não exposta separadamente.
 5. **Conteúdo** — sem token de material próprio, segue `Tokens/Colors`/
    `Tokens/Typography`.
+
+## Demo expandida (2026-08-20) — /grilling sobre representar Materials com base numa referência externa
+
+Sessão de grilling (usuário pediu pra "ver a possibilidade de representar o
+Materials com base em" um arquivo Figma community de terceiros — macOS 26,
+não o arquivo Kandrive). Decisões fechadas na entrevista, nenhuma delas
+Figma-confirmada pro Kandrive:
+
+1. **Escopo travado em documentação/demo apenas** — nenhum dos ~43
+   componentes que já usam Liquid Glass foi reaberto ou alterado. Só
+   `stories/tokens/Materials.mdx` e `src/components/tokens/material-demo.tsx`.
+2. **Fidelidade**: o arquivo de referência usa o efeito nativo `GLASS` do
+   Figma (Refraction/Dispersion/Depth/Splay), sem equivalente direto em
+   CSS. Decisão: adaptar pra `backdrop-filter` real em vez de perseguir os
+   números do motor Figma — os 3 tiers de frost (7/12/14) viraram
+   `backdrop-blur-[7px]/[12px]/[14px]` como aproximação deliberada.
+3. **Atribuição**: o arquivo de referência (macOS 26 Community) não é
+   citado nem linkado em nenhum lugar da documentação publicada — serviu
+   só de inspiração de técnica/conceito nesta conversa (Regra 9: o selo
+   "Figma-confirmado" continua exclusivo do arquivo Kandrive).
+4. **Fundo dos swatches**: trocado de gradiente diagonal único (+ 2 formas
+   decorativas) pra faixas verticais sólidas da paleta de marca real
+   (`--brand-teal-light/-teal/-secondary/-pink-dark/-pink-light`) — mesma
+   técnica do arquivo de referência (transições nítidas de cor revelam o
+   blur), paleta 100% Kandrive.
+5. **Tiers de frost**: ganharam demo visual própria (`MaterialFrostDemo`,
+   3 swatches, tint fixo neutro) — antes só existiam como texto na tabela,
+   nenhum swatch mostrava a diferença entre tamanhos.
+6. **Tint dinâmico**: novo swatch ilustrativo (`MaterialTintedDemo`) usando
+   `--brand-teal` como exemplo de tint colorido/accent — explicitamente
+   rotulado como exemplo, não um token novo.
+7. **Preview de dark mode**: novo swatch ilustrativo (`MaterialDarkModeDemo`)
+   usando `--effect-glass-surface-dark` (token já documentado na tabela
+   desde 2026-08-09, nunca antes ligado a uma variável CSS — adicionada em
+   `src/index.css` nesta rodada). Não implementa dark theme real no app;
+   rotulado como conceitual.
+
+## Bug real encontrado durante a verificação (2026-08-20)
+
+Ao tirar screenshot da demo reescrita, o painel de vidro renderizava com
+altura ~2px (efetivamente invisível) apesar do backdrop-filter/tint/borda
+estarem corretos no CSS computado (confirmado via `getComputedStyle` no
+Playwright). Causa raiz: `GlassBackdrop` usava `min-h-32` (só `min-height`)
+como container flex, com o painel filho em `size-full` (`height: 100%`) —
+percentual de altura não resolve contra um container cuja altura é só
+`min-height`/auto (não é uma altura "definida" pela spec CSS), então o
+navegador trata a altura do filho como 0 pra evitar dependência circular.
+Esse mesmo padrão (`min-h-32` + `size-full`) já existia na versão anterior
+do componente, antes desta sessão — não é uma regressão introduzida agora,
+é um bug pré-existente que só ficou visível ao reverificar com screenshot
+real em vez de confiar no build/typecheck. Corrigido trocando pra
+`h-32` (altura definida) no container + `absolute inset-4` no painel, em
+vez de depender de `flex` + altura percentual.
