@@ -102,3 +102,41 @@ do componente, antes desta sessão — não é uma regressão introduzida agora,
 real em vez de confiar no build/typecheck. Corrigido trocando pra
 `h-32` (altura definida) no container + `absolute inset-4` no painel, em
 vez de depender de `flex` + altura percentual.
+
+## Borda reflexiva + sombra do material (2026-08-20, round 2)
+
+Segunda rodada de `/grilling` no mesmo dia: o usuário apontou que a borda
+plana `#00000066` (aplicada em 2026-08-19) não representa o que
+`Liquid Glass/Light Angle: -45` descreve — pediu revisão pra um edge de
+vidro sensível a reflexo de luz, mais `Effect/Shadow/SM` como convenção de
+elevação do material. Decisões:
+
+1. Novo utilitário compartilhado `.glass-edge` (`src/index.css`) —
+   gradiente 135° branco (`rgba(255,255,255,.55)`, decisão humana, não
+   Figma-confirmada) → `#00000066` (Figma-confirmado), via pseudo-elemento
+   `::before` + `mask-composite: exclude` (não `border-image`, que ignora
+   `border-radius`). Substitui `border border-[#00000066]` em todos os 23
+   componentes reais + `material-demo.tsx`.
+2. Novo utilitário `.glass-shadow-sm` — `filter: drop-shadow(0px 2px 16px
+   #09090b14)` (`Effect/Shadow/SM`, Figma-confirmado).
+3. `.glass-edge` exige que o elemento já seja posicionado
+   (`relative`/`absolute`/etc.) pro `::before absolute inset-0` funcionar.
+   16 dos 23 componentes eram `static` e ganharam `relative` junto com a
+   troca; os outros 7 (mais `ImageItem`) já eram `absolute` (overlays) ou
+   já tinham `relative` (`OrganizePanelDropZone`).
+4. `.glass-shadow-sm` só foi adicionada em componentes que **não** já
+   tinham sua própria sombra de contexto (evita empilhar duas sombras).
+   Ganharam a sombra nova: `Label` (2 instâncias), `ActionPill`,
+   `PopoverNotification`, `ContextHeader`, `Notification`,
+   `NodeContextMenu`, `ViewModeToggle`, `DropdownSelectGroupBy`,
+   `FaqInfoCard`, `FaqInfoCardCollapsed`, `CardNeedMoreHelp`, `CardLogin`.
+   Mantiveram só a própria sombra (sem duplicar): `SearchInput`,
+   `TemplateReviewModal`, `SaveOrganizationModal`, `ArchiveBrowserModal`
+   (2 instâncias), `DropNewTag`, `SaveLongTermFileStorage`,
+   `DropdownMenu`, `OrganizeFreeModeCanvas`, `OrganizePanelDropZone`.
+   Exceções sem sombra nova por tamanho/contexto: `ImageItem` (retângulo
+   de vidro de 31×28px, sombra de elevação ficaria desproporcional numa
+   peça tão pequena) e `ArchiveBrowserModalSearch` (div interna sem
+   sombra própria, mas o wrapper direto já projeta
+   `shadow-[0px_8px_20px_rgba(0,0,0,0.12)]` — duplicar ali seria
+   redundante).

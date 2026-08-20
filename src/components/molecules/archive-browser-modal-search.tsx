@@ -66,7 +66,7 @@ function ArchiveBrowserModalSearch({
         ))}
       </div>
       <div className="h-[289px] w-full rounded-2xl shadow-[0px_8px_20px_rgba(0,0,0,0.12)]">
-        <div className="flex h-full w-full flex-col items-start gap-0.5 rounded-xl border border-[#00000066] bg-effect-glass-white-70 px-2 py-4">
+        <div className="relative flex h-full w-full flex-col items-start gap-0.5 rounded-xl glass-edge bg-effect-glass-white-70 px-2 py-4">
           {files.map((file) => (
             <ArchiveBrowserModalListItem key={file.fileName} fileName={file.fileName} meta={file.meta} />
           ))}

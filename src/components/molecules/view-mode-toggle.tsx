@@ -63,7 +63,7 @@ function ViewModeToggle({ mode, onModeChange, className, ...props }: ViewModeTog
       <span className="px-1 text-[0.625rem] font-bold tracking-wide text-zinc-500">
         VISUALIZAR
       </span>
-      <div className="flex items-center gap-1 rounded-xl border border-[#00000066] bg-effect-glass-light-45 p-1 backdrop-blur-sm">
+      <div className="relative flex items-center gap-1 rounded-xl glass-edge glass-shadow-sm bg-effect-glass-light-45 p-1 backdrop-blur-sm">
         {MODES.map(({ value, label, ActiveIcon, IdleIcon, iconClassName }) => {
           const selected = value === mode
           const ModeIcon = selected ? ActiveIcon : IdleIcon

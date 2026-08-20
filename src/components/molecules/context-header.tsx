@@ -69,7 +69,7 @@ function ContextHeader({
     >
       {isCollapsed ? null : (
         <>
-          <div aria-hidden="true" className="absolute inset-0 rounded-3xl border border-[#00000066] bg-effect-glass-white-36" />
+          <div aria-hidden="true" className="absolute inset-0 rounded-3xl glass-edge glass-shadow-sm bg-effect-glass-white-36" />
           <div className="relative flex h-[52px] w-full items-center gap-5 py-3 pr-6 pl-[21px]">
             <div className="flex shrink-0 items-center gap-3">
               <button

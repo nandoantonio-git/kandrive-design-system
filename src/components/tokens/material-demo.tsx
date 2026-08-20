@@ -54,8 +54,20 @@ export const GLASS_TINTS: GlassTintEntry[] = [
   { token: "effect-glass-white-05", className: "bg-effect-glass-white-05", value: "#ffffff0d", role: "Tint branco, opacidade mínima" },
 ]
 
-/** Borda real do material (`Subcomponent Stroke`, Figma-confirmado via `get_variable_defs`) — sem ela o vidro lê como borrado sem definição, não como uma peça recortada. */
-const GLASS_BORDER_CLASS = "border border-[#00000066]"
+/**
+ * Borda reflexiva do material — substituída em 2026-08-20 (achado do
+ * usuário: a borda plana `#00000066` não representava o highlight
+ * direcional que `Liquid Glass/Light Angle: -45` sugere). `.glass-edge`
+ * é o utilitário compartilhado (ver `index.css`) — gradiente branco→
+ * `#00000066` via pseudo-elemento em anel, respeita `border-radius`.
+ * Exige que o elemento seja posicionado (`relative`/`absolute` etc.) —
+ * os previews desta demo já são `absolute inset-4`, não precisam de
+ * `relative` extra.
+ */
+const GLASS_BORDER_CLASS = "glass-edge"
+
+/** `Effect/Shadow/SM` (Figma-confirmado) — elevação padrão de material Liquid Glass. */
+const GLASS_SHADOW_CLASS = "glass-shadow-sm"
 
 export interface GlassFrostTierEntry {
   tier: string
@@ -79,13 +91,15 @@ const GLASS_FROST_TIERS: GlassFrostTierEntry[] = [
 
 /**
  * Demo ao vivo do material Liquid Glass — cada tint renderizado como
- * painel de vidro real (`backdrop-blur-md` + tint + borda) sobre um fundo
- * fixo com textura, não como amostra de cor sólida (que não mostraria
- * blur/transparência nenhuma). Classe copiável no clique.
+ * painel de vidro real (`backdrop-blur-md` + tint + borda + sombra) sobre
+ * um fundo fixo com textura, não como amostra de cor sólida (que não
+ * mostraria blur/transparência nenhuma). Classe copiável no clique.
  *
  * Corrigido em 2026-08-19 (achado do usuário): faltava a borda
  * (`Subcomponent Stroke`) — sem ela o painel lia como um blur genérico,
- * não como vidro com edge definido.
+ * não como vidro com edge definido. Revisado em 2026-08-20: borda plana
+ * trocada por `.glass-edge` (highlight direcional) + `.glass-shadow-sm`
+ * (`Effect/Shadow/SM`) adicionada — ver doc comments acima.
  */
 function MaterialDemo() {
   return (
@@ -96,12 +110,12 @@ function MaterialDemo() {
           token={tint.token}
           value={tint.value}
           role={tint.role}
-          cssSnippet={cn(tint.className, "backdrop-blur-md", GLASS_BORDER_CLASS)}
+          cssSnippet={cn(tint.className, "backdrop-blur-md", GLASS_BORDER_CLASS, GLASS_SHADOW_CLASS)}
           preview={
             <GlassBackdrop>
               <div
                 aria-hidden="true"
-                className={cn("absolute inset-4 rounded-lg backdrop-blur-md", tint.className, GLASS_BORDER_CLASS)}
+                className={cn("absolute inset-4 rounded-lg backdrop-blur-md", tint.className, GLASS_BORDER_CLASS, GLASS_SHADOW_CLASS)}
               />
             </GlassBackdrop>
           }
@@ -127,12 +141,12 @@ function MaterialFrostDemo() {
           token={`Liquid Glass - ${item.tier}`}
           value={`Frost ${item.frost}`}
           role={`Tamanho ${item.tier} — frost mais ${item.tier === "Small" ? "sutil" : item.tier === "Large" ? "forte" : "moderado"}`}
-          cssSnippet={cn(item.className, "bg-effect-glass-white-50", GLASS_BORDER_CLASS)}
+          cssSnippet={cn(item.className, "bg-effect-glass-white-50", GLASS_BORDER_CLASS, GLASS_SHADOW_CLASS)}
           preview={
             <GlassBackdrop>
               <div
                 aria-hidden="true"
-                className={cn("absolute inset-4 rounded-lg bg-effect-glass-white-50", item.className, GLASS_BORDER_CLASS)}
+                className={cn("absolute inset-4 rounded-lg bg-effect-glass-white-50", item.className, GLASS_BORDER_CLASS, GLASS_SHADOW_CLASS)}
               />
             </GlassBackdrop>
           }
@@ -156,12 +170,12 @@ function MaterialTintedDemo() {
         token="exemplo — tint de marca"
         value="bg-brand-teal/30"
         role="Ilustrativo: o vidro aceita tint de accent color, não só neutros. Não é um token Figma-confirmado."
-        cssSnippet={cn("bg-brand-teal/30", "backdrop-blur-md", GLASS_BORDER_CLASS)}
+        cssSnippet={cn("bg-brand-teal/30", "backdrop-blur-md", GLASS_BORDER_CLASS, GLASS_SHADOW_CLASS)}
         preview={
           <GlassBackdrop>
             <div
               aria-hidden="true"
-              className={cn("absolute inset-4 rounded-lg bg-brand-teal/30 backdrop-blur-md", GLASS_BORDER_CLASS)}
+              className={cn("absolute inset-4 rounded-lg bg-brand-teal/30 backdrop-blur-md", GLASS_BORDER_CLASS, GLASS_SHADOW_CLASS)}
             />
           </GlassBackdrop>
         }
@@ -184,12 +198,12 @@ function MaterialDarkModeDemo() {
         token="effect-glass-surface-dark"
         value="#262626"
         role="Preview ilustrativo — como o material ficaria no modo escuro (Figma tem variante Mode=Dark|Light nos 3 tamanhos). Não é um dark theme implementado no app."
-        cssSnippet={cn("bg-effect-glass-surface-dark", "backdrop-blur-md", GLASS_BORDER_CLASS)}
+        cssSnippet={cn("bg-effect-glass-surface-dark", "backdrop-blur-md", GLASS_BORDER_CLASS, GLASS_SHADOW_CLASS)}
         preview={
           <GlassBackdrop dark>
             <div
               aria-hidden="true"
-              className={cn("absolute inset-4 rounded-lg bg-effect-glass-surface-dark backdrop-blur-md", GLASS_BORDER_CLASS)}
+              className={cn("absolute inset-4 rounded-lg bg-effect-glass-surface-dark backdrop-blur-md", GLASS_BORDER_CLASS, GLASS_SHADOW_CLASS)}
             />
           </GlassBackdrop>
         }

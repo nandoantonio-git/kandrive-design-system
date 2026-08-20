@@ -57,7 +57,7 @@ function FreeModeFilterPanel({ className }: { className?: string }) {
     <div
       data-slot="free-mode-filter-panel"
       className={cn(
-        "flex w-[360px] flex-col gap-3 rounded-[36px] border border-[#00000066] bg-zinc-100/80 p-6 shadow-lg backdrop-blur-md",
+        "flex w-[360px] flex-col gap-3 rounded-[36px] glass-edge bg-zinc-100/80 p-6 shadow-lg backdrop-blur-md",
         className
       )}
     >

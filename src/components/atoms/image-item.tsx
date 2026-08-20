@@ -200,7 +200,7 @@ function ImageItem({
         <img alt="" aria-hidden="true" className="absolute inset-0 size-full" src={IMAGE[state]} />
         <div
           aria-hidden="true"
-          className="absolute top-[2px] left-[2.07px] h-7 w-[31px] rounded border border-[#00000066] bg-[var(--effect-glass-fill-light,rgba(250,250,250,0.6))]"
+          className="absolute top-[2px] left-[2.07px] h-7 w-[31px] rounded glass-edge bg-[var(--effect-glass-fill-light,rgba(250,250,250,0.6))]"
         />
         {SELECTED_STATES.includes(state) ? (
           <SelectState className="absolute right-[2px] bottom-0" />

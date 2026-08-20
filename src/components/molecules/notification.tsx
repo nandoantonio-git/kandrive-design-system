@@ -47,7 +47,7 @@ function Notification({
       )}
       {...props}
     >
-      <div aria-hidden="true" className="absolute inset-0 rounded-xl border border-[#00000066] bg-effect-glass-white-36" />
+      <div aria-hidden="true" className="absolute inset-0 rounded-xl glass-edge glass-shadow-sm bg-effect-glass-white-36" />
       <div className="relative flex h-5 w-full items-center justify-end gap-2 overflow-clip px-px">
         <CloseButton onClick={onClose} />
       </div>

@@ -219,3 +219,46 @@
     @apply font-sans;
     }
 }
+
+/* Liquid Glass — borda reflexiva + sombra de material (Tokens/Materials).
+   Regra 10: fonte única compartilhada, nunca reimplementar por componente.
+   Revisado em 2026-08-20 (achado do usuário): a borda plana `#00000066`
+   aplicada em 2026-08-19 não é o que o Figma sugere — `Liquid Glass/Light
+   Angle: -45` indica um highlight direcional (canto iluminado × canto sem
+   luz), não uma cor uniforme. `.glass-edge` substitui o antigo
+   `border border-[#00000066]`. Técnica: pseudo-elemento em anel (não
+   `border-image`, que ignora `border-radius`) via `mask-composite: exclude`
+   — funciona com qualquer `background-color`/`backdrop-filter` já presente
+   no elemento, sem precisar de camadas extras de `background-image`.
+   Requer que o elemento já seja `position: relative|absolute|fixed|sticky`
+   (a maioria dos consumidores já é, por serem overlays/paineis
+   posicionados; `.glass-edge` não força `position` pra não quebrar quem já
+   usa `absolute inset-0`). O branco do canto iluminado é decisão humana
+   (não Figma-confirmada — só `#00000066` tem valor real no Figma); o canto
+   sem luz mantém o valor confirmado. */
+@layer utilities {
+  .glass-edge {
+    isolation: isolate;
+  }
+  .glass-edge::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.55) 0%, #00000066 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* Effect/Shadow/SM (Figma-confirmado, Tokens/Materials) — elevação
+     padrão de qualquer superfície Liquid Glass. Só aplicar em componentes
+     que não já tenham sua própria sombra de contexto maior (modais/dropdowns
+     com shadow-lg etc. já resolvem elevação, adicionar essa por cima
+     duplicaria sombra sem necessidade). */
+  .glass-shadow-sm {
+    filter: drop-shadow(0px 2px 16px #09090b14);
+  }
+}

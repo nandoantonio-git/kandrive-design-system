@@ -80,20 +80,40 @@ deliberada (decisão humana), não uma conversão Figma-confirmada. Tint fixo
 | `var(--effect-overlay-subtle)` | `#bfc7d21a` | Overlay muito sutil, tom azulado |
 | `var(--effect-overlay-secondary)` | `#6b6b6873` | Overlay secundário |
 
-## Borda (Figma-confirmado, `get_variable_defs`)
+## Borda reflexiva (revisado em 2026-08-20)
 
 | Token Figma | Valor | Papel |
 | --- | --- | --- |
-| `Subcomponent Stroke` | `#00000066` | Borda de 1px em todo componente Liquid Glass — é o que faz a camada de vidro ler como uma peça definida, não uma superfície lisa |
+| `Subcomponent Stroke` | `#00000066` | Canto sem luz da borda — Figma-confirmado via `get_variable_defs` |
+| `Liquid Glass/Light Angle` | `-45` | Ângulo da luz simulada — motivo da borda ser um gradiente, não uma cor uniforme |
 | `Subcomponent Fill` | `#aaaaaa` | Fill do subcomponente de demonstração — não é o fill do vidro em si (esse já vem de `effect-glass-*` acima) |
 
 Achado em 2026-08-09 (US-005), tratado então como "provável placeholder do
-symbol de demonstração" (ver histórico) — **revisto em 2026-08-19**: a
-ausência dessa borda nos componentes já implementados é exatamente o que
-lia como "vidro borrado sem definição" em vez de uma peça de vidro
-recortada com precisão (achado do usuário). `Subcomponent Stroke` é
-aplicada aqui como a borda real do material: `border border-[#00000066]`
-sobre a camada de Glass Effect.
+symbol de demonstração" (ver histórico) — revisto em 2026-08-19 pra "borda
+real do material", aplicada como `border border-[#00000066]` (cor única,
+uniforme). **Achado do usuário em 2026-08-20**: uma cor uniforme não é o
+que `Liquid Glass/Light Angle: -45` descreve — é um **highlight
+direcional** (canto iluminado × canto sem luz), não uma borda plana.
+
+Substituído pelo utilitário compartilhado `.glass-edge` (`index.css`):
+gradiente linear a 135° (equivalente CSS do ângulo -45 do Figma), branco
+sutil (`rgba(255,255,255,.55)`) no canto iluminado → `#00000066`
+(Figma-confirmado) no canto sem luz. Implementado via pseudo-elemento em
+anel com `mask-composite: exclude` (não `border-image`, que ignora
+`border-radius`) — funciona com qualquer `background-color`/
+`backdrop-filter` já presente no elemento. **A cor branca do canto
+iluminado é decisão humana, não Figma-confirmada** — o Figma só expõe o
+valor único `#00000066`; o ângulo/existência do highlight é confirmado,
+a cor específica do lado claro não.
+
+## Sombra do material (adicionado em 2026-08-20)
+
+`Effect/Shadow/SM` (`drop-shadow(#09090B14 0px 2px 16px)`, tabela acima) é
+a elevação padrão de qualquer superfície Liquid Glass — utilitário
+compartilhado `.glass-shadow-sm`. Só aplicada em componentes que ainda não
+tinham sua própria sombra de contexto (modais/dropdowns com `shadow-lg` ou
+equivalente já resolvem elevação — duplicar por cima só empilharia sombra
+sem necessidade).
 
 ## Anatomia
 
@@ -102,8 +122,9 @@ O material é composto por camadas empilhadas (ver raciocínio/nível de confian
 1. **Camada de fundo (backdrop)** — o conteúdo atrás do vidro, sempre visível e borrado através dele.
 2. **Camada de vidro (glass)** — o efeito nativo `Liquid Glass` (`type: GLASS, radius: 10`) com `Refraction: 100`, `Dispersion: 0`, modulado por `Depth`/`Splay`/`Frost` conforme o tamanho.
 3. **Camada de tint** — as variáveis `effect-glass-white-*`/`effect-glass-dark-*`/`effect-glass-light-*` aplicam a cor/opacidade de tint sobre o vidro, variando por `Mode=Dark|Light`.
-4. **Camada de borda** — `border border-[#00000066]` (`Subcomponent Stroke`, Figma-confirmado via `get_variable_defs`) recorta a peça de vidro do fundo. `Liquid Glass/Light Angle: -45` sugere que o efeito nativo `GLASS` do Figma ainda modula essa borda com um highlight direcional simulando reflexo de luz — a intensidade exata desse highlight não tem variável própria isolada (🧩 inferido), só a cor/espessura base da borda é Figma-confirmada.
-5. **Camada de conteúdo** — texto/ícones acima do vidro. Não tem token de material próprio; segue os tokens de `Tokens/Colors`/`Tokens/Typography`.
+4. **Camada de borda** — `.glass-edge` (gradiente `-45°`, branco→`#00000066`) recorta a peça de vidro do fundo com um highlight direcional simulando reflexo de luz, em vez de uma cor uniforme (ver seção "Borda reflexiva" acima).
+5. **Camada de sombra** — `.glass-shadow-sm` (`Effect/Shadow/SM`, Figma-confirmado) dá elevação/profundidade à peça — camada independente da borda (uma recorta o contorno, a outra eleva do fundo).
+6. **Camada de conteúdo** — texto/ícones acima do vidro. Não tem token de material próprio; segue os tokens de `Tokens/Colors`/`Tokens/Typography`.
 
 ## Vibrancy / dark mode
 
@@ -140,7 +161,7 @@ uma linha como:
 Nunca copiar os valores desta tabela para dentro do componente sem apontar
 de volta para esta página (Regra 10).
 
-## Propagação da borda (2026-08-19)
+## Propagação da borda (2026-08-19, revisada em 2026-08-20)
 
 `border border-[#00000066]` foi aplicada em 2026-08-19 em todo componente
 que já usava algum token `effect-glass-*`/`backdrop-blur` e ainda não
@@ -150,9 +171,16 @@ tinha borda própria — `Label`, `ContextHeader`, `PopoverNotification`,
 `SaveOrganizationModal`, `ArchiveBrowserModal`, `CardNeedMoreHelp`,
 `CardLogin`, `DropNewTag`, `DropdownMenu`, `FaqInfoCard`,
 `FaqInfoCardCollapsed`, `OrganizePanelDropZone`, `TemplateReviewModal`,
-`OrganizeFreeModeCanvas`, `SaveLongTermFileStorage`. Componentes que já
-tinham borda própria (`border-zinc-200`, `border-brand-teal/20` etc. —
-`PreviewPane`, `CleanSpaceStorage`, `UploadPopover`, `Sidebar`,
-`PlanSelection`, `ThumbnailLarge`) não foram alterados — já resolviam o
-problema visual, só com cor diferente; não reclassificados
-retroativamente como Figma-confirmado sem verificação nó-a-nó.
+`OrganizeFreeModeCanvas`, `SaveLongTermFileStorage`, `ImageItem`.
+Componentes que já tinham borda própria (`border-zinc-200`,
+`border-brand-teal/20` etc. — `PreviewPane`, `CleanSpaceStorage`,
+`UploadPopover`, `Sidebar`, `PlanSelection`, `ThumbnailLarge`) não foram
+alterados — já resolviam o problema visual, só com cor diferente; não
+reclassificados retroativamente como Figma-confirmado sem verificação
+nó-a-nó.
+
+**Revisão de 2026-08-20**: todos os componentes acima trocaram
+`border border-[#00000066]` por `.glass-edge` (borda reflexiva). Os que
+ainda não tinham sombra própria de contexto também ganharam
+`.glass-shadow-sm` — ver `docs/audits/tokens/Materials.md` pra lista
+exata de quem recebeu sombra nova vs. quem já tinha a própria.

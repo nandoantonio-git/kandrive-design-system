@@ -65,7 +65,7 @@ function ArchiveBrowserModal({
       role="dialog"
       aria-label="Adicionar arquivos"
       className={cn(
-        "flex h-[544px] w-[760px] flex-col gap-4 overflow-hidden rounded-[32px] border border-[#00000066] bg-effect-glass-white-70 px-6 pt-6 pb-5 shadow-[0px_8px_20px_rgba(0,0,0,0.12)]",
+        "flex h-[544px] w-[760px] flex-col gap-4 overflow-hidden rounded-[32px] glass-edge bg-effect-glass-white-70 px-6 pt-6 pb-5 shadow-[0px_8px_20px_rgba(0,0,0,0.12)]",
         className
       )}
       {...props}
@@ -78,7 +78,7 @@ function ArchiveBrowserModal({
         <CloseButton size="md" onClick={onCancel} />
       </div>
       <div className="flex h-[361px] gap-5">
-        <nav className="h-full w-60 shrink-0 rounded-2xl border border-[#00000066] bg-effect-glass-white-70 px-4 pt-8 pb-6 shadow-[0px_8px_20px_rgba(0,0,0,0.12)]">
+        <nav className="h-full w-60 shrink-0 rounded-2xl glass-edge bg-effect-glass-white-70 px-4 pt-8 pb-6 shadow-[0px_8px_20px_rgba(0,0,0,0.12)]">
           <ul className="flex flex-col gap-1">
             {MINI_NAV.map(({ page, icon: ItemIcon }) => (
               <li
