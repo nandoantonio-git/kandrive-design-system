@@ -184,3 +184,30 @@ nó-a-nó.
 ainda não tinham sombra própria de contexto também ganharam
 `.glass-shadow-sm` — ver `docs/audits/tokens/Materials.md` pra lista
 exata de quem recebeu sombra nova vs. quem já tinha a própria.
+
+## Verificação nó-a-nó dos 6 componentes deixados de fora (2026-08-21)
+
+Achado do usuário: alguns elementos "perderam padding e ficaram com uma
+borda cinza". Investigação confirmou que a lista de 6 componentes acima
+("já tinham borda própria... não foram alterados... não reclassificados
+retroativamente como Figma-confirmado sem verificação nó-a-nó") nunca
+tinha, de fato, recebido essa verificação — feita agora via
+`get_design_context` fresco:
+
+| Componente | Resultado |
+| --- | --- |
+| `CleanSpaceStorage` | ✅ **Confirmado correto** — Figma usa `border` sólida `#e4e4e7` (zinc-200 exato), não `.glass-edge`. Não alterado. |
+| `PlanSelection` | ✅ **Confirmado correto** — Figma usa `border` sólida `#e5e5e5` (≈zinc-200). Não alterado. |
+| `ThumbnailLarge` | ✅ **Confirmado correto** — Figma usa `border-brand-primary-light` (teal claro), já implementado assim. Não alterado. |
+| `PreviewPane` | ⚠️ **Divergência encontrada, não corrigida** — Figma não tem borda nenhuma na raiz; implementação tem `border-brand-teal/20`. Registrado em `docs/conflicts.md`. |
+| `UploadPopover` | 🔧 **Corrigido** — Figma diferencia por estado: idle tem borda plana + sombra leve, "Toast" (upload ativo) não tem borda nenhuma, só sombra pronunciada. Implementação tinha borda fixa nos 2 estados; corrigida pra condicional. |
+| `Sidebar` | Não revisado nesta passada (fora do escopo desta sessão). |
+
+Mais 3 componentes novos de 2026-08-20 (extraídos de symbols Figma sem
+verificação de estilo, só `get_metadata`) também corrigidos na mesma
+passada: `ArchiveBrowserModalSidebar` (sem borda, fill `-36` não `-70`,
+`rounded-xl` não `2xl`), `SaveLongTermFileStorageSelectedFiles` (sem
+borda, padding `px-1.5 py-3` não `p-3` uniforme — causa real do "perdeu
+padding"), `TemplateReviewModalItem` (borda quase invisível
+`rgba(107,107,104,0.05)`, não `border-zinc-100`; fill `-50` não `-70/50`).
+Detalhe completo em `docs/checkpoints.md`.

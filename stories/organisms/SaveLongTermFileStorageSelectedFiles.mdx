@@ -1,0 +1,21 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as SaveLongTermFileStorageSelectedFilesStories from './SaveLongTermFileStorageSelectedFiles.stories';
+
+<Meta of={SaveLongTermFileStorageSelectedFilesStories} />
+
+# SaveLongTermFileStorageSelectedFiles (`organism/Save/LongTermFileStorage/SelectedFiles`)
+
+## Uso
+
+Coluna esquerda de seleção de [Templates/SaveLongTermFileStorage](../templates/SaveLongTermFileStorage.mdx) — lista os arquivos escolhidos pro fluxo "Guardar no longo prazo" + ação de adicionar mais. Extraída como symbol Figma próprio em 2026-08-20 (antes só existia inline dentro do modal); conteúdo idêntico ao já reconciliado em `SaveLongTermFileStorage`, sem divergência nova encontrada.
+
+<Canvas of={SaveLongTermFileStorageSelectedFilesStories.Default} />
+<Controls />
+
+## Composição
+
+Reusa `molecule/ArchiveBrowserModal/ListItem` (mesmo node-name já usado em `ArchiveBrowserModal`) e `atom/buttonAdd` — nenhum markup próprio duplicado (Regra 10). Painel translúcido (`bg-effect-glass-white-36`) separado do card externo (`-70`), mesmo par usado em `organism/OrganizePanel/DropZone` e `template/cleanSpaceStorage`.
+
+## Terminologia
+
+Nenhum termo proibido (Regra 5).

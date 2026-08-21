@@ -1,0 +1,103 @@
+import * as React from "react"
+
+import { cn } from "@/lib/utils"
+import { CloseButton } from "@/components/atoms/close-button"
+import { PushButton } from "@/components/atoms/push-button"
+import { ArchiveBrowserModalSearch } from "@/components/molecules/archive-browser-modal-search"
+import { ArchiveBrowserModalSidebar } from "@/components/organisms/archive-browser-modal-sidebar"
+
+export interface ArchiveBrowserModalFile {
+  name: string
+  meta: string
+}
+
+export interface ArchiveBrowserModalProps extends React.ComponentProps<"div"> {
+  breadcrumb: string[]
+  files: ArchiveBrowserModalFile[]
+  selectedCount: number
+  savingsLabel: string
+  onCancel?: () => void
+  onAdd?: () => void
+}
+
+/**
+ * template/ArchiveBrowserModal (`1439:16909`) — Figma-confirmado: "janela
+ * de seleção de arquivos que será guardados(glacier/long term archive)".
+ * Título verbatim "Adicionar arquivos", ação primária "Adicionar N
+ * arquivos" (`PushButton variant="primary"`). Reusa uma versão compacta dos
+ * itens de navegação de `organism/Sidebar` (mesmos 4 primeiros rótulos
+ * Figma-confirmados) — não a `Sidebar` completa, pois esta instância não
+ * inclui o painel de armazenamento (composição menor, confirmada no nó
+ * `1421:20073`). Fluxo ao vivo real de "Guardar" — verificado sem termo
+ * proibido. Fundo usa Liquid Glass — ver Tokens/Materials (Regra 10).
+ *
+ * Reconciliado em 2026-08-11 (US-024, Regra 11): a coluna direita
+ * (busca + breadcrumb + painel de arquivos) usava markup aproximado
+ * (`lucide-react` `FileIcon`, camada única de fundo). Substituída por
+ * `molecule/ArchiveBrowserModal/Search` (`1485:21074`), que já compõe
+ * `molecule/ArchiveBrowserModal/ListItem` (`1421:20896`) — anatomia real
+ * confirmada via `get_design_context`, incluindo a moldura de 2 camadas
+ * (`drop-shadow` externo + `rounded-xl` interno) que a aproximação
+ * anterior não tinha.
+ *
+ * 🔧 **Reclassificado organism → template em 2026-08-20** (usuário renomeou
+ * o node no Figma de `organism/ArchiveBrowserModal` para
+ * `template/ArchiveBrowserModal`, mesmo nodeId `1439:16909`) — ver
+ * `docs/vault/Design System/Camadas Atômicas.md`. A nav mini-sidebar ganhou
+ * symbol Figma próprio (`organism/ArchiveBrowserModal/sidebar`,
+ * `1555:21309`) — extraída para `ArchiveBrowserModalSidebar` (Regra 10).
+ */
+function ArchiveBrowserModal({
+  breadcrumb,
+  files,
+  selectedCount,
+  savingsLabel,
+  onCancel,
+  onAdd,
+  className,
+  ...props
+}: ArchiveBrowserModalProps) {
+  return (
+    <div
+      data-slot="archive-browser-modal"
+      role="dialog"
+      aria-label="Adicionar arquivos"
+      className={cn(
+        "flex h-[544px] w-[760px] flex-col gap-4 overflow-hidden rounded-[32px] glass-edge bg-effect-glass-white-70 px-6 pt-6 pb-5 shadow-[0px_8px_20px_rgba(0,0,0,0.12)]",
+        className
+      )}
+      {...props}
+    >
+      <div className="flex items-start justify-between">
+        <div className="flex flex-col gap-3">
+          <h2 className="text-2xl font-medium text-zinc-900">Adicionar arquivos</h2>
+          <p className="text-base text-zinc-700">Adicione os arquivos que deseja guardar em longo prazo</p>
+        </div>
+        <CloseButton size="md" onClick={onCancel} />
+      </div>
+      <div className="flex h-[361px] gap-5">
+        <ArchiveBrowserModalSidebar />
+        <ArchiveBrowserModalSearch
+          className="w-[452px] shrink-0"
+          breadcrumb={breadcrumb}
+          files={files.map((file) => ({ fileName: file.name, meta: file.meta }))}
+        />
+      </div>
+      <div className="flex items-center justify-between">
+        <p className="text-sm font-medium text-zinc-800">
+          {selectedCount} selecionados · economia de {savingsLabel}
+        </p>
+        <div className="flex gap-3">
+          <PushButton variant="neutral" className="h-8 px-4 text-xs" onClick={onCancel}>
+            Cancelar
+          </PushButton>
+          <PushButton variant="primary" className="h-8 px-4 text-xs" onClick={onAdd}>
+            Adicionar {selectedCount} arquivos
+          </PushButton>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export { ArchiveBrowserModal }

@@ -1,0 +1,21 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as CleanSpaceDuplicatedStories from './CleanSpaceDuplicated.stories';
+
+<Meta of={CleanSpaceDuplicatedStories} />
+
+# CleanSpaceDuplicated (`organism/cleanSpaceStorage/Duplicated`)
+
+## Uso
+
+Seção "Arquivos duplicados" de [Templates/CleanSpaceStorage](../templates/CleanSpaceStorage.mdx) — agrupa possíveis cópias, com ação de excluir cópias por grupo. Extraída como symbol Figma próprio em 2026-08-20 (antes só existia inline dentro do modal); conteúdo idêntico ao já reconciliado em `CleanSpaceStorage`, sem divergência nova encontrada.
+
+<Canvas of={CleanSpaceDuplicatedStories.Default} />
+<Controls />
+
+## Composição
+
+Badge "Prévia" avisa que a detecção de duplicados ainda não existe de verdade (grupos de exemplo ilustrativos, Figma-confirmado). "Excluir cópias" usa `atom/PushButton` (`isDestructive`) — chrome neutro/glass, só o texto na cor de destrutivo, nunca fundo vermelho preenchido.
+
+## Terminologia
+
+Nenhum termo proibido (Regra 5).

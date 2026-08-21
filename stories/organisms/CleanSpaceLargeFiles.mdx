@@ -1,0 +1,26 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as CleanSpaceLargeFilesStories from './CleanSpaceLargeFiles.stories';
+
+<Meta of={CleanSpaceLargeFilesStories} />
+
+# CleanSpaceLargeFiles (`organism/cleanSpaceStorage/LargeFiles`)
+
+## Uso
+
+Seção "Arquivos grandes" de [Templates/CleanSpaceStorage](../templates/CleanSpaceStorage.mdx) — lista os arquivos que mais ocupam espaço, com ação de excluir por item. Extraída como symbol Figma próprio em 2026-08-20 (antes só existia inline dentro do modal); conteúdo idêntico ao já reconciliado em `CleanSpaceStorage`, sem divergência nova encontrada.
+
+<Canvas of={CleanSpaceLargeFilesStories.Default} />
+<Controls />
+
+## Composição
+
+Reusa `atom/StorageTierBadge` (rótulos "Acesso rápido"/"Longo prazo") via `molecule/CleanSpaceListSelection`, e `atom/PushButton` (`isDestructive`, chrome neutro/texto vermelho) pro botão "Excluir" — nenhum markup próprio duplicado (Regra 10).
+
+## Estados
+
+- "Desfazer seleção" — `disabled` por padrão (estado lido/neutro)
+- "Selecionar todos" — ação primária de texto
+
+## Terminologia
+
+"Acesso rápido"/"Longo prazo" (Regra 5, termos travados). Nenhum termo proibido.

@@ -1,16 +1,9 @@
 import * as React from "react"
-import { Check, FileArchive } from "lucide-react"
+import { Check } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { StorageTierBadge, type StorageTier } from "@/components/atoms/storage-tier-badge"
 import FileGlyph from "@/assets/icons/CleanSpaceFileGlyph.svg?react"
-
-const ARCHIVE_EXTENSIONS = ["zip", "rar", "7z", "tar", "gz"]
-
-function isArchiveFile(name: string) {
-  const extension = name.split(".").pop()?.toLowerCase()
-  return !!extension && ARCHIVE_EXTENSIONS.includes(extension)
-}
 
 export interface CleanSpaceListSelectionProps
   extends Omit<React.ComponentProps<"div">, "onSelect"> {
@@ -33,22 +26,50 @@ export interface CleanSpaceListSelectionProps
  * exporta `stroke="#2B7FFF"` (bytes idênticos nos 2 nós, `Default` e
  * `Variant2`) — cor sem token equivalente no Figma (fill literal, não
  * `var(--...)`), reproduzida aqui como hex literal por não haver
- * mapeamento semântico. Um comentário anterior desta mesma auditoria
- * (US-026) tinha revertido isso para `brand-teal` citando nós diferentes
- * (`1421:20927`/`1421:20945`, fora deste celule) — não se sustenta contra
- * o nó real do componente auditado (Regra 11.1); revertido de volta ao
- * azul Figma-confirmado. O glifo também alterna por extensão (Figma usa
- * `FileArchive` pra `huge-backup.zip` e `FileText` pra PDF/TXT) — antes
- * sempre `FileText`, agora `isArchiveFile(name)` decide.
+ * mapeamento semântico.
  * `atom/StorageTierBadge` reutilizado pro rótulo à direita ("Acesso
  * rápido"/"Longo prazo" — Regra 5), já era o mesmo componente usado na
  * amostra do Figma.
+ *
+ * 🔧 Corrigido em 2026-08-21 (achado do usuário: "incongruência dos
+ * símbolos" — huge-backup.zip mostrava um ícone azul de pasta/zip
+ * [`lucide-react` `FileArchive`], distinto do ícone genérico cinza/teal
+ * usado por medium-report.pdf/small-note.txt). Investigação com
+ * `get_design_context`/`get_screenshot` frescos no nó real
+ * (`1436:20496`) mostra que **as 3 linhas de exemplo do template pai
+ * (`template/cleanSpaceStorage`, `1439:16908`) usam o mesmo asset
+ * `favincon/ArchiveFormats` (variante `ArchiveItem` — documento genérico,
+ * não uma forma específica de zip) pros 3 arquivos, huge-backup.zip
+ * incluso** — não existe, em nenhum node Figma consultado, uma forma de
+ * ícone distinta pra `.zip`. A diferenciação por extensão
+ * (`isArchiveFile`/`ARCHIVE_EXTENSIONS`, com `FileArchive` do
+ * `lucide-react`) foi uma inferência de uma US anterior nunca confirmada
+ * contra o node real, e a nota "Figma usa FileArchive pra zip" no
+ * histórico deste comentário estava incorreta — removida. A cor
+ * `#2b7fff`/traço confirmado (parágrafo acima) sempre foi a certa, mas
+ * só era aplicada na exceção do zip; o glifo padrão
+ * (`CleanSpaceFileGlyph.svg`) usava um gradiente teal (`#007E96`→
+ * `#1A5E6E`) nunca confirmado — corrigido pra `#2b7fff` sólido (mesma
+ * fonte). `isArchiveFile`/`ARCHIVE_EXTENSIONS`/import de `FileArchive`
+ * removidos; `FileGlyph` (já corrigido) agora renderiza pra todo arquivo,
+ * dentro do wrapper `bg-[rgba(43,127,255,0.1)]` Figma-confirmado que
+ * faltava antes.
  *
  * Reconciliação: `organism/cleanSpaceStorage` (US-010) já renderizava essa
  * linha inline (`<li>` com `<input type="checkbox">` nativo e um quadrado
  * placeholder sem ícone, sem este celule ainda existir) — atualizado nesta
  * US para compor este componente em vez de markup duplicado, corrigindo de
  * passagem a ausência do ícone `FileText` e do checkbox com check real.
+ *
+ * 🔧 Corrigido em 2026-08-21 (achado do usuário: verificar hover dos
+ * botões). Testado com mouse real via Playwright — o checkbox não tinha
+ * hover nenhum (`background-color` idêntico antes/depois do mouse) nem
+ * `focus-visible`. `get_metadata` no nó (`1436:20496`) confirma só 2
+ * states Figma (`idle`/`selcted` — sic), sem eixo `Hover` — feedback
+ * adicionado como extensão de engenharia (Regra 9: não Figma-confirmado,
+ * mesmo critério já usado em outros componentes desta base pra garantir
+ * interação real), não como fato do Figma. Ganhou também `focus-visible`
+ * (ausente antes), mesmo padrão já usado em `PushButton`/`CloseButton`.
  */
 function CleanSpaceListSelection({
   name,
@@ -73,17 +94,16 @@ function CleanSpaceListSelection({
         onClick={() => onSelectedChange?.(!selected)}
         className={cn(
           "flex size-4 shrink-0 items-center justify-center rounded-[4px] border shadow-[0_1px_2px_0_rgba(0,0,0,0.05)] transition-colors",
-          selected ? "border-transparent bg-brand-teal" : "border-[#ececf0] bg-zinc-500/20"
+          "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
+          selected
+            ? "border-transparent bg-brand-teal hover:bg-brand-teal/90 active:bg-brand-teal/80"
+            : "border-[#ececf0] bg-zinc-500/20 hover:bg-zinc-500/30 active:bg-zinc-500/40"
         )}
       >
         {selected ? <Check aria-hidden="true" strokeWidth={2.5} className="size-3 text-white" /> : null}
       </button>
-      <span className="flex size-8 shrink-0 items-center justify-center rounded-[10.4px]">
-        {isArchiveFile(name) ? (
-          <FileArchive aria-hidden="true" className="size-4 text-[#2b7fff]" />
-        ) : (
-          <FileGlyph aria-hidden="true" className="h-[23px] w-[21px]" />
-        )}
+      <span className="flex size-8 shrink-0 items-center justify-center rounded-[10.4px] bg-[rgba(43,127,255,0.1)]">
+        <FileGlyph aria-hidden="true" className="h-[23px] w-[21px]" />
       </span>
       <div className="min-w-0 flex-1">
         <p className="truncate text-base tracking-[0.0192px] text-zinc-950">{name}</p>

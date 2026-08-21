@@ -15,8 +15,8 @@ Storybook 10 (CSF3 + MDX).
 
 ## O que tem aqui
 
-~85 componentes organizados por camada atômica (atoms → molecules →
-organisms), cada um com:
+~93 componentes organizados por camada atômica (atoms → molecules →
+organisms → templates → pages), cada um com:
 
 - Estados reais e interativos (hover/press/seleção via mouse e teclado —
   não só uma prop `state` congelada pra documentação)
@@ -64,12 +64,14 @@ Cada peça de UI documentada carrega uma citação literal do Figma quando
 existe (`atom/buttonAdd`, node `1421:20509`, etc.) e, quando um detalhe
 não está no Figma, isso é documentado explicitamente como gap ou decisão
 humana — nunca inventado silenciosamente. Exemplo real desse processo: o
-[histórico de reconciliação do material Liquid
-Glass](docs/audits/tokens/Materials.md) mostra uma borda que foi
-classificada como "provável placeholder" numa auditoria, revista como
-"borda real do material" numa seguinte, e revista de novo pra um highlight
-direcional de vidro depois de comparação visual mais cuidadosa — o
-processo é iterativo e documentado a cada correção, não apagado.
+histórico de reconciliação do material Liquid Glass (ver `making-of`
+abaixo) mostra uma borda que foi classificada como "provável placeholder"
+numa auditoria, revista como "borda real do material" numa seguinte, e
+revista de novo pra um highlight direcional de vidro depois de comparação
+visual mais cuidadosa, e revista uma 3ª vez em 2026-08-21 quando parte
+dessa correção acabou introduzindo bordas cinzas indevidas em 4
+componentes — o processo é iterativo e documentado a cada correção, nunca
+apagado.
 
 ## Processo: engenharia com um agente de IA
 
@@ -110,18 +112,30 @@ npm run build-storybook  # build estático (storybook-static/)
 
 ## Estrutura
 
-- `stories/atoms`, `stories/molecules`, `stories/organisms` — stories CSF3 +
-  MDX por componente, organizadas por camada atômica.
+- `stories/atoms`, `stories/molecules`, `stories/organisms`,
+  `stories/templates`, `stories/pages` — stories CSF3 + MDX por
+  componente, organizadas por camada atômica.
 - `stories/tokens` — documentação MDX dos tokens de design (cor, tipografia,
   espaçamento, material).
 - `docs/CASE-STUDY.md` — pesquisa de UX que fundamenta o produto (problema,
   personas, teste de usabilidade, decisões de design derivadas).
-- `docs/audits/` — histórico de reconciliação Figma↔código por componente e
-  por token, separado das docs `.mdx` (que ficam como referência limpa).
-- `docs/conflicts.md` — log de conflitos entre o Figma e as decisões de
-  design já travadas.
-- `docs/checkpoints.md` — checkpoint por camada atômica documentada.
-- `docs/terminology-audit.md` — auditoria final de terminologia de UI.
+- `docs/vault/` — vault Obsidian com o estado atual resumido: regras
+  travadas, catálogo de componentes por camada, conflitos **ainda em
+  aberto** (`docs/vault/Estado/Conflitos Abertos.md`).
+
+### Making-of (fora deste repositório)
+
+O rastro completo de auditoria/processo — `checkpoints.md` (log
+cronológico sessão a sessão), `conflicts.md` (log completo de conflitos,
+incluindo os já resolvidos), `figma-inventory.md` (inventário de 2347
+nodes da página Figma) e `terminology-audit.md`, mais os manifestos
+pass-a-pass da auditoria de ponto-fixo (`audits/`) — foi movido em
+2026-08-21 pra um repositório separado (making-of), mantendo este
+repositório enxuto pra entrega. O vault (`docs/vault/`) permanece aqui
+como o resumo vivo e atualizado desse processo. Comentários de componente
+que ainda citam esses caminhos (`src/components/**/*.tsx`) são anotações
+históricas datadas, não referências quebradas — o achado continua válido
+mesmo com o arquivo-fonte agora vivendo fora deste repo.
 
 ## Deploy (Vercel)
 

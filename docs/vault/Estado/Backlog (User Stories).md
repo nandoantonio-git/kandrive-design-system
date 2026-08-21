@@ -37,7 +37,9 @@ Fonte: `scripts/prd.json`. **26 / 26 concluídas.**
 
 ## Backlog formal está vazio agora
 
-Trabalho posterior (branding do Storybook, paleta visual de cores, os 18 ajustes finos da [[Sessão 2026-08-15]]) foi feito **fora do fluxo formal de `prd.json`**, em sessão interativa direta — nunca virou user story própria. Se o [[Ralph Loop]] for retomado, vale considerar registrar esse trabalho como uma US histórica ou abrir um novo PRD.
+Trabalho posterior (branding do Storybook, paleta visual de cores, os 18 ajustes finos da [[Sessão 2026-08-15]], a camada `templates` nova + reconciliação `celule`→`molecule` da [[Sessão 2026-08-20]]) foi feito **fora do fluxo formal de `prd.json`**, em sessão interativa direta — nunca virou user story própria. Se o [[Ralph Loop]] for retomado, vale considerar registrar esse trabalho como uma US histórica ou abrir um novo PRD.
+
+Candidato óbvio pra próxima US formal: as 19 telas restantes da camada `pages` (Settings×7, FAQ×2, Payment×2, Function Storage Status×3, Home-List-Selected, Kandrive Login, Organização-ModoData×2) — as 4 primeiras (Home×3 + Organização) já foram implementadas em 2026-08-20, ver [[Sessão 2026-08-20]].
 
 ## Ver também
 

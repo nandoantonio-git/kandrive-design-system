@@ -1,0 +1,29 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as HomeStories from './Home.stories';
+
+<Meta of={HomeStories} />
+
+# Home (`page/Home/GridMode`, `page/Home/ListMode`, `page/Home/Columns Mode/Item1`)
+
+## Uso
+
+Página inicial do produto — 3 nodes Figma distintos (`1439:19639`, `1439:19791`, `1439:19829`), implementados como **um componente único** parametrizado por `viewMode` (Regra 1/10: a Figma real já modela isso como eixo de visualização via `molecule/view-mode-toggle`, não 3 fluxos separados). Reconciliado em 2026-08-20 via `get_metadata` (recon da camada `pages`) — sem divergência de composição encontrada contra o catálogo já implementado.
+
+<Canvas of={HomeStories.GridMode} />
+<Canvas of={HomeStories.ListMode} />
+<Canvas of={HomeStories.ColumnsMode} />
+<Controls />
+
+## Composição
+
+Shell comum aos 3 modos: `organism/Header` (`page="navbar"`) + `organism/Sidebar` + `Breadcrumb` ("Home") + `molecule/PageLead` + toolbar (`DropdownSelect/GroupBy` + `Label` + `ViewModeToggle`). Área de conteúdo varia por `viewMode`:
+
+- **`grid`** — `molecule/FileArchive1`/`FileArchive2` (pastas) + `atom/ImageItem` soltos, `gridItems` com discriminante `kind: "folder" | "image"`.
+- **`list`** — `molecule/FileList/Header` (`format="home"`) + `molecule/FileList` (`format="list"`) repetido, `listRows`.
+- **`columns`** — `organism/file-list-container` + `organism/preview-pane` lado a lado, `columnsRows` + `previewFile`.
+
+Nenhum markup próprio duplicado — todas as peças acima já existiam no catálogo antes desta reconciliação (Regra 10).
+
+## Terminologia
+
+Nenhum termo proibido (Regra 5). "Bem-vindo ao Kandrive!" e a legenda de boas-vindas são texto Figma-confirmado (`get_design_context`, `page/Home/GridMode`).

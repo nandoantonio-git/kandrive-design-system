@@ -68,6 +68,17 @@ export interface UploadPopoverProps extends React.ComponentProps<"div"> {
  * da implementação anterior (só a barrinha existia). Adicionado como
  * `<div>` absoluto com `width: {percent}%`, atrás do conteúdo (`z-0`
  * implícito por ordem no DOM).
+ *
+ * 🔧 Corrigido em 2026-08-21 (achado do usuário: aplicação de glass
+ * revisada). `get_design_context` fresco nas 2 variantes Figma confirma
+ * tratamento de borda diferente por estado, nunca verificado antes: `Variant2`
+ * (idle, sem `files`) tem borda plana clara (`#e2e8f0`, aproximado aqui
+ * pela rampa Zinc já em uso no projeto — Regra 3 — como `border-zinc-200`)
+ * + sombra leve (`shadow-lg`); `Toast (The Focused Component)` (upload
+ * ativo, `files.length > 0`) **não tem nenhuma borda**, só uma sombra bem
+ * mais pronunciada (`shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]`).
+ * `border-zinc-200`/`shadow-lg` antes eram aplicados sempre, nos 2 estados;
+ * agora condicionados a `files.length === 0`.
  */
 function UploadPopover({
   fileCount,
@@ -89,7 +100,8 @@ function UploadPopover({
       data-slot="upload-popover"
       role="status"
       className={cn(
-        "relative flex w-96 flex-col gap-3 overflow-hidden rounded-xl border border-zinc-200 bg-effect-glass-white-70 p-6 shadow-lg backdrop-blur-md",
+        "relative flex w-96 flex-col gap-3 overflow-hidden rounded-xl bg-effect-glass-white-70 p-6 backdrop-blur-md",
+        files.length > 0 ? "shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]" : "border border-zinc-200 shadow-lg",
         className
       )}
       {...props}

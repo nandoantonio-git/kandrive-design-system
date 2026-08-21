@@ -1,0 +1,26 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as OrganizationStories from './Organization.stories';
+
+<Meta of={OrganizationStories} />
+
+# Organization (`page/Organização`)
+
+## Uso
+
+Tela de Organização (`1439:19678`) — mesmo shell de [Pages/Home](./Home.mdx), com o modal `Templates/SaveOrganizationModal` (`template/DialogSave/OrganizationModal`) aberto em overlay por padrão, Figma-confirmado como composição fixa do node (não um estado transitório). Reconciliado em 2026-08-20 via `get_metadata` (recon da camada `pages`).
+
+<Canvas of={OrganizationStories.Default} />
+<Controls />
+
+## Diferenças confirmadas contra Home
+
+- **Sem breadcrumb** — nenhuma instância `Navigation - Breadcrumb` no node (diferente dos 3 nodes `page/Home/*`).
+- **Título sem legenda** — `text` node solto ("Bem-vindo ao Kandrive!"), sem a legenda que `molecule/PageLead` normalmente injeta abaixo. Implementado como `<h1>` direto, não `PageLead` (Regra 9 — não inventar caption não confirmado).
+
+## Composição
+
+`organism/Header` + `organism/Sidebar` + toolbar (`DropdownSelect/GroupBy` + `Label` + `ViewModeToggle`) + grid `FileArchive1`/`FileArchive2`/`ImageItem` (mesma composição do modo grid de Home) + `Templates/SaveOrganizationModal` em overlay.
+
+## Terminologia
+
+Nenhum termo proibido (Regra 5).

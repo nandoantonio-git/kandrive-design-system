@@ -12,8 +12,8 @@ Diferente das Regras 1–6/9–11 (decisões travadas), a Regra 7 é uma **lista
 
 ## Status atual dos 2 itens originais
 
-- **`chip/folder-tag` sem `isExpanded`** — premissa **invertida** em 2026-08-09 (US-005). `get_design_context` no nó `1421:19040` mostrou que a prop `isExpanded` **existe de fato** no Figma (`"Chip de tag de pasta com estado expansível. Props: isExpanded (bool), State (Default/Hover/Selected)."`) — implementada. O `opacity:0` residual (texto "Pessoal") também foi confirmado e localizado. Fonte: `design-system/docs/conflicts.md:27`, `design-system/docs/figma-inventory.md:28-29`.
-- **`input/search` com placeholder desatualizado** — ainda em aberto. O placeholder real do Figma é `"Search"` (inglês genérico), divergindo do termo aprovado — tratado como decisão deliberada de tradução, não bug. Fonte: `design-system/docs/figma-inventory.md:24`. Ver [[Conflitos Abertos]] (baixa urgência).
+- **`chip/folder-tag` sem `isExpanded`** — premissa **invertida** em 2026-08-09 (US-005). `get_design_context` no nó `1421:19040` mostrou que a prop `isExpanded` **existe de fato** no Figma (`"Chip de tag de pasta com estado expansível. Props: isExpanded (bool), State (Default/Hover/Selected)."`) — implementada. O `opacity:0` residual (texto "Pessoal") também foi confirmado e localizado. Fonte: `making-of/conflicts.md`, `making-of/figma-inventory.md`.
+- **`input/search` com placeholder desatualizado** — ainda em aberto. O placeholder real do Figma é `"Search"` (inglês genérico), divergindo do termo aprovado — tratado como decisão deliberada de tradução, não bug. Fonte: `making-of/figma-inventory.md`. Ver [[Conflitos Abertos]] (baixa urgência).
 
 ## Ver também
 

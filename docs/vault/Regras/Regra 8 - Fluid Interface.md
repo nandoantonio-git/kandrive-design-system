@@ -17,7 +17,7 @@ Texto verbatim de `AGENTS.md`: *"Toda documentação de componente interativo ap
 
 ## Onde isso aparece
 
-Aplicada em praticamente todo componente interativo do catálogo — a seção `## Fluid interface (Regra 8)` (ou `## Estados e fluid interface (Regra 8)`) existe hoje em 52 arquivos de auditoria (`grep -rl "fluid interface (Regra 8)" design-system/docs/audits/componentes/*.md`, contado em 2026-08-16), o repositório que herdou esse conteúdo quando os `.mdx` de story foram enxugados em 2026-08-15/16 (ver [[Sessão 2026-08-15]]).
+Aplicada em praticamente todo componente interativo do catálogo — a seção `## Fluid interface (Regra 8)` (ou `## Estados e fluid interface (Regra 8)`) existia em 52 arquivos de auditoria (`grep -rl "fluid interface (Regra 8)" docs/audits/componentes/*.md`, contado em 2026-08-16, hoje em `making-of/audits/componentes/*.md` — pasta movida pra fora deste repositório em 2026-08-21), o repositório que herdou esse conteúdo quando os `.mdx` de story foram enxugados em 2026-08-15/16 (ver [[Sessão 2026-08-15]]).
 
 ## Ver também
 

@@ -1,0 +1,25 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as FreeModeAddMenuStories from './FreeModeAddMenu.stories';
+
+<Meta of={FreeModeAddMenuStories} />
+
+# FreeModeAddMenu (`molecule/Menuitem/freemodeOrganization`)
+
+## Uso
+
+Dropup list com as opções de nó disponíveis pra adicionar no canvas Modo Livre (descrição Figma verbatim: *"dropup list com opções de nodos disponíveis de adição na aba de modo livre de template"*). Aberto pelo botão "Adicionar nodo" de [Templates/OrganizeFreeModeCanvas](../templates/OrganizeFreeModeCanvas.mdx). Extraído como symbol Figma próprio em 2026-08-20 (antes só existia inline dentro do template).
+
+<Canvas of={FreeModeAddMenuStories.Default} />
+<Controls />
+
+## Composição
+
+7 operações, cada uma um `molecule/free-mode-list-item` já existente (`celule/MainCanvas/Organization/FreeMode/ListItem`, `1421:20757`) — reusado, não reimplementado (Regra 10): Junção, Subtração, Interssecção, Exclusão, Filtrar por tamanho, Filtrar por formato, Filtrar por data.
+
+## ⚠️ Conflito em aberto
+
+`get_design_context` fresco no node sugere um painel mais estreito (`228px`, contra os `256px` já implementados) com tratamento translúcido/Liquid Glass, diferente do fundo sólido (`zinc-900`/`zinc-700`) já implementado e auditado em passes anteriores (US-026). Não alterado nesta reconciliação — ver `docs/conflicts.md` para decisão humana.
+
+## Terminologia
+
+Nenhum termo proibido (Regra 5).

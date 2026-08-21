@@ -1,0 +1,29 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as TemplateReviewModalItemStories from './TemplateReviewModalItem.stories';
+
+<Meta of={TemplateReviewModalItemStories} />
+
+# TemplateReviewModalItem (`organism/Dialog/TemplateReviewModal/Item`)
+
+## Uso
+
+Linha da árvore de revisão de [Templates/TemplateReviewModal](../templates/TemplateReviewModal.mdx) — um item por pasta/grupo revisado, com badge de severidade (Duplicado/Incongruente/OK) e ações "Renomear"/"Editar"/"Excluir". Extraída como symbol Figma próprio em 2026-08-20 (antes só existia inline dentro do modal, via `.map()`); conteúdo idêntico ao já reconciliado em `TemplateReviewModal`, sem divergência nova encontrada.
+
+<Canvas of={TemplateReviewModalItemStories.Collapsed} />
+<Controls />
+
+## Estados
+
+- **Collapsed** — estado padrão, sem arquivos filhos visíveis
+- **Expanded** — revela a linha "Children → Child 1" (Figma-confirmado), com botão "Excluir" próprio por arquivo
+- Severidade: `duplicado` (laranja/warning), `incongruente` (neutro), `ok` (neutro + ícone de check)
+
+O estado de expansão é controlado pelo componente pai (`TemplateReviewModal`), repassado via `isExpanded`/`onToggleExpand` — este componente não guarda estado próprio.
+
+## Composição
+
+Botão "Excluir" (linha filha) usa `atom/PushButton` (`variant="neutral"`, `isDestructive`) — chrome neutro, só o texto na cor de destrutivo.
+
+## Terminologia
+
+Nenhum termo proibido (Regra 5).

@@ -1,0 +1,21 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as ArchiveBrowserModalSidebarStories from './ArchiveBrowserModalSidebar.stories';
+
+<Meta of={ArchiveBrowserModalSidebarStories} />
+
+# ArchiveBrowserModalSidebar (`organism/ArchiveBrowserModal/sidebar`)
+
+## Uso
+
+Mini-navegação de [Templates/ArchiveBrowserModal](../templates/ArchiveBrowserModal.mdx) — versão compacta dos 4 primeiros itens de `organism/Sidebar` (Pessoal/Compartilhados/Recentes/Favoritos), sem o painel de armazenamento. Extraída como symbol Figma próprio em 2026-08-20 (antes só existia inline dentro do modal); conteúdo idêntico ao já reconciliado em `ArchiveBrowserModal`, sem divergência nova encontrada.
+
+<Canvas of={ArchiveBrowserModalSidebarStories.Default} />
+<Controls />
+
+## Composição
+
+Não é a `Sidebar` completa reaproveitada — é uma composição própria, menor, confirmada no nó do modal (Regra 9: não presumir reuso 1:1 sem confirmação). "Etiquetas" usa `atom/badge/TypeLabel` (`FileTypeLabel`).
+
+## Terminologia
+
+Nenhum termo proibido (Regra 5).
