@@ -53,6 +53,20 @@ export interface HomePageProps extends React.ComponentProps<"div"> {
  * Conteúdo de exemplo ("Arquivo 1"/"Arquivo 2"/"Arquivo 3") reaproveita a
  * mesma convenção já usada nas stories de `FileList`/`FileListContainer`/
  * `PreviewPane`/`ArchiveBrowserModal`, não inventado nesta reconciliação.
+ *
+ * 🔧 Corrigido em 2026-08-22 (achado do usuário: "home está quebrando",
+ * visível na página Docs do Storybook em viewport estreito). Causa raiz:
+ * `max-w-full`/`min-h-screen` — únicos 2 componentes deste catálogo com
+ * essas classes (nenhum outro componente fixo-largura do design system as
+ * usa). Dentro do bloco `<Canvas>` da Docs, o container disponível é
+ * bem mais estreito que 1440px — `max-w-full` forçava a linha
+ * Sidebar+conteúdo a encolher pra caber, espremendo a Sidebar (largura
+ * própria fixa, não Figma-confirmada como flexível) a ponto de cortar seu
+ * conteúdo visualmente. `min-h-screen` inflava a caixa pra 100vh mesmo com
+ * conteúdo real bem mais curto, gerando a área cinza vazia extra visível
+ * no mesmo achado. Ambos removidos — mesma convenção já usada em todo o
+ * resto do catálogo (largura fixa Figma-confirmada, overflow horizontal
+ * tratado pelo container que envolve o preview, nunca encolhido).
  */
 function HomePage({
   viewMode,
@@ -66,9 +80,9 @@ function HomePage({
   ...props
 }: HomePageProps) {
   return (
-    <div data-slot="home-page" className={cn("flex min-h-screen w-full flex-col bg-zinc-200", className)} {...props}>
+    <div data-slot="home-page" className={cn("flex w-full flex-col bg-zinc-200", className)} {...props}>
       <Header page="navbar" />
-      <div className="mx-auto flex w-[1376px] max-w-full items-start gap-12 px-1 py-2.5">
+      <div className="mx-auto flex w-[1376px] items-start gap-12 px-1 py-2.5">
         <Sidebar {...sidebarProps} />
         <div className="flex flex-1 flex-col gap-2">
           <Breadcrumb segments={["Home"]} />

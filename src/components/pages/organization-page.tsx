@@ -36,6 +36,12 @@ export interface OrganizationPageProps extends React.ComponentProps<"div"> {
  * `template/DialogSave/OrganizationModal` (antes `organism/DialogSave/
  * OrganizationModal`, ver reclassificação de 2026-08-20) — aberto por
  * padrão nesta composição.
+ *
+ * 🔧 Corrigido em 2026-08-22 (achado do usuário: "home está quebrando" —
+ * mesma causa raiz de [[HomePage]], ver nota lá). `max-w-full`/
+ * `min-h-screen` removidos — nenhum outro componente fixo-largura deste
+ * catálogo usa essas classes; dentro do `<Canvas>` da Docs elas espremiam
+ * Sidebar+conteúdo pra caber num container bem mais estreito que 1440px.
  */
 function OrganizationPage({
   viewMode,
@@ -48,9 +54,9 @@ function OrganizationPage({
   ...props
 }: OrganizationPageProps) {
   return (
-    <div data-slot="organization-page" className={cn("relative flex min-h-screen w-full flex-col bg-zinc-200", className)} {...props}>
+    <div data-slot="organization-page" className={cn("relative flex w-full flex-col bg-zinc-200", className)} {...props}>
       <Header page="navbar" />
-      <div className="mx-auto flex w-[1376px] max-w-full items-start gap-12 px-1 py-2.5">
+      <div className="mx-auto flex w-[1376px] items-start gap-12 px-1 py-2.5">
         <Sidebar {...sidebarProps} />
         <div className="flex flex-1 flex-col gap-5">
           <div className="flex items-start justify-between gap-4">
