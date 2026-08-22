@@ -41,6 +41,16 @@ export interface CleanSpaceLargeFilesProps extends React.ComponentProps<"section
  * `hover:bg-brand-teal/90`/`active:bg-brand-teal/80` que o `variant="primary"`
  * já usa pro chrome preenchido). "Desfazer seleção" continua sem hover —
  * correto, fica `disabled` sempre por decisão de produto já documentada.
+ *
+ * Corrigido em 2026-08-21, mesmo dia (achado do usuário: "alterou as
+ * cores"). Releitura fresca de `1439:16908` confirma que este "Section"
+ * usa `bg-effect-glass-white-36` (não `-70` — mesmo par "-70 card
+ * externo/-36 painel aninhado" já estabelecido em
+ * `SaveLongTermFileStorage`), e o botão "Excluir" usa
+ * `bg-effect-glass-white-36` + `border-[#bbb]` (`neutral-border-light`,
+ * sem token CSS equivalente ainda) — antes `bg-effect-glass-white-70` sem
+ * borda própria (herdava `border-zinc-200` do `PushButton`, não o `#bbb`
+ * confirmado). Ambos corrigidos.
  */
 function CleanSpaceLargeFiles({
   files,
@@ -53,7 +63,7 @@ function CleanSpaceLargeFiles({
   return (
     <section
       data-slot="clean-space-large-files"
-      className={cn("flex flex-col gap-3 rounded-lg border border-zinc-200 bg-effect-glass-white-70 p-4", className)}
+      className={cn("flex flex-col gap-3 rounded-lg border border-zinc-200 bg-effect-glass-white-36 p-4", className)}
       {...props}
     >
       <div className="flex items-center justify-between">
@@ -89,7 +99,7 @@ function CleanSpaceLargeFiles({
           isDestructive
           icon={Trash2}
           onClick={() => files[0] && onDeleteFile?.(files[0])}
-          className="h-8 gap-2 rounded-md bg-effect-glass-white-70 px-3 text-xs"
+          className="h-8 gap-2 rounded-md border-[#bbb] bg-effect-glass-white-36 px-3 text-xs"
         >
           Excluir
         </PushButton>

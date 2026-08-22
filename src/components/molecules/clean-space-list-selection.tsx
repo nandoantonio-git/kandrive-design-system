@@ -19,41 +19,40 @@ export interface CleanSpaceListSelectionProps
  * "lista de seleção de arquivos grandes dentro do fluxo de libherar
  * espaço". 2 variantes (checkbox `Default`/`Variant2`) — checkbox marcado
  * usa `brand-teal`/branco (Regra 3, confirmado via `download_assets` no nó
- * real `1436:20498`, `fill="#007E96"`). Ícone do arquivo: fundo
- * `rgba(43,127,255,0.1)` + traço `#2b7fff` — RE-CONFIRMADO em 2026-08-12
- * (US-026, re-auditoria) via `get_design_context` + `download_assets` no
- * próprio nó do celule (`1436:20478`/`1436:20480`/`1436:20481`), que
- * exporta `stroke="#2B7FFF"` (bytes idênticos nos 2 nós, `Default` e
- * `Variant2`) — cor sem token equivalente no Figma (fill literal, não
- * `var(--...)`), reproduzida aqui como hex literal por não haver
- * mapeamento semântico.
+ * real `1436:20498`, `fill="#007E96"`).
  * `atom/StorageTierBadge` reutilizado pro rótulo à direita ("Acesso
  * rápido"/"Longo prazo" — Regra 5), já era o mesmo componente usado na
  * amostra do Figma.
  *
  * 🔧 Corrigido em 2026-08-21 (achado do usuário: "incongruência dos
  * símbolos" — huge-backup.zip mostrava um ícone azul de pasta/zip
- * [`lucide-react` `FileArchive`], distinto do ícone genérico cinza/teal
- * usado por medium-report.pdf/small-note.txt). Investigação com
- * `get_design_context`/`get_screenshot` frescos no nó real
- * (`1436:20496`) mostra que **as 3 linhas de exemplo do template pai
+ * [`lucide-react` `FileArchive`], distinto do ícone genérico usado por
+ * medium-report.pdf/small-note.txt). Investigação com
+ * `get_design_context`/`get_screenshot` frescos no nó real (`1436:20496`)
+ * mostra que **as 3 linhas de exemplo do template pai
  * (`template/cleanSpaceStorage`, `1439:16908`) usam o mesmo asset
  * `favincon/ArchiveFormats` (variante `ArchiveItem` — documento genérico,
  * não uma forma específica de zip) pros 3 arquivos, huge-backup.zip
  * incluso** — não existe, em nenhum node Figma consultado, uma forma de
- * ícone distinta pra `.zip`. A diferenciação por extensão
- * (`isArchiveFile`/`ARCHIVE_EXTENSIONS`, com `FileArchive` do
- * `lucide-react`) foi uma inferência de uma US anterior nunca confirmada
- * contra o node real, e a nota "Figma usa FileArchive pra zip" no
- * histórico deste comentário estava incorreta — removida. A cor
- * `#2b7fff`/traço confirmado (parágrafo acima) sempre foi a certa, mas
- * só era aplicada na exceção do zip; o glifo padrão
- * (`CleanSpaceFileGlyph.svg`) usava um gradiente teal (`#007E96`→
- * `#1A5E6E`) nunca confirmado — corrigido pra `#2b7fff` sólido (mesma
- * fonte). `isArchiveFile`/`ARCHIVE_EXTENSIONS`/import de `FileArchive`
- * removidos; `FileGlyph` (já corrigido) agora renderiza pra todo arquivo,
- * dentro do wrapper `bg-[rgba(43,127,255,0.1)]` Figma-confirmado que
- * faltava antes.
+ * ícone distinta pra `.zip`. `isArchiveFile`/`ARCHIVE_EXTENSIONS`/import
+ * de `FileArchive` removidos; `FileGlyph` agora renderiza pra todo
+ * arquivo (Regra 10 — um só ícone, não reimplementado por extensão).
+ *
+ * ⚠️ **Revertido em 2026-08-21, mesmo dia** (achado do usuário: "alterou
+ * as cores"). A correção acima também tinha recolorido `FileGlyph` de
+ * teal pra `#2b7fff` sólido e adicionado um wrapper
+ * `bg-[rgba(43,127,255,0.1)]`, citando uma nota de auditoria de
+ * 2026-08-12 (`download_assets` em `1436:20478`/`1436:20480`/`1436:20481`,
+ * "stroke #2B7FFF"). Uma releitura fresca (`get_design_context` +
+ * `download_assets` no próprio `imgFrame8` do nó `1436:20496`) horas
+ * depois, no mesmo dia, mostra o SVG real com gradiente teal
+ * (`#007E96`→`#1A5E6E`, bytes idênticos ao asset original antes de
+ * qualquer correção desta sessão) e **nenhum wrapper de fundo** — nem
+ * `bg-[...]` nem `border` no container do ícone. A nota de 2026-08-12
+ * não foi reverificada contra um `download_assets` fresco antes de ser
+ * aplicada; a evidência mais recente (mesmo dia, duas leituras
+ * consecutivas) prevalece: `FileGlyph` volta a usar o gradiente teal, sem
+ * wrapper de fundo.
  *
  * Reconciliação: `organism/cleanSpaceStorage` (US-010) já renderizava essa
  * linha inline (`<li>` com `<input type="checkbox">` nativo e um quadrado
@@ -102,7 +101,7 @@ function CleanSpaceListSelection({
       >
         {selected ? <Check aria-hidden="true" strokeWidth={2.5} className="size-3 text-white" /> : null}
       </button>
-      <span className="flex size-8 shrink-0 items-center justify-center rounded-[10.4px] bg-[rgba(43,127,255,0.1)]">
+      <span className="flex size-8 shrink-0 items-center justify-center rounded-[10.4px]">
         <FileGlyph aria-hidden="true" className="h-[23px] w-[21px]" />
       </span>
       <div className="min-w-0 flex-1">

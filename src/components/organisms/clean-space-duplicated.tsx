@@ -27,12 +27,21 @@ export interface CleanSpaceDuplicatedProps extends React.ComponentProps<"section
  *
  * Extraída de `template/cleanSpaceStorage` (Regra 10 — o template agora
  * compõe este organism em vez de markup duplicado).
+ *
+ * Corrigido em 2026-08-21 (achado do usuário: "alterou as cores").
+ * Releitura fresca de `1439:16908` confirma que este "Section" usa
+ * `bg-effect-glass-white-36` (não `-70` — mesmo par "-70 card externo/-36
+ * painel aninhado" já estabelecido em `SaveLongTermFileStorage`), e cada
+ * botão "Excluir cópias" usa `bg-effect-glass-white-36` +
+ * `border-[#bbb]` (`neutral-border-light`, sem token CSS equivalente
+ * ainda) — antes `bg-effect-glass-white-70` sem borda própria. Ambos
+ * corrigidos.
  */
 function CleanSpaceDuplicated({ groups, onDeleteDuplicates, className, ...props }: CleanSpaceDuplicatedProps) {
   return (
     <section
       data-slot="clean-space-duplicated"
-      className={cn("flex flex-col gap-3 rounded-lg border border-zinc-200 bg-effect-glass-white-70 p-4", className)}
+      className={cn("flex flex-col gap-3 rounded-lg border border-zinc-200 bg-effect-glass-white-36 p-4", className)}
       {...props}
     >
       <div className="flex items-center gap-2">
@@ -54,7 +63,7 @@ function CleanSpaceDuplicated({ groups, onDeleteDuplicates, className, ...props 
               isDestructive
               icon={Trash2}
               onClick={() => onDeleteDuplicates?.(group)}
-              className="h-8.5 gap-2 rounded-md bg-effect-glass-white-70 px-4 text-xs"
+              className="h-8.5 gap-2 rounded-md border-[#bbb] bg-effect-glass-white-36 px-4 text-xs"
             >
               Excluir cópias
             </PushButton>
