@@ -1,0 +1,37 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as SettingsStories from './Settings.stories';
+
+<Meta of={SettingsStories} />
+
+# Settings (`page/Settings/*`)
+
+## Uso
+
+7 telas Figma-confirmadas (`1439:19849` Conta, `1439:21072` Assinatura, `1439:21165` Notificações, `1439:21211` Aparência&Customização, `1439:21268` Privacidade, `1439:21297` Excluir conta, `1439:21327` Idioma), mesmo shell (`organism/Header` `page="settings"` + Breadcrumb "Home/Configurações" + `PageLead` "Configurações" + `organism/Sidebar` `pages="setting"` + rodapé com seletor de idioma), variando só o painel de conteúdo — implementado como **um componente único parametrizado por `activeSection`** (mesmo critério de `Pages/Home`/`viewMode`, Regra 1/10).
+
+<Canvas of={SettingsStories.Account} />
+<Canvas of={SettingsStories.Subscription} />
+<Canvas of={SettingsStories.Notifications} />
+<Canvas of={SettingsStories.Appearance} />
+<Canvas of={SettingsStories.Privacy} />
+<Canvas of={SettingsStories.Languages} />
+<Canvas of={SettingsStories.DeleteAccount} />
+<Controls />
+
+## Nav com item sem tela confirmada
+
+O nav real da Sidebar (`pages="setting"`) tem 8 itens, mas só 7 têm node `page/Settings/*` catalogado. **"Organização padrão"** não tem nenhuma tela correspondente no inventário de Pages (`1439:25740`, checado via metadata completo em 2026-08-23) — a aba é navegável (nome/posição Figma-confirmados) mas não renderiza conteúdo inventado (Regra 9).
+
+## Composição por seção
+
+- **Conta** — 2 `SettingsCard` (Conta: campos Nome/E-mail + "Salvar alterações"; Senha: Senha atual/Nova senha/Confirmar nova senha + "Atualizar senha"). Campos via `molecule/SettingsField`, novo — nenhum atom de input genérico existia antes (`molecule/SearchBar` é específico de busca).
+- **Assinatura** — card "Armazenamento e plano" (peça própria desta tela, uso + 2 tiers com legenda "Estimativa — uso por tier ainda não disponível no backend", texto literal Figma-confirmado) + `organism/PlanSelection` (`1454:25057`) inteiro, já existente — mesmo Starter/Pro/Max/"Editar plano" de Configurações de Plano.
+- **Notificações** — 1 `SettingsCard` com 4 linhas título+descrição+`atom/Switch` (Arquivo pronto para resgate, Armazenamento quase cheio, Duplicados encontrados, Novidades do Kandrive).
+- **Aparência e exibição** — 3 `SettingsCard` com `molecule/RadioButton` (Tema: Claro/Escuro/Padrão do dispositivo; Densidade: Confortável/Compacta; Página inicial: Pessoal/Guardados — únicos 2 valores Figma-originais do componente). `RadioButton` generalizado em 2026-08-23 (`option`/`label` livres) pra suportar os grupos novos sem quebrar os 2 originais.
+- **Privacidade e dados** — 1 `SettingsCard` (linha "Exportar meus dados" + botão, nota de LGPD).
+- **Idioma e região** — 1 `SettingsCard` (2 selects — Idioma da interface/Formato de data — + "Salvar preferências").
+- **Excluir conta** — 1 `SettingsCard` com `molecule/Callout` (`variant="warning"`) + campo de senha + `atom/PushButton` `isDestructive` (chrome neutro, só texto vermelho — Regra 3).
+
+## Terminologia
+
+Nenhum termo proibido (Regra 5). "Estimativa — uso por tier ainda não disponível no backend" é nota de debug literal do Figma, já registrada em `docs/conflicts.md` para `Settings-Subscription`.

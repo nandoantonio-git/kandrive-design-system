@@ -10,7 +10,16 @@ import * as OrganizationStories from './Organization.stories';
 Tela de Organização (`1439:19678`) — mesmo shell de [Pages/Home](./Home.mdx), com o modal `Templates/SaveOrganizationModal` (`template/DialogSave/OrganizationModal`) aberto em overlay por padrão, Figma-confirmado como composição fixa do node (não um estado transitório). Reconciliado em 2026-08-20 via `get_metadata` (recon da camada `pages`).
 
 <Canvas of={OrganizationStories.Default} />
+<Canvas of={OrganizationStories.TemplateDropZone} />
+<Canvas of={OrganizationStories.Saved} />
 <Controls />
+
+## Estados adicionados em 2026-08-23
+
+`step` cobre as 2 telas restantes do fluxo "Organizar" (`page/Organização/ModoData/*`), Regra 1/10:
+
+- **`template-drop-zone`** (`1439:19696`) — diferente do `default`: TEM breadcrumb ("Home/Templates de organização") + `PageLead` ("Organização"/"Organize seus arquivos em templates"), Figma-confirmado via `get_design_context`. Conteúdo: grid pequeno (4 itens) + `organism/OrganizePanel/DropZone` já existente, sem modal.
+- **`saved`** (`Organização/ModoData/Organização/Saved`, `1439:19717` — único node das 23 telas sem prefixo `page/`, gap de nomenclatura já registrado) — mantém o padrão `default` (h1 solto "Bem-vindo ao Kandrive!", sem breadcrumb). Troca o modal por `molecule/FolderCard` (pasta criada) + `molecule/Notification` (toast, `1439:19748` — mesmo node de origem do componente já existente).
 
 ## Diferenças confirmadas contra Home
 

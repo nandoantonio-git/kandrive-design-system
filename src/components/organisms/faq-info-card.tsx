@@ -4,7 +4,7 @@ import ArchiveIcon from "@/assets/icons/FaqInfoCardArchive.svg?react"
 import ChevronIcon from "@/assets/icons/FaqInfoCardChevron.svg?react"
 import FirstStepsIcon from "@/assets/icons/FaqInfoCardFirstSteps.svg?react"
 import { cn } from "@/lib/utils"
-import { TOPIC_DATA } from "@/components/organisms/faq-info-card-collapsed"
+import { TOPIC_DATA, type FaqTopic } from "@/components/organisms/faq-info-card-collapsed"
 
 export type FaqInfoCardVariant = "faq" | "card-with-callout"
 
@@ -28,6 +28,16 @@ export interface FaqInfoCardProps extends React.ComponentProps<"div"> {
    * prazo", com callouts).
    */
   variant?: FaqInfoCardVariant
+  /**
+   * Generalizado em 2026-08-23 (`page/FAQ /Expanded`, `1439:19898`):
+   * a tela real mostra as 7 seções de FAQ sempre abertas, não só as 2 do
+   * eixo `variant` original — mesmo `TOPIC_DATA`/enum `FaqTopic` já usado
+   * em `FaqInfoCardCollapsed` (Regra 1/10, não duplicar dado). Quando
+   * definido, `topic` tem prioridade sobre `variant` (mantido por
+   * compat — nenhum outro consumidor além da própria story usava
+   * `variant` antes desta mudança).
+   */
+  topic?: FaqTopic
 }
 
 /**
@@ -44,16 +54,23 @@ export interface FaqInfoCardProps extends React.ComponentProps<"div"> {
  * como no card colapsado) — representa o item já aberto dentro de uma
  * lista de FAQ, não um teaser recolhível.
  */
-function FaqInfoCard({ variant = "faq", className, ...props }: FaqInfoCardProps) {
+function FaqInfoCard({ variant = "faq", topic: topicProp, className, ...props }: FaqInfoCardProps) {
   const isFaq = variant === "faq"
-  const topic = isFaq ? TOPIC_DATA.FirstSteps : TOPIC_DATA.LongTermStorage
-  const questions = isFaq ? [...topic.questions, EXTRA_FAQ_QUESTION] : topic.questions
-  const Icon = isFaq ? FirstStepsIcon : ArchiveIcon
+  const resolvedTopicKey: FaqTopic = topicProp ?? (isFaq ? "FirstSteps" : "LongTermStorage")
+  const topic = TOPIC_DATA[resolvedTopicKey]
+  // "Onde vejo quanto espaço já usei?" só existe na variante sempre-aberta
+  // (`FaqInfoCard`) do tópico `FirstSteps` — Figma-confirmado em
+  // `page/FAQ /Expanded` (`1439:19945`), ausente de `TOPIC_DATA.FirstSteps`
+  // (fonte compartilhada com `FaqInfoCardCollapsed`, que não tem essa
+  // pergunta). Vale pra `resolvedTopicKey`, não só o `variant` legado.
+  const questions =
+    resolvedTopicKey === "FirstSteps" ? [...topic.questions, EXTRA_FAQ_QUESTION] : topic.questions
+  const Icon = topicProp ? topic.icon : isFaq ? FirstStepsIcon : ArchiveIcon
 
   return (
     <div
       data-slot="faq-info-card"
-      data-variant={variant}
+      data-topic={resolvedTopicKey}
       className={cn(
         "relative flex w-full max-w-[927px] flex-col gap-6 rounded-3xl glass-edge glass-shadow-sm bg-effect-glass-white-50 py-6",
         className
@@ -66,7 +83,7 @@ function FaqInfoCard({ variant = "faq", className, ...props }: FaqInfoCardProps)
             <Icon className="size-4 shrink-0" aria-hidden="true" />
             <p className="text-base font-semibold text-brand-secondary-dark">{topic.title}</p>
           </div>
-          {isFaq && topic.description ? (
+          {topic.description ? (
             <p className="text-sm text-brand-secondary">{topic.description}</p>
           ) : null}
         </div>

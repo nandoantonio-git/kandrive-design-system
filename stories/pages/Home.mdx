@@ -10,9 +10,16 @@ import * as HomeStories from './Home.stories';
 Página inicial do produto — 3 nodes Figma distintos (`1439:19639`, `1439:19791`, `1439:19829`), implementados como **um componente único** parametrizado por `viewMode` (Regra 1/10: a Figma real já modela isso como eixo de visualização via `molecule/view-mode-toggle`, não 3 fluxos separados). Reconciliado em 2026-08-20 via `get_metadata` (recon da camada `pages`) — sem divergência de composição encontrada contra o catálogo já implementado.
 
 <Canvas of={HomeStories.GridMode} />
+<Canvas of={HomeStories.FirstUpload} />
 <Canvas of={HomeStories.ListMode} />
+<Canvas of={HomeStories.ListModeSelected} />
 <Canvas of={HomeStories.ColumnsMode} />
 <Controls />
+
+## Estados adicionados em 2026-08-23
+
+- **`page/FristUpload`** (`1439:19658`) — estado vazio do próprio modo `grid` (mesmo shell), não uma tela à parte. Derivado de `gridItems.length === 0`, não uma prop de variante nova. Círculo + `atom/Icon/CloudDownload` + "Arraste os arquivos que deseja armazenar"/"ou use o botão "Adicionar"" (texto Figma-confirmado).
+- **`page/Home/ListMode/Selected`** (`1439:19810`) — `molecule/context-header` (contador "X itens selecionado") aparece acima do `FileListHeader` normal (os 2 nós coexistem no Figma, `context-header` só fica `hidden` por padrão nos outros modos) + linhas em `state="pressed"`. Controlado por `listSelectedCount`.
 
 ## Composição
 

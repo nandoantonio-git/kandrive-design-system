@@ -14,6 +14,8 @@ import { FileListHeader } from "@/components/molecules/file-list-header"
 import { FileList, type FileListProps } from "@/components/molecules/file-list"
 import { FileListContainer, type FileListContainerRow } from "@/components/organisms/file-list-container"
 import { PreviewPane, type PreviewPaneFile } from "@/components/organisms/preview-pane"
+import { ContextHeader } from "@/components/molecules/context-header"
+import { Icon } from "@/components/atoms/icon"
 
 export interface HomePageGridItem {
   name: string
@@ -32,6 +34,9 @@ export interface HomePageProps extends React.ComponentProps<"div"> {
   listRows?: HomePageListRow[]
   columnsRows?: FileListContainerRow[]
   previewFile?: PreviewPaneFile
+  /** `viewMode="list"` com uma seleção ativa (`page/Home/ListMode/Selected`, `1439:19810`) — troca o header de toolbar por `ContextHeader` e marca as linhas como selecionadas. */
+  listSelectedCount?: number
+  onListSelectionClear?: () => void
 }
 
 /**
@@ -76,6 +81,8 @@ function HomePage({
   listRows = [],
   columnsRows = [],
   previewFile,
+  listSelectedCount,
+  onListSelectionClear,
   className,
   ...props
 }: HomePageProps) {
@@ -99,7 +106,23 @@ function HomePage({
             </div>
           </div>
           <div className="pt-5">
-            {viewMode === "grid" ? (
+            {viewMode === "grid" && gridItems.length === 0 ? (
+              // page/FristUpload (`1439:19658`) — estado vazio Figma-confirmado
+              // do próprio modo grid (mesmo shell/toolbar), não uma tela à
+              // parte: círculo + `atom/Icon/CloudDownload` + texto de
+              // instrução, centralizado. Derivado de `gridItems.length === 0`
+              // em vez de uma prop de variante nova — mesmo dado já controla
+              // os 2 estados.
+              <div className="flex flex-col items-center gap-6 py-24 text-center">
+                <div className="flex size-[267px] items-center justify-center rounded-full bg-zinc-100">
+                  <Icon name="CloudDownload" className="size-[85px] text-zinc-400" aria-hidden="true" />
+                </div>
+                <div className="flex flex-col gap-1 text-zinc-500">
+                  <p>Arraste os arquivos que deseja armazenar</p>
+                  <p>ou use o botão &quot;Adicionar&quot;</p>
+                </div>
+              </div>
+            ) : viewMode === "grid" ? (
               <div className="flex flex-wrap gap-8">
                 {gridItems.map((item) =>
                   item.kind === "image" ? (
@@ -111,9 +134,27 @@ function HomePage({
               </div>
             ) : viewMode === "list" ? (
               <div className="flex flex-col">
+                {listSelectedCount != null ? (
+                  // page/Home/ListMode/Selected (`1439:19810`) — `molecule/
+                  // context-header` some acima do `FileListHeader` normal
+                  // (não o substitui, Figma-confirmado: os 2 nós coexistem,
+                  // hidden por padrão nos outros modos), linhas em
+                  // `state="pressed"` (mesmo tratamento de seleção já usado
+                  // em `FreeModeListItem`).
+                  <ContextHeader
+                    itemsSelected={`${listSelectedCount} itens selecionado`}
+                    onClear={onListSelectionClear}
+                    className="mb-2"
+                  />
+                ) : null}
                 <FileListHeader format="home" />
                 {listRows.map((row) => (
-                  <FileList key={row.fileName} format="list" {...row} />
+                  <FileList
+                    key={row.fileName}
+                    format="list"
+                    state={listSelectedCount != null ? "pressed" : "idle"}
+                    {...row}
+                  />
                 ))}
               </div>
             ) : (

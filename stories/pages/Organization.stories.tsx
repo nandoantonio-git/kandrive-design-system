@@ -48,3 +48,39 @@ export const Default: Story = {
 export const ModalClosed: Story = {
   args: { modalOpen: false },
 }
+
+export const TemplateDropZone: Story = {
+  parameters: {
+    design: { type: "figma", url: "https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1439-19696" },
+  },
+  args: {
+    step: "template-drop-zone",
+    gridItems: [
+      { name: "Arquivo 1", kind: "folder" },
+      { name: "Arquivo 2", kind: "image" },
+      { name: "Arquivo 3", kind: "folder" },
+      { name: "Arquivo 4", kind: "folder" },
+    ],
+  },
+  render: (args) => {
+    function Controlled() {
+      const [viewMode, setViewMode] = useState(args.viewMode)
+      return <OrganizationPage {...args} viewMode={viewMode} onViewModeChange={setViewMode} />
+    }
+    return <Controlled />
+  },
+}
+
+export const Saved: Story = {
+  parameters: {
+    design: { type: "figma", url: "https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1439-19717" },
+  },
+  args: { step: "saved" },
+  render: (args) => {
+    function Controlled() {
+      const [viewMode, setViewMode] = useState(args.viewMode)
+      return <OrganizationPage {...args} viewMode={viewMode} onViewModeChange={setViewMode} />
+    }
+    return <Controlled />
+  },
+}

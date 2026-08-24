@@ -1,0 +1,24 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as FaqStories from './Faq.stories';
+
+<Meta of={FaqStories} />
+
+# Faq (`page/FAQ/Expanded`, `page/FAQ/Collapsed`)
+
+## Uso
+
+2 nodes Figma distintos (`1439:19898` Expanded, `1439:20755` Collapsed) — Figma-inventory: "idêntica ao FAQ Expanded" (mesma composição recolhida, não uma tela nova). Implementado como **um componente único** parametrizado por `variant` (Regra 1/10, mesmo critério de `Pages/Home`/`viewMode`).
+
+<Canvas of={FaqStories.Expanded} />
+<Canvas of={FaqStories.Collapsed} />
+<Controls />
+
+## Composição
+
+Header (`page="settings"`) + `Breadcrumb` ("Home/Perguntas Frequentes") + `PageLead` ("Perguntas Frequentes"/"Consulte suas principais dúvidas") + `Sidebar` padrão + `SearchInput` + 7 seções de FAQ (`FaqInfoCard`/`FaqInfoCardCollapsed`, conteúdo já existente em `TOPIC_DATA`: FirstSteps, LongTermStorage, Organization, LabelsTags, Duplicates, Storage, FrequentIssues) + `CardNeedMoreHelp` ("Ainda precisa de ajuda?") + `FaqFastLinks` ("Links Rápidos"). Nenhuma peça nova — composição pura de organisms já Figma-confirmados.
+
+`FaqInfoCard` generalizado nesta reconciliação (`topic` prop, além do `variant` original de 2 valores) pra cobrir as 7 seções no estado sempre-expandido — a pergunta extra "Onde vejo quanto espaço já usei?" (só em `FirstSteps`, `1439:19945`) foi movida da condição `variant` pra `resolvedTopicKey`, senão sumiria ao renderizar via `topic`.
+
+## Terminologia
+
+Nenhum termo proibido (Regra 5). "elegíveis" em `FrequentIssues` é prosa de resposta de FAQ, já documentado como não-violação em `docs/conflicts.md`.

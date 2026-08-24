@@ -1,0 +1,25 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as LoginStories from './Login.stories';
+
+<Meta of={LoginStories} />
+
+# Login (`Page/login`)
+
+## Uso
+
+`Page/login` (`1439:21362`, antes "Kandrive Login - Glassmorphism Edition" — nome/capitalização divergem das outras 22 telas `page/*`). `figma-inventory.md` original (US-002) marcava esta tela como não verificada em profundidade ("0 instâncias de componente catalogado"). Auditoria fresca em 2026-08-23 resolve a dúvida.
+
+<Canvas of={LoginStories.Default} />
+<Controls />
+
+## Achado: mesmo card já implementado
+
+`get_design_context` no node `1439:21392` ("Glass Login Card") confirma que o card é **idêntico**, texto por texto, a [Organisms/CardLogin](../organisms/CardLogin.mdx) já implementado — mesmo heading "Bem-vindo de volta", subtítulo "Acesse sua conta segura no Kandrive", link "Esqueceu sua senha?", divisor "OU", botões "Entrar com Google"/"Entrar com Apple", `400×591`, `bg-effect-glass-white-36`. Não é conteúdo diferente — só um gap de instance-linking no Figma (o card não está formalmente ligado ao componente nesta tela). Reusado sem alteração (Regra 10).
+
+## Composição
+
+Logo centralizado (mesmo asset de `organism/Header`) + `CardLogin` + fundo decorativo com 2 formas desfocadas ("Abstract Background Shapes"/"Background+Blur", Figma-confirmado como presentes, mas sem cor/gradiente exportável sem reauditoria de asset — aproximado com os tokens de marca reais `brand-teal`/`brand-pink-light`, Regra 9, não uma paleta inventada) + link de rodapé "Ainda não tem conta? Crie uma agora" (`1439:21444`, texto literal).
+
+## Terminologia
+
+Nenhum termo proibido (Regra 5).

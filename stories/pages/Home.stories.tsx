@@ -68,6 +68,45 @@ export const ListMode: Story = {
   },
 }
 
+export const FirstUpload: Story = {
+  parameters: {
+    design: { type: "figma", url: "https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1439-19658" },
+  },
+  args: {
+    viewMode: "grid",
+    gridItems: [],
+  },
+  render: (args) => {
+    function Controlled() {
+      const [viewMode, setViewMode] = useState(args.viewMode)
+      return <HomePage {...args} viewMode={viewMode} onViewModeChange={setViewMode} />
+    }
+    return <Controlled />
+  },
+}
+
+export const ListModeSelected: Story = {
+  parameters: {
+    design: { type: "figma", url: "https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1439-19810" },
+  },
+  args: {
+    viewMode: "list",
+    listRows: [
+      { fileName: "Arquivo 1", owner: "Proprietário", size: "100MB" },
+      { fileName: "Arquivo 2", owner: "Proprietário", size: "45MB" },
+      { fileName: "Arquivo 3", owner: "Proprietário", size: "2.1GB" },
+    ],
+    listSelectedCount: 3,
+  },
+  render: (args) => {
+    function Controlled() {
+      const [viewMode, setViewMode] = useState(args.viewMode)
+      return <HomePage {...args} viewMode={viewMode} onViewModeChange={setViewMode} />
+    }
+    return <Controlled />
+  },
+}
+
 export const ColumnsMode: Story = {
   parameters: {
     design: { type: "figma", url: "https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1439-19829" },

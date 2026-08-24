@@ -93,12 +93,18 @@ function fileTypeKind(format: string): FileTypeKind {
  * tag neutra literal "Recentes" e os ícones exportados `clear`,
  * `bookmark_border` e `atom/Icon/Share`; a story usava "Global" e ícones
  * `lucide-react`. Agora usa os assets Figma já presentes no repositório.
+ *
+ * 🔧 Corrigido em 2026-08-23 (conflitos.md, achado 2026-08-21): a raiz não
+ * tem nenhuma borda no nó Figma (`1421:19405`) — só as seções internas
+ * (header, `molecule/thumbnail-large`) têm `border-b`/`border` em
+ * `brand-primary-light`. `border border-brand-teal/20` na raiz removida;
+ * as bordas internas (linha abaixo, thumbnail-large) já estavam corretas.
  */
 function PreviewPane({ file, tags = [], onClose, onSave, onShare, className, ...props }: PreviewPaneProps) {
   return (
     <aside
       data-slot="preview-pane"
-      className={cn("flex w-96 flex-col gap-4 rounded-[20px] border border-brand-teal/20 bg-effect-glass-white-70 p-4", className)}
+      className={cn("flex w-96 flex-col gap-4 rounded-[20px] bg-effect-glass-white-70 p-4", className)}
       {...props}
     >
       <div className="flex items-center justify-between border-b border-brand-teal/20 pb-4">

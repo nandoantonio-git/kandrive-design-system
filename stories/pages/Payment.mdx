@@ -1,0 +1,26 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as PaymentStories from './Payment.stories';
+
+<Meta of={PaymentStories} />
+
+# Payment (`page/Payment /Expanded`, `page/Payment/Colapsed`)
+
+## Uso
+
+2 nodes Figma distintos (`1439:20215` Expanded, `1439:20485` Colapsed) — mesma composição, só as 3 seções (Seu armazenamento/Seu plano/Pagamento) recolhidas por padrão na variante `Colapsed`. Implementado como **um componente único** parametrizado por `variant` (Regra 1/10).
+
+<Canvas of={PaymentStories.Expanded} />
+<Canvas of={PaymentStories.Collapsed} />
+<Controls />
+
+## Distinto de PlanSelection
+
+Fluxo de checkout ("Confirmar upgrade para Kandrive Pro") separado de [Organisms/PlanSelection](../organisms/PlanSelection.mdx) (Configurações de Plano) — planos diferentes (Free/Advanced/Pro aqui vs. Starter/Pro/Max lá), preços diferentes, formulário de cartão em vez de card de assinatura ativa. Confirmado via `get_metadata` em ambos os nós (2026-08-23) — não são a mesma tela.
+
+## Composição
+
+Header (`page="settings"`) + `Breadcrumb` ("Home/Planos Kandrive") + `PageLead` ("Gerenciar plano Kandrive"/"Revise seu uso, compare planos e conclua a assinatura") + card único com 3 seções colapsáveis: uso de armazenamento (barra segmentada Acesso rápido/Longo prazo), grid de 3 planos (Free atual/Advanced disponível/Pro selecionado, toggle Mensal/Anual), formulário de pagamento (`SettingsField` reusado) + nota de segurança Stripe. Botão de confirmação fixo no rodapé do card.
+
+## Terminologia
+
+Nenhum termo proibido (Regra 5).

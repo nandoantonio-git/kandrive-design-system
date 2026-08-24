@@ -24,9 +24,9 @@ Fonte: `stories/tokens/Colors.mdx` + `src/components/tokens/color-data.ts`. Form
 | `cor/feedback/sucesso/base` | `#009966` | Confirmação |
 | `cor/feedback/aviso/base` | `#c38418` | Aviso |
 
-## Neutros — só 4 de ~30 batem com a rampa Zinc do Tailwind
+## Neutros — `ui-*` é família técnica separada, não Zinc
 
-⚠️ A Regra 3 original presumia neutros = rampa Zinc do Tailwind. A reconciliação encontrou uma paleta neutra própria do Figma (`neutral-*`/`ui-*`, ~30 variáveis), com tons levemente azulados que **não** pertencem à família Zinc. Só texto primário/secundário/terciário e superfície média batem exato. Ver [[Conflitos Abertos]].
+✅ Resolvido em 2026-08-23 (decisão humana, ver [[Regra 3 - Cores da Marca]]): a Regra 3 original presumia neutros = rampa Zinc do Tailwind. A reconciliação encontrou uma paleta neutra própria do Figma (`neutral-*`/`ui-*`, ~30 variáveis) — só texto primário/secundário/terciário e superfície média batem exato com um degrau Zinc; o resto, inclusive toda a família `ui-*` (bordas de input/conector), usa tons com tinte azulado próprio. Aceito como paleta técnica separada — mantém os valores reais do Figma em vez de forçar o degrau Zinc mais próximo.
 
 ## Visualização
 

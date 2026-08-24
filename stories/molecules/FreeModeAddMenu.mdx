@@ -16,9 +16,9 @@ Dropup list com as opções de nó disponíveis pra adicionar no canvas Modo Liv
 
 7 operações, cada uma um `molecule/free-mode-list-item` já existente (`celule/MainCanvas/Organization/FreeMode/ListItem`, `1421:20757`) — reusado, não reimplementado (Regra 10): Junção, Subtração, Interssecção, Exclusão, Filtrar por tamanho, Filtrar por formato, Filtrar por data.
 
-## ⚠️ Conflito em aberto
+## 🔧 Corrigido em 2026-08-23
 
-`get_design_context` fresco no node sugere um painel mais estreito (`228px`, contra os `256px` já implementados) com tratamento translúcido/Liquid Glass, diferente do fundo sólido (`zinc-900`/`zinc-700`) já implementado e auditado em passes anteriores (US-026). Não alterado nesta reconciliação — ver `docs/conflicts.md` para decisão humana.
+Releitura completa (não mais screenshot isolado) confirmou regressão real: painel `228px` em Liquid Glass claro (`bg-effect-glass-white-50` + `.glass-edge`/`.glass-shadow-sm`, Regra 10), não o fundo sólido `zinc-900`/`zinc-700` que estava implementado (herdado de antes do symbol Figma próprio, 2026-08-20). `FreeModeListItem` já usava `text-zinc-700`, correto pro fundo claro — só o container precisava de correção.
 
 ## Terminologia
 

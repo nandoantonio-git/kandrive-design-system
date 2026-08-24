@@ -11,9 +11,19 @@ const OPTION_LABEL: Record<RadioOption, string> = {
 
 export interface RadioButtonProps
   extends Omit<React.ComponentProps<"input">, "type" | "value" | "onChange"> {
-  option: RadioOption
+  option: RadioOption | (string & {})
+  /**
+   * Rótulo exibido quando `option` não é um dos 2 valores Figma-confirmados
+   * originais (`RadioOption`) — generalizado em 2026-08-23 pra outros grupos
+   * de radio Figma-confirmados fora desse par (`page/Settings/
+   * Themes&Customization`, `1439:21211`: "Tema"/"Densidade da listagem de
+   * arquivos", nenhum reusa "Pessoal"/"Guardados"). `OPTION_LABEL` permanece
+   * como default só pros 2 valores originais (Regra 9 — não reescrever o
+   * que já era Figma-confirmado).
+   */
+  label?: string
   checked?: boolean
-  onCheckedChange?: (option: RadioOption) => void
+  onCheckedChange?: (option: string) => void
 }
 
 /**
@@ -41,6 +51,7 @@ export interface RadioButtonProps
  */
 function RadioButton({
   option,
+  label,
   checked = false,
   disabled,
   onCheckedChange,
@@ -48,6 +59,7 @@ function RadioButton({
   id,
   ...props
 }: RadioButtonProps) {
+  const resolvedLabel = label ?? OPTION_LABEL[option as RadioOption] ?? option
   const inputId = id ?? `radio-button-${option}`
   return (
     <label
@@ -82,7 +94,7 @@ function RadioButton({
           className="pointer-events-none size-2 scale-0 rounded-full bg-brand-teal transition-transform peer-checked:scale-100"
         />
       </span>
-      <span className="text-base text-zinc-950">{OPTION_LABEL[option]}</span>
+      <span className="text-base text-zinc-950">{resolvedLabel}</span>
     </label>
   )
 }

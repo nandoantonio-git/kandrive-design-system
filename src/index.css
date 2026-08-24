@@ -222,20 +222,26 @@
 
 /* Liquid Glass — borda reflexiva + sombra de material (Tokens/Materials).
    Regra 10: fonte única compartilhada, nunca reimplementar por componente.
-   Revisado em 2026-08-20 (achado do usuário): a borda plana `#00000066`
-   aplicada em 2026-08-19 não é o que o Figma sugere — `Liquid Glass/Light
-   Angle: -45` indica um highlight direcional (canto iluminado × canto sem
-   luz), não uma cor uniforme. `.glass-edge` substitui o antigo
-   `border border-[#00000066]`. Técnica: pseudo-elemento em anel (não
-   `border-image`, que ignora `border-radius`) via `mask-composite: exclude`
-   — funciona com qualquer `background-color`/`backdrop-filter` já presente
-   no elemento, sem precisar de camadas extras de `background-image`.
+   Revisado em 2026-08-23 (achado do usuário: borda muito proeminente).
+   Checado contra o material de referência real — macOS 26 Community
+   (cmNF6c7zvfeSycxOqtDrWL), Liquid Glass Small/Medium/Large em Light e
+   Dark (nós 483:9250, 483:9316, 488:17448) via get_design_context +
+   get_variable_defs: NENHUM dos componentes de referência tem camada de
+   stroke/borda. O material é só fill com mix-blend-color-dodge/-burn +
+   tint translúcido + sombra `0px 8px 40px rgba(0,0,0,0.12)`; `Liquid
+   Glass/Light Angle: -45` é parâmetro interno do plugin Figma (highlight
+   especular), não um valor de borda desenhável em CSS. Os alfas de
+   0.55 (branco) / ~0.40 (`#00000066`) usados até 2026-08-20 não tinham
+   nenhum lastro no Figma — foram decisão humana. Recalibrado pra escala
+   real do material (sombra 0.12, overlay 0.20): 0.18 branco / 0.14 preto.
+   `.glass-edge` mantém a técnica de anel via pseudo-elemento (não
+   `border-image`, que ignora `border-radius`) com `mask-composite:
+   exclude` — funciona com qualquer `background-color`/`backdrop-filter`
+   já presente no elemento, sem camadas extras de `background-image`.
    Requer que o elemento já seja `position: relative|absolute|fixed|sticky`
    (a maioria dos consumidores já é, por serem overlays/paineis
    posicionados; `.glass-edge` não força `position` pra não quebrar quem já
-   usa `absolute inset-0`). O branco do canto iluminado é decisão humana
-   (não Figma-confirmada — só `#00000066` tem valor real no Figma); o canto
-   sem luz mantém o valor confirmado. */
+   usa `absolute inset-0`). */
 @layer utilities {
   .glass-edge {
     isolation: isolate;
@@ -246,7 +252,7 @@
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.55) 0%, #00000066 100%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(0, 0, 0, 0.14) 100%);
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -261,4 +267,22 @@
   .glass-shadow-sm {
     filter: drop-shadow(0px 2px 16px #09090b14);
   }
+}
+
+/* Storybook Docs — inline `code` na prose. Achado 2026-08-23 investigando
+   "Home cortado em mobile e desktop" (achado do usuário): `.sbdocs-content`
+   é a classe estável do addon-docs (Regra: nunca depender das classes
+   `css-*` geradas pelo emotion, essas mudam a cada build). Expressões
+   longas em crase única (`page/Home/GridMode`, `molecule/view-mode-toggle`)
+   não quebravam linha, empurrando o parágrafo inteiro pra fora da viewport
+   em mobile — problema de TODO `.mdx` do catálogo (~84 páginas), não só
+   Home, só mais visível lá pelo tamanho dos identificadores. Fora de
+   `@layer` de propósito: precisa vencer a cascata do próprio Storybook
+   (emotion, especificidade de 1 classe), não a nossa. `:not(pre) > code`
+   preserva o scroll horizontal normal de blocos ```code``` multilinha —
+   só a prose inline precisa quebrar. */
+.sbdocs-content :not(pre) > code {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
 }

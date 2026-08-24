@@ -1,0 +1,27 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as StorageStatusStories from './StorageStatus.stories';
+
+<Meta of={StorageStatusStories} />
+
+# StorageStatus (`page/FunctionStorageStatus/*`)
+
+## Uso
+
+3 nodes Figma distintos (`1439:19749` Total/Global, `1439:19763` Current/Acesso rápido, `1439:19777` LongoPrazo), mesmo shell (`organism/Header` + `organism/Sidebar` padrão + Breadcrumb + `PageLead` "Armazenamento") em torno de `molecule/StorageStatus` (`variant="expanded"`, já existente por completo) — implementado como **um componente único parametrizado por `scope`** (Regra 1/10, mesmo critério de `Pages/Home`/`viewMode`).
+
+<Canvas of={StorageStatusStories.Global} />
+<Canvas of={StorageStatusStories.QuickAccess} />
+<Canvas of={StorageStatusStories.LongTerm} />
+<Controls />
+
+## Breadcrumb
+
+`get_design_context` no node `Total` retorna o crumb final como "Guardar em Longo Prazo" — não bate com o nome do node (Global/Total) e não foi reconfirmado nos outros 2 nodes. Tratado como possível artefato de conteúdo (Regra 9); usado em vez disso o crumb = título H1 ("Armazenamento"), mesmo critério de `Pages/Settings`/`Pages/Faq`.
+
+## Composição
+
+Nenhuma peça nova — `molecule/StorageStatus` já cobria os 3 scopes por completo (implementado em US anterior). Esta página é composição pura do shell padrão em torno dele.
+
+## Terminologia
+
+Nenhum termo proibido (Regra 5).

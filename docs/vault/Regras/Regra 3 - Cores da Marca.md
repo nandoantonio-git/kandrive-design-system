@@ -23,6 +23,12 @@ Figma é a fonte de verdade pra cor (decisão humana, 2026-08-10) — os valores
 
 Não é inconsistência do Figma — parece intencional por contexto (ação vs. rótulo). Ver [[Conflitos Abertos]].
 
+## Paleta neutra — `ui-*`/`neutral-*` é família técnica separada, não Zinc
+
+Decisão humana em 2026-08-23: a Regra 3 original presumia neutros = rampa Zinc do Tailwind. Só 4 dos ~30 papéis neutros Figma-confirmados batem exato com um degrau Zinc (`neutral-text-primary`=`zinc-950`, `neutral-text-secondary`=`zinc-700`, `neutral-text-tertiary`=`zinc-500`, `neutral-surface-medium`=`zinc-600`) — a maioria, inclusive toda a família `ui-*` (bordas de input/conector: `ui-input-border` `#3f4850`, `ui-connector-border`, `ui-button-border-ghost`), usa tons com tinte azulado próprio, fora da família Zinc.
+
+Resolvido como: **`ui-*` é uma paleta técnica separada** (bordas de input/conector, não neutros de superfície/texto), com seus próprios valores reais — não força mais mapeamento pro degrau Zinc mais próximo, que perderia precisão de cor sem necessidade. Os 4 papéis que já batem exato com Zinc continuam usando Zinc (sem motivo pra trocar o que já é preciso). Ver [[Tokens de Cor]].
+
 ## Ver também
 
 - [[Tokens de Cor]]

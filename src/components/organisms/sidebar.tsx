@@ -35,13 +35,35 @@ const NAV_ITEMS: { page: SidebarPage; icon: LucideIcon }[] = [
   { page: "Lixeira", icon: Trash2 },
 ]
 
+export type SettingsSection =
+  | "conta"
+  | "assinatura"
+  | "notificacoes"
+  | "aparencia"
+  | "privacidade"
+  | "organizacao-padrao"
+  | "idioma"
+  | "excluir-conta"
+
+const SETTINGS_NAV_ITEMS: { section: SettingsSection; label: string }[] = [
+  { section: "conta", label: "Conta" },
+  { section: "assinatura", label: "Armazenamento e plano" },
+  { section: "notificacoes", label: "Notificações" },
+  { section: "aparencia", label: "Aparência e exibição" },
+  { section: "privacidade", label: "Privacidade e dados" },
+  { section: "organizacao-padrao", label: "Organização padrão" },
+  { section: "idioma", label: "Idioma e região" },
+]
+
 export interface SidebarProps extends React.ComponentProps<"nav"> {
+  /** `Pages` — `"default"` (navegação de arquivos, default) ou `"setting"` (nav de Configurações). Figma-confirmado como eixo do mesmo component set (`organism/Sidebar`, Regra 1/10), não 2 componentes. */
+  pages?: "default" | "setting"
   activePage?: SidebarPage
   onNavigate?: (page: SidebarPage) => void
   tags?: string[]
   activeTag?: string
   onTagSelect?: (tag: string) => void
-  storageProps: Omit<StorageSidebarProps, "className" | "manageSpaceLabel">
+  storageProps?: Omit<StorageSidebarProps, "className" | "manageSpaceLabel">
   /** Controlado — se omitido, o componente gerencia o próprio estado (não-controlado, inicia expandido). */
   collapsed?: boolean
   defaultCollapsed?: boolean
@@ -49,6 +71,9 @@ export interface SidebarProps extends React.ComponentProps<"nav"> {
   /** @deprecated Use `onCollapsedChange`. Mantido por compatibilidade — chamado junto em toda troca de estado. */
   onCollapse?: () => void
   onAdd?: () => void
+  /** Só `pages="setting"`. */
+  activeSection?: SettingsSection
+  onNavigateSection?: (section: SettingsSection) => void
 }
 
 /**
@@ -109,8 +134,27 @@ export interface SidebarProps extends React.ComponentProps<"nav"> {
  * Implementado com estado controlado/não-controlado (`collapsed`/
  * `defaultCollapsed`/`onCollapsedChange`) — sem `collapsed` explícito, o
  * componente já alterna sozinho ao clicar, ao contrário de antes.
+ *
+ * `pages="setting"` adicionado em 2026-08-23 (achado: nav de Configurações
+ * ausente do catálogo). `get_design_context` fresco em `1439:19849`
+ * confirma um segundo eixo real do mesmo component set (`Pages=Default` |
+ * `Pages=Setting`, não 2 componentes — Regra 1/10): painel `223×346`,
+ * `bg-effect-glass-white-70` (mais opaco que o `-surface-light` do
+ * `Default`), sem `organism/storage-sidebar` nem botão de colapsar/
+ * adicionar/etiquetas — só uma lista de 8 itens de navegação (Conta/
+ * Armazenamento e plano/Notificações/Aparência e exibição/Privacidade e
+ * dados/Organização padrão/[divisor]/Idioma e região/[divisor]/Excluir
+ * conta — Figma-confirmado nos nós `1255:23289`–`1255:23306`). "Excluir
+ * conta" usa `text-[#71717a]` mesmo no estado inativo (não o
+ * `neutral-text-tertiary` dos outros itens inativos — Figma-confirmado,
+ * tratamento visualmente idêntico na prática, mas o node não reusa a
+ * variável). "Organização padrão" é item de nav real (Figma-confirmado),
+ * mas não tem nenhuma das 23 telas `page/*` correspondente no inventário
+ * — sem conteúdo Figma-confirmado pra esse painel ainda (Regra 9,
+ * `docs/conflicts.md`).
  */
 function Sidebar({
+  pages = "default",
   activePage = "Pessoal",
   onNavigate,
   tags = [],
@@ -122,6 +166,8 @@ function Sidebar({
   onCollapsedChange,
   onCollapse,
   onAdd,
+  activeSection = "conta",
+  onNavigateSection,
   className,
   ...props
 }: SidebarProps) {
@@ -133,6 +179,51 @@ function Sidebar({
     if (collapsed === undefined) setInternalCollapsed(next)
     onCollapsedChange?.(next)
     onCollapse?.()
+  }
+
+  if (pages === "setting") {
+    return (
+      <nav
+        data-slot="sidebar"
+        data-pages="setting"
+        className={cn(
+          "flex w-[223px] flex-col gap-1 rounded-2xl border border-zinc-200 bg-effect-glass-white-70 px-2 pt-3 pb-6 backdrop-blur-md",
+          className
+        )}
+        {...props}
+      >
+        {SETTINGS_NAV_ITEMS.map(({ section, label }, index) => (
+          <React.Fragment key={section}>
+            <button
+              type="button"
+              aria-current={activeSection === section ? "page" : undefined}
+              onClick={() => onNavigateSection?.(section)}
+              className={cn(
+                "rounded-md px-2 py-1.5 text-left text-base font-medium text-zinc-900 transition-colors",
+                "hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
+                activeSection === section ? "bg-zinc-100" : "text-zinc-500"
+              )}
+            >
+              {label}
+            </button>
+            {/* Divisores Figma-confirmados após "Privacidade e dados" e "Idioma e região" (nós `1255:24263`/`1255:24279`, frames vazios). */}
+            {index === 4 || index === 6 ? <div className="h-2" aria-hidden="true" /> : null}
+          </React.Fragment>
+        ))}
+        <button
+          type="button"
+          aria-current={activeSection === "excluir-conta" ? "page" : undefined}
+          onClick={() => onNavigateSection?.("excluir-conta")}
+          className={cn(
+            "rounded-md px-2 py-1.5 text-left text-base font-medium text-[#71717a] transition-colors",
+            "hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
+            activeSection === "excluir-conta" && "bg-zinc-100"
+          )}
+        >
+          Excluir conta
+        </button>
+      </nav>
+    )
   }
 
   if (isCollapsed) {
