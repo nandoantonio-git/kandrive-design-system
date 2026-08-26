@@ -46,8 +46,8 @@ function ArchiveBrowserModalListItem({
       data-slot="archive-browser-modal-list-item"
       data-selected={selected || undefined}
       className={cn(
-        "flex w-full items-center gap-3 px-2 py-1.5",
-        selected && "rounded-md bg-[rgba(191,199,210,0.1)]",
+        "flex w-full items-center gap-3 rounded-md px-2 py-1.5 transition-colors hover:bg-[rgba(191,199,210,0.16)]",
+        selected && "bg-[rgba(191,199,210,0.1)]",
         className
       )}
       {...props}

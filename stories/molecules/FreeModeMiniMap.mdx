@@ -1,0 +1,24 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as FreeModeMiniMapStories from './FreeModeMiniMap.stories';
+
+<Meta of={FreeModeMiniMapStories} />
+
+# FreeModeMiniMap (Figma: `template/MainCanvas/Organization/FreeMode`, `1439:16906`, elemento "Mini-Map")
+
+## Uso
+
+Miniatura estática de visão geral do canvas Modo Livre, extraída do markup
+antes inline de `template/MainCanvas/Organization/FreeMode` — a única
+sub-peça desse canvas que ainda não tinha molecule própria (ao contrário de
+`FreeModeItemNode`/`FreeModeOutputNode`/`FreeModeButtons`/`FreeModeAddMenu`).
+Escopo fechado nesse canvas — não é um minimapa genérico reutilizável em
+outras telas.
+
+<Canvas of={FreeModeMiniMapStories.Default} />
+<Controls />
+
+## Interação
+
+Nenhuma — elemento visual estático (`aria-hidden`). Os blocos e o retângulo
+de "viewport" são decorativos, confirmados no Figma como composição visual,
+sem pan/zoom real (Regra 9: nunca apresentar como funcionalidade real).

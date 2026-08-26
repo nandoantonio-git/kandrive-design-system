@@ -103,26 +103,26 @@ function TemplateReviewModalItem({ item, isExpanded, onToggleExpand, className, 
           </button>
           <Folder aria-hidden="true" className="size-4 shrink-0 text-zinc-500" />
           <div className="flex flex-col gap-1">
-            <span className="text-base text-zinc-900">{item.name}</span>
+            <span className="text-sm text-zinc-900">{item.name}</span>
             <span className="text-xs text-zinc-600">{item.itemsLabel}</span>
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <span className={cn("flex items-center gap-1 rounded-full px-3 py-1 text-base font-medium", meta.className)}>
+          <span className={cn("flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium", meta.className)}>
             <SeverityIcon aria-hidden="true" className="size-3" />
             {meta.label}
           </span>
           <button
             type="button"
             onClick={item.onRename}
-            className="rounded-sm text-base font-medium text-zinc-500 transition-all hover:text-zinc-700 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 motion-safe:active:scale-[0.98]"
+            className="rounded-sm text-sm font-medium text-zinc-500 transition-all hover:text-zinc-700 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 motion-safe:active:scale-[0.98]"
           >
             Renomear
           </button>
           <button
             type="button"
             onClick={item.onEdit}
-            className="rounded-sm text-base font-medium text-brand-teal transition-all hover:text-brand-teal/80 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 motion-safe:active:scale-[0.98]"
+            className="rounded-sm text-sm font-medium text-brand-teal transition-all hover:text-brand-teal/80 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 motion-safe:active:scale-[0.98]"
           >
             Editar
           </button>
@@ -144,7 +144,7 @@ function TemplateReviewModalItem({ item, isExpanded, onToggleExpand, className, 
               <div className="flex items-center gap-2">
                 <File aria-hidden="true" className="size-4 shrink-0 text-zinc-400" />
                 <div className="flex flex-col">
-                  <span className="text-base text-zinc-900">{child.name}</span>
+                  <span className="text-sm text-zinc-900">{child.name}</span>
                   <span className="text-xs text-zinc-600">{child.meta}</span>
                 </div>
               </div>

@@ -10,11 +10,15 @@ export interface NodeContextMenuItemProps
   kind?: "attribute" | "condition" | "value" | "date" | "interval"
   /** Eixo `type` do Figma: pílulas `Atribute`\|`Conditional` abrem lista (chevron); `Value`\|`Date` são estáticas. */
   hasChevron?: boolean
+  /** Valor selecionado — controlado; quando omitido, o componente gerencia sozinho (não-controlado). */
   value?: string
+  defaultValue?: string
   onValueChange?: (value: string) => void
   /** Eixo `property3=wrongInput` do Figma — anel/borda de erro. */
   error?: boolean
+  /** Aberto/fechado — controlado; quando omitido, o componente gerencia sozinho (não-controlado, abre/fecha ao clicar no trigger e fecha ao selecionar uma opção). */
   expanded?: boolean
+  defaultExpanded?: boolean
   selectedOption?: string
   onExpandedChange?: (expanded: boolean) => void
   options?: readonly string[]
@@ -58,10 +62,12 @@ function NodeContextMenuItem({
   label,
   kind,
   hasChevron = true,
-  value,
+  value: controlledValue,
+  defaultValue,
   onValueChange,
   error = false,
-  expanded = false,
+  expanded: controlledExpanded,
+  defaultExpanded = false,
   selectedOption,
   onExpandedChange,
   options,
@@ -69,23 +75,32 @@ function NodeContextMenuItem({
   className,
   ...props
 }: NodeContextMenuItemProps) {
+  const [internalValue, setInternalValue] = React.useState(defaultValue)
+  const [internalExpanded, setInternalExpanded] = React.useState(defaultExpanded)
+  const value = controlledValue ?? internalValue
+  const expanded = controlledExpanded ?? internalExpanded
+
+  const setExpanded = (next: boolean) => {
+    if (controlledExpanded === undefined) setInternalExpanded(next)
+    onExpandedChange?.(next)
+  }
+
+  const selectValue = (option: string) => {
+    if (controlledValue === undefined) setInternalValue(option)
+    onValueChange?.(option)
+    setExpanded(false)
+  }
+
   const visualKind = kind ?? inferKind(label, hasChevron)
   const filled = value !== undefined
   const widthClassName = WIDTH_BY_KIND[visualKind]
   const surfaceClassName = filled || visualKind === "date" ? "bg-zinc-800 text-zinc-200" : "bg-zinc-500/20 text-zinc-400"
-  const expandedSurfaceClassName = "border-zinc-500 bg-zinc-600 text-zinc-300"
   return (
     <div
       data-slot="node-context-menu-item"
       data-kind={visualKind}
       data-expanded={expanded || undefined}
-      className={cn(
-        "relative flex flex-col items-start rounded-[var(--radius-md)]",
-        widthClassName,
-        expanded && hasChevron && "overflow-hidden border bg-zinc-600",
-        expanded && hasChevron ? expandedSurfaceClassName : "",
-        className
-      )}
+      className={cn("relative flex flex-col items-start rounded-[var(--radius-md)]", widthClassName, className)}
       {...props}
     >
       <button
@@ -93,14 +108,14 @@ function NodeContextMenuItem({
         data-slot="node-context-menu-item-trigger"
         aria-expanded={hasChevron ? expanded : undefined}
         disabled={disabled}
-        onClick={() => hasChevron && onExpandedChange?.(!expanded)}
+        onClick={() => hasChevron && setExpanded(!expanded)}
         className={cn(
-          "flex h-6 w-full items-center justify-center gap-1 whitespace-nowrap px-2 text-[0.6875rem] leading-4 transition-colors",
-          expanded && hasChevron
-            ? "rounded-none border-0 border-b border-black/10 bg-transparent"
-            : cn("rounded-[var(--radius-md)] border", surfaceClassName),
+          "flex h-6 w-full items-center justify-center gap-1 whitespace-nowrap rounded-[var(--radius-md)] border px-2 text-[0.6875rem] leading-4 transition-colors",
+          surfaceClassName,
+          expanded && hasChevron && "border-zinc-500 bg-zinc-600 text-zinc-300",
           error && "border-destructive shadow-[0_0_0_2px_rgba(188,52,38,0.35)]",
           !error && !expanded && (filled ? "border-zinc-700" : "border-zinc-500"),
+          hasChevron && "hover:brightness-110 active:brightness-95",
           "disabled:pointer-events-none disabled:opacity-50"
         )}
       >
@@ -115,7 +130,7 @@ function NodeContextMenuItem({
       {hasChevron && expanded && options && options.length > 0 ? (
         <ul
           data-slot="node-context-menu-item-list"
-          className="flex w-full flex-col py-1"
+          className="absolute top-full left-0 z-20 mt-1 flex w-max min-w-full flex-col rounded-[var(--radius-md)] border border-zinc-500 bg-zinc-600 py-1 shadow-lg"
         >
           {options.map((option) => (
             <li key={option}>
@@ -123,7 +138,7 @@ function NodeContextMenuItem({
                 type="button"
                 data-slot="node-context-menu-item-option"
                 aria-current={option === selectedOption || option === value}
-                onClick={() => onValueChange?.(option)}
+                onClick={() => selectValue(option)}
                 className={cn(
                   "block h-[22px] w-full px-3 text-left text-[0.8125rem] leading-none whitespace-nowrap text-zinc-300 hover:bg-black/14",
                   (option === selectedOption || option === value) && "bg-black/14"

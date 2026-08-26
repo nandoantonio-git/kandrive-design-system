@@ -119,7 +119,7 @@ function FileListArchiveItem({ name, showName }: { name: string; showName: boole
   return (
     <div
       data-slot="file-list-archive-item"
-      className="flex h-12 w-16 shrink-0 flex-col items-center justify-start gap-1"
+      className="flex h-12 w-16 shrink-0 flex-col items-center justify-center"
     >
       <FolderArchiveGlyph aria-hidden="true" className="h-[31.846px] w-9 shrink-0" />
       {showName ? (

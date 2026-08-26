@@ -14,7 +14,11 @@ export interface CleanSpaceLargeFile {
 
 export interface CleanSpaceLargeFilesProps extends React.ComponentProps<"section"> {
   files: CleanSpaceLargeFile[]
+  /** Nomes selecionados — controlado; quando omitido, o componente gerencia sozinho (checkbox por linha + "Selecionar todos"/"Desfazer seleção"). */
+  selectedNames?: readonly string[]
+  onSelectedNamesChange?: (names: readonly string[]) => void
   onDeleteFile?: (file: CleanSpaceLargeFile) => void
+  onDeleteSelected?: (files: CleanSpaceLargeFile[]) => void
   onSelectAll?: () => void
   onDeselectAll?: () => void
 }
@@ -39,8 +43,15 @@ export interface CleanSpaceLargeFilesProps extends React.ComponentProps<"section
  * feedback nenhum ao passar o mouse. Corrigido com `hover:text-brand-teal/70`/
  * `active:text-brand-teal/50` (equivalente em texto ao
  * `hover:bg-brand-teal/90`/`active:bg-brand-teal/80` que o `variant="primary"`
- * já usa pro chrome preenchido). "Desfazer seleção" continua sem hover —
- * correto, fica `disabled` sempre por decisão de produto já documentada.
+ * já usa pro chrome preenchido).
+ *
+ * Corrigido (achado do usuário: seleção de itens não funcionava —
+ * `CleanSpaceListSelection` já suporta `selected`/`onSelectedChange` mas
+ * nunca era wireado por este organism). Seleção agora é real (lifted state,
+ * controlado ou não): "Selecionar todos"/"Desfazer seleção" agem sobre o
+ * conjunto inteiro, "Excluir" remove só os arquivos selecionados. Antes
+ * "Desfazer seleção" ficava sempre `disabled` (não havia nada real pra
+ * desfazer); agora só fica `disabled` quando a seleção está vazia.
  *
  * Corrigido em 2026-08-21, mesmo dia (achado do usuário: "alterou as
  * cores"). Releitura fresca de `1439:16908` confirma que este "Section"
@@ -54,12 +65,46 @@ export interface CleanSpaceLargeFilesProps extends React.ComponentProps<"section
  */
 function CleanSpaceLargeFiles({
   files,
+  selectedNames: controlledSelectedNames,
+  onSelectedNamesChange,
   onDeleteFile,
+  onDeleteSelected,
   onSelectAll,
   onDeselectAll,
   className,
   ...props
 }: CleanSpaceLargeFilesProps) {
+  const [internalSelectedNames, setInternalSelectedNames] = React.useState<readonly string[]>([])
+  const selectedNames = controlledSelectedNames ?? internalSelectedNames
+
+  const setSelectedNames = (names: readonly string[]) => {
+    if (controlledSelectedNames === undefined) setInternalSelectedNames(names)
+    onSelectedNamesChange?.(names)
+  }
+
+  const toggleFileSelected = (name: string, next: boolean) => {
+    setSelectedNames(next ? [...selectedNames, name] : selectedNames.filter((selected) => selected !== name))
+  }
+
+  const selectAll = () => {
+    setSelectedNames(files.map((file) => file.name))
+    onSelectAll?.()
+  }
+
+  const deselectAll = () => {
+    setSelectedNames([])
+    onDeselectAll?.()
+  }
+
+  const deleteSelected = () => {
+    const selectedFiles = files.filter((file) => selectedNames.includes(file.name))
+    if (selectedFiles.length > 0) {
+      onDeleteSelected?.(selectedFiles)
+      selectedFiles.forEach((file) => onDeleteFile?.(file))
+      setSelectedNames([])
+    }
+  }
+
   return (
     <section
       data-slot="clean-space-large-files"
@@ -71,15 +116,15 @@ function CleanSpaceLargeFiles({
         <div className="flex gap-2">
           <PushButton
             variant="neutral"
-            disabled
-            onClick={onDeselectAll}
+            disabled={selectedNames.length === 0}
+            onClick={deselectAll}
             className="h-auto border-none bg-transparent p-0 text-xs font-normal text-zinc-300 hover:bg-transparent disabled:opacity-100"
           >
             Desfazer seleção
           </PushButton>
           <PushButton
             variant="primary"
-            onClick={onSelectAll}
+            onClick={selectAll}
             className="h-auto border-none bg-transparent p-0 text-xs font-normal text-brand-teal hover:bg-transparent hover:text-brand-teal/70 active:bg-transparent active:text-brand-teal/50"
           >
             Selecionar todos
@@ -89,7 +134,13 @@ function CleanSpaceLargeFiles({
       <ul className="flex max-h-64 flex-col gap-1 overflow-auto rounded-lg border border-zinc-100 p-1">
         {files.map((file) => (
           <li key={file.name}>
-            <CleanSpaceListSelection name={file.name} meta={file.meta} tier={file.tier} />
+            <CleanSpaceListSelection
+              name={file.name}
+              meta={file.meta}
+              tier={file.tier}
+              selected={selectedNames.includes(file.name)}
+              onSelectedChange={(next) => toggleFileSelected(file.name, next)}
+            />
           </li>
         ))}
       </ul>
@@ -97,8 +148,9 @@ function CleanSpaceLargeFiles({
         <PushButton
           variant="neutral"
           isDestructive
+          disabled={selectedNames.length === 0}
           icon={Trash2}
-          onClick={() => files[0] && onDeleteFile?.(files[0])}
+          onClick={deleteSelected}
           className="h-8 gap-2 rounded-md border-[#bbb] bg-effect-glass-white-36 px-3 text-xs"
         >
           Excluir

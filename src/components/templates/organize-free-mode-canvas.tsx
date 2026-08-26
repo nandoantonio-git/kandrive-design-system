@@ -7,6 +7,7 @@ import { FreeModeItemNode } from "@/components/molecules/free-mode-item-node"
 import { FreeModeOutputNode } from "@/components/molecules/free-mode-output-node"
 import { FreeModeButtons } from "@/components/molecules/free-mode-buttons"
 import { FreeModeAddMenu } from "@/components/molecules/free-mode-add-menu"
+import { FreeModeMiniMap } from "@/components/molecules/free-mode-mini-map"
 
 /**
  * Conectores tracejados do canvas — elemento Figma-confirmado no nó
@@ -231,24 +232,7 @@ function OrganizeFreeModeCanvas({
         Modo Livre
       </span>
       {/* Mini-Map (Figma-confirmado, elemento visual estático — não funcional, ver nota acima) */}
-      <div
-        aria-hidden="true"
-        data-slot="organize-free-mode-canvas-minimap"
-        className="absolute right-[42px] bottom-[158px] flex h-32 w-48 flex-col rounded-xl border border-zinc-300 bg-white/50 p-2 opacity-60 backdrop-blur-sm"
-      >
-        <div className="relative flex-1">
-          <div className="absolute inset-x-2 top-1 grid grid-cols-3 gap-1">
-            <span className="h-4 rounded-sm bg-zinc-300" />
-            <span className="h-4 rounded-sm bg-zinc-300" />
-            <span className="h-4 rounded-sm bg-zinc-300" />
-          </div>
-          <div className="absolute inset-x-4 top-8 h-10 rounded border-2 border-brand-teal/60" />
-        </div>
-        <div className="flex items-center justify-between border-t border-zinc-200 pt-1">
-          <span className="h-1 w-8 rounded-full bg-zinc-300" />
-          <span className="h-1 w-6 rounded-full bg-zinc-300" />
-        </div>
-      </div>
+      <FreeModeMiniMap className="absolute right-[42px] bottom-[158px]" />
 
       {/* Painel flutuante de edição de filtro (Figma-confirmado, ver nota acima) */}
       <FreeModeFilterPanel className="absolute top-[42px] right-[64px] z-20" />

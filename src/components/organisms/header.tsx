@@ -74,7 +74,7 @@ function Header({ page = "navbar", searchProps, onOrganize, onSave, className, .
       <SearchInput
         {...searchProps}
         placeholder={searchProps?.placeholder ?? "Pesquisar"}
-        className="w-[560px] max-w-none flex-none"
+        className="min-w-0 max-w-[560px] flex-1"
       />
       {page === "navbar" ? (
         <div className="flex shrink-0 items-center gap-5">

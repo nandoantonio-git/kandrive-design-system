@@ -59,7 +59,7 @@ function NodeContextMenu({
     <div
       data-slot="node-context-menu"
       data-state={state}
-      className={cn("relative w-[393px] overflow-hidden rounded-[2.375rem] shadow-[0_8px_20px_rgba(0,0,0,0.12)]", className)}
+      className={cn("relative w-[393px] rounded-[2.375rem] shadow-[0_8px_20px_rgba(0,0,0,0.12)]", className)}
       {...props}
     >
       <div aria-hidden="true" className="absolute inset-0 rounded-[2.375rem] glass-edge glass-shadow-sm bg-effect-glass-white-50 mix-blend-screen" />

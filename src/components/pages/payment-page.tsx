@@ -7,6 +7,7 @@ import { Breadcrumb } from "@/components/molecules/breadcrumb"
 import { PageLead } from "@/components/molecules/page-lead"
 import { SettingsField } from "@/components/molecules/settings-field"
 import { PushButton } from "@/components/atoms/push-button"
+import { StorageBarExpanded } from "@/components/molecules/storage-bar"
 
 export type PaymentBillingCycle = "monthly" | "annual"
 
@@ -153,10 +154,13 @@ function PaymentPage({
                 <span className="text-zinc-950">13.8 GB de 15 GB usados</span>
                 <span className="rounded-full border border-zinc-200 px-2 py-0.5 text-xs text-zinc-500">Plano Free</span>
               </div>
-              <div className="flex h-2.5 w-full overflow-hidden rounded-full bg-zinc-200">
-                <div className="h-full w-[61%] bg-brand-pink-dark" />
-                <div className="h-full w-[31%] bg-brand-teal" />
-              </div>
+              <StorageBarExpanded
+                segments={[
+                  { tier: "quick-access", value: 61 },
+                  { tier: "long-term", value: 31 },
+                ]}
+                className="h-2.5 max-w-none"
+              />
               <div className="flex items-center gap-6 text-sm text-zinc-500">
                 <span className="flex items-center gap-1.5">
                   <span className="size-2 shrink-0 rounded-full bg-brand-pink-dark" aria-hidden="true" />

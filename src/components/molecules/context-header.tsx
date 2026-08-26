@@ -61,22 +61,20 @@ function ContextHeader({
       data-slot="context-header"
       data-state={state}
       className={cn(
-        "relative flex w-[403px] flex-col items-start rounded-3xl drop-shadow-[0px_2px_16px_rgba(9,9,11,0.08)]",
-        isCollapsed ? "h-0 overflow-clip opacity-0" : "h-[52px]",
+        "relative flex w-[403px] flex-col items-start overflow-clip rounded-3xl drop-shadow-[0px_2px_16px_rgba(9,9,11,0.08)] transition-[height,opacity] duration-200",
+        isCollapsed ? "h-0 opacity-0" : "h-[52px] opacity-100",
         className
       )}
       {...props}
     >
-      {isCollapsed ? null : (
-        <>
-          <div aria-hidden="true" className="absolute inset-0 rounded-3xl glass-edge glass-shadow-sm bg-effect-glass-white-36" />
-          <div className="relative flex h-[52px] w-full items-center gap-5 py-3 pr-6 pl-[21px]">
+      <div aria-hidden="true" className="absolute inset-0 rounded-3xl glass-edge glass-shadow-sm bg-effect-glass-white-36" />
+      <div className="relative flex h-[52px] w-full shrink-0 items-center gap-5 py-3 pr-6 pl-[21px]">
             <div className="flex shrink-0 items-center gap-3">
               <button
                 type="button"
                 aria-label="Limpar seleção"
                 onClick={onClear}
-                className="inline-flex size-4 shrink-0 items-center justify-center text-zinc-800"
+                className="inline-flex size-4 shrink-0 items-center justify-center text-zinc-800 transition-colors hover:text-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 active:opacity-60"
               >
                 <ClearGlyph aria-hidden="true" className="size-4" />
               </button>
@@ -92,7 +90,7 @@ function ContextHeader({
                   type="button"
                   aria-label="Compartilhar"
                   onClick={onShare}
-                  className="inline-flex items-center justify-center py-1.5 text-zinc-800"
+                  className="inline-flex items-center justify-center py-1.5 text-zinc-800 transition-colors hover:text-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 active:opacity-60"
                 >
                   <Icon name="ShareFile" className="size-6" />
                 </button>
@@ -100,7 +98,7 @@ function ContextHeader({
                   type="button"
                   aria-label="Baixar"
                   onClick={onDownload}
-                  className="inline-flex items-center justify-center py-1.5 text-zinc-800"
+                  className="inline-flex items-center justify-center py-1.5 text-zinc-800 transition-colors hover:text-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 active:opacity-60"
                 >
                   <Icon name="Download" className="size-4" />
                 </button>
@@ -108,7 +106,7 @@ function ContextHeader({
                   type="button"
                   aria-label="Mover"
                   onClick={onMove}
-                  className="inline-flex items-center justify-center text-zinc-800"
+                  className="inline-flex items-center justify-center text-zinc-800 transition-colors hover:text-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 active:opacity-60"
                 >
                   <Icon name="FileMoveRight" className="size-6" />
                 </button>
@@ -116,7 +114,7 @@ function ContextHeader({
                   type="button"
                   aria-label="Excluir"
                   onClick={onDelete}
-                  className="inline-flex size-4 shrink-0 items-center justify-center text-zinc-800"
+                  className="inline-flex size-4 shrink-0 items-center justify-center text-zinc-800 transition-colors hover:text-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 active:opacity-60"
                 >
                   <DeleteGlyph aria-hidden="true" className="size-3" />
                 </button>
@@ -124,15 +122,13 @@ function ContextHeader({
                   type="button"
                   aria-label="Mais opções"
                   onClick={onMoreOptions}
-                  className="inline-flex items-center justify-center py-1.5 text-zinc-800"
+                  className="inline-flex items-center justify-center py-1.5 text-zinc-800 transition-colors hover:text-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 active:opacity-60"
                 >
                   <Icon name="Settings2" className="size-4" />
                 </button>
               </div>
             </div>
-          </div>
-        </>
-      )}
+      </div>
     </div>
   )
 }

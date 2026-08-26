@@ -3,6 +3,7 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 import { CloseButton } from "@/components/atoms/close-button"
 import { PushButton } from "@/components/atoms/push-button"
+import { TemplateCard } from "@/components/molecules/template-card"
 import illustrationData from "@/assets/illustrations/template-card-data.svg"
 import illustrationProjeto from "@/assets/illustrations/template-card-projeto.svg"
 import illustrationTipo from "@/assets/illustrations/template-card-tipo.svg"
@@ -99,32 +100,16 @@ function SaveOrganizationModal({
       </p>
       <div className="flex flex-1 items-start gap-1">
         {CARDS.map((card) => (
-          <button
+          <TemplateCard
             key={card.method}
-            type="button"
-            aria-pressed={selected === card.method}
+            eyebrow={card.eyebrow}
+            title={card.title}
+            description={card.description}
+            illustration={card.illustration}
+            dashedIllustrationFrame={card.method === "modo-livre"}
+            selected={selected === card.method}
             onClick={() => onMethodSelect?.(card.method)}
-            className={cn(
-              "flex h-96 w-[217.75px] shrink-0 flex-col items-center justify-between rounded-xl border border-zinc-300 bg-zinc-50 p-4",
-              "transition-colors hover:border-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
-              selected === card.method && "border-zinc-400"
-            )}
-          >
-            <span className="rounded-full border border-brand-teal/40 bg-brand-teal/5 px-3 py-1 text-[0.625rem] font-bold tracking-wide text-brand-teal uppercase">
-              {card.eyebrow}
-            </span>
-            {card.method === "modo-livre" ? (
-              <div className="flex size-24 items-center justify-center rounded-lg border-2 border-dashed border-brand-secondary-light p-2">
-                <img src={card.illustration} alt="" aria-hidden="true" className="h-12 w-auto" />
-              </div>
-            ) : (
-              <img src={card.illustration} alt="" aria-hidden="true" className="h-24 w-auto" />
-            )}
-            <span className="flex w-full flex-col items-start gap-1.5 px-1.5 text-left">
-              <span className="whitespace-nowrap text-xl font-bold text-zinc-500">{card.title}</span>
-              <span className="text-xs text-zinc-500">{card.description}</span>
-            </span>
-          </button>
+          />
         ))}
       </div>
       <div className="flex items-center justify-end gap-4">

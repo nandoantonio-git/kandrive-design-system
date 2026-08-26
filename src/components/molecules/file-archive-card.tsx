@@ -4,11 +4,12 @@ import { cn } from "@/lib/utils"
 import FolderArchiveGlyph from "@/assets/icons/FolderArchiveGlyph.svg?react"
 
 export interface FileArchiveCardProps
-  extends Omit<React.ComponentProps<"div">, "children"> {
+  extends Omit<React.ComponentProps<"div">, "children" | "onClick"> {
   /** Nome exibido sob o ícone de pasta. */
   label?: string
   /** `molecule/FileArchive2` (`cursor-pointer` no ícone, Figma-confirmado) vs. `FileArchive1` (estático). */
   interactive?: boolean
+  onClick?: () => void
 }
 
 /**
@@ -29,12 +30,29 @@ function FileArchiveCard({
   label = "Arquivo 1",
   interactive = false,
   className,
+  onClick,
+  onKeyDown,
   ...props
 }: FileArchiveCardProps) {
   return (
     <div
       data-slot="file-archive-card"
-      className={cn("flex w-[45.675px] flex-col items-start gap-1 py-0.5", className)}
+      role={interactive ? "button" : undefined}
+      tabIndex={interactive ? 0 : undefined}
+      className={cn(
+        "flex w-[45.675px] flex-col items-start gap-1 py-0.5",
+        interactive &&
+          "rounded-md transition-opacity hover:opacity-70 active:opacity-50 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
+        className
+      )}
+      onClick={interactive ? onClick : undefined}
+      onKeyDown={(event) => {
+        if (interactive && (event.key === "Enter" || event.key === " ")) {
+          event.preventDefault()
+          onClick?.()
+        }
+        onKeyDown?.(event)
+      }}
       {...props}
     >
       <FolderArchiveGlyph

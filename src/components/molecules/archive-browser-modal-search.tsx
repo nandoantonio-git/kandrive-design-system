@@ -65,8 +65,8 @@ function ArchiveBrowserModalSearch({
           </React.Fragment>
         ))}
       </div>
-      <div className="h-[289px] w-full rounded-2xl shadow-[0px_8px_20px_rgba(0,0,0,0.12)]">
-        <div className="relative flex h-full w-full flex-col items-start gap-0.5 rounded-xl glass-edge bg-effect-glass-white-70 px-2 py-4">
+      <div className="h-[289px] w-full overflow-y-auto rounded-2xl shadow-[0px_8px_20px_rgba(0,0,0,0.12)]">
+        <div className="relative flex min-h-full w-full flex-col items-start gap-0.5 rounded-xl glass-edge bg-effect-glass-white-70 px-2 py-4">
           {files.map((file) => (
             <ArchiveBrowserModalListItem key={file.fileName} fileName={file.fileName} meta={file.meta} />
           ))}

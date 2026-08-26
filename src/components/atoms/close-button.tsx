@@ -76,7 +76,8 @@ function CloseButton({ label = "Fechar", size = "sm", state = "idle", className,
       data-state={state}
       aria-label={label}
       className={cn(
-        "group relative flex size-6 shrink-0 cursor-pointer items-center justify-center rounded-full",
+        "group relative flex shrink-0 cursor-pointer items-center justify-center rounded-full",
+        size === "md" ? "size-4" : "size-2",
         "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
         className
       )}

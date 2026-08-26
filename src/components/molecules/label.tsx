@@ -101,7 +101,7 @@ function Label({
             type="button"
             aria-expanded="true"
             onClick={() => onExpandedChange?.(false)}
-            className="flex h-5 w-full items-center gap-2 px-1 text-[0.625rem] text-zinc-700"
+            className="flex h-5 w-full items-center gap-2 rounded-md px-1 text-[0.625rem] text-zinc-700 transition-colors hover:bg-[#71717a33] active:opacity-70"
           >
             <Icon name="Label" className="size-3 shrink-0" />
             <span className="min-w-0 flex-1 whitespace-nowrap text-left">{value}</span>
@@ -144,7 +144,7 @@ function Label({
           data-slot="label-trigger"
           disabled={isDisabled}
           onClick={() => onExpandedChange?.(true)}
-          className="relative flex h-[35px] w-full cursor-pointer items-center gap-2 rounded-xl glass-edge glass-shadow-sm bg-effect-glass-light-45 px-3 py-2 text-[0.625rem] text-zinc-700 disabled:cursor-not-allowed"
+          className="relative flex h-[35px] w-full cursor-pointer items-center gap-2 rounded-xl glass-edge glass-shadow-sm bg-effect-glass-light-45 px-3 py-2 text-[0.625rem] text-zinc-700 transition-colors hover:bg-[#71717a33] active:opacity-70 disabled:cursor-not-allowed disabled:hover:bg-transparent"
         >
           <Icon name="Label" className="size-3 shrink-0" />
           <span className="min-w-0 flex-1 whitespace-nowrap text-left">{value}</span>

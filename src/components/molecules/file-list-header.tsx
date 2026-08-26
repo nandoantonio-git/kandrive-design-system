@@ -12,6 +12,10 @@ export interface FileListHeaderProps extends React.ComponentProps<"div"> {
   format?: "home" | "storage-status"
   /** Texto da linha de data em `format="storage-status"` (default Figma-confirmado: "Hoje"). */
   dateLabel?: string
+  /** Direção de ordenação da coluna "Armazenamento" — controlada; quando omitida, o componente gerencia sozinho (não-controlado, alterna a cada clique). */
+  sortDirection?: "asc" | "desc"
+  defaultSortDirection?: "asc" | "desc"
+  onSortDirectionChange?: (direction: "asc" | "desc") => void
 }
 
 /**
@@ -39,10 +43,21 @@ export interface FileListHeaderProps extends React.ComponentProps<"div"> {
 function FileListHeader({
   format = "home",
   dateLabel = "Hoje",
+  sortDirection: controlledSortDirection,
+  defaultSortDirection = "desc",
+  onSortDirectionChange,
   className,
   ...props
 }: FileListHeaderProps) {
   const isStorageStatus = format === "storage-status"
+  const [internalSortDirection, setInternalSortDirection] = React.useState(defaultSortDirection)
+  const sortDirection = controlledSortDirection ?? internalSortDirection
+
+  const toggleSortDirection = () => {
+    const next = sortDirection === "desc" ? "asc" : "desc"
+    if (controlledSortDirection === undefined) setInternalSortDirection(next)
+    onSortDirectionChange?.(next)
+  }
 
   return (
     <div
@@ -66,9 +81,12 @@ function FileListHeader({
           <button
             type="button"
             data-slot="file-list-header-sort"
-            className="flex items-center gap-2 pr-2 text-xl font-bold text-brand-secondary-light"
+            data-sort-direction={sortDirection}
+            aria-label={`Ordenar por Armazenamento (${sortDirection === "desc" ? "decrescente" : "crescente"})`}
+            onClick={toggleSortDirection}
+            className="flex items-center gap-2 pr-2 text-xl font-bold text-brand-secondary-light hover:text-brand-secondary active:opacity-70"
           >
-            <Icon name="ArrowDown" className="size-4 shrink-0" />
+            <Icon name={sortDirection === "desc" ? "ArrowDown" : "ArrowUp"} className="size-4 shrink-0" />
             Armazenamento
           </button>
         )}

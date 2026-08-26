@@ -13,7 +13,7 @@ import { ImageItem } from "@/components/atoms/image-item"
 import { SaveOrganizationModal, type SaveOrganizationModalProps } from "@/components/templates/save-organization-modal"
 import { OrganizePanelDropZone, type OrganizePanelDropZoneProps } from "@/components/organisms/organize-panel-drop-zone"
 import { FolderCard, type FolderCardProps } from "@/components/molecules/folder-card"
-import { Notification, type NotificationProps } from "@/components/molecules/notification"
+import { PopoverNotification, type PopoverNotificationProps } from "@/components/molecules/popover-notification"
 import type { HomePageGridItem } from "@/components/pages/home-page"
 
 export type OrganizationPageStep = "default" | "template-drop-zone" | "saved"
@@ -37,7 +37,7 @@ export interface OrganizationPageProps extends React.ComponentProps<"div"> {
   step?: OrganizationPageStep
   dropZoneProps?: OrganizePanelDropZoneProps
   folderCardProps?: FolderCardProps
-  notificationProps?: NotificationProps
+  notificationProps?: PopoverNotificationProps
 }
 
 /**
@@ -71,7 +71,7 @@ export interface OrganizationPageProps extends React.ComponentProps<"div"> {
  * já existente, sem modal. `saved` mantém o padrão `default` (h1 solto,
  * sem breadcrumb — mesmo `Frame 36` com texto "Bem-vindo ao Kandrive!"
  * confirmado no node), troca o modal por `molecule/FolderCard` (pasta
- * criada) + `molecule/Notification` (toast, canto inferior direito,
+ * criada) + `molecule/popover/Notification` (toast, canto inferior direito,
  * `1439:19748` — mesmo node que já origina o componente existente).
  */
 function OrganizationPage({
@@ -153,7 +153,7 @@ function OrganizationPage({
         </div>
       ) : null}
       {step === "saved" ? (
-        <Notification {...notificationProps} className={cn("absolute right-8 bottom-8", notificationProps?.className)} />
+        <PopoverNotification {...notificationProps} className={cn("absolute right-8 bottom-8", notificationProps?.className)} />
       ) : null}
     </div>
   )

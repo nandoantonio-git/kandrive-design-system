@@ -25,6 +25,9 @@ export interface PlanSelectionProps extends React.ComponentProps<"div"> {
   onIntervalChange?: (interval: PlanInterval) => void
   onSelectPlan?: (plan: PlanSelectionPlan) => void
   onManageBilling?: () => void
+  /** Plano ativo — controlado; quando omitido, o componente gerencia sozinho (alterna ao clicar em "Rebaixar"/"Melhorar", derivado de `plans[].isCurrent` como valor inicial). */
+  currentPlanId?: string
+  onCurrentPlanIdChange?: (planId: string) => void
 }
 
 const DEFAULT_PLANS: PlanSelectionPlan[] = [
@@ -78,9 +81,23 @@ function PlanSelection({
   onIntervalChange,
   onSelectPlan,
   onManageBilling,
+  currentPlanId: controlledCurrentPlanId,
+  onCurrentPlanIdChange,
   className,
   ...props
 }: PlanSelectionProps) {
+  const [internalCurrentPlanId, setInternalCurrentPlanId] = React.useState(
+    () => plans.find((plan) => plan.isCurrent)?.id ?? plans[0]?.id
+  )
+  const currentPlanId = controlledCurrentPlanId ?? internalCurrentPlanId
+  const currentPlanIndex = plans.findIndex((plan) => plan.id === currentPlanId)
+
+  const selectPlan = (plan: PlanSelectionPlan) => {
+    if (controlledCurrentPlanId === undefined) setInternalCurrentPlanId(plan.id)
+    onCurrentPlanIdChange?.(plan.id)
+    onSelectPlan?.(plan)
+  }
+
   return (
     <div
       data-slot="plan-selection"
@@ -133,18 +150,20 @@ function PlanSelection({
       </div>
 
       <div className="flex w-full items-start gap-3">
-        {plans.map((plan) => {
+        {plans.map((plan, index) => {
           const price = interval === "monthly" ? plan.monthlyPrice : plan.annualPrice
           const priceSuffix = interval === "monthly" ? "/mês" : "/ano"
+          const isCurrent = plan.id === currentPlanId
+          const actionLabel = plan.actionLabel ?? (index < currentPlanIndex ? "Rebaixar" : "Melhorar")
           return (
           <div
             key={plan.id}
             className={cn(
               "flex min-w-px flex-1 flex-col gap-1 rounded-lg border p-4",
-              plan.isCurrent ? "border-brand-teal bg-brand-teal-light" : "border-zinc-300 bg-white"
+              isCurrent ? "border-brand-teal bg-brand-teal-light" : "border-zinc-300 bg-white"
             )}
           >
-            {plan.isCurrent ? (
+            {isCurrent ? (
               <span className="mb-1 inline-flex w-fit items-center rounded-full bg-brand-teal px-2 py-0.5 text-[0.6875rem] font-medium text-white">
                 Atual
               </span>
@@ -155,7 +174,7 @@ function PlanSelection({
               <span className="text-[1.375rem] font-bold text-zinc-950">{price}</span>
               <span className="text-[0.8125rem] text-zinc-500">{priceSuffix}</span>
             </p>
-            {plan.isCurrent ? (
+            {isCurrent ? (
               <span className="flex items-center gap-1 text-[0.8125rem] font-medium text-brand-teal">
                 <Check className="size-3.5" aria-hidden="true" />
                 Ativo
@@ -163,10 +182,10 @@ function PlanSelection({
             ) : (
               <PushButton
                 variant="neutral"
-                onClick={() => onSelectPlan?.(plan)}
+                onClick={() => selectPlan(plan)}
                 className="h-auto w-full justify-center rounded-md px-3 py-1.5 text-[0.8125rem]"
               >
-                {plan.actionLabel}
+                {actionLabel}
               </PushButton>
             )}
           </div>

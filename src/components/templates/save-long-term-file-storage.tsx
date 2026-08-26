@@ -52,11 +52,16 @@ export interface SaveLongTermFileStorageProps extends React.ComponentProps<"div"
  * Corrigido em 2026-08-15 (achado do usuário: material glass ausente pra
  * segregar a coluna esquerda) — a coluna de seleção de arquivos usava
  * `bg-effect-glass-white-70`, o mesmo token do card raiz, ficando
- * indistinguível do fundo. Trocado para `bg-effect-glass-white-36` +
- * borda sutil (`border-zinc-200`), mesmo par usado nos painéis internos
- * de `organism/OrganizePanel/DropZone` e `organism/cleanSpaceStorage`
- * (Regra 10 — camada -70 pro card externo, -36 pro painel aninhado, ver
- * `Tokens/Materials`).
+ * indistinguível do fundo. Trocado para `bg-effect-glass-white-36`, mesmo
+ * par usado nos painéis internos de `organism/OrganizePanel/DropZone` e
+ * `organism/cleanSpaceStorage` (Regra 10 — camada -70 pro card externo, -36
+ * pro painel aninhado, ver `Tokens/Materials`). ⚠️ Nota de 2026-08-15
+ * mencionava também uma "borda sutil (`border-zinc-200`)" — `get_design_context`
+ * fresco no nó extraído (`1555:21357`, achado de 2026-08-21, ver
+ * `SaveLongTermFileStorageSelectedFiles`) confirma que o painel **não tem
+ * nenhuma borda** no Figma real; a menção de borda acima estava
+ * desatualizada e nunca foi implementada dessa forma — painel segue sem
+ * borda, conforme o componente extraído.
  *
  * 🔧 **Reclassificado organism → template em 2026-08-20** (usuário renomeou
  * o node no Figma de `organism/Save/LongTermFileStorage` para

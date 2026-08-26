@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite"
 import { VideoItem } from "../../src/components/atoms/video-item"
 
 const meta = {
-  title: "Atoms/VideoItem",
+  title: "Atoms/Symbols/VideoItem",
   component: VideoItem,
   parameters: {
     layout: "centered",

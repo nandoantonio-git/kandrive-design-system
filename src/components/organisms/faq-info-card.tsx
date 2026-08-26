@@ -38,6 +38,10 @@ export interface FaqInfoCardProps extends React.ComponentProps<"div"> {
    * `variant` antes desta mudança).
    */
   topic?: FaqTopic
+  /** Recolhido (todos os tópicos fechados) — controlado; quando omitido, o componente gerencia sozinho (alterna ao clicar em "Recolher"/"Expandir"). */
+  collapsed?: boolean
+  defaultCollapsed?: boolean
+  onCollapsedChange?: (collapsed: boolean) => void
 }
 
 /**
@@ -54,7 +58,24 @@ export interface FaqInfoCardProps extends React.ComponentProps<"div"> {
  * como no card colapsado) — representa o item já aberto dentro de uma
  * lista de FAQ, não um teaser recolhível.
  */
-function FaqInfoCard({ variant = "faq", topic: topicProp, className, ...props }: FaqInfoCardProps) {
+function FaqInfoCard({
+  variant = "faq",
+  topic: topicProp,
+  collapsed: controlledCollapsed,
+  defaultCollapsed = false,
+  onCollapsedChange,
+  className,
+  ...props
+}: FaqInfoCardProps) {
+  const [internalCollapsed, setInternalCollapsed] = React.useState(defaultCollapsed)
+  const collapsed = controlledCollapsed ?? internalCollapsed
+
+  const toggleCollapsed = () => {
+    const next = !collapsed
+    if (controlledCollapsed === undefined) setInternalCollapsed(next)
+    onCollapsedChange?.(next)
+  }
+
   const isFaq = variant === "faq"
   const resolvedTopicKey: FaqTopic = topicProp ?? (isFaq ? "FirstSteps" : "LongTermStorage")
   const topic = TOPIC_DATA[resolvedTopicKey]
@@ -87,12 +108,16 @@ function FaqInfoCard({ variant = "faq", topic: topicProp, className, ...props }:
             <p className="text-sm text-brand-secondary">{topic.description}</p>
           ) : null}
         </div>
-        <span className="shrink-0 rounded-md border border-zinc-200 bg-white/80 px-2 py-1 text-[0.625rem] text-brand-secondary">
-          Recolher
-        </span>
+        <button
+          type="button"
+          onClick={toggleCollapsed}
+          className="shrink-0 rounded-md border border-zinc-200 bg-white/80 px-2 py-1 text-[0.625rem] text-brand-secondary transition-colors hover:bg-white active:opacity-70"
+        >
+          {collapsed ? "Expandir" : "Recolher"}
+        </button>
       </div>
-      <div className="flex flex-col px-6">
-        {questions.map((item, index) => (
+      <div className={cn("flex flex-col px-6", collapsed && "hidden")}>
+        {questions.map((item) => (
           <details
             key={item.question}
             className="group border-b border-zinc-500/20 py-4 last:border-b-0"

@@ -94,7 +94,11 @@ function SearchInput({
         className={cn(
           "relative h-9 w-full rounded-full bg-transparent pr-3 pl-9 text-base text-zinc-900 placeholder:text-zinc-500",
           "transition-colors",
-          "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
+          "focus-visible:outline-none focus-visible:ring-3",
+          state === "success" &&
+            "focus-visible:ring-[color:var(--brand-feedback-success-default,#096)]/50",
+          state === "danger" && "focus-visible:ring-destructive/50",
+          state === undefined && "focus-visible:ring-brand-teal/50",
           "disabled:pointer-events-none disabled:opacity-50",
           "aria-invalid:ring-3 aria-invalid:ring-destructive/20"
         )}

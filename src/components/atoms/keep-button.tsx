@@ -11,10 +11,14 @@ export interface KeepButtonProps
   label?: string
 }
 
+// Regra 8: Figma não define eixo Hover para este ícone (mesma ressalva do
+// atom/PlusButton), mas cor/opacidade em hover/active é mantida por
+// necessidade real de affordance interativa — nunca como fundo/pílula
+// (Regra 9: removido em US-026 por não ser Figma-confirmado).
 const STYLE_CLASSNAME: Record<NonNullable<KeepButtonProps["style"]>, string> = {
-  default: "text-zinc-500 hover:text-zinc-700",
-  primary: "text-brand-teal",
-  white: "text-white",
+  default: "text-zinc-500 hover:text-zinc-700 active:opacity-60",
+  primary: "text-brand-teal hover:opacity-80 active:opacity-60",
+  white: "text-white hover:opacity-80 active:opacity-60",
 }
 
 /**

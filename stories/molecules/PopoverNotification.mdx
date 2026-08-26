@@ -8,9 +8,9 @@ import * as PopoverNotificationStories from './PopoverNotification.stories';
 ## Uso
 
 Popover para notificar mudanças de estado — por exemplo, uma organização
-criada. Distinto de `Notification`, que é o toast avulso sem as várias
-variantes. Use quando o usuário precisar abrir/revisar notificações
-recentes, não pra um toast que desaparece sozinho.
+criada. Consolidado com o antigo `molecule/Notification` (estruturalmente
+idêntico, sem variantes) — este componente cobre os dois casos via `variant`
+(`"notification"` é o default, equivalente ao toast avulso anterior).
 
 <Canvas of={PopoverNotificationStories.Default} />
 <Controls />

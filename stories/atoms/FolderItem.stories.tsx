@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite"
 import { FolderItem } from "../../src/components/atoms/folder-item"
 
 const meta = {
-  title: "Atoms/FolderItem",
+  title: "Atoms/Symbols/FolderItem",
   component: FolderItem,
   parameters: {
     layout: "centered",

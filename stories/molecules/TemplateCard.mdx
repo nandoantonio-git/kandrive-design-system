@@ -1,0 +1,29 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as TemplateCardStories from './TemplateCard.stories';
+
+<Meta of={TemplateCardStories} />
+
+# TemplateCard (Figma: `molecule/template-card`, `1421:19695`)
+
+## Uso
+
+Card de método de organização usado em `template/DialogSave/OrganizationModal`
+— 4 instâncias (Cronológico/Por projeto/Por tipo de arquivo/Modo livre).
+Extraído do markup antes inline do template (Regra 10) para não misturar
+dado (`CARDS`) com marcação reutilizável.
+
+<Canvas of={TemplateCardStories.Default} />
+<Controls />
+
+<Canvas of={TemplateCardStories.Selected} />
+<Canvas of={TemplateCardStories.DashedIllustrationFrame} />
+
+## Estados
+
+`selected` (borda `zinc-400`) · hover (`hover:border-brand-teal`) ·
+focus-visible.
+
+## Variantes
+
+`dashedIllustrationFrame` — moldura tracejada ao redor da ilustração, usada
+só pelo card "Modo livre" (Figma-confirmado).

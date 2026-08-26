@@ -44,15 +44,23 @@ const DEFAULT_TITLE: Record<PopoverNotificationVariant, string> = {
 /**
  * molecule/popover/Notification (`1421:19626`, Figma-confirmado) —
  * "popover para notificar mudanças de estado, exemplo: uma organização
- * criada." Composto pelas mesmas peças de `molecule/Notification`
- * (`1439:19748`) — `atom/CloseButton` + título + timestamp — mas com 6
- * variantes confirmadas no Figma via eixo `variant`.
+ * criada." `atom/CloseButton` + título + timestamp, com 6 variantes
+ * confirmadas no Figma via eixo `variant`.
  *
  * Usa o material **Liquid Glass** — ver spec completa em `Tokens/Materials`
  * (Regra 10), aproximado por `bg-effect-glass-white-36` + sombra
  * `Effect/Shadow/LG` (`0px 8px 40px rgba(0,0,0,0.12)`, Figma-confirmado),
- * mesma simplificação de camada única usada em `molecule/Notification`/
- * `molecule/nodoContextMenu`.
+ * mesma simplificação de camada única usada em `molecule/nodoContextMenu`.
+ *
+ * Consolidado com o antigo `molecule/Notification` (`1439:19748`, `variant`
+ * default `"notification"` aqui) — os dois nodes Figma eram estruturalmente
+ * idênticos (mesmo `atom/CloseButton` + título + timestamp + material),
+ * diferindo só em altura/transiência por variante; mantidos como um único
+ * componente de código em vez de 2 cópias quase iguais da mesma marcação.
+ * Padding revisado (era `pt-0.5 pr-2 pb-3 pl-3`, assimétrico e apertado no
+ * topo/direita) para `p-3` uniforme; a altura por variante virou piso
+ * (`min-h-*`) em vez de altura travada, pra não cortar o conteúdo com o
+ * padding maior.
  */
 function PopoverNotification({
   variant = "notification",
@@ -72,8 +80,8 @@ function PopoverNotification({
       data-slot="popover-notification"
       data-variant={variant}
       className={cn(
-        "relative flex w-[344px] flex-col gap-0.5 rounded-xl pt-0.5 pr-2 pb-3 pl-3",
-        isTransient ? "h-0 overflow-clip opacity-0" : isTall ? "h-[66px]" : "h-[59px]",
+        "relative flex w-[344px] flex-col gap-0.5 rounded-xl p-3",
+        isTransient ? "h-0 overflow-clip p-0 opacity-0" : isTall ? "min-h-[66px]" : "min-h-[59px]",
         !isTransient && "shadow-[0px_8px_40px_rgba(0,0,0,0.12)]",
         className
       )}

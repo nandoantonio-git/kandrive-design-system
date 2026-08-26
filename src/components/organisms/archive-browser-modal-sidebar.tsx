@@ -12,7 +12,12 @@ const MINI_NAV: { page: SidebarPage; icon: LucideIcon }[] = [
   { page: "Favoritos", icon: Star },
 ]
 
-export type ArchiveBrowserModalSidebarProps = React.ComponentProps<"nav">
+export interface ArchiveBrowserModalSidebarProps extends React.ComponentProps<"nav"> {
+  /** Página ativa da mini-navegação — controlada; quando omitida, o componente gerencia sozinho (não-controlado). */
+  activePage?: SidebarPage
+  defaultActivePage?: SidebarPage
+  onActivePageChange?: (page: SidebarPage) => void
+}
 
 /**
  * organism/ArchiveBrowserModal/sidebar (`1555:21309`) — Figma-confirmado:
@@ -34,7 +39,21 @@ export type ArchiveBrowserModalSidebarProps = React.ComponentProps<"nav">
  * fill/radius corrigidos; `shadow-[0px_8px_20px_rgba(0,0,0,0.12)]` já
  * batia exato com o CSS real do nó, mantido sem alteração.
  */
-function ArchiveBrowserModalSidebar({ className, ...props }: ArchiveBrowserModalSidebarProps) {
+function ArchiveBrowserModalSidebar({
+  activePage: controlledActivePage,
+  defaultActivePage = "Pessoal",
+  onActivePageChange,
+  className,
+  ...props
+}: ArchiveBrowserModalSidebarProps) {
+  const [internalActivePage, setInternalActivePage] = React.useState(defaultActivePage)
+  const activePage = controlledActivePage ?? internalActivePage
+
+  const selectPage = (page: SidebarPage) => {
+    if (controlledActivePage === undefined) setInternalActivePage(page)
+    onActivePageChange?.(page)
+  }
+
   return (
     <nav
       data-slot="archive-browser-modal-sidebar"
@@ -45,18 +64,25 @@ function ArchiveBrowserModalSidebar({ className, ...props }: ArchiveBrowserModal
       {...props}
     >
       <ul className="flex flex-col gap-1">
-        {MINI_NAV.map(({ page, icon: ItemIcon }) => (
-          <li
-            key={page}
-            className={cn(
-              "flex items-center gap-1.5 rounded-md px-2 py-1 text-base font-medium text-zinc-800",
-              page === "Pessoal" ? "bg-zinc-100" : "opacity-50"
-            )}
-          >
-            <ItemIcon aria-hidden="true" className={cn("size-4", page === "Pessoal" && "text-brand-teal")} />
-            {page}
-          </li>
-        ))}
+        {MINI_NAV.map(({ page, icon: ItemIcon }) => {
+          const isActive = page === activePage
+          return (
+            <li key={page}>
+              <button
+                type="button"
+                aria-current={isActive || undefined}
+                onClick={() => selectPage(page)}
+                className={cn(
+                  "flex w-full items-center gap-1.5 rounded-md px-2 py-1 text-base font-medium text-zinc-800 transition-colors hover:bg-zinc-100 active:bg-zinc-200",
+                  isActive ? "bg-zinc-100" : "opacity-50 hover:opacity-100"
+                )}
+              >
+                <ItemIcon aria-hidden="true" className={cn("size-4", isActive && "text-brand-teal")} />
+                {page}
+              </button>
+            </li>
+          )
+        })}
       </ul>
       <div className="mt-4 flex flex-col gap-1 border-t border-zinc-200 pt-3">
         <span className="text-xs font-medium text-zinc-500">Etiquetas</span>

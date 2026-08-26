@@ -12,6 +12,7 @@ import { Callout } from "@/components/molecules/callout"
 import { Switch } from "@/components/atoms/switch"
 import { PushButton } from "@/components/atoms/push-button"
 import { PlanSelection, type PlanInterval } from "@/components/organisms/plan-selection"
+import { StorageBar } from "@/components/molecules/storage-bar"
 
 export type { SettingsSection }
 
@@ -133,17 +134,18 @@ function SettingsPage({
                       <span>0 Bytes de 5 TB usados</span>
                       <span className="text-zinc-500">0 arquivos</span>
                     </div>
-                    <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-200">
-                      <div className="h-full w-[8%] rounded-full bg-brand-teal" />
-                    </div>
+                    <StorageBar tier="long-term" value={8} className="h-2 max-w-none" />
                   </div>
                   <div className="flex w-full gap-6">
-                    {(["Acesso rápido", "Longo prazo"] as const).map((tier) => (
+                    {(
+                      [
+                        { label: "Acesso rápido", tier: "quick-access" as const },
+                        { label: "Longo prazo", tier: "long-term" as const },
+                      ]
+                    ).map(({ label, tier }) => (
                       <div key={tier} className="flex min-w-px flex-1 flex-col gap-2 rounded-lg border border-zinc-200 p-3">
-                        <span className="text-sm font-medium text-zinc-950">{tier}</span>
-                        <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-200">
-                          <div className="h-full w-[18%] rounded-full bg-brand-teal" />
-                        </div>
+                        <span className="text-sm font-medium text-zinc-950">{label}</span>
+                        <StorageBar tier={tier} value={18} className="h-2 max-w-none" />
                         <span className="text-[0.6875rem] text-zinc-500">
                           Estimativa — uso por tier ainda não disponível no backend.
                         </span>

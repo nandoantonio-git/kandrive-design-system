@@ -29,6 +29,7 @@ function DropNewTag({
   className,
   ...props
 }: DropNewTagProps) {
+  const [isFocused, setIsFocused] = React.useState(false)
   return (
     <div
       data-slot="drop-new-tag"
@@ -48,10 +49,12 @@ function DropNewTag({
           aria-label="Nome da etiqueta"
         value={label}
         onChange={(event) => onLabelChange?.(event.target.value)}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
         placeholder="Nome da etiqueta"
-          className="absolute top-px left-0 h-3 w-20 rounded-md border-0 bg-[var(--neutral-text-disabled,#ccced6)] px-1 text-[0.625rem] leading-3 text-zinc-700 placeholder:text-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal/50"
+          className="absolute top-px left-0 h-3 w-20 rounded-md border-0 bg-zinc-50 px-1 text-[0.625rem] leading-3 text-zinc-700 placeholder:text-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal/50"
       />
-        {!label ? (
+        {!label && isFocused ? (
           <span
             aria-hidden="true"
             className="absolute top-[3px] left-[9px] h-2 w-px rounded-full bg-[var(--accents-blue,#08f)]"

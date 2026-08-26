@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite"
 import { ArchiveItem } from "../../src/components/atoms/archive-item"
 
 const meta = {
-  title: "Atoms/ArchiveItem",
+  title: "Atoms/Symbols/ArchiveItem",
   component: ArchiveItem,
   parameters: {
     layout: "centered",

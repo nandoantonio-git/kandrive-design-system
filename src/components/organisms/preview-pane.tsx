@@ -112,7 +112,7 @@ function PreviewPane({ file, tags = [], onClose, onSave, onShare, className, ...
         <ClearButton
           label="Fechar"
           onClick={onClose}
-          className="h-6 w-8 rounded text-zinc-500"
+          className="text-zinc-500"
           iconClassName="size-4"
         />
       </div>
