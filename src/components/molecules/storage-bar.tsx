@@ -40,7 +40,7 @@ function StorageBar({ tier, value, className, ...props }: StorageBarProps) {
       aria-valuemin={0}
       aria-valuemax={100}
       className={cn(
-        "h-1 w-full max-w-sm overflow-hidden rounded-full bg-zinc-500/20",
+        "h-1 w-full max-w-sm overflow-hidden rounded-full bg-zinc-500/20 dark:bg-zinc-400/20",
         className
       )}
       {...props}
@@ -105,7 +105,7 @@ function StorageBarExpanded({ segments, className, ...props }: StorageBarExpande
       role="img"
       aria-label="Uso de armazenamento por tipo de arquivo"
       className={cn(
-        "flex h-1 w-full max-w-sm overflow-hidden rounded-full bg-zinc-500/20",
+        "flex h-1 w-full max-w-sm overflow-hidden rounded-full bg-zinc-500/20 dark:bg-zinc-400/20",
         className
       )}
       {...props}

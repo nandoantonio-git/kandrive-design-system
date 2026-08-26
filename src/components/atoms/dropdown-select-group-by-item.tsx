@@ -22,6 +22,9 @@ export interface DropdownSelectGroupByItemProps
  * `effect-overlay-secondary`, `rgba(107,107,104,0.45)`) — cores exatas do
  * Figma, sem token semântico definido no tema (Regra 3, paleta neutra
  * suspensa), literal como em `atom/Tag`/`atom/firstUploadSymbol`.
+ *
+ * 🧩 Inferido (Regra 9): `dark:bg-[#a8a6a173]` reaproveita o valor dark já
+ * definido p/ `--brand-secondary-light` em index.css (mesma cor base do rgba acima).
  */
 function DropdownSelectGroupByItem({
   label,
@@ -38,13 +41,13 @@ function DropdownSelectGroupByItem({
       onClick={onClick}
       className={cn(
         "flex w-[104px] flex-col items-center gap-1 rounded-[4px] px-1.5 py-1",
-        selected ? "bg-[#6b6b6873]" : "hover:bg-[#71717a33]",
+        selected ? "bg-[#6b6b6873] dark:bg-[#a8a6a173]" : "hover:bg-[#71717a33]",
         className
       )}
       {...props}
     >
       <span className="flex w-full min-w-0 items-center justify-center gap-1.5 rounded-xl py-0.5">
-        <span className="min-w-0 truncate text-[0.625rem] text-zinc-700">{label}</span>
+        <span className="min-w-0 truncate text-[0.625rem] text-zinc-700 dark:text-zinc-300">{label}</span>
       </span>
     </button>
   )

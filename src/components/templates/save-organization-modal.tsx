@@ -86,16 +86,16 @@ function SaveOrganizationModal({
       role="dialog"
       aria-label="Escolher método de organização"
       className={cn(
-        "flex h-[577px] w-[931px] max-w-none flex-col gap-4 overflow-hidden rounded-[32px] glass-edge bg-effect-glass-white-70 p-6 shadow-[0px_8px_20px_rgba(0,0,0,0.12)] backdrop-blur-md",
+        "flex h-[577px] w-[931px] max-w-none flex-col gap-4 overflow-hidden rounded-[32px] glass-edge bg-effect-glass-white-70 p-6 shadow-[0px_8px_20px_rgba(0,0,0,0.12)] dark:shadow-[0px_8px_20px_rgba(0,0,0,0.5)] backdrop-blur-md",
         className
       )}
       {...props}
     >
       <div className="flex items-start justify-between">
-        <h2 className="text-2xl font-medium text-zinc-900">Escolher método de organização</h2>
+        <h2 className="text-2xl font-medium text-zinc-900 dark:text-zinc-100">Escolher método de organização</h2>
         <CloseButton size="md" onClick={onCancel} />
       </div>
-      <p className="text-base text-zinc-700">
+      <p className="text-base text-zinc-700 dark:text-zinc-300">
         Selecione como os dados serão visualizados e correlacionados no seu workspace.
       </p>
       <div className="flex flex-1 items-start gap-1">

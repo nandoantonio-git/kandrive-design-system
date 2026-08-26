@@ -67,13 +67,13 @@ function DropdownMenu({ variant = "sidebar", onItemSelect, className, ...props }
     >
       {items.map((item, index) => (
         <React.Fragment key={item.label}>
-          {index === 1 ? <div className="h-px w-full bg-zinc-200" /> : null}
+          {index === 1 ? <div className="h-px w-full bg-zinc-200 dark:bg-zinc-700" /> : null}
           <button
             type="button"
             role="menuitem"
             onClick={() => onItemSelect?.(item.label)}
             className={cn(
-              "flex items-center gap-3 px-4 py-3 text-left text-base font-medium text-zinc-700 transition-colors hover:bg-zinc-100",
+              "flex items-center gap-3 px-4 py-3 text-left text-base font-medium text-zinc-700 transition-colors hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800",
               item.danger && "text-destructive"
             )}
           >

@@ -42,19 +42,23 @@ function FreeModeConnectors() {
  * ("Atributo" / "Operação" / "Valor..."); botão "+ Adicionar regra";
  * rodapé "Descartar Mudanças" / "Salvar Mudanças". Estático (Regra 9: não
  * implementa edição real, só a composição visual confirmada).
+ *
+ * 🧩 Inferido (Regra 9, dark-mode sweep): chips internos zinc-600/700/800/900
+ * (linha "Tamanho"/"Maior que"/toggle E-OU) já são chrome escuro fixo — mantidos
+ * sem par `dark:`, mesmo critério do zinc-800 "já dark-apropriado".
  */
 function FreeModeFilterPanel({ className }: { className?: string }) {
   return (
     <div
       data-slot="free-mode-filter-panel"
       className={cn(
-        "flex w-[360px] flex-col gap-3 rounded-[36px] glass-edge bg-zinc-100/80 p-6 shadow-lg backdrop-blur-md",
+        "flex w-[360px] flex-col gap-3 rounded-[36px] glass-edge bg-zinc-100/80 p-6 shadow-lg backdrop-blur-md dark:bg-zinc-800/80",
         className
       )}
     >
       <div className="flex items-center gap-2 px-1 pt-1">
-        <Filter aria-hidden="true" className="size-3.5 text-zinc-700" />
-        <span className="text-sm font-bold text-zinc-700">Filtro</span>
+        <Filter aria-hidden="true" className="size-3.5 text-zinc-700 dark:text-zinc-300" />
+        <span className="text-sm font-bold text-zinc-700 dark:text-zinc-300">Filtro</span>
       </div>
       <div className="flex items-center gap-1.5">
         <span className="rounded-md border border-zinc-600 bg-zinc-800 px-2 py-1 text-[0.6875rem] text-white">
@@ -66,7 +70,7 @@ function FreeModeFilterPanel({ className }: { className?: string }) {
         <span className="rounded-md border border-zinc-600 bg-zinc-700 px-2 py-1 text-[0.6875rem] text-white">
           1.0 GB
         </span>
-        <button type="button" aria-label="Remover regra" className="text-zinc-500 hover:text-zinc-700">
+        <button type="button" aria-label="Remover regra" className="text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300">
           <X aria-hidden="true" className="size-3" />
         </button>
       </div>
@@ -92,7 +96,7 @@ function FreeModeFilterPanel({ className }: { className?: string }) {
         <Plus aria-hidden="true" className="size-3" />
         Adicionar regra
       </button>
-      <div className="flex items-center justify-end gap-3 border-t border-zinc-300 pt-3">
+      <div className="flex items-center justify-end gap-3 border-t border-zinc-300 pt-3 dark:border-zinc-700">
         <PushButton variant="neutral" className="h-8 px-3 text-[10px]">
           Descartar Mudanças
         </PushButton>
@@ -218,7 +222,7 @@ function OrganizeFreeModeCanvas({
     <div
       data-slot="organize-free-mode-canvas"
       className={cn(
-        "relative h-[933px] w-[1117px] overflow-hidden rounded-[32px] border border-zinc-300 bg-zinc-100",
+        "relative h-[933px] w-[1117px] overflow-hidden rounded-[32px] border border-zinc-300 bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800",
         className
       )}
       style={{
@@ -248,7 +252,8 @@ function OrganizeFreeModeCanvas({
         variant="filtro-size"
         label="Filtro: Grande"
         subtitle="Size > 1.0 GB"
-        className="absolute top-[299px] left-[333px] w-[192px] border-brand-teal bg-[#d7f2fb]"
+        // 🧩 Inferido (Regra 9): dark:bg reaproveita a família teal-dark do token, hex sem par no Figma
+        className="absolute top-[299px] left-[333px] w-[192px] border-brand-teal bg-[#d7f2fb] dark:bg-[#123840]"
       />
       <FreeModeItemNode
         variant="filtro-type"
@@ -276,12 +281,12 @@ function OrganizeFreeModeCanvas({
         <FreeModeButtons onAddNode={() => setAddMenuOpen((open) => !open)} />
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 flex h-[127px] items-center justify-between border-t border-white/60 bg-zinc-100/90 px-8 pt-[17px] pb-4">
+      <div className="absolute inset-x-0 bottom-0 flex h-[127px] items-center justify-between border-t border-white/60 bg-zinc-100/90 px-8 pt-[17px] pb-4 dark:bg-zinc-800/90">
         <div>
-          <p className="text-[0.8125rem] text-zinc-600">
+          <p className="text-[0.8125rem] text-zinc-600 dark:text-zinc-300">
             {rulesCount} regras · {affectedFilesCount} arquivos afetados · {sizeLabel}
           </p>
-          <p className="pt-1 text-[0.6875rem] leading-4 text-zinc-500">
+          <p className="pt-1 text-[0.6875rem] leading-4 text-zinc-500 dark:text-zinc-400">
             Você poderá excluir este template depois e reverter a organização.
           </p>
         </div>

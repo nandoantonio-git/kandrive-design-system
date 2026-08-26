@@ -69,7 +69,7 @@ function SearchInput({
     >
       <div
         aria-hidden="true"
-        className="absolute inset-0 rounded-full bg-zinc-50"
+        className="absolute inset-0 rounded-full bg-zinc-50 dark:bg-zinc-900"
       />
       <div
         aria-hidden="true"
@@ -77,12 +77,12 @@ function SearchInput({
       />
       {loading ? (
         <Loader2Icon
-          className="pointer-events-none absolute left-3 size-4 animate-spin text-zinc-500"
+          className="pointer-events-none absolute left-3 size-4 animate-spin text-zinc-500 dark:text-zinc-400"
           aria-hidden="true"
         />
       ) : (
         <SearchIcon
-          className="pointer-events-none absolute left-3 size-4 text-zinc-500"
+          className="pointer-events-none absolute left-3 size-4 text-zinc-500 dark:text-zinc-400"
           aria-hidden="true"
         />
       )}
@@ -92,7 +92,7 @@ function SearchInput({
         disabled={disabled || loading}
         placeholder={placeholder}
         className={cn(
-          "relative h-9 w-full rounded-full bg-transparent pr-3 pl-9 text-base text-zinc-900 placeholder:text-zinc-500",
+          "relative h-9 w-full rounded-full bg-transparent pr-3 pl-9 text-base text-zinc-900 placeholder:text-zinc-500 dark:text-zinc-100 dark:placeholder:text-zinc-400",
           "transition-colors",
           "focus-visible:outline-none focus-visible:ring-3",
           state === "success" &&

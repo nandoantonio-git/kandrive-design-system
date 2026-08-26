@@ -89,7 +89,7 @@ function OrganizationPage({
   ...props
 }: OrganizationPageProps) {
   return (
-    <div data-slot="organization-page" className={cn("relative flex w-full flex-col bg-zinc-200", className)} {...props}>
+    <div data-slot="organization-page" className={cn("relative flex w-full flex-col bg-zinc-200 dark:bg-zinc-900", className)} {...props}>
       <Header page="navbar" />
       <div className="mx-auto flex w-[1376px] items-start gap-12 px-1 py-2.5">
         <Sidebar {...sidebarProps} />
@@ -123,7 +123,7 @@ function OrganizationPage({
           ) : (
             <>
               <div className="flex items-start justify-between gap-4">
-                <h1 className="flex-1 text-[2.5rem] leading-none font-bold text-black">Bem-vindo ao Kandrive!</h1>
+                <h1 className="flex-1 text-[2.5rem] leading-none font-bold text-black dark:text-zinc-100">Bem-vindo ao Kandrive!</h1>
                 <div className="flex shrink-0 items-center gap-4">
                   <DropdownSelectGroupBy />
                   <Label />

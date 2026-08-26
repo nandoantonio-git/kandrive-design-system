@@ -41,29 +41,29 @@ function CleanSpaceDuplicated({ groups, onDeleteDuplicates, className, ...props 
   return (
     <section
       data-slot="clean-space-duplicated"
-      className={cn("flex flex-col gap-3 rounded-lg border border-zinc-200 bg-effect-glass-white-36 p-4", className)}
+      className={cn("flex flex-col gap-3 rounded-lg border border-zinc-200 bg-effect-glass-white-36 p-4 dark:border-zinc-700", className)}
       {...props}
     >
       <div className="flex items-center gap-2">
-        <h3 className="text-xl font-medium text-zinc-900">Arquivos duplicados</h3>
-        <span className="rounded-md border border-zinc-200 bg-zinc-100 px-2 py-0.5 text-xs text-zinc-900">Prévia</span>
+        <h3 className="text-xl font-medium text-zinc-900 dark:text-zinc-100">Arquivos duplicados</h3>
+        <span className="rounded-md border border-zinc-200 bg-zinc-100 px-2 py-0.5 text-xs text-zinc-900 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100">Prévia</span>
       </div>
-      <p className="text-sm text-zinc-500">
+      <p className="text-sm text-zinc-500 dark:text-zinc-400">
         Detecção de duplicados ainda não existe de verdade, os grupos abaixo são exemplos ilustrativos.
       </p>
       <ul className="flex flex-col gap-2">
         {groups.map((group) => (
-          <li key={group.name} className="flex items-center justify-between rounded-lg border border-zinc-200 p-3">
+          <li key={group.name} className="flex items-center justify-between rounded-lg border border-zinc-200 p-3 dark:border-zinc-700">
             <div>
-              <p className="text-base text-zinc-900">{group.name}</p>
-              <p className="text-sm text-zinc-500">{group.copiesLabel}</p>
+              <p className="text-base text-zinc-900 dark:text-zinc-100">{group.name}</p>
+              <p className="text-sm text-zinc-500 dark:text-zinc-400">{group.copiesLabel}</p>
             </div>
             <PushButton
               variant="neutral"
               isDestructive
               icon={Trash2}
               onClick={() => onDeleteDuplicates?.(group)}
-              className="h-8.5 gap-2 rounded-md border-[#bbb] bg-effect-glass-white-36 px-4 text-xs"
+              className="h-8.5 gap-2 rounded-md border-[#bbb] dark:border-[#52525b] bg-effect-glass-white-36 px-4 text-xs"
             >
               Excluir cópias
             </PushButton>

@@ -83,11 +83,11 @@ function StorageStatus({
         className={cn("flex w-full max-w-xs flex-col items-start gap-1", className)}
         {...props}
       >
-        <span className="w-fit rounded-md border border-zinc-200 bg-zinc-100 px-2 py-0.5 text-[0.5rem] text-zinc-900">
+        <span className="w-fit rounded-md border border-zinc-200 bg-zinc-100 px-2 py-0.5 text-[0.5rem] text-zinc-900 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100">
           {SCOPE_LABEL["long-term"]}
         </span>
         <StorageBar tier="long-term" value={clamped} className="max-w-none" />
-        <span className="text-[0.625rem] text-black">{usedAmount}</span>
+        <span className="text-[0.625rem] text-black dark:text-zinc-100">{usedAmount}</span>
       </div>
     )
   }
@@ -98,7 +98,7 @@ function StorageStatus({
       data-variant="expanded"
       data-scope={scope}
       className={cn(
-        "flex w-[1036px] max-w-full flex-col items-start gap-1 rounded-xl border border-zinc-300 px-4",
+        "flex w-[1036px] max-w-full flex-col items-start gap-1 rounded-xl border border-zinc-300 dark:border-zinc-700 px-4",
         className
       )}
       {...props}
@@ -125,10 +125,10 @@ function StorageStatus({
       </div>
 
       <div className="flex items-center gap-2 pr-2">
-        <span className="text-[1.5625rem] font-medium text-zinc-950">Armazenamento usado:</span>
-        <span className="text-[1.5625rem] font-medium text-zinc-950">{usedAmount}</span>
-        <span className="text-xl text-zinc-950">de {totalAmount}</span>
-        <span className="text-[0.625rem] font-bold text-zinc-500">(AC+AL)</span>
+        <span className="text-[1.5625rem] font-medium text-zinc-950 dark:text-zinc-100">Armazenamento usado:</span>
+        <span className="text-[1.5625rem] font-medium text-zinc-950 dark:text-zinc-100">{usedAmount}</span>
+        <span className="text-xl text-zinc-950 dark:text-zinc-100">de {totalAmount}</span>
+        <span className="text-[0.625rem] font-bold text-zinc-500 dark:text-zinc-400">(AC+AL)</span>
       </div>
 
       <div className="flex items-center gap-2 py-2">
@@ -162,7 +162,7 @@ function StorageStatus({
           aria-valuenow={clamped}
           aria-valuemin={0}
           aria-valuemax={100}
-          className="h-1 w-full overflow-hidden rounded-full bg-zinc-500/20"
+          className="h-1 w-full overflow-hidden rounded-full bg-zinc-500/20 dark:bg-zinc-400/20"
         >
           <div className="h-full rounded-full bg-brand-pink-light transition-[width]" style={{ width: `${clamped}%` }} />
         </div>
@@ -182,7 +182,7 @@ function StorageStatus({
         ) : null}
         {freeLabel ? (
           <span className="flex items-center gap-1.5 text-[0.625rem] text-brand-secondary-light">
-            <span aria-hidden="true" className="size-[7px] shrink-0 rounded-full bg-zinc-400" />
+            <span aria-hidden="true" className="size-[7px] shrink-0 rounded-full bg-zinc-400 dark:bg-zinc-500" />
             {freeLabel}
           </span>
         ) : null}

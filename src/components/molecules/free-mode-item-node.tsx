@@ -88,6 +88,12 @@ const DEFAULT_FILE_NAMES = [
  * `neutral-border-default`/`neutral-surface-background` em vez do par
  * zinc-500/zinc-100 dos demais nodos simples (Figma-confirmado, tokens
  * distintos nesse node específico).
+ *
+ * 🧩 Inferido (Regra 9): `--neutral-text-secondary`/`-placeholder`/
+ * `--neutral-surface-muted`/`--brand-primary-default` não existem em
+ * `:root`/`.dark` (só fallback inline) — tratados como hex literais;
+ * `--brand-primary-default` casa com `--brand-teal` em light, par escuro
+ * usa o hex real de `--brand-teal` em `.dark` (`#29b6cf`) por consistência.
  */
 function FreeModeItemNode({
   variant,
@@ -117,7 +123,7 @@ function FreeModeItemNode({
         "flex flex-col items-start rounded-lg p-[18px]",
         isFolder
           ? "gap-3 border-2 border-[var(--neutral-border-default,#707070)] bg-[var(--neutral-surface-background,#f3f3f3)] w-[192px]"
-          : "border-2 border-zinc-500 bg-zinc-100 backdrop-blur-[6px]",
+          : "border-2 border-zinc-500 bg-zinc-100 backdrop-blur-[6px] dark:border-zinc-400 dark:bg-zinc-800",
         !isFolder && (isExpandedResultado ? "w-[241px]" : isResultado ? "w-fit min-w-[174px]" : "w-[174px]"),
         className
       )}
@@ -128,17 +134,17 @@ function FreeModeItemNode({
           <div className="flex w-full items-center gap-3">
             <FolderGlyph aria-hidden="true" className="h-[34px] w-10 shrink-0" />
             <div className="flex flex-col">
-              <p className="text-sm leading-5 font-semibold whitespace-nowrap text-[var(--neutral-text-secondary,#3f3f46)]">
+              <p className="text-sm leading-5 font-semibold whitespace-nowrap text-[var(--neutral-text-secondary,#3f3f46)] dark:text-[#d4d4d8]">
                 {folderName}
               </p>
-              <p className="text-[0.625rem] leading-[15px] whitespace-nowrap text-[var(--neutral-text-placeholder,#bfc7d2)]">
+              <p className="text-[0.625rem] leading-[15px] whitespace-nowrap text-[var(--neutral-text-placeholder,#bfc7d2)] dark:text-[#71717a]">
                 {folderMeta}
               </p>
             </div>
           </div>
-          <div className="h-1 w-full overflow-hidden rounded-full bg-[var(--neutral-surface-muted,rgba(113,113,122,0.2))]">
+          <div className="h-1 w-full overflow-hidden rounded-full bg-[var(--neutral-surface-muted,rgba(113,113,122,0.2))] dark:bg-[rgba(161,161,170,0.2)]">
             <div
-              className="h-full rounded-full bg-[var(--brand-primary-default,#007e96)]"
+              className="h-full rounded-full bg-[var(--brand-primary-default,#007e96)] dark:bg-[#29b6cf]"
               style={{ width: `${Math.min(100, Math.max(0, folderProgress))}%` }}
             />
           </div>
@@ -147,7 +153,7 @@ function FreeModeItemNode({
         <div className="flex items-center gap-3">
           <AutoArchiveGlyph aria-hidden="true" className="size-[34px] shrink-0" />
           <div className="flex flex-col">
-            <p className="text-sm leading-5 font-semibold whitespace-nowrap text-zinc-700">Auto-Archive</p>
+            <p className="text-sm leading-5 font-semibold whitespace-nowrap text-zinc-700 dark:text-zinc-300">Auto-Archive</p>
             <span className="mt-[3px] w-fit rounded-[4px] bg-brand-teal px-1.5 py-px text-[0.5rem] leading-3 font-bold text-brand-teal-light">
               ACTIVE
             </span>
@@ -160,7 +166,7 @@ function FreeModeItemNode({
               <ResultadoGlyph aria-hidden="true" className="size-5" />
             </div>
             <div>
-              <p className="text-sm leading-5 font-semibold whitespace-nowrap text-zinc-700">Resultado</p>
+              <p className="text-sm leading-5 font-semibold whitespace-nowrap text-zinc-700 dark:text-zinc-300">Resultado</p>
               <p className="text-[0.625rem] leading-[15px] whitespace-nowrap text-brand-teal">{folderLabel}</p>
             </div>
             <ChevronGlyph
@@ -169,27 +175,27 @@ function FreeModeItemNode({
             />
           </div>
           {isExpandedResultado ? (
-            <div className="mt-4 flex w-full flex-col border-t border-zinc-500 pt-[13px]">
+            <div className="mt-4 flex w-full flex-col border-t border-zinc-500 dark:border-zinc-400 pt-[13px]">
               <div className="flex items-center justify-between">
-                <span className="text-[0.6875rem] leading-[16.5px] text-zinc-500">Arquivos incluídos</span>
-                <span className="text-[0.6875rem] leading-[16.5px] font-semibold text-zinc-700">{affectedFilesCount}</span>
+                <span className="text-[0.6875rem] leading-[16.5px] text-zinc-500 dark:text-zinc-400">Arquivos incluídos</span>
+                <span className="text-[0.6875rem] leading-[16.5px] font-semibold text-zinc-700 dark:text-zinc-300">{affectedFilesCount}</span>
               </div>
               <div className="flex items-center justify-between pt-3">
-                <span className="text-[0.6875rem] leading-[16.5px] text-zinc-500">Tamanho estimado</span>
-                <span className="text-[0.6875rem] leading-[16.5px] font-semibold text-zinc-700">{sizeLabel}</span>
+                <span className="text-[0.6875rem] leading-[16.5px] text-zinc-500 dark:text-zinc-400">Tamanho estimado</span>
+                <span className="text-[0.6875rem] leading-[16.5px] font-semibold text-zinc-700 dark:text-zinc-300">{sizeLabel}</span>
               </div>
               <div className="flex items-center justify-between pt-3">
-                <span className="text-[0.6875rem] leading-[16.5px] text-zinc-500">Regras aplicadas</span>
-                <span className="text-[0.6875rem] leading-[16.5px] font-semibold text-zinc-700">{rulesCount}</span>
+                <span className="text-[0.6875rem] leading-[16.5px] text-zinc-500 dark:text-zinc-400">Regras aplicadas</span>
+                <span className="text-[0.6875rem] leading-[16.5px] font-semibold text-zinc-700 dark:text-zinc-300">{rulesCount}</span>
               </div>
-              <div className="mt-3 flex w-full flex-col rounded-[10.4px] border border-zinc-200 bg-white/60 p-[9px]">
+              <div className="mt-3 flex w-full flex-col rounded-[10.4px] border border-zinc-200 bg-white/60 p-[9px] dark:border-zinc-700 dark:bg-zinc-900/60">
                 <div className="flex items-center justify-between">
-                  <span className="text-[0.6875rem] leading-[16.5px] font-semibold text-zinc-700">Prévia de arquivos</span>
+                  <span className="text-[0.6875rem] leading-[16.5px] font-semibold text-zinc-700 dark:text-zinc-300">Prévia de arquivos</span>
                   <PreviewChevronGlyph aria-hidden="true" className="size-3" />
                 </div>
                 <ul className="mt-2 flex w-full flex-col gap-1">
                   {fileNames.map((name) => (
-                    <li key={name} className="text-[0.625rem] leading-[15px] text-zinc-500">
+                    <li key={name} className="text-[0.625rem] leading-[15px] text-zinc-500 dark:text-zinc-400">
                       {name}
                     </li>
                   ))}
@@ -214,9 +220,9 @@ function FreeModeItemNode({
                 </div>
               )}
               <div className="flex flex-col">
-                <p className="text-sm leading-5 font-semibold whitespace-nowrap text-zinc-700">{visibleLabel}</p>
+                <p className="text-sm leading-5 font-semibold whitespace-nowrap text-zinc-700 dark:text-zinc-300">{visibleLabel}</p>
                 {visibleSubtitle ? (
-                  <p className="text-[0.625rem] leading-[15px] whitespace-nowrap text-zinc-500">{visibleSubtitle}</p>
+                  <p className="text-[0.625rem] leading-[15px] whitespace-nowrap text-zinc-500 dark:text-zinc-400">{visibleSubtitle}</p>
                 ) : null}
               </div>
             </div>

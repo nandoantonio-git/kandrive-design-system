@@ -19,8 +19,13 @@ const VARIANT_STYLES: Record<TagVariant, string> = {
   secondary: "bg-brand-pink-light text-white",
   // neutral-surface-subtle (#eaeaea) — sem token semântico definido (Regra
   // 3, tema neutro suspenso); literal como em atom/firstUploadSymbol.
-  "file-name": "bg-[#eaeaea] text-zinc-700",
+  "file-name": "bg-[#eaeaea] text-zinc-700 dark:bg-[#27272a] dark:text-zinc-300",
 }
+
+// 🧩 Inferido (Regra 9): os gradientes de hover abaixo são `style` inline
+// (não className) — `dark:` do Tailwind não alcança objetos de estilo JS,
+// então ficam sem tratamento de tema aqui (fora do escopo mecânico desta
+// varredura, exigiria lógica JS pra detectar o tema).
 
 const HOVER_BACKGROUND: Partial<Record<TagVariant, React.CSSProperties>> = {
   primary: {

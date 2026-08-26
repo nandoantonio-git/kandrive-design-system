@@ -29,7 +29,7 @@ const CONFIRMATION_LABEL: Record<ColorConfirmation, string> = {
 const CONFIRMATION_CLASS: Record<ColorConfirmation, string> = {
   figma: "bg-[color:var(--brand-feedback-success-default,#096)]/10 text-[color:var(--brand-feedback-success-default,#096)]",
   locked: "bg-brand-teal/10 text-brand-teal-dark",
-  inferred: "bg-zinc-100 text-zinc-600",
+  inferred: "bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300",
   conflict: "bg-destructive/10 text-destructive",
 }
 
@@ -50,7 +50,7 @@ function ColorSwatch({ token, variable, value, role, confirmation, note, classNa
     <div
       data-slot="color-swatch"
       className={cn(
-        "flex flex-col gap-2 rounded-xl border border-zinc-200 bg-white p-3",
+        "flex flex-col gap-2 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-700 dark:bg-zinc-900",
         className
       )}
     >
@@ -63,7 +63,7 @@ function ColorSwatch({ token, variable, value, role, confirmation, note, classNa
         <button
           type="button"
           onClick={() => copy(token)}
-          className="cursor-pointer text-left text-[0.6875rem] leading-tight break-all text-zinc-500 hover:text-brand-teal"
+          className="cursor-pointer text-left text-[0.6875rem] leading-tight break-all text-zinc-500 dark:text-zinc-400 hover:text-brand-teal"
           title="Copiar nome do token"
         >
           {copied === token ? "Copiado!" : token}
@@ -71,7 +71,7 @@ function ColorSwatch({ token, variable, value, role, confirmation, note, classNa
         <button
           type="button"
           onClick={() => copy(value)}
-          className="cursor-pointer text-left text-xs font-semibold text-zinc-900 hover:text-brand-teal"
+          className="cursor-pointer text-left text-xs font-semibold text-zinc-900 dark:text-zinc-100 hover:text-brand-teal"
           title="Copiar valor"
         >
           {copied === value ? "Copiado!" : value}
@@ -84,16 +84,16 @@ function ColorSwatch({ token, variable, value, role, confirmation, note, classNa
         >
           {CONFIRMATION_LABEL[confirmation]}
         </span>
-        <p className="text-xs text-zinc-600">{role}</p>
+        <p className="text-xs text-zinc-600 dark:text-zinc-300">{role}</p>
         <button
           type="button"
           onClick={() => copy(variable)}
-          className="cursor-pointer text-left text-[0.625rem] text-zinc-400 hover:text-brand-teal"
+          className="cursor-pointer text-left text-[0.625rem] text-zinc-400 dark:text-zinc-500 hover:text-brand-teal"
           title="Copiar variável CSS"
         >
           {copied === variable ? "Copiado!" : variable}
         </button>
-        {note ? <p className="text-[0.6875rem] text-zinc-400 italic">{note}</p> : null}
+        {note ? <p className="text-[0.6875rem] text-zinc-400 dark:text-zinc-500 italic">{note}</p> : null}
       </div>
     </div>
   )
@@ -110,7 +110,7 @@ export interface ColorPaletteProps {
 function ColorPalette({ title, entries, className }: ColorPaletteProps) {
   return (
     <div data-slot="color-palette" className={cn("flex flex-col gap-3", className)}>
-      {title ? <h3 className="text-sm font-semibold text-zinc-900">{title}</h3> : null}
+      {title ? <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">{title}</h3> : null}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
         {entries.map((entry) => (
           <ColorSwatch key={entry.token} {...entry} />

@@ -108,11 +108,11 @@ function PreviewPane({ file, tags = [], onClose, onSave, onShare, className, ...
       {...props}
     >
       <div className="flex items-center justify-between border-b border-brand-teal/20 pb-4">
-        <h3 className="text-xl font-bold text-zinc-700">Detalhes</h3>
+        <h3 className="text-xl font-bold text-zinc-700 dark:text-zinc-300">Detalhes</h3>
         <ClearButton
           label="Fechar"
           onClick={onClose}
-          className="text-zinc-500"
+          className="text-zinc-500 dark:text-zinc-400"
           iconClassName="size-4"
         />
       </div>
@@ -123,23 +123,23 @@ function PreviewPane({ file, tags = [], onClose, onSave, onShare, className, ...
         />
       </div>
       <div className="flex flex-col gap-3">
-        <h4 className="text-2xl font-medium text-zinc-700">{file.name}</h4>
-        <dl className="grid grid-cols-2 gap-y-3 border-t border-zinc-200 pt-3 text-sm">
-          <dt className="text-zinc-600">Proprietário</dt>
-          <dd className="text-xs text-zinc-800">{file.owner}</dd>
-          <dt className="text-zinc-600">Criado</dt>
-          <dd className="text-xs text-zinc-800">{file.createdAt}</dd>
-          <dt className="text-zinc-600">Formato</dt>
-          <dd className="text-xs text-zinc-800">{file.format}</dd>
-          <dt className="text-zinc-600">Tamanho</dt>
-          <dd className="text-xs text-zinc-800">{file.size}</dd>
-          <dt className="text-zinc-600">Localização</dt>
+        <h4 className="text-2xl font-medium text-zinc-700 dark:text-zinc-300">{file.name}</h4>
+        <dl className="grid grid-cols-2 gap-y-3 border-t border-zinc-200 pt-3 text-sm dark:border-zinc-700">
+          <dt className="text-zinc-600 dark:text-zinc-300">Proprietário</dt>
+          <dd className="text-xs text-zinc-800 dark:text-zinc-100">{file.owner}</dd>
+          <dt className="text-zinc-600 dark:text-zinc-300">Criado</dt>
+          <dd className="text-xs text-zinc-800 dark:text-zinc-100">{file.createdAt}</dd>
+          <dt className="text-zinc-600 dark:text-zinc-300">Formato</dt>
+          <dd className="text-xs text-zinc-800 dark:text-zinc-100">{file.format}</dd>
+          <dt className="text-zinc-600 dark:text-zinc-300">Tamanho</dt>
+          <dd className="text-xs text-zinc-800 dark:text-zinc-100">{file.size}</dd>
+          <dt className="text-zinc-600 dark:text-zinc-300">Localização</dt>
           <dd className="text-xs text-brand-teal">{file.location}</dd>
         </dl>
       </div>
       {tags.length > 0 ? (
         <div className="flex flex-col gap-3">
-          <span className="text-xs font-bold text-zinc-700">Etiquetas</span>
+          <span className="text-xs font-bold text-zinc-700 dark:text-zinc-300">Etiquetas</span>
           <div className="flex flex-wrap gap-2">
             {tags.map((tag) => {
               const t: PreviewPaneTag = typeof tag === "string" ? { label: tag } : tag
@@ -148,7 +148,7 @@ function PreviewPane({ file, tags = [], onClose, onSave, onShare, className, ...
               ) : (
                 <span
                   key={t.label}
-                  className="rounded-md border border-zinc-500/20 bg-zinc-100 px-2 py-0.5 text-xs text-zinc-900"
+                  className="rounded-md border border-zinc-500/20 bg-zinc-100 px-2 py-0.5 text-xs text-zinc-900 dark:border-zinc-400/20 dark:bg-zinc-800 dark:text-zinc-100"
                 >
                   {t.label}
                 </span>
@@ -161,17 +161,17 @@ function PreviewPane({ file, tags = [], onClose, onSave, onShare, className, ...
         <button
           type="button"
           onClick={onSave}
-          className="flex h-8 flex-1 items-center justify-center gap-2 rounded-md border border-zinc-200 bg-zinc-50 text-xs text-zinc-600 transition-colors hover:bg-zinc-100"
+          className="flex h-8 flex-1 items-center justify-center gap-2 rounded-md border border-zinc-200 bg-zinc-50 text-xs text-zinc-600 transition-colors hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
         >
-          <BookmarkBorderGlyph aria-hidden="true" className="h-5 w-6 text-zinc-600" />
+          <BookmarkBorderGlyph aria-hidden="true" className="h-5 w-6 text-zinc-600 dark:text-zinc-300" />
           Salvar
         </button>
         <button
           type="button"
           onClick={onShare}
-          className="flex h-8 flex-1 items-center justify-center gap-2 rounded-md border border-zinc-200 bg-zinc-100 text-xs text-zinc-900 transition-colors hover:bg-zinc-200"
+          className="flex h-8 flex-1 items-center justify-center gap-2 rounded-md border border-zinc-200 bg-zinc-100 text-xs text-zinc-900 transition-colors hover:bg-zinc-200 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-700"
         >
-          <ShareGlyph aria-hidden="true" className="size-3 text-zinc-900" />
+          <ShareGlyph aria-hidden="true" className="size-3 text-zinc-900 dark:text-zinc-100" />
           Compartilhar
         </button>
       </div>

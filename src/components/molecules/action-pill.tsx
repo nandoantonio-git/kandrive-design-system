@@ -61,7 +61,7 @@ function ActionPill({ actions, disabled, className, ...props }: ActionPillProps)
           aria-label={label}
           disabled={disabled}
           onClick={onClick}
-          className="relative flex items-center justify-center rounded-full p-0.5 text-zinc-700 transition-colors hover:text-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50"
+          className="relative flex items-center justify-center rounded-full p-0.5 text-zinc-700 transition-colors dark:text-zinc-300 hover:text-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50"
         >
           <Icon name={name} className="size-5" />
         </button>

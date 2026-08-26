@@ -51,16 +51,16 @@ function DropListItem({
       className={cn(
         "flex h-8 w-full items-center gap-3 px-4 py-3 text-left transition-colors",
         resolvedState === "pressed"
-          ? "bg-black/14"
+          ? "bg-black/14 dark:bg-white/14"
           : resolvedState === "hover"
-            ? "bg-[#ececf0]"
-            : "hover:bg-[#ececf0]",
+            ? "bg-[#ececf0] dark:bg-[#3f3f46]"
+            : "hover:bg-[#ececf0] dark:hover:bg-[#3f3f46]",
         className
       )}
       {...props}
     >
-      <FolderPlus aria-hidden="true" className="h-4 w-5 shrink-0 text-[#6b6b68] opacity-45" />
-      <span className="truncate font-medium text-[16px] tracking-[0.1px] text-zinc-700">
+      <FolderPlus aria-hidden="true" className="h-4 w-5 shrink-0 text-[#6b6b68] opacity-45 dark:text-[#a1a1aa]" />
+      <span className="truncate font-medium text-[16px] tracking-[0.1px] text-zinc-700 dark:text-zinc-300">
         {label}
       </span>
     </button>

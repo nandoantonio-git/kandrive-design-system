@@ -1,5 +1,6 @@
 import type { Preview } from '@storybook/react-vite'
 import { create } from 'storybook/theming/create'
+import { withThemeByClassName } from '@storybook/addon-themes'
 
 import '../src/index.css'
 
@@ -35,8 +36,22 @@ const preview: Preview = {
       // 'error' - fail CI on a11y violations
       // 'off' - skip a11y checks entirely
       test: 'todo'
-    }
+    },
   },
+
+  // Toggle claro/escuro real na toolbar do Storybook — aplica a classe
+  // `.dark` (`@custom-variant dark` em src/index.css) num wrapper em volta
+  // de cada story, não só nos blocos de Docs (esses seguem o tema fixo
+  // `light` de `docsTheme` acima, decisão humana anterior, não mexido).
+  decorators: [
+    withThemeByClassName({
+      themes: {
+        light: '',
+        dark: 'dark',
+      },
+      defaultTheme: 'light',
+    }),
+  ],
 };
 
 export default preview;

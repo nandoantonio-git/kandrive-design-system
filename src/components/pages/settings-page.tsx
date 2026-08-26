@@ -20,12 +20,12 @@ function SelectBox({ value, className }: { value: string; className?: string }) 
   return (
     <div
       className={cn(
-        "flex h-9 w-[280px] items-center justify-between rounded-md border border-[#d4d4d4] bg-effect-glass-white-70 px-3 text-sm",
+        "flex h-9 w-[280px] items-center justify-between rounded-md border border-[#d4d4d4] bg-effect-glass-white-70 px-3 text-sm dark:border-[#52525b]",
         className
       )}
     >
-      <span className="text-zinc-950">{value}</span>
-      <span className="text-zinc-500">⌄</span>
+      <span className="text-zinc-950 dark:text-zinc-100">{value}</span>
+      <span className="text-zinc-500 dark:text-zinc-400">⌄</span>
     </div>
   )
 }
@@ -88,7 +88,7 @@ function SettingsPage({
   ...props
 }: SettingsPageProps) {
   return (
-    <div data-slot="settings-page" className={cn("flex w-full flex-col bg-[#eaeaea]", className)} {...props}>
+    <div data-slot="settings-page" className={cn("flex w-full flex-col bg-[#eaeaea] dark:bg-zinc-900", className)} {...props}>
       <Header page="settings" />
       <div className="mx-auto flex w-full max-w-[1440px] flex-col items-end gap-5 px-12 py-8">
         <div className="flex w-full flex-col items-center gap-2 pb-5">
@@ -130,9 +130,9 @@ function SettingsPage({
               <>
                 <SettingsCard title="Armazenamento e plano" caption="Acompanhe seu uso e gerencie seu plano">
                   <div className="flex w-full flex-col gap-1.5">
-                    <div className="flex w-full items-center justify-between text-sm text-zinc-950">
+                    <div className="flex w-full items-center justify-between text-sm text-zinc-950 dark:text-zinc-100">
                       <span>0 Bytes de 5 TB usados</span>
-                      <span className="text-zinc-500">0 arquivos</span>
+                      <span className="text-zinc-500 dark:text-zinc-400">0 arquivos</span>
                     </div>
                     <StorageBar tier="long-term" value={8} className="h-2 max-w-none" />
                   </div>
@@ -143,10 +143,10 @@ function SettingsPage({
                         { label: "Longo prazo", tier: "long-term" as const },
                       ]
                     ).map(({ label, tier }) => (
-                      <div key={tier} className="flex min-w-px flex-1 flex-col gap-2 rounded-lg border border-zinc-200 p-3">
-                        <span className="text-sm font-medium text-zinc-950">{label}</span>
+                      <div key={tier} className="flex min-w-px flex-1 flex-col gap-2 rounded-lg border border-zinc-200 p-3 dark:border-zinc-700">
+                        <span className="text-sm font-medium text-zinc-950 dark:text-zinc-100">{label}</span>
                         <StorageBar tier={tier} value={18} className="h-2 max-w-none" />
-                        <span className="text-[0.6875rem] text-zinc-500">
+                        <span className="text-[0.6875rem] text-zinc-500 dark:text-zinc-400">
                           Estimativa — uso por tier ainda não disponível no backend.
                         </span>
                       </div>
@@ -170,8 +170,8 @@ function SettingsPage({
                 {NOTIFICATION_ROWS.map((row) => (
                   <div key={row.id} className="flex w-full items-start justify-between gap-4">
                     <div className="flex flex-col gap-0.5">
-                      <p className="text-sm font-medium text-zinc-950">{row.title}</p>
-                      <p className="text-[0.8125rem] text-zinc-500">{row.description}</p>
+                      <p className="text-sm font-medium text-zinc-950 dark:text-zinc-100">{row.title}</p>
+                      <p className="text-[0.8125rem] text-zinc-500 dark:text-zinc-400">{row.description}</p>
                     </div>
                     <Switch defaultChecked className="mt-0.5 shrink-0" />
                   </div>
@@ -207,14 +207,14 @@ function SettingsPage({
               <SettingsCard title="Privacidade e dados" caption="Controle seus dados pessoais">
                 <div className="flex w-full items-center justify-between gap-4">
                   <div className="flex flex-col gap-0.5">
-                    <p className="text-sm font-medium text-zinc-950">Exportar meus dados</p>
-                    <p className="text-[0.8125rem] text-zinc-500">Baixe uma cópia de todos os seus dados no Kandrive.</p>
+                    <p className="text-sm font-medium text-zinc-950 dark:text-zinc-100">Exportar meus dados</p>
+                    <p className="text-[0.8125rem] text-zinc-500 dark:text-zinc-400">Baixe uma cópia de todos os seus dados no Kandrive.</p>
                   </div>
                   <PushButton variant="neutral" className="h-auto shrink-0 rounded-md px-4 py-2 text-sm">
                     Exportar dados
                   </PushButton>
                 </div>
-                <p className="text-[0.8125rem] text-zinc-500">
+                <p className="text-[0.8125rem] text-zinc-500 dark:text-zinc-400">
                   Consulte nossa Política de Privacidade para saber como tratamos seus dados, conforme a LGPD.
                 </p>
               </SettingsCard>
@@ -224,7 +224,7 @@ function SettingsPage({
               // Item de nav Figma-confirmado (`1255:23300`), sem nenhuma tela
               // `page/*` correspondente no inventário — nada renderizado além
               // do nav (Regra 9, ver docs/conflicts.md).
-              <p className="text-sm text-zinc-500">
+              <p className="text-sm text-zinc-500 dark:text-zinc-400">
                 Painel ainda não tem tela Figma confirmada para "Organização padrão".
               </p>
             ) : null}
@@ -233,11 +233,11 @@ function SettingsPage({
               <SettingsCard title="Idioma e região" caption="Personalize o idioma da interface e o formato de data">
                 <div className="flex w-full gap-8">
                   <div className="flex min-w-px flex-1 flex-col gap-1.5">
-                    <span className="text-[0.8125rem] text-zinc-950">Idioma da interface</span>
+                    <span className="text-[0.8125rem] text-zinc-950 dark:text-zinc-100">Idioma da interface</span>
                     <SelectBox value="Português (Brasil)" className="w-full" />
                   </div>
                   <div className="flex min-w-px flex-1 flex-col gap-1.5">
-                    <span className="text-[0.8125rem] text-zinc-950">Formato de data</span>
+                    <span className="text-[0.8125rem] text-zinc-950 dark:text-zinc-100">Formato de data</span>
                     <SelectBox value="DD/MM/AAAA" className="w-full" />
                   </div>
                 </div>
@@ -263,7 +263,7 @@ function SettingsPage({
         </div>
       </div>
 
-      <div className="flex w-full items-center gap-9 px-12 py-4 text-base text-black">
+      <div className="flex w-full items-center gap-9 px-12 py-4 text-base text-black dark:text-zinc-100">
         <span>©2026 KanDrive</span>
         <SelectBox value="Português (Brasil)" />
       </div>

@@ -18,6 +18,11 @@ export interface FirstUploadSymbolProps extends React.ComponentProps<"div"> {}
  * Figma. Cores literais usadas aqui por serem específicas desta
  * ilustração, sem token semântico equivalente já definido.
  *
+ * 🧩 Inferido (Regra 9): dark mode não confirmado no Figma — círculo `#D9D9D9`
+ * espelhado p/ `dark:bg-[#27272a]` (zinc-800, mesmo papel neutro-claro→neutro-escuro
+ * da tabela-espelho); glifo `#6B6B68` reaproveita o valor dark já definido p/
+ * `--brand-secondary-light` (mesma cor base) via `dark:text-[#a8a6a1]`.
+ *
  * Corrigido em auditoria US-026 (2026-08-11): o glifo estava a `size-16`
  * (64px, 24% do diâmetro do círculo) — `get_design_context` confirma
  * `aspect-[12/12] left-[33.9%] right-[34.27%]`, ou seja ~85px (32% do
@@ -29,12 +34,12 @@ function FirstUploadSymbol({ className, ...props }: FirstUploadSymbolProps) {
     <div
       data-slot="first-upload-symbol"
       className={cn(
-        "relative flex size-[267px] items-center justify-center rounded-full bg-[#D9D9D9]",
+        "relative flex size-[267px] items-center justify-center rounded-full bg-[#D9D9D9] dark:bg-[#27272a]",
         className
       )}
       {...props}
     >
-      <Icon name="CloudDownload" className="size-[85px] text-[#6B6B68]" />
+      <Icon name="CloudDownload" className="size-[85px] text-[#6B6B68] dark:text-[#a8a6a1]" />
     </div>
   )
 }

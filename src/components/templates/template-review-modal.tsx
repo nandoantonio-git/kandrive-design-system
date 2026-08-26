@@ -66,15 +66,15 @@ function TemplateReviewModal({ items, onCancel, onContinue, className, ...props 
       role="dialog"
       aria-label="Revisar Organização"
       className={cn(
-        "flex h-[613px] w-[768px] max-w-none flex-col overflow-hidden rounded-xl glass-edge bg-effect-glass-white-70 shadow-[0px_8px_20px_rgba(0,0,0,0.12)] backdrop-blur-md",
+        "flex h-[613px] w-[768px] max-w-none flex-col overflow-hidden rounded-xl glass-edge bg-effect-glass-white-70 shadow-[0px_8px_20px_rgba(0,0,0,0.12)] dark:shadow-[0px_8px_20px_rgba(0,0,0,0.5)] backdrop-blur-md",
         className
       )}
       {...props}
     >
       <div className="flex items-start justify-between p-6 pb-4">
         <div className="flex flex-col gap-3">
-          <h2 className="text-2xl font-medium text-zinc-900">Revisar Organização</h2>
-          <p className="text-base text-zinc-700">Revise o template sugerido antes de aplicar as mudanças.</p>
+          <h2 className="text-2xl font-medium text-zinc-900 dark:text-zinc-100">Revisar Organização</h2>
+          <p className="text-base text-zinc-700 dark:text-zinc-300">Revise o template sugerido antes de aplicar as mudanças.</p>
         </div>
         <CloseButton size="md" onClick={onCancel} />
       </div>
@@ -88,8 +88,8 @@ function TemplateReviewModal({ items, onCancel, onContinue, className, ...props 
           />
         ))}
       </div>
-      <div className="flex items-center justify-between gap-4 border-t border-zinc-200 px-6 py-4">
-        <p className="flex items-center gap-2 text-xs text-zinc-600">
+      <div className="flex items-center justify-between gap-4 border-t border-zinc-200 px-6 py-4 dark:border-zinc-700">
+        <p className="flex items-center gap-2 text-xs text-zinc-600 dark:text-zinc-300">
           <Info aria-hidden="true" className="size-3.5 shrink-0" />
           Garanta que sua estrutura de arquivos seja clara e sem duplicidades.
         </p>

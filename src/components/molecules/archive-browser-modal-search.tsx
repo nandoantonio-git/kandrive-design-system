@@ -52,11 +52,11 @@ function ArchiveBrowserModalSearch({
         {breadcrumb.map((crumb, index) => (
           <React.Fragment key={crumb}>
             {index > 0 ? (
-              <Icon name="ChevronRight" aria-hidden="true" className="size-3.5 shrink-0 text-zinc-500" />
+              <Icon name="ChevronRight" aria-hidden="true" className="size-3.5 shrink-0 text-zinc-500 dark:text-zinc-400" />
             ) : null}
             <span
               className={cn(
-                "shrink-0 text-[0.6875rem] leading-4 tracking-[0.2px] whitespace-nowrap text-zinc-500",
+                "shrink-0 text-[0.6875rem] leading-4 tracking-[0.2px] whitespace-nowrap text-zinc-500 dark:text-zinc-400",
                 index === breadcrumb.length - 1 && "text-brand-teal"
               )}
             >
@@ -65,7 +65,7 @@ function ArchiveBrowserModalSearch({
           </React.Fragment>
         ))}
       </div>
-      <div className="h-[289px] w-full overflow-y-auto rounded-2xl shadow-[0px_8px_20px_rgba(0,0,0,0.12)]">
+      <div className="h-[289px] w-full overflow-y-auto rounded-2xl shadow-[0px_8px_20px_rgba(0,0,0,0.12)] dark:shadow-[0px_8px_20px_rgba(0,0,0,0.5)]">
         <div className="relative flex min-h-full w-full flex-col items-start gap-0.5 rounded-xl glass-edge bg-effect-glass-white-70 px-2 py-4">
           {files.map((file) => (
             <ArchiveBrowserModalListItem key={file.fileName} fileName={file.fileName} meta={file.meta} />

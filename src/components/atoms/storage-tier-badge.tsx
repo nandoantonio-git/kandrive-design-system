@@ -38,7 +38,7 @@ function StorageTierBadge({ tier, className, ...props }: StorageTierBadgeProps) 
     <span
       data-slot="storage-tier-badge"
       className={cn(
-        "inline-flex h-[21px] w-[84px] shrink-0 items-center justify-center rounded-[8.4px] border border-zinc-200 px-[9px] py-[3px] font-geist text-[0.625rem] leading-[0.9375rem] font-medium whitespace-nowrap text-zinc-950",
+        "inline-flex h-[21px] w-[84px] shrink-0 items-center justify-center rounded-[8.4px] border border-zinc-200 px-[9px] py-[3px] font-geist text-[0.625rem] leading-[0.9375rem] font-medium whitespace-nowrap text-zinc-950 dark:border-zinc-700 dark:text-zinc-100",
         className
       )}
       {...props}

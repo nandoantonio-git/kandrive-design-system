@@ -60,38 +60,38 @@ function FreeModeOutputNode({
       data-slot="free-mode-output-node"
       data-variant={variant}
       className={cn(
-        "flex w-[238px] flex-col items-start rounded-[14.4px] border border-brand-teal bg-zinc-100 p-[17px]",
+        "flex w-[238px] flex-col items-start rounded-[14.4px] border border-brand-teal bg-zinc-100 dark:bg-zinc-800 p-[17px]",
         isCompact ? "h-[68px] overflow-hidden shadow-[0px_8px_20px_0px_rgba(0,126,150,0.12)]" : "shadow-[0px_8px_10px_0px_rgba(0,126,150,0.12)]",
         className
       )}
       {...props}
     >
       <div className="flex w-full items-center gap-3">
-        <div className="flex size-[34px] shrink-0 items-center justify-center rounded-[10.4px] bg-[#176a78]">
+        <div className="flex size-[34px] shrink-0 items-center justify-center rounded-[10.4px] bg-[#176a78] dark:bg-[#2b8a9c]">
           <ResultadoGlyph aria-hidden="true" className="size-5" />
         </div>
         <div className="min-w-0 flex-1">
-          <p className="truncate text-sm leading-5 font-semibold text-zinc-700">Resultado</p>
+          <p className="truncate text-sm leading-5 font-semibold text-zinc-700 dark:text-zinc-300">Resultado</p>
           <p className="truncate text-[0.625rem] leading-[15px] text-brand-teal">{folderLabel}</p>
         </div>
         <ChevronGlyph aria-hidden="true" className={cn("size-4 shrink-0", !isCompact && "rotate-180")} />
       </div>
-      <div className="mt-4 flex w-full flex-col border-t border-zinc-500 pt-[13px]">
+      <div className="mt-4 flex w-full flex-col border-t border-zinc-500 dark:border-zinc-400 pt-[13px]">
         <div className="flex items-center justify-between">
-          <span className="text-[0.6875rem] leading-[16.5px] text-zinc-500">Arquivos incluídos</span>
-          <span className="text-[0.6875rem] leading-[16.5px] font-semibold text-zinc-700">{affectedFilesCount}</span>
+          <span className="text-[0.6875rem] leading-[16.5px] text-zinc-500 dark:text-zinc-400">Arquivos incluídos</span>
+          <span className="text-[0.6875rem] leading-[16.5px] font-semibold text-zinc-700 dark:text-zinc-300">{affectedFilesCount}</span>
         </div>
         <div className="flex items-center justify-between pt-3">
-          <span className="text-[0.6875rem] leading-[16.5px] text-zinc-500">Tamanho estimado</span>
-          <span className="text-[0.6875rem] leading-[16.5px] font-semibold text-zinc-700">{sizeLabel}</span>
+          <span className="text-[0.6875rem] leading-[16.5px] text-zinc-500 dark:text-zinc-400">Tamanho estimado</span>
+          <span className="text-[0.6875rem] leading-[16.5px] font-semibold text-zinc-700 dark:text-zinc-300">{sizeLabel}</span>
         </div>
         <div className="flex items-center justify-between pt-3">
-          <span className="text-[0.6875rem] leading-[16.5px] text-zinc-500">Regras aplicadas</span>
-          <span className="text-[0.6875rem] leading-[16.5px] font-semibold text-zinc-700">{rulesCount}</span>
+          <span className="text-[0.6875rem] leading-[16.5px] text-zinc-500 dark:text-zinc-400">Regras aplicadas</span>
+          <span className="text-[0.6875rem] leading-[16.5px] font-semibold text-zinc-700 dark:text-zinc-300">{rulesCount}</span>
         </div>
         <div
           className={cn(
-            "mt-3 flex w-full flex-col overflow-hidden rounded-[10.4px] border border-zinc-200 bg-white/60 p-[9px] transition-[height]",
+            "mt-3 flex w-full flex-col overflow-hidden rounded-[10.4px] border border-zinc-200 dark:border-zinc-700 bg-white/60 dark:bg-zinc-900/60 p-[9px] transition-[height]",
             previewExpanded ? "h-fit" : "h-[34.5px]"
           )}
         >
@@ -101,7 +101,7 @@ function FreeModeOutputNode({
             aria-expanded={previewExpanded}
             className="flex w-full cursor-pointer items-center justify-between"
           >
-            <span className="text-[0.6875rem] leading-[16.5px] font-semibold text-zinc-700">Prévia de arquivos</span>
+            <span className="text-[0.6875rem] leading-[16.5px] font-semibold text-zinc-700 dark:text-zinc-300">Prévia de arquivos</span>
             <PreviewChevronGlyph
               aria-hidden="true"
               className={cn("size-3 shrink-0 transition-transform", previewExpanded && "rotate-180")}
@@ -109,7 +109,7 @@ function FreeModeOutputNode({
           </button>
           <ul className="mt-2 flex w-full flex-col gap-1">
             {fileNames.map((name) => (
-              <li key={name} className="text-[0.625rem] leading-[15px] text-zinc-500">
+              <li key={name} className="text-[0.625rem] leading-[15px] text-zinc-500 dark:text-zinc-400">
                 {name}
               </li>
             ))}

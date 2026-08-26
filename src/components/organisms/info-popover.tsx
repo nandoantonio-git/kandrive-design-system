@@ -48,6 +48,11 @@ export type InfoPopoverProps = React.ComponentProps<"div"> &
  *    correspondência nenhuma no Figma — o nó real tem só os 2 rótulos
  *    estáticos, nada mais (Regra 11.4, nunca inventar conteúdo). Removido;
  *    a variante agora não recebe props de conteúdo.
+ *
+ * 🧩 Inferido (Regra 9): `text-black`/`text-black/20` deixados sem par
+ * `dark:` — o fundo é o SVG `Fill` (balão de vidro branco 70%) exportado
+ * como asset, fixo/claro nos dois temas (fora de escopo desta varredura);
+ * escurecer o texto quebraria o contraste contra esse fundo que não muda.
  */
 function InfoPopover({ className, ...props }: InfoPopoverProps) {
   const isStorageInfo = props.variant === "storage-info"

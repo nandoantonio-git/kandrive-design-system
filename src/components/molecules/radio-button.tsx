@@ -79,7 +79,7 @@ function RadioButton({
           disabled={disabled}
           onChange={() => onCheckedChange?.(option)}
           className={cn(
-            "peer absolute inset-0 size-4 shrink-0 appearance-none rounded-full border border-zinc-400 bg-white",
+            "peer absolute inset-0 size-4 shrink-0 appearance-none rounded-full border border-zinc-400 bg-white dark:border-zinc-600 dark:bg-zinc-900",
             "transition-colors motion-safe:active:scale-90",
             "checked:border-brand-teal",
             "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50"
@@ -94,7 +94,7 @@ function RadioButton({
           className="pointer-events-none size-2 scale-0 rounded-full bg-brand-teal transition-transform peer-checked:scale-100"
         />
       </span>
-      <span className="text-base text-zinc-950">{resolvedLabel}</span>
+      <span className="text-base text-zinc-950 dark:text-zinc-100">{resolvedLabel}</span>
     </label>
   )
 }

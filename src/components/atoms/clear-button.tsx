@@ -11,12 +11,14 @@ export interface ClearButtonProps
   label?: string
 }
 
+// 🧩 Inferido (Regra 9): dark: dos literais rgba/hex acima reaproveita os valores dark já definidos p/ --brand-secondary-light/--brand-teal-light em index.css
 const STYLE_CLASSNAME: Record<NonNullable<ClearButtonProps["style"]>, string> = {
   // Único dos 4 ícones-botão com pílula de fundo Figma-confirmada, e só
   // neste style (`Style=Default, State=Hover`/`ClickedFIlled` — Red/White
   // não têm estado Hover no Figma). Cores literais do Figma (Regra 3,
   // sem token semântico definido para `neutral-surface-ghost-map`).
-  default: "text-zinc-500 hover:bg-[rgba(107,107,104,0.18)] hover:text-zinc-700 active:bg-[#c8dce3]",
+  default:
+    "text-zinc-500 hover:bg-[rgba(107,107,104,0.18)] hover:text-zinc-700 active:bg-[#c8dce3] dark:text-zinc-400 dark:hover:bg-[rgba(168,166,161,0.18)] dark:hover:text-zinc-300 dark:active:bg-[#173239]",
   red: "text-destructive",
   white: "text-white",
 }

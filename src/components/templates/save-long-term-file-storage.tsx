@@ -94,8 +94,8 @@ function SaveLongTermFileStorage({
     >
       <div className="flex items-start justify-between">
         <div className="flex flex-col gap-3">
-          <h2 className="text-2xl font-medium text-zinc-900">Guardar no longo prazo</h2>
-          <p className="text-base text-zinc-700">Revise a taxonomia sugerida antes de aplicar as mudanças.</p>
+          <h2 className="text-2xl font-medium text-zinc-900 dark:text-zinc-100">Guardar no longo prazo</h2>
+          <p className="text-base text-zinc-700 dark:text-zinc-300">Revise a taxonomia sugerida antes de aplicar as mudanças.</p>
         </div>
         <CloseButton size="md" onClick={onCancel} />
       </div>
@@ -105,32 +105,32 @@ function SaveLongTermFileStorage({
         <div className="flex flex-1 flex-col gap-3">
           <div className="flex flex-wrap gap-2">
             {files.map((file) => (
-              <span key={file.name} className="rounded-md bg-zinc-100 px-2 py-1 text-xs text-zinc-700">
+              <span key={file.name} className="rounded-md bg-zinc-100 px-2 py-1 text-xs text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
                 {file.name}
               </span>
             ))}
           </div>
           <div className="flex flex-col gap-1.5">
-            <p className="text-xl font-bold text-zinc-900">Por que guardar?</p>
-            <p className="text-sm text-zinc-500">
+            <p className="text-xl font-bold text-zinc-900 dark:text-zinc-100">Por que guardar?</p>
+            <p className="text-sm text-zinc-500 dark:text-zinc-400">
               Arquivos em longo prazo ficam seguros por anos e liberam espaço ativo. Para resgatar, é só solicitar,
               você recebe um link por e-mail e o arquivo volta para o seu armazenamento em até 8h.
             </p>
           </div>
           <div className="flex flex-col gap-1">
-            <span className="text-xs text-zinc-500">Destino:</span>
-            <span className="flex w-fit items-center gap-1.5 rounded-md bg-zinc-100 px-3 py-1.5 text-xs text-zinc-900">
+            <span className="text-xs text-zinc-500 dark:text-zinc-400">Destino:</span>
+            <span className="flex w-fit items-center gap-1.5 rounded-md bg-zinc-100 px-3 py-1.5 text-xs text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100">
               <Icon name="Arquivar" className="size-4" />
               Guardados
             </span>
           </div>
         </div>
       </div>
-      <p className="rounded-lg bg-effect-glass-white-70 px-3 py-2.5 text-xs text-zinc-500">
+      <p className="rounded-lg bg-effect-glass-white-70 px-3 py-2.5 text-xs text-zinc-500 dark:text-zinc-400">
         {`Se algum nome já existir no destino, o Kandrive adiciona automaticamente um sufixo (ex.: "arquivo (1)") para evitar substituir o arquivo existente.`}
       </p>
       <div className="flex items-center justify-between">
-        <p className="text-xs text-zinc-800">
+        <p className="text-xs text-zinc-800 dark:text-zinc-100">
           {selectedCount} selecionado · economia de {savingsLabel}
         </p>
         <div className="flex gap-3">

@@ -53,6 +53,10 @@ const DEFAULT_FILE_NAMES = ["Arquivo 1", "Arquivo 2", "Arquivo 3"] as const
  * `atom/CloseButton`/`molecule/FileList`. Adicionada `hover:bg-[#71717a33]`
  * real; a prop `state` continua funcionando por cima pra fixar um estado
  * estático nas stories.
+ *
+ * 🧩 Inferido (Regra 9): `#71717a33` é `zinc-500` a 20% (não coberto
+ * literal pela tabela-espelho) — dark: sobe pra `zinc-400` (`#a1a1aa33`),
+ * mesmo critério do "texto mudo" zinc-500→zinc-400.
  */
 function FolderCard({
   label = "Pasta",
@@ -75,15 +79,15 @@ function FolderCard({
       {...props}
     >
       <div className="flex h-[33px] w-full items-center gap-1">
-        <GripVertical aria-hidden="true" className="size-4 shrink-0 text-zinc-400" />
+        <GripVertical aria-hidden="true" className="size-4 shrink-0 text-zinc-400 dark:text-zinc-500" />
         <button
           type="button"
           data-slot="folder-card-toggle"
           onClick={onToggleExpanded}
           className={cn(
             "flex items-center gap-2 rounded-md px-2 py-1 text-base text-brand-teal-dark",
-            "hover:bg-[#71717a33]",
-            state === "hover" && "bg-[#71717a33]",
+            "hover:bg-[#71717a33] dark:hover:bg-[#a1a1aa33]",
+            state === "hover" && "bg-[#71717a33] dark:bg-[#a1a1aa33]",
             state === "selected" && "bg-brand-teal-light"
           )}
         >

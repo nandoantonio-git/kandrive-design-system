@@ -57,6 +57,12 @@ function inferKind(label: string, hasChevron: boolean): NonNullable<NodeContextM
  * selecionado. Aba "Data" (agenda real de calendário) não é implementada —
  * fora de escopo de uma pílula de catálogo (a description do Figma já
  * remete a um componente de calendário externo, não a este nó).
+ *
+ * 🧩 Inferido (Regra 9): toda a paleta zinc deste componente é
+ * intencionalmente escura (zinc-500/600/800/900, nunca zinc-50/100/200/300)
+ * — chip de contraste fixo sobre o painel translúcido do organism pai, já
+ * dark-apropriado (mesmo critério de "border zinc-800, dark UI chrome" do
+ * ruleset); não recebeu pares `dark:`.
  */
 function NodeContextMenuItem({
   label,

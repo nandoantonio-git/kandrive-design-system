@@ -91,7 +91,7 @@ function Label({
       )}
       {...props}
     >
-      <span className="w-full px-1 text-[0.625rem] font-bold tracking-[0.012px] text-zinc-500">
+      <span className="w-full px-1 text-[0.625rem] font-bold tracking-[0.012px] text-zinc-500 dark:text-zinc-400">
         ETIQUETAR
       </span>
 
@@ -101,7 +101,7 @@ function Label({
             type="button"
             aria-expanded="true"
             onClick={() => onExpandedChange?.(false)}
-            className="flex h-5 w-full items-center gap-2 rounded-md px-1 text-[0.625rem] text-zinc-700 transition-colors hover:bg-[#71717a33] active:opacity-70"
+            className="flex h-5 w-full items-center gap-2 rounded-md px-1 text-[0.625rem] text-zinc-700 dark:text-zinc-300 transition-colors hover:bg-[#71717a33] dark:hover:bg-[#a1a1aa33] active:opacity-70"
           >
             <Icon name="Label" className="size-3 shrink-0" />
             <span className="min-w-0 flex-1 whitespace-nowrap text-left">{value}</span>
@@ -126,8 +126,8 @@ function Label({
             </ul>
           ) : (
             <div className="flex w-full flex-1 flex-col items-center gap-1">
-              <div className="flex h-5 w-[86px] items-center gap-1.5 rounded-md bg-[#ccced6] px-1">
-                <LabelSearchGlyph aria-hidden="true" className="size-3 shrink-0 text-zinc-500" />
+              <div className="flex h-5 w-[86px] items-center gap-1.5 rounded-md bg-[#ccced6] dark:bg-[#3a3a3f] px-1">
+                <LabelSearchGlyph aria-hidden="true" className="size-3 shrink-0 text-zinc-500 dark:text-zinc-400" />
               </div>
               <div className="flex w-[109px] flex-col items-center gap-1 px-3 pb-1">
                 <FileTypeLabel kind="document" className="w-full" />
@@ -144,7 +144,7 @@ function Label({
           data-slot="label-trigger"
           disabled={isDisabled}
           onClick={() => onExpandedChange?.(true)}
-          className="relative flex h-[35px] w-full cursor-pointer items-center gap-2 rounded-xl glass-edge glass-shadow-sm bg-effect-glass-light-45 px-3 py-2 text-[0.625rem] text-zinc-700 transition-colors hover:bg-[#71717a33] active:opacity-70 disabled:cursor-not-allowed disabled:hover:bg-transparent"
+          className="relative flex h-[35px] w-full cursor-pointer items-center gap-2 rounded-xl glass-edge glass-shadow-sm bg-effect-glass-light-45 px-3 py-2 text-[0.625rem] text-zinc-700 dark:text-zinc-300 transition-colors hover:bg-[#71717a33] dark:hover:bg-[#a1a1aa33] active:opacity-70 disabled:cursor-not-allowed disabled:hover:bg-transparent"
         >
           <Icon name="Label" className="size-3 shrink-0" />
           <span className="min-w-0 flex-1 whitespace-nowrap text-left">{value}</span>

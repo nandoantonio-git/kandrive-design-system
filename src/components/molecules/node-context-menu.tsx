@@ -42,6 +42,10 @@ export interface NodeContextMenuProps extends React.ComponentProps<"div"> {
  * aqui por `brand-teal` (mesmo tratamento de "selecionado" já usado em
  * `DropdownSelectGroupBy`/`ViewModeToggle`); registrado em
  * `docs/conflicts.md`.
+ *
+ * 🧩 Inferido (Regra 9): a trilha do toggle E/OU (`border-zinc-800
+ * bg-zinc-900`, texto `zinc-400` não selecionado) é chrome escuro fixo
+ * (mesmo critério de `NodeContextMenuItem`) — não recebeu pares `dark:`.
  */
 function NodeContextMenu({
   state = "floating-info-panel",
@@ -59,14 +63,14 @@ function NodeContextMenu({
     <div
       data-slot="node-context-menu"
       data-state={state}
-      className={cn("relative w-[393px] rounded-[2.375rem] shadow-[0_8px_20px_rgba(0,0,0,0.12)]", className)}
+      className={cn("relative w-[393px] rounded-[2.375rem] shadow-[0_8px_20px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_20px_rgba(0,0,0,0.5)]", className)}
       {...props}
     >
       <div aria-hidden="true" className="absolute inset-0 rounded-[2.375rem] glass-edge glass-shadow-sm bg-effect-glass-white-50 mix-blend-screen" />
       <div className="relative flex flex-col gap-3 px-6 py-2.5">
         <div className="flex items-center gap-2">
           <NodeContextMenuFilter aria-hidden="true" className="h-[15.193px] w-[15.111px]" />
-          <span className="text-sm font-bold text-zinc-700">Filtro</span>
+          <span className="text-sm font-bold text-zinc-700 dark:text-zinc-300">Filtro</span>
         </div>
 
         <div className="flex items-center gap-2">
@@ -77,7 +81,7 @@ function NodeContextMenu({
             type="button"
             aria-label="Remover condição"
             onClick={onRemoveCondition}
-            className="ml-auto text-zinc-400 hover:text-zinc-600"
+            className="ml-auto text-zinc-400 hover:text-zinc-600 dark:text-zinc-500 dark:hover:text-zinc-300"
           >
             <X aria-hidden="true" className="size-4" />
           </button>
@@ -129,7 +133,7 @@ function NodeContextMenu({
         <AddButton label="Adicionar Regra" onClick={onAddRule} className="w-full" />
         {isError ? <AddButton label="Adicionar Regra" onClick={onAddRule} className="w-full" /> : null}
 
-        <div className="flex items-center justify-end gap-4 border-t border-zinc-300 py-3">
+        <div className="flex items-center justify-end gap-4 border-t border-zinc-300 dark:border-zinc-700 py-3">
           <PushButton variant="neutral" className="h-8 px-4 text-xs" onClick={onDiscard}>
             Descartar Mudanças
           </PushButton>

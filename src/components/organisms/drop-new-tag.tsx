@@ -20,6 +20,10 @@ export interface DropNewTagProps extends React.ComponentProps<"div"> {
  * localmente — ver `tag-color.tsx` para o histórico da reconciliação
  * (corrige de passagem a cor `danger` desatualizada e o anel de seleção
  * inferido que a versão local antiga tinha).
+ *
+ * 🧩 Inferido (Regra 9): tema escuro não confirmado no Figma — sombra de
+ * elevação composta (anel 1px + blur) não coberta pela tabela-espelho,
+ * opacidade aumentada por analogia à regra de elevação padrão.
  */
 function DropNewTag({
   label = "",
@@ -41,7 +45,7 @@ function DropNewTag({
     >
       <div
         aria-hidden="true"
-        className="absolute top-0 left-0 h-11 w-[100px] rounded-br-md rounded-bl-md rounded-tr-md glass-edge bg-effect-glass-white-70 shadow-[0px_0px_0px_1px_rgba(0,0,0,0.05),0px_16px_32px_rgba(0,0,0,0.1)] backdrop-blur-md"
+        className="absolute top-0 left-0 h-11 w-[100px] rounded-br-md rounded-bl-md rounded-tr-md glass-edge bg-effect-glass-white-70 shadow-[0px_0px_0px_1px_rgba(0,0,0,0.05),0px_16px_32px_rgba(0,0,0,0.1)] dark:shadow-[0px_0px_0px_1px_rgba(255,255,255,0.1),0px_16px_32px_rgba(0,0,0,0.4)] backdrop-blur-md"
       />
       <div className="absolute top-2.5 left-2.5 h-[25px] w-20 overflow-hidden">
       <input
@@ -52,7 +56,7 @@ function DropNewTag({
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         placeholder="Nome da etiqueta"
-          className="absolute top-px left-0 h-3 w-20 rounded-md border-0 bg-zinc-50 px-1 text-[0.625rem] leading-3 text-zinc-700 placeholder:text-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal/50"
+          className="absolute top-px left-0 h-3 w-20 rounded-md border-0 bg-zinc-50 px-1 text-[0.625rem] leading-3 text-zinc-700 placeholder:text-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal/50 dark:bg-zinc-900 dark:text-zinc-300"
       />
         {!label && isFocused ? (
           <span

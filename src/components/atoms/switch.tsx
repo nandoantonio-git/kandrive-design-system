@@ -15,6 +15,11 @@ export interface SwitchProps
  * (controle real, não `<input type="checkbox">` estilizado) para expor
  * `aria-checked` diretamente, igual convenção já usada em `PushButton`
  * (`data-slot`, `aria-*` nativos em vez de wrapper).
+ *
+ * 🧩 Inferido (Regra 9): `bg-white` do thumb mantido sem `dark:` — é o knob
+ * de controle (não uma superfície neutra de página), precisa de contraste
+ * contra a track em ambos os temas; espelhar pra `zinc-900` o esconderia
+ * contra a track escura (`dark:bg-[#27272a]`).
  */
 function Switch({
   className,
@@ -37,7 +42,7 @@ function Switch({
         "transition-colors motion-safe:duration-150",
         "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
         "disabled:pointer-events-none disabled:opacity-50",
-        checked ? "bg-brand-teal" : "bg-[#d9d9d9]",
+        checked ? "bg-brand-teal" : "bg-[#d9d9d9] dark:bg-[#27272a]",
         className
       )}
       {...props}

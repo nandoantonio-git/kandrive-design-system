@@ -37,9 +37,9 @@ function TemplateCard({
       data-slot="template-card"
       aria-pressed={selected}
       className={cn(
-        "flex h-96 w-[217.75px] shrink-0 flex-col items-center justify-between rounded-xl border border-zinc-300 bg-zinc-50 p-4",
+        "flex h-96 w-[217.75px] shrink-0 flex-col items-center justify-between rounded-xl border border-zinc-300 bg-zinc-50 p-4 dark:border-zinc-700 dark:bg-zinc-900",
         "transition-colors hover:border-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
-        selected && "border-zinc-400",
+        selected && "border-zinc-400 dark:border-zinc-600",
         className
       )}
       {...props}
@@ -55,8 +55,8 @@ function TemplateCard({
         <img src={illustration} alt="" aria-hidden="true" className="h-24 w-auto" />
       )}
       <span className="flex w-full flex-col items-start gap-1.5 px-1.5 text-left">
-        <span className="whitespace-nowrap text-xl font-bold text-zinc-500">{title}</span>
-        <span className="text-xs text-zinc-500">{description}</span>
+        <span className="whitespace-nowrap text-xl font-bold text-zinc-500 dark:text-zinc-400">{title}</span>
+        <span className="text-xs text-zinc-500 dark:text-zinc-400">{description}</span>
       </span>
     </button>
   )

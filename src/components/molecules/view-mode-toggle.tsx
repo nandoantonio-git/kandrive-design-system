@@ -60,7 +60,7 @@ function ViewModeToggle({ mode, onModeChange, className, ...props }: ViewModeTog
       className={cn("flex w-fit flex-col items-start gap-1", className)}
       {...props}
     >
-      <span className="px-1 text-[0.625rem] font-bold tracking-wide text-zinc-500">
+      <span className="px-1 text-[0.625rem] font-bold tracking-wide text-zinc-500 dark:text-zinc-400">
         VISUALIZAR
       </span>
       <div className="relative flex items-center gap-1 rounded-xl glass-edge glass-shadow-sm bg-effect-glass-light-45 p-1 backdrop-blur-sm">
@@ -79,7 +79,7 @@ function ViewModeToggle({ mode, onModeChange, className, ...props }: ViewModeTog
                 "flex items-center gap-2 rounded-md px-1 py-1.5 text-xs font-semibold transition-colors",
                 selected
                   ? "bg-zinc-600 px-3 text-brand-teal-light"
-                  : "text-zinc-700 hover:bg-zinc-600/10"
+                  : "text-zinc-700 dark:text-zinc-300 hover:bg-zinc-600/10"
               )}
             >
               <ModeIcon className={iconClassName} aria-hidden="true" />

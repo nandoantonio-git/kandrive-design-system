@@ -178,7 +178,7 @@ function VideoItem({
         <span
           className={cn(
             "block h-3 w-full truncate text-center text-[0.625rem] leading-normal tracking-[0.012px]",
-            isDisabled ? "text-zinc-500" : "text-zinc-700"
+            isDisabled ? "text-zinc-500 dark:text-zinc-400" : "text-zinc-700 dark:text-zinc-300"
           )}
         >
           {name}

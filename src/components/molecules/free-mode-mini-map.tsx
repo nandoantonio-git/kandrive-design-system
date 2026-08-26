@@ -22,22 +22,22 @@ function FreeModeMiniMap({ className, ...props }: FreeModeMiniMapProps) {
       aria-hidden="true"
       data-slot="free-mode-mini-map"
       className={cn(
-        "flex h-32 w-48 flex-col rounded-xl border border-zinc-300 bg-white/50 p-2 opacity-60 backdrop-blur-sm",
+        "flex h-32 w-48 flex-col rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white/50 dark:bg-zinc-900/50 p-2 opacity-60 backdrop-blur-sm",
         className
       )}
       {...props}
     >
       <div className="relative flex-1">
         <div className="absolute inset-x-2 top-1 grid grid-cols-3 gap-1">
-          <span className="h-4 rounded-sm bg-zinc-300" />
-          <span className="h-4 rounded-sm bg-zinc-300" />
-          <span className="h-4 rounded-sm bg-zinc-300" />
+          <span className="h-4 rounded-sm bg-zinc-300 dark:bg-zinc-700" />
+          <span className="h-4 rounded-sm bg-zinc-300 dark:bg-zinc-700" />
+          <span className="h-4 rounded-sm bg-zinc-300 dark:bg-zinc-700" />
         </div>
         <div className="absolute inset-x-4 top-8 h-10 rounded border-2 border-brand-teal/60" />
       </div>
-      <div className="flex items-center justify-between border-t border-zinc-200 pt-1">
-        <span className="h-1 w-8 rounded-full bg-zinc-300" />
-        <span className="h-1 w-6 rounded-full bg-zinc-300" />
+      <div className="flex items-center justify-between border-t border-zinc-200 dark:border-zinc-800 pt-1">
+        <span className="h-1 w-8 rounded-full bg-zinc-300 dark:bg-zinc-700" />
+        <span className="h-1 w-6 rounded-full bg-zinc-300 dark:bg-zinc-700" />
       </div>
     </div>
   )

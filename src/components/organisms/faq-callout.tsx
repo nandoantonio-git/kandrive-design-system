@@ -18,6 +18,10 @@ export interface FaqCalloutProps extends React.ComponentProps<"div"> {
  * Figma-confirmado nó a nó em cada painel de tópico) — não é um dos 10
  * componentes desta US, é um detalhe de implementação para não duplicar a
  * mesma marcação 5+ vezes entre os dois organisms.
+ *
+ * 🧩 Inferido (Regra 9): tema escuro não confirmado no Figma — tom `warning`
+ * (`#fad98c`/`#fff8e6`, hex literal sem token) escurecido pra âmbar escuro
+ * equivalente, mantendo a família de cor.
  */
 function FaqCallout({ tone = "info", className, children, ...props }: FaqCalloutProps) {
   return (
@@ -28,7 +32,7 @@ function FaqCallout({ tone = "info", className, children, ...props }: FaqCallout
         "flex w-full items-start gap-2 rounded-lg border p-3 text-[0.8125rem] tracking-[0.0156px]",
         tone === "info"
           ? "border-brand-teal bg-brand-teal-light text-brand-teal-dark"
-          : "border-[#fad98c] bg-[#fff8e6] text-brand-secondary-light",
+          : "border-[#fad98c] bg-[#fff8e6] text-brand-secondary-light dark:border-[#a16207] dark:bg-[#451a03]",
         className
       )}
       {...props}

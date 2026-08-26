@@ -75,12 +75,12 @@ function FreeModeListItem({
       aria-pressed={visualState === "pressed"}
       onClick={onSelect}
       className={cn(
-        "flex h-8 w-full items-center gap-3 rounded-md px-4 text-left text-base font-medium tracking-[0.1px] text-zinc-700 transition-colors",
+        "flex h-8 w-full items-center gap-3 rounded-md px-4 text-left text-base font-medium tracking-[0.1px] text-zinc-700 dark:text-zinc-300 transition-colors",
         visualState === "pressed"
-          ? "bg-black/14"
+          ? "bg-black/14 dark:bg-white/14"
           : visualState === "hover"
-            ? "bg-zinc-500/45"
-            : "hover:bg-zinc-500/45",
+            ? "bg-zinc-500/45 dark:bg-zinc-400/45"
+            : "hover:bg-zinc-500/45 dark:hover:bg-zinc-400/45",
         className
       )}
       {...props}

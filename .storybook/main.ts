@@ -20,7 +20,11 @@ const config: StorybookConfig = {
       options: { mdxPluginOptions: { mdxCompileOptions: { remarkPlugins: [remarkGfm] } } }
     },
     "@storybook/addon-mcp",
-    "@storybook/addon-designs"
+    "@storybook/addon-designs",
+    // Toggle de tema claro/escuro real (reabertura de escopo, ver
+    // src/index.css) — decorator em preview.tsx aplica a classe `.dark`
+    // no wrapper do preview via um item na toolbar do Storybook.
+    "@storybook/addon-themes"
   ],
   "framework": "@storybook/react-vite",
   // Serve public/ (favicon.svg, kandrive-logo.svg, kandrive-mark.svg) para

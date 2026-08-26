@@ -45,11 +45,11 @@ function TokenSwatch({ token, value, role, cssSnippet, preview, className }: Tok
   return (
     <div
       data-slot="token-swatch"
-      className={cn("flex flex-col gap-2 rounded-xl border border-zinc-200 bg-white p-3", className)}
+      className={cn("flex flex-col gap-2 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-700 dark:bg-zinc-900", className)}
     >
       <div
         aria-hidden="true"
-        className="flex min-h-14 w-full items-center justify-center overflow-hidden rounded-lg border border-black/5 bg-zinc-50 p-2"
+        className="flex min-h-14 w-full items-center justify-center overflow-hidden rounded-lg border border-black/5 bg-zinc-50 p-2 dark:bg-zinc-900"
       >
         {preview}
       </div>
@@ -57,7 +57,7 @@ function TokenSwatch({ token, value, role, cssSnippet, preview, className }: Tok
         <button
           type="button"
           onClick={() => copy(token)}
-          className="cursor-pointer text-left text-[0.6875rem] leading-tight break-all text-zinc-500 hover:text-brand-teal"
+          className="cursor-pointer text-left text-[0.6875rem] leading-tight break-all text-zinc-500 dark:text-zinc-400 hover:text-brand-teal"
           title="Copiar nome do token"
         >
           {copied === token ? "Copiado!" : token}
@@ -65,12 +65,12 @@ function TokenSwatch({ token, value, role, cssSnippet, preview, className }: Tok
         <button
           type="button"
           onClick={() => copy(value)}
-          className="cursor-pointer text-left text-xs font-semibold text-zinc-900 hover:text-brand-teal"
+          className="cursor-pointer text-left text-xs font-semibold text-zinc-900 dark:text-zinc-100 hover:text-brand-teal"
           title="Copiar valor"
         >
           {copied === value ? "Copiado!" : value}
         </button>
-        {role ? <p className="text-xs text-zinc-600">{role}</p> : null}
+        {role ? <p className="text-xs text-zinc-600 dark:text-zinc-300">{role}</p> : null}
         {cssSnippet ? (
           <button
             type="button"
@@ -78,7 +78,7 @@ function TokenSwatch({ token, value, role, cssSnippet, preview, className }: Tok
             className="cursor-pointer text-left"
             title="Copiar classe Tailwind"
           >
-            <code className="rounded bg-zinc-100 px-1 py-0.5 text-[0.625rem] text-zinc-500 hover:text-brand-teal">
+            <code className="rounded bg-zinc-100 px-1 py-0.5 text-[0.625rem] text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400 hover:text-brand-teal">
               {copied === cssSnippet ? "Copiado!" : cssSnippet}
             </code>
           </button>
@@ -98,7 +98,7 @@ export interface TokenGridProps {
 function TokenGrid({ title, children, className }: TokenGridProps) {
   return (
     <div data-slot="token-grid" className={cn("flex flex-col gap-3", className)}>
-      {title ? <h3 className="text-sm font-semibold text-zinc-900">{title}</h3> : null}
+      {title ? <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">{title}</h3> : null}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">{children}</div>
     </div>
   )

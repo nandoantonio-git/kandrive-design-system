@@ -49,7 +49,7 @@ function FileListContainer({ rows, onOpen, className, ...props }: FileListContai
           key={row.name}
           type="button"
           onClick={() => onOpen?.(row)}
-          className="w-full text-left transition-colors hover:bg-zinc-50 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50"
+          className="w-full text-left transition-colors hover:bg-zinc-50 dark:hover:bg-zinc-900 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50"
         >
           <FileList fileName={row.name} format="list-sm" showIcon className="max-w-none" />
         </button>

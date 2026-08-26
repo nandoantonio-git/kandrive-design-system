@@ -40,19 +40,23 @@ export interface FaqFastLinksProps extends React.ComponentProps<"div"> {
  * Ícones exportados de verdade do Figma via `download_assets` (não
  * aproximação `lucide-react`) — `MenuBook`/`Forum`/`Slideshow` em
  * `atom/Icon`, ver `Atoms/Icon.mdx`.
+ *
+ * 🧩 Inferido (Regra 9): tema escuro não confirmado no Figma — sombra de
+ * elevação (`rgba(9,9,11,*)`) com opacidade maior no escuro, mesma lógica
+ * do par documentado em `src/index.css`.
  */
 function FaqFastLinks({ links = DEFAULT_LINKS, className, ...props }: FaqFastLinksProps) {
   return (
     <div
       data-slot="faq-fast-links"
       className={cn(
-        "flex w-[158px] flex-col items-center justify-center rounded-3xl py-6 shadow-[0px_2px_4px_rgba(9,9,11,0.08)]",
+        "flex w-[158px] flex-col items-center justify-center rounded-3xl py-6 shadow-[0px_2px_4px_rgba(9,9,11,0.08)] dark:shadow-[0px_2px_4px_rgba(9,9,11,0.4)]",
         className
       )}
       {...props}
     >
       <div className="flex w-full flex-col items-start gap-4 p-1.5">
-        <p className="text-base text-zinc-950">Links Rápidos</p>
+        <p className="text-base text-zinc-950 dark:text-zinc-100">Links Rápidos</p>
         <ul className="flex w-full flex-col gap-2">
           {links.map((link) => (
             <li key={link.label}>

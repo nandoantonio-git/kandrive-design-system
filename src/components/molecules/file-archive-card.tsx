@@ -60,7 +60,7 @@ function FileArchiveCard({
         aria-hidden="true"
         className={cn("h-[40.405px] w-full shrink-0", interactive && "cursor-pointer")}
       />
-      <span className="flex h-3 w-full items-start justify-center overflow-hidden text-[0.625rem] whitespace-nowrap text-zinc-700 tracking-[0.012px]">
+      <span className="flex h-3 w-full items-start justify-center overflow-hidden text-[0.625rem] whitespace-nowrap text-zinc-700 dark:text-zinc-300 tracking-[0.012px]">
         {label}
       </span>
     </div>

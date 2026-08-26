@@ -26,6 +26,12 @@ export interface TagOrgModeProps
  * `zinc-600` do Tailwind (docs/conflicts.md, tabela "Paleta neutra") — sem
  * aproximação. Texto (`brand-primary-light`, `#c8dce3`) reusa o token já
  * existente `--brand-teal-light` (mesmo valor, achado em US-013).
+ *
+ * 🧩 Inferido (Regra 9): `bg-zinc-600` não tem par exato na tabela-espelho
+ * (só cobre 50/100/200 p/ fundo) — `dark:bg-zinc-700` escolhido por analogia
+ * à escada de elevação já usada no tema (`--neutral-surface-background`
+ * escuro é bem mais escuro que zinc-700), mantendo a pílula visível contra
+ * o canvas escuro.
  */
 function TagOrgMode({ mode = "free", className, ...props }: TagOrgModeProps) {
   return (
@@ -33,7 +39,7 @@ function TagOrgMode({ mode = "free", className, ...props }: TagOrgModeProps) {
       data-slot="tag-org-mode"
       data-mode={mode}
       className={cn(
-        "inline-flex h-9 w-fit items-center rounded-md bg-zinc-600 px-3 py-1.5 font-medium text-[1.5625rem] text-brand-teal-light whitespace-nowrap",
+        "inline-flex h-9 w-fit items-center rounded-md bg-zinc-600 px-3 py-1.5 font-medium text-[1.5625rem] text-brand-teal-light whitespace-nowrap dark:bg-zinc-700",
         className
       )}
       {...props}

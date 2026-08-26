@@ -50,22 +50,22 @@ function SidebarToggle({
       aria-expanded={expanded}
       onClick={onToggle}
       className={cn(
-        "flex w-full items-center justify-between rounded-md px-2 py-1 text-base font-medium text-zinc-900",
-        "transition-colors hover:bg-zinc-100 active:bg-zinc-200",
+        "flex w-full items-center justify-between rounded-md px-2 py-1 text-base font-medium text-zinc-900 dark:text-zinc-100",
+        "transition-colors hover:bg-zinc-100 active:bg-zinc-200 dark:hover:bg-zinc-800 dark:active:bg-zinc-700",
         "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
-        state === "hover" && "bg-zinc-100",
-        state === "pressed" && "bg-zinc-200",
+        state === "hover" && "bg-zinc-100 dark:bg-zinc-800",
+        state === "pressed" && "bg-zinc-200 dark:bg-zinc-700",
         className
       )}
       {...props}
     >
       <span className="flex items-center gap-1.5">
-        <Icon name="CloudQueue" aria-hidden="true" className="size-4 text-zinc-500" />
+        <Icon name="CloudQueue" aria-hidden="true" className="size-4 text-zinc-500 dark:text-zinc-400" />
         {label}
       </span>
       <ChevronDown
         aria-hidden="true"
-        className={cn("size-4 text-zinc-500 transition-transform", expanded && "rotate-180")}
+        className={cn("size-4 text-zinc-500 dark:text-zinc-400 transition-transform", expanded && "rotate-180")}
       />
     </button>
   )

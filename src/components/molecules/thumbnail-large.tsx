@@ -53,12 +53,12 @@ function ThumbnailLarge({
       )}
       {...props}
     >
-      <div className="w-full border-b border-brand-teal-light bg-zinc-100">
+      <div className="w-full border-b border-brand-teal-light bg-zinc-100 dark:bg-zinc-800">
         <div className="flex items-center justify-between pt-3 pr-[11.99px] pb-[13px] pl-3">
           <div className="flex h-[23px] items-start justify-center">
             <FaviconGlyph aria-hidden="true" className={isDocument ? "h-[23px] w-[21px]" : "h-[19px] w-4"} />
           </div>
-          <span className="text-[0.625rem] tracking-[0.012px] text-zinc-700">{pageLabel}</span>
+          <span className="text-[0.625rem] tracking-[0.012px] text-zinc-700 dark:text-zinc-300">{pageLabel}</span>
         </div>
       </div>
       <div className="relative h-[210px] w-full bg-effect-glass-white-36">

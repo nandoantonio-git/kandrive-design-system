@@ -39,9 +39,9 @@ export interface TemplateReviewModalItemProps extends Omit<React.ComponentProps<
 }
 
 const SEVERITY_META: Record<ReviewSeverity, { label: string; icon: typeof AlertTriangle; className: string }> = {
-  duplicado: { label: "Duplicado", icon: AlertTriangle, className: "bg-[var(--color-feedback-warning-subtle,#f59e0b33)] text-[var(--color-feedback-warning,#c38418)]" },
-  incongruente: { label: "Incongruente", icon: AlertCircle, className: "bg-zinc-200 text-zinc-600" },
-  ok: { label: "OK", icon: CheckCircle2, className: "bg-zinc-200 text-zinc-600" },
+  duplicado: { label: "Duplicado", icon: AlertTriangle, className: "bg-[var(--color-feedback-warning-subtle,#f59e0b33)] text-[var(--color-feedback-warning,#c38418)] dark:bg-[#f59e0b4d] dark:text-[#fbbf24]" },
+  incongruente: { label: "Incongruente", icon: AlertCircle, className: "bg-zinc-200 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300" },
+  ok: { label: "OK", icon: CheckCircle2, className: "bg-zinc-200 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300" },
 }
 
 /**
@@ -70,6 +70,14 @@ const SEVERITY_META: Record<ReviewSeverity, { label: string; icon: typeof AlertT
  * (não `-70/50`, composição de opacidades diferente) e uma borda quase
  * invisível `rgba(107,107,104,0.05)` (não `border-zinc-100`, bem mais
  * opaca/visível). Ambos corrigidos.
+ *
+ * 🧩 Inferido (Regra 9): `--color-feedback-warning`/`-subtle` não têm
+ * definição em `.dark` (mesmo gap documentado em `molecule/callout`) — par
+ * `dark:` aplicado direto no hex de fallback, mesmos valores usados lá
+ * (`#f59e0b4d`/`#fbbf24`) por consistência. Borda quase invisível
+ * `rgba(107,107,104,0.05)` espelhada pra `rgba(255,255,255,0.08)` (mesma
+ * lógica do `--effect-glass-dark-20`: tint escuro sobre superfície clara
+ * vira tint claro sobre superfície escura).
  */
 function TemplateReviewModalItem({ item, isExpanded, onToggleExpand, className, ...props }: TemplateReviewModalItemProps) {
   const meta = SEVERITY_META[item.severity]
@@ -80,7 +88,7 @@ function TemplateReviewModalItem({ item, isExpanded, onToggleExpand, className, 
     <div
       data-slot="template-review-modal-item"
       className={cn(
-        "flex flex-col gap-3 rounded-lg border border-[rgba(107,107,104,0.05)] bg-effect-glass-white-50 p-3",
+        "flex flex-col gap-3 rounded-lg border border-[rgba(107,107,104,0.05)] dark:border-[rgba(255,255,255,0.08)] bg-effect-glass-white-50 p-3",
         className
       )}
       {...props}
@@ -93,7 +101,7 @@ function TemplateReviewModalItem({ item, isExpanded, onToggleExpand, className, 
             aria-expanded={isExpanded}
             disabled={!hasChildren}
             onClick={onToggleExpand}
-            className="flex size-6 shrink-0 items-center justify-center text-zinc-500 disabled:opacity-30"
+            className="flex size-6 shrink-0 items-center justify-center text-zinc-500 disabled:opacity-30 dark:text-zinc-400"
           >
             {isExpanded ? (
               <ChevronDown aria-hidden="true" className="size-4" />
@@ -101,10 +109,10 @@ function TemplateReviewModalItem({ item, isExpanded, onToggleExpand, className, 
               <ChevronRight aria-hidden="true" className="size-4" />
             )}
           </button>
-          <Folder aria-hidden="true" className="size-4 shrink-0 text-zinc-500" />
+          <Folder aria-hidden="true" className="size-4 shrink-0 text-zinc-500 dark:text-zinc-400" />
           <div className="flex flex-col gap-1">
-            <span className="text-sm text-zinc-900">{item.name}</span>
-            <span className="text-xs text-zinc-600">{item.itemsLabel}</span>
+            <span className="text-sm text-zinc-900 dark:text-zinc-100">{item.name}</span>
+            <span className="text-xs text-zinc-600 dark:text-zinc-300">{item.itemsLabel}</span>
           </div>
         </div>
         <div className="flex items-center gap-3">
@@ -115,7 +123,7 @@ function TemplateReviewModalItem({ item, isExpanded, onToggleExpand, className, 
           <button
             type="button"
             onClick={item.onRename}
-            className="rounded-sm text-sm font-medium text-zinc-500 transition-all hover:text-zinc-700 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 motion-safe:active:scale-[0.98]"
+            className="rounded-sm text-sm font-medium text-zinc-500 transition-all hover:text-zinc-700 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 motion-safe:active:scale-[0.98] dark:text-zinc-400 dark:hover:text-zinc-300"
           >
             Renomear
           </button>
@@ -128,12 +136,12 @@ function TemplateReviewModalItem({ item, isExpanded, onToggleExpand, className, 
           </button>
         </div>
       </div>
-      <div className="flex items-center gap-2 rounded border border-zinc-200 bg-zinc-50 p-2 text-xs text-zinc-600">
+      <div className="flex items-center gap-2 rounded border border-zinc-200 bg-zinc-50 p-2 text-xs text-zinc-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300">
         <span>{item.suggestedPathLabel ?? "Template Sugerido:"}</span>
         {pathSegments.map((segment, index) => (
           <React.Fragment key={segment}>
-            {index > 0 ? <ChevronRight aria-hidden="true" className="size-3 text-zinc-400" /> : null}
-            <span className="text-zinc-900">{segment}</span>
+            {index > 0 ? <ChevronRight aria-hidden="true" className="size-3 text-zinc-400 dark:text-zinc-500" /> : null}
+            <span className="text-zinc-900 dark:text-zinc-100">{segment}</span>
           </React.Fragment>
         ))}
       </div>
@@ -142,10 +150,10 @@ function TemplateReviewModalItem({ item, isExpanded, onToggleExpand, className, 
           {item.children!.map((child) => (
             <li key={child.name} className="flex items-center justify-between py-1">
               <div className="flex items-center gap-2">
-                <File aria-hidden="true" className="size-4 shrink-0 text-zinc-400" />
+                <File aria-hidden="true" className="size-4 shrink-0 text-zinc-400 dark:text-zinc-500" />
                 <div className="flex flex-col">
-                  <span className="text-sm text-zinc-900">{child.name}</span>
-                  <span className="text-xs text-zinc-600">{child.meta}</span>
+                  <span className="text-sm text-zinc-900 dark:text-zinc-100">{child.name}</span>
+                  <span className="text-xs text-zinc-600 dark:text-zinc-300">{child.meta}</span>
                 </div>
               </div>
               <PushButton

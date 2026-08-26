@@ -58,7 +58,7 @@ function ArchiveBrowserModalSidebar({
     <nav
       data-slot="archive-browser-modal-sidebar"
       className={cn(
-        "h-full w-60 shrink-0 rounded-xl bg-effect-glass-white-36 px-4 pt-8 pb-6 shadow-[0px_8px_20px_rgba(0,0,0,0.12)]",
+        "h-full w-60 shrink-0 rounded-xl bg-effect-glass-white-36 px-4 pt-8 pb-6 shadow-[0px_8px_20px_rgba(0,0,0,0.12)] dark:shadow-[0px_8px_20px_rgba(0,0,0,0.5)]",
         className
       )}
       {...props}
@@ -73,8 +73,8 @@ function ArchiveBrowserModalSidebar({
                 aria-current={isActive || undefined}
                 onClick={() => selectPage(page)}
                 className={cn(
-                  "flex w-full items-center gap-1.5 rounded-md px-2 py-1 text-base font-medium text-zinc-800 transition-colors hover:bg-zinc-100 active:bg-zinc-200",
-                  isActive ? "bg-zinc-100" : "opacity-50 hover:opacity-100"
+                  "flex w-full items-center gap-1.5 rounded-md px-2 py-1 text-base font-medium text-zinc-800 transition-colors hover:bg-zinc-100 active:bg-zinc-200 dark:text-zinc-100 dark:hover:bg-zinc-800 dark:active:bg-zinc-700",
+                  isActive ? "bg-zinc-100 dark:bg-zinc-800" : "opacity-50 hover:opacity-100"
                 )}
               >
                 <ItemIcon aria-hidden="true" className={cn("size-4", isActive && "text-brand-teal")} />
@@ -84,8 +84,8 @@ function ArchiveBrowserModalSidebar({
           )
         })}
       </ul>
-      <div className="mt-4 flex flex-col gap-1 border-t border-zinc-200 pt-3">
-        <span className="text-xs font-medium text-zinc-500">Etiquetas</span>
+      <div className="mt-4 flex flex-col gap-1 border-t border-zinc-200 pt-3 dark:border-zinc-700">
+        <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400">Etiquetas</span>
         <FileTypeLabel kind="image" className="px-2" />
       </div>
     </nav>

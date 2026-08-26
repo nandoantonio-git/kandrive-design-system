@@ -77,16 +77,16 @@ function FolderTagChip({
       data-expanded={isExpanded || undefined}
       data-selected={selected || undefined}
       className={cn(
-        "inline-flex h-7 shrink-0 items-center gap-1.5 rounded-full bg-zinc-100 pr-2 pl-2.5 text-sm font-medium text-zinc-700",
+        "inline-flex h-7 shrink-0 items-center gap-1.5 rounded-full bg-zinc-100 dark:bg-zinc-800 pr-2 pl-2.5 text-sm font-medium text-zinc-700 dark:text-zinc-300",
         "transition-colors",
-        "hover:bg-zinc-200",
+        "hover:bg-zinc-200 dark:hover:bg-zinc-800",
         "data-[selected]:bg-brand-teal-light data-[selected]:text-brand-teal-dark",
         "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
         className
       )}
       {...props}
     >
-      <FolderIcon className="size-3.5 shrink-0 text-zinc-500" aria-hidden="true" />
+      <FolderIcon className="size-3.5 shrink-0 text-zinc-500 dark:text-zinc-400" aria-hidden="true" />
       <span className={cn("truncate", isExpanded && "max-w-none")}>{label}</span>
       {onRemove ? (
         <button
@@ -96,9 +96,9 @@ function FolderTagChip({
           disabled={disabled}
           onClick={onRemove}
           className={cn(
-            "inline-flex size-5 shrink-0 items-center justify-center rounded-full text-zinc-500",
+            "inline-flex size-5 shrink-0 items-center justify-center rounded-full text-zinc-500 dark:text-zinc-400",
             "transition-colors motion-safe:active:scale-95",
-            "hover:bg-zinc-200 hover:text-zinc-700",
+            "hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:text-zinc-700 dark:hover:text-zinc-300",
             "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50"
           )}
         >

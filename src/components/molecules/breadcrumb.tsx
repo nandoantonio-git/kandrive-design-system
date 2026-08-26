@@ -26,11 +26,11 @@ function Breadcrumb({ segments, className, ...props }: BreadcrumbProps) {
       {segments.map((segment, index) => (
         <React.Fragment key={segment}>
           {index > 0 ? (
-            <Icon name="ChevronRight" aria-hidden="true" className="size-3.5 shrink-0 text-zinc-400" />
+            <Icon name="ChevronRight" aria-hidden="true" className="size-3.5 shrink-0 text-zinc-400 dark:text-zinc-500" />
           ) : null}
           <span
             className={cn(
-              "text-sm whitespace-nowrap text-zinc-500",
+              "text-sm whitespace-nowrap text-zinc-500 dark:text-zinc-400",
               index === segments.length - 1 && "text-brand-teal"
             )}
           >

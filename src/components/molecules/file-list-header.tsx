@@ -93,7 +93,7 @@ function FileListHeader({
       </div>
       {isStorageStatus ? (
         <div className="px-3 pb-4">
-          <span className="text-base text-zinc-700">{dateLabel}</span>
+          <span className="text-base text-zinc-700 dark:text-zinc-300">{dateLabel}</span>
         </div>
       ) : null}
     </div>

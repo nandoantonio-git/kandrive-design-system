@@ -57,7 +57,7 @@ function LabelStorageAlert({ variant = "default", className, ...props }: LabelSt
       data-slot="label-storage-alert"
       data-variant={variant}
       className={cn(
-        "inline-flex gap-1 rounded-full bg-black/14 py-1 pr-3 pl-4 text-zinc-700",
+        "inline-flex gap-1 rounded-full bg-black/14 py-1 pr-3 pl-4 text-zinc-700 dark:bg-white/14 dark:text-zinc-300",
         variant === "variant2" ? "items-center" : "items-end",
         className
       )}

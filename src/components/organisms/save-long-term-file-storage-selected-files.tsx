@@ -52,7 +52,7 @@ function SaveLongTermFileStorageSelectedFiles({
       {files.map((file) => (
         <ArchiveBrowserModalListItem key={file.name} fileName={file.name} meta={file.meta} />
       ))}
-      <AddButton label="Adicionar arquivos" onClick={onAddFiles} className="w-full border-zinc-200" />
+      <AddButton label="Adicionar arquivos" onClick={onAddFiles} className="w-full border-zinc-200 dark:border-zinc-700" />
     </div>
   )
 }

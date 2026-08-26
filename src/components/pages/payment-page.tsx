@@ -73,14 +73,14 @@ function CollapsibleSection({
         aria-expanded={open}
         className="flex h-[54px] w-full items-center justify-between px-5 text-left"
       >
-        <span className="flex items-center gap-2 text-base font-medium text-zinc-950">
+        <span className="flex items-center gap-2 text-base font-medium text-zinc-950 dark:text-zinc-100">
           <Icon className="size-4 shrink-0" aria-hidden="true" />
           {title}
         </span>
         <span className="flex items-center gap-4">
-          {!open && summary ? <span className="text-sm text-zinc-500">{summary}</span> : null}
+          {!open && summary ? <span className="text-sm text-zinc-500 dark:text-zinc-400">{summary}</span> : null}
           <ChevronDown
-            className={cn("size-4 text-zinc-500 transition-transform", open && "rotate-180")}
+            className={cn("size-4 text-zinc-500 dark:text-zinc-400 transition-transform", open && "rotate-180")}
             aria-hidden="true"
           />
         </span>
@@ -133,7 +133,7 @@ function PaymentPage({
   const selected = PLAN_TIERS.find((plan) => plan.id === selectedPlan) ?? PLAN_TIERS[2]
 
   return (
-    <div data-slot="payment-page" className={cn("flex w-full flex-col bg-[#eaeaea]", className)} {...props}>
+    <div data-slot="payment-page" className={cn("flex w-full flex-col bg-[#eaeaea] dark:bg-zinc-900", className)} {...props}>
       <Header page="settings" />
       <div className="mx-auto flex w-full max-w-[1440px] flex-col items-end gap-5 px-12 py-8">
         <div className="flex w-full flex-col items-center gap-2 pb-5">
@@ -145,14 +145,14 @@ function PaymentPage({
           />
         </div>
 
-        <div className="flex w-full flex-col gap-6 rounded-xl border border-zinc-200 bg-effect-glass-white-50">
-          <p className="px-5 pt-6 text-2xl font-bold text-zinc-950">Confirmar upgrade para Kandrive Pro</p>
+        <div className="flex w-full flex-col gap-6 rounded-xl border border-zinc-200 bg-effect-glass-white-50 dark:border-zinc-700">
+          <p className="px-5 pt-6 text-2xl font-bold text-zinc-950 dark:text-zinc-100">Confirmar upgrade para Kandrive Pro</p>
 
-          <div className="flex flex-col divide-y divide-zinc-200 border-t border-zinc-200">
+          <div className="flex flex-col divide-y divide-zinc-200 border-t border-zinc-200 dark:divide-zinc-700 dark:border-zinc-700">
             <CollapsibleSection icon={HardDrive} title="Seu armazenamento" summary="92% usado" defaultOpen={defaultOpen}>
               <div className="flex items-center justify-between text-sm">
-                <span className="text-zinc-950">13.8 GB de 15 GB usados</span>
-                <span className="rounded-full border border-zinc-200 px-2 py-0.5 text-xs text-zinc-500">Plano Free</span>
+                <span className="text-zinc-950 dark:text-zinc-100">13.8 GB de 15 GB usados</span>
+                <span className="rounded-full border border-zinc-200 px-2 py-0.5 text-xs text-zinc-500 dark:border-zinc-700 dark:text-zinc-400">Plano Free</span>
               </div>
               <StorageBarExpanded
                 segments={[
@@ -161,7 +161,7 @@ function PaymentPage({
                 ]}
                 className="h-2.5 max-w-none"
               />
-              <div className="flex items-center gap-6 text-sm text-zinc-500">
+              <div className="flex items-center gap-6 text-sm text-zinc-500 dark:text-zinc-400">
                 <span className="flex items-center gap-1.5">
                   <span className="size-2 shrink-0 rounded-full bg-brand-pink-dark" aria-hidden="true" />
                   Acesso rápido: 9.2 GB
@@ -182,25 +182,25 @@ function PaymentPage({
                       key={plan.id}
                       className={cn(
                         "flex min-w-px flex-1 flex-col gap-3 rounded-lg border p-4",
-                        isSelected ? "border-brand-teal bg-brand-teal-light" : "border-zinc-300"
+                        isSelected ? "border-brand-teal bg-brand-teal-light" : "border-zinc-300 dark:border-zinc-700"
                       )}
                     >
                       <div className="flex items-start justify-between">
                         <div>
-                          <p className="text-base font-semibold text-zinc-950">{plan.name}</p>
-                          <p className="text-[0.8125rem] text-zinc-500">{plan.storageLabel}</p>
+                          <p className="text-base font-semibold text-zinc-950 dark:text-zinc-100">{plan.name}</p>
+                          <p className="text-[0.8125rem] text-zinc-500 dark:text-zinc-400">{plan.storageLabel}</p>
                         </div>
                         {plan.status ? (
-                          <span className="rounded-full bg-white/80 px-2 py-0.5 text-[0.6875rem] font-medium text-brand-secondary">
+                          <span className="rounded-full bg-white/80 px-2 py-0.5 text-[0.6875rem] font-medium text-brand-secondary dark:bg-zinc-900/80">
                             {plan.status === "current" ? "Atual" : "Selecionado"}
                           </span>
                         ) : null}
                       </div>
-                      {plan.description ? <p className="text-sm text-zinc-500">{plan.description}</p> : null}
-                      <p className="text-[1.375rem] font-bold text-zinc-950">{plan.price}</p>
+                      {plan.description ? <p className="text-sm text-zinc-500 dark:text-zinc-400">{plan.description}</p> : null}
+                      <p className="text-[1.375rem] font-bold text-zinc-950 dark:text-zinc-100">{plan.price}</p>
                       <ul className="flex flex-col gap-1.5">
                         {plan.features.map((feature) => (
-                          <li key={feature} className="flex items-start gap-2 text-[0.8125rem] text-zinc-700">
+                          <li key={feature} className="flex items-start gap-2 text-[0.8125rem] text-zinc-700 dark:text-zinc-300">
                             <Check className="mt-0.5 size-3.5 shrink-0 text-brand-teal" aria-hidden="true" />
                             {feature}
                           </li>
@@ -225,18 +225,18 @@ function PaymentPage({
                 })}
               </div>
 
-              <div className="flex flex-col gap-4 rounded-lg border border-zinc-200 p-4">
-                <div className="flex items-center gap-2 text-sm font-medium text-zinc-950">
+              <div className="flex flex-col gap-4 rounded-lg border border-zinc-200 p-4 dark:border-zinc-700">
+                <div className="flex items-center gap-2 text-sm font-medium text-zinc-950 dark:text-zinc-100">
                   <Receipt className="size-3.5 shrink-0" aria-hidden="true" />
                   Cobrança do plano selecionado
                 </div>
-                <div className="inline-flex w-fit items-center rounded-lg border border-zinc-300 p-0.5">
+                <div className="inline-flex w-fit items-center rounded-lg border border-zinc-300 p-0.5 dark:border-zinc-700">
                   <button
                     type="button"
                     onClick={() => onBillingCycleChange?.("monthly")}
                     className={cn(
                       "rounded-md px-3 py-1.5 text-sm font-medium",
-                      billingCycle === "monthly" ? "bg-brand-teal text-white" : "text-zinc-500"
+                      billingCycle === "monthly" ? "bg-brand-teal text-white" : "text-zinc-500 dark:text-zinc-400"
                     )}
                   >
                     Mensal
@@ -246,17 +246,17 @@ function PaymentPage({
                     onClick={() => onBillingCycleChange?.("annual")}
                     className={cn(
                       "rounded-md px-3 py-1.5 text-sm font-medium",
-                      billingCycle === "annual" ? "bg-brand-teal text-white" : "text-zinc-500"
+                      billingCycle === "annual" ? "bg-brand-teal text-white" : "text-zinc-500 dark:text-zinc-400"
                     )}
                   >
                     Anual <span className="text-xs opacity-80">· economize 17%</span>
                   </button>
                 </div>
-                <div className="rounded-md bg-zinc-100 p-3">
-                  <p className="text-[0.8125rem] text-zinc-500">A partir de hoje</p>
-                  <p className="text-2xl font-bold text-zinc-950">$12/mês</p>
+                <div className="rounded-md bg-zinc-100 p-3 dark:bg-zinc-800">
+                  <p className="text-[0.8125rem] text-zinc-500 dark:text-zinc-400">A partir de hoje</p>
+                  <p className="text-2xl font-bold text-zinc-950 dark:text-zinc-100">$12/mês</p>
                 </div>
-                <div className="flex flex-col gap-2 text-sm text-zinc-700">
+                <div className="flex flex-col gap-2 text-sm text-zinc-700 dark:text-zinc-300">
                   <span className="flex items-center gap-2">
                     <CircleCheck className="size-4 shrink-0 text-brand-teal" aria-hidden="true" />
                     Cobrado mensalmente. Cancele quando quiser.
@@ -277,9 +277,9 @@ function PaymentPage({
                 <SettingsField label="CVC" type="text" placeholder="123" />
               </div>
               <SettingsField label="E-mail para recibo" type="email" placeholder="voce@email.com" className="w-full" />
-              <div className="flex items-start gap-2.5 rounded-lg bg-zinc-100 p-3.5">
-                <Info className="mt-0.5 size-4 shrink-0 text-zinc-500" aria-hidden="true" />
-                <p className="flex items-start gap-1.5 text-[0.8125rem] text-zinc-500">
+              <div className="flex items-start gap-2.5 rounded-lg bg-zinc-100 p-3.5 dark:bg-zinc-800">
+                <Info className="mt-0.5 size-4 shrink-0 text-zinc-500 dark:text-zinc-400" aria-hidden="true" />
+                <p className="flex items-start gap-1.5 text-[0.8125rem] text-zinc-500 dark:text-zinc-400">
                   <Lock className="mt-0.5 size-3.5 shrink-0" aria-hidden="true" />
                   Stripe Elements protege os dados do cartão. O Kandrive não armazena o número completo.
                 </p>
@@ -295,7 +295,7 @@ function PaymentPage({
         </div>
       </div>
 
-      <div className="flex w-full items-center justify-center px-12 py-4 text-base text-black">
+      <div className="flex w-full items-center justify-center px-12 py-4 text-base text-black dark:text-zinc-100">
         <span>©2026 KanDrive</span>
       </div>
     </div>

@@ -38,7 +38,7 @@ function LoginPage({ cardProps, onCreateAccount, className, ...props }: LoginPag
   return (
     <div
       data-slot="login-page"
-      className={cn("relative flex min-h-[1022px] w-full items-center justify-center overflow-hidden bg-zinc-50", className)}
+      className={cn("relative flex min-h-[1022px] w-full items-center justify-center overflow-hidden bg-zinc-50 dark:bg-zinc-900", className)}
       {...props}
     >
       <div
@@ -52,7 +52,7 @@ function LoginPage({ cardProps, onCreateAccount, className, ...props }: LoginPag
       <div className="relative flex flex-col items-center gap-8 py-16">
         <img src={kandriveLogo} alt="Kandrive" className="h-[52px] w-[204px] shrink-0" />
         <CardLogin {...cardProps} />
-        <a href="#criar-conta" onClick={onCreateAccount} className="text-sm text-zinc-600 hover:underline">
+        <a href="#criar-conta" onClick={onCreateAccount} className="text-sm text-zinc-600 dark:text-zinc-300 hover:underline">
           Ainda não tem conta?{" "}
           <span className="font-medium text-brand-teal">Crie uma agora</span>
         </a>

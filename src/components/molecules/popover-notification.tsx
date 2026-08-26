@@ -82,7 +82,7 @@ function PopoverNotification({
       className={cn(
         "relative flex w-[344px] flex-col gap-0.5 rounded-xl p-3",
         isTransient ? "h-0 overflow-clip p-0 opacity-0" : isTall ? "min-h-[66px]" : "min-h-[59px]",
-        !isTransient && "shadow-[0px_8px_40px_rgba(0,0,0,0.12)]",
+        !isTransient && "shadow-[0px_8px_40px_rgba(0,0,0,0.12)] dark:shadow-[0px_8px_40px_rgba(0,0,0,0.5)]",
         className
       )}
       {...props}
@@ -94,9 +94,9 @@ function PopoverNotification({
             <CloseButton onClick={onClose} />
           </div>
           <div className="relative h-3.5 w-[322px]">
-            <p className="absolute top-0 left-0 w-[287px] text-base text-zinc-700">{resolvedTitle}</p>
+            <p className="absolute top-0 left-0 w-[287px] text-base text-zinc-700 dark:text-zinc-300">{resolvedTitle}</p>
             <div className="absolute top-0 left-[300px] flex flex-col items-end gap-2">
-              <span className="text-[0.6875rem] leading-[14px] whitespace-nowrap text-zinc-300">{timestamp}</span>
+              <span className="text-[0.6875rem] leading-[14px] whitespace-nowrap text-zinc-300 dark:text-zinc-400">{timestamp}</span>
               {showImage ? (
                 <img
                   alt=""

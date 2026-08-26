@@ -92,9 +92,9 @@ function FileList({
       data-state={state}
       className={cn(
         "flex w-full cursor-pointer items-center gap-4 rounded-lg px-3 py-2 transition-colors",
-        "hover:bg-zinc-100 active:bg-brand-teal-light",
+        "hover:bg-zinc-100 dark:hover:bg-zinc-800 active:bg-brand-teal-light",
         isSm ? "max-w-[560px]" : "max-w-[1025px]",
-        state === "hover" && "bg-zinc-100",
+        state === "hover" && "bg-zinc-100 dark:bg-zinc-800",
         state === "pressed" && "bg-brand-teal-light",
         className
       )}
@@ -110,7 +110,7 @@ function FileList({
       {(format === "list" || format === "storage") && size ? (
         <span className="shrink-0 text-base text-brand-secondary-light">{size}</span>
       ) : null}
-      {isSm ? <Icon name="ArrowRight" className="size-5 shrink-0 text-zinc-400" /> : null}
+      {isSm ? <Icon name="ArrowRight" className="size-5 shrink-0 text-zinc-400 dark:text-zinc-500" /> : null}
     </div>
   )
 }
@@ -123,7 +123,7 @@ function FileListArchiveItem({ name, showName }: { name: string; showName: boole
     >
       <FolderArchiveGlyph aria-hidden="true" className="h-[31.846px] w-9 shrink-0" />
       {showName ? (
-        <span className="flex h-3 w-full items-start justify-center overflow-hidden text-[0.625rem] whitespace-nowrap text-zinc-700 tracking-[0.012px]">
+        <span className="flex h-3 w-full items-start justify-center overflow-hidden text-[0.625rem] whitespace-nowrap text-zinc-700 dark:text-zinc-300 tracking-[0.012px]">
           {name}
         </span>
       ) : null}

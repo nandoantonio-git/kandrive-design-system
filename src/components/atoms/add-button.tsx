@@ -50,12 +50,12 @@ function AddButton({
       data-state={state}
       disabled={isDisabled}
       className={cn(
-        "inline-flex h-8 shrink-0 items-center justify-center gap-2 rounded-md border border-zinc-300/70 bg-effect-glass-white-05 px-4 text-xs text-brand-teal transition-colors",
+        "inline-flex h-8 shrink-0 items-center justify-center gap-2 rounded-md border border-zinc-300/70 bg-effect-glass-white-05 px-4 text-xs text-brand-teal transition-colors dark:border-zinc-700/70",
         state === "idle" && "hover:bg-zinc-500/15 active:bg-brand-teal active:text-white",
         state === "hover" && "bg-zinc-500/15",
         state === "pressed" && "bg-brand-teal text-white",
         "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
-        "disabled:pointer-events-none disabled:text-zinc-300 disabled:opacity-60",
+        "disabled:pointer-events-none disabled:text-zinc-300 disabled:opacity-60 dark:disabled:text-zinc-700",
         className
       )}
       {...props}

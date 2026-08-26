@@ -63,15 +63,15 @@ function ArchiveBrowserModal({
       role="dialog"
       aria-label="Adicionar arquivos"
       className={cn(
-        "flex h-[544px] w-[760px] flex-col gap-4 overflow-hidden rounded-[32px] glass-edge bg-effect-glass-white-70 px-6 pt-6 pb-5 shadow-[0px_8px_20px_rgba(0,0,0,0.12)]",
+        "flex h-[544px] w-[760px] flex-col gap-4 overflow-hidden rounded-[32px] glass-edge bg-effect-glass-white-70 px-6 pt-6 pb-5 shadow-[0px_8px_20px_rgba(0,0,0,0.12)] dark:shadow-[0px_8px_20px_rgba(0,0,0,0.5)]",
         className
       )}
       {...props}
     >
       <div className="flex items-start justify-between">
         <div className="flex flex-col gap-3">
-          <h2 className="text-2xl font-medium text-zinc-900">Adicionar arquivos</h2>
-          <p className="text-base text-zinc-700">Adicione os arquivos que deseja guardar em longo prazo</p>
+          <h2 className="text-2xl font-medium text-zinc-900 dark:text-zinc-100">Adicionar arquivos</h2>
+          <p className="text-base text-zinc-700 dark:text-zinc-300">Adicione os arquivos que deseja guardar em longo prazo</p>
         </div>
         <CloseButton size="md" onClick={onCancel} />
       </div>
@@ -84,7 +84,7 @@ function ArchiveBrowserModal({
         />
       </div>
       <div className="flex items-center justify-between">
-        <p className="text-sm font-medium text-zinc-800">
+        <p className="text-sm font-medium text-zinc-800 dark:text-zinc-100">
           {selectedCount} selecionados · economia de {savingsLabel}
         </p>
         <div className="flex gap-3">

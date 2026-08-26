@@ -108,17 +108,17 @@ function CleanSpaceLargeFiles({
   return (
     <section
       data-slot="clean-space-large-files"
-      className={cn("flex flex-col gap-3 rounded-lg border border-zinc-200 bg-effect-glass-white-36 p-4", className)}
+      className={cn("flex flex-col gap-3 rounded-lg border border-zinc-200 bg-effect-glass-white-36 p-4 dark:border-zinc-700", className)}
       {...props}
     >
       <div className="flex items-center justify-between">
-        <h3 className="text-xl font-medium text-zinc-900">Arquivos grandes</h3>
+        <h3 className="text-xl font-medium text-zinc-900 dark:text-zinc-100">Arquivos grandes</h3>
         <div className="flex gap-2">
           <PushButton
             variant="neutral"
             disabled={selectedNames.length === 0}
             onClick={deselectAll}
-            className="h-auto border-none bg-transparent p-0 text-xs font-normal text-zinc-300 hover:bg-transparent disabled:opacity-100"
+            className="h-auto border-none bg-transparent p-0 text-xs font-normal text-zinc-300 hover:bg-transparent disabled:opacity-100 dark:text-zinc-700"
           >
             Desfazer seleção
           </PushButton>
@@ -131,7 +131,7 @@ function CleanSpaceLargeFiles({
           </PushButton>
         </div>
       </div>
-      <ul className="flex max-h-64 flex-col gap-1 overflow-auto rounded-lg border border-zinc-100 p-1">
+      <ul className="flex max-h-64 flex-col gap-1 overflow-auto rounded-lg border border-zinc-100 p-1 dark:border-zinc-800">
         {files.map((file) => (
           <li key={file.name}>
             <CleanSpaceListSelection
@@ -151,7 +151,7 @@ function CleanSpaceLargeFiles({
           disabled={selectedNames.length === 0}
           icon={Trash2}
           onClick={deleteSelected}
-          className="h-8 gap-2 rounded-md border-[#bbb] bg-effect-glass-white-36 px-3 text-xs"
+          className="h-8 gap-2 rounded-md border-[#bbb] dark:border-[#52525b] bg-effect-glass-white-36 px-3 text-xs"
         >
           Excluir
         </PushButton>

@@ -37,7 +37,7 @@ function CardNeedMoreHelp({ onContactSupport, className, ...props }: CardNeedMor
         className={cn(
           "rounded-lg border border-effect-overlay-subtle bg-effect-overlay-subtle px-[17px] py-[9px]",
           "text-base font-medium text-brand-secondary-dark shadow-sm",
-          "transition-colors hover:bg-zinc-200/40 motion-safe:active:scale-[0.98]"
+          "transition-colors hover:bg-zinc-200/40 dark:hover:bg-zinc-800/40 motion-safe:active:scale-[0.98]"
         )}
       >
         Falar com o suporte

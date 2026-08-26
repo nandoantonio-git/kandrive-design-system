@@ -61,15 +61,15 @@ function CleanSpaceStorage({
       role="dialog"
       aria-label="Liberar Espaço"
       className={cn(
-        "flex w-full max-w-2xl flex-col gap-4 rounded-3xl border border-zinc-200 bg-effect-glass-white-70 p-6 shadow-lg",
+        "flex w-full max-w-2xl flex-col gap-4 rounded-3xl border border-zinc-200 bg-effect-glass-white-70 p-6 shadow-lg dark:border-zinc-700",
         className
       )}
       {...props}
     >
       <div className="flex items-start justify-between">
         <div className="flex flex-col gap-3">
-          <h2 className="text-2xl font-medium text-zinc-900">Liberar Espaço</h2>
-          <p className="text-base text-zinc-700">Gerencie arquivos que ocupam seu espaço</p>
+          <h2 className="text-2xl font-medium text-zinc-900 dark:text-zinc-100">Liberar Espaço</h2>
+          <p className="text-base text-zinc-700 dark:text-zinc-300">Gerencie arquivos que ocupam seu espaço</p>
         </div>
         <CloseButton size="md" onClick={onClose} />
       </div>

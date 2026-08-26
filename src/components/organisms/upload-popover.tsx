@@ -101,7 +101,9 @@ function UploadPopover({
       role="status"
       className={cn(
         "relative flex w-96 flex-col gap-3 overflow-hidden rounded-xl bg-effect-glass-white-70 p-6 backdrop-blur-md",
-        files.length > 0 ? "shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]" : "border border-zinc-200 shadow-lg",
+        files.length > 0
+          ? "shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)] dark:shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.6)]"
+          : "border border-zinc-200 shadow-lg dark:border-zinc-700",
         className
       )}
       {...props}
@@ -109,14 +111,14 @@ function UploadPopover({
       <div
         aria-hidden="true"
         data-slot="upload-popover-fill"
-        className="absolute inset-y-0 left-0 bg-zinc-500/10 transition-[width]"
+        className="absolute inset-y-0 left-0 bg-zinc-500/10 transition-[width] dark:bg-zinc-400/10"
         style={{ width: `${clamped}%` }}
       />
       <div className="relative flex items-center justify-between">
         <div className="flex items-center gap-2">
           <span className="relative grid size-6 shrink-0 place-items-center text-brand-teal">
             <svg aria-hidden="true" viewBox="0 0 24 24" className="absolute inset-0 size-6 -rotate-90">
-              <circle cx="12" cy="12" r="9" strokeWidth="2.5" className="stroke-zinc-200" fill="none" />
+              <circle cx="12" cy="12" r="9" strokeWidth="2.5" className="stroke-zinc-200 dark:stroke-zinc-700" fill="none" />
               <circle
                 cx="12"
                 cy="12"
@@ -133,9 +135,9 @@ function UploadPopover({
             <span className="relative text-[0.5rem] font-bold leading-none text-brand-teal">{clamped}%</span>
           </span>
           <div className="flex flex-col">
-            <span className="text-sm font-bold text-zinc-900">Enviando {fileCount} arquivos</span>
+            <span className="text-sm font-bold text-zinc-900 dark:text-zinc-100">Enviando {fileCount} arquivos</span>
             {secondsLeft !== undefined ? (
-              <span className="text-xs text-zinc-500">{secondsLeft} segundos restantes</span>
+              <span className="text-xs text-zinc-500 dark:text-zinc-400">{secondsLeft} segundos restantes</span>
             ) : null}
           </div>
         </div>
@@ -144,7 +146,7 @@ function UploadPopover({
             type="button"
             aria-label="Pausar envio"
             onClick={onPause}
-            className="rounded-md p-1.5 text-zinc-500 hover:bg-zinc-100"
+            className="rounded-md p-1.5 text-zinc-500 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
           >
             <Pause aria-hidden="true" className="size-3" />
           </button>
@@ -152,7 +154,7 @@ function UploadPopover({
             type="button"
             aria-label="Maximizar"
             onClick={onExpand}
-            className="rounded-md p-1.5 text-zinc-500 hover:bg-zinc-100"
+            className="rounded-md p-1.5 text-zinc-500 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
           >
             <Maximize2 aria-hidden="true" className="size-3" />
           </button>
@@ -160,16 +162,16 @@ function UploadPopover({
             type="button"
             aria-label="Mais opções"
             onClick={onMore}
-            className="rounded-md p-1.5 text-zinc-500 hover:bg-zinc-100"
+            className="rounded-md p-1.5 text-zinc-500 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
           >
             <MoreVertical aria-hidden="true" className="size-3" />
           </button>
-          <span className="mx-1 h-4 w-px bg-zinc-200" aria-hidden="true" />
+          <span className="mx-1 h-4 w-px bg-zinc-200 dark:bg-zinc-700" aria-hidden="true" />
           <button
             type="button"
             aria-label="Fechar"
             onClick={onClose}
-            className="rounded-md p-1.5 text-zinc-500 hover:bg-zinc-100"
+            className="rounded-md p-1.5 text-zinc-500 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
           >
             <X aria-hidden="true" className="size-3" />
           </button>
@@ -178,18 +180,18 @@ function UploadPopover({
       {files.length > 0 ? (
         <div className="relative flex flex-col gap-3">
           <div className="flex flex-col gap-1.5">
-            <div className="flex items-center justify-between text-[0.625rem] font-bold tracking-wide text-zinc-400 uppercase">
+            <div className="flex items-center justify-between text-[0.625rem] font-bold tracking-wide text-zinc-400 uppercase dark:text-zinc-500">
               <span>Em andamento</span>
               <span>{clamped}%</span>
             </div>
-            <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-200">
+            <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-800">
               <div className="h-full rounded-full bg-brand-teal transition-[width]" style={{ width: `${clamped}%` }} />
             </div>
           </div>
-          <ul className="flex flex-col gap-1 border-t border-zinc-200 pt-2">
+          <ul className="flex flex-col gap-1 border-t border-zinc-200 pt-2 dark:border-zinc-700">
             {files.map((file) => (
-              <li key={file.name} className="flex items-center gap-2 text-xs text-zinc-600">
-                <FileIcon aria-hidden="true" className="size-2.5 shrink-0 text-zinc-400" />
+              <li key={file.name} className="flex items-center gap-2 text-xs text-zinc-600 dark:text-zinc-300">
+                <FileIcon aria-hidden="true" className="size-2.5 shrink-0 text-zinc-400 dark:text-zinc-500" />
                 <span className="flex-1 truncate">{file.name}</span>
                 {file.done ? (
                   <CheckCircle2 aria-hidden="true" className="size-2.5 shrink-0 text-brand-teal" />

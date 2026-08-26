@@ -33,6 +33,10 @@ export interface ArchiveBrowserModalListItemProps
  * badge de tier vazia (`I...;1421:18290`) presente nos dois nodes Figma
  * não tem conteúdo confirmado em nenhum dos dois — omitida (Regra 11,
  * nunca inventar elemento não confirmável).
+ *
+ * 🧩 Inferido (Regra 9): overlay `rgba(191,199,210,x)` é o valor literal de
+ * `--effect-overlay-subtle`, não a classe-token — dark: usa o par
+ * `rgba(168,176,189,x)` já definido para esse token em `.dark`.
  */
 function ArchiveBrowserModalListItem({
   fileName,
@@ -46,16 +50,16 @@ function ArchiveBrowserModalListItem({
       data-slot="archive-browser-modal-list-item"
       data-selected={selected || undefined}
       className={cn(
-        "flex w-full items-center gap-3 rounded-md px-2 py-1.5 transition-colors hover:bg-[rgba(191,199,210,0.16)]",
-        selected && "bg-[rgba(191,199,210,0.1)]",
+        "flex w-full items-center gap-3 rounded-md px-2 py-1.5 transition-colors hover:bg-[rgba(191,199,210,0.16)] dark:hover:bg-[rgba(168,176,189,0.22)]",
+        selected && "bg-[rgba(191,199,210,0.1)] dark:bg-[rgba(168,176,189,0.15)]",
         className
       )}
       {...props}
     >
       <ArchiveItemGlyph aria-hidden="true" className="h-[41px] w-[36.68px] shrink-0" />
       <div className="flex min-w-0 flex-1 flex-col items-start gap-0.5 overflow-hidden">
-        <p className="w-full truncate text-base tracking-[0.0192px] text-zinc-950">{fileName}</p>
-        <p className="w-full truncate text-[0.6875rem] leading-4 tracking-[0.2px] text-zinc-500">{meta}</p>
+        <p className="w-full truncate text-base tracking-[0.0192px] text-zinc-950 dark:text-zinc-100">{fileName}</p>
+        <p className="w-full truncate text-[0.6875rem] leading-4 tracking-[0.2px] text-zinc-500 dark:text-zinc-400">{meta}</p>
       </div>
     </div>
   )

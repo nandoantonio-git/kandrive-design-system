@@ -172,8 +172,44 @@
        ilustrativo, não um dark theme real do app). */
     --effect-glass-surface-dark: #262626;
     --effect-overlay-subtle: #bfc7d21a;
+    /* cor/neutro/superfície-fundo e /borda-padrão — declaradas aqui pela
+       primeira vez (achado: `organism/Header` e `organism/FileListContainer`
+       já referenciavam `var(--neutral-surface-background,#f3f3f3)`/
+       `var(--neutral-border-default,#707070)` como se existissem; a
+       variável nunca foi de fato declarada em lugar nenhum, então sempre
+       resolvia pro fallback hex literal — mesmo efeito visual, mas
+       invisível a um futuro override de tema). Valor idêntico ao fallback
+       que já estava em uso, sem mudança visual em modo claro. */
+    --neutral-surface-background: #f3f3f3;
+    --neutral-border-default: #707070;
 }
 
+/*
+ * Modo escuro — reabertura de escopo (decisão humana, ver Materials.mdx):
+ * até aqui só existia como preview ilustrativo de 1 token
+ * (`--effect-glass-surface-dark`, achado 2026-08-20). Agora é um tema
+ * real, ativado pela classe `.dark` (`@custom-variant dark` acima) via
+ * toggle do Storybook (`@storybook/addon-themes`).
+ *
+ * 🧩 Inferido (Regra 9): o Figma só confirma `Mode=Dark` pro material
+ * Liquid Glass (`Tokens/Materials`) — nenhuma tela/frame de componente de
+ * UI tem variante dark confirmada. Os valores abaixo (exceto onde anotado
+ * "Figma-confirmado") são derivados por engenharia a partir dos tokens
+ * claros, nunca apresentados como fato do Figma.
+ *
+ * Convenção de inversão da rampa Zinc (Regra 3: paleta neutra suspensa —
+ * a maioria dos neutros do catálogo usa classes `zinc-*` literais do
+ * Tailwind, não um token, então não há como "virar o tema" de uma vez só
+ * pra essas; cada uso precisa da própria classe `dark:`). Espelhamento
+ * usado em toda a varredura do catálogo, pra não redecidir tom por tom:
+ *   bg zinc-50/white   → dark:bg-zinc-900
+ *   bg zinc-100        → dark:bg-zinc-800
+ *   bg/border zinc-200 → dark:bg-zinc-800 / dark:border-zinc-700
+ *   border zinc-300    → dark:border-zinc-700
+ *   text zinc-500      → dark:text-zinc-400
+ *   text zinc-600/700  → dark:text-zinc-300
+ *   text zinc-800/900/950 → dark:text-zinc-100
+ */
 .dark {
     --background: oklch(0.145 0 0);
     --foreground: oklch(0.985 0 0);
@@ -189,7 +225,12 @@
     --muted-foreground: oklch(0.708 0 0);
     --accent: oklch(0.269 0 0);
     --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.704 0.191 22.216);
+    /* Alinhado ao `--destructive: #bc3426` Figma-confirmado do `:root`
+       (a variante shadcn genérica anterior nunca foi atualizada quando
+       `#bc3426` substituiu o vermelho genérico) — clareado pra contraste
+       em fundo escuro, mesma lógica de "aumentar lightness, manter matiz"
+       aplicada aos demais tokens de marca abaixo. */
+    --destructive: #e35d4a;
     --border: oklch(1 0 0 / 10%);
     --input: oklch(1 0 0 / 15%);
     --ring: oklch(0.556 0 0);
@@ -206,6 +247,45 @@
     --sidebar-accent-foreground: oklch(0.985 0 0);
     --sidebar-border: oklch(1 0 0 / 10%);
     --sidebar-ring: oklch(0.556 0 0);
+
+    /* cor/marca/primária — clareada/dessaturada levemente pra contraste em
+       fundo quase-preto (mesma matiz, `lightness` maior — critério padrão
+       de tema escuro, não Figma-confirmado). */
+    --brand-teal: #29b6cf;
+    --brand-teal-dark: #1a8fa3;
+    /* Papel de "tinta leve de fundo" se inverte no escuro: em modo claro é
+       um lavado quase-branco (`#c8dce3`) pra usar como fundo sutil sobre
+       cartão claro; no escuro o equivalente de baixa ênfase é um lavado
+       escuro com matiz teal, não uma cor clara. */
+    --brand-teal-light: #173239;
+    --brand-secondary: #c9c7c2;
+    /* Par heading/corpo de `--brand-secondary-dark/-light` se inverte:
+       heading vira quase-branco, corpo vira cinza claro (mesmo padrão já
+       usado pelo `--foreground`/`--muted-foreground` do shadcn acima). */
+    --brand-secondary-dark: #f5f4f2;
+    --brand-secondary-light: #a8a6a1;
+    --brand-pink-dark: #d94f72;
+    --brand-pink-light: #f27a95;
+    /* Liquid Glass — tint escuro (base quase-preta) no lugar do tint
+       branco, mesma escala de opacidade do `:root` (Regra 10: só a cor de
+       tint muda, a spec do material continua em `Tokens/Materials`). */
+    --effect-glass-light-45: #2a2a2a73;
+    --effect-glass-white-70: #1a1a1ab2;
+    --effect-glass-white-50: #1a1a1a80;
+    --effect-glass-white-36: #1a1a1a5c;
+    --effect-glass-white-05: #1a1a1a0d;
+    /* `--effect-glass-dark-20` é usado como overlay de escurecimento
+       (hover/press) sobre uma superfície clara — em modo escuro um overlay
+       assim precisa clarear, não escurecer, senão fica invisível sobre
+       fundo já escuro (preto sobre preto). */
+    --effect-glass-dark-20: #ffffff33;
+    /* Reaproveita o valor de `--effect-glass-surface-dark` já
+       Figma-confirmado (Tokens/Materials, `get_variable_defs`) em vez de
+       inventar um novo — é literalmente o par escuro deste token. */
+    --effect-glass-surface-light: var(--effect-glass-surface-dark);
+    --effect-overlay-subtle: #a8b0bd26;
+    --neutral-surface-background: #18181b;
+    --neutral-border-default: #52525b;
 }
 
 @layer base {
@@ -266,6 +346,14 @@
      duplicaria sombra sem necessidade). */
   .glass-shadow-sm {
     filter: drop-shadow(0px 2px 16px #09090b14);
+  }
+
+  /* 🧩 Inferido (Regra 9) — sombra escura de baixa opacidade some contra
+     um fundo já escuro (mesmo problema de "preto sobre preto" do
+     `--effect-glass-dark-20`). Só a opacidade sobe em modo escuro, a
+     spec de blur/offset do material (Regra 10) continua igual. */
+  .dark .glass-shadow-sm {
+    filter: drop-shadow(0px 2px 16px rgba(0, 0, 0, 0.6));
   }
 }
 

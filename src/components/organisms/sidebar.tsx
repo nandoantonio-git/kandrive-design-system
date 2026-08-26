@@ -187,7 +187,7 @@ function Sidebar({
         data-slot="sidebar"
         data-pages="setting"
         className={cn(
-          "flex w-[223px] flex-col gap-1 rounded-2xl border border-zinc-200 bg-effect-glass-white-70 px-2 pt-3 pb-6 backdrop-blur-md",
+          "flex w-[223px] flex-col gap-1 rounded-2xl border border-zinc-200 bg-effect-glass-white-70 px-2 pt-3 pb-6 backdrop-blur-md dark:border-zinc-700",
           className
         )}
         {...props}
@@ -199,9 +199,9 @@ function Sidebar({
               aria-current={activeSection === section ? "page" : undefined}
               onClick={() => onNavigateSection?.(section)}
               className={cn(
-                "rounded-md px-2 py-1.5 text-left text-base font-medium text-zinc-900 transition-colors",
-                "hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
-                activeSection === section ? "bg-zinc-100" : "text-zinc-500"
+                "rounded-md px-2 py-1.5 text-left text-base font-medium text-zinc-900 transition-colors dark:text-zinc-100",
+                "hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 dark:hover:bg-zinc-800",
+                activeSection === section ? "bg-zinc-100 dark:bg-zinc-800" : "text-zinc-500 dark:text-zinc-400"
               )}
             >
               {label}
@@ -215,9 +215,9 @@ function Sidebar({
           aria-current={activeSection === "excluir-conta" ? "page" : undefined}
           onClick={() => onNavigateSection?.("excluir-conta")}
           className={cn(
-            "rounded-md px-2 py-1.5 text-left text-base font-medium text-[#71717a] transition-colors",
-            "hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
-            activeSection === "excluir-conta" && "bg-zinc-100"
+            "rounded-md px-2 py-1.5 text-left text-base font-medium text-[#71717a] transition-colors dark:text-zinc-400",
+            "hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 dark:hover:bg-zinc-800",
+            activeSection === "excluir-conta" && "bg-zinc-100 dark:bg-zinc-800"
           )}
         >
           Excluir conta
@@ -232,13 +232,13 @@ function Sidebar({
         data-slot="sidebar"
         data-collapsed="true"
         className={cn(
-          "flex w-fit items-center gap-2 rounded-lg border border-zinc-200 bg-effect-glass-white-70 px-3 py-2 shadow-md backdrop-blur-md",
+          "flex w-fit items-center gap-2 rounded-lg border border-zinc-200 bg-effect-glass-white-70 px-3 py-2 shadow-md backdrop-blur-md dark:border-zinc-700",
           className
         )}
         {...props}
       >
         <img src={kandriveMark} alt="Kandrive" className="h-[18.664px] w-[14.99px] shrink-0" />
-        <span className="flex items-center gap-1.5 rounded-md bg-zinc-100 px-2.5 py-1 text-[0.625rem] whitespace-nowrap text-brand-secondary-dark">
+        <span className="flex items-center gap-1.5 rounded-md bg-zinc-100 px-2.5 py-1 text-[0.625rem] whitespace-nowrap text-brand-secondary-dark dark:bg-zinc-800">
           <Icon name="Folder" aria-hidden="true" className="size-3.5 text-brand-teal" />
           {activePage}
         </span>
@@ -247,7 +247,7 @@ function Sidebar({
           data-slot="sidebar-collapse"
           aria-label="Expandir sidebar"
           onClick={handleToggleCollapse}
-          className="flex size-6 shrink-0 items-center justify-center rounded-full text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-900 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50"
+          className="flex size-6 shrink-0 items-center justify-center rounded-full text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-900 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
         >
           <PanelLeft aria-hidden="true" className="size-3.5" />
         </button>
@@ -260,7 +260,7 @@ function Sidebar({
       data-slot="sidebar"
       data-collapsed="false"
       className={cn(
-        "relative flex w-72 flex-col gap-4 rounded-2xl border border-zinc-200 bg-effect-glass-surface-light px-4 pt-1 pb-4 backdrop-blur-md",
+        "relative flex w-72 flex-col gap-4 rounded-2xl border border-zinc-200 bg-effect-glass-surface-light px-4 pt-1 pb-4 backdrop-blur-md dark:border-zinc-700",
         className
       )}
       {...props}
@@ -271,7 +271,7 @@ function Sidebar({
           data-slot="sidebar-collapse"
           aria-label="Colapsar sidebar"
           onClick={handleToggleCollapse}
-          className="flex size-6 items-center justify-center rounded-full text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-900 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50"
+          className="flex size-6 items-center justify-center rounded-full text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-900 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
         >
           <PanelLeft aria-hidden="true" className="size-3.5" />
         </button>
@@ -289,9 +289,9 @@ function Sidebar({
               aria-current={activePage === page ? "page" : undefined}
               onClick={() => onNavigate?.(page)}
               className={cn(
-                "flex w-full items-center gap-1.5 rounded-md px-2 py-1 text-base font-medium text-zinc-900",
-                "transition-[opacity,background-color] hover:bg-zinc-100 hover:opacity-100 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
-                activePage === page ? "bg-zinc-100" : "opacity-50"
+                "flex w-full items-center gap-1.5 rounded-md px-2 py-1 text-base font-medium text-zinc-900 dark:text-zinc-100",
+                "transition-[opacity,background-color] hover:bg-zinc-100 hover:opacity-100 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 dark:hover:bg-zinc-800",
+                activePage === page ? "bg-zinc-100 dark:bg-zinc-800" : "opacity-50"
               )}
             >
               <ItemIcon aria-hidden="true" className="size-4" />
@@ -301,8 +301,8 @@ function Sidebar({
         ))}
       </ul>
       {tags.length > 0 ? (
-        <div className="flex flex-col gap-1 border-t border-zinc-200 pt-3">
-          <span className="text-xs font-medium text-zinc-500">Etiquetas</span>
+        <div className="flex flex-col gap-1 border-t border-zinc-200 pt-3 dark:border-zinc-700">
+          <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400">Etiquetas</span>
           {tags.map((tag) => (
             <SidebarTagsItem
               key={tag}
@@ -313,7 +313,7 @@ function Sidebar({
           ))}
         </div>
       ) : null}
-      <div className="border-t border-zinc-200 pt-3">
+      <div className="border-t border-zinc-200 pt-3 dark:border-zinc-700">
         <StorageSidebar {...storageProps} manageSpaceLabel="Gerir Espaço" />
       </div>
     </nav>

@@ -117,9 +117,9 @@ const SCOPE_SELECTED_CLASSES: Record<ScopeKind, Record<Extract<TypeLabelState, "
     "selected-pressed": "bg-[color-mix(in_srgb,var(--brand-teal-dark),black_50%)] text-white",
   },
   global: {
-    selected: "bg-brand-teal-light text-zinc-700",
-    "selected-hover": "bg-[color-mix(in_srgb,var(--brand-teal-light),var(--color-zinc-500)_20%)] text-zinc-700",
-    "selected-pressed": "bg-[color-mix(in_srgb,var(--brand-teal-light),black_14%)] text-zinc-700",
+    selected: "bg-brand-teal-light text-zinc-700 dark:text-zinc-300",
+    "selected-hover": "bg-[color-mix(in_srgb,var(--brand-teal-light),var(--color-zinc-500)_20%)] text-zinc-700 dark:text-zinc-300",
+    "selected-pressed": "bg-[color-mix(in_srgb,var(--brand-teal-light),black_14%)] text-zinc-700 dark:text-zinc-300",
   },
   default: {
     selected: "bg-brand-teal text-white",
@@ -155,10 +155,10 @@ function ScopeTypeLabel({ kind, label, active = false, state, className, ...prop
         selectedState
           ? cn("rounded-md", SCOPE_SELECTED_CLASSES[kind][selectedState])
           : isDefaultIdle
-            ? "rounded-xl text-zinc-700"
+            ? "rounded-xl text-zinc-700 dark:text-zinc-300"
             : cn(
-                "cursor-pointer rounded-md border border-zinc-200 text-zinc-900",
-                resolvedState === "hover" ? "bg-zinc-500/20" : "bg-zinc-100 hover:bg-zinc-200"
+                "cursor-pointer rounded-md border border-zinc-200 text-zinc-900 dark:border-zinc-700 dark:text-zinc-100",
+                resolvedState === "hover" ? "bg-zinc-500/20" : "bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-800"
               ),
         className
       )}

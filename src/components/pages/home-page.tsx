@@ -87,7 +87,7 @@ function HomePage({
   ...props
 }: HomePageProps) {
   return (
-    <div data-slot="home-page" className={cn("flex w-full flex-col bg-zinc-200", className)} {...props}>
+    <div data-slot="home-page" className={cn("flex w-full flex-col bg-zinc-200 dark:bg-zinc-900", className)} {...props}>
       <Header page="navbar" />
       <div className="mx-auto flex w-[1376px] items-start gap-12 px-1 py-2.5">
         <Sidebar {...sidebarProps} />
@@ -114,10 +114,10 @@ function HomePage({
               // em vez de uma prop de variante nova — mesmo dado já controla
               // os 2 estados.
               <div className="flex flex-col items-center gap-6 py-24 text-center">
-                <div className="flex size-[267px] items-center justify-center rounded-full bg-zinc-100">
-                  <Icon name="CloudDownload" className="size-[85px] text-zinc-400" aria-hidden="true" />
+                <div className="flex size-[267px] items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800">
+                  <Icon name="CloudDownload" className="size-[85px] text-zinc-400 dark:text-zinc-500" aria-hidden="true" />
                 </div>
-                <div className="flex flex-col gap-1 text-zinc-500">
+                <div className="flex flex-col gap-1 text-zinc-500 dark:text-zinc-400">
                   <p>Arraste os arquivos que deseja armazenar</p>
                   <p>ou use o botão &quot;Adicionar&quot;</p>
                 </div>

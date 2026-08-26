@@ -33,7 +33,7 @@ function TagOrgTemplateName({
       type="text"
       placeholder={placeholder}
       className={cn(
-        "h-9 min-w-0 rounded-md bg-brand-secondary-light/45 px-3 py-1.5 text-base text-zinc-950 placeholder:text-zinc-950 [field-sizing:content]",
+        "h-9 min-w-0 rounded-md bg-brand-secondary-light/45 px-3 py-1.5 text-base text-zinc-950 placeholder:text-zinc-950 [field-sizing:content] dark:text-zinc-100 dark:placeholder:text-zinc-100",
         "transition-colors focus-visible:ring-2 focus-visible:ring-brand-teal/50 focus-visible:outline-none",
         className
       )}

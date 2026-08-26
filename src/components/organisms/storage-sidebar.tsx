@@ -59,14 +59,14 @@ function StorageSidebar({
                 Acesso rápido
               </span>
               <StorageBar tier="quick-access" value={quickAccessValue} />
-              <span className="text-xs text-zinc-700">{quickAccessLabel}</span>
+              <span className="text-xs text-zinc-700 dark:text-zinc-300">{quickAccessLabel}</span>
             </div>
             <div className="flex flex-col gap-1">
               <span className="w-fit rounded-md bg-brand-teal-dark px-2 py-0.5 text-xs text-brand-teal-foreground">
                 Longo prazo
               </span>
               <StorageBar tier="long-term" value={longTermValue} />
-              <span className="text-xs text-zinc-700">{longTermLabel}</span>
+              <span className="text-xs text-zinc-700 dark:text-zinc-300">{longTermLabel}</span>
             </div>
           </div>
           <div className="flex items-center gap-3 px-2">

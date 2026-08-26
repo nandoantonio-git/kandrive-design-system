@@ -66,7 +66,7 @@ function DropdownSelectGroupBy({
       )}
       {...props}
     >
-      <span className="px-1 text-[0.625rem] font-bold tracking-wide text-zinc-500">AGRUPAR</span>
+      <span className="px-1 text-[0.625rem] font-bold tracking-wide text-zinc-500 dark:text-zinc-400">AGRUPAR</span>
       <div className="relative flex w-full flex-col items-start gap-1 rounded-xl glass-edge glass-shadow-sm bg-effect-glass-light-45 py-2 backdrop-blur-sm">
         <button
           type="button"
@@ -74,7 +74,7 @@ function DropdownSelectGroupBy({
           aria-expanded={expanded}
           disabled={disabled}
           onClick={() => onExpandedChange?.(!expanded)}
-          className="flex w-full items-center gap-2 px-3 text-xs text-zinc-700"
+          className="flex w-full items-center gap-2 px-3 text-xs text-zinc-700 dark:text-zinc-300"
         >
           <Icon name="Group" className="size-3.5 shrink-0" />
           <span className="min-w-0 flex-1 truncate">{value ?? "Agrupar"}</span>

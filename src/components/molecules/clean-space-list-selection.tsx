@@ -69,6 +69,10 @@ export interface CleanSpaceListSelectionProps
  * mesmo critério já usado em outros componentes desta base pra garantir
  * interação real), não como fato do Figma. Ganhou também `focus-visible`
  * (ausente antes), mesmo padrão já usado em `PushButton`/`CloseButton`.
+ *
+ * 🧩 Inferido (Regra 9): fundo `zinc-500` do checkbox não marcado não está
+ * na tabela-espelho — dark: sobe um degrau (zinc-400) mantendo a opacidade,
+ * mesmo critério de "texto mudo" (zinc-500→zinc-400).
  */
 function CleanSpaceListSelection({
   name,
@@ -96,7 +100,7 @@ function CleanSpaceListSelection({
           "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
           selected
             ? "border-transparent bg-brand-teal hover:bg-brand-teal/90 active:bg-brand-teal/80"
-            : "border-[#ececf0] bg-zinc-500/20 hover:bg-zinc-500/30 active:bg-zinc-500/40"
+            : "border-[#ececf0] bg-zinc-500/20 hover:bg-zinc-500/30 active:bg-zinc-500/40 dark:border-[#3f3f46] dark:bg-zinc-400/20 dark:hover:bg-zinc-400/30 dark:active:bg-zinc-400/40"
         )}
       >
         {selected ? <Check aria-hidden="true" strokeWidth={2.5} className="size-3 text-white" /> : null}
@@ -105,8 +109,8 @@ function CleanSpaceListSelection({
         <FileGlyph aria-hidden="true" className="h-[23px] w-[21px]" />
       </span>
       <div className="min-w-0 flex-1">
-        <p className="truncate text-base tracking-[0.0192px] text-zinc-950">{name}</p>
-        <p className="truncate text-[0.625rem] tracking-[0.012px] text-zinc-500">{meta}</p>
+        <p className="truncate text-base tracking-[0.0192px] text-zinc-950 dark:text-zinc-100">{name}</p>
+        <p className="truncate text-[0.625rem] tracking-[0.012px] text-zinc-500 dark:text-zinc-400">{meta}</p>
       </div>
       <StorageTierBadge tier={tier} />
     </div>

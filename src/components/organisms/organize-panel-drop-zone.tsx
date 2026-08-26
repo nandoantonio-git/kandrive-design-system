@@ -84,6 +84,10 @@ export interface OrganizePanelDropZoneProps extends React.ComponentProps<"div"> 
  * renderizando uma miniatura 320×420 com ícone reduzido para 64×64, sem
  * exceção humana registrada. O root e o ícone voltaram ao tamanho
  * Figma-confirmado.
+ *
+ * 🧩 Inferido (Regra 9): badge `bg-zinc-600` do modo deixado sem par `dark:`
+ * — já é um chip sólido escuro (mesmo status do `border-zinc-800` "dark UI
+ * chrome" da tabela-espelho), contraste suficiente nos dois temas.
  */
 function OrganizePanelDropZone({
   mode,

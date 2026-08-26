@@ -26,10 +26,10 @@ function TypeSpecimen({ token, weightLabel, fontWeight, sizePx, sizeRem, lineHei
   return (
     <div
       data-slot="type-specimen"
-      className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-zinc-100 py-3 last:border-b-0"
+      className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-zinc-100 py-3 last:border-b-0 dark:border-zinc-800"
     >
       <span
-        className="min-w-0 truncate text-zinc-900"
+        className="min-w-0 truncate text-zinc-900 dark:text-zinc-100"
         style={{ fontFamily: "Figtree, sans-serif", fontWeight, fontSize: sizeRem, lineHeight }}
       >
         Aa Kandrive
@@ -38,12 +38,12 @@ function TypeSpecimen({ token, weightLabel, fontWeight, sizePx, sizeRem, lineHei
         <button
           type="button"
           onClick={() => copy(token)}
-          className="cursor-pointer text-xs font-semibold text-zinc-900 hover:text-brand-teal"
+          className="cursor-pointer text-xs font-semibold text-zinc-900 dark:text-zinc-100 hover:text-brand-teal"
           title="Copiar nome do token"
         >
           {copied === token ? "Copiado!" : token}
         </button>
-        <span className="text-[0.6875rem] text-zinc-500">
+        <span className="text-[0.6875rem] text-zinc-500 dark:text-zinc-400">
           {weightLabel} · {sizePx}px · {lineHeight} lh
         </span>
         <button
@@ -52,7 +52,7 @@ function TypeSpecimen({ token, weightLabel, fontWeight, sizePx, sizeRem, lineHei
           className="cursor-pointer"
           title="Copiar classe Tailwind"
         >
-          <code className="rounded bg-zinc-100 px-1 py-0.5 text-[0.625rem] text-zinc-500 hover:text-brand-teal">
+          <code className="rounded bg-zinc-100 px-1 py-0.5 text-[0.625rem] text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400 hover:text-brand-teal">
             {copied === cssSnippet ? "Copiado!" : cssSnippet}
           </code>
         </button>
@@ -68,7 +68,7 @@ export interface TypeScaleProps {
 
 function TypeScale({ entries, className }: TypeScaleProps) {
   return (
-    <div data-slot="type-scale" className={cn("flex flex-col rounded-xl border border-zinc-200 bg-white p-4", className)}>
+    <div data-slot="type-scale" className={cn("flex flex-col rounded-xl border border-zinc-200 bg-white p-4 dark:border-zinc-700 dark:bg-zinc-900", className)}>
       {entries.map((entry) => (
         <TypeSpecimen key={entry.token} {...entry} />
       ))}

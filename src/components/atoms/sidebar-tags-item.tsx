@@ -43,7 +43,7 @@ function SidebarTagsItem({
       onClick={onClick}
       className={cn(
         "flex w-full items-start rounded-[6px] py-0.5",
-        isSelected && "bg-[#00000024]",
+        isSelected && "bg-[#00000024] dark:bg-[#ffffff24]",
         className
       )}
       {...props}

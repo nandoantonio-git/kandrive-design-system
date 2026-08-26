@@ -281,7 +281,7 @@ function FaqInfoCardCollapsed({ topic = "FirstSteps", className, ...props }: Faq
           type="button"
           onClick={() => setExpanded((value) => !value)}
           aria-expanded={expanded}
-          className="shrink-0 rounded-md border border-zinc-200 bg-white/80 px-2 py-1 text-[0.625rem] text-brand-secondary transition-colors hover:bg-zinc-100 motion-safe:active:scale-95"
+          className="shrink-0 rounded-md border border-zinc-200 bg-white/80 px-2 py-1 text-[0.625rem] text-brand-secondary transition-colors hover:bg-zinc-100 motion-safe:active:scale-95 dark:border-zinc-700 dark:bg-zinc-900/80 dark:hover:bg-zinc-800"
         >
           {expanded ? "Recolher" : figmaButtonLabel}
         </button>
@@ -294,7 +294,7 @@ function FaqInfoCardCollapsed({ topic = "FirstSteps", className, ...props }: Faq
           {data.questions.map((item, index) => (
             <details
               key={item.question}
-              className="group border-b border-zinc-500/20 py-4 last:border-b-0"
+              className="group border-b border-zinc-500/20 py-4 last:border-b-0 dark:border-zinc-400/20"
               open={index === 0}
             >
               <summary className="flex cursor-pointer list-none items-start justify-between gap-2 text-sm font-medium text-brand-secondary-dark [&::-webkit-details-marker]:hidden">

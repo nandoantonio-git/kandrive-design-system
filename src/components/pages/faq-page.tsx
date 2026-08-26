@@ -50,7 +50,7 @@ export interface FaqPageProps extends React.ComponentProps<"div"> {
  */
 function FaqPage({ variant = "expanded", sidebarProps, onContactSupport, className, ...props }: FaqPageProps) {
   return (
-    <div data-slot="faq-page" className={cn("flex w-full flex-col bg-zinc-200", className)} {...props}>
+    <div data-slot="faq-page" className={cn("flex w-full flex-col bg-zinc-200 dark:bg-zinc-900", className)} {...props}>
       <Header page="settings" />
       <div className="mx-auto flex w-[1376px] items-start gap-12 px-1 py-2.5">
         <Sidebar {...sidebarProps} />

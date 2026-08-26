@@ -22,14 +22,14 @@ function SettingsCard({ title, caption, className, children, ...props }: Setting
     <div
       data-slot="settings-card"
       className={cn(
-        "flex w-[1089px] flex-col gap-4 overflow-hidden rounded-xl border border-zinc-200 bg-effect-glass-white-50 p-6",
+        "flex w-[1089px] flex-col gap-4 overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-700 bg-effect-glass-white-50 p-6",
         className
       )}
       {...props}
     >
       <div className="flex flex-col gap-0.5">
-        <p className="text-base font-semibold text-zinc-950">{title}</p>
-        {caption ? <p className="text-[0.8125rem] text-zinc-500">{caption}</p> : null}
+        <p className="text-base font-semibold text-zinc-950 dark:text-zinc-100">{title}</p>
+        {caption ? <p className="text-[0.8125rem] text-zinc-500 dark:text-zinc-400">{caption}</p> : null}
       </div>
       {children}
     </div>

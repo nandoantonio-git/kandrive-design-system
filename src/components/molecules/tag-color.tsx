@@ -3,12 +3,12 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 
 const TAG_COLORS = [
-  { name: "success", className: "bg-[var(--brand-feedback-success-default,#096)]" },
+  { name: "success", className: "bg-[var(--brand-feedback-success-default,#096)] dark:bg-[#22c55e]" },
   { name: "primary", className: "bg-brand-teal" },
   { name: "primary-dark", className: "bg-brand-teal-dark" },
   { name: "pink-light", className: "bg-brand-pink-light" },
-  { name: "danger", className: "bg-[var(--brand-feedback-danger-default,#bc3426)]" },
-  { name: "warning", className: "bg-[var(--color-feedback-warning,#c38418)]" },
+  { name: "danger", className: "bg-[var(--brand-feedback-danger-default,#bc3426)] dark:bg-[#e35d4a]" },
+  { name: "warning", className: "bg-[var(--color-feedback-warning,#c38418)] dark:bg-[#fbbf24]" },
 ] as const
 
 export type TagColorName = (typeof TAG_COLORS)[number]["name"]
@@ -37,6 +37,13 @@ export interface TagColorProps
  *
  * O alvo de toque usa pseudo-elemento fora do fluxo para não alterar o gap
  * visual Figma-confirmado entre os dots.
+ *
+ * 🧩 Inferido (Regra 9): `--brand-feedback-success-default`/
+ * `-danger-default`/`--color-feedback-warning` não existem em `:root`/
+ * `.dark` (só fallback inline) — pares `dark:` inventados por consistência
+ * com os swatches irmãos (`brand-teal`/`brand-pink-light`, que já mudam de
+ * tom no tema escuro); `danger` reusa o hex real de `--destructive` em
+ * `.dark` (`#e35d4a`).
  */
 function TagColor({ value = "success", onValueChange, className, ...props }: TagColorProps) {
   return (

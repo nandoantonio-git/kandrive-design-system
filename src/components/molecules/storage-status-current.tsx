@@ -45,10 +45,10 @@ function StorageStatusCurrent({
       {...props}
     >
       <div className="flex items-center gap-2">
-        <span className="text-base text-zinc-950">Armazenamento usado:</span>
-        <span className="text-[1.5625rem] font-medium text-zinc-950">{usedAmount}</span>
-        <span className="text-xl text-zinc-950">de {totalAmount}</span>
-        <span className="text-[0.625rem] font-bold text-zinc-500">{scopeAbbr}</span>
+        <span className="text-base text-zinc-950 dark:text-zinc-100">Armazenamento usado:</span>
+        <span className="text-[1.5625rem] font-medium text-zinc-950 dark:text-zinc-100">{usedAmount}</span>
+        <span className="text-xl text-zinc-950 dark:text-zinc-100">de {totalAmount}</span>
+        <span className="text-[0.625rem] font-bold text-zinc-500 dark:text-zinc-400">{scopeAbbr}</span>
       </div>
 
       <button
@@ -65,7 +65,7 @@ function StorageStatusCurrent({
         aria-valuenow={clamped}
         aria-valuemin={0}
         aria-valuemax={100}
-        className="h-1 w-full overflow-hidden rounded-full bg-zinc-500/20"
+        className="h-1 w-full overflow-hidden rounded-full bg-zinc-500/20 dark:bg-zinc-400/20"
       >
         <div className="h-full rounded-full bg-brand-pink-light transition-[width]" style={{ width: `${clamped}%` }} />
       </div>

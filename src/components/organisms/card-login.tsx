@@ -50,8 +50,8 @@ function CardLogin({
       {...props}
     >
       <div className="flex flex-col items-center gap-1 text-center">
-        <h1 className="text-2xl font-semibold text-zinc-900">Bem-vindo de volta</h1>
-        <p className="text-base text-zinc-600">
+        <h1 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">Bem-vindo de volta</h1>
+        <p className="text-base text-zinc-600 dark:text-zinc-300">
           Acesse sua conta segura no
           <br />
           Kandrive
@@ -66,11 +66,11 @@ function CardLogin({
         }}
       >
         <div className="flex flex-col gap-1">
-          <label htmlFor="card-login-email" className="text-base font-medium text-zinc-600">
+          <label htmlFor="card-login-email" className="text-base font-medium text-zinc-600 dark:text-zinc-300">
             E-mail
           </label>
           <div className="relative">
-            <Mail aria-hidden="true" className="pointer-events-none absolute left-[13px] top-1/2 size-5 -translate-y-1/2 text-zinc-400" />
+            <Mail aria-hidden="true" className="pointer-events-none absolute left-[13px] top-1/2 size-5 -translate-y-1/2 text-zinc-400 dark:text-zinc-500" />
             <input
               id="card-login-email"
               type="email"
@@ -78,14 +78,14 @@ function CardLogin({
               placeholder="seu@email.com"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              className="w-full rounded-lg border border-zinc-300 bg-zinc-50/80 py-3.5 pr-3 pl-10 text-base text-zinc-900 placeholder:text-zinc-400 focus-visible:border-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50"
+              className="w-full rounded-lg border border-zinc-300 bg-zinc-50/80 py-3.5 pr-3 pl-10 text-base text-zinc-900 placeholder:text-zinc-400 focus-visible:border-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 dark:border-zinc-700 dark:bg-zinc-900/80 dark:text-zinc-100 dark:placeholder:text-zinc-500"
             />
           </div>
         </div>
 
         <div className="flex flex-col gap-1">
           <div className="flex items-center justify-between">
-            <label htmlFor="card-login-password" className="text-base font-medium text-zinc-600">
+            <label htmlFor="card-login-password" className="text-base font-medium text-zinc-600 dark:text-zinc-300">
               Senha
             </label>
             <button
@@ -97,7 +97,7 @@ function CardLogin({
             </button>
           </div>
           <div className="relative">
-            <Lock aria-hidden="true" className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-zinc-400" />
+            <Lock aria-hidden="true" className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-zinc-400 dark:text-zinc-500" />
             <input
               id="card-login-password"
               type={showPassword ? "text" : "password"}
@@ -105,13 +105,13 @@ function CardLogin({
               placeholder="••••••••"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
-              className="w-full rounded-lg border border-zinc-300 bg-zinc-50/80 py-3.5 pr-10 pl-10 text-base text-zinc-900 placeholder:text-zinc-400 focus-visible:border-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50"
+              className="w-full rounded-lg border border-zinc-300 bg-zinc-50/80 py-3.5 pr-10 pl-10 text-base text-zinc-900 placeholder:text-zinc-400 focus-visible:border-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 dark:border-zinc-700 dark:bg-zinc-900/80 dark:text-zinc-100 dark:placeholder:text-zinc-500"
             />
             <button
               type="button"
               onClick={() => setShowPassword((value) => !value)}
               aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 dark:text-zinc-500 dark:hover:text-zinc-300"
             >
               {showPassword ? <EyeOff aria-hidden="true" className="size-4" /> : <Eye aria-hidden="true" className="size-4" />}
             </button>
@@ -127,23 +127,23 @@ function CardLogin({
       </form>
 
       <div className="flex w-full items-center gap-3 opacity-60">
-        <div className="h-px flex-1 bg-zinc-300" />
-        <span className="text-base font-normal text-zinc-600">OU</span>
-        <div className="h-px flex-1 bg-zinc-300" />
+        <div className="h-px flex-1 bg-zinc-300 dark:bg-zinc-700" />
+        <span className="text-base font-normal text-zinc-600 dark:text-zinc-300">OU</span>
+        <div className="h-px flex-1 bg-zinc-300 dark:bg-zinc-700" />
       </div>
 
       <div className="flex w-full flex-col gap-3">
         <button
           type="button"
           onClick={onGoogleLogin}
-          className="w-full rounded-xl border border-zinc-300 bg-zinc-50/90 py-3.5 text-sm font-medium text-zinc-900 shadow-sm transition-colors hover:bg-zinc-100"
+          className="w-full rounded-xl border border-zinc-300 bg-zinc-50/90 py-3.5 text-sm font-medium text-zinc-900 shadow-sm transition-colors hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-900/90 dark:text-zinc-100 dark:hover:bg-zinc-800"
         >
           Entrar com Google
         </button>
         <button
           type="button"
           onClick={onAppleLogin}
-          className="w-full rounded-xl border border-zinc-300 bg-zinc-50/90 py-3.5 text-sm font-medium text-zinc-900 shadow-sm transition-colors hover:bg-zinc-100"
+          className="w-full rounded-xl border border-zinc-300 bg-zinc-50/90 py-3.5 text-sm font-medium text-zinc-900 shadow-sm transition-colors hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-900/90 dark:text-zinc-100 dark:hover:bg-zinc-800"
         >
           Entrar com Apple
         </button>
