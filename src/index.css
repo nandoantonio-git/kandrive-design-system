@@ -374,3 +374,45 @@
   word-break: break-word;
   white-space: normal;
 }
+
+/* Storybook Docs — affordance de scroll no `<Canvas>` embutido em "Uso".
+   Achado 2026-08-27 (achado do usuário: "fundo cortado" na aba Uso de
+   várias páginas — mesma classe de bug já corrigida em 2026-08-23 pra
+   `#storybook-preview-wrapper`, mas aquela correção mirava o elemento
+   errado. `#storybook-preview-wrapper` só existe no documento de fora
+   (shell do manager, envolve o iframe da Docs inteiro); o elemento que
+   realmente contém e rola cada bloco `<Canvas>` é `.docs-story`
+   (classe estável do addon-docs, vive dentro do iframe de preview — por
+   isso mora aqui em index.css, não em `.storybook/main.ts`). Confirmado
+   via Playwright: `.docs-story` já nasce com `overflow-x: auto` (nada é
+   perdido de verdade, componentes largura-fixa de até 1440px — `Home`/
+   `Organization`/`Settings`/`StorageStatus`/`Faq`/`PlanSelection`/
+   `OrganizeFreeModeCanvas`, 7 dos 102 `.mdx` do catálogo — só ficam
+   parcialmente fora da coluna de ~998px), mas sem nenhuma affordance
+   visual, lendo como "cortado" em vez de "rolável". Mesmo tratamento
+   visual já aprovado pra `#storybook-preview-wrapper` (cores do
+   `docsTheme` em preview.tsx), sem `!important`: ao contrário daquele
+   elemento, o Storybook não seta `background`/`overflow` inline aqui. */
+.docs-story {
+  scrollbar-width: auto;
+  scrollbar-color: #007e96 #f7f7f5;
+  background-repeat: no-repeat;
+  background-attachment: local, local, scroll, scroll;
+  background-image:
+    linear-gradient(to right, #ffffff 30px, rgba(255, 255, 255, 0) 60px),
+    linear-gradient(to left, #ffffff 30px, rgba(255, 255, 255, 0) 60px),
+    linear-gradient(to right, rgba(32, 31, 26, 0.18), rgba(32, 31, 26, 0) 20px),
+    linear-gradient(to left, rgba(32, 31, 26, 0.18), rgba(32, 31, 26, 0) 20px);
+  background-position: left, right, left, right;
+  background-size: 60px 100%, 60px 100%, 20px 100%, 20px 100%;
+}
+.docs-story::-webkit-scrollbar {
+  height: 10px;
+}
+.docs-story::-webkit-scrollbar-track {
+  background: #f7f7f5;
+}
+.docs-story::-webkit-scrollbar-thumb {
+  background: #007e96;
+  border-radius: 999px;
+}
