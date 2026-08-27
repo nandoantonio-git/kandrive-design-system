@@ -26,6 +26,15 @@ export interface IconBaseProps extends Omit<React.ComponentProps<"span">, "child
  * Figma-confirmado: Idle|Default — sem diferença de comportamento descrita
  * entre os dois (gap, Regra 9); `isHoverOn` é o único eixo com efeito
  * visível confirmado.
+ *
+ * Corrigido em 2026-08-27 (achado do usuário: ícone de colapsar a sidebar
+ * sem hover) — mesmo padrão de bug já corrigido em `atom/CloseButton`/
+ * `molecule/FileList`: `isHoverOn` só mudava a cor via prop controlada
+ * externamente, sem nenhuma classe `hover:` real — o ícone nunca reagia ao
+ * mouse de verdade quando usado sem controle explícito de estado. Adicionada
+ * `hover:` real com a mesma cor já usada por `isHoverOn` (interação de mouse
+ * funciona sem prop nenhuma); `isHoverOn` continua funcionando por cima pra
+ * fixar o estado em stories/documentação.
  */
 function IconBase({ icon: Icon = IconBaseGlyph, isHoverOn = false, className, ...props }: IconBaseProps) {
   return (
@@ -33,7 +42,7 @@ function IconBase({ icon: Icon = IconBaseGlyph, isHoverOn = false, className, ..
       data-slot="icon-base"
       data-hover-on={isHoverOn || undefined}
       className={cn(
-        "inline-flex shrink-0 items-center justify-center text-zinc-500 transition-colors dark:text-zinc-400",
+        "inline-flex shrink-0 items-center justify-center text-zinc-500 transition-colors hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-100",
         isHoverOn && "text-zinc-800 dark:text-zinc-100",
         className
       )}
