@@ -37,6 +37,20 @@ const preview: Preview = {
       // 'off' - skip a11y checks entirely
       test: 'todo'
     },
+
+    // Sem isso, o Storybook ordena as categorias de topo alfabeticamente
+    // (`Pages` antes de `Templates`, por causa do P < T) — contradiz a
+    // hierarquia real do atomic design (Atoms → Molecules → Organisms →
+    // Templates → Pages, Página é instância de Template com conteúdo
+    // real, então vem depois, nunca antes). Dentro de cada categoria e em
+    // qualquer coisa fora dessa lista, mantém alfabético (`[]` ao final
+    // de cada nível em vez de listar os componentes 1 a 1).
+    options: {
+      storySort: {
+        method: 'alphabetical',
+        order: ['Atoms', 'Molecules', 'Organisms', 'Templates', 'Pages', 'Tokens'],
+      },
+    },
   },
 
   // Toggle claro/escuro real na toolbar do Storybook — aplica a classe
