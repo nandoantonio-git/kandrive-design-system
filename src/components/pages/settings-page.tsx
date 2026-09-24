@@ -10,7 +10,7 @@ import { SettingsField } from "@/components/molecules/settings-field"
 import { RadioButton } from "@/components/molecules/radio-button"
 import { Callout } from "@/components/molecules/callout"
 import { Switch } from "@/components/atoms/switch"
-import { PushButton } from "@/components/atoms/push-button"
+import { Button } from "@/components/atoms/button"
 import { PlanSelection, type PlanInterval } from "@/components/organisms/plan-selection"
 import { StorageBar } from "@/components/molecules/storage-bar"
 
@@ -111,17 +111,17 @@ function SettingsPage({
                     <SettingsField label="Nome" type="text" />
                     <SettingsField label="E-mail" type="email" />
                   </div>
-                  <PushButton variant="primary" className="h-auto rounded-md px-4 py-2 text-sm">
+                  <Button>
                     Salvar alterações
-                  </PushButton>
+                  </Button>
                 </SettingsCard>
                 <SettingsCard title="Senha" caption="Altere sua senha">
                   <SettingsField label="Senha atual" type="password" className="w-full" />
                   <SettingsField label="Nova senha" type="password" className="w-full" />
                   <SettingsField label="Confirmar nova senha" type="password" className="w-full" />
-                  <PushButton variant="primary" className="h-auto rounded-md px-4 py-2 text-sm">
+                  <Button>
                     Atualizar senha
-                  </PushButton>
+                  </Button>
                 </SettingsCard>
               </>
             ) : null}
@@ -153,12 +153,12 @@ function SettingsPage({
                     ))}
                   </div>
                   <div className="flex items-center gap-3">
-                    <PushButton variant="neutral" className="h-auto rounded-md px-4 py-2 text-sm">
+                    <Button variant="outline">
                       Liberar espaço
-                    </PushButton>
-                    <PushButton variant="primary" className="h-auto rounded-md px-4 py-2 text-sm">
+                    </Button>
+                    <Button>
                       Comprar espaço
-                    </PushButton>
+                    </Button>
                   </div>
                 </SettingsCard>
                 <PlanSelection interval={planInterval} onIntervalChange={onPlanIntervalChange} />
@@ -210,9 +210,9 @@ function SettingsPage({
                     <p className="text-sm font-medium text-zinc-950 dark:text-zinc-100">Exportar meus dados</p>
                     <p className="text-[0.8125rem] text-zinc-500 dark:text-zinc-400">Baixe uma cópia de todos os seus dados no Kandrive.</p>
                   </div>
-                  <PushButton variant="neutral" className="h-auto shrink-0 rounded-md px-4 py-2 text-sm">
+                  <Button variant="outline" className="shrink-0">
                     Exportar dados
-                  </PushButton>
+                  </Button>
                 </div>
                 <p className="text-[0.8125rem] text-zinc-500 dark:text-zinc-400">
                   Consulte nossa Política de Privacidade para saber como tratamos seus dados, conforme a LGPD.
@@ -241,9 +241,9 @@ function SettingsPage({
                     <SelectBox value="DD/MM/AAAA" className="w-full" />
                   </div>
                 </div>
-                <PushButton variant="primary" className="h-auto rounded-md px-4 py-2 text-sm">
+                <Button>
                   Salvar preferências
-                </PushButton>
+                </Button>
               </SettingsCard>
             ) : null}
 
@@ -254,9 +254,9 @@ function SettingsPage({
                   longo prazo — eles não poderão ser recuperados depois.
                 </Callout>
                 <SettingsField label="Confirme sua senha para continuar" type="password" className="w-80" />
-                <PushButton variant="neutral" isDestructive className="h-auto rounded-md px-4 py-2 text-sm">
+                <Button variant="destructive">
                   Excluir conta
-                </PushButton>
+                </Button>
               </SettingsCard>
             ) : null}
           </div>

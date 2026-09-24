@@ -33,7 +33,7 @@ import { cn } from "@/lib/utils"
  * `atom/IconButton` para botões só com ícone.
  */
 const buttonVariants = cva(
-  "inline-flex shrink-0 cursor-pointer items-center justify-center font-medium whitespace-nowrap transition-[background-color,box-shadow,transform] outline-none select-none focus-visible:ring-3 active:not-disabled:translate-y-px disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "inline-flex w-fit shrink-0 cursor-pointer items-center justify-center font-medium whitespace-nowrap transition-[background-color,box-shadow,transform] outline-none select-none focus-visible:ring-3 active:not-disabled:translate-y-px disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
       variant: {

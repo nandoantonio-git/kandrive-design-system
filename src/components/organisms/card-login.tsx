@@ -2,6 +2,7 @@ import * as React from "react"
 import { Mail, Lock, Eye, EyeOff } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/atoms/button"
 
 export interface CardLoginProps extends Omit<React.ComponentProps<"div">, "onSubmit"> {
   onSubmit?: (values: { email: string; password: string }) => void
@@ -118,12 +119,9 @@ function CardLogin({
           </div>
         </div>
 
-        <button
-          type="submit"
-          className="mt-1 w-full rounded-xl bg-brand-teal-action py-3 text-sm font-medium text-brand-teal-foreground shadow-sm transition-colors hover:bg-brand-teal-action/90 motion-safe:active:scale-[0.98]"
-        >
+        <Button type="submit" size="lg" className="mt-1 w-full shadow-sm">
           Entrar
-        </button>
+        </Button>
       </form>
 
       <div className="flex w-full items-center gap-3 opacity-60">
