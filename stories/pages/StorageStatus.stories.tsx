@@ -68,3 +68,16 @@ export const LongTerm: Story = {
   args: { usedLabel: "1 TB em uso", freeLabel: "1 TB livre" },
   render: controlled("long-term"),
 }
+
+// ─── Responsividade (2026-09-24) ─────────────────────────────────────────
+const FIG = (id: string) => ({ design: { type: "figma" as const, url: `https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=${id}` } })
+const vp = (value: "kdMobile" | "kdTablet") => ({ viewport: { value, isRotated: false } })
+
+/** Tablet · 720. Figma `Storage/Total/Tablet`. */
+export const GlobalTablet: Story = { parameters: FIG("1745-14124"), globals: vp("kdTablet"), render: controlled("global") }
+
+/** Mobile · 390: sem Sidebar, BottomNav com FAB Adicionar. Figma `Storage/Total/Mobile`. */
+export const GlobalMobile: Story = { parameters: FIG("1663-8852"), globals: vp("kdMobile"), render: controlled("global") }
+
+/** Mobile · 390, Longo prazo (estado, pela regra dos 3 tipos: o Figma só tem no desktop). */
+export const LongTermMobile: Story = { globals: vp("kdMobile"), render: controlled("long-term") }

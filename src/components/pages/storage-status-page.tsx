@@ -1,7 +1,7 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
-import { Header } from "@/components/organisms/header"
+import { AppShell } from "@/components/templates/app-shell"
 import { Sidebar, type SidebarProps } from "@/components/organisms/sidebar"
 import { Breadcrumb } from "@/components/molecules/breadcrumb"
 import { PageLead } from "@/components/molecules/page-lead"
@@ -58,29 +58,30 @@ function StorageStatusPage({
   ...props
 }: StorageStatusPageProps) {
   return (
-    <div data-slot="storage-status-page" className={cn("flex w-full flex-col bg-zinc-200 dark:bg-zinc-900", className)} {...props}>
-      <Header page="storage" />
-      <div className="mx-auto flex w-[1376px] items-start gap-12 px-1 py-2.5">
-        <Sidebar {...sidebarProps} />
-        <div className="flex flex-1 flex-col gap-2">
-          <Breadcrumb segments={["Home", "Armazenamento"]} />
-          <PageLead title="Armazenamento" className="pb-5" />
-          <StorageStatus
-            scope={scope}
-            onScopeChange={onScopeChange}
-            usedAmount={usedAmount}
-            totalAmount={totalAmount}
-            percent={percent}
-            fileTypeSegments={fileTypeSegments}
-            usedLabel={usedLabel}
-            freeLabel={freeLabel}
-            onManageSpace={onManageSpace}
-            onBuySpace={onBuySpace}
-            className="w-full max-w-none"
-          />
-        </div>
-      </div>
-    </div>
+    <AppShell
+      data-slot="storage-status-page"
+      className={cn("bg-zinc-200 dark:bg-zinc-900", className)}
+      headerProps={{ page: "storage" }}
+      sidebar={<Sidebar {...sidebarProps} />}
+      mobileBottomNav={{ action: "add", active: "pessoal" }}
+      {...props}
+    >
+      <Breadcrumb segments={["Home", "Armazenamento"]} className="hidden tablet:flex" />
+      <PageLead title="Armazenamento" className="tablet:pb-5" />
+      <StorageStatus
+        scope={scope}
+        onScopeChange={onScopeChange}
+        usedAmount={usedAmount}
+        totalAmount={totalAmount}
+        percent={percent}
+        fileTypeSegments={fileTypeSegments}
+        usedLabel={usedLabel}
+        freeLabel={freeLabel}
+        onManageSpace={onManageSpace}
+        onBuySpace={onBuySpace}
+        className="w-full max-w-none"
+      />
+    </AppShell>
   )
 }
 
