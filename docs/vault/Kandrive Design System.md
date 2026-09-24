@@ -24,6 +24,7 @@ Vault de documentação viva do **kandrive-design-system** — o design system S
 - [[Tokens de Cor]]
 - [[Tipografia]]
 - [[Liquid Glass]] — o material visual do produto
+- [[Logo]] — o Kan (canguru) e as cores do logo por modo
 
 ## Regras travadas (AGENTS.md)
 
@@ -40,6 +41,10 @@ As regras abaixo são a "constituição" do projeto — qualquer achado do Figma
 - [[Regra 9 - Figma-confirmado vs Inferido]]
 - [[Regra 10 - Liquid Glass]]
 - [[Regra 11 - Protocolo de Verificação]]
+
+## Marca e tom de voz
+
+- [[Tom de Voz e Personalidade da Marca]] — personagem, arquétipo, dimensões de tom, regras de copy (fonte: projeto Claude Kandrive, não AGENTS.md/Figma — ver nota de proveniência na própria página)
 
 ## Componentes-chave
 
