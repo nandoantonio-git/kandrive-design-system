@@ -30,6 +30,22 @@ const meta = {
       { kind: "video", value: 20 },
       { kind: "other", value: 10 },
     ],
+    files: [
+      { name: "Arquivo 1", size: "100MB" },
+      { name: "Arquivo 2", size: "100MB" },
+      { name: "Arquivo 3", size: "100MB" },
+    ],
+    cleanSpaceProps: {
+      largeFiles: [
+        { name: "huge-backup.zip", meta: "ZIP · 476.84 MB · Aug 5, 2026", tier: "current" },
+        { name: "medium-report.pdf", meta: "PDF · 9.54 MB · Aug 5, 2026", tier: "current" },
+        { name: "small-note.txt", meta: "TXT · 1 KB · Aug 5, 2026", tier: "long term" },
+      ],
+      duplicateGroups: [
+        { name: "Contrato-Fornecedor (3 versões)", copiesLabel: "3 cópias · 4.58 MB" },
+        { name: "Backup-Financeiro (2 versões)", copiesLabel: "2 cópias · 2.98 GB" },
+      ],
+    },
   },
 } satisfies Meta<typeof StorageStatusPage>
 
@@ -76,8 +92,23 @@ const vp = (value: "kdMobile" | "kdTablet") => ({ viewport: { value, isRotated: 
 /** Tablet · 720. Figma `Storage/Total/Tablet`. */
 export const GlobalTablet: Story = { parameters: FIG("1745-14124"), globals: vp("kdTablet"), render: controlled("global") }
 
-/** Mobile · 390: sem Sidebar, BottomNav com FAB Adicionar. Figma `Storage/Total/Mobile`. */
+/** Mobile · 390: sem Sidebar, lista em tabela abaixo do card, BottomNav com FAB Adicionar. Figma `Storage/Total/Mobile`. */
 export const GlobalMobile: Story = { parameters: FIG("1663-8852"), globals: vp("kdMobile"), render: controlled("global") }
+
+/** Limite atingido: card em alerta (valor e aviso em vermelho, barra cheia). Figma `Storage/LimitReached/Desktop`. */
+export const LimitReached: Story = {
+  parameters: FIG("1765-62063"),
+  args: { usedAmount: "90GB", totalAmount: "90GB", percent: 100, limitReached: true },
+  render: controlled("global"),
+}
+/** Modal "Liberar Espaço" por cima da página. Figma `Storage/ManageSpace/Desktop`. */
+export const ManageSpace: Story = { parameters: FIG("1755-55255"), args: { manageSpaceOpen: true }, render: controlled("global") }
+/** Tablet · 720. Figma `Storage/ManageSpace/Tablet`. */
+export const ManageSpaceTablet: Story = { ...ManageSpace, parameters: FIG("1765-59974"), globals: vp("kdTablet") }
+/** Mobile · 390: tela própria, sem título nem card. Figma `Storage/LimitReached/Mobile`. */
+export const LimitReachedMobile: Story = { ...LimitReached, parameters: FIG("1727-23116"), globals: vp("kdMobile") }
+/** Mobile · 390: o modal "Liberar Espaço" em largura total (estado; o Figma só tem desktop e tablet). */
+export const ManageSpaceMobile: Story = { ...ManageSpace, globals: vp("kdMobile") }
 
 /** Mobile · 390, Longo prazo (estado, pela regra dos 3 tipos: o Figma só tem no desktop). */
 export const LongTermMobile: Story = { globals: vp("kdMobile"), render: controlled("long-term") }

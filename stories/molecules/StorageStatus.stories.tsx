@@ -74,3 +74,9 @@ export const Interactive: StoryObj = {
     )
   },
 }
+
+/** Figma `Tier=Alert` (V0.2.1): limite atingido. Valor e aviso em vermelho, barra cheia. */
+export const LimitReached: Story = {
+  args: { scope: "global", usedAmount: "90GB", totalAmount: "90GB", percent: 100, limitReached: true },
+  parameters: { design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1765-62468" } },
+}

@@ -111,9 +111,9 @@ function CleanSpaceLargeFiles({
       className={cn("flex flex-col gap-3 rounded-lg border border-zinc-200 bg-effect-glass-white-36 p-4 dark:border-zinc-700", className)}
       {...props}
     >
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
         <h3 className="text-xl font-medium text-zinc-900 dark:text-zinc-100">Arquivos grandes</h3>
-        <div className="flex gap-2">
+        <div className="flex shrink-0 gap-2">
           <PushButton
             variant="neutral"
             disabled={selectedNames.length === 0}

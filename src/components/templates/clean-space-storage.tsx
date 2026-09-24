@@ -61,7 +61,7 @@ function CleanSpaceStorage({
       role="dialog"
       aria-label="Liberar Espaço"
       className={cn(
-        "flex w-full max-w-2xl flex-col gap-4 rounded-3xl border border-zinc-200 bg-effect-glass-white-70 p-6 shadow-lg dark:border-zinc-700",
+        "flex max-h-[calc(100dvh-2rem)] w-full max-w-2xl flex-col gap-4 overflow-y-auto rounded-3xl border border-zinc-200 bg-effect-glass-white-70 p-6 shadow-lg backdrop-blur-md dark:border-zinc-700",
         className
       )}
       {...props}

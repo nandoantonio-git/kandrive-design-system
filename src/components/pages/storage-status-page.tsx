@@ -6,6 +6,10 @@ import { Sidebar, type SidebarProps } from "@/components/organisms/sidebar"
 import { Breadcrumb } from "@/components/molecules/breadcrumb"
 import { PageLead } from "@/components/molecules/page-lead"
 import { StorageStatus, type StorageScope } from "@/components/molecules/storage-status"
+import { StorageStatusSummary, type StorageSummaryFile } from "@/components/organisms/storage-status-summary"
+import { CleanSpaceStorage, type CleanSpaceStorageProps } from "@/components/templates/clean-space-storage"
+import { Button } from "@/components/atoms/button"
+import { useMinWidth } from "@/lib/use-min-width"
 
 export interface StorageStatusPageProps extends React.ComponentProps<"div"> {
   sidebarProps: SidebarProps
@@ -19,6 +23,13 @@ export interface StorageStatusPageProps extends React.ComponentProps<"div"> {
   freeLabel?: string
   onManageSpace?: () => void
   onBuySpace?: () => void
+  /** Lista de arquivos abaixo do card (`molecule/StorageStatusSummary`). */
+  files?: StorageSummaryFile[]
+  /** `Storage/LimitReached`: card em alerta (desktop e tablet) e tela própria no mobile. */
+  limitReached?: boolean
+  /** `Storage/ManageSpace`: o modal "Liberar Espaço" (`CleanSpaceStorage`) por cima da página. */
+  manageSpaceOpen?: boolean
+  cleanSpaceProps?: Omit<CleanSpaceStorageProps, "className">
 }
 
 /**
@@ -54,9 +65,29 @@ function StorageStatusPage({
   freeLabel,
   onManageSpace,
   onBuySpace,
+  files = [],
+  limitReached = false,
+  manageSpaceOpen = false,
+  cleanSpaceProps,
   className,
   ...props
 }: StorageStatusPageProps) {
+  const tablet = useMinWidth("tablet")
+  const scopeLabel = scope === "global" ? "Total" : scope === "quick-access" ? "Acesso Rápido" : "Longo Prazo"
+  if (limitReached && !tablet) {
+    return (
+      <AppShell
+        data-slot="storage-status-page"
+        data-device="mobile"
+        className={className}
+        headerProps={{ page: "storage" }}
+        mobileBottomNav={{ action: "add", active: "pessoal" }}
+        {...props}
+      >
+        <StorageLimitReachedMobile usedAmount={usedAmount} totalAmount={totalAmount} onBuySpace={onBuySpace} onManageSpace={onManageSpace} />
+      </AppShell>
+    )
+  }
   return (
     <AppShell
       data-slot="storage-status-page"
@@ -79,9 +110,70 @@ function StorageStatusPage({
         freeLabel={freeLabel}
         onManageSpace={onManageSpace}
         onBuySpace={onBuySpace}
+        limitReached={limitReached}
         className="w-full max-w-none"
       />
+      {files.length ? (
+        <StorageStatusSummary files={files} scopeLabel={scopeLabel} device={tablet ? "desktop" : "mobile"} className={tablet ? undefined : "pt-1"} />
+      ) : null}
+      {manageSpaceOpen && cleanSpaceProps ? (
+        <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/20 p-4 tablet:absolute tablet:p-6">
+          <CleanSpaceStorage {...cleanSpaceProps} />
+        </div>
+      ) : null}
     </AppShell>
+  )
+}
+
+/**
+ * `Storage/LimitReached/Mobile` (`1727:23116`, V0.2.1): tela própria do mobile,
+ * sem título nem card. 🔧 Criada em 2026-09-24.
+ * - Valor usado: 36px Bold `Brand/Feedback/Danger/Default` + "usados de X" 16px
+ *   `Neutral/Text/Tertiary`. Barra de 8px: trilho `Neutral/Surface/Muted`,
+ *   cheia em `Brand/Feedback/Danger/Surface`.
+ * - Título 25px Medium; texto em 16px (Regra 4; ⚠️ no Figma, 13px).
+ * - Ações: `atom/Button` Primary LG Pill "Comprar espaço" e "Liberar espaço".
+ *   🧩 No Figma, "Liberar espaço" é um frame (fundo `Neutral/Surface/Card`,
+ *   borda `Neutral/Border/Light`); aqui é o `Button` Outline com essas cores.
+ */
+function StorageLimitReachedMobile({
+  usedAmount,
+  totalAmount,
+  onBuySpace,
+  onManageSpace,
+}: Pick<StorageStatusPageProps, "usedAmount" | "totalAmount" | "onBuySpace" | "onManageSpace">) {
+  return (
+    <div data-slot="storage-limit-reached" className="flex flex-1 flex-col justify-center gap-6 px-2 pb-24">
+      <div className="flex flex-col gap-3">
+        <p className="flex items-baseline justify-center gap-1">
+          <span className="text-4xl font-bold text-destructive">{usedAmount}</span>
+          <span className="text-base text-neutral-text-tertiary">usados de {totalAmount}</span>
+        </p>
+        <div role="progressbar" aria-label="Armazenamento usado" aria-valuenow={100} aria-valuemin={0} aria-valuemax={100} className="h-2 w-full overflow-hidden rounded-full bg-zinc-500/20">
+          <div className="h-full w-full bg-destructive-surface" />
+        </div>
+      </div>
+      <div role="alert" className="flex flex-col gap-2 text-center">
+        <h1 className="text-[1.5625rem] leading-[30px] font-medium text-neutral-text-primary">Limite atingido (100%)</h1>
+        <p className="text-base leading-5 text-neutral-text-tertiary">
+          Seu limite de {totalAmount} foi totalmente atingido. O upload de novos arquivos e sincronização automática foram suspensos.
+        </p>
+      </div>
+      <div className="flex flex-col gap-2.5">
+        <Button size="lg" shape="pill" onClick={onBuySpace} className="w-full">
+          Comprar espaço
+        </Button>
+        <Button
+          variant="outline"
+          size="lg"
+          shape="pill"
+          onClick={onManageSpace}
+          className="w-full border-neutral-border-light bg-neutral-surface-card text-neutral-text-secondary"
+        >
+          Liberar espaço
+        </Button>
+      </div>
+    </div>
   )
 }
 

@@ -57,10 +57,11 @@ Decisões de 2026-09-24, tomadas numa entrevista (grill) com o Nando. A versão 
 - **Login (2026-09-24):** `CardLogin device="mobile"` e `LoginPage` com fundo teal (`brand-teal-action`, superfície), as manchas desfocadas, o Kan com o logo (`login-mobile-kan.svg`) e o formulário sem card. "Entrar" usa `Brand/Secondary/Default` no Light e `Brand/Secondary/Dark` no Dark, como no Figma. O `device` é escolhido pelo `useMinWidth("tablet")`, para não duplicar o formulário no DOM.
 - **Organize (2026-09-24):** a página escolhe a composição pelo `useMinWidth("tablet")`. `default` → ChooseMethod (`MethodOrganizeButton`, "Ordenar por" com o `DropdownSelectGroupBy` mobile, "Página" e a lista `FileSelectRow`). `template-drop-zone` e `review` → Review (`TemplateReviewModal device="mobile"`). `review-done` → `atom/MobileSuccess` em tela cheia, sem gaveta (vale em todas as larguras). `saved` → `FolderCard device="mobile"` com `FileRow`, sem o toast. Pelo Figma, a TabBar fica em "Organizar" nas etapas de tarefa, e em Home no `saved`. Etapa nova `review` também no desktop e no tablet (modal por cima da composição de arrastar). Tokens novos: `Neutral/Border/Subtle` e `Neutral/Surface/Card`.
 - **Long-term (2026-09-24):** página nova `LongTermStoragePage` (`step`: intro · archive-browser · stored · recovery-pending). Desktop e tablet: a Home com o modal por cima (`HomePage` ganhou `overlay`). Mobile: os dois modais viram `SelectFiles` (`FileSelectList` + `PagePickerButton`, e o `ContextHeader layout="minimal"` quando há seleção). `stored` usa o `MobileSuccess` Stored em tela cheia; `recovery-pending` usa o organism `RecoveryPending` (o Kan espiando da bolsa, redesenhado em SVG porque no Figma é raster). `FileSelectList` e `PagePickerButton` foram extraídos e agora servem também ao Organize. Tokens novos: `Brand/Primary/Mid` e `Brand/Primary/Disabled`. Corrigido o bug do bloco "Etiquetas" ao lado da lista no `ArchiveBrowserModalSidebar` (faltava `flex-col`).
+- **Storage (2026-09-24):** organism novo `StorageStatusSummary` (Figma `molecule/StorageStatusSummary`): filtro do escopo, filtros, Agrupar, Etiquetar e a lista por armazenamento, abaixo do card em todas as larguras (antes o código não tinha essa parte). No mobile, a lista vira uma tabela em card. `StorageStatus` ganhou `limitReached` (Figma `Tier=Alert`). A página ganhou `files`, `limitReached` (no mobile, tela própria `Storage/LimitReached/Mobile`) e `manageSpaceOpen` (modal `CleanSpaceStorage`). Os modais `CleanSpaceStorage` ganharam blur de fundo e rolagem.
 
 ## Lotes futuros de código
 
-- **Storage:** a lista de arquivos abaixo do card (filtro, Agrupar e Etiquetar), que está no Figma mobile, e as telas LimitReached e ManageSpace, que não existem no código.
+- Nenhum lote de composição mobile pendente. Restam as pendências de desenho abaixo.
 
 ## Pendências de desenho (Nando)
 
@@ -72,6 +73,7 @@ Decisões de 2026-09-24, tomadas numa entrevista (grill) com o Nando. A versão 
 - **F10 (to-do, pensar):** o que aparece ao tocar na foto de perfil no Header mobile, em Light e Dark. Hoje o avatar não abre nada. Decidir o conteúdo (conta, plano, sair…) e o formato (menu, folha inferior, tela).
 - **F13 (Figma):** `LongTermStorage/SelectFilesSelected/Mobile` marca "Organizar" na TabBar, e `SelectFiles` marca "Guardar". O código usa Guardar nas duas.
 - **F14:** em `RecoveryPending` Dark, o nome do arquivo usa `Brand/Primary/Mid` (#337084 nos dois modos), com pouco contraste sobre o fundo escuro.
+- **F15 (Figma):** no `molecule/StorageStatus Tier=Alert`, o aviso de limite usa `Brand/Feedback/Danger/Subtle` (35%, ilegível); a tela `Storage/LimitReached` sobrescreve com o vermelho cheio. Os botões Liberar/Comprar aparecem Disabled em todas as variantes do componente.
 - **F9:** contraste dos rótulos inativos do `MobileBottomNav` no Light (`Neutral/Text/Placeholder`, abaixo do WCAG AA).
 
 Ver também [[Camadas Atômicas]], [[Fonte Figma]], [[Regra 4 - Tipografia e Acessibilidade]].
