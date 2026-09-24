@@ -5,7 +5,7 @@
  * Os VALORES exibidos em Tokens/Colors são lidos do CSS em tempo de execução;
  * este arquivo só guarda a correspondência de nomes e os valores do Figma
  * para comparação. Gerado em 2026-09-24 a partir do Figma (use_figma) e
- * conferido: os 61 pares batiam nos dois modos.
+ * conferido: os pares batiam nos dois modos.
  * Ao criar ou renomear um token, atualize aqui.
  */
 
@@ -135,6 +135,10 @@ export const FIGMA_COLORS: Record<string, FigmaColor> = {
 
 /** Token CSS → variável Figma. Tokens sem entrada não existem no Figma. */
 export const CSS_TO_FIGMA: Record<string, string> = {
+  "--neutral-text-primary": "Neutral/Text/Primary",
+  "--neutral-text-secondary": "Neutral/Text/Secondary",
+  "--neutral-surface-subtle": "Neutral/Surface/Subtle",
+  "--neutral-border-light": "Neutral/Border/Light",
   "--destructive": "Brand/Feedback/Danger/Default",
   "--brand-teal": "Brand/Primary/Default",
   "--brand-teal-foreground": "Brand/Primary/Foreground",

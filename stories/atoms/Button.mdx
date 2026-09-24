@@ -1,0 +1,51 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as ButtonStories from './Button.stories';
+
+<Meta of={ButtonStories} />
+
+# Button
+
+✅ Figma-confirmado: `atom/Button` (`3028:3700`), KanDrive V0.2.1.
+
+## Uso
+
+É o **botão de texto das ações do produto**, como "Salvar alterações", "Guardar arquivos" e "Entrar". Desde que a Regra 1 foi revogada em 23/09/2026, há três botões, cada um com um papel:
+
+| Componente | Quando usar |
+| --- | --- |
+| **Button** | Ações do produto nas telas: formulários, modais, CTAs de página |
+| **PushButton** | Diálogos e toolbars no estilo macOS |
+| **IconButton** | Botões só com ícone (fechar, adicionar, excluir…) |
+
+<Canvas of={ButtonStories.Primary} />
+<Controls />
+
+## Variantes
+
+| `variant` | Figma `Style` | Uso |
+| --- | --- | --- |
+| `primary` | Primary | A ação principal da tela. Fundo `Brand/Primary/Action`, que continua teal no Dark. |
+| `outline` | Outline | Uma ação secundária ao lado da primária, como "Cancelar" |
+| `destructive` | Destructive | Uma ação de impacto, como "Excluir". Fundo `Danger/Surface`, igual nos dois modos. |
+| `glass` | Glass | Sobre fundos com Liquid Glass (só MD) |
+| `secondary` | Secondary | Uma alternativa leve em Pill LG, como "Agora não" |
+
+`size`: `md` (33px) · `lg` (44px). `shape`: `rounded` · `pill`.
+
+<Canvas of={ButtonStories.Matrix} />
+
+## Estados
+
+Default · Hover (fundo a 80%) · Focus (anel de 3px, só pelo teclado) · Disabled (50%) · Pressed (`translate-y-px`, extensão de código pela Regra 8). No Figma, os estados foram derivados do código e não aparecem nas telas.
+
+## Dark mode
+
+Os fundos usam tokens de **superfície**, que mantêm o tom no Dark, então o texto branco passa no WCAG nos dois modos. Na revisão de 24/09/2026, o Destructive do Figma passou de `Danger/Default` (que fica #f07a6a no Dark, com 2,5:1) para `Danger/Surface`.
+
+## Tipografia
+
+⚠️ **Conflito aberto:** o Figma usa 14px nos rótulos de MD e LG Rounded. O código segue a Regra 4, com piso de 16px, como o PushButton, até haver uma decisão (ver *Conflitos Abertos* no vault).
+
+## Terminologia
+
+Os rótulos descrevem o estado seguinte, têm até 4 palavras e não usam artigo ("Guardar arquivos"), conforme o Tom de Voz.

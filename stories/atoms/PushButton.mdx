@@ -7,7 +7,7 @@ import * as PushButtonStories from './PushButton.stories';
 
 ## Uso
 
-**Único componente de botão do MVP** (Regra 1) — toda ação primária/secundária/destrutiva da interface passa por aqui, nunca por um `button/primary` ou `button/secondary` separado. Use `variant="primary"` pra ação principal da tela (ex. "Guardar") e `variant="neutral"` pra ação secundária (ex. "Cancelar"); `isDestructive` sinaliza uma ação de impacto (ex. "Excluir") sem trocar de componente. Prop `icon` renderiza um ícone à esquerda do label; `loading` mostra um spinner e cede o lugar do ícone.
+**Botão de diálogos e toolbars no estilo macOS.** A Regra 1 ("Botão Único") foi revogada em 23/09/2026: as ações do produto nas telas usam o [Button](?path=/docs/atoms-button--docs), e os botões só com ícone usam o IconButton. Use `variant="primary"` para a ação principal do diálogo (ex. "Guardar") e `variant="neutral"` para a secundária (ex. "Cancelar"). `isDestructive` sinaliza uma ação de impacto (ex. "Excluir") sem trocar de componente. A prop `icon` põe um ícone à esquerda do label, e `loading` mostra um spinner no lugar dele.
 
 <Canvas of={PushButtonStories.Default} />
 <Controls />

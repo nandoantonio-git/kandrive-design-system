@@ -97,6 +97,10 @@
     --color-neutral-icon-default: var(--neutral-icon-default);
     --color-neutral-border-cool: var(--neutral-border-cool);
     --color-neutral-border-medium: var(--neutral-border-medium);
+    --color-neutral-text-primary: var(--neutral-text-primary);
+    --color-neutral-text-secondary: var(--neutral-text-secondary);
+    --color-neutral-surface-subtle: var(--neutral-surface-subtle);
+    --color-neutral-border-light: var(--neutral-border-light);
     --color-neutral-border-zinc: var(--neutral-border-zinc);
     --color-neutral-slate-400: var(--neutral-slate-400);
     --color-neutral-surface-gray: var(--neutral-surface-gray);
@@ -227,6 +231,11 @@
        que já estava em uso, sem mudança visual em modo claro. */
     --neutral-surface-background: #f3f3f3;
     --neutral-border-default: #707070;
+    /* Figma-confirmado (Figma V0.2.1, coleção Core): usados por atom/Button, estilos Outline e Secondary (2026-09-24). */
+    --neutral-text-primary: #09090b;
+    --neutral-text-secondary: #3f3f46;
+    --neutral-surface-subtle: #eaeaea;
+    --neutral-border-light: #bbbbbb;
     /* Superfícies × texto (revisão dark/WCAG 2026-09-23): *-surface/*-action = fundo sólido com texto branco; o token base fica para texto/ícone. */
     --brand-teal-action: #007e96;
     --brand-teal-action-hover: #006b80;
@@ -378,6 +387,10 @@
     --effect-overlay-subtle: #a8b0bd26;
     --neutral-surface-background: #18181b;
     --neutral-border-default: #52525b;
+    --neutral-text-primary: #fafafa;
+    --neutral-text-secondary: #d4d4d8;
+    --neutral-surface-subtle: #27272a;
+    --neutral-border-light: #3f3f46;
     /* Superfícies × texto — dark (WCAG AA). */
     --brand-teal-action: #007e96;
     --brand-teal-action-hover: #006b80;
