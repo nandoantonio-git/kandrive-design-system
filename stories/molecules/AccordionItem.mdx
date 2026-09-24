@@ -1,0 +1,32 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as AccordionItemStories from './AccordionItem.stories';
+
+<Meta of={AccordionItemStories} />
+
+# AccordionItem
+
+✅ Figma-confirmado: `molecule/AccordionItem` (`3051:9641`), KanDrive V0.2.1.
+
+## Uso
+
+Uma pergunta e sua resposta no FAQ. O `FaqInfoCard` e o `FaqInfoCardCollapsed` usam este componente em vez de repetir o markup (Regra 10).
+
+<Canvas of={AccordionItemStories.Expanded} />
+<Controls />
+
+## Variantes
+
+| Figma `Expanded` | Código | Status |
+| --- | --- | --- |
+| true | `open` | ✅ Vem da tela de FAQ |
+| false | sem `open` | 🧩 No Figma é o mesmo item sem o painel, com o chevron girado |
+
+<Canvas of={AccordionItemStories.List} />
+
+## Acessibilidade
+
+Usa `<details>`/`<summary>` nativos: abre e fecha com clique, Enter ou Espaço, e o leitor de tela anuncia o estado expandido. O chevron é decorativo (`aria-hidden`).
+
+## Conteúdo
+
+As respostas no FAQ usam o tom padrão da marca, sem o Kan. Sobre armazenamento, use os termos do Glossário ("Guardar", "Longo prazo").

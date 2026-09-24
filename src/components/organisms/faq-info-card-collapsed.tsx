@@ -9,6 +9,7 @@ import LongTermStorageIcon from "@/assets/icons/FaqCollapsedLongTermStorage.svg?
 import OrganizationIcon from "@/assets/icons/FaqCollapsedOrganization.svg?react"
 import StorageIcon from "@/assets/icons/FaqCollapsedStorage.svg?react"
 import { cn } from "@/lib/utils"
+import { AccordionItem } from "@/components/molecules/accordion-item"
 import { FaqCallout } from "@/components/organisms/faq-callout"
 
 export type FaqTopic =
@@ -292,22 +293,9 @@ function FaqInfoCardCollapsed({ topic = "FirstSteps", className, ...props }: Faq
       {expanded ? (
         <div className="flex flex-col px-6">
           {data.questions.map((item, index) => (
-            <details
-              key={item.question}
-              className="group border-b border-zinc-500/20 py-4 last:border-b-0 dark:border-zinc-400/20"
-              open={index === 0}
-            >
-              <summary className="flex cursor-pointer list-none items-start justify-between gap-2 text-sm font-medium text-brand-secondary-dark [&::-webkit-details-marker]:hidden">
-                {item.question}
-                <ChevronIcon
-                  className="mt-0.5 size-4 shrink-0 transition-transform motion-safe:duration-150 group-open:rotate-180"
-                  aria-hidden="true"
-                />
-              </summary>
-              <div className="pt-2 text-[0.8125rem] leading-normal text-brand-secondary-light">
-                {item.answer}
-              </div>
-            </details>
+            <AccordionItem key={item.question} question={item.question} chevron={ChevronIcon} open={index === 0}>
+              {item.answer}
+            </AccordionItem>
           ))}
         </div>
       ) : null}

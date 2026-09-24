@@ -4,6 +4,7 @@ import ArchiveIcon from "@/assets/icons/FaqInfoCardArchive.svg?react"
 import ChevronIcon from "@/assets/icons/FaqInfoCardChevron.svg?react"
 import FirstStepsIcon from "@/assets/icons/FaqInfoCardFirstSteps.svg?react"
 import { cn } from "@/lib/utils"
+import { AccordionItem } from "@/components/molecules/accordion-item"
 import { TOPIC_DATA, type FaqTopic } from "@/components/organisms/faq-info-card-collapsed"
 
 export type FaqInfoCardVariant = "faq" | "card-with-callout"
@@ -118,22 +119,9 @@ function FaqInfoCard({
       </div>
       <div className={cn("flex flex-col px-6", collapsed && "hidden")}>
         {questions.map((item) => (
-          <details
-            key={item.question}
-            className="group border-b border-zinc-500/20 py-4 last:border-b-0 dark:border-zinc-400/20"
-            open
-          >
-            <summary className="flex cursor-pointer list-none items-start justify-between gap-2 text-sm font-medium text-brand-secondary-dark [&::-webkit-details-marker]:hidden">
-              {item.question}
-              <ChevronIcon
-                className="mt-0.5 size-4 shrink-0"
-                aria-hidden="true"
-              />
-            </summary>
-            <div className="pt-2 text-[0.8125rem] leading-normal text-brand-secondary-light">
-              {item.answer}
-            </div>
-          </details>
+          <AccordionItem key={item.question} question={item.question} chevron={ChevronIcon} open>
+            {item.answer}
+          </AccordionItem>
         ))}
       </div>
     </div>
