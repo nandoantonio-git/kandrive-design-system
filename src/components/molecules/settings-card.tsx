@@ -11,7 +11,7 @@ export interface SettingsCardProps extends React.ComponentProps<"div"> {
  * "Card Header" + card raiz — padrão repetido em Figma-confirmado nas 7
  * telas `page/Settings/*` (`1439:19849`/`1439:21072`/`1439:21165`/
  * `1439:21211`/`1439:21268`/`1439:21297`/`1439:21327`): card
- * `w-[1089px]`, `bg-effect-glass-white-50`, `border-[#e5e5e5]`,
+ * `w-[1089px]` no Figma desktop (no código, `w-full`: a largura vem do layout responsivo, 2026-09-24), `bg-effect-glass-white-50`, `border-[#e5e5e5]`,
  * `rounded-xl`, `p-6`, cabeçalho título (16px semibold) + legenda
  * (13px, `text-zinc-500`). Extraído como molecule único (Regra 1/10) em
  * vez de repetido em cada painel — mesmo shell em todas as 7 telas, só o
@@ -22,7 +22,7 @@ function SettingsCard({ title, caption, className, children, ...props }: Setting
     <div
       data-slot="settings-card"
       className={cn(
-        "flex w-[1089px] flex-col gap-4 overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-700 bg-effect-glass-white-50 p-6",
+        "flex w-full flex-col gap-4 overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-700 bg-effect-glass-white-50 p-6",
         className
       )}
       {...props}

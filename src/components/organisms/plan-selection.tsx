@@ -102,7 +102,7 @@ function PlanSelection({
     <div
       data-slot="plan-selection"
       className={cn(
-        "flex w-[1089px] flex-col gap-4 overflow-hidden rounded-xl border border-zinc-200 bg-effect-glass-white-50 p-6 dark:border-zinc-700",
+        "flex w-full flex-col gap-4 overflow-hidden rounded-xl border border-zinc-200 bg-effect-glass-white-50 p-6 dark:border-zinc-700",
         className
       )}
       {...props}
@@ -114,7 +114,7 @@ function PlanSelection({
         </div>
       </div>
 
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2">
           <span className="inline-flex items-center rounded-full bg-brand-teal-action px-2.5 py-0.5 text-xs font-medium text-brand-teal-foreground">
             Ativa
@@ -149,7 +149,7 @@ function PlanSelection({
         </div>
       </div>
 
-      <div className="flex w-full items-start gap-3">
+      <div className="flex w-full flex-col items-stretch gap-3 tablet:flex-row tablet:items-start">
         {plans.map((plan, index) => {
           const price = interval === "monthly" ? plan.monthlyPrice : plan.annualPrice
           const priceSuffix = interval === "monthly" ? "/mês" : "/ano"
@@ -195,7 +195,7 @@ function PlanSelection({
 
       <div className="h-px w-full bg-zinc-200 dark:bg-zinc-700" />
 
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex flex-wrap items-center justify-between gap-4">
         <p className="text-[0.8125rem] text-zinc-500 dark:text-zinc-400">
           Atualize o método de pagamento, visualize ordens de pagamento, ou cancele no portal da Stripe
         </p>

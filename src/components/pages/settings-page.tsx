@@ -1,7 +1,7 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
-import { Header } from "@/components/organisms/header"
+import { AppShell } from "@/components/templates/app-shell"
 import { Sidebar, type SettingsSection } from "@/components/organisms/sidebar"
 import { Breadcrumb } from "@/components/molecules/breadcrumb"
 import { PageLead } from "@/components/molecules/page-lead"
@@ -79,6 +79,20 @@ export interface SettingsPageProps extends React.ComponentProps<"div"> {
  * texto literal Figma-confirmado (mesmo achado já registrado pra
  * `Settings-Subscription` em `docs/conflicts.md`, "tier" em nota de debug).
  */
+/** Seções do código ↔ chips da barra mobile (`MobileFooterSettings`). "Organização padrão" não tem chip no Figma. */
+const SECTION_TO_CHIP: Partial<Record<SettingsSection, string>> = {
+  conta: "Conta",
+  assinatura: "Armazenamento",
+  notificacoes: "Notificações",
+  aparencia: "Aparência",
+  privacidade: "Privacidade",
+  idioma: "Idioma",
+  "excluir-conta": "Excluir conta",
+}
+const CHIP_TO_SECTION: Record<string, SettingsSection> = Object.fromEntries(
+  Object.entries(SECTION_TO_CHIP).map(([section, chip]) => [chip, section as SettingsSection])
+)
+
 function SettingsPage({
   activeSection = "conta",
   onNavigateSection,
@@ -88,11 +102,30 @@ function SettingsPage({
   ...props
 }: SettingsPageProps) {
   return (
-    <div data-slot="settings-page" className={cn("flex w-full flex-col bg-[#eaeaea] dark:bg-zinc-900", className)} {...props}>
-      <Header page="settings" />
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col items-end gap-5 px-12 py-8">
-        <div className="flex w-full flex-col items-center gap-2 pb-5">
-          <Breadcrumb segments={["Home", "Configurações"]} className="w-full" />
+    <AppShell
+      data-slot="settings-page"
+      className={cn("bg-[#eaeaea] dark:bg-zinc-900", className)}
+      headerProps={{ page: "settings" }}
+      footer={
+        // Figma organism/Footer (tablet e desktop). No mobile, os chips ocupam a base.
+        <div className="flex w-full items-center gap-9 py-4 text-base text-black dark:text-zinc-100">
+          <span>©2026 KanDrive</span>
+          <SelectBox value="Português (Brasil)" />
+        </div>
+      }
+      mobileFooterSettings={{
+        page: "settings",
+        active: SECTION_TO_CHIP[activeSection],
+        onSelect: (chip) => {
+          const section = CHIP_TO_SECTION[chip]
+          if (section) onNavigateSection?.(section)
+        },
+      }}
+      {...props}
+    >
+      <div className="flex w-full flex-col items-end gap-5 tablet:py-2">
+        <div className="flex w-full flex-col items-center gap-2 tablet:pb-5">
+          <Breadcrumb segments={["Home", "Configurações"]} className="hidden w-full tablet:flex" />
           <PageLead
             title="Configurações"
             caption="Gerencie sua conta, armazenamento e preferências"
@@ -101,13 +134,19 @@ function SettingsPage({
         </div>
 
         <div className="flex w-full items-start gap-8">
-          <Sidebar pages="setting" activeSection={activeSection} onNavigateSection={onNavigateSection} />
+          {/* Tablet: 152px (Figma Sidebar SM Page=Setting tem 140px; 152 é o mínimo para "Armazenamento" em 16px caber). Mobile: some, e as seções vão para os chips na base. */}
+          <Sidebar
+            pages="setting"
+            activeSection={activeSection}
+            onNavigateSection={onNavigateSection}
+            className="hidden shrink-0 tablet:flex tablet:w-[152px] desktop:w-[223px]"
+          />
 
-          <div className="flex flex-1 flex-col gap-6">
+          <div className="flex min-w-0 flex-1 flex-col gap-6">
             {activeSection === "conta" ? (
               <>
                 <SettingsCard title="Conta" caption="Atualize suas informações pessoais">
-                  <div className="flex w-full items-start gap-4">
+                  <div className="flex w-full flex-col items-stretch gap-4 tablet:flex-row tablet:items-start">
                     <SettingsField label="Nome" type="text" />
                     <SettingsField label="E-mail" type="email" />
                   </div>
@@ -136,7 +175,7 @@ function SettingsPage({
                     </div>
                     <StorageBar tier="long-term" value={8} className="h-2 max-w-none" />
                   </div>
-                  <div className="flex w-full gap-6">
+                  <div className="flex w-full flex-col gap-6 tablet:flex-row">
                     {(
                       [
                         { label: "Acesso rápido", tier: "quick-access" as const },
@@ -205,7 +244,7 @@ function SettingsPage({
 
             {activeSection === "privacidade" ? (
               <SettingsCard title="Privacidade e dados" caption="Controle seus dados pessoais">
-                <div className="flex w-full items-center justify-between gap-4">
+                <div className="flex w-full flex-col items-start justify-between gap-4 tablet:flex-row tablet:items-center">
                   <div className="flex flex-col gap-0.5">
                     <p className="text-sm font-medium text-zinc-950 dark:text-zinc-100">Exportar meus dados</p>
                     <p className="text-[0.8125rem] text-zinc-500 dark:text-zinc-400">Baixe uma cópia de todos os seus dados no Kandrive.</p>
@@ -253,7 +292,7 @@ function SettingsPage({
                   Excluir sua conta é permanente e não pode ser desfeito. Isso também remove os arquivos guardados no
                   longo prazo — eles não poderão ser recuperados depois.
                 </Callout>
-                <SettingsField label="Confirme sua senha para continuar" type="password" className="w-80" />
+                <SettingsField label="Confirme sua senha para continuar" type="password" className="w-full tablet:w-80" />
                 <Button variant="destructive">
                   Excluir conta
                 </Button>
@@ -262,12 +301,7 @@ function SettingsPage({
           </div>
         </div>
       </div>
-
-      <div className="flex w-full items-center gap-9 px-12 py-4 text-base text-black dark:text-zinc-100">
-        <span>©2026 KanDrive</span>
-        <SelectBox value="Português (Brasil)" />
-      </div>
-    </div>
+    </AppShell>
   )
 }
 
