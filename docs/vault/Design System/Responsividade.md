@@ -49,6 +49,7 @@ Decisões de 2026-09-24, tomadas numa entrevista (grill) com o Nando. A versão 
 - **F5:** opção "Mão dominante" em Settings/Appearance, nos 3 dispositivos.
 - **F6:** barra de links rápidos para os tópicos do FAQ mobile. O `organism/FaqFastLinks` do desktop pode servir de ponto de partida.
 - **F8:** onboarding com a configuração inicial (mão dominante etc.).
+- **F10 (to-do, pensar):** o que aparece ao tocar na foto de perfil no Header mobile, em Light e Dark. Hoje o avatar não abre nada. Decidir o conteúdo (conta, plano, sair…) e o formato (menu, folha inferior, tela).
 - **F9:** contraste dos rótulos inativos do `MobileBottomNav` no Light (`Neutral/Text/Placeholder`, abaixo do WCAG AA).
 
 Ver também [[Camadas Atômicas]], [[Fonte Figma]], [[Regra 4 - Tipografia e Acessibilidade]].

@@ -1,0 +1,25 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as SidebarDrawerStories from './SidebarDrawer.stories';
+
+<Meta of={SidebarDrawerStories} />
+
+# SidebarDrawer
+
+✅ Figma-confirmado: `organism/Sidebar`, variante `Device=Mobile` (`1771:35845`). A tela de referência é `Home/Drawer/Mobile`.
+
+É a **gaveta do mobile**. Abre pelo ☰ do Header em todas as telas, exceto nas de feedback visual. Reúne o que no desktop fica na Sidebar e no Header: configuração e informações gerais.
+
+<Canvas of={SidebarDrawerStories.Interactive} />
+
+## Ordem
+
+Guardados · Armazenamento · Etiquetas | Lixeira | Configurações · Ajuda
+
+Pessoal, Compartilhados, Recentes e Favoritos ficam no `MobileBottomNav`, então cada item aparece num lugar só.
+
+## Comportamento
+
+- Fecha pelo ☰, pelo Esc ou tocando no fundo escurecido.
+- É um `role="dialog"` com `aria-modal`, e o foco vai para o primeiro botão ao abrir.
+- Os ícones mudam de cor por estado, como no `atom/SidebarOption`: Default, Hover (`Brand/Primary/Default`) e Pressed (`Brand/Primary/Dark`).
+- 🧩 O destaque do item atual (`aria-current`) é uma extensão de código: o Figma não tem esse estado.

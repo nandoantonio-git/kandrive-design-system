@@ -1,0 +1,35 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as MobileBottomNavStories from './MobileBottomNav.stories';
+
+<Meta of={MobileBottomNavStories} />
+
+# MobileBottomNav
+
+✅ Figma-confirmado: `organism/MobileBottomNav` (`1715:9867`), com eixos `Action` (Add · Confirm · None) × `Hand` (Left · Right).
+
+É o **menu contextual** na base das telas mobile. Traz os 4 destinos de arquivos, que fazem o papel da Sidebar do desktop, e um botão flutuante (FAB) que muda conforme a tela.
+
+<Canvas of={MobileBottomNavStories.Interactive} />
+<Controls />
+
+## Variantes
+
+| `action` | Onde | FAB |
+| --- | --- | --- |
+| `add` | arquivos (Home) e Storage | **+** Adicionar |
+| `confirm` | tarefas (revisar organização, selecionar para guardar) | **✓** Confirmar e **✕** Cancelar, que volta para a Home |
+| `none` | telas sem ação principal | sem FAB, barra reta |
+
+<Canvas of={MobileBottomNavStories.AddLeft} />
+<Canvas of={MobileBottomNavStories.Confirm} />
+<Canvas of={MobileBottomNavStories.None} />
+
+## Mão dominante
+
+`hand` muda o lado do FAB e do recorte. No `AppShell`, o valor vem das preferências do usuário (Settings → Aparência, com Direita como padrão).
+
+## Notas
+
+- Os ícones são os glifos SF do Figma, exportados como SVG em contorno.
+- A barra de vidro tem um recorte de 94px de largura fixa no lado do FAB, e o resto é fluido.
+- ⚠️ **Achado aberto (F9):** os rótulos usam `Neutral/Text/Placeholder` e, no Light, ficam abaixo do WCAG AA. É uma decisão de cor pendente com o design, e não foi corrigida aqui.

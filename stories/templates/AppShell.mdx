@@ -1,0 +1,25 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as AppShellStories from './AppShell.stories';
+
+<Meta of={AppShellStories} />
+
+# AppShell
+
+É a casca de navegação responsiva. Troca a estrutura da navegação por faixa num lugar só, pelas decisões de responsividade de 24/09/2026 (veja **Tokens/Responsividade**).
+
+| Faixa | Topo | Lateral | Base |
+| --- | --- | --- | --- |
+| Desktop ≥ 1200 e Tablet 720–1199 | `Header` | `sidebar` | `footer` |
+| Mobile < 720 | `Header` com ☰ (+ `mobileTabBar`) | gaveta pelo ☰ | `mobileBottomNav` ou `mobileFooterSettings` |
+
+As páginas passam o que cada tela tem, e o `AppShell` decide o que aparece em cada faixa:
+
+- **Arquivos:** `mobileTabBar` + `mobileBottomNav={{ action: "add" }}`.
+- **Storage:** `mobileBottomNav={{ action: "add" }}`.
+- **Tarefas:** `mobileBottomNav={{ action: "confirm", onCancel: voltarParaHome }}`.
+- **Settings e Payment:** `mobileFooterSettings`.
+- **Feedback visual:** `drawer={false}`.
+
+A mão dominante vem de `PreferencesProvider` (`src/lib/preferences.tsx`).
+
+Veja as stories **Desktop**, **Tablet** e **Mobile…**: cada uma já abre no viewport certo.

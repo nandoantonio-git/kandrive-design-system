@@ -135,6 +135,13 @@ export const FIGMA_COLORS: Record<string, FigmaColor> = {
 
 /** Token CSS → variável Figma. Tokens sem entrada não existem no Figma. */
 export const CSS_TO_FIGMA: Record<string, string> = {
+  "--neutral-surface-medium": "Neutral/Surface/Medium",
+  "--neutral-text-tertiary": "Neutral/Text/Tertiary",
+  "--neutral-text-placeholder": "Neutral/Text/Placeholder",
+  "--neutral-surface-elevated": "Neutral/Surface/Elevated",
+  "--neutral-surface-background-alt": "Neutral/Surface/Background/Alt",
+  "--effect-overlay-default": "Effect/Overlay/Default",
+  "--effect-overlay-light": "Effect/Overlay/Light",
   "--neutral-text-primary": "Neutral/Text/Primary",
   "--neutral-text-secondary": "Neutral/Text/Secondary",
   "--neutral-surface-subtle": "Neutral/Surface/Subtle",

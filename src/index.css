@@ -111,6 +111,13 @@
     --color-neutral-text-secondary: var(--neutral-text-secondary);
     --color-neutral-surface-subtle: var(--neutral-surface-subtle);
     --color-neutral-border-light: var(--neutral-border-light);
+    --color-neutral-surface-medium: var(--neutral-surface-medium);
+    --color-neutral-text-tertiary: var(--neutral-text-tertiary);
+    --color-neutral-text-placeholder: var(--neutral-text-placeholder);
+    --color-neutral-surface-elevated: var(--neutral-surface-elevated);
+    --color-neutral-surface-background-alt: var(--neutral-surface-background-alt);
+    --color-effect-overlay-default: var(--effect-overlay-default);
+    --color-effect-overlay-light: var(--effect-overlay-light);
     --color-neutral-border-zinc: var(--neutral-border-zinc);
     --color-neutral-slate-400: var(--neutral-slate-400);
     --color-neutral-surface-gray: var(--neutral-surface-gray);
@@ -246,6 +253,14 @@
     --neutral-text-secondary: #3f3f46;
     --neutral-surface-subtle: #eaeaea;
     --neutral-border-light: #bbbbbb;
+    --neutral-surface-medium: #52525b;
+    /* Figma-confirmado (Figma V0.2.1, coleção Core): usados pelos componentes mobile (R2 de responsividade, 2026-09-24). */
+    --neutral-text-tertiary: #71717a;
+    --neutral-text-placeholder: #bfc7d2;
+    --neutral-surface-elevated: #ffffff;
+    --neutral-surface-background-alt: #f7f7f7;
+    --effect-overlay-default: #00000080;
+    --effect-overlay-light: #eaeaea99;
     /* Superfícies × texto (revisão dark/WCAG 2026-09-23): *-surface/*-action = fundo sólido com texto branco; o token base fica para texto/ícone. */
     --brand-teal-action: #007e96;
     --brand-teal-action-hover: #006b80;
@@ -401,6 +416,13 @@
     --neutral-text-secondary: #d4d4d8;
     --neutral-surface-subtle: #27272a;
     --neutral-border-light: #3f3f46;
+    --neutral-surface-medium: #a1a1aa;
+    --neutral-text-tertiary: #a1a1aa;
+    --neutral-text-placeholder: #a1a1aa;
+    --neutral-surface-elevated: #27272a;
+    --neutral-surface-background-alt: #1c1c1f;
+    --effect-overlay-default: #ffffff;
+    --effect-overlay-light: #27272a99;
     /* Superfícies × texto — dark (WCAG AA). */
     --brand-teal-action: #007e96;
     --brand-teal-action-hover: #006b80;

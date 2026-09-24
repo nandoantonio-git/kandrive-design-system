@@ -1,6 +1,7 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import { HamburgerButton } from "@/components/atoms/hamburger-button"
 import { SearchInput, type SearchInputProps } from "@/components/molecules/search-input"
 import { PushButton } from "@/components/atoms/push-button"
 import { ICONS } from "@/components/atoms/icon"
@@ -15,6 +16,10 @@ export interface HeaderProps extends React.ComponentProps<"header"> {
   searchProps?: SearchInputProps
   onOrganize?: () => void
   onSave?: () => void
+  /** Mobile: toque no ☰ (abre a gaveta). */
+  onMenuClick?: () => void
+  /** Mobile: toque no avatar. ⚠️ O que ele abre ainda está em aberto (F10, com o design). */
+  onAvatarClick?: () => void
 }
 
 /**
@@ -61,26 +66,28 @@ export interface HeaderProps extends React.ComponentProps<"header"> {
  * gap conhecido/deferido em `PushButton.mdx`), removido o `className`
  * inteiro para herdar os defaults corretos do átomo.
  */
-function Header({ page = "navbar", searchProps, onOrganize, onSave, className, ...props }: HeaderProps) {
+function Header({ page = "navbar", searchProps, onOrganize, onSave, onMenuClick, onAvatarClick, className, ...props }: HeaderProps) {
   return (
     <header
       data-slot="header"
       className={cn(
-        "flex h-24 w-full items-center gap-8 border-b border-[var(--neutral-border-default,#707070)] bg-[var(--neutral-surface-background,#f3f3f3)] px-6 py-6",
+        "flex h-24 w-full items-center gap-4 tablet:gap-8 border-b border-[var(--neutral-border-default,#707070)] bg-[var(--neutral-surface-background,#f3f3f3)] px-6 py-6",
         className
       )}
       {...props}
     >
-      <img src={kandriveLogo} alt="Kandrive" className="h-11 w-[173px] shrink-0 dark:hidden" />
+      {/* Mobile (Figma Header Device=Mobile): ☰ + busca + avatar. A partir de `tablet:`, o layout de sempre. */}
+      <HamburgerButton className="tablet:hidden" onClick={onMenuClick} />
+      <img src={kandriveLogo} alt="Kandrive" className="hidden h-11 w-[173px] shrink-0 tablet:block dark:hidden" />
       {/* Logo sobre fundo escuro (Figma Logo/* dark): "Kan" + canguru (Kan) #F5F4F2, "drive" #337084 (Brand/Primary/Mid), símbolo #337084→#1A5E6E. */}
-      <img src={kandriveLogoDark} alt="Kandrive" className="h-11 w-[173px] shrink-0 hidden dark:block" />
+      <img src={kandriveLogoDark} alt="Kandrive" className="hidden h-11 w-[173px] shrink-0 tablet:dark:block" />
       <SearchInput
         {...searchProps}
         placeholder={searchProps?.placeholder ?? "Pesquisar"}
         className="min-w-0 max-w-[560px] flex-1"
       />
       {page === "navbar" ? (
-        <div className="flex shrink-0 items-center gap-5">
+        <div className="hidden shrink-0 items-center gap-5 tablet:flex">
           <PushButton variant="primary" icon={ICONS.Organize} onClick={onOrganize}>
             Organizar
           </PushButton>
@@ -90,12 +97,18 @@ function Header({ page = "navbar", searchProps, onOrganize, onSave, className, .
         </div>
       ) : null}
       <ActionPill
-        className="ml-auto shrink-0 opacity-50"
+        className="ml-auto hidden shrink-0 opacity-50 tablet:flex"
         actions={[
           { name: "Help", label: "Ajuda" },
           { name: "Settings", label: "Configurações" },
           { name: "SpatialAudioOff", label: "Conta" },
         ]}
+      />
+      <button
+        type="button"
+        aria-label="Conta"
+        onClick={onAvatarClick}
+        className="touch-target ml-auto size-[34px] shrink-0 cursor-pointer rounded-full border border-brand-teal-dark bg-neutral-surface-gray focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none tablet:hidden"
       />
     </header>
   )

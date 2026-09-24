@@ -1,0 +1,16 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as ChipStories from './Chip.stories';
+
+<Meta of={ChipStories} />
+
+# Chip
+
+✅ Figma-confirmado: `atom/Chip` (`3028:3707`), eixo `Selected`, material Solid.
+
+É um chip de seleção. Hoje ele é usado na barra de seções de Settings e Payment no mobile (`MobileFooterSettings`), onde é o estilo canônico definido em 24/09/2026.
+
+<Canvas of={ChipStories.Default} />
+<Controls />
+<Canvas of={ChipStories.Selected} />
+
+O texto tem 12px: é microtexto de rótulo de navegação, dentro da exceção da Regra 4. Com toque, a área clicável cresce até 44px.
