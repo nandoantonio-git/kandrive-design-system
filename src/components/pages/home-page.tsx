@@ -1,7 +1,9 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
-import { Header } from "@/components/organisms/header"
+import { AppShell } from "@/components/templates/app-shell"
+import { ThumbnailLarge } from "@/components/molecules/thumbnail-large"
+import { FileRow } from "@/components/molecules/file-row"
 import { Sidebar, type SidebarProps } from "@/components/organisms/sidebar"
 import { Breadcrumb } from "@/components/molecules/breadcrumb"
 import { PageLead } from "@/components/molecules/page-lead"
@@ -72,6 +74,14 @@ export interface HomePageProps extends React.ComponentProps<"div"> {
  * no mesmo achado. Ambos removidos — mesma convenção já usada em todo o
  * resto do catálogo (largura fixa Figma-confirmada, overflow horizontal
  * tratado pelo container que envolve o preview, nunca encolhido).
+ *
+ * 🔁 Responsividade (2026-09-24): a página agora usa o `AppShell`, com layout
+ * fluido e máximo de 1440px. No mobile (< 720):
+ * - some a Breadcrumb e o `PageLead`;
+ * - a barra de ferramentas vira GroupBy compacto + visualização compacta (Grade e Lista);
+ * - a grade vira cards `ThumbnailLarge` numa coluna;
+ * - a lista vira linhas `FileRow`, e Colunas cai para Lista;
+ * - entram o `MobileTabBar` no topo e o `MobileBottomNav` com FAB Adicionar na base.
  */
 function HomePage({
   viewMode,
@@ -86,61 +96,81 @@ function HomePage({
   className,
   ...props
 }: HomePageProps) {
+  // Colunas é exclusivo de tablet e desktop: no mobile, cai para Lista.
+  const mobileMode: ViewMode = viewMode === "columns" ? "list" : viewMode
+  const empty = viewMode === "grid" && gridItems.length === 0
   return (
-    <div data-slot="home-page" className={cn("flex w-full flex-col bg-zinc-200 dark:bg-zinc-900", className)} {...props}>
-      <Header page="navbar" />
-      <div className="mx-auto flex w-[1376px] items-start gap-12 px-1 py-2.5">
-        <Sidebar {...sidebarProps} />
-        <div className="flex flex-1 flex-col gap-2">
-          <Breadcrumb segments={["Home"]} />
-          <div className="flex items-start justify-between gap-4">
-            <PageLead
-              title="Bem-vindo ao Kandrive!"
-              caption="Seu espaço para guardar arquivos por anos, com organização simples desde o primeiro dia."
-              className="flex-1"
-            />
-            <div className="flex shrink-0 items-center gap-4 self-stretch">
-              <DropdownSelectGroupBy />
-              <Label />
-              <ViewModeToggle mode={viewMode} onModeChange={onViewModeChange} />
+    <AppShell
+      data-slot="home-page"
+      className={cn("bg-zinc-200 dark:bg-zinc-900", className)}
+      headerProps={{ page: "navbar" }}
+      sidebar={<Sidebar {...sidebarProps} />}
+      mobileTabBar={{ active: "home" }}
+      mobileBottomNav={{ action: "add", active: "pessoal" }}
+      {...props}
+    >
+      <Breadcrumb segments={["Home"]} className="hidden tablet:flex" />
+      <div className="flex items-center justify-between gap-4 tablet:flex-col tablet:items-start desktop:flex-row">
+        <PageLead
+          title="Bem-vindo ao Kandrive!"
+          caption="Seu espaço para guardar arquivos por anos, com organização simples desde o primeiro dia."
+          className="hidden flex-1 tablet:flex"
+        />
+        {/* Desktop e tablet: GroupBy + Etiquetas + as 3 visualizações */}
+        <div className="hidden shrink-0 items-center gap-4 tablet:flex desktop:self-stretch">
+          <DropdownSelectGroupBy />
+          <Label />
+          <ViewModeToggle mode={viewMode} onModeChange={onViewModeChange} />
+        </div>
+        {/* Mobile (Figma Home/Grid/Mobile): GroupBy compacto + visualização compacta (Grade e Lista) */}
+        <div className="flex w-full items-center justify-between gap-2.5 tablet:hidden">
+          <DropdownSelectGroupBy device="mobile" />
+          <ViewModeToggle size="compact" modes={["grid", "list"]} mode={mobileMode} onModeChange={onViewModeChange} />
+        </div>
+      </div>
+
+      <div className="tablet:pt-5">
+        {empty ? (
+          // page/FristUpload (`1439:19658`) — estado vazio Figma-confirmado do
+          // próprio modo grid, derivado de `gridItems.length === 0`.
+          <div className="flex flex-col items-center gap-6 py-12 text-center tablet:py-24">
+            <div className="flex size-48 items-center justify-center rounded-full bg-zinc-100 tablet:size-[267px] dark:bg-zinc-800">
+              <Icon name="CloudDownload" className="size-16 text-zinc-400 tablet:size-[85px] dark:text-zinc-500" aria-hidden="true" />
+            </div>
+            <div className="flex flex-col gap-1 text-zinc-500 dark:text-zinc-400">
+              <p>Arraste os arquivos que deseja armazenar</p>
+              <p>ou use o botão &quot;Adicionar&quot;</p>
             </div>
           </div>
-          <div className="pt-5">
-            {viewMode === "grid" && gridItems.length === 0 ? (
-              // page/FristUpload (`1439:19658`) — estado vazio Figma-confirmado
-              // do próprio modo grid (mesmo shell/toolbar), não uma tela à
-              // parte: círculo + `atom/Icon/CloudDownload` + texto de
-              // instrução, centralizado. Derivado de `gridItems.length === 0`
-              // em vez de uma prop de variante nova — mesmo dado já controla
-              // os 2 estados.
-              <div className="flex flex-col items-center gap-6 py-24 text-center">
-                <div className="flex size-[267px] items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800">
-                  <Icon name="CloudDownload" className="size-[85px] text-zinc-400 dark:text-zinc-500" aria-hidden="true" />
-                </div>
-                <div className="flex flex-col gap-1 text-zinc-500 dark:text-zinc-400">
-                  <p>Arraste os arquivos que deseja armazenar</p>
-                  <p>ou use o botão &quot;Adicionar&quot;</p>
-                </div>
-              </div>
-            ) : viewMode === "grid" ? (
-              <div className="flex flex-wrap gap-8">
-                {gridItems.map((item) =>
-                  item.kind === "image" ? (
-                    <ImageItem key={item.name} name={item.name} />
-                  ) : (
-                    <FileArchiveCard key={item.name} label={item.name} interactive={item.interactive} />
-                  )
-                )}
-              </div>
-            ) : viewMode === "list" ? (
-              <div className="flex flex-col">
+        ) : null}
+
+        {!empty && viewMode === "grid" ? (
+          <>
+            <div className="hidden flex-wrap gap-8 tablet:flex">
+              {gridItems.map((item) =>
+                item.kind === "image" ? (
+                  <ImageItem key={item.name} name={item.name} />
+                ) : (
+                  <FileArchiveCard key={item.name} label={item.name} interactive={item.interactive} />
+                )
+              )}
+            </div>
+            {/* Mobile: cards grandes numa coluna (Figma molecule/ThumbnailLarge Type=Metadata) */}
+            <div className="flex flex-col gap-2.5 tablet:hidden">
+              {gridItems.map((item) => (
+                <ThumbnailLarge key={item.name} fileName={item.name} fileType={item.kind === "image" ? "image" : "document"} className="w-full max-w-none" />
+              ))}
+            </div>
+          </>
+        ) : null}
+
+        {viewMode === "list" || viewMode === "columns" ? (
+          <>
+            {viewMode === "list" ? (
+              <div className="hidden flex-col tablet:flex">
                 {listSelectedCount != null ? (
-                  // page/Home/ListMode/Selected (`1439:19810`) — `molecule/
-                  // context-header` some acima do `FileListHeader` normal
-                  // (não o substitui, Figma-confirmado: os 2 nós coexistem,
-                  // hidden por padrão nos outros modos), linhas em
-                  // `state="pressed"` (mesmo tratamento de seleção já usado
-                  // em `FreeModeListItem`).
+                  // page/Home/ListMode/Selected (`1439:19810`): `ContextHeader`
+                  // acima do `FileListHeader`, linhas em `state="pressed"`.
                   <ContextHeader
                     itemsSelected={`${listSelectedCount} itens selecionado`}
                     onClear={onListSelectionClear}
@@ -149,24 +179,25 @@ function HomePage({
                 ) : null}
                 <FileListHeader format="home" />
                 {listRows.map((row) => (
-                  <FileList
-                    key={row.fileName}
-                    format="list"
-                    state={listSelectedCount != null ? "pressed" : "idle"}
-                    {...row}
-                  />
+                  <FileList key={row.fileName} format="list" state={listSelectedCount != null ? "pressed" : "idle"} {...row} />
                 ))}
               </div>
             ) : (
-              <div className="flex items-start gap-6">
+              <div className="hidden items-start gap-6 tablet:flex">
                 <FileListContainer rows={columnsRows} className="flex-1" />
                 {previewFile ? <PreviewPane file={previewFile} className="w-96 shrink-0" /> : null}
               </div>
             )}
-          </div>
-        </div>
+            {/* Mobile: linhas FileRow (Figma molecule/FileRow Device=Mobile). Colunas cai para Lista. */}
+            <div className="flex flex-col gap-2 tablet:hidden">
+              {(viewMode === "list" ? listRows : columnsRows.map((r) => ({ fileName: r.name, owner: undefined, size: undefined }))).map((row) => (
+                <FileRow key={row.fileName} name={row.fileName} meta={[row.owner, row.size].filter(Boolean).join(" • ") || "Arquivo"} />
+              ))}
+            </div>
+          </>
+        ) : null}
       </div>
-    </div>
+    </AppShell>
   )
 }
 

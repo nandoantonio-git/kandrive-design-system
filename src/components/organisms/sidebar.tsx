@@ -260,7 +260,8 @@ function Sidebar({
       data-slot="sidebar"
       data-collapsed="false"
       className={cn(
-        "relative flex w-72 flex-col gap-4 rounded-2xl border border-zinc-200 bg-effect-glass-surface-light px-4 pt-1 pb-4 backdrop-blur-md dark:border-zinc-700",
+        // Tablet (720–1199): 150px e rótulos truncados, como o Figma `Sidebar Size=MD, Device=Tablet` (2026-09-24). Desktop: 288px.
+        "relative flex w-[150px] flex-col gap-4 rounded-2xl border border-zinc-200 bg-effect-glass-surface-light px-2 pt-1 pb-4 backdrop-blur-md desktop:w-72 desktop:px-4 dark:border-zinc-700",
         className
       )}
       {...props}
@@ -277,7 +278,7 @@ function Sidebar({
         </button>
       </div>
       <div data-slot="sidebar-add-row" className="flex w-full pt-1 pb-4">
-        <PushButton icon={Plus} onClick={onAdd} className="h-9 w-[121px] self-start rounded-md px-4 text-sm">
+        <PushButton icon={Plus} onClick={onAdd} className="h-9 w-full self-start rounded-md px-4 text-sm desktop:w-[121px]">
           Adicionar
         </PushButton>
       </div>
@@ -294,8 +295,8 @@ function Sidebar({
                 activePage === page ? "bg-zinc-100 dark:bg-zinc-800" : "opacity-50"
               )}
             >
-              <ItemIcon aria-hidden="true" className="size-4" />
-              {page}
+              <ItemIcon aria-hidden="true" className="size-4 shrink-0" />
+              <span className="min-w-0 truncate">{page}</span>
             </button>
           </li>
         ))}

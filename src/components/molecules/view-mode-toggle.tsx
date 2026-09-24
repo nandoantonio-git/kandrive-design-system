@@ -40,6 +40,10 @@ export interface ViewModeToggleProps
   extends Omit<React.ComponentProps<"div">, "onChange"> {
   mode: ViewMode
   onModeChange?: (mode: ViewMode) => void
+  /** Figma `Size`: default (com o título "VISUALIZAR" e os rótulos) · compact (73×31, só ícones, mobile). */
+  size?: "default" | "compact"
+  /** Quais modos oferecer. No mobile, só Grade e Lista: Colunas é exclusivo de tablet e desktop (decisão de 2026-09-24). */
+  modes?: readonly ViewMode[]
 }
 
 /**
@@ -55,18 +59,21 @@ export interface ViewModeToggleProps
  * mapeado como `brand-teal-light` neste projeto, achado US-013) — a
  * implementação anterior usava `text-white` puro, mais claro que o Figma.
  */
-function ViewModeToggle({ mode, onModeChange, className, ...props }: ViewModeToggleProps) {
+function ViewModeToggle({ mode, onModeChange, size = "default", modes, className, ...props }: ViewModeToggleProps) {
+  const compact = size === "compact"
   return (
     <div
       data-slot="view-mode-toggle"
       className={cn("flex w-fit flex-col items-start gap-1", className)}
       {...props}
     >
-      <span className="px-1 text-[0.625rem] font-bold tracking-wide text-zinc-500 dark:text-zinc-400">
-        VISUALIZAR
-      </span>
+      {compact ? null : (
+        <span className="px-1 text-[0.625rem] font-bold tracking-wide text-zinc-500 dark:text-zinc-400">
+          VISUALIZAR
+        </span>
+      )}
       <div className="relative flex items-center gap-1 rounded-xl glass-edge glass-shadow-sm bg-effect-glass-light-45 p-1 backdrop-blur-sm">
-        {MODES.map(({ value, label, ActiveIcon, IdleIcon, iconClassName }) => {
+        {MODES.filter((m) => !modes || modes.includes(m.value)).map(({ value, label, ActiveIcon, IdleIcon, iconClassName }) => {
           const selected = value === mode
           const ModeIcon = selected ? ActiveIcon : IdleIcon
           return (
@@ -79,13 +86,14 @@ function ViewModeToggle({ mode, onModeChange, className, ...props }: ViewModeTog
               onClick={() => onModeChange?.(value)}
               className={cn(
                 "flex items-center gap-2 rounded-md px-1 py-1.5 text-xs font-semibold transition-colors",
+                compact && "touch-target px-2",
                 selected
-                  ? "bg-zinc-600 px-3 text-brand-teal-light"
+                  ? cn("bg-zinc-600 text-brand-teal-light", !compact && "px-3")
                   : "text-zinc-700 dark:text-zinc-300 hover:bg-zinc-600/10"
               )}
             >
               <ModeIcon className={iconClassName} aria-hidden="true" />
-              {label}
+              {compact ? null : label}
             </button>
           )
         })}

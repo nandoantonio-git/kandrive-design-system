@@ -44,11 +44,20 @@ Decisões de 2026-09-24, tomadas numa entrevista (grill) com o Nando. A versão 
 - F4: `atom/SidebarOption` ganhou as opções Tags, Settings e Help.
 - F7: telas `Home/Drawer/Mobile` (Light e Dark).
 
+## Decisões de código na Home (R3, 2026-09-24)
+
+- O `TypeLabel` fica no código, porque é usado em 6 componentes. O descarte decidido na auditoria valia só para o Figma.
+- A Home mobile usa o `DropdownSelectGroupBy device="mobile"`, e não o SortButton.
+- A visualização Colunas não existe no mobile: cai para Lista.
+- Os nomes nas linhas `FileRow` têm 16px (Regra 4; no Figma, 13px).
+- Os rótulos do TabBar têm 11px (piso de microtexto; no Figma, 10px).
+
 ## Pendências de desenho (Nando)
 
 - **F5:** opção "Mão dominante" em Settings/Appearance, nos 3 dispositivos.
 - **F6:** barra de links rápidos para os tópicos do FAQ mobile. O `organism/FaqFastLinks` do desktop pode servir de ponto de partida.
 - **F8:** onboarding com a configuração inicial (mão dominante etc.).
+- **F11 (Figma):** nas telas Home/Grid/Mobile e Home/List/Mobile, trocar o `atom/SortButton` (e a cópia solta "Ordenar por") pelo `molecule/DropdownSelect/GroupBy` `Device=Mobile` (decisão da Fase 4 e Q25). O `SortButton` fica como candidato a descarte.
 - **F10 (to-do, pensar):** o que aparece ao tocar na foto de perfil no Header mobile, em Light e Dark. Hoje o avatar não abre nada. Decidir o conteúdo (conta, plano, sair…) e o formato (menu, folha inferior, tela).
 - **F9:** contraste dos rótulos inativos do `MobileBottomNav` no Light (`Neutral/Text/Placeholder`, abaixo do WCAG AA).
 

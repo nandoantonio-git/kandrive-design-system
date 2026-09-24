@@ -69,11 +69,12 @@ function StorageSidebar({
               <span className="text-xs text-zinc-700 dark:text-zinc-300">{longTermLabel}</span>
             </div>
           </div>
-          <div className="flex items-center gap-3 px-2">
-            <PushButton variant="neutral" className="h-8 flex-1 px-3 text-xs whitespace-nowrap" onClick={onManageSpace}>
+          {/* Em painel estreito (Sidebar do tablet, 150px) os botões empilham, como no Figma Device=Tablet. */}
+          <div className="flex flex-wrap items-center gap-3 px-2">
+            <PushButton variant="neutral" className="h-8 min-w-fit flex-1 basis-24 px-3 text-xs whitespace-nowrap" onClick={onManageSpace}>
               {manageSpaceLabel}
             </PushButton>
-            <PushButton variant="primary" className="h-8 flex-1 px-3 text-xs whitespace-nowrap" onClick={onBuySpace}>
+            <PushButton variant="primary" className="h-8 min-w-fit flex-1 basis-24 px-3 text-xs whitespace-nowrap" onClick={onBuySpace}>
               Comprar Espaço
             </PushButton>
           </div>

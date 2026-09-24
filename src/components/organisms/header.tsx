@@ -88,11 +88,12 @@ function Header({ page = "navbar", searchProps, onOrganize, onSave, onMenuClick,
       />
       {page === "navbar" ? (
         <div className="hidden shrink-0 items-center gap-5 tablet:flex">
-          <PushButton variant="primary" icon={ICONS.Organize} onClick={onOrganize}>
-            Organizar
+          {/* Tablet: só o ícone (Figma Header Device=Tablet); o rótulo aparece a partir de `desktop:`. */}
+          <PushButton variant="primary" icon={ICONS.Organize} onClick={onOrganize} aria-label="Organizar">
+            <span className="hidden desktop:inline">Organizar</span>
           </PushButton>
-          <PushButton variant="primary" icon={ICONS.Keep} onClick={onSave}>
-            Guardar
+          <PushButton variant="primary" icon={ICONS.Keep} onClick={onSave} aria-label="Guardar">
+            <span className="hidden desktop:inline">Guardar</span>
           </PushButton>
         </div>
       ) : null}
