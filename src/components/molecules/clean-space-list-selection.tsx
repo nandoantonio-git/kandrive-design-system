@@ -103,7 +103,7 @@ function CleanSpaceListSelection({
             : "border-[#ececf0] bg-zinc-500/20 hover:bg-zinc-500/30 active:bg-zinc-500/40 dark:border-[#3f3f46] dark:bg-zinc-400/20 dark:hover:bg-zinc-400/30 dark:active:bg-zinc-400/40"
         )}
       >
-        {selected ? <Check aria-hidden="true" strokeWidth={2.5} className="size-3 text-white" /> : null}
+        {selected ? <Check aria-hidden="true" strokeWidth={2.5} className="size-3 text-brand-teal-foreground" /> : null}
       </button>
       <span className="flex size-8 shrink-0 items-center justify-center rounded-[10.4px]">
         <FileGlyph aria-hidden="true" className="h-[23px] w-[21px]" />

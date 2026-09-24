@@ -162,7 +162,7 @@ function FreeModeItemNode({
       ) : isResultado ? (
         <>
           <div className="flex w-full items-center gap-3">
-            <div className="flex size-[34px] shrink-0 items-center justify-center rounded-[10.4px] bg-brand-teal">
+            <div className="flex size-[34px] shrink-0 items-center justify-center rounded-[10.4px] bg-brand-teal dark:bg-brand-teal-dark">
               <ResultadoGlyph aria-hidden="true" className="size-5" />
             </div>
             <div>
@@ -215,7 +215,7 @@ function FreeModeItemNode({
               {baked ? (
                 <Glyph aria-hidden="true" className="h-9 w-[37px] shrink-0" />
               ) : (
-                <div className="flex size-9 shrink-0 items-center justify-center rounded-md bg-brand-teal p-1.5">
+                <div className="flex size-9 shrink-0 items-center justify-center rounded-md bg-brand-teal p-1.5 dark:bg-brand-teal-dark">
                   <Glyph aria-hidden="true" className="size-full" />
                 </div>
               )}

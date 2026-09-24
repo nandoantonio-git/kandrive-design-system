@@ -65,6 +65,29 @@
     --color-effect-glass-surface-light: var(--effect-glass-surface-light);
     --color-effect-glass-surface-dark: var(--effect-glass-surface-dark);
     --color-effect-overlay-subtle: var(--effect-overlay-subtle);
+    /* 🧩 Tokens inferidos na auditoria do Figma V0.2.1 (Fase 6b, 2026-09-23):
+       cores cruas repetidas ≥3× nos componentes viraram variáveis Core.
+       Valor light = valor exato do Figma; valor dark = 🧩 inferido. */
+    --color-neutral-text-slate: var(--neutral-text-slate);
+    --color-neutral-text-slate-600: var(--neutral-text-slate-600);
+    --color-neutral-text-muted: var(--neutral-text-muted);
+    --color-neutral-text-graphite: var(--neutral-text-graphite);
+    --color-neutral-text-ink-85: var(--neutral-text-ink-85);
+    --color-neutral-icon-default: var(--neutral-icon-default);
+    --color-neutral-border-cool: var(--neutral-border-cool);
+    --color-neutral-border-medium: var(--neutral-border-medium);
+    --color-neutral-border-zinc: var(--neutral-border-zinc);
+    --color-neutral-slate-400: var(--neutral-slate-400);
+    --color-neutral-surface-gray: var(--neutral-surface-gray);
+    --color-neutral-surface-steel: var(--neutral-surface-steel);
+    --color-brand-primary-ink: var(--brand-primary-ink);
+    --color-brand-primary-ink-20: var(--brand-primary-ink-20);
+    --color-brand-primary-deep: var(--brand-primary-deep);
+    --color-brand-primary-teal-deep: var(--brand-primary-teal-deep);
+    --color-brand-feedback-warning-text: var(--brand-feedback-warning-text);
+    --color-effect-glass-frost-80: var(--effect-glass-frost-80);
+    --color-effect-glass-frost-90: var(--effect-glass-frost-90);
+    --color-effect-glass-white-60: var(--effect-glass-white-60);
     --radius-sm: calc(var(--radius) * 0.6);
     --radius-md: calc(var(--radius) * 0.8);
     --radius-lg: var(--radius);
@@ -182,6 +205,27 @@
        que já estava em uso, sem mudança visual em modo claro. */
     --neutral-surface-background: #f3f3f3;
     --neutral-border-default: #707070;
+    /* 🧩 Inferidos — Figma V0.2.1 Fase 6b (nome = variável Core em kebab-case, Regra 2). */
+    --neutral-text-slate: #3e484c;
+    --neutral-text-slate-600: #475569;
+    --neutral-text-muted: #71717b;
+    --neutral-text-graphite: #1a1c1c;
+    --neutral-text-ink-85: #000000d9;
+    --neutral-icon-default: #32312e;
+    --neutral-border-cool: #bec8cc;
+    --neutral-border-medium: #d4d4d4;
+    --neutral-border-zinc: #e4e4e7;
+    --neutral-slate-400: #94a3b8;
+    --neutral-surface-gray: #d9d9d9;
+    --neutral-surface-steel: #6e797d;
+    --brand-primary-ink: #001f27;
+    --brand-primary-ink-20: #001f2733;
+    --brand-primary-deep: #006377;
+    --brand-primary-teal-deep: #176a78;
+    --brand-feedback-warning-text: #80590d;
+    --effect-glass-frost-80: #f9f9f9cc;
+    --effect-glass-frost-90: #f9f9f9e5;
+    --effect-glass-white-60: #ffffff99;
 }
 
 /*
@@ -248,10 +292,13 @@
     --sidebar-border: oklch(1 0 0 / 10%);
     --sidebar-ring: oklch(0.556 0 0);
 
-    /* cor/marca/primária — clareada/dessaturada levemente pra contraste em
-       fundo quase-preto (mesma matiz, `lightness` maior — critério padrão
-       de tema escuro, não Figma-confirmado). */
-    --brand-teal: #29b6cf;
+    /* cor/marca/primária no escuro = tom de BRANCO (decisão de design,
+       Figma V0.2.1 2026-09-23 — substitui o teal clareado #29b6cf, que fugia
+       da marca). Conteúdo sobre a primária (texto/ícone) usa o tom escuro da
+       primária via --brand-teal-foreground. Figma: Brand/Primary/Default
+       (Dark #f5f5f5) · Brand/Primary/Foreground (Dark #1a5e6e). */
+    --brand-teal: #f5f5f5;
+    --brand-teal-foreground: #1a5e6e;
     --brand-teal-dark: #1a8fa3;
     /* Papel de "tinta leve de fundo" se inverte no escuro: em modo claro é
        um lavado quase-branco (`#c8dce3`) pra usar como fundo sutil sobre
@@ -286,6 +333,27 @@
     --effect-overlay-subtle: #a8b0bd26;
     --neutral-surface-background: #18181b;
     --neutral-border-default: #52525b;
+    /* 🧩 Inferidos — Figma V0.2.1 Fase 6b. */
+    --neutral-text-slate: #c5ced2;
+    --neutral-text-slate-600: #cbd5e1;
+    --neutral-text-muted: #a1a1aa;
+    --neutral-text-graphite: #ececec;
+    --neutral-text-ink-85: #ffffffd9;
+    --neutral-icon-default: #e5e4e0;
+    --neutral-border-cool: #48535a;
+    --neutral-border-medium: #404040;
+    --neutral-border-zinc: #3f3f46;
+    --neutral-slate-400: #64748b;
+    --neutral-surface-gray: #3a3a3a;
+    --neutral-surface-steel: #9aa5a9;
+    --brand-primary-ink: #e0f4f8;
+    --brand-primary-ink-20: #e0f4f833;
+    --brand-primary-deep: #4fb8cc;
+    --brand-primary-teal-deep: #5cc3d4;
+    --brand-feedback-warning-text: #f5c35a;
+    --effect-glass-frost-80: #1a1a1acc;
+    --effect-glass-frost-90: #1a1a1ae5;
+    --effect-glass-white-60: #1a1a1a99;
 }
 
 @layer base {

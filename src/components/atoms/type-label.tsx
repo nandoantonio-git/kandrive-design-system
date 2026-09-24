@@ -122,7 +122,7 @@ const SCOPE_SELECTED_CLASSES: Record<ScopeKind, Record<Extract<TypeLabelState, "
     "selected-pressed": "bg-[color-mix(in_srgb,var(--brand-teal-light),black_14%)] text-zinc-700 dark:text-zinc-300",
   },
   default: {
-    selected: "bg-brand-teal text-white",
+    selected: "bg-brand-teal text-brand-teal-foreground",
     "selected-hover": "bg-[color-mix(in_srgb,var(--brand-teal),black_14%)] text-white",
     "selected-pressed": "bg-[color-mix(in_srgb,var(--brand-teal),black_45%)] text-white",
   },

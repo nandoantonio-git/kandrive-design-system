@@ -116,7 +116,7 @@ function PlanSelection({
 
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className="inline-flex items-center rounded-full bg-brand-teal px-2.5 py-0.5 text-xs font-medium text-white">
+          <span className="inline-flex items-center rounded-full bg-brand-teal px-2.5 py-0.5 text-xs font-medium text-brand-teal-foreground">
             Ativa
           </span>
           <p className="text-[0.8125rem] text-zinc-500 dark:text-zinc-400">{nextBillingLabel}</p>
@@ -129,7 +129,7 @@ function PlanSelection({
             onClick={() => onIntervalChange?.("monthly")}
             className={cn(
               "rounded-md px-3 py-1 text-[0.8125rem] font-medium",
-              interval === "monthly" ? "bg-brand-teal text-white" : "text-zinc-500 dark:text-zinc-400"
+              interval === "monthly" ? "bg-brand-teal text-brand-teal-foreground" : "text-zinc-500 dark:text-zinc-400"
             )}
           >
             Mensal
@@ -141,7 +141,7 @@ function PlanSelection({
             onClick={() => onIntervalChange?.("annual")}
             className={cn(
               "rounded-md px-3 py-1 text-[0.8125rem] font-medium",
-              interval === "annual" ? "bg-brand-teal text-white" : "text-zinc-500 dark:text-zinc-400"
+              interval === "annual" ? "bg-brand-teal text-brand-teal-foreground" : "text-zinc-500 dark:text-zinc-400"
             )}
           >
             Anual
@@ -164,7 +164,7 @@ function PlanSelection({
             )}
           >
             {isCurrent ? (
-              <span className="mb-1 inline-flex w-fit items-center rounded-full bg-brand-teal px-2 py-0.5 text-[0.6875rem] font-medium text-white">
+              <span className="mb-1 inline-flex w-fit items-center rounded-full bg-brand-teal px-2 py-0.5 text-[0.6875rem] font-medium text-brand-teal-foreground">
                 Atual
               </span>
             ) : null}

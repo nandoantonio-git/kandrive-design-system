@@ -52,6 +52,8 @@ function Switch({
         aria-hidden="true"
         className={cn(
           "block size-4 rounded-full bg-white shadow-sm",
+          // Primária no escuro é branca (Figma V0.2.1): o thumb ligado usa a cor de conteúdo sobre a primária.
+          checked && "dark:bg-brand-teal-foreground",
           "transition-transform motion-safe:duration-150 motion-safe:active:scale-90",
           checked ? "translate-x-4" : "translate-x-0"
         )}

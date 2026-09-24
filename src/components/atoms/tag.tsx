@@ -12,7 +12,7 @@ export interface TagProps extends React.ComponentProps<"span"> {
 }
 
 const VARIANT_STYLES: Record<TagVariant, string> = {
-  primary: "bg-brand-teal text-white",
+  primary: "bg-brand-teal text-brand-teal-foreground",
   "primary-dark": "bg-brand-teal-dark text-white",
   // cor/categoria/acesso-rápido (Regra 3) — mesmo par claro/escuro do rosa
   // já usado em molecule/StorageBar para a categoria "Acesso rápido".

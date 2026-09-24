@@ -94,7 +94,7 @@ function NodeContextMenu({
             onClick={() => onLogicalOperatorChange?.("and")}
             className={cn(
               "rounded-sm px-3 py-1 text-[0.5625rem] font-bold",
-              logicalOperator === "and" ? "bg-brand-teal text-white" : "text-zinc-400"
+              logicalOperator === "and" ? "bg-brand-teal text-brand-teal-foreground" : "text-zinc-400"
             )}
           >
             E
@@ -105,7 +105,7 @@ function NodeContextMenu({
             onClick={() => onLogicalOperatorChange?.("or")}
             className={cn(
               "rounded-sm px-3 py-1 text-[0.5625rem] font-bold",
-              logicalOperator === "or" ? "bg-brand-teal text-white" : "text-zinc-400"
+              logicalOperator === "or" ? "bg-brand-teal text-brand-teal-foreground" : "text-zinc-400"
             )}
           >
             OU

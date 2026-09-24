@@ -236,7 +236,7 @@ function PaymentPage({
                     onClick={() => onBillingCycleChange?.("monthly")}
                     className={cn(
                       "rounded-md px-3 py-1.5 text-sm font-medium",
-                      billingCycle === "monthly" ? "bg-brand-teal text-white" : "text-zinc-500 dark:text-zinc-400"
+                      billingCycle === "monthly" ? "bg-brand-teal text-brand-teal-foreground" : "text-zinc-500 dark:text-zinc-400"
                     )}
                   >
                     Mensal
@@ -246,7 +246,7 @@ function PaymentPage({
                     onClick={() => onBillingCycleChange?.("annual")}
                     className={cn(
                       "rounded-md px-3 py-1.5 text-sm font-medium",
-                      billingCycle === "annual" ? "bg-brand-teal text-white" : "text-zinc-500 dark:text-zinc-400"
+                      billingCycle === "annual" ? "bg-brand-teal text-brand-teal-foreground" : "text-zinc-500 dark:text-zinc-400"
                     )}
                   >
                     Anual <span className="text-xs opacity-80">· economize 17%</span>
