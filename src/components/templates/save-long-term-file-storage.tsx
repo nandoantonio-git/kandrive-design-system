@@ -87,7 +87,7 @@ function SaveLongTermFileStorage({
       role="dialog"
       aria-label="Guardar no longo prazo"
       className={cn(
-        "flex w-[700px] flex-col gap-5 overflow-hidden rounded-3xl glass-edge bg-effect-glass-white-70 p-6 shadow-lg",
+        "flex max-h-[calc(100dvh-2rem)] w-full flex-col gap-5 overflow-y-auto rounded-3xl tablet:w-[700px] tablet:max-h-none tablet:overflow-hidden glass-edge bg-effect-glass-white-70 p-6 shadow-lg",
         className
       )}
       {...props}
@@ -100,7 +100,7 @@ function SaveLongTermFileStorage({
         <CloseButton size="md" onClick={onCancel} />
       </div>
       <SearchInput className="w-full max-w-none" />
-      <div className="flex gap-8">
+      <div className="flex flex-col gap-4 tablet:flex-row tablet:gap-8">
         <SaveLongTermFileStorageSelectedFiles files={files} onAddFiles={onAddFiles} />
         <div className="flex flex-1 flex-col gap-3">
           <div className="flex flex-wrap gap-2">
@@ -129,7 +129,7 @@ function SaveLongTermFileStorage({
       <p className="rounded-lg bg-effect-glass-white-70 px-3 py-2.5 text-xs text-zinc-500 dark:text-zinc-400">
         {`Se algum nome já existir no destino, o Kandrive adiciona automaticamente um sufixo (ex.: "arquivo (1)") para evitar substituir o arquivo existente.`}
       </p>
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="text-xs text-zinc-800 dark:text-zinc-100">
           {selectedCount} selecionado · economia de {savingsLabel}
         </p>

@@ -22,3 +22,13 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {}
+
+// ─── Responsividade (2026-09-24) ─────────────────────────────────────────
+const vp = (value: "kdMobile" | "kdTablet") => ({ viewport: { value, isRotated: false } })
+/** Tablet · 720: largura fluida (760px só a partir de desktop:). Figma `template/ArchiveBrowserModal` `Device=Tablet`. */
+export const Tablet: Story = { globals: vp("kdTablet"), parameters: { layout: "padded" } }
+/**
+ * Mobile · 390: sem a coluna de pastas, busca em largura total. No Figma, o fluxo
+ * mobile equivalente é a tela `LongTermStorage/SelectFiles` (composição própria, lote à parte).
+ */
+export const Mobile: Story = { globals: vp("kdMobile"), parameters: { layout: "padded" } }

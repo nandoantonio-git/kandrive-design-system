@@ -63,7 +63,7 @@ function ArchiveBrowserModal({
       role="dialog"
       aria-label="Adicionar arquivos"
       className={cn(
-        "flex h-[544px] w-[760px] flex-col gap-4 overflow-hidden rounded-[32px] glass-edge bg-effect-glass-white-70 px-6 pt-6 pb-5 shadow-[0px_8px_20px_rgba(0,0,0,0.12)] dark:shadow-[0px_8px_20px_rgba(0,0,0,0.5)]",
+        "flex max-h-[calc(100dvh-2rem)] w-full flex-col gap-4 overflow-y-auto rounded-[32px] desktop:h-[544px] desktop:max-h-none desktop:w-[760px] desktop:overflow-hidden glass-edge bg-effect-glass-white-70 px-6 pt-6 pb-5 shadow-[0px_8px_20px_rgba(0,0,0,0.12)] dark:shadow-[0px_8px_20px_rgba(0,0,0,0.5)]",
         className
       )}
       {...props}
@@ -75,15 +75,16 @@ function ArchiveBrowserModal({
         </div>
         <CloseButton size="md" onClick={onCancel} />
       </div>
-      <div className="flex h-[361px] gap-5">
-        <ArchiveBrowserModalSidebar />
+      {/* Mobile: sem a coluna de pastas (no Figma, o equivalente mobile é LongTermStorage/SelectFiles). */}
+      <div className="flex flex-col gap-4 tablet:h-[361px] tablet:flex-row tablet:gap-5">
+        <ArchiveBrowserModalSidebar className="hidden tablet:flex" />
         <ArchiveBrowserModalSearch
-          className="w-[452px] shrink-0"
+          className="w-full min-w-0 tablet:flex-1 desktop:w-[452px] desktop:flex-none desktop:shrink-0"
           breadcrumb={breadcrumb}
           files={files.map((file) => ({ fileName: file.name, meta: file.meta }))}
         />
       </div>
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="text-sm font-medium text-zinc-800 dark:text-zinc-100">
           {selectedCount} selecionados · economia de {savingsLabel}
         </p>

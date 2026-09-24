@@ -55,6 +55,8 @@ Decisões de 2026-09-24, tomadas numa entrevista (grill) com o Nando. A versão 
 ## Lotes futuros de código
 
 - **Organize mobile (composições próprias do Figma):** `Organize/ChooseMethod/Mobile` (seletor de método + lista com checkbox), `Organize/Review/Mobile` (cards com os selos Duplicado, Incongruente e OK, e as ações Renomear e Editar), `Organize/ReviewDone/Mobile` e `Organize/Saved/Mobile` (lista agrupada por ano). Hoje, no mobile, o código mostra as 3 etapas do desktop adaptadas (Q26, 2026-09-24).
+- **Long-term mobile:** as telas próprias do Figma (`LongTermStorage/SelectFiles`, `SelectFilesSelected`, `Stored` e `RecoveryPending`). Hoje, no mobile, o código mostra os dois modais adaptados (`SaveLongTermFileStorage` e `ArchiveBrowserModal`).
+- **Bug (já existia antes):** em `ArchiveBrowserModalSidebar`, o bloco "Etiquetas" aparece espremido ao lado da lista de navegação, em vez de ficar abaixo dela. Acontece em todas as larguras.
 - **Storage:** a lista de arquivos abaixo do card (filtro, Agrupar e Etiquetar), que está no Figma mobile, e as telas LimitReached e ManageSpace, que não existem no código.
 
 ## Pendências de desenho (Nando)
