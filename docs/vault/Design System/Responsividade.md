@@ -31,7 +31,7 @@ Decisões de 2026-09-24, tomadas numa entrevista (grill) com o Nando. A versão 
 | Organize/DropZone ↔ Organize/Review | D+T ↔ todos | Fluxo equivalente | no Mobile, o arrastar vira a revisão |
 | Organize/ReviewDone | Mobile | Estado (feedback) | vale em todos |
 | LongTermStorage/ArchiveBrowser ↔ SelectFiles (+Selected) | D+T ↔ Mobile | Fluxo equivalente | modal no desktop, tela cheia no mobile |
-| LongTermStorage/Intro ↔ Stored / RecoveryPending | D+T ↔ Mobile | 🧩 a confirmar | — |
+| LongTermStorage/Stored, RecoveryPending | Mobile | Estado | valem em todas as larguras (Stored é feedback visual) |
 | Storage/Current, Storage/LongTerm | Desktop | Estado | no Mobile e no Tablet usam o layout de Storage/Total |
 | Storage/LimitReached, Settings/DeleteAccount | Desktop + Mobile | Estado | valem no Tablet |
 | Storage/ManageSpace | Desktop + Tablet | Estado | vale no Mobile |
@@ -56,11 +56,10 @@ Decisões de 2026-09-24, tomadas numa entrevista (grill) com o Nando. A versão 
 
 - **Login (2026-09-24):** `CardLogin device="mobile"` e `LoginPage` com fundo teal (`brand-teal-action`, superfície), as manchas desfocadas, o Kan com o logo (`login-mobile-kan.svg`) e o formulário sem card. "Entrar" usa `Brand/Secondary/Default` no Light e `Brand/Secondary/Dark` no Dark, como no Figma. O `device` é escolhido pelo `useMinWidth("tablet")`, para não duplicar o formulário no DOM.
 - **Organize (2026-09-24):** a página escolhe a composição pelo `useMinWidth("tablet")`. `default` → ChooseMethod (`MethodOrganizeButton`, "Ordenar por" com o `DropdownSelectGroupBy` mobile, "Página" e a lista `FileSelectRow`). `template-drop-zone` e `review` → Review (`TemplateReviewModal device="mobile"`). `review-done` → `atom/MobileSuccess` em tela cheia, sem gaveta (vale em todas as larguras). `saved` → `FolderCard device="mobile"` com `FileRow`, sem o toast. Pelo Figma, a TabBar fica em "Organizar" nas etapas de tarefa, e em Home no `saved`. Etapa nova `review` também no desktop e no tablet (modal por cima da composição de arrastar). Tokens novos: `Neutral/Border/Subtle` e `Neutral/Surface/Card`.
+- **Long-term (2026-09-24):** página nova `LongTermStoragePage` (`step`: intro · archive-browser · stored · recovery-pending). Desktop e tablet: a Home com o modal por cima (`HomePage` ganhou `overlay`). Mobile: os dois modais viram `SelectFiles` (`FileSelectList` + `PagePickerButton`, e o `ContextHeader layout="minimal"` quando há seleção). `stored` usa o `MobileSuccess` Stored em tela cheia; `recovery-pending` usa o organism `RecoveryPending` (o Kan espiando da bolsa, redesenhado em SVG porque no Figma é raster). `FileSelectList` e `PagePickerButton` foram extraídos e agora servem também ao Organize. Tokens novos: `Brand/Primary/Mid` e `Brand/Primary/Disabled`. Corrigido o bug do bloco "Etiquetas" ao lado da lista no `ArchiveBrowserModalSidebar` (faltava `flex-col`).
 
 ## Lotes futuros de código
 
-- **Long-term mobile:** as telas próprias do Figma (`LongTermStorage/SelectFiles`, `SelectFilesSelected`, `Stored` e `RecoveryPending`). O `atom/MobileSuccess` já tem a mensagem Stored. Hoje, no mobile, o código mostra os dois modais adaptados (`SaveLongTermFileStorage` e `ArchiveBrowserModal`).
-- **Bug (já existia antes):** em `ArchiveBrowserModalSidebar`, o bloco "Etiquetas" aparece espremido ao lado da lista de navegação, em vez de ficar abaixo dela. Acontece em todas as larguras.
 - **Storage:** a lista de arquivos abaixo do card (filtro, Agrupar e Etiquetar), que está no Figma mobile, e as telas LimitReached e ManageSpace, que não existem no código.
 
 ## Pendências de desenho (Nando)
@@ -71,6 +70,8 @@ Decisões de 2026-09-24, tomadas numa entrevista (grill) com o Nando. A versão 
 - **F11 (Figma):** nas telas Home/Grid/Mobile e Home/List/Mobile, trocar o `atom/SortButton` (e a cópia solta "Ordenar por") pelo `molecule/DropdownSelect/GroupBy` `Device=Mobile` (decisão da Fase 4 e Q25). O `SortButton` fica como candidato a descarte.
 - ~~**F12**~~ resolvido pelo próprio Figma: no mobile não há etapa de arrastar; a etapa mostra a revisão, só com o FAB ✓/✕.
 - **F10 (to-do, pensar):** o que aparece ao tocar na foto de perfil no Header mobile, em Light e Dark. Hoje o avatar não abre nada. Decidir o conteúdo (conta, plano, sair…) e o formato (menu, folha inferior, tela).
+- **F13 (Figma):** `LongTermStorage/SelectFilesSelected/Mobile` marca "Organizar" na TabBar, e `SelectFiles` marca "Guardar". O código usa Guardar nas duas.
+- **F14:** em `RecoveryPending` Dark, o nome do arquivo usa `Brand/Primary/Mid` (#337084 nos dois modos), com pouco contraste sobre o fundo escuro.
 - **F9:** contraste dos rótulos inativos do `MobileBottomNav` no Light (`Neutral/Text/Placeholder`, abaixo do WCAG AA).
 
 Ver também [[Camadas Atômicas]], [[Fonte Figma]], [[Regra 4 - Tipografia e Acessibilidade]].

@@ -1,0 +1,36 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as Stories from './LongTermStorage.stories';
+
+<Meta of={Stories} />
+
+# LongTermStorage
+
+✅ Telas do Figma KanDrive V0.2.1 (`LongTermStorage/*`), reunidas numa página em 2026-09-24. Antes, o fluxo só existia como os templates soltos `SaveLongTermFileStorage` e `ArchiveBrowserModal`.
+
+## Uso
+
+O fluxo "Guardar no longo prazo": escolher arquivos, confirmar, ver a confirmação e acompanhar a recuperação de um arquivo guardado. A etapa vem de `step`.
+
+<Canvas of={Stories.Intro} />
+<Controls />
+
+## Etapas
+
+| `step` | Desktop e tablet | Mobile (< 720) |
+| --- | --- | --- |
+| `intro` | Home + `SaveLongTermFileStorage` | `SelectFiles` |
+| `archive-browser` | Home + `ArchiveBrowserModal` | `SelectFiles` |
+| `stored` | `MobileSuccess` Stored em tela cheia | igual |
+| `recovery-pending` | `RecoveryPending` com a Sidebar | `RecoveryPending`, BottomNav Adicionar |
+
+<Canvas of={Stories.RecoveryPending} />
+
+## Mobile
+
+- Os dois modais do desktop viram uma tela só, `SelectFiles` (fluxo equivalente): título, "Ordenar por" + visualização, `PagePickerButton` e a `FileSelectList`. Com algo marcado, entra o `ContextHeader` Minimal com o contador (`SelectFilesSelected`).
+- Barras: TabBar em "Guardar" e BottomNav Confirmar + ✕ (cancelar volta para a Home).
+- `stored` é feedback visual: sem gaveta nem barras, com a mesma paleta no Light e no Dark.
+- `recovery-pending`: sem TabBar, com o BottomNav Adicionar, como no Figma.
+- 🧩 "Ordenar por" usa o `DropdownSelectGroupBy` mobile, como na Home (decisão Q25).
+- ⚠️ No Figma, `SelectFilesSelected/Mobile` marca "Organizar" na TabBar, o que é inconsistente com `SelectFiles` (Guardar). O código usa Guardar.
+- ⚠️ A legenda tem 16px (Regra 4). No Figma, 13px.

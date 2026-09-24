@@ -1,5 +1,5 @@
 import * as React from "react"
-import { ChevronDown, Info } from "lucide-react"
+import { Info } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { AppShell } from "@/components/templates/app-shell"
@@ -17,11 +17,11 @@ import { FolderCard, type FolderCardProps } from "@/components/molecules/folder-
 import { PopoverNotification, type PopoverNotificationProps } from "@/components/molecules/popover-notification"
 import { TemplateReviewModal, type ReviewItem } from "@/components/templates/template-review-modal"
 import { MethodOrganizeButton, MOBILE_ORGANIZE_METHODS, type MobileOrganizeMethod } from "@/components/molecules/method-organize-button"
-import { FileSelectRow } from "@/components/molecules/file-select-row"
+import { FileSelectList } from "@/components/organisms/file-select-list"
 import type { FileRowProps } from "@/components/molecules/file-row"
 import { MobileSuccess } from "@/components/atoms/mobile-success"
 import { useMinWidth } from "@/lib/use-min-width"
-import PagePickerGlyph from "@/assets/icons/PagePickerGlyph.svg?react"
+import { PagePickerButton } from "@/components/molecules/page-picker-button"
 import type { HomePageGridItem } from "@/components/pages/home-page"
 
 export type OrganizationPageStep = "default" | "template-drop-zone" | "review" | "review-done" | "saved"
@@ -318,32 +318,9 @@ function OrganizationPageMobile({
               <span className={caption}>Ordenar por:</span>
               <DropdownSelectGroupBy device="mobile" value="Data de compartilhamento" />
             </div>
-            <div className="flex items-center gap-2">
-              <span className={caption}>Página:</span>
-              <button
-                type="button"
-                className="touch-target flex h-8 cursor-pointer items-center gap-2 rounded-lg border border-brand-teal-light bg-effect-overlay-subtle/10 px-3 text-[0.8125rem] font-medium text-neutral-text-secondary backdrop-blur-[15px] focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none"
-              >
-                <PagePickerGlyph aria-hidden="true" className="h-[18px] w-5 text-neutral-text-tertiary" />
-                Pessoal
-                <ChevronDown aria-hidden="true" className="size-3 text-neutral-text-tertiary" />
-              </button>
-            </div>
+            <PagePickerButton />
           </div>
-          <section className="flex flex-col gap-2">
-            <h2 className="text-[0.6875rem] leading-4 font-bold text-neutral-text-tertiary uppercase">Selecionar arquivos</h2>
-            <div className="overflow-hidden rounded-xl border border-neutral-border-subtle bg-neutral-surface-card">
-              {mobileFiles.map((file) => (
-                <FileSelectRow
-                  key={file.name}
-                  name={file.name}
-                  meta={file.meta}
-                  checked={selected.has(file.name)}
-                  onCheckedChange={(checked) => toggle(file.name, checked)}
-                />
-              ))}
-            </div>
-          </section>
+          <FileSelectList files={mobileFiles} selected={selected} onSelectedChange={toggle} />
         </>
       )}
       {step === "review-done" ? <OrganizedFeedback fileName={organizedFileName} /> : null}

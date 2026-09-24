@@ -142,6 +142,8 @@ export const CSS_TO_FIGMA: Record<string, string> = {
   "--neutral-surface-elevated": "Neutral/Surface/Elevated",
   "--neutral-border-subtle": "Neutral/Border/Subtle",
   "--neutral-surface-card": "Neutral/Surface/Card",
+  "--brand-primary-mid": "Brand/Primary/Mid",
+  "--brand-primary-disabled": "Brand/Primary/Disabled",
   "--neutral-surface-background-alt": "Neutral/Surface/Background/Alt",
   "--effect-overlay-default": "Effect/Overlay/Default",
   "--effect-overlay-light": "Effect/Overlay/Light",

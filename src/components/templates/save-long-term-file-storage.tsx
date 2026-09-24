@@ -87,7 +87,7 @@ function SaveLongTermFileStorage({
       role="dialog"
       aria-label="Guardar no longo prazo"
       className={cn(
-        "flex max-h-[calc(100dvh-2rem)] w-full flex-col gap-5 overflow-y-auto rounded-3xl tablet:w-[700px] tablet:max-h-none tablet:overflow-hidden glass-edge bg-effect-glass-white-70 p-6 shadow-lg",
+        "flex max-h-[calc(100dvh-2rem)] w-full flex-col gap-5 overflow-y-auto rounded-3xl tablet:w-[700px] tablet:max-h-none tablet:overflow-hidden glass-edge bg-effect-glass-white-70 backdrop-blur-md p-6 shadow-lg",
         className
       )}
       {...props}

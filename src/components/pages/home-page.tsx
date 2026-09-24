@@ -39,6 +39,8 @@ export interface HomePageProps extends React.ComponentProps<"div"> {
   /** `viewMode="list"` com uma seleção ativa (`page/Home/ListMode/Selected`, `1439:19810`) — troca o header de toolbar por `ContextHeader` e marca as linhas como selecionadas. */
   listSelectedCount?: number
   onListSelectionClear?: () => void
+  /** Camada por cima da Home (ex. o modal de Guardar no longo prazo). Usada por `LongTermStoragePage`. */
+  overlay?: React.ReactNode
 }
 
 /**
@@ -93,6 +95,7 @@ function HomePage({
   previewFile,
   listSelectedCount,
   onListSelectionClear,
+  overlay,
   className,
   ...props
 }: HomePageProps) {
@@ -197,6 +200,7 @@ function HomePage({
           </>
         ) : null}
       </div>
+      {overlay}
     </AppShell>
   )
 }

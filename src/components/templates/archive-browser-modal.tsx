@@ -63,7 +63,7 @@ function ArchiveBrowserModal({
       role="dialog"
       aria-label="Adicionar arquivos"
       className={cn(
-        "flex max-h-[calc(100dvh-2rem)] w-full flex-col gap-4 overflow-y-auto rounded-[32px] desktop:h-[544px] desktop:max-h-none desktop:w-[760px] desktop:overflow-hidden glass-edge bg-effect-glass-white-70 px-6 pt-6 pb-5 shadow-[0px_8px_20px_rgba(0,0,0,0.12)] dark:shadow-[0px_8px_20px_rgba(0,0,0,0.5)]",
+        "flex max-h-[calc(100dvh-2rem)] w-full flex-col gap-4 overflow-y-auto rounded-[32px] desktop:h-[544px] desktop:max-h-none desktop:w-[760px] desktop:overflow-hidden glass-edge bg-effect-glass-white-70 backdrop-blur-md px-6 pt-6 pb-5 shadow-[0px_8px_20px_rgba(0,0,0,0.12)] dark:shadow-[0px_8px_20px_rgba(0,0,0,0.5)]",
         className
       )}
       {...props}

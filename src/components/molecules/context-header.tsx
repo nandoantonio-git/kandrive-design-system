@@ -16,6 +16,13 @@ export interface ContextHeaderProps extends React.ComponentProps<"div"> {
   onMove?: () => void
   onDelete?: () => void
   onMoreOptions?: () => void
+  /**
+   * Figma `Layout` (V0.2.1): default (contador + ações) · minimal (só o botão
+   * de limpar e o contador, 40px de altura, largura fluida). O Minimal existe
+   * no Figma só com `Device=Mobile` (`1729:24977`), na seleção do Long-term.
+   * 🧩 O Layout Compact do Figma ainda não tem uso no código.
+   */
+  layout?: "default" | "minimal"
 }
 
 /**
@@ -51,10 +58,41 @@ function ContextHeader({
   onMove,
   onDelete,
   onMoreOptions,
+  layout = "default",
   className,
   ...props
 }: ContextHeaderProps) {
   const isCollapsed = state === "collapsed"
+
+  if (layout === "minimal") {
+    return (
+      <div
+        data-slot="context-header"
+        data-state={state}
+        data-layout="minimal"
+        role="status"
+        className={cn(
+          "relative flex w-full items-center overflow-clip rounded-3xl drop-shadow-[0px_2px_16px_rgba(9,9,11,0.08)] transition-[height,opacity] duration-200",
+          isCollapsed ? "h-0 opacity-0" : "h-10 opacity-100",
+          className
+        )}
+        {...props}
+      >
+        <div aria-hidden="true" className="absolute inset-0 rounded-3xl glass-edge glass-shadow-sm bg-effect-glass-white-36" />
+        <div className="relative flex w-full items-center gap-2 px-4">
+          <button
+            type="button"
+            aria-label="Limpar seleção"
+            onClick={onClear}
+            className="touch-target inline-flex size-4 shrink-0 items-center justify-center text-zinc-800 transition-colors dark:text-zinc-100 hover:text-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 active:opacity-60"
+          >
+            <ClearGlyph aria-hidden="true" className="size-4" />
+          </button>
+          <span className="truncate text-sm font-medium tracking-[0.14px] text-zinc-800 dark:text-zinc-100">{itemsSelected}</span>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div
