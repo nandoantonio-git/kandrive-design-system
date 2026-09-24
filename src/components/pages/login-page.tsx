@@ -39,7 +39,7 @@ function LoginPage({ cardProps, onCreateAccount, className, ...props }: LoginPag
   return (
     <div
       data-slot="login-page"
-      className={cn("relative flex min-h-[1022px] w-full items-center justify-center overflow-hidden bg-zinc-50 dark:bg-zinc-900", className)}
+      className={cn("relative flex min-h-dvh w-full items-center justify-center overflow-hidden px-4 desktop:min-h-[1022px] bg-zinc-50 dark:bg-zinc-900", className)}
       {...props}
     >
       <div
@@ -50,7 +50,7 @@ function LoginPage({ cardProps, onCreateAccount, className, ...props }: LoginPag
         aria-hidden="true"
         className="absolute -right-32 bottom-0 size-[638px] rounded-full bg-brand-pink-light/40 blur-3xl"
       />
-      <div className="relative flex flex-col items-center gap-8 py-16">
+      <div className="relative flex w-full flex-col items-center gap-8 py-10 tablet:py-16">
         <img src={kandriveLogo} alt="Kandrive" className="h-[52px] w-[204px] shrink-0 dark:hidden" />
       {/* Logo sobre fundo escuro (Figma Logo/* dark): "Kan" + canguru (Kan) #F5F4F2, "drive" #337084 (Brand/Primary/Mid), símbolo #337084→#1A5E6E. */}
       <img src={kandriveLogoDark} alt="Kandrive" className="h-[52px] w-[204px] shrink-0 hidden dark:block" />
