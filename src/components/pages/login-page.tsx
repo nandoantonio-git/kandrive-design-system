@@ -52,7 +52,7 @@ function LoginPage({ cardProps, onCreateAccount, className, ...props }: LoginPag
       />
       <div className="relative flex flex-col items-center gap-8 py-16">
         <img src={kandriveLogo} alt="Kandrive" className="h-[52px] w-[204px] shrink-0 dark:hidden" />
-      {/* Logo sobre fundo escuro (Figma Logo/* dark): "Kan" + coelho #F5F4F2, "drive" #337084 (Brand/Primary/Mid), símbolo #337084→#1A5E6E. */}
+      {/* Logo sobre fundo escuro (Figma Logo/* dark): "Kan" + canguru (Kan) #F5F4F2, "drive" #337084 (Brand/Primary/Mid), símbolo #337084→#1A5E6E. */}
       <img src={kandriveLogoDark} alt="Kandrive" className="h-[52px] w-[204px] shrink-0 hidden dark:block" />
         <CardLogin {...cardProps} />
         <a href="#criar-conta" onClick={onCreateAccount} className="text-sm text-zinc-600 dark:text-zinc-300 hover:underline">

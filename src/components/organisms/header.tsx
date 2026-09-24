@@ -72,7 +72,7 @@ function Header({ page = "navbar", searchProps, onOrganize, onSave, className, .
       {...props}
     >
       <img src={kandriveLogo} alt="Kandrive" className="h-11 w-[173px] shrink-0 dark:hidden" />
-      {/* Logo sobre fundo escuro (Figma Logo/* dark): "Kan" + coelho #F5F4F2, "drive" #337084 (Brand/Primary/Mid), símbolo #337084→#1A5E6E. */}
+      {/* Logo sobre fundo escuro (Figma Logo/* dark): "Kan" + canguru (Kan) #F5F4F2, "drive" #337084 (Brand/Primary/Mid), símbolo #337084→#1A5E6E. */}
       <img src={kandriveLogoDark} alt="Kandrive" className="h-11 w-[173px] shrink-0 hidden dark:block" />
       <SearchInput
         {...searchProps}
