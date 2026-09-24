@@ -55,11 +55,11 @@ Decisões de 2026-09-24, tomadas numa entrevista (grill) com o Nando. A versão 
 ## Composições mobile próprias já feitas
 
 - **Login (2026-09-24):** `CardLogin device="mobile"` e `LoginPage` com fundo teal (`brand-teal-action`, superfície), as manchas desfocadas, o Kan com o logo (`login-mobile-kan.svg`) e o formulário sem card. "Entrar" usa `Brand/Secondary/Default` no Light e `Brand/Secondary/Dark` no Dark, como no Figma. O `device` é escolhido pelo `useMinWidth("tablet")`, para não duplicar o formulário no DOM.
+- **Organize (2026-09-24):** a página escolhe a composição pelo `useMinWidth("tablet")`. `default` → ChooseMethod (`MethodOrganizeButton`, "Ordenar por" com o `DropdownSelectGroupBy` mobile, "Página" e a lista `FileSelectRow`). `template-drop-zone` e `review` → Review (`TemplateReviewModal device="mobile"`). `review-done` → `atom/MobileSuccess` em tela cheia, sem gaveta (vale em todas as larguras). `saved` → `FolderCard device="mobile"` com `FileRow`, sem o toast. Pelo Figma, a TabBar fica em "Organizar" nas etapas de tarefa, e em Home no `saved`. Etapa nova `review` também no desktop e no tablet (modal por cima da composição de arrastar). Tokens novos: `Neutral/Border/Subtle` e `Neutral/Surface/Card`.
 
 ## Lotes futuros de código
 
-- **Organize mobile (composições próprias do Figma):** `Organize/ChooseMethod/Mobile` (seletor de método + lista com checkbox), `Organize/Review/Mobile` (cards com os selos Duplicado, Incongruente e OK, e as ações Renomear e Editar), `Organize/ReviewDone/Mobile` e `Organize/Saved/Mobile` (lista agrupada por ano). Hoje, no mobile, o código mostra as 3 etapas do desktop adaptadas (Q26, 2026-09-24).
-- **Long-term mobile:** as telas próprias do Figma (`LongTermStorage/SelectFiles`, `SelectFilesSelected`, `Stored` e `RecoveryPending`). Hoje, no mobile, o código mostra os dois modais adaptados (`SaveLongTermFileStorage` e `ArchiveBrowserModal`).
+- **Long-term mobile:** as telas próprias do Figma (`LongTermStorage/SelectFiles`, `SelectFilesSelected`, `Stored` e `RecoveryPending`). O `atom/MobileSuccess` já tem a mensagem Stored. Hoje, no mobile, o código mostra os dois modais adaptados (`SaveLongTermFileStorage` e `ArchiveBrowserModal`).
 - **Bug (já existia antes):** em `ArchiveBrowserModalSidebar`, o bloco "Etiquetas" aparece espremido ao lado da lista de navegação, em vez de ficar abaixo dela. Acontece em todas as larguras.
 - **Storage:** a lista de arquivos abaixo do card (filtro, Agrupar e Etiquetar), que está no Figma mobile, e as telas LimitReached e ManageSpace, que não existem no código.
 
@@ -69,7 +69,7 @@ Decisões de 2026-09-24, tomadas numa entrevista (grill) com o Nando. A versão 
 - **F6:** barra de links rápidos para os tópicos do FAQ mobile. O `organism/FaqFastLinks` do desktop pode servir de ponto de partida.
 - **F8:** onboarding com a configuração inicial (mão dominante etc.).
 - **F11 (Figma):** nas telas Home/Grid/Mobile e Home/List/Mobile, trocar o `atom/SortButton` (e a cópia solta "Ordenar por") pelo `molecule/DropdownSelect/GroupBy` `Device=Mobile` (decisão da Fase 4 e Q25). O `SortButton` fica como candidato a descarte.
-- **F12 (decidir):** na etapa de arrastar do Organize no mobile, o painel tem Cancelar/Continuar e o BottomNav tem o FAB ✓/✕: são duas ações iguais. Manter só o FAB no mobile?
+- ~~**F12**~~ resolvido pelo próprio Figma: no mobile não há etapa de arrastar; a etapa mostra a revisão, só com o FAB ✓/✕.
 - **F10 (to-do, pensar):** o que aparece ao tocar na foto de perfil no Header mobile, em Light e Dark. Hoje o avatar não abre nada. Decidir o conteúdo (conta, plano, sair…) e o formato (menu, folha inferior, tela).
 - **F9:** contraste dos rótulos inativos do `MobileBottomNav` no Light (`Neutral/Text/Placeholder`, abaixo do WCAG AA).
 

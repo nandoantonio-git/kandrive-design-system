@@ -17,6 +17,13 @@ export interface TemplateReviewModalProps extends React.ComponentProps<"div"> {
   items: ReviewItem[]
   onCancel?: () => void
   onContinue?: () => void
+  /**
+   * Figma `Device` (V0.2.1): desktop (diálogo com título, rodapé e botões) ·
+   * mobile (só a lista em cards, dentro de uma moldura de vidro de 4px, em
+   * largura total). No mobile, o título, o aviso e as ações ficam na tela
+   * (`Organize/Review/Mobile`): Confirmar e ✕ vêm do `MobileBottomNav`.
+   */
+  device?: "desktop" | "mobile"
 }
 
 /**
@@ -48,7 +55,7 @@ export interface TemplateReviewModalProps extends React.ComponentProps<"div"> {
  * ganhou symbol Figma próprio (`organism/Dialog/TemplateReviewModal/Item`,
  * `1554:21151`) — extraída para `TemplateReviewModalItem` (Regra 10).
  */
-function TemplateReviewModal({ items, onCancel, onContinue, className, ...props }: TemplateReviewModalProps) {
+function TemplateReviewModal({ items, onCancel, onContinue, device = "desktop", className, ...props }: TemplateReviewModalProps) {
   const [expanded, setExpanded] = React.useState<Set<string>>(
     () => new Set(items.filter((item) => item.children?.length).slice(0, 1).map((item) => item.name))
   )
@@ -59,6 +66,26 @@ function TemplateReviewModal({ items, onCancel, onContinue, className, ...props 
       else next.add(name)
       return next
     })
+  }
+  if (device === "mobile") {
+    return (
+      <div
+        data-slot="template-review-modal"
+        data-device="mobile"
+        className={cn("flex w-full flex-col gap-3 rounded-xl p-1 backdrop-blur-sm", className)}
+        {...props}
+      >
+        {items.map((item) => (
+          <TemplateReviewModalItem
+            key={item.name}
+            device="mobile"
+            item={item}
+            isExpanded={expanded.has(item.name)}
+            onToggleExpand={() => toggleExpanded(item.name)}
+          />
+        ))}
+      </div>
+    )
   }
   return (
     <div

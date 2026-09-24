@@ -23,7 +23,7 @@ type Story = StoryObj<typeof meta>
 
 /** Clique, Espaço ou Enter alternam o estado. */
 export const Interactive: Story = {
-  render: (args) => {
+  render: function Render(args) {
     const [checked, setChecked] = React.useState(args.checked ?? false)
     return <Checkbox {...args} checked={checked} onCheckedChange={setChecked} />
   },

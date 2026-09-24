@@ -38,3 +38,10 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {}
+
+/** `Device=Mobile` (V0.2.1): só a lista em cards, em largura total. Título, aviso e ações ficam na tela. */
+export const Mobile: Story = {
+  args: { device: "mobile" },
+  parameters: { layout: "padded", design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1754-53992" } },
+  decorators: [(Story) => <div className="w-[364px]"><Story /></div>],
+}

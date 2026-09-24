@@ -21,6 +21,30 @@ Tela de Organização (`1439:19678`) — mesmo shell de [Pages/Home](./Home.mdx)
 - **`template-drop-zone`** (`1439:19696`) — diferente do `default`: TEM breadcrumb ("Home/Templates de organização") + `PageLead` ("Organização"/"Organize seus arquivos em templates"), Figma-confirmado via `get_design_context`. Conteúdo: grid pequeno (4 itens) + `organism/OrganizePanel/DropZone` já existente, sem modal.
 - **`saved`** (`Organização/ModoData/Organização/Saved`, `1439:19717` — único node das 23 telas sem prefixo `page/`, gap de nomenclatura já registrado) — mantém o padrão `default` (h1 solto "Bem-vindo ao Kandrive!", sem breadcrumb). Troca o modal por `molecule/FolderCard` (pasta criada) + `molecule/Notification` (toast, `1439:19748` — mesmo node de origem do componente já existente).
 
+## Revisão e conclusão (Figma V0.2.1, 2026-09-24)
+
+<Canvas of={OrganizationStories.Review} />
+
+- **`review`** (`Organize/Review/Desktop`, `1753:51532`): a composição de arrastar com o `TemplateReviewModal` por cima.
+- **`review-done`** (`Organize/ReviewDone/Mobile`, `1757:57986`): tela cheia `Brand/Primary/Action` com `Atoms/MobileSuccess`. É feedback visual: sem gaveta nem barras, e igual no Light e no Dark. Vale em todas as larguras.
+
+## Mobile (< 720)
+
+No mobile, o Figma tem composições próprias para cada etapa. A página as escolhe pela largura (`useMinWidth("tablet")`), sem montar as duas versões ao mesmo tempo.
+
+| `step` | Tela do Figma | O que muda |
+| --- | --- | --- |
+| `default` | `Organize/ChooseMethod/Mobile` | `MethodOrganizeButton` no lugar do modal de 4 cards, "Ordenar por", "Página" e a lista com `FileSelectRow` |
+| `template-drop-zone`, `review` | `Organize/Review/Mobile` | não se arrasta no mobile: a etapa mostra a revisão (fluxo equivalente), com o `TemplateReviewModal` `device="mobile"` |
+| `review-done` | `Organize/ReviewDone/Mobile` | `MobileSuccess` em tela cheia |
+| `saved` | `Organize/Saved/Mobile` | grupo do ano com `FileRow` (`FolderCard device="mobile"`), sem o toast |
+
+- **Barras:** TabBar em "Organizar" nas etapas de tarefa, com o BottomNav Confirmar + ✕ (cancelar volta para a Home). Em `saved`, a TabBar volta para Home, e o BottomNav mostra Adicionar.
+- 🧩 **"Ordenar por"** usa o `DropdownSelectGroupBy` mobile, como na Home (decisão Q25: ele substitui o `atom/SortButton`).
+- ⚠️ Os títulos seguem a escala do código (Regra 4): a legenda tem 16px, e no Figma tem 13px.
+
+<Canvas of={OrganizationStories.DefaultMobile} />
+
 ## Diferenças confirmadas contra Home
 
 - **Sem breadcrumb** — nenhuma instância `Navigation - Breadcrumb` no node (diferente dos 3 nodes `page/Home/*`).

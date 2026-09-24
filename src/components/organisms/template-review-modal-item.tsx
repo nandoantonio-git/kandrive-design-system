@@ -1,5 +1,5 @@
 import * as React from "react"
-import { AlertTriangle, AlertCircle, CheckCircle2, ChevronDown, ChevronRight, Folder, File, Trash2 } from "lucide-react"
+import { AlertTriangle, AlertCircle, CheckCircle2, ChevronDown, ChevronRight, Folder, File, Lightbulb, Trash2 } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { PushButton } from "@/components/atoms/push-button"
@@ -36,6 +36,11 @@ export interface TemplateReviewModalItemProps extends Omit<React.ComponentProps<
   item: ReviewItem
   isExpanded: boolean
   onToggleExpand: () => void
+  /**
+   * Figma `Device` do `TemplateReviewModal`. Mobile: card `Neutral/Surface/Elevated`,
+   * nome e selo na 1ª linha, Renomear/Editar abaixo do selo, caminho quebrando linha.
+   */
+  device?: "desktop" | "mobile"
 }
 
 const SEVERITY_META: Record<ReviewSeverity, { label: string; icon: typeof AlertTriangle; className: string }> = {
@@ -79,7 +84,8 @@ const SEVERITY_META: Record<ReviewSeverity, { label: string; icon: typeof AlertT
  * lógica do `--effect-glass-dark-20`: tint escuro sobre superfície clara
  * vira tint claro sobre superfície escura).
  */
-function TemplateReviewModalItem({ item, isExpanded, onToggleExpand, className, ...props }: TemplateReviewModalItemProps) {
+function TemplateReviewModalItem({ item, isExpanded, onToggleExpand, device = "desktop", className, ...props }: TemplateReviewModalItemProps) {
+  const mobile = device === "mobile"
   const meta = SEVERITY_META[item.severity]
   const SeverityIcon = meta.icon
   const hasChildren = !!item.children?.length
@@ -88,13 +94,14 @@ function TemplateReviewModalItem({ item, isExpanded, onToggleExpand, className, 
     <div
       data-slot="template-review-modal-item"
       className={cn(
-        "flex flex-col gap-3 rounded-lg border border-[rgba(107,107,104,0.05)] dark:border-[rgba(255,255,255,0.08)] bg-effect-glass-white-50 p-3",
+        "flex flex-col gap-3 rounded-lg border border-[rgba(107,107,104,0.05)] dark:border-[rgba(255,255,255,0.08)] p-3",
+        mobile ? "bg-neutral-surface-elevated" : "bg-effect-glass-white-50",
         className
       )}
       {...props}
     >
-      <div className="flex items-start justify-between">
-        <div className="flex items-center gap-2">
+      <div className={cn("flex items-start justify-between", mobile && "grid grid-cols-[minmax(0,1fr)_auto] gap-x-2 gap-y-1")}>
+        <div className={cn("flex items-center gap-2", mobile && "row-span-2 min-w-0 self-start")}>
           <button
             type="button"
             aria-label={isExpanded ? "Colapsar" : "Expandir"}
@@ -110,16 +117,17 @@ function TemplateReviewModalItem({ item, isExpanded, onToggleExpand, className, 
             )}
           </button>
           <Folder aria-hidden="true" className="size-4 shrink-0 text-zinc-500 dark:text-zinc-400" />
-          <div className="flex flex-col gap-1">
-            <span className="text-sm text-zinc-900 dark:text-zinc-100">{item.name}</span>
+          <div className={cn("flex flex-col gap-1", mobile && "min-w-0")}>
+            <span className={cn(mobile ? "truncate text-base text-neutral-text-primary" : "text-sm text-zinc-900 dark:text-zinc-100")}>{item.name}</span>
             <span className="text-xs text-zinc-600 dark:text-zinc-300">{item.itemsLabel}</span>
           </div>
         </div>
-        <div className="flex items-center gap-3">
-          <span className={cn("flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium", meta.className)}>
+        <div className={cn("flex items-center gap-3", mobile && "contents")}>
+          <span className={cn("flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium", mobile && "justify-self-end text-sm", meta.className)}>
             <SeverityIcon aria-hidden="true" className="size-3" />
             {meta.label}
           </span>
+          <span className={cn("contents", mobile && "flex items-center justify-end gap-1")}>
           <button
             type="button"
             onClick={item.onRename}
@@ -134,9 +142,11 @@ function TemplateReviewModalItem({ item, isExpanded, onToggleExpand, className, 
           >
             Editar
           </button>
+          </span>
         </div>
       </div>
-      <div className="flex items-center gap-2 rounded border border-zinc-200 bg-zinc-50 p-2 text-xs text-zinc-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300">
+      <div className={cn("flex items-center gap-2 rounded border border-zinc-200 bg-zinc-50 p-2 text-xs text-zinc-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300", mobile && "flex-wrap gap-y-1")}>
+        <Lightbulb aria-hidden="true" className="size-3.5 shrink-0" />
         <span>{item.suggestedPathLabel ?? "Template Sugerido:"}</span>
         {pathSegments.map((segment, index) => (
           <React.Fragment key={segment}>
@@ -146,13 +156,13 @@ function TemplateReviewModalItem({ item, isExpanded, onToggleExpand, className, 
         ))}
       </div>
       {hasChildren && isExpanded ? (
-        <ul className="flex flex-col gap-1 pl-8">
+        <ul className={cn("flex flex-col gap-1", mobile ? "border-t border-neutral-border-subtle pt-2 pl-6" : "pl-8")}>
           {item.children!.map((child) => (
             <li key={child.name} className="flex items-center justify-between py-1">
               <div className="flex items-center gap-2">
                 <File aria-hidden="true" className="size-4 shrink-0 text-zinc-400 dark:text-zinc-500" />
-                <div className="flex flex-col">
-                  <span className="text-sm text-zinc-900 dark:text-zinc-100">{child.name}</span>
+                <div className="flex min-w-0 flex-col">
+                  <span className={cn("truncate", mobile ? "text-base text-neutral-text-primary" : "text-sm text-zinc-900 dark:text-zinc-100")}>{child.name}</span>
                   <span className="text-xs text-zinc-600 dark:text-zinc-300">{child.meta}</span>
                 </div>
               </div>

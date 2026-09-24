@@ -1,0 +1,37 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as Stories from './MethodOrganizeButton.stories';
+
+<Meta of={Stories} />
+
+# MethodOrganizeButton
+
+✅ Figma-confirmado: `molecule/MethodOrganizeButton` (`1663:8802`), KanDrive V0.2.1.
+
+## Uso
+
+O seletor de método do Organize no mobile (`Organize/ChooseMethod/Mobile`). Ocupa o lugar dos 4 cards do `SaveOrganizationModal` do desktop. O Modo livre não aparece: o canvas é exclusivo do desktop.
+
+<Canvas of={Stories.Default} />
+<Controls />
+
+## Variantes
+
+<Canvas of={Stories.Matrix} />
+
+| `method` | Figma | Rótulo · tag |
+| --- | --- | --- |
+| `projeto` | Method=Project | Por projeto · PROJETO |
+| `data` | Method=Date | Por data · DATA |
+| `tipo` | Method=Type | Por tipo de arquivo · TIPO |
+
+## Abrir a lista
+
+<Canvas of={Stories.Interactive} />
+
+🧩 O Figma não desenha o estado aberto. Aqui, tocar no botão mostra as outras opções logo abaixo, sem chevron.
+
+## Tokens
+
+- Caixa: `Effect/Overlay/Subtle` a 10% com blur, borda de 0.5px `Brand/Primary/Default`, raio 12.
+- Rótulo: 16px Medium, `Neutral/Text/Secondary`. Tag: 9px Bold, `Brand/Primary/Default`.
+- 🧩 Ícone: no Figma é um gradiente cinza a 60%; aqui é `Neutral/Text/Secondary` a 60%, para acompanhar o Dark.

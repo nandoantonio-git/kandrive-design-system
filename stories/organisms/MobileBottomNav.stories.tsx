@@ -30,7 +30,7 @@ export const Confirm: Story = { args: { action: "confirm", hand: "left" } }
 export const None: Story = { args: { action: "none" } }
 
 export const Interactive: Story = {
-  render: (args) => {
+  render: function Render(args) {
     const [active, setActive] = React.useState<MobileDestination>(args.active ?? "pessoal")
     return <MobileBottomNav {...args} active={active} onNavigate={setActive} />
   },

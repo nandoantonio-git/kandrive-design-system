@@ -21,7 +21,7 @@ export const Open: Story = {}
 
 export const Interactive: Story = {
   args: { open: false },
-  render: (args) => {
+  render: function Render(args) {
     const [open, setOpen] = React.useState(false)
     const [active, setActive] = React.useState<DrawerItem | undefined>()
     return (

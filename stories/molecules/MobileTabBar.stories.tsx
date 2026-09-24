@@ -18,7 +18,7 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {}
 
 export const Interactive: Story = {
-  render: (args) => {
+  render: function Render(args) {
     const [tab, setTab] = React.useState<MobileTab>(args.active ?? "home")
     return <MobileTabBar {...args} active={tab} onTabChange={setTab} />
   },

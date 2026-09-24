@@ -21,7 +21,7 @@ export const SettingsPrivacy: Story = { args: { active: "Privacidade" } }
 export const Payment: Story = { args: { page: "payment", active: "Plano" } }
 
 export const Interactive: Story = {
-  render: (args) => {
+  render: function Render(args) {
     const [active, setActive] = React.useState(args.active ?? "Conta")
     return <MobileFooterSettings {...args} active={active} onSelect={setActive} />
   },
