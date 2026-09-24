@@ -277,11 +277,12 @@
  * real, ativado pela classe `.dark` (`@custom-variant dark` acima) via
  * toggle do Storybook (`@storybook/addon-themes`).
  *
- * 🧩 Inferido (Regra 9): o Figma só confirma `Mode=Dark` pro material
- * Liquid Glass (`Tokens/Materials`) — nenhuma tela/frame de componente de
- * UI tem variante dark confirmada. Os valores abaixo (exceto onde anotado
- * "Figma-confirmado") são derivados por engenharia a partir dos tokens
- * claros, nunca apresentados como fato do Figma.
+ * ✅ Atualizado em 2026-09-24: o Figma KanDrive V0.2.1 tem o modo Dark na
+ * coleção Core (quadro Foundation/Color Modes). Os tokens com variável no
+ * Figma são conferidos AO VIVO em Tokens/Colors: 61 de 61 batem nos dois
+ * modos (a ponte está em src/components/tokens/figma-color-bridge.ts). A base
+ * shadcn (--background, --card, --chart-*…) não existe no Figma e continua
+ * derivada por engenharia (Regra 9).
  *
  * Convenção de inversão da rampa Zinc (Regra 3: paleta neutra suspensa —
  * a maioria dos neutros do catálogo usa classes `zinc-*` literais do
