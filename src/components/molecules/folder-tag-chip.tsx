@@ -44,7 +44,7 @@ export interface FolderTagChipProps extends React.ComponentProps<"span"> {
  * tokens Figma-confirmados exatos: `Idle` → `bg-zinc-100` (aprox. de
  * `neutral-surface-background` `#f3f3f3`), `Hover` → `bg-zinc-200` (aprox.
  * de `neutral-surface-subtle` `#eaeaea`), `Selected`/`Pressed` →
- * `bg-brand-teal-light` (`var(--brand-primary-light,#c8dce3)`, hex exato) +
+ * `bg-brand-teal-light-surface` (`var(--brand-primary-light,#c8dce3)`, hex exato) +
  * `text-brand-teal-dark` (`var(--brand-primary-dark,#1a5e6e)`, hex exato) —
  * antes usava `bg-brand-teal-action/10`/`text-brand-teal` (`#007e96`), que não
  * corresponde ao token de "selecionado" real do Figma.
@@ -80,7 +80,7 @@ function FolderTagChip({
         "inline-flex h-7 shrink-0 items-center gap-1.5 rounded-full bg-zinc-100 dark:bg-zinc-800 pr-2 pl-2.5 text-sm font-medium text-zinc-700 dark:text-zinc-300",
         "transition-colors",
         "hover:bg-zinc-200 dark:hover:bg-zinc-800",
-        "data-[selected]:bg-brand-teal-light data-[selected]:text-brand-teal-dark",
+        "data-[selected]:bg-brand-teal-light-surface data-[selected]:text-brand-teal-dark",
         "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
         className
       )}

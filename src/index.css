@@ -54,6 +54,7 @@
     --color-brand-pink-dark: var(--brand-pink-dark);
     --color-brand-pink-light: var(--brand-pink-light);
     --color-brand-teal-light: var(--brand-teal-light);
+    --color-brand-teal-light-surface: var(--brand-teal-light-surface);
     --color-brand-secondary-dark: var(--brand-secondary-dark);
     --color-brand-secondary-light: var(--brand-secondary-light);
     --color-effect-glass-light-45: var(--effect-glass-light-45);
@@ -189,6 +190,7 @@
        primária — chip "Global" ativo no seletor de escopo, fundo de
        Callout informativo. */
     --brand-teal-light: #c8dce3;
+    --brand-teal-light-surface: #c8dce3;
     /* cor/marca/secundária/dark|light — Figma-confirmado
        (var(--brand-secondary-dark,#1a1714) / var(--brand-secondary-light,#6b6b68)),
        achado em US-013 (organism/CardNeedMoreHelp, organism/FAQ/info/Card,
@@ -340,12 +342,13 @@
        em ambos os modos). Figma: Brand/Primary/Default · Brand/Primary/Action. */
     --brand-teal: #f5f5f5;
     --brand-teal-foreground: #ffffff; /* texto sobre --brand-teal-action (teal em ambos os modos, 4.7:1) */
-    --brand-teal-dark: #5cc3d4; /* papel de texto no escuro (7:1); fundos usam --brand-teal-dark-surface */
+    --brand-teal-dark: #2391aa; /* papel de texto no escuro — teal claro da marca (Design Language); fundos usam --brand-teal-dark-surface */
     /* Papel de "tinta leve de fundo" se inverte no escuro: em modo claro é
        um lavado quase-branco (`#c8dce3`) pra usar como fundo sutil sobre
        cartão claro; no escuro o equivalente de baixa ênfase é um lavado
        escuro com matiz teal, não uma cor clara. */
-    --brand-teal-light: #173239;
+    --brand-teal-light-surface: #1a5e6e66; /* tint = marca #1a5e6e a 40% */
+    --brand-teal-light: #c8dce3; /* tom claro da marca mantém o nome nos dois modos (revisão 2026-09-24); fundos de tint usam --brand-teal-light-surface */
     --brand-secondary: #c9c7c2;
     /* Par heading/corpo de `--brand-secondary-dark/-light` se inverte:
        heading vira quase-branco, corpo vira cinza claro (mesmo padrão já
@@ -386,8 +389,8 @@
     --brand-feedback-warning-surface-alt: #3b2f12;
     --brand-secondary-foreground: #1a1714;
     --neutral-surface-button-secondary: #3f3f46cc;
-    --brand-primary-tint: #173239;
-    --brand-primary-tint-subtle: #173239;
+    --brand-primary-tint: #1a5e6e66;
+    --brand-primary-tint-subtle: #1a5e6e33;
     --neutral-surface-subtle-cool: #27272a;
     --neutral-surface-constant-light: #f3f3f3;
     --neutral-text-constant-dark: #3f3f46;
@@ -407,10 +410,10 @@
     --neutral-slate-400: #64748b;
     --neutral-surface-gray: #3a3a3a;
     --neutral-surface-steel: #9aa5a9;
-    --brand-primary-ink: #e0f4f8;
-    --brand-primary-ink-20: #e0f4f833;
-    --brand-primary-deep: #4fb8cc;
-    --brand-primary-teal-deep: #5cc3d4;
+    --brand-primary-ink: #c8dce3;
+    --brand-primary-ink-20: #c8dce333;
+    --brand-primary-deep: #2391aa;
+    --brand-primary-teal-deep: #2391aa;
     --brand-feedback-warning-text: #f5c35a;
     --effect-glass-frost-80: #1a1a1acc;
     --effect-glass-frost-90: #1a1a1ae5;

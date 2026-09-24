@@ -117,7 +117,7 @@ const SCOPE_SELECTED_CLASSES: Record<ScopeKind, Record<Extract<TypeLabelState, "
     "selected-pressed": "bg-[color-mix(in_srgb,var(--brand-teal-dark),black_50%)] text-white",
   },
   global: {
-    selected: "bg-brand-teal-light text-zinc-700 dark:text-zinc-300",
+    selected: "bg-brand-teal-light-surface text-zinc-700 dark:text-zinc-300",
     "selected-hover": "bg-[color-mix(in_srgb,var(--brand-teal-light),var(--color-zinc-500)_20%)] text-zinc-700 dark:text-zinc-300",
     "selected-pressed": "bg-[color-mix(in_srgb,var(--brand-teal-light),black_14%)] text-zinc-700 dark:text-zinc-300",
   },

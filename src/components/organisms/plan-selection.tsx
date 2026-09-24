@@ -55,7 +55,7 @@ const DEFAULT_PLANS: PlanSelectionPlan[] = [
  * Botões "Downgrade"/"Upgrade"/"Editar plano" usam
  * `atom/PushButton` (`variant="neutral"`, Regra 1 — nenhum
  * `button/primary`\|`secondary` separado). Card do plano corrente reusa o
- * mesmo par de tokens `border-brand-teal`/`bg-brand-teal-light` já usado
+ * mesmo par de tokens `border-brand-teal`/`bg-brand-teal-light-surface` já usado
  * pelo tom `info` de `FaqCallout` (Regra 2 — token semântico, não hex
  * literal `#e0f0f2`).
  *
@@ -160,7 +160,7 @@ function PlanSelection({
             key={plan.id}
             className={cn(
               "flex min-w-px flex-1 flex-col gap-1 rounded-lg border p-4",
-              isCurrent ? "border-brand-teal bg-brand-teal-light" : "border-zinc-300 bg-white dark:border-zinc-700 dark:bg-zinc-900"
+              isCurrent ? "border-brand-teal bg-brand-teal-light-surface" : "border-zinc-300 bg-white dark:border-zinc-700 dark:bg-zinc-900"
             )}
           >
             {isCurrent ? (

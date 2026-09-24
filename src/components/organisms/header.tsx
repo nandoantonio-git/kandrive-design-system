@@ -6,6 +6,7 @@ import { PushButton } from "@/components/atoms/push-button"
 import { ICONS } from "@/components/atoms/icon"
 import { ActionPill } from "@/components/molecules/action-pill"
 import kandriveLogo from "@/assets/logo/kandrive-logo.svg"
+import kandriveLogoDark from "@/assets/logo/kandrive-logo-dark.svg"
 
 export type HeaderPage = "navbar" | "settings" | "storage"
 
@@ -70,7 +71,9 @@ function Header({ page = "navbar", searchProps, onOrganize, onSave, className, .
       )}
       {...props}
     >
-      <img src={kandriveLogo} alt="Kandrive" className="h-11 w-[173px] shrink-0" />
+      <img src={kandriveLogo} alt="Kandrive" className="h-11 w-[173px] shrink-0 dark:hidden" />
+      {/* Logo sobre fundo escuro (Figma Logo/* dark): "Kan" + coelho #F5F4F2, "drive" #337084 (Brand/Primary/Mid), símbolo #337084→#1A5E6E. */}
+      <img src={kandriveLogoDark} alt="Kandrive" className="h-11 w-[173px] shrink-0 hidden dark:block" />
       <SearchInput
         {...searchProps}
         placeholder={searchProps?.placeholder ?? "Pesquisar"}

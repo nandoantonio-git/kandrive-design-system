@@ -88,7 +88,7 @@ function FolderCard({
             "flex items-center gap-2 rounded-md px-2 py-1 text-base text-brand-teal-dark",
             "hover:bg-[#71717a33] dark:hover:bg-[#a1a1aa33]",
             state === "hover" && "bg-[#71717a33] dark:bg-[#a1a1aa33]",
-            state === "selected" && "bg-brand-teal-light"
+            state === "selected" && "bg-brand-teal-light-surface"
           )}
         >
           <Icon name="ArrowDropDown" className="size-4 shrink-0" />

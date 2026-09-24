@@ -182,7 +182,7 @@ function PaymentPage({
                       key={plan.id}
                       className={cn(
                         "flex min-w-px flex-1 flex-col gap-3 rounded-lg border p-4",
-                        isSelected ? "border-brand-teal bg-brand-teal-light" : "border-zinc-300 dark:border-zinc-700"
+                        isSelected ? "border-brand-teal bg-brand-teal-light-surface" : "border-zinc-300 dark:border-zinc-700"
                       )}
                     >
                       <div className="flex items-start justify-between">

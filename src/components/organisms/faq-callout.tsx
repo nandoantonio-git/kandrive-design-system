@@ -31,7 +31,7 @@ function FaqCallout({ tone = "info", className, children, ...props }: FaqCallout
       className={cn(
         "flex w-full items-start gap-2 rounded-lg border p-3 text-[0.8125rem] tracking-[0.0156px]",
         tone === "info"
-          ? "border-brand-teal bg-brand-teal-light text-brand-teal-dark"
+          ? "border-brand-teal bg-brand-teal-light-surface text-brand-teal-dark"
           : "border-[#fad98c] bg-[#fff8e6] text-brand-secondary-light dark:border-[#a16207] dark:bg-[#451a03]",
         className
       )}

@@ -3,6 +3,7 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 import { CardLogin, type CardLoginProps } from "@/components/organisms/card-login"
 import kandriveLogo from "@/assets/logo/kandrive-logo.svg"
+import kandriveLogoDark from "@/assets/logo/kandrive-logo-dark.svg"
 
 export interface LoginPageProps extends React.ComponentProps<"div"> {
   cardProps?: CardLoginProps
@@ -50,7 +51,9 @@ function LoginPage({ cardProps, onCreateAccount, className, ...props }: LoginPag
         className="absolute -right-32 bottom-0 size-[638px] rounded-full bg-brand-pink-light/40 blur-3xl"
       />
       <div className="relative flex flex-col items-center gap-8 py-16">
-        <img src={kandriveLogo} alt="Kandrive" className="h-[52px] w-[204px] shrink-0" />
+        <img src={kandriveLogo} alt="Kandrive" className="h-[52px] w-[204px] shrink-0 dark:hidden" />
+      {/* Logo sobre fundo escuro (Figma Logo/* dark): "Kan" + coelho #F5F4F2, "drive" #337084 (Brand/Primary/Mid), símbolo #337084→#1A5E6E. */}
+      <img src={kandriveLogoDark} alt="Kandrive" className="h-[52px] w-[204px] shrink-0 hidden dark:block" />
         <CardLogin {...cardProps} />
         <a href="#criar-conta" onClick={onCreateAccount} className="text-sm text-zinc-600 dark:text-zinc-300 hover:underline">
           Ainda não tem conta?{" "}
