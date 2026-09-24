@@ -1,0 +1,111 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import kandriveLogo from '../src/assets/logo/kandrive-logo.svg';
+import kandriveLogoDark from '../src/assets/logo/kandrive-logo-dark.svg';
+
+<Meta title="Introdução" parameters={{ design: { type: 'figma', url: 'https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1421-17272' } }} />
+
+export const VAULT = 'https://github.com/nandoantonio-git/kandrive-design-system/blob/main/docs/vault/';
+export const vault = (path) => VAULT + path.split('/').map(encodeURIComponent).join('/') + '.md';
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 16, margin: '8px 0 32px' }}>
+  <div style={{ background: '#ffffff', border: '1px solid #e5e5e3', borderRadius: 16, padding: '32px 24px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <img src={kandriveLogo} alt="Kandrive — logo para fundo claro" style={{ height: 44 }} />
+  </div>
+  <div style={{ background: '#1f1f23', borderRadius: 16, padding: '32px 24px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <img src={kandriveLogoDark} alt="Kandrive — logo para fundo escuro" style={{ height: 44 }} />
+  </div>
+</div>
+
+# Kandrive Design System
+
+O design system do **KanDrive**, um serviço para guardar muitos arquivos por muito tempo, de um jeito fácil de entender, seguro e com custo viável. Cada componente aqui é código real (React 19, Tailwind v4, Storybook 10) e foi reconciliado com o Figma **KanDrive V0.2.1**.
+
+## 1. O que é o KanDrive
+
+Hoje as pessoas guardam volumes cada vez maiores de arquivos, espalhados em várias soluções. A pesquisa mostrou que o problema não é só "ter espaço na nuvem". É guardar por muito tempo **sem precisar entender os conceitos técnicos** de armazenamento. Por baixo, o KanDrive usa armazenamento de longo prazo (AWS S3 Glacier). Na interface, a pessoa só vê duas categorias: **Acesso rápido** e **Longo prazo**.
+
+| Persona | Quem é | O que precisa |
+| --- | --- | --- |
+| **Bruna** | Usuária comum. "Jogo tudo na nuvem e confio." | Organização automática e clareza de que as memórias estão seguras |
+| **Mariana** | Fotógrafa e videomaker autônoma, centenas de GB por evento | Clareza de custo e do status do backup de cada projeto |
+| **Rafael** | Advogado, com documentos sensíveis | Sigilo, controle de acesso, versionamento e retenção |
+
+Pesquisa completa: <a href="https://github.com/nandoantonio-git/kandrive-design-system/blob/main/docs/CASE-STUDY.md" target="_blank">case study</a>.
+
+## 2. Kan e o tom de voz
+
+O símbolo da marca é o **Kan, um canguru**: um marsupial que **guarda as coisas na bolsa**. A bolsa é a metáfora do produto: um lugar seguro para guardar algo por muito tempo e recuperar quando precisar. O "Kan" do nome vem daí.
+
+- **Arquétipo:** Inocente (Idealista no sistema BaKKa).
+- **É:** acolhedor, confiável, entusiasmado, direto, e também encorajador, leve e competente.
+- **Nunca é:** debochado, irônico, sarcástico, frio ou burocrático.
+
+| Tom padrão | Modo sóbrio |
+| --- | --- |
+| Casual e entusiasmado, e o Kan pode aparecer. | Direto e sério, sem humor e sem personagem. |
+| Onboarding, navegação, organização, sucesso, estados vazios. | Erros, ações irreversíveis, segurança e LGPD, pagamento, conteúdo jurídico. |
+| *Prontinho — seus arquivos estão guardados no longo prazo.* | *Essa ação não pode ser desfeita. Confirmar exclusão?* |
+
+Botões têm até 4 palavras, sem artigo, e descrevem o estado seguinte ("Guardar arquivos"). Toast de sucesso sempre começa com **"Prontinho — "**. Detalhes em <a href={vault('Tom de Voz e Personalidade da Marca')} target="_blank">Tom de Voz e Personalidade da Marca</a> e <a href={vault('Design System/Logo')} target="_blank">Logo</a>.
+
+## 3. Como o design system está organizado
+
+O catálogo segue a mesma hierarquia do arquivo Figma:
+
+| Camada | O que tem |
+| --- | --- |
+| **Tokens** | Cores, tipografia (Figtree), espaçamento e o material Liquid Glass |
+| **Atoms** | Peças indivisíveis: botões, tags, inputs, badges |
+| **Molecules** | Combinações de átomos: barra de busca, item de lista, barra de armazenamento |
+| **Organisms** | Blocos de interface: Header, Sidebar, painéis e modais |
+| **Templates** | Estruturas de página sem conteúdo real |
+| **Pages** | Telas completas: Home, Login, Pagamento, Configurações… |
+
+- **Light / Dark:** use o seletor de tema na barra de ferramentas do canvas. Os tokens de cor têm valor nos dois modos, e o Dark usa só tons da paleta da marca.
+- **Figma:** cada story tem a aba **Design** com o link para o nó correspondente no Figma KanDrive V0.2.1.
+- **Acessibilidade:** a aba **Accessibility** roda o axe em cada story.
+
+## 4. Regras
+
+As regras são a "constituição" do projeto. Quando algo no Figma contradiz uma delas, isso é registrado como conflito e nunca resolvido por conta própria.
+
+| # | Regra | Em uma linha |
+| --- | --- | --- |
+| 1 | <a href={vault('Regras/Regra 1 - Botão Único')} target="_blank">Botão Único</a> | ~~Revogada em 23/09/2026.~~ Agora há `atom/Button` (ações do produto), `atom/PushButton` (diálogos e toolbars) e `atom/IconButton` (só ícone). |
+| 2 | <a href={vault('Regras/Regra 2 - Nomenclatura de Tokens')} target="_blank">Nomenclatura de Tokens</a> | Formato `cor/categoria/papel/valor-semântico`. O nome nunca expõe a implementação. |
+| 3 | <a href={vault('Regras/Regra 3 - Cores da Marca')} target="_blank">Cores da Marca</a> | O Figma é a fonte da cor. Primária teal `#007e96`, secundária `#31302d`, rosa = Acesso rápido. |
+| 4 | <a href={vault('Regras/Regra 4 - Tipografia e Acessibilidade')} target="_blank">Tipografia e Acessibilidade</a> | Figtree, escala Major Third (1.25), piso de 16px para leitura e ação, sempre em `rem`. |
+| 5 | <a href={vault('Regras/Regra 5 - Terminologia')} target="_blank">Terminologia</a> | O termo aprovado depende de onde ele aparece na interface (ver Glossário). |
+| 6 | <a href={vault('Regras/Regra 6 - Segmentação de Armazenamento')} target="_blank">Segmentação de Armazenamento</a> | Longo prazo × Acesso rápido se separa por pastas, não por um badge de navegação. |
+| 7 | <a href={vault('Regras/Regra 7 - Gaps Conhecidos')} target="_blank">Gaps Conhecidos</a> | Lista de pendências de acabamento conhecidas. Não é uma regra normativa. |
+| 8 | <a href={vault('Regras/Regra 8 - Fluid Interface')} target="_blank">Fluid Interface</a> | Feedback no toque, transições interrompíveis e o conjunto completo de estados. |
+| 9 | <a href={vault('Regras/Regra 9 - Figma-confirmado vs Inferido')} target="_blank">Figma-confirmado vs Inferido</a> | Nunca apresentar uma inferência como fato. |
+| 10 | <a href={vault('Regras/Regra 10 - Liquid Glass')} target="_blank">Liquid Glass</a> | O material é especificado uma vez só (Tokens/Materials) e os componentes apenas referenciam. |
+| 11 | <a href={vault('Regras/Regra 11 - Protocolo de Verificação')} target="_blank">Protocolo de Verificação</a> | Cada verificação usa o Figma real, uma captura real e um checklist elemento a elemento. |
+
+## 5. Glossário essencial
+
+| Termo | Uso |
+| --- | --- |
+| **Acesso rápido** | Categoria de armazenamento de curto prazo (cor rosa) |
+| **Longo prazo** | Categoria de armazenamento guardado (cor azul) |
+| **Guardar** | Ação específica de mover arquivos para o longo prazo. Nunca é sinônimo de "Arquivar". |
+| **Arquivar** | O padrão geral de organizar e agrupar arquivos |
+| **Gerir Espaço** / **Liberar Espaço** | "Gerir" só na Sidebar, "Liberar" só em Armazenamento |
+| **Organizar** | Fluxo de organização ao vivo, pelo Header |
+
+**Nunca aparecem como texto na interface:** freezer · congelado · frio · camada · elegível · Limpar Espaço · CTA.
+
+Lista completa em <a href={vault('Glossário')} target="_blank">Glossário</a>.
+
+## 6. Como ler a documentação
+
+Toda página separa o que foi confirmado do que foi deduzido (Regra 9):
+
+| Marca | Significado |
+| --- | --- |
+| ✅ Figma-confirmado | Lido diretamente do arquivo Figma (variáveis, nós, descrições) |
+| 🔒 Decisão travada | Decisão do produto registrada nas Regras |
+| 🧩 Inferido | Extrapolado a partir do Figma, sem estar escrito nele. Fica sempre marcado. |
+
+Índice completo do vault: <a href={vault('Kandrive Design System')} target="_blank">Kandrive Design System</a>.
