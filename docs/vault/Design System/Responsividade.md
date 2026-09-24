@@ -52,12 +52,18 @@ Decisões de 2026-09-24, tomadas numa entrevista (grill) com o Nando. A versão 
 - Os nomes nas linhas `FileRow` têm 16px (Regra 4; no Figma, 13px).
 - Os rótulos do TabBar têm 11px (piso de microtexto; no Figma, 10px).
 
+## Lotes futuros de código
+
+- **Organize mobile (composições próprias do Figma):** `Organize/ChooseMethod/Mobile` (seletor de método + lista com checkbox), `Organize/Review/Mobile` (cards com os selos Duplicado, Incongruente e OK, e as ações Renomear e Editar), `Organize/ReviewDone/Mobile` e `Organize/Saved/Mobile` (lista agrupada por ano). Hoje, no mobile, o código mostra as 3 etapas do desktop adaptadas (Q26, 2026-09-24).
+- **Storage:** a lista de arquivos abaixo do card (filtro, Agrupar e Etiquetar), que está no Figma mobile, e as telas LimitReached e ManageSpace, que não existem no código.
+
 ## Pendências de desenho (Nando)
 
 - **F5:** opção "Mão dominante" em Settings/Appearance, nos 3 dispositivos.
 - **F6:** barra de links rápidos para os tópicos do FAQ mobile. O `organism/FaqFastLinks` do desktop pode servir de ponto de partida.
 - **F8:** onboarding com a configuração inicial (mão dominante etc.).
 - **F11 (Figma):** nas telas Home/Grid/Mobile e Home/List/Mobile, trocar o `atom/SortButton` (e a cópia solta "Ordenar por") pelo `molecule/DropdownSelect/GroupBy` `Device=Mobile` (decisão da Fase 4 e Q25). O `SortButton` fica como candidato a descarte.
+- **F12 (decidir):** na etapa de arrastar do Organize no mobile, o painel tem Cancelar/Continuar e o BottomNav tem o FAB ✓/✕: são duas ações iguais. Manter só o FAB no mobile?
 - **F10 (to-do, pensar):** o que aparece ao tocar na foto de perfil no Header mobile, em Light e Dark. Hoje o avatar não abre nada. Decidir o conteúdo (conta, plano, sair…) e o formato (menu, folha inferior, tela).
 - **F9:** contraste dos rótulos inativos do `MobileBottomNav` no Light (`Neutral/Text/Placeholder`, abaixo do WCAG AA).
 

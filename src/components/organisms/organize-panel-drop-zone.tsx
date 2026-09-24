@@ -107,7 +107,7 @@ function OrganizePanelDropZone({
       data-slot="organize-panel-drop-zone"
       data-state={state}
       className={cn(
-        "relative flex h-[772px] w-[560px] flex-col justify-between overflow-hidden rounded-[34px] glass-edge bg-effect-glass-white-70 p-6 shadow-lg",
+        "relative flex min-h-[420px] w-full flex-col justify-between desktop:h-[772px] desktop:w-[560px] overflow-hidden rounded-[34px] glass-edge bg-effect-glass-white-70 p-6 shadow-lg",
         "data-[state=dragover]:ring-2 data-[state=dragover]:ring-[#007aff]/25",
         className
       )}

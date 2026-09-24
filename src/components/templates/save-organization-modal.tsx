@@ -86,7 +86,7 @@ function SaveOrganizationModal({
       role="dialog"
       aria-label="Escolher método de organização"
       className={cn(
-        "flex h-[577px] w-[931px] max-w-none flex-col gap-4 overflow-hidden rounded-[32px] glass-edge bg-effect-glass-white-70 p-6 shadow-[0px_8px_20px_rgba(0,0,0,0.12)] dark:shadow-[0px_8px_20px_rgba(0,0,0,0.5)] backdrop-blur-md",
+        "flex max-h-[calc(100dvh-2rem)] w-full max-w-none flex-col gap-4 overflow-y-auto rounded-[32px] desktop:h-[577px] desktop:max-h-none desktop:w-[931px] desktop:overflow-hidden glass-edge bg-effect-glass-white-70 p-6 shadow-[0px_8px_20px_rgba(0,0,0,0.12)] dark:shadow-[0px_8px_20px_rgba(0,0,0,0.5)] backdrop-blur-md",
         className
       )}
       {...props}
@@ -98,7 +98,8 @@ function SaveOrganizationModal({
       <p className="text-base text-zinc-700 dark:text-zinc-300">
         Selecione como os dados serão visualizados e correlacionados no seu workspace.
       </p>
-      <div className="flex flex-1 items-start gap-1">
+      {/* Mobile e tablet: os 4 métodos rolam na horizontal (responsividade, 2026-09-24). */}
+      <div className="-mx-6 flex flex-1 items-start gap-1 overflow-x-auto px-6 desktop:mx-0 desktop:overflow-visible desktop:px-0">
         {CARDS.map((card) => (
           <TemplateCard
             key={card.method}

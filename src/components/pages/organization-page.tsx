@@ -1,7 +1,7 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
-import { Header } from "@/components/organisms/header"
+import { AppShell } from "@/components/templates/app-shell"
 import { Sidebar, type SidebarProps } from "@/components/organisms/sidebar"
 import { Breadcrumb } from "@/components/molecules/breadcrumb"
 import { PageLead } from "@/components/molecules/page-lead"
@@ -88,74 +88,78 @@ function OrganizationPage({
   className,
   ...props
 }: OrganizationPageProps) {
-  return (
-    <div data-slot="organization-page" className={cn("relative flex w-full flex-col bg-zinc-200 dark:bg-zinc-900", className)} {...props}>
-      <Header page="navbar" />
-      <div className="mx-auto flex w-[1376px] items-start gap-12 px-1 py-2.5">
-        <Sidebar {...sidebarProps} />
-        <div className="flex flex-1 flex-col gap-5">
-          {step === "template-drop-zone" ? (
-            <>
-              <div className="flex items-start justify-between gap-4">
-                <Breadcrumb segments={["Home", "Templates de organização"]} className="w-full" />
-              </div>
-              <div className="flex items-start justify-between gap-4">
-                <PageLead title="Organização" caption="Organize seus arquivos em templates" className="flex-1" />
-                <div className="flex shrink-0 items-center gap-4">
-                  <DropdownSelectGroupBy />
-                  <Label />
-                  <ViewModeToggle mode={viewMode} onModeChange={onViewModeChange} />
-                </div>
-              </div>
-              <div className="flex items-start gap-8">
-                <div className="flex flex-1 flex-wrap gap-8">
-                  {gridItems.map((item) =>
-                    item.kind === "image" ? (
-                      <ImageItem key={item.name} name={item.name} />
-                    ) : (
-                      <FileArchiveCard key={item.name} label={item.name} interactive={item.interactive} />
-                    )
-                  )}
-                </div>
-                <OrganizePanelDropZone mode="Data" {...dropZoneProps} className={cn("w-[560px] shrink-0", dropZoneProps?.className)} />
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="flex items-start justify-between gap-4">
-                <h1 className="flex-1 text-[2.5rem] leading-none font-bold text-black dark:text-zinc-100">Bem-vindo ao Kandrive!</h1>
-                <div className="flex shrink-0 items-center gap-4">
-                  <DropdownSelectGroupBy />
-                  <Label />
-                  <ViewModeToggle mode={viewMode} onModeChange={onViewModeChange} />
-                </div>
-              </div>
-              {step === "saved" ? (
-                <FolderCard {...folderCardProps} />
-              ) : (
-                <div className="flex flex-wrap gap-8">
-                  {gridItems.map((item) =>
-                    item.kind === "image" ? (
-                      <ImageItem key={item.name} name={item.name} />
-                    ) : (
-                      <FileArchiveCard key={item.name} label={item.name} interactive={item.interactive} />
-                    )
-                  )}
-                </div>
-              )}
-            </>
-          )}
-        </div>
+  const task = step !== "saved"
+  const toolbar = (
+    <>
+      <div className="hidden shrink-0 items-center gap-4 tablet:flex">
+        <DropdownSelectGroupBy />
+        <Label />
+        <ViewModeToggle mode={viewMode} onModeChange={onViewModeChange} />
       </div>
+      <div className="flex w-full items-center justify-between gap-2.5 tablet:hidden">
+        <DropdownSelectGroupBy device="mobile" />
+        <ViewModeToggle size="compact" modes={["grid", "list"]} mode={viewMode === "columns" ? "list" : viewMode} onModeChange={onViewModeChange} />
+      </div>
+    </>
+  )
+  const grid = (
+    <div className="flex flex-1 flex-wrap gap-6 tablet:gap-8">
+      {gridItems.map((item) =>
+        item.kind === "image" ? (
+          <ImageItem key={item.name} name={item.name} />
+        ) : (
+          <FileArchiveCard key={item.name} label={item.name} interactive={item.interactive} />
+        )
+      )}
+    </div>
+  )
+  return (
+    <AppShell
+      data-slot="organization-page"
+      className={cn("bg-zinc-200 dark:bg-zinc-900", className)}
+      headerProps={{ page: "navbar" }}
+      sidebar={<Sidebar {...sidebarProps} />}
+      // Mobile: salvar e arrastar são tarefa (Confirmar + ✕, cancelar volta para a Home, sem TabBar);
+      // "salvo" volta ao modo de arquivos (TabBar + Adicionar), como em Organize/Saved/Mobile.
+      mobileTabBar={task ? undefined : { active: "organize" }}
+      mobileBottomNav={task ? { action: "confirm", active: "pessoal" } : { action: "add", active: "pessoal" }}
+      {...props}
+    >
+      {step === "template-drop-zone" ? (
+        <>
+          <Breadcrumb segments={["Home", "Templates de organização"]} className="hidden w-full tablet:flex" />
+          <div className="flex flex-col items-start justify-between gap-4 desktop:flex-row">
+            <PageLead title="Organização" caption="Organize seus arquivos em templates" className="flex-1" />
+            {toolbar}
+          </div>
+          {/* Mobile e tablet: o painel de arrastar vai para baixo da grade. */}
+          <div className="flex flex-col items-start gap-6 desktop:flex-row desktop:gap-8">
+            {grid}
+            <OrganizePanelDropZone mode="Data" {...dropZoneProps} className={cn("w-full shrink-0 desktop:w-[560px]", dropZoneProps?.className)} />
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="flex flex-col items-start justify-between gap-4 desktop:flex-row">
+            <h1 className="hidden flex-1 text-[2.5rem] leading-none font-bold text-black tablet:block dark:text-zinc-100">Bem-vindo ao Kandrive!</h1>
+            {toolbar}
+          </div>
+          {step === "saved" ? <FolderCard {...folderCardProps} /> : grid}
+        </>
+      )}
+
       {step === "default" && modalOpen ? (
-        <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+        <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/20 p-4 tablet:absolute">
           <SaveOrganizationModal {...modalProps} />
         </div>
       ) : null}
       {step === "saved" ? (
-        <PopoverNotification {...notificationProps} className={cn("absolute right-8 bottom-8", notificationProps?.className)} />
+        <PopoverNotification
+          {...notificationProps}
+          className={cn("fixed right-4 bottom-[176px] left-4 z-30 mx-auto tablet:absolute tablet:right-8 tablet:bottom-8 tablet:left-auto", notificationProps?.className)}
+        />
       ) : null}
-    </div>
+    </AppShell>
   )
 }
 
