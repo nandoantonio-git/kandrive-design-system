@@ -99,7 +99,7 @@ function CleanSpaceListSelection({
           "flex size-4 shrink-0 items-center justify-center rounded-[4px] border shadow-[0_1px_2px_0_rgba(0,0,0,0.05)] transition-colors",
           "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
           selected
-            ? "border-transparent bg-brand-teal hover:bg-brand-teal/90 active:bg-brand-teal/80"
+            ? "border-transparent bg-brand-teal-action hover:bg-brand-teal-action/90 active:bg-brand-teal-action/80"
             : "border-[#ececf0] bg-zinc-500/20 hover:bg-zinc-500/30 active:bg-zinc-500/40 dark:border-[#3f3f46] dark:bg-zinc-400/20 dark:hover:bg-zinc-400/30 dark:active:bg-zinc-400/40"
         )}
       >

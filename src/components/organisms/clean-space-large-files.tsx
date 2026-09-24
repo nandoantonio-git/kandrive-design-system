@@ -42,7 +42,7 @@ export interface CleanSpaceLargeFilesProps extends React.ComponentProps<"section
  * embutido do átomo com `hover:bg-transparent` — texto estático, sem
  * feedback nenhum ao passar o mouse. Corrigido com `hover:text-brand-teal/70`/
  * `active:text-brand-teal/50` (equivalente em texto ao
- * `hover:bg-brand-teal/90`/`active:bg-brand-teal/80` que o `variant="primary"`
+ * `hover:bg-brand-teal-action/90`/`active:bg-brand-teal-action/80` que o `variant="primary"`
  * já usa pro chrome preenchido).
  *
  * Corrigido (achado do usuário: seleção de itens não funcionava —

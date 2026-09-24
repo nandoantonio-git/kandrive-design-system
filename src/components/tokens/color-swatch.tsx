@@ -28,7 +28,7 @@ const CONFIRMATION_LABEL: Record<ColorConfirmation, string> = {
 
 const CONFIRMATION_CLASS: Record<ColorConfirmation, string> = {
   figma: "bg-[color:var(--brand-feedback-success-default,#096)]/10 text-[color:var(--brand-feedback-success-default,#096)]",
-  locked: "bg-brand-teal/10 text-brand-teal-dark",
+  locked: "bg-brand-teal-action/10 text-brand-teal-dark",
   inferred: "bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300",
   conflict: "bg-destructive/10 text-destructive",
 }

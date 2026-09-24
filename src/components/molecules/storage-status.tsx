@@ -176,7 +176,7 @@ function StorageStatus({
           : null}
         {scope !== "global" && usedLabel ? (
           <span className="flex items-center gap-1.5 text-[0.625rem] text-brand-secondary-light">
-            <span aria-hidden="true" className="size-[7px] shrink-0 rounded-full bg-brand-teal" />
+            <span aria-hidden="true" className="size-[7px] shrink-0 rounded-full bg-brand-teal-action" />
             {usedLabel}
           </span>
         ) : null}

@@ -43,7 +43,7 @@ function LoginPage({ cardProps, onCreateAccount, className, ...props }: LoginPag
     >
       <div
         aria-hidden="true"
-        className="absolute -left-40 top-20 size-[532px] rounded-full bg-brand-teal/20 blur-3xl"
+        className="absolute -left-40 top-20 size-[532px] rounded-full bg-brand-teal-action/20 blur-3xl"
       />
       <div
         aria-hidden="true"

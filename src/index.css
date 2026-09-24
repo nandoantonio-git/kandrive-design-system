@@ -65,6 +65,26 @@
     --color-effect-glass-surface-light: var(--effect-glass-surface-light);
     --color-effect-glass-surface-dark: var(--effect-glass-surface-dark);
     --color-effect-overlay-subtle: var(--effect-overlay-subtle);
+    /* Papéis texto × superfície (revisão dark/WCAG, Figma V0.2.1 2026-09-23). */
+    --color-brand-teal-action: var(--brand-teal-action);
+    --color-brand-teal-action-hover: var(--brand-teal-action-hover);
+    --color-brand-teal-dark-surface: var(--brand-teal-dark-surface);
+    --color-destructive-surface: var(--destructive-surface);
+    --color-storage-fast-access-surface: var(--storage-fast-access-surface);
+    --color-storage-long-term-surface: var(--storage-long-term-surface);
+    --color-brand-feedback-success-surface: var(--brand-feedback-success-surface);
+    --color-brand-feedback-warning-surface: var(--brand-feedback-warning-surface);
+    --color-brand-feedback-warning-surface-alt: var(--brand-feedback-warning-surface-alt);
+    --color-brand-secondary-foreground: var(--brand-secondary-foreground);
+    --color-neutral-surface-button-secondary: var(--neutral-surface-button-secondary);
+    --color-brand-primary-tint: var(--brand-primary-tint);
+    --color-brand-primary-tint-subtle: var(--brand-primary-tint-subtle);
+    --color-neutral-surface-subtle-cool: var(--neutral-surface-subtle-cool);
+    --color-neutral-surface-constant-light: var(--neutral-surface-constant-light);
+    --color-neutral-text-constant-dark: var(--neutral-text-constant-dark);
+    --color-neutral-text-vibrant-primary: var(--neutral-text-vibrant-primary);
+    --color-neutral-text-vibrant-secondary: var(--neutral-text-vibrant-secondary);
+    --color-neutral-text-vibrant-tertiary: var(--neutral-text-vibrant-tertiary);
     /* 🧩 Tokens inferidos na auditoria do Figma V0.2.1 (Fase 6b, 2026-09-23):
        cores cruas repetidas ≥3× nos componentes viraram variáveis Core.
        Valor light = valor exato do Figma; valor dark = 🧩 inferido. */
@@ -205,6 +225,26 @@
        que já estava em uso, sem mudança visual em modo claro. */
     --neutral-surface-background: #f3f3f3;
     --neutral-border-default: #707070;
+    /* Superfícies × texto (revisão dark/WCAG 2026-09-23): *-surface/*-action = fundo sólido com texto branco; o token base fica para texto/ícone. */
+    --brand-teal-action: #007e96;
+    --brand-teal-action-hover: #006b80;
+    --brand-teal-dark-surface: #1a5e6e;
+    --destructive-surface: #bc3426;
+    --storage-fast-access-surface: #b5254a;
+    --storage-long-term-surface: #1a5e6e;
+    --brand-feedback-success-surface: #009966;
+    --brand-feedback-warning-surface: #fff8e6;
+    --brand-feedback-warning-surface-alt: #fffbeb;
+    --brand-secondary-foreground: #ffffff;
+    --neutral-surface-button-secondary: #ffffffcc;
+    --brand-primary-tint: #e0f0f2;
+    --brand-primary-tint-subtle: #eef9fa;
+    --neutral-surface-subtle-cool: #f3f4f6;
+    --neutral-surface-constant-light: #f3f3f3;
+    --neutral-text-constant-dark: #3f3f46;
+    --neutral-text-vibrant-primary: #1a1a1a;
+    --neutral-text-vibrant-secondary: #727272;
+    --neutral-text-vibrant-tertiary: #bfbfbf;
     /* 🧩 Inferidos — Figma V0.2.1 Fase 6b (nome = variável Core em kebab-case, Regra 2). */
     --neutral-text-slate: #3e484c;
     --neutral-text-slate-600: #475569;
@@ -274,7 +314,7 @@
        `#bc3426` substituiu o vermelho genérico) — clareado pra contraste
        em fundo escuro, mesma lógica de "aumentar lightness, manter matiz"
        aplicada aos demais tokens de marca abaixo. */
-    --destructive: #e35d4a;
+    --destructive: #f07a6a; /* texto no escuro (5.5:1); fundos sólidos usam --destructive-surface */
     --border: oklch(1 0 0 / 10%);
     --input: oklch(1 0 0 / 15%);
     --ring: oklch(0.556 0 0);
@@ -295,11 +335,12 @@
     /* cor/marca/primária no escuro = tom de BRANCO (decisão de design,
        Figma V0.2.1 2026-09-23 — substitui o teal clareado #29b6cf, que fugia
        da marca). Conteúdo sobre a primária (texto/ícone) usa o tom escuro da
-       primária via --brand-teal-foreground. Figma: Brand/Primary/Default
-       (Dark #f5f5f5) · Brand/Primary/Foreground (Dark #1a5e6e). */
+       primária. REVISÃO 2026-09-23: --brand-teal = papel de TEXTO/ícone/link;
+       superfícies (botões, chips, barras) usam --brand-teal-action (#007e96
+       em ambos os modos). Figma: Brand/Primary/Default · Brand/Primary/Action. */
     --brand-teal: #f5f5f5;
-    --brand-teal-foreground: #1a5e6e;
-    --brand-teal-dark: #1a8fa3;
+    --brand-teal-foreground: #ffffff; /* texto sobre --brand-teal-action (teal em ambos os modos, 4.7:1) */
+    --brand-teal-dark: #5cc3d4; /* papel de texto no escuro (7:1); fundos usam --brand-teal-dark-surface */
     /* Papel de "tinta leve de fundo" se inverte no escuro: em modo claro é
        um lavado quase-branco (`#c8dce3`) pra usar como fundo sutil sobre
        cartão claro; no escuro o equivalente de baixa ênfase é um lavado
@@ -333,6 +374,26 @@
     --effect-overlay-subtle: #a8b0bd26;
     --neutral-surface-background: #18181b;
     --neutral-border-default: #52525b;
+    /* Superfícies × texto — dark (WCAG AA). */
+    --brand-teal-action: #007e96;
+    --brand-teal-action-hover: #006b80;
+    --brand-teal-dark-surface: #1a5e6e;
+    --destructive-surface: #bc3426;
+    --storage-fast-access-surface: #b5254a;
+    --storage-long-term-surface: #007e96;
+    --brand-feedback-success-surface: #047857;
+    --brand-feedback-warning-surface: #3b2f12;
+    --brand-feedback-warning-surface-alt: #3b2f12;
+    --brand-secondary-foreground: #1a1714;
+    --neutral-surface-button-secondary: #3f3f46cc;
+    --brand-primary-tint: #173239;
+    --brand-primary-tint-subtle: #173239;
+    --neutral-surface-subtle-cool: #27272a;
+    --neutral-surface-constant-light: #f3f3f3;
+    --neutral-text-constant-dark: #3f3f46;
+    --neutral-text-vibrant-primary: #f5f5f5;
+    --neutral-text-vibrant-secondary: #d4d4d8;
+    --neutral-text-vibrant-tertiary: #a1a1aa;
     /* 🧩 Inferidos — Figma V0.2.1 Fase 6b. */
     --neutral-text-slate: #c5ced2;
     --neutral-text-slate-600: #cbd5e1;

@@ -22,7 +22,7 @@ function SpacingGrid({ entries, title }: SpacingGridProps) {
           preview={
             <div
               aria-hidden="true"
-              className="h-2 rounded-full bg-brand-teal"
+              className="h-2 rounded-full bg-brand-teal-action"
               style={{ width: Math.min(entry.px, 64) }}
             />
           }
@@ -46,7 +46,7 @@ function RadiusGrid({ entries, title }: SpacingGridProps) {
           preview={
             <div
               aria-hidden="true"
-              className="size-10 bg-brand-teal"
+              className="size-10 bg-brand-teal-action"
               style={{ borderRadius: entry.px }}
             />
           }

@@ -42,7 +42,7 @@ function Switch({
         "transition-colors motion-safe:duration-150",
         "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
         "disabled:pointer-events-none disabled:opacity-50",
-        checked ? "bg-brand-teal" : "bg-[#d9d9d9] dark:bg-[#27272a]",
+        checked ? "bg-brand-teal-action" : "bg-[#d9d9d9] dark:bg-[#27272a]",
         className
       )}
       {...props}
@@ -52,8 +52,6 @@ function Switch({
         aria-hidden="true"
         className={cn(
           "block size-4 rounded-full bg-white shadow-sm",
-          // Primária no escuro é branca (Figma V0.2.1): o thumb ligado usa a cor de conteúdo sobre a primária.
-          checked && "dark:bg-brand-teal-foreground",
           "transition-transform motion-safe:duration-150 motion-safe:active:scale-90",
           checked ? "translate-x-4" : "translate-x-0"
         )}

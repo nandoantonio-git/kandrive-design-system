@@ -44,7 +44,7 @@ function TemplateCard({
       )}
       {...props}
     >
-      <span className="rounded-full border border-brand-teal/40 bg-brand-teal/5 px-3 py-1 text-[0.625rem] font-bold tracking-wide text-brand-teal uppercase">
+      <span className="rounded-full border border-brand-teal/40 bg-brand-teal-action/5 px-3 py-1 text-[0.625rem] font-bold tracking-wide text-brand-teal uppercase">
         {eyebrow}
       </span>
       {dashedIllustrationFrame ? (

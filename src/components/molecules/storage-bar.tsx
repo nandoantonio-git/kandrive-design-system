@@ -49,7 +49,7 @@ function StorageBar({ tier, value, className, ...props }: StorageBarProps) {
         data-slot="storage-bar-fill"
         className={cn(
           "h-full rounded-full transition-[width]",
-          tier === "quick-access" ? "bg-brand-pink-light" : "bg-brand-teal-dark"
+          tier === "quick-access" ? "bg-brand-pink-light" : "bg-brand-teal-dark-surface"
         )}
         style={{ width: `${clamped}%` }}
       />
@@ -86,7 +86,7 @@ export interface StorageBarExpandedProps extends Omit<React.ComponentProps<"div"
  */
 const TIER_SHADES: Record<StorageTier, readonly [string, string]> = {
   "quick-access": ["bg-brand-pink-dark", "bg-brand-pink-light"],
-  "long-term": ["bg-brand-teal", "bg-brand-teal-dark"],
+  "long-term": ["bg-brand-teal-action", "bg-brand-teal-dark-surface"],
 }
 
 /**

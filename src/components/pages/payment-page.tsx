@@ -167,7 +167,7 @@ function PaymentPage({
                   Acesso rápido: 9.2 GB
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <span className="size-2 shrink-0 rounded-full bg-brand-teal" aria-hidden="true" />
+                  <span className="size-2 shrink-0 rounded-full bg-brand-teal-action" aria-hidden="true" />
                   Longo prazo: 4.6 GB
                 </span>
               </div>
@@ -236,7 +236,7 @@ function PaymentPage({
                     onClick={() => onBillingCycleChange?.("monthly")}
                     className={cn(
                       "rounded-md px-3 py-1.5 text-sm font-medium",
-                      billingCycle === "monthly" ? "bg-brand-teal text-brand-teal-foreground" : "text-zinc-500 dark:text-zinc-400"
+                      billingCycle === "monthly" ? "bg-brand-teal-action text-brand-teal-foreground" : "text-zinc-500 dark:text-zinc-400"
                     )}
                   >
                     Mensal
@@ -246,7 +246,7 @@ function PaymentPage({
                     onClick={() => onBillingCycleChange?.("annual")}
                     className={cn(
                       "rounded-md px-3 py-1.5 text-sm font-medium",
-                      billingCycle === "annual" ? "bg-brand-teal text-brand-teal-foreground" : "text-zinc-500 dark:text-zinc-400"
+                      billingCycle === "annual" ? "bg-brand-teal-action text-brand-teal-foreground" : "text-zinc-500 dark:text-zinc-400"
                     )}
                   >
                     Anual <span className="text-xs opacity-80">· economize 17%</span>

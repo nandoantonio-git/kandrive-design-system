@@ -185,7 +185,7 @@ function UploadPopover({
               <span>{clamped}%</span>
             </div>
             <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-800">
-              <div className="h-full rounded-full bg-brand-teal transition-[width]" style={{ width: `${clamped}%` }} />
+              <div className="h-full rounded-full bg-brand-teal-action transition-[width]" style={{ width: `${clamped}%` }} />
             </div>
           </div>
           <ul className="flex flex-col gap-1 border-t border-zinc-200 pt-2 dark:border-zinc-700">
@@ -196,7 +196,7 @@ function UploadPopover({
                 {file.done ? (
                   <CheckCircle2 aria-hidden="true" className="size-2.5 shrink-0 text-brand-teal" />
                 ) : (
-                  <span aria-hidden="true" className="size-2 shrink-0 rounded-full bg-brand-teal" />
+                  <span aria-hidden="true" className="size-2 shrink-0 rounded-full bg-brand-teal-action" />
                 )}
               </li>
             ))}

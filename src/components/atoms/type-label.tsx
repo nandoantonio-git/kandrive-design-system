@@ -32,8 +32,8 @@ export interface FileTypeLabelProps
 }
 
 const FILE_TYPE_DOT_CLASS: Record<FileTypeKind, string> = {
-  image: "bg-brand-teal",
-  document: "bg-brand-teal-dark",
+  image: "bg-brand-teal-action",
+  document: "bg-brand-teal-dark-surface",
   video: "bg-brand-pink-dark",
   other: "bg-brand-pink-light",
 }
@@ -112,7 +112,7 @@ const SCOPE_SELECTED_CLASSES: Record<ScopeKind, Record<Extract<TypeLabelState, "
     "selected-pressed": "bg-[color-mix(in_srgb,var(--brand-pink-dark),black_45%)] text-white",
   },
   "long-term": {
-    selected: "bg-brand-teal-dark text-white",
+    selected: "bg-brand-teal-dark-surface text-white",
     "selected-hover": "bg-[color-mix(in_srgb,var(--brand-teal-dark),black_14%)] text-white",
     "selected-pressed": "bg-[color-mix(in_srgb,var(--brand-teal-dark),black_50%)] text-white",
   },
@@ -122,7 +122,7 @@ const SCOPE_SELECTED_CLASSES: Record<ScopeKind, Record<Extract<TypeLabelState, "
     "selected-pressed": "bg-[color-mix(in_srgb,var(--brand-teal-light),black_14%)] text-zinc-700 dark:text-zinc-300",
   },
   default: {
-    selected: "bg-brand-teal text-brand-teal-foreground",
+    selected: "bg-brand-teal-action text-brand-teal-foreground",
     "selected-hover": "bg-[color-mix(in_srgb,var(--brand-teal),black_14%)] text-white",
     "selected-pressed": "bg-[color-mix(in_srgb,var(--brand-teal),black_45%)] text-white",
   },
@@ -184,7 +184,7 @@ function DangerTypeLabel({
       data-slot="type-label"
       data-kind="danger"
       className={cn(
-        "inline-flex items-center justify-center rounded-md bg-destructive px-2 py-0.5 text-[0.625rem] text-white",
+        "inline-flex items-center justify-center rounded-md bg-destructive-surface px-2 py-0.5 text-[0.625rem] text-white",
         className
       )}
       {...props}

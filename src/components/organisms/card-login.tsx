@@ -120,7 +120,7 @@ function CardLogin({
 
         <button
           type="submit"
-          className="mt-1 w-full rounded-xl bg-brand-teal py-3 text-sm font-medium text-brand-teal-foreground shadow-sm transition-colors hover:bg-brand-teal/90 motion-safe:active:scale-[0.98]"
+          className="mt-1 w-full rounded-xl bg-brand-teal-action py-3 text-sm font-medium text-brand-teal-foreground shadow-sm transition-colors hover:bg-brand-teal-action/90 motion-safe:active:scale-[0.98]"
         >
           Entrar
         </button>

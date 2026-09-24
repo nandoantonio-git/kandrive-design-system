@@ -46,7 +46,7 @@ export interface FolderTagChipProps extends React.ComponentProps<"span"> {
  * de `neutral-surface-subtle` `#eaeaea`), `Selected`/`Pressed` →
  * `bg-brand-teal-light` (`var(--brand-primary-light,#c8dce3)`, hex exato) +
  * `text-brand-teal-dark` (`var(--brand-primary-dark,#1a5e6e)`, hex exato) —
- * antes usava `bg-brand-teal/10`/`text-brand-teal` (`#007e96`), que não
+ * antes usava `bg-brand-teal-action/10`/`text-brand-teal` (`#007e96`), que não
  * corresponde ao token de "selecionado" real do Figma.
  *
  * ⚠️ Achado novo (não corrigido, área ambígua): no estado `Default`

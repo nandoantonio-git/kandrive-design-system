@@ -54,7 +54,7 @@ function StorageStatusCurrent({
       <button
         type="button"
         onClick={onBuySpace}
-        className="rounded-md bg-brand-teal px-4 py-1 text-[0.625rem] text-brand-teal-foreground transition-colors hover:bg-brand-teal/90 motion-safe:active:scale-95"
+        className="rounded-md bg-brand-teal-action px-4 py-1 text-[0.625rem] text-brand-teal-foreground transition-colors hover:bg-brand-teal-action/90 motion-safe:active:scale-95"
       >
         Comprar espaço
       </button>
