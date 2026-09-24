@@ -10,7 +10,9 @@ import ViewModeListIdle from "@/assets/icons/ViewModeListIdle.svg?react"
 
 export type ViewMode = "grid" | "list" | "columns"
 
-const MODES = [
+type SvgIcon = typeof ViewModeGridActive
+
+const MODES: ReadonlyArray<{ value: ViewMode; label: string; ActiveIcon: SvgIcon; IdleIcon: SvgIcon; iconClassName: string }> = [
   {
     value: "grid",
     label: "Grid",

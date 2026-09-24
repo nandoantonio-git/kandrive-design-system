@@ -1,11 +1,9 @@
-import * as React from "react"
-
 import PlusButtonGlyph from "@/assets/icons/PlusButtonGlyph.svg?react"
 import { cn } from "@/lib/utils"
 import { IconActionButton, type IconActionButtonProps } from "./icon-action-button"
 
 export interface PlusButtonProps
-  extends Omit<IconActionButtonProps, "icon" | "label"> {
+  extends Omit<IconActionButtonProps, "icon" | "label" | "style"> {
   /** Eixo `style` confirmado no Figma (`Default`|`Primary`|`White`). */
   style?: "default" | "primary" | "white"
   label?: string

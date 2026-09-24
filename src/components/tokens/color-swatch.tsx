@@ -1,5 +1,3 @@
-import * as React from "react"
-
 import { cn } from "@/lib/utils"
 import { useCopy } from "@/components/tokens/token-swatch"
 

@@ -1,11 +1,9 @@
-import * as React from "react"
-
 import ClearButtonGlyph from "@/assets/icons/ClearButtonGlyph.svg?react"
 import { cn } from "@/lib/utils"
 import { IconActionButton, type IconActionButtonProps } from "./icon-action-button"
 
 export interface ClearButtonProps
-  extends Omit<IconActionButtonProps, "icon" | "label"> {
+  extends Omit<IconActionButtonProps, "icon" | "label" | "style"> {
   /** Eixo `style` confirmado no Figma (`Default`|`Red`|`White`). */
   style?: "default" | "red" | "white"
   label?: string

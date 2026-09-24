@@ -1,11 +1,9 @@
-import * as React from "react"
-
 import DeleteButtonGlyph from "@/assets/icons/DeleteButtonGlyph.svg?react"
 import { cn } from "@/lib/utils"
 import { IconActionButton, type IconActionButtonProps } from "./icon-action-button"
 
 export interface DeleteButtonProps
-  extends Omit<IconActionButtonProps, "icon" | "label"> {
+  extends Omit<IconActionButtonProps, "icon" | "label" | "style"> {
   /** Eixo `style` confirmado no Figma (`Default`|`Red`|`White`). */
   style?: "default" | "red" | "white"
   label?: string

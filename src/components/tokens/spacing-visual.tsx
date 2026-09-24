@@ -1,5 +1,3 @@
-import * as React from "react"
-
 import { TokenSwatch, TokenGrid } from "@/components/tokens/token-swatch"
 import type { SpacingEntry } from "@/components/tokens/spacing-data"
 

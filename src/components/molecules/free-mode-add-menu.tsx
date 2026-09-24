@@ -13,7 +13,7 @@ const ADD_NODE_OPERATIONS: readonly FreeModeListItemOperation[] = [
   "filtro-data",
 ]
 
-export interface FreeModeAddMenuProps extends React.ComponentProps<"div"> {
+export interface FreeModeAddMenuProps extends Omit<React.ComponentProps<"div">, "onSelect"> {
   onSelect?: (operation: FreeModeListItemOperation) => void
 }
 

@@ -1,11 +1,9 @@
-import * as React from "react"
-
 import ConfirmButtonGlyph from "@/assets/icons/ConfirmButtonGlyph.svg?react"
 import { cn } from "@/lib/utils"
 import { IconActionButton, type IconActionButtonProps } from "./icon-action-button"
 
 export interface ConfirmButtonProps
-  extends Omit<IconActionButtonProps, "icon" | "label"> {
+  extends Omit<IconActionButtonProps, "icon" | "label" | "style"> {
   /** Eixo `style` confirmado no Figma (`Default`|`Primary`|`White`). */
   style?: "default" | "primary" | "white"
   label?: string

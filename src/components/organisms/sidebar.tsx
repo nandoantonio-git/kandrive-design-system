@@ -314,7 +314,8 @@ function Sidebar({
         </div>
       ) : null}
       <div className="border-t border-zinc-200 pt-3 dark:border-zinc-700">
-        <StorageSidebar {...storageProps} manageSpaceLabel="Gerir Espaço" />
+        {/* storageProps é opcional aqui, mas as pages o omitem e o painel sempre renderizou mesmo assim; o cast só mantém esse comportamento. */}
+        <StorageSidebar {...(storageProps as StorageSidebarProps)} manageSpaceLabel="Gerir Espaço" />
       </div>
     </nav>
   )

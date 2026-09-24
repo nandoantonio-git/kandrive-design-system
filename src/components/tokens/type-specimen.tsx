@@ -1,5 +1,3 @@
-import * as React from "react"
-
 import { cn } from "@/lib/utils"
 import { useCopy } from "@/components/tokens/token-swatch"
 
@@ -21,7 +19,7 @@ export interface TypeScaleEntry {
  * em tabela). Nome do token e classe Tailwind copiáveis ao clicar (mesmo
  * padrão de `TokenSwatch`/`ColorSwatch`).
  */
-function TypeSpecimen({ token, weightLabel, fontWeight, sizePx, sizeRem, lineHeight, tracking, cssSnippet }: TypeScaleEntry) {
+function TypeSpecimen({ token, weightLabel, fontWeight, sizePx, sizeRem, lineHeight, cssSnippet }: TypeScaleEntry) {
   const { copied, copy } = useCopy()
   return (
     <div

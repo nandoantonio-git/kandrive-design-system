@@ -3,7 +3,7 @@ import { Mail, Lock, Eye, EyeOff } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
-export interface CardLoginProps extends React.ComponentProps<"div"> {
+export interface CardLoginProps extends Omit<React.ComponentProps<"div">, "onSubmit"> {
   onSubmit?: (values: { email: string; password: string }) => void
   onForgotPassword?: () => void
   onGoogleLogin?: () => void
