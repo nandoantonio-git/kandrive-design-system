@@ -2,7 +2,7 @@ import * as React from "react"
 import { HardDrive, LayoutGrid, CreditCard, ChevronDown, Check, Receipt, CircleCheck, Info, Lock } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { Header } from "@/components/organisms/header"
+import { AppShell } from "@/components/templates/app-shell"
 import { Breadcrumb } from "@/components/molecules/breadcrumb"
 import { PageLead } from "@/components/molecules/page-lead"
 import { SettingsField } from "@/components/molecules/settings-field"
@@ -133,11 +133,22 @@ function PaymentPage({
   const selected = PLAN_TIERS.find((plan) => plan.id === selectedPlan) ?? PLAN_TIERS[2]
 
   return (
-    <div data-slot="payment-page" className={cn("flex w-full flex-col bg-[#eaeaea] dark:bg-zinc-900", className)} {...props}>
-      <Header page="settings" />
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col items-end gap-5 px-12 py-8">
-        <div className="flex w-full flex-col items-center gap-2 pb-5">
-          <Breadcrumb segments={["Home", "Planos Kandrive"]} className="w-full" />
+    <AppShell
+      data-slot="payment-page"
+      className={cn("bg-[#eaeaea] dark:bg-zinc-900", className)}
+      headerProps={{ page: "settings" }}
+      footer={
+        <div className="flex w-full items-center justify-center py-4 text-base text-black dark:text-zinc-100">
+          <span>©2026 KanDrive</span>
+        </div>
+      }
+      // Mobile (Figma Payment/*/Mobile): barra de chips Plano · Configurações · Home.
+      mobileFooterSettings={{ page: "payment", active: "Plano" }}
+      {...props}
+    >
+      <div className="flex w-full flex-col items-end gap-5 tablet:py-2">
+        <div className="flex w-full flex-col items-center gap-2 tablet:pb-5">
+          <Breadcrumb segments={["Home", "Planos Kandrive"]} className="hidden w-full tablet:flex" />
           <PageLead
             title="Gerenciar plano Kandrive"
             caption="Revise seu uso, compare planos e conclua a assinatura"
@@ -161,7 +172,7 @@ function PaymentPage({
                 ]}
                 className="h-2.5 max-w-none"
               />
-              <div className="flex items-center gap-6 text-sm text-zinc-500 dark:text-zinc-400">
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-1 text-sm text-zinc-500 dark:text-zinc-400">
                 <span className="flex items-center gap-1.5">
                   <span className="size-2 shrink-0 rounded-full bg-brand-pink-dark" aria-hidden="true" />
                   Acesso rápido: 9.2 GB
@@ -174,7 +185,7 @@ function PaymentPage({
             </CollapsibleSection>
 
             <CollapsibleSection icon={LayoutGrid} title="Seu plano" summary={selected.name} defaultOpen={defaultOpen}>
-              <div className="flex w-full items-start gap-4">
+              <div className="flex w-full flex-col items-stretch gap-4 tablet:flex-row tablet:items-start">
                 {PLAN_TIERS.map((plan) => {
                   const isSelected = plan.id === selectedPlan
                   return (
@@ -272,7 +283,7 @@ function PaymentPage({
             <CollapsibleSection icon={CreditCard} title="Pagamento" defaultOpen={defaultOpen}>
               <SettingsField label="Nome no cartão" type="text" placeholder="Como impresso no cartão" className="w-full" />
               <SettingsField label="Número do cartão" type="text" placeholder="0000 0000 0000 0000" className="w-full" />
-              <div className="flex w-full gap-4">
+              <div className="flex w-full flex-col gap-4 tablet:flex-row">
                 <SettingsField label="Validade" type="text" placeholder="MM/AA" />
                 <SettingsField label="CVC" type="text" placeholder="123" />
               </div>
@@ -294,11 +305,7 @@ function PaymentPage({
           </div>
         </div>
       </div>
-
-      <div className="flex w-full items-center justify-center px-12 py-4 text-base text-black dark:text-zinc-100">
-        <span>©2026 KanDrive</span>
-      </div>
-    </div>
+    </AppShell>
   )
 }
 
