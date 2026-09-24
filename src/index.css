@@ -5,6 +5,8 @@
 @import "@fontsource-variable/geist";
 
 @custom-variant dark (&:is(.dark *));
+/* Ponteiro de toque (celular, tablet, notebook touch): `touch:` */
+@custom-variant touch (@media (pointer: coarse));
 
 @theme inline {
     --font-heading: var(--font-sans);
@@ -15,6 +17,14 @@
        Figma-confirmado onde o próprio Figma especifica Geist (ex.:
        atom/StorageTierBadge, "Geist:Medium" — não é a fonte do sistema). */
     --font-sans: 'Figtree Variable', sans-serif;
+    /* Breakpoints (decisão de responsividade, 2026-09-24). Os frames do Figma
+       V0.2.1 são 390 / 720 / 1440; cada um cai dentro da própria faixa:
+       mobile < 720 · tablet 720–1199 (`tablet:`) · desktop ≥ 1200 (`desktop:`).
+       Os nomes batem com a prop `Device` do Figma. */
+    --breakpoint-tablet: 45rem;
+    --breakpoint-desktop: 75rem;
+    /* Acima de 1440 o layout para de crescer e fica centralizado. */
+    --container-page: 90rem;
     --font-geist: 'Geist Variable', sans-serif;
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);
@@ -561,4 +571,25 @@
 .docs-story::-webkit-scrollbar-thumb {
   background: #007e96;
   border-radius: 999px;
+}
+
+/*
+ * Área mínima de toque (decisão de responsividade, 2026-09-24): com ponteiro
+ * de toque, o alvo clicável cresce de forma invisível até 44×44px (Apple HIG),
+ * sem mudar o desenho do Figma. Com mouse, nada muda. Use em botões de ícone
+ * e alvos pequenos: `class="touch-target"`.
+ */
+@utility touch-target {
+    position: relative;
+    @media (pointer: coarse) {
+        &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: max(100%, 44px);
+            height: max(100%, 44px);
+            transform: translate(-50%, -50%);
+        }
+    }
 }

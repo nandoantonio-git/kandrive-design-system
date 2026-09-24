@@ -31,6 +31,18 @@ const preview: Preview = {
       theme: docsTheme,
     },
 
+    // Viewports do KanDrive (decisão de responsividade, 2026-09-24): as
+    // mesmas larguras dos frames do Figma V0.2.1. Os breakpoints do código
+    // são outros: mobile < 720, tablet 720–1199, desktop ≥ 1200 (ver
+    // Tokens/Responsividade). Os presets genéricos saem.
+    viewport: {
+      options: {
+        kdMobile: { name: 'Mobile · 390', styles: { width: '390px', height: '844px' }, type: 'mobile' },
+        kdTablet: { name: 'Tablet · 720', styles: { width: '720px', height: '1024px' }, type: 'tablet' },
+        kdDesktop: { name: 'Desktop · 1440', styles: { width: '1440px', height: '900px' }, type: 'desktop' },
+      },
+    },
+
     a11y: {
       // 'todo' - show a11y violations in the test UI only
       // 'error' - fail CI on a11y violations
@@ -48,7 +60,7 @@ const preview: Preview = {
     options: {
       storySort: {
         method: 'alphabetical',
-        order: ['Introdução', 'Atoms', 'Molecules', 'Organisms', 'Templates', 'Pages', 'Tokens'],
+        order: ['Introdução', 'Atoms', 'Molecules', 'Organisms', 'Templates', 'Pages', 'Tokens', ['Colors', 'Responsividade']],
       },
     },
   },

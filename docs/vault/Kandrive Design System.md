@@ -25,6 +25,7 @@ Vault de documentação viva do **kandrive-design-system** — o design system S
 - [[Tipografia]]
 - [[Liquid Glass]] — o material visual do produto
 - [[Logo]] — o Kan (canguru) e as cores do logo por modo
+- [[Responsividade]] — breakpoints, navegação por faixa, mão dominante, toque
 
 ## Regras travadas (AGENTS.md)
 
