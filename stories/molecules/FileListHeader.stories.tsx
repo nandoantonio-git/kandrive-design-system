@@ -7,7 +7,7 @@ const meta = {
   component: FileListHeader,
   parameters: {
     layout: "fullscreen",
-    design: { type: 'figma', url: 'https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1421-19184' },
+    design: { type: 'figma', url: 'https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=665-9172' },
   },
   decorators: [(Story) => <div className="p-6"><Story /></div>],
   argTypes: {

@@ -5,7 +5,7 @@ import { DropdownMenu } from "../../src/components/organisms/dropdown-menu"
 const meta = {
   title: "Organisms/DropdownMenu",
   component: DropdownMenu,
-  parameters: { layout: "centered", design: { type: 'figma', url: 'https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1440-23662' } },
+  parameters: { layout: "centered", design: { type: 'figma', url: 'https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1440-23662' } },
   argTypes: {
     variant: { control: "radio", options: ["sidebar", "template-options"] },
   },

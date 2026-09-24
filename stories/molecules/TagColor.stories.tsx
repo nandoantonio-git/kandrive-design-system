@@ -8,7 +8,7 @@ const meta = {
   component: TagColor,
   parameters: {
     layout: "centered",
-    design: { type: 'figma', url: 'https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1444-21979' },
+    design: { type: 'figma', url: 'https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1444-21979' },
   },
   decorators: [
     (Story) => (

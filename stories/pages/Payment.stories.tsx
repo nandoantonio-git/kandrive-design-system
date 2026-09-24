@@ -13,14 +13,14 @@ type Story = StoryObj<typeof meta>
 
 export const Expanded: Story = {
   parameters: {
-    design: { type: "figma", url: "https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1439-20215" },
+    design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1745-12477" },
   },
   args: { variant: "expanded" },
 }
 
 export const Collapsed: Story = {
   parameters: {
-    design: { type: "figma", url: "https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1439-20485" },
+    design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1745-12477" },
   },
   args: { variant: "collapsed" },
 }

@@ -48,14 +48,14 @@ function controlled(initial: StorageScope) {
 
 export const Global: Story = {
   parameters: {
-    design: { type: "figma", url: "https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1439-19749" },
+    design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=231-4553" },
   },
   render: controlled("global"),
 }
 
 export const QuickAccess: Story = {
   parameters: {
-    design: { type: "figma", url: "https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1439-19763" },
+    design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=231-4553" },
   },
   args: { usedLabel: "20 GB em uso", freeLabel: "10 GB livre" },
   render: controlled("quick-access"),
@@ -63,7 +63,7 @@ export const QuickAccess: Story = {
 
 export const LongTerm: Story = {
   parameters: {
-    design: { type: "figma", url: "https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1439-19777" },
+    design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=231-4553" },
   },
   args: { usedLabel: "1 TB em uso", freeLabel: "1 TB livre" },
   render: controlled("long-term"),

@@ -5,7 +5,7 @@ import { SaveLongTermFileStorage } from "../../src/components/templates/save-lon
 const meta = {
   title: "Templates/SaveLongTermFileStorage",
   component: SaveLongTermFileStorage,
-  parameters: { layout: "centered", design: { type: 'figma', url: 'https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1439-16907' } },
+  parameters: { layout: "centered", design: { type: 'figma', url: 'https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1439-16907' } },
   args: {
     files: [
       { name: "Relatorio-Q1.pdf", meta: "PDF · 12 MB · 19 Jul" },

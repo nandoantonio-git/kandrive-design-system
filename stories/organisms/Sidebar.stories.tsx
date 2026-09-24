@@ -6,7 +6,7 @@ import { Sidebar } from "../../src/components/organisms/sidebar"
 const meta = {
   title: "Organisms/Sidebar",
   component: Sidebar,
-  parameters: { layout: "centered", design: { type: 'figma', url: 'https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1421-17946' } },
+  parameters: { layout: "centered", design: { type: 'figma', url: 'https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=197-6187' } },
   args: {
     activePage: "Pessoal",
     tags: ["Image", "Contratos"],

@@ -19,7 +19,7 @@ const meta = {
   component: OrganizationPage,
   parameters: {
     layout: "fullscreen",
-    design: { type: "figma", url: "https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1439-19678" },
+    design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1745-11940" },
   },
   args: {
     sidebarProps: SIDEBAR_PROPS,
@@ -51,7 +51,7 @@ export const ModalClosed: Story = {
 
 export const TemplateDropZone: Story = {
   parameters: {
-    design: { type: "figma", url: "https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1439-19696" },
+    design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1745-11940" },
   },
   args: {
     step: "template-drop-zone",
@@ -73,7 +73,7 @@ export const TemplateDropZone: Story = {
 
 export const Saved: Story = {
   parameters: {
-    design: { type: "figma", url: "https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1439-19717" },
+    design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1745-11940" },
   },
   args: { step: "saved" },
   render: (args) => {

@@ -8,15 +8,15 @@ Toda a implementação é reconciliada contra um arquivo Figma real, via MCP do 
 
 | Campo | Valor |
 | --- | --- |
-| Arquivo | `KanDrive` |
-| File key | `oFp2TLeCG4GJeCOFVhBvjg` |
-| Página principal | "✏️Design Pattern" — nodeId `1421:17272` |
-| URL | `figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1421-17272` |
+| Arquivo | `KanDrive V0.2.1` (auditoria/consolidação 2026-09-23; o original `KanDrive` `oFp2TLeCG4GJeCOFVhBvjg` fica congelado como referência) |
+| File key | `2g7udqxWbGA8F9Or7PGNg3` |
+| Página principal | "✨Design System" — nodeId `1421:17272` |
+| URL | `figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1421-17272` |
 | Conta MCP | Nand00 (fernandoluiz1312@gmail.com) |
 
-## Estrutura de topo da página (7 seções)
+## Estrutura de topo da página (V0.2.1)
 
-Push Button · Icon/ · Search · Typography · Pallete · Material - Liquid Glass · Pages
+Foundation/Brand · Foundation/Palette · Foundation/Typography · Foundation/Material - Liquid Glass · Foundation/Color Modes · Icons · Atoms · Molecules · Organisms · Templates (telas em 📐Pages: seções "Pages - White" e "Pages - Dark")
 
 ## Protocolo obrigatório (Regra 11)
 

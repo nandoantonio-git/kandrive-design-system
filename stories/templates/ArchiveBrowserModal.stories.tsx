@@ -5,7 +5,7 @@ import { ArchiveBrowserModal } from "../../src/components/templates/archive-brow
 const meta = {
   title: "Templates/ArchiveBrowserModal",
   component: ArchiveBrowserModal,
-  parameters: { layout: "centered", design: { type: 'figma', url: 'https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1439-16909' } },
+  parameters: { layout: "centered", design: { type: 'figma', url: 'https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1439-16909' } },
   args: {
     breadcrumb: ["Pessoal", "Fotos", "Casamento Ana & Bruno"],
     files: [

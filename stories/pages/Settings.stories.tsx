@@ -24,49 +24,49 @@ function controlled(initial: SettingsSection) {
 
 export const Account: Story = {
   parameters: {
-    design: { type: "figma", url: "https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1439-19849" },
+    design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1745-12111" },
   },
   render: controlled("conta"),
 }
 
 export const Subscription: Story = {
   parameters: {
-    design: { type: "figma", url: "https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1439-21072" },
+    design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1745-12111" },
   },
   render: controlled("assinatura"),
 }
 
 export const Notifications: Story = {
   parameters: {
-    design: { type: "figma", url: "https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1439-21165" },
+    design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1745-12111" },
   },
   render: controlled("notificacoes"),
 }
 
 export const Appearance: Story = {
   parameters: {
-    design: { type: "figma", url: "https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1439-21211" },
+    design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1745-12111" },
   },
   render: controlled("aparencia"),
 }
 
 export const Privacy: Story = {
   parameters: {
-    design: { type: "figma", url: "https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1439-21268" },
+    design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1745-12111" },
   },
   render: controlled("privacidade"),
 }
 
 export const Languages: Story = {
   parameters: {
-    design: { type: "figma", url: "https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1439-21327" },
+    design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1745-12111" },
   },
   render: controlled("idioma"),
 }
 
 export const DeleteAccount: Story = {
   parameters: {
-    design: { type: "figma", url: "https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1439-21297" },
+    design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1745-12111" },
   },
   render: controlled("excluir-conta"),
 }
