@@ -198,10 +198,10 @@ function ImageItem({
     >
       <div className="relative h-[41px] w-[35.14px] shrink-0">
         <img alt="" aria-hidden="true" className="absolute inset-0 size-full" src={IMAGE[state]} />
-        {/* 🧩 Inferido (Regra 9): `--effect-glass-fill-light` não é um token real (sem entrada em index.css) — fallback rgba espelhado com a mesma base #1a1a1a já usada pelos tokens effect-glass-white-* em modo escuro */}
+        {/* Vidro do símbolo fixo no valor Light (Effect/Glass/Fill/Light, #fafafa a 60%): o símbolo fica igual no Light e no Dark (pedido do usuário, 2026-09-24). */}
         <div
           aria-hidden="true"
-          className="absolute top-[2px] left-[2.07px] h-7 w-[31px] rounded glass-edge bg-[var(--effect-glass-fill-light,rgba(250,250,250,0.6))] dark:bg-[rgba(26,26,26,0.6)]"
+          className="absolute top-[2px] left-[2.07px] h-7 w-[31px] rounded glass-edge bg-[rgba(250,250,250,0.6)]"
         />
         {SELECTED_STATES.includes(state) ? (
           <SelectState className="absolute right-[2px] bottom-0" />
