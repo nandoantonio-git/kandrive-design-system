@@ -15,3 +15,13 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {}
+
+/**
+ * Figma `organism/CardLogin` `Device=Mobile`: formulário sem card, sobre o fundo teal
+ * da tela `Auth/Login/Mobile` (a story coloca esse fundo). Rótulos e campos mantêm 16px (Regra 4).
+ */
+export const Mobile: Story = {
+  args: { device: "mobile" },
+  globals: { viewport: { value: "kdMobile", isRotated: false } },
+  decorators: [(Story) => <div className="bg-brand-teal-action p-6"><Story /></div>],
+}

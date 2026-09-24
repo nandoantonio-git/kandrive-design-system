@@ -52,12 +52,15 @@ Decisões de 2026-09-24, tomadas numa entrevista (grill) com o Nando. A versão 
 - Os nomes nas linhas `FileRow` têm 16px (Regra 4; no Figma, 13px).
 - Os rótulos do TabBar têm 11px (piso de microtexto; no Figma, 10px).
 
+## Composições mobile próprias já feitas
+
+- **Login (2026-09-24):** `CardLogin device="mobile"` e `LoginPage` com fundo teal (`brand-teal-action`, superfície), as manchas desfocadas, o Kan com o logo (`login-mobile-kan.svg`) e o formulário sem card. "Entrar" usa `Brand/Secondary/Default` no Light e `Brand/Secondary/Dark` no Dark, como no Figma. O `device` é escolhido pelo `useMinWidth("tablet")`, para não duplicar o formulário no DOM.
+
 ## Lotes futuros de código
 
 - **Organize mobile (composições próprias do Figma):** `Organize/ChooseMethod/Mobile` (seletor de método + lista com checkbox), `Organize/Review/Mobile` (cards com os selos Duplicado, Incongruente e OK, e as ações Renomear e Editar), `Organize/ReviewDone/Mobile` e `Organize/Saved/Mobile` (lista agrupada por ano). Hoje, no mobile, o código mostra as 3 etapas do desktop adaptadas (Q26, 2026-09-24).
 - **Long-term mobile:** as telas próprias do Figma (`LongTermStorage/SelectFiles`, `SelectFilesSelected`, `Stored` e `RecoveryPending`). Hoje, no mobile, o código mostra os dois modais adaptados (`SaveLongTermFileStorage` e `ArchiveBrowserModal`).
 - **Bug (já existia antes):** em `ArchiveBrowserModalSidebar`, o bloco "Etiquetas" aparece espremido ao lado da lista de navegação, em vez de ficar abaixo dela. Acontece em todas as larguras.
-- **Login mobile (composição própria do Figma, `Auth/Login/Mobile`):** fundo teal inteiro, a ilustração do Kan com o logo, o formulário sem card e o botão "Entrar" escuro. Hoje, no mobile, o código mostra o card do desktop em largura fluida.
 - **Storage:** a lista de arquivos abaixo do card (filtro, Agrupar e Etiquetar), que está no Figma mobile, e as telas LimitReached e ManageSpace, que não existem no código.
 
 ## Pendências de desenho (Nando)

@@ -111,6 +111,7 @@
     --color-neutral-text-secondary: var(--neutral-text-secondary);
     --color-neutral-surface-subtle: var(--neutral-surface-subtle);
     --color-neutral-border-light: var(--neutral-border-light);
+    --color-brand-primary-focus: var(--brand-primary-focus);
     --color-neutral-surface-medium: var(--neutral-surface-medium);
     --color-neutral-text-tertiary: var(--neutral-text-tertiary);
     --color-neutral-text-placeholder: var(--neutral-text-placeholder);
@@ -253,6 +254,7 @@
     --neutral-text-secondary: #3f3f46;
     --neutral-surface-subtle: #eaeaea;
     --neutral-border-light: #bbbbbb;
+    --brand-primary-focus: #92ccff;
     --neutral-surface-medium: #52525b;
     /* Figma-confirmado (Figma V0.2.1, coleção Core): usados pelos componentes mobile (R2 de responsividade, 2026-09-24). */
     --neutral-text-tertiary: #71717a;
@@ -416,6 +418,7 @@
     --neutral-text-secondary: #d4d4d8;
     --neutral-surface-subtle: #27272a;
     --neutral-border-light: #3f3f46;
+    --brand-primary-focus: #92ccff;
     --neutral-surface-medium: #a1a1aa;
     --neutral-text-tertiary: #a1a1aa;
     --neutral-text-placeholder: #a1a1aa;
