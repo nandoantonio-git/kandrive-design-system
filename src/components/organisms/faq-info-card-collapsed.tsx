@@ -273,7 +273,7 @@ function FaqInfoCardCollapsed({ topic = "FirstSteps", className, ...props }: Faq
       )}
       {...props}
     >
-      <div className="flex items-start justify-between gap-24 px-6">
+      <div className="flex items-start justify-between gap-4 px-6 tablet:gap-24">
         <div className="flex items-center gap-2">
           <Icon className="size-4 shrink-0" aria-hidden="true" />
           <p className="text-base font-semibold text-brand-secondary-dark">{data.title}</p>
