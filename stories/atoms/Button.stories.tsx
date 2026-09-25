@@ -36,7 +36,7 @@ export const Outline: Story = { args: { variant: "outline", children: "Cancelar"
 
 export const Destructive: Story = { args: { variant: "destructive", children: "Excluir" } }
 
-/** Figma: Glass só existe em MD (36px de altura, raio 8.4). */
+/** Figma: Glass só existe em MD (36px de altura, raio 10). */
 export const Glass: Story = { args: { variant: "glass" } }
 
 /** Figma: Secondary só existe como Pill LG. */

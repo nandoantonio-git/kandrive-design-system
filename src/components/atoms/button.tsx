@@ -10,7 +10,9 @@ import { cn } from "@/lib/utils"
  * Figma viram props:
  * - `Style` → `variant`: primary · outline · destructive · glass · secondary.
  *   A prop se chama `variant` para não colidir com o `style` do CSS.
- * - `Size` → `size`: md (33px, raio 6) · lg (44px, raio 12).
+ * - `Size` → `size`: md (36px, raio 6) · lg (46px Rounded, raio 12; 44px Pill).
+ *   Alturas e raios arredondados para cima, em números pares (2026-09-24),
+ *   depois que os rótulos passaram a 16px (Regra 4).
  * - `Shape` → `shape`: rounded · pill.
  * - `State` → CSS: `:hover`, `:focus-visible`, `:disabled`.
  *
@@ -44,12 +46,12 @@ const buttonVariants = cva(
         destructive:
           "bg-destructive-surface text-white hover:bg-destructive-surface/80 focus-visible:ring-destructive-surface/50",
         glass:
-          "gap-2 rounded-[8.4px] border border-effect-overlay-subtle bg-effect-overlay-subtle text-brand-secondary-dark hover:bg-effect-overlay-subtle/80 focus-visible:ring-effect-overlay-subtle",
+          "gap-2 rounded-[10px] border border-effect-overlay-subtle bg-effect-overlay-subtle text-brand-secondary-dark hover:bg-effect-overlay-subtle/80 focus-visible:ring-effect-overlay-subtle",
         secondary:
           "border border-neutral-border-light bg-neutral-surface-subtle text-neutral-text-secondary hover:bg-neutral-surface-subtle/80 focus-visible:ring-neutral-border-light/50",
       },
       size: {
-        md: "h-[33px] rounded-md px-4 py-2 text-base leading-[17px]",
+        md: "h-9 rounded-md px-4 py-2 text-base leading-5",
         lg: "h-11 rounded-xl px-6 py-3 text-base leading-5",
       },
       shape: {
@@ -58,8 +60,10 @@ const buttonVariants = cva(
       },
     },
     compoundVariants: [
-      // Figma: Glass só existe em MD (143×36, raio 8.4, gap 8).
-      { variant: "glass", size: "md", className: "h-9 rounded-[8.4px] leading-5" },
+      // Figma: Glass só existe em MD (36px, raio 10, gap 8).
+      { variant: "glass", size: "md", className: "rounded-[10px]" },
+      // Figma: LG Rounded tem 46px; o LG Pill fica com 44px.
+      { shape: "rounded", size: "lg", className: "h-[46px]" },
       { shape: "pill", size: "lg", className: "rounded-full" },
     ],
     defaultVariants: {
