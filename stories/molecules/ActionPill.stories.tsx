@@ -17,7 +17,7 @@ const meta = {
     actions: [
       { name: "Help", label: "Ajuda", onClick: () => {} },
       { name: "Settings", label: "Configurações", onClick: () => {} },
-      { name: "SpatialAudioOff", label: "Conta", onClick: () => {} },
+      { name: "Account", label: "Conta", onClick: () => {} },
     ],
   },
 } satisfies Meta<typeof ActionPill>

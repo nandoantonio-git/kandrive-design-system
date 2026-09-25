@@ -2,7 +2,7 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 import { StorageBar } from "@/components/molecules/storage-bar"
-import { PushButton } from "@/components/atoms/push-button"
+import { Button } from "@/components/atoms/button"
 import { SidebarToggle } from "@/components/organisms/sidebar-toggle"
 
 export interface StorageSidebarProps extends React.ComponentProps<"div"> {
@@ -71,12 +71,12 @@ function StorageSidebar({
           </div>
           {/* Em painel estreito (Sidebar do tablet, 150px) os botões empilham, como no Figma Device=Tablet. */}
           <div className="flex flex-wrap items-center gap-3 px-2">
-            <PushButton variant="neutral" className="h-8 min-w-fit flex-1 basis-24 px-3 text-xs whitespace-nowrap" onClick={onManageSpace}>
+            <Button variant="outline" className="h-8 min-w-fit flex-1 basis-24 px-3 text-xs whitespace-nowrap" onClick={onManageSpace}>
               {manageSpaceLabel}
-            </PushButton>
-            <PushButton variant="primary" className="h-8 min-w-fit flex-1 basis-24 px-3 text-xs whitespace-nowrap" onClick={onBuySpace}>
+            </Button>
+            <Button className="h-8 min-w-fit flex-1 basis-24 px-3 text-xs whitespace-nowrap" onClick={onBuySpace}>
               Comprar Espaço
-            </PushButton>
+            </Button>
           </div>
         </>
       ) : null}

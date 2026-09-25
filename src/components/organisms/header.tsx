@@ -3,7 +3,7 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 import { HamburgerButton } from "@/components/atoms/hamburger-button"
 import { SearchInput, type SearchInputProps } from "@/components/molecules/search-input"
-import { PushButton } from "@/components/atoms/push-button"
+import { Button } from "@/components/atoms/button"
 import { ICONS } from "@/components/atoms/icon"
 import { ActionPill } from "@/components/molecules/action-pill"
 import kandriveLogo from "@/assets/logo/kandrive-logo.svg"
@@ -25,7 +25,7 @@ export interface HeaderProps extends React.ComponentProps<"header"> {
 /**
  * organism/Header (`1421:19918`) — Figma-confirmado: "header". Variante
  * `page=Navbar` expõe 2 ações de fluxo ao vivo: "Organizar" e "Guardar"
- * (`PushButton variant="primary"`, Regra 1 — nenhum componente separado).
+ * (`atom/Button`, migrado de `PushButton` em 2026-09-25, fase E).
  * "Guardar" é termo aprovado (Regra 5); "Organizar" não está na lista
  * travada mas também não é termo proibido — gap de terminologia baixo,
  * ver docs/conflicts.md. Compõe `molecule/input-search` (placeholder local
@@ -42,7 +42,7 @@ export interface HeaderProps extends React.ComponentProps<"header"> {
  * `download_assets` para `src/assets/logo/kandrive-logo.svg` e usado como
  * asset, nunca como texto. A composição de `molecule/action-pill` também foi
  * corrigida na mesma auditoria (ver `ActionPill.mdx`) — os 3 ícones reais são
- * Help/Settings/Conta, não 2×Settings+SpatialAudioOff.
+ * Help/Settings/Conta, não 2×Settings+Account.
  *
  * ⚠️ Corrigido em 2026-08-11 (Regra 11, auditoria de fixed-point): a pílula
  * de ações (Help/Settings/Conta) é renderizada a `opacity: 50%` no Figma
@@ -89,12 +89,14 @@ function Header({ page = "navbar", searchProps, onOrganize, onSave, onMenuClick,
       {page === "navbar" ? (
         <div className="hidden shrink-0 items-center gap-5 tablet:flex">
           {/* Tablet: só o ícone (Figma Header Device=Tablet); o rótulo aparece a partir de `desktop:`. */}
-          <PushButton variant="primary" icon={ICONS.Organize} onClick={onOrganize} aria-label="Organizar">
+          <Button onClick={onOrganize} aria-label="Organizar">
+            <ICONS.Organize className="size-4" aria-hidden="true" />
             <span className="hidden desktop:inline">Organizar</span>
-          </PushButton>
-          <PushButton variant="primary" icon={ICONS.Keep} onClick={onSave} aria-label="Guardar">
+          </Button>
+          <Button onClick={onSave} aria-label="Guardar">
+            <ICONS.Keep className="size-4" aria-hidden="true" />
             <span className="hidden desktop:inline">Guardar</span>
-          </PushButton>
+          </Button>
         </div>
       ) : null}
       <ActionPill
@@ -102,7 +104,7 @@ function Header({ page = "navbar", searchProps, onOrganize, onSave, onMenuClick,
         actions={[
           { name: "Help", label: "Ajuda" },
           { name: "Settings", label: "Configurações" },
-          { name: "SpatialAudioOff", label: "Conta", onClick: onAvatarClick },
+          { name: "Account", label: "Conta", onClick: onAvatarClick },
         ]}
       />
       <button

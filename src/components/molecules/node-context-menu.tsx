@@ -2,7 +2,7 @@ import * as React from "react"
 import { X, Info } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { PushButton } from "@/components/atoms/push-button"
+import { Button } from "@/components/atoms/button"
 import { AddButton } from "@/components/atoms/add-button"
 import { NodeContextMenuItem } from "@/components/molecules/node-context-menu-item"
 import NodeContextMenuFilter from "@/assets/icons/NodeContextMenuFilter.svg?react"
@@ -134,12 +134,12 @@ function NodeContextMenu({
         {isError ? <AddButton label="Adicionar Regra" onClick={onAddRule} className="w-full" /> : null}
 
         <div className="flex items-center justify-end gap-4 border-t border-zinc-300 dark:border-zinc-700 py-3">
-          <PushButton variant="neutral" className="h-8 px-4 text-xs" onClick={onDiscard}>
+          <Button variant="outline" className="h-8 px-4 text-xs" onClick={onDiscard}>
             Descartar Mudanças
-          </PushButton>
-          <PushButton variant="primary" className="h-8 px-4 text-xs" onClick={onSave}>
+          </Button>
+          <Button className="h-8 px-4 text-xs" onClick={onSave}>
             Salvar Mudanças
-          </PushButton>
+          </Button>
         </div>
       </div>
     </div>

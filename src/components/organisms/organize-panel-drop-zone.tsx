@@ -1,7 +1,7 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
-import { PushButton } from "@/components/atoms/push-button"
+import { Button } from "@/components/atoms/button"
 import { ArchiveItem } from "@/components/atoms/archive-item"
 import { ImageItem } from "@/components/atoms/image-item"
 import { TagOrgTemplateName } from "@/components/atoms/tag-org-template-name"
@@ -151,12 +151,12 @@ function OrganizePanelDropZone({
         </div>
       )}
       <div className="relative flex items-center justify-end gap-4">
-        <PushButton variant="neutral" className="h-8 px-4 text-xs" onClick={onCancel}>
+        <Button variant="outline" className="h-8 px-4 text-xs" onClick={onCancel}>
           Cancelar
-        </PushButton>
-        <PushButton variant="primary" className="h-8 px-4 text-xs" onClick={onContinue}>
+        </Button>
+        <Button className="h-8 px-4 text-xs" onClick={onContinue}>
           Continuar
-        </PushButton>
+        </Button>
       </div>
     </div>
   )

@@ -49,7 +49,7 @@ import SvgChevronLeft from "@/assets/icons/ChevronLeft.svg?react"
 import SvgChevronRight from "@/assets/icons/ChevronRight.svg?react"
 import SvgFullscreen from "@/assets/icons/Fullscreen.svg?react"
 import SvgHelp from "@/assets/icons/Help.svg?react"
-import SvgSpatialAudioOff from "@/assets/icons/SpatialAudioOff.svg?react"
+import SvgAccount from "@/assets/icons/SpatialAudioOff.svg?react"
 import SvgOrganize from "@/assets/icons/Organize.svg?react"
 import SvgTagSet from "@/assets/icons/TagSet.svg?react"
 import SvgGroup from "@/assets/icons/Group.svg?react"
@@ -127,7 +127,10 @@ const ICONS = {
   ChevronRight: SvgChevronRight,
   Fullscreen: SvgFullscreen,
   Help: SvgHelp,
-  SpatialAudioOff: SvgSpatialAudioOff,
+  // Renomeado no Figma V0.2.1 em 2026-09-24 (F-polimento, fase A): o desenho é
+  // uma pessoa, usado como ícone de conta — não de mudo. Nome do arquivo mantido
+  // (SpatialAudioOff.svg) pra não reexportar o asset; só a chave pública mudou.
+  Account: SvgAccount,
   Organize: SvgOrganize,
   TagSet: SvgTagSet,
   Group: SvgGroup,

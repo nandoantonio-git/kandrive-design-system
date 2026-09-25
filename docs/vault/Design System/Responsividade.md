@@ -70,7 +70,7 @@ Decisões de 2026-09-24, tomadas numa entrevista (grill) com o Nando. A versão 
 - ~~**F8**~~ ✅ 2026-09-24: onboarding mínimo (`OnboardingPage`: boas-vindas, mão dominante, tema, conclusão).
 - ~~**F11 (Figma)**~~ ✅ corrigido no Figma em 2026-09-24: nas telas Home/Grid/Mobile e Home/List/Mobile, trocar o `atom/SortButton` (e a cópia solta "Ordenar por") pelo `molecule/DropdownSelect/GroupBy` `Device=Mobile` (decisão da Fase 4 e Q25). O `SortButton` fica como candidato a descarte.
 - ~~**F12**~~ resolvido pelo próprio Figma: no mobile não há etapa de arrastar; a etapa mostra a revisão, só com o FAB ✓/✕.
-- **F16 (novo):** no `FolderCard` Dark, o rótulo "Pasta" fica quase invisível.
+- ~~**F16**~~ ✅ 2026-09-25: sem reprodução em capturas novas (ver [[Conflitos Abertos]]).
 - ~~**F10**~~ ✅ 2026-09-24: o avatar abre Settings → Conta, com o `UserProfileCard` (Editar perfil, Trocar conta).
 - ~~**F13 (Figma)**~~ ✅ corrigido no Figma em 2026-09-24: `LongTermStorage/SelectFilesSelected/Mobile` marca "Organizar" na TabBar, e `SelectFiles` marca "Guardar". O código usa Guardar nas duas.
 - ~~**F14**~~ ✅ corrigido no Figma e no código em 2026-09-24 com `Brand/Primary/Dark`. Em `RecoveryPending` Dark, o nome do arquivo usa `Brand/Primary/Mid` (#337084 nos dois modos), com pouco contraste sobre o fundo escuro.

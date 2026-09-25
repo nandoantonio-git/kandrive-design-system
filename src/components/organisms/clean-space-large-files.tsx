@@ -2,7 +2,7 @@ import * as React from "react"
 import { Trash2 } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { PushButton } from "@/components/atoms/push-button"
+import { Button } from "@/components/atoms/button"
 import { type StorageTier } from "@/components/atoms/storage-tier-badge"
 import { CleanSpaceListSelection } from "@/components/molecules/clean-space-list-selection"
 
@@ -114,21 +114,20 @@ function CleanSpaceLargeFiles({
       <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
         <h3 className="text-xl font-medium text-zinc-900 dark:text-zinc-100">Arquivos grandes</h3>
         <div className="flex shrink-0 gap-2">
-          <PushButton
-            variant="neutral"
+          <Button
+            variant="outline"
             disabled={selectedNames.length === 0}
             onClick={deselectAll}
             className="h-auto border-none bg-transparent p-0 text-xs font-normal text-zinc-300 hover:bg-transparent disabled:opacity-100 dark:text-zinc-700"
           >
             Desfazer seleção
-          </PushButton>
-          <PushButton
-            variant="primary"
+          </Button>
+          <Button
             onClick={selectAll}
             className="h-auto border-none bg-transparent p-0 text-xs font-normal text-brand-teal hover:bg-transparent hover:text-brand-teal/70 active:bg-transparent active:text-brand-teal/50"
           >
             Selecionar todos
-          </PushButton>
+          </Button>
         </div>
       </div>
       <ul className="flex max-h-64 flex-col gap-1 overflow-auto rounded-lg border border-zinc-100 p-1 dark:border-zinc-800">
@@ -145,16 +144,15 @@ function CleanSpaceLargeFiles({
         ))}
       </ul>
       <div className="flex justify-end">
-        <PushButton
-          variant="neutral"
-          isDestructive
+        <Button
+          variant="outline"
           disabled={selectedNames.length === 0}
-          icon={Trash2}
           onClick={deleteSelected}
-          className="h-8 gap-2 rounded-md border-[#bbb] dark:border-[#52525b] bg-effect-glass-white-36 px-3 text-xs"
+          className="h-8 gap-2 rounded-md border-[#bbb] text-destructive hover:text-destructive dark:border-[#52525b] bg-effect-glass-white-36 px-3 text-xs"
         >
+          <Trash2 className="size-4" aria-hidden="true" />
           Excluir
-        </PushButton>
+        </Button>
       </div>
     </section>
   )

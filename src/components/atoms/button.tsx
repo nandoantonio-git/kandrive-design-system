@@ -31,8 +31,9 @@ import { cn } from "@/lib/utils"
  * então o texto branco passa no WCAG nos dois modos.
  *
  * Regra 1 (revogada em 2026-09-23): este é o botão de ação do produto.
- * `atom/PushButton` fica para diálogos e toolbars no estilo macOS, e
- * `atom/IconButton` para botões só com ícone.
+ * `atom/PushButton` foi migrado para este componente em 2026-09-25 (Regra
+ * 1 revogada, fase E do plano de fechamento) e removido do código e do
+ * Storybook; `atom/IconButton` continua para botões só com ícone.
  */
 const buttonVariants = cva(
   "inline-flex w-fit shrink-0 cursor-pointer items-center justify-center font-medium whitespace-nowrap transition-[background-color,box-shadow,transform] outline-none select-none focus-visible:ring-3 active:not-disabled:translate-y-px disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",

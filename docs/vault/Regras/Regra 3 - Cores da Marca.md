@@ -18,10 +18,11 @@ Figma é a fonte de verdade pra cor (decisão humana, 2026-08-10) — os valores
 
 ## Tratamento de perigo — 2 leituras válidas, contexto decide
 
-- **Botão de ação destrutiva** (ex. "Excluir" em `cleanSpaceStorage`): chrome neutro/glass, só o **texto** em `#bc3426`, nunca fundo vermelho preenchido.
-- **Badge/tag de status** (ex. tag "Urgente" em `PreviewPane`): badge **preenchido** em vermelho, texto branco.
+**Formalizado em 2026-09-25** (Q14, fase E do plano de fechamento). Não é inconsistência do Figma: as 2 leituras são casos válidos, e o contexto decide qual usar.
 
-Não é inconsistência do Figma — parece intencional por contexto (ação vs. rótulo). Ver [[Conflitos Abertos]].
+- **Ação que ainda pede confirmação** (ex. "Excluir"/"Excluir cópias" em `CleanSpaceStorage`, `TemplateReviewModalItem`): chrome neutro/glass (`atom/Button variant="outline"`), só o **texto** em `text-destructive` (`#bc3426`), nunca fundo vermelho preenchido. Chama menos atenção porque a ação real ainda não aconteceu.
+- **Status ou badge** (ex. tag "Urgente" em `PreviewPane`, o aviso de limite atingido em `StorageStatus`): preenchido em vermelho (`bg-destructive-surface`), texto branco.
+- **Confirmação final de uma ação destrutiva** (ex. "Excluir conta" em `Settings/DeleteAccount`, depois que o aviso já foi mostrado): `atom/Button variant="destructive"`, preenchido em vermelho — mesma leitura do status, porque aqui é a ação de fato, não um convite a ela.
 
 ## Paleta neutra — `ui-*`/`neutral-*` é família técnica separada, não Zinc
 

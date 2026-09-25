@@ -12,7 +12,7 @@ import {
 } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { PushButton } from "@/components/atoms/push-button"
+import { Button } from "@/components/atoms/button"
 import { StorageSidebar, type StorageSidebarProps } from "@/components/organisms/storage-sidebar"
 import { SidebarTagsItem } from "@/components/atoms/sidebar-tags-item"
 import { Icon } from "@/components/atoms/icon"
@@ -108,7 +108,7 @@ export interface SidebarProps extends React.ComponentProps<"nav"> {
  *
  * Corrigido em auditoria Regra 11 (US-026): `get_design_context` real no nó
  * `Size=MD, Pages=Default` (`1421:17947`) confirma um botão "+ Adicionar"
- * (`atom/PushButton`, `variant="primary"`, ícone `plus`) entre o header e a
+ * (`atom/Button`, ícone `plus`, migrado de `PushButton` em 2026-09-25) entre o header e a
  * lista de navegação — ausente por completo na implementação anterior.
  * Adicionado com `PushButton`/`icon={Plus}` (Regra 1 — mesmo componente
  * único, sem `button/primary` separado).
@@ -281,9 +281,10 @@ function Sidebar({
         </button>
       </div>
       <div data-slot="sidebar-add-row" className="flex w-full pt-1 pb-4">
-        <PushButton icon={Plus} onClick={onAdd} className="h-9 w-full self-start rounded-md px-4 text-sm desktop:w-[121px]">
+        <Button onClick={onAdd} className="h-9 w-full self-start rounded-md px-4 text-sm desktop:w-[121px]">
+          <Plus className="size-4" aria-hidden="true" />
           Adicionar
-        </PushButton>
+        </Button>
       </div>
       <ul className="flex flex-col gap-1">
         {NAV_ITEMS.map(({ page, icon: ItemIcon }) => (

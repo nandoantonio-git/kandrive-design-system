@@ -1,7 +1,7 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
-import { PushButton } from "@/components/atoms/push-button"
+import { Button } from "@/components/atoms/button"
 import { StorageBar, StorageBarExpanded } from "@/components/molecules/storage-bar"
 import { FileTypeLabel, ScopeTypeLabel } from "@/components/atoms/type-label"
 
@@ -144,13 +144,13 @@ function StorageStatus({
 
       <div className="flex items-center gap-2 py-2">
         {scope === "global" ? (
-          <PushButton variant="neutral" onClick={onManageSpace} className="h-auto px-4 py-1 text-[0.625rem]">
+          <Button variant="outline" onClick={onManageSpace} className="h-auto px-4 py-1 text-[0.625rem]">
             Liberar Espaço
-          </PushButton>
+          </Button>
         ) : null}
-        <PushButton variant="primary" onClick={onBuySpace} className="h-auto px-4 py-1 text-[0.625rem]">
+        <Button onClick={onBuySpace} className="h-auto px-4 py-1 text-[0.625rem]">
           Comprar Espaço
-        </PushButton>
+        </Button>
       </div>
 
       {alert ? (

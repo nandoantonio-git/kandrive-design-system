@@ -6,7 +6,7 @@ import { AppShell } from "@/components/templates/app-shell"
 import { Breadcrumb } from "@/components/molecules/breadcrumb"
 import { PageLead } from "@/components/molecules/page-lead"
 import { SettingsField } from "@/components/molecules/settings-field"
-import { PushButton } from "@/components/atoms/push-button"
+import { Button } from "@/components/atoms/button"
 import { StorageBarExpanded } from "@/components/molecules/storage-bar"
 
 export type PaymentBillingCycle = "monthly" | "annual"
@@ -223,13 +223,13 @@ function PaymentPage({
                           Selecionado
                         </span>
                       ) : (
-                        <PushButton
-                          variant="neutral"
+                        <Button
+                          variant="outline"
                           onClick={() => onSelectPlan?.(plan.id)}
                           className="h-auto justify-center rounded-md px-3 py-1.5 text-[0.8125rem]"
                         >
                           {plan.actionLabel}
-                        </PushButton>
+                        </Button>
                       )}
                     </div>
                   )
@@ -299,9 +299,9 @@ function PaymentPage({
           </div>
 
           <div className="px-5 pb-6">
-            <PushButton variant="primary" className="h-12 w-full justify-center rounded-md text-base">
+            <Button className="h-12 w-full justify-center rounded-md text-base">
               Confirmar upgrade para Pro · $12/mês
-            </PushButton>
+            </Button>
           </div>
         </div>
       </div>

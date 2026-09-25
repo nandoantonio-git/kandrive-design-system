@@ -2,7 +2,7 @@ import * as React from "react"
 import { Trash2 } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { PushButton } from "@/components/atoms/push-button"
+import { Button } from "@/components/atoms/button"
 
 export interface CleanSpaceDuplicateGroup {
   name: string
@@ -58,15 +58,14 @@ function CleanSpaceDuplicated({ groups, onDeleteDuplicates, className, ...props 
               <p className="text-base text-zinc-900 dark:text-zinc-100">{group.name}</p>
               <p className="text-sm text-zinc-500 dark:text-zinc-400">{group.copiesLabel}</p>
             </div>
-            <PushButton
-              variant="neutral"
-              isDestructive
-              icon={Trash2}
+            <Button
+              variant="outline"
               onClick={() => onDeleteDuplicates?.(group)}
-              className="h-8.5 gap-2 rounded-md border-[#bbb] dark:border-[#52525b] bg-effect-glass-white-36 px-4 text-xs"
+              className="h-8.5 gap-2 rounded-md border-[#bbb] text-destructive hover:text-destructive dark:border-[#52525b] bg-effect-glass-white-36 px-4 text-xs"
             >
+              <Trash2 className="size-4" aria-hidden="true" />
               Excluir cópias
-            </PushButton>
+            </Button>
           </li>
         ))}
       </ul>

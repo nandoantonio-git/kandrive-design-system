@@ -2,7 +2,7 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 import { CloseButton } from "@/components/atoms/close-button"
-import { PushButton } from "@/components/atoms/push-button"
+import { Button } from "@/components/atoms/button"
 import { ArchiveBrowserModalSearch } from "@/components/molecules/archive-browser-modal-search"
 import { ArchiveBrowserModalSidebar } from "@/components/organisms/archive-browser-modal-sidebar"
 
@@ -24,7 +24,7 @@ export interface ArchiveBrowserModalProps extends React.ComponentProps<"div"> {
  * template/ArchiveBrowserModal (`1439:16909`) — Figma-confirmado: "janela
  * de seleção de arquivos que será guardados(glacier/long term archive)".
  * Título verbatim "Adicionar arquivos", ação primária "Adicionar N
- * arquivos" (`PushButton variant="primary"`). Reusa uma versão compacta dos
+ * arquivos" (`Button`, migrado de `PushButton` em 2026-09-25). Reusa uma versão compacta dos
  * itens de navegação de `organism/Sidebar` (mesmos 4 primeiros rótulos
  * Figma-confirmados) — não a `Sidebar` completa, pois esta instância não
  * inclui o painel de armazenamento (composição menor, confirmada no nó
@@ -89,12 +89,12 @@ function ArchiveBrowserModal({
           {selectedCount} selecionados · economia de {savingsLabel}
         </p>
         <div className="flex gap-3">
-          <PushButton variant="neutral" className="h-8 px-4 text-xs" onClick={onCancel}>
+          <Button variant="outline" className="h-8 px-4 text-xs" onClick={onCancel}>
             Cancelar
-          </PushButton>
-          <PushButton variant="primary" className="h-8 px-4 text-xs" onClick={onAdd}>
+          </Button>
+          <Button className="h-8 px-4 text-xs" onClick={onAdd}>
             Adicionar {selectedCount} arquivos
-          </PushButton>
+          </Button>
         </div>
       </div>
     </div>

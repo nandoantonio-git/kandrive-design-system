@@ -2,7 +2,7 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 import { CloseButton } from "@/components/atoms/close-button"
-import { PushButton } from "@/components/atoms/push-button"
+import { Button } from "@/components/atoms/button"
 import { TemplateCard } from "@/components/molecules/template-card"
 import illustrationData from "@/assets/illustrations/template-card-data.svg"
 import illustrationProjeto from "@/assets/illustrations/template-card-projeto.svg"
@@ -55,8 +55,8 @@ export interface SaveOrganizationModalProps extends React.ComponentProps<"div"> 
  * o card desejado." 4 cards (`molecule/template-card`, `1421:19695`) — os 4
  * métodos (Data/Projeto/Tipo/Modo Livre) são Figma-confirmados literalmente
  * (achado do inventário). Fundo usa Liquid Glass — ver Tokens/Materials
- * (Regra 10). Rodapé "Cancelar" (`PushButton variant="neutral"`) /
- * "Continuar" (`PushButton variant="primary"`) — nenhum `button/primary`\|
+ * (Regra 10). Rodapé "Cancelar" (`Button variant="outline"`) /
+ * "Continuar" (`Button`) — migrado de `PushButton` em 2026-09-25. Nenhum `button/primary`\|
  * `secondary`\|`destructive` separado (Regra 1).
  *
  * Corrigido em 2026-08-11 (achado do usuário: dimensões incongruentes):
@@ -114,12 +114,12 @@ function SaveOrganizationModal({
         ))}
       </div>
       <div className="flex items-center justify-end gap-4">
-        <PushButton variant="neutral" className="h-8 px-4 text-xs" onClick={onCancel}>
+        <Button variant="outline" className="h-8 px-4 text-xs" onClick={onCancel}>
           Cancelar
-        </PushButton>
-        <PushButton variant="primary" className="h-8 px-4 text-xs" onClick={onContinue}>
+        </Button>
+        <Button className="h-8 px-4 text-xs" onClick={onContinue}>
           Continuar
-        </PushButton>
+        </Button>
       </div>
     </div>
   )

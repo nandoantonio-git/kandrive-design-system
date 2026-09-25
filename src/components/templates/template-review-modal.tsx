@@ -3,7 +3,7 @@ import { Info } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { CloseButton } from "@/components/atoms/close-button"
-import { PushButton } from "@/components/atoms/push-button"
+import { Button } from "@/components/atoms/button"
 import {
   TemplateReviewModalItem,
   type ReviewItem,
@@ -31,8 +31,8 @@ export interface TemplateReviewModalProps extends React.ComponentProps<"div"> {
  * "Utilize para revisar o nome, e a estrutura/hierarquia de organização
  * cria pelo Kandrive para o usuário." Cada item da árvore expõe badge de
  * severidade (Duplicado/Incongruente/OK, Figma-confirmado) + ações
- * "Renomear"/"Editar" (texto simples) / "Excluir" (`PushButton
- * variant="neutral"`, texto em `--brand-feedback-danger-default`). Fundo
+ * "Renomear"/"Editar" (texto simples) / "Excluir" (`Button
+ * variant="outline"`, texto em `--brand-feedback-danger-default`). Fundo
  * usa Liquid Glass — ver Tokens/Materials (Regra 10).
  *
  * **🔧 Corrigido em 2026-08-11 (Regra 11, auditoria US-026)**: releitura
@@ -121,12 +121,12 @@ function TemplateReviewModal({ items, onCancel, onContinue, device = "desktop", 
           Garanta que sua estrutura de arquivos seja clara e sem duplicidades.
         </p>
         <div className="flex shrink-0 gap-4">
-          <PushButton variant="neutral" className="h-8 w-22 px-4 text-xs" onClick={onCancel}>
+          <Button variant="outline" className="h-8 w-22 px-4 text-xs" onClick={onCancel}>
             Cancelar
-          </PushButton>
-          <PushButton variant="primary" className="h-8 w-22 px-4 text-xs" onClick={onContinue}>
+          </Button>
+          <Button className="h-8 w-22 px-4 text-xs" onClick={onContinue}>
             Continuar
-          </PushButton>
+          </Button>
         </div>
       </div>
     </div>

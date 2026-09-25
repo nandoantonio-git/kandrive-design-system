@@ -45,14 +45,16 @@ Decidido com o Nando em sessão de perguntas (grill), Q1–Q16. Ordem: A → B �
 
 ## Fase E: fechamento dos conflitos (Q12–Q15)
 
-- [ ] **Regra 2:** o nome oficial é o do Figma; o CSS é uma tradução mecânica, com os sufixos `-action` e `-surface` como exceções aceitas; o `figma-color-bridge.ts` é a tabela oficial.
-- [ ] **Regra 3:** "perigo" com duas leituras válidas: texto vermelho sobre neutro para a ação que pede confirmação; vermelho sólido para status e para a confirmação final.
-- [ ] Migrar o `PushButton` para o `Button` e removê-lo do código e do Storybook.
-- [ ] `FolderTagChip` expandido: proposta para confirmar.
-- [ ] Placeholder do `SearchInput`, estados do `SearchBar` e limpeza do [[Conflitos Abertos]].
+- [x] **Regra 2:** o nome oficial é o do Figma; o CSS é uma tradução mecânica, com os sufixos `-action` e `-surface` como exceções aceitas; o `figma-color-bridge.ts` é a tabela oficial.
+- [x] **Regra 3:** "perigo" com duas leituras válidas: texto vermelho sobre neutro para a ação que pede confirmação; vermelho sólido para status e para a confirmação final.
+- [x] Migrar o `PushButton` para o `Button` e removê-lo do código e do Storybook.
+- [ ] `FolderTagChip` expandido: mantido como está (Regra 9 — mudar por inferência arriscaria um chip vazio por padrão). Fica para uma decisão do Nando com uma captura do Figma; não é um proposta a construir, é uma pergunta a responder.
+- [x] Placeholder do `SearchInput`, estados do `SearchBar` e limpeza do [[Conflitos Abertos]].
 
 ## Lote de paleta (depois da fase E, Q17)
 
 - [ ] Contraste de cor: 761 ocorrências abaixo de 4.5:1, em 4 pares — `Neutral/Text/Tertiary` (#71717a) sobre cinzas (4.0–4.4:1); cinzas zinc-400/500 do código fora dos tokens (2.6–3.5:1); teal de texto #007e96 sobre cinza/teal claro (3.6–4.3:1); `Brand/Secondary/Light` #6b6b68 sobre cinza (~4.1:1). Proposta: escurecer `Neutral/Text/Tertiary` (~#5f5f66), trocar os zinc pelos tokens e usar `Brand/Primary/Dark` em textos pequenos sobre fundos claros. Lote com antes e depois no Figma. Ao terminar, tirar o `reviewOnFail` do `preview.tsx`.
 
 Ver também [[Responsividade]].
+
+**Fase E aplicada em 2026-09-25**, exceto `FolderTagChip` (pergunta em aberto ao Nando).

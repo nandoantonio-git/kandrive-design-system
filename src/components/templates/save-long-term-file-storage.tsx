@@ -1,7 +1,7 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
-import { PushButton } from "@/components/atoms/push-button"
+import { Button } from "@/components/atoms/button"
 import { Icon } from "@/components/atoms/icon"
 import { CloseButton } from "@/components/atoms/close-button"
 import { SearchInput } from "@/components/molecules/search-input"
@@ -134,12 +134,12 @@ function SaveLongTermFileStorage({
           {selectedCount} selecionado · economia de {savingsLabel}
         </p>
         <div className="flex gap-3">
-          <PushButton variant="neutral" className="h-8 px-4 text-xs" onClick={onCancel}>
+          <Button variant="outline" className="h-8 px-4 text-xs" onClick={onCancel}>
             Cancelar
-          </PushButton>
-          <PushButton variant="primary" className="h-8 px-4 text-xs" onClick={onContinue}>
+          </Button>
+          <Button className="h-8 px-4 text-xs" onClick={onContinue}>
             Continuar
-          </PushButton>
+          </Button>
         </div>
       </div>
     </div>

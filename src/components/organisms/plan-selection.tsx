@@ -2,7 +2,7 @@ import * as React from "react"
 import { Check } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { PushButton } from "@/components/atoms/push-button"
+import { Button } from "@/components/atoms/button"
 
 export type PlanInterval = "monthly" | "annual"
 
@@ -53,7 +53,7 @@ const DEFAULT_PLANS: PlanSelectionPlan[] = [
  * âncora pra edição de plano/forma de pagamento (`onManageBilling`).
  *
  * Botões "Downgrade"/"Upgrade"/"Editar plano" usam
- * `atom/PushButton` (`variant="neutral"`, Regra 1 — nenhum
+ * `atom/Button` (`variant="outline"`, migrado de `PushButton` em 2026-09-25 — nenhum
  * `button/primary`\|`secondary` separado). Card do plano corrente reusa o
  * mesmo par de tokens `border-brand-teal`/`bg-brand-teal-light-surface` já usado
  * pelo tom `info` de `FaqCallout` (Regra 2 — token semântico, não hex
@@ -180,13 +180,13 @@ function PlanSelection({
                 Ativo
               </span>
             ) : (
-              <PushButton
-                variant="neutral"
+              <Button
+                variant="outline"
                 onClick={() => selectPlan(plan)}
                 className="h-auto w-full justify-center rounded-md px-3 py-1.5 text-[0.8125rem]"
               >
                 {actionLabel}
-              </PushButton>
+              </Button>
             )}
           </div>
           )
@@ -199,13 +199,13 @@ function PlanSelection({
         <p className="text-[0.8125rem] text-zinc-500 dark:text-zinc-400">
           Atualize o método de pagamento, visualize ordens de pagamento, ou cancele no portal da Stripe
         </p>
-        <PushButton
-          variant="neutral"
+        <Button
+          variant="outline"
           onClick={onManageBilling}
           className="h-auto shrink-0 rounded-md px-4 py-2 text-sm"
         >
           Editar plano
-        </PushButton>
+        </Button>
       </div>
     </div>
   )

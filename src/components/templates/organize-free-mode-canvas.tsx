@@ -2,7 +2,7 @@ import * as React from "react"
 import { Filter, Plus, X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { PushButton } from "@/components/atoms/push-button"
+import { Button } from "@/components/atoms/button"
 import { FreeModeItemNode } from "@/components/molecules/free-mode-item-node"
 import { FreeModeOutputNode } from "@/components/molecules/free-mode-output-node"
 import { FreeModeButtons } from "@/components/molecules/free-mode-buttons"
@@ -97,12 +97,12 @@ function FreeModeFilterPanel({ className }: { className?: string }) {
         Adicionar regra
       </button>
       <div className="flex items-center justify-end gap-3 border-t border-zinc-300 pt-3 dark:border-zinc-700">
-        <PushButton variant="neutral" className="h-8 px-3 text-[10px]">
+        <Button variant="outline" className="h-8 px-3 text-[10px]">
           Descartar Mudanças
-        </PushButton>
-        <PushButton variant="primary" className="h-8 px-3 text-[10px]">
+        </Button>
+        <Button className="h-8 px-3 text-[10px]">
           Salvar Mudanças
-        </PushButton>
+        </Button>
       </div>
     </div>
   )
@@ -291,12 +291,12 @@ function OrganizeFreeModeCanvas({
           </p>
         </div>
         <div className="flex shrink-0 gap-3">
-          <PushButton variant="neutral" className="h-8 px-4 text-xs" onClick={onDiscard}>
+          <Button variant="outline" className="h-8 px-4 text-xs" onClick={onDiscard}>
             Descartar
-          </PushButton>
-          <PushButton variant="primary" className="h-8 px-4 text-xs" onClick={onSaveTemplate}>
+          </Button>
+          <Button className="h-8 px-4 text-xs" onClick={onSaveTemplate}>
             Salvar Template
-          </PushButton>
+          </Button>
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@ import * as React from "react"
 import { AlertTriangle, AlertCircle, CheckCircle2, ChevronDown, ChevronRight, Folder, File, Lightbulb, Trash2 } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { PushButton } from "@/components/atoms/push-button"
+import { Button } from "@/components/atoms/button"
 
 export type ReviewSeverity = "duplicado" | "incongruente" | "ok"
 
@@ -55,7 +55,7 @@ const SEVERITY_META: Record<ReviewSeverity, { label: string; icon: typeof AlertT
  * (`1431:20397`), extraída pelo usuário como symbol próprio em 2026-08-20
  * (antes só existia inline dentro do modal, via `.map()`). Badge de
  * severidade (Duplicado/Incongruente/OK) + ações "Renomear"/"Editar" (texto
- * simples) / "Excluir" (`PushButton variant="neutral"`, texto em
+ * simples) / "Excluir" (`Button variant="outline"`, texto em
  * `--brand-feedback-danger-default`), ícone de pasta, chevron de
  * expandir/colapsar, linha de arquivo filho quando expandido. Conteúdo
  * idêntico ao já verificado em `template/Dialog/TemplateReviewModal` —
@@ -166,15 +166,14 @@ function TemplateReviewModalItem({ item, isExpanded, onToggleExpand, device = "d
                   <span className="text-xs text-zinc-600 dark:text-zinc-300">{child.meta}</span>
                 </div>
               </div>
-              <PushButton
-                variant="neutral"
-                isDestructive
-                icon={Trash2}
+              <Button
+                variant="outline"
                 onClick={child.onDelete}
-                className="h-8 gap-2 rounded-md bg-effect-glass-white-70 px-3 text-xs"
+                className="h-8 gap-2 rounded-md border-none text-destructive hover:text-destructive bg-effect-glass-white-70 px-3 text-xs"
               >
+                <Trash2 className="size-4" aria-hidden="true" />
                 Excluir
-              </PushButton>
+              </Button>
             </li>
           ))}
         </ul>
