@@ -10,15 +10,17 @@ Decidido com o Nando em sessão de perguntas (grill), Q1–Q16. Ordem: A → B �
 
 ## Fase A: correções no Figma V0.2.1 (um lote, antes e depois)
 
-- [ ] **F11:** SortButton → `DropdownSelectGroupBy Device=Mobile` em Home/Grid e Home/List mobile.
-- [ ] **F13:** aba "Guardar" ativa em `LongTermStorage/SelectFilesSelected/Mobile`.
-- [ ] **F15:** `StorageStatus Tier=Alert` com o aviso em vermelho cheio e os botões Liberar e Comprar habilitados.
-- [ ] Símbolos de arquivo, imagem e vídeo opacos no Dark, iguais ao Light.
-- [ ] Rótulo do `atom/Button` com 16px em todas as variantes (Regra 4 sem exceção, Q6).
-- [ ] **F14:** `Brand/Primary/Mid` no Dark = #2391aa. Antes, levantar onde mais o token é usado (Q5).
-- [ ] **F9:** rótulos do `MobileBottomNav` no Light: inativos em `Neutral/Text/Tertiary`, ativo em `Brand/Primary/Default` (Q4).
-- [ ] Polimentos: camadas `celule/…`, `Organização/…/Saved` e `Page/login`; textos em inglês; o ícone `SpatialAudioOff`.
-- [ ] Instâncias de `PushButton` nos modais trocadas por `atom/Button`, se existirem (Q15).
+- [x] **F11:** SortButton → `DropdownSelectGroupBy Device=Mobile` em Home/Grid e Home/List mobile.
+- [x] **F13:** aba "Guardar" ativa em `LongTermStorage/SelectFilesSelected/Mobile`.
+- [x] **F15:** `StorageStatus Tier=Alert` com o aviso em vermelho cheio e os botões Liberar e Comprar habilitados.
+- [x] Símbolos de arquivo, imagem e vídeo opacos no Dark, iguais ao Light.
+- [x] Rótulo do `atom/Button` com 16px em todas as variantes (Regra 4 sem exceção, Q6).
+- [x] **F14:** ~~`Brand/Primary/Mid` no Dark = #2391aa~~. O levantamento mostrou que `Mid` é a cor do logo (76 usos); decisão revista: o token fica, e o nome do arquivo em RecoveryPending passou a usar `Brand/Primary/Dark`.
+- [x] **F9:** rótulos do `MobileBottomNav` no Light: inativos em `Neutral/Text/Tertiary`, ativo em `Brand/Primary/Default` (Q4).
+- [x] Polimentos: camadas `celule/…`, `Organização/…/Saved` e `Page/login`; textos em inglês; o ícone `SpatialAudioOff`.
+- [x] `PushButton`: 454 instâncias no Figma. Decisão revista: não trocar agora; o componente fica marcado como obsoleto, e a troca acontece quando cada tela for revisada. No código, a migração segue na fase E.
+
+**Fase A aplicada em 2026-09-24.** Extras: a `MobileTabBar` virou component set com `Active` (Home · Organize · Keep), e as cópias soltas em 8 telas (×2 modos) viraram instâncias; `atom/Icon/SpatialAudioOff` → `atom/Icon/Account`; placeholder "Search" → "Pesquisar" no Header mobile. As camadas `celule/…` e `Page/login` já estavam corrigidas. Achado novo: F16.
 
 ## Fase B: cor e contraste no código
 
