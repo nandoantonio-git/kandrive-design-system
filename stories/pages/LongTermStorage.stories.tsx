@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
 
+import { expect, userEvent, within } from "storybook/test"
+
 import { LongTermStoragePage } from "../../src/components/pages/long-term-storage-page"
 
 const FIG = (id: string) => ({ design: { type: "figma" as const, url: `https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=${id}` } })
@@ -73,7 +75,21 @@ export const IntroTablet: Story = { ...Intro, parameters: FIG("1765-60425"), glo
 /** Tablet · 720. Figma `LongTermStorage/ArchiveBrowser/Tablet`. */
 export const ArchiveBrowserTablet: Story = { ...ArchiveBrowser, parameters: FIG("1765-60708"), globals: vp("kdTablet") }
 /** Mobile · 390: os dois modais viram a tela SelectFiles. TabBar em Guardar, BottomNav Confirmar + ✕. Figma `LongTermStorage/SelectFiles/Mobile`. */
-export const SelectFilesMobile: Story = { ...Intro, parameters: FIG("1715-10181"), globals: vp("kdMobile") }
+export const SelectFilesMobile: Story = {
+  ...Intro,
+  parameters: FIG("1715-10181"),
+  globals: vp("kdMobile"),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(canvas.queryByText(/selecionad/)).toBeNull()
+    await userEvent.click(canvas.getByText("Projeto Alpha.pdf"))
+    await expect(await canvas.findByText("1 item selecionado")).toBeVisible()
+    await userEvent.click(canvas.getByText("Backup_Documentos.tar"))
+    await expect(await canvas.findByText("2 itens selecionados")).toBeVisible()
+    await userEvent.click(canvas.getByRole("button", { name: "Limpar seleção" }))
+    await expect(canvas.queryByText(/selecionad/)).toBeNull()
+  },
+}
 /** Mobile · 390, com arquivos marcados: entra o `ContextHeader` Minimal. Figma `LongTermStorage/SelectFilesSelected/Mobile`. */
 export const SelectFilesSelectedMobile: Story = {
   ...Intro,

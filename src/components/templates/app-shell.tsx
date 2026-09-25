@@ -56,7 +56,7 @@ function AppShell({
       <Header {...headerProps} onMenuClick={drawer === false ? undefined : () => setDrawerOpen(true)} />
 
       <div className="mx-auto flex w-full max-w-(--container-page) flex-1 gap-6 desktop:gap-12 px-4 pt-4 tablet:px-6 tablet:pt-6 desktop:px-12">
-        {sidebar ? <aside className="hidden shrink-0 tablet:block">{sidebar}</aside> : null}
+        {sidebar ? <aside aria-label="Barra lateral" className="hidden shrink-0 tablet:block">{sidebar}</aside> : null}
         <main className="flex min-w-0 flex-1 flex-col gap-4">
           {mobileTabBar ? (
             <div className="flex justify-center tablet:hidden">

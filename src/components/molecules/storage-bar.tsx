@@ -30,12 +30,14 @@ export interface StorageBarProps extends Omit<React.ComponentProps<"div">, "chil
  * única `tier="quick-access"`). Corrigido para bater com o hex Figma real.
  */
 function StorageBar({ tier, value, className, ...props }: StorageBarProps) {
-  const clamped = Math.min(100, Math.max(0, value))
+  // Valor ausente ou inválido vira 0: evita aria-valuenow="NaN".
+  const clamped = Number.isFinite(value) ? Math.min(100, Math.max(0, value)) : 0
   return (
     <div
       data-slot="storage-bar"
       data-tier={tier}
       role="progressbar"
+      aria-label={tier === "quick-access" ? "Acesso rápido usado" : "Longo prazo usado"}
       aria-valuenow={clamped}
       aria-valuemin={0}
       aria-valuemax={100}

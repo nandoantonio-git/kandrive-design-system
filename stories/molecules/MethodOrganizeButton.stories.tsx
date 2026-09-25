@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 import { useState } from "react"
 
 import { MethodOrganizeButton } from "../../src/components/molecules/method-organize-button"
@@ -46,5 +47,12 @@ export const Interactive: Story = {
       )
     }
     return <Picker />
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole("button", { name: /Por projeto/ }))
+    await userEvent.click(canvas.getByRole("button", { name: /Por data/ }))
+    await expect(canvas.getByRole("button", { name: /Por data/ })).toHaveAttribute("aria-expanded", "false")
+    await expect(canvas.queryByRole("button", { name: /Por projeto/ })).toBeNull()
   },
 }

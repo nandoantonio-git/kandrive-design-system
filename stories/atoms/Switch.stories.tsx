@@ -15,6 +15,7 @@ const meta = {
     disabled: { control: "boolean" },
   },
   args: {
+    "aria-label": "Notificações por e-mail",
     checked: false,
   },
 } satisfies Meta<typeof Switch>

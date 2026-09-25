@@ -186,6 +186,7 @@ function Sidebar({
       <nav
         data-slot="sidebar"
         data-pages="setting"
+        aria-label="Seções de configurações"
         className={cn(
           "flex w-[223px] flex-col gap-1 rounded-2xl border border-zinc-200 bg-effect-glass-white-70 px-2 pt-3 pb-6 backdrop-blur-md dark:border-zinc-700",
           className
@@ -231,6 +232,7 @@ function Sidebar({
       <nav
         data-slot="sidebar"
         data-collapsed="true"
+        aria-label="Navegação lateral"
         className={cn(
           "flex w-fit items-center gap-2 rounded-lg border border-zinc-200 bg-effect-glass-white-70 px-3 py-2 shadow-md backdrop-blur-md dark:border-zinc-700",
           className
@@ -259,6 +261,7 @@ function Sidebar({
     <nav
       data-slot="sidebar"
       data-collapsed="false"
+      aria-label="Navegação lateral"
       className={cn(
         // Tablet (720–1199): 150px e rótulos truncados, como o Figma `Sidebar Size=MD, Device=Tablet` (2026-09-24). Desktop: 288px.
         "relative flex w-[150px] flex-col gap-4 rounded-2xl border border-zinc-200 bg-effect-glass-surface-light px-2 pt-1 pb-4 backdrop-blur-md desktop:w-72 desktop:px-4 dark:border-zinc-700",

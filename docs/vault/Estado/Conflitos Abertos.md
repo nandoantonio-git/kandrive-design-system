@@ -27,7 +27,7 @@ Fonte completa: `making-of/conflicts.md` (log de todas as entradas, incluindo j�
 - `PushButton` cobre só 2 dos 7 valores do enum `Style` do Figma. Os estilos de ação do produto agora ficam no `atom/Button` (Regra 1 revogada em 2026-09-23).
 - `atom/Icon/SpatialAudioOff` é visualmente um ícone de pessoa/avatar, não de mudo — nome de camada não bate com o conteúdo no próprio Figma.
 - Estados `Focused`/`Typing` do `SearchBar` (SF Pro, azul Apple) — ver [[SearchInput]].
-- **Sem teste automatizado** — gate real é só `tsc --noEmit` + `build-storybook`; `addon-vitest`/Playwright instalados, nunca usados. Registrado 2026-08-18 como débito explícito de handoff, não lacuna escondida.
+- ~~**Sem teste automatizado**~~ ✅ 2026-09-25: `npm test` roda todas as stories no navegador, com a checagem de acessibilidade (axe) e testes de interação. O gate passa a ser `tsc -b`, `oxlint`, `build-storybook` e `npm test`.
 
 ## Ver também
 

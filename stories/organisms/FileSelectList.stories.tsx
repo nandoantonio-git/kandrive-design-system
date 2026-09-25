@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 import { useState } from "react"
 
 import { FileSelectList } from "../../src/components/organisms/file-select-list"
@@ -32,5 +33,12 @@ export const Default: Story = {
         onSelectedChange={(name, on) => setSelected((p) => { const n = new Set(p); if (on) n.add(name); else n.delete(name); return n })}
       />
     )
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByText("Projeto Alpha.pdf"))
+    await expect(canvas.getByRole("checkbox", { name: /Projeto Alpha/ })).toHaveAttribute("aria-checked", "true")
+    await userEvent.click(canvas.getByRole("checkbox", { name: /Projeto Alpha/ }))
+    await expect(canvas.getByRole("checkbox", { name: /Projeto Alpha/ })).toHaveAttribute("aria-checked", "false")
   },
 }

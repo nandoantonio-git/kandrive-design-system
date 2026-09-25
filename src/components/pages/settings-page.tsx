@@ -224,7 +224,7 @@ function SettingsPage({
                       <p className="text-sm font-medium text-zinc-950 dark:text-zinc-100">{row.title}</p>
                       <p className="text-[0.8125rem] text-zinc-500 dark:text-zinc-400">{row.description}</p>
                     </div>
-                    <Switch defaultChecked className="mt-0.5 shrink-0" />
+                    <Switch defaultChecked aria-label={row.title} className="mt-0.5 shrink-0" />
                   </div>
                 ))}
               </SettingsCard>

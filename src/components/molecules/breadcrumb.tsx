@@ -22,7 +22,7 @@ export interface BreadcrumbProps extends Omit<React.ComponentProps<"nav">, "chil
  */
 function Breadcrumb({ segments, className, ...props }: BreadcrumbProps) {
   return (
-    <nav data-slot="breadcrumb" className={cn("flex items-center gap-2", className)} {...props}>
+    <nav data-slot="breadcrumb" aria-label="Trilha de navegação" className={cn("flex items-center gap-2", className)} {...props}>
       {segments.map((segment, index) => (
         <React.Fragment key={segment}>
           {index > 0 ? (

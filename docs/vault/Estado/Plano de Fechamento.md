@@ -39,8 +39,8 @@ Decidido com o Nando em sessão de perguntas (grill), Q1–Q16. Ordem: A → B �
 
 ## Fase D: teste automatizado (Q11)
 
-- [ ] Gate: cada story renderiza sem erro e passa no axe. Exceções registradas de forma explícita.
-- [ ] Testes de interação: checkbox, seletores, gaveta e o fluxo de seleção.
+- [x] Gate: cada story renderiza sem erro e passa no axe (`npm test`, Vitest + addon-vitest no Chrome do sistema). Corrigidos: nome das barras de progresso, `aria-valuenow=NaN`, landmarks sem rótulo, Switch sem nome, ordem de títulos do PreviewPane. Exceção explícita (Q17): o contraste de cor fica como "precisa de revisão" (`reviewOnFail`) até o lote de paleta.
+- [x] Testes de interação (play functions): Checkbox, HandPicker, MethodOrganizeButton, FileSelectList, SidebarDrawer e o fluxo de seleção do Long-term (SelectFilesMobile).
 - Sem regressão visual por captura ([[feedback: sem validação pixel a pixel]]).
 
 ## Fase E: fechamento dos conflitos (Q12–Q15)
@@ -50,5 +50,9 @@ Decidido com o Nando em sessão de perguntas (grill), Q1–Q16. Ordem: A → B �
 - [ ] Migrar o `PushButton` para o `Button` e removê-lo do código e do Storybook.
 - [ ] `FolderTagChip` expandido: proposta para confirmar.
 - [ ] Placeholder do `SearchInput`, estados do `SearchBar` e limpeza do [[Conflitos Abertos]].
+
+## Lote de paleta (depois da fase E, Q17)
+
+- [ ] Contraste de cor: 761 ocorrências abaixo de 4.5:1, em 4 pares — `Neutral/Text/Tertiary` (#71717a) sobre cinzas (4.0–4.4:1); cinzas zinc-400/500 do código fora dos tokens (2.6–3.5:1); teal de texto #007e96 sobre cinza/teal claro (3.6–4.3:1); `Brand/Secondary/Light` #6b6b68 sobre cinza (~4.1:1). Proposta: escurecer `Neutral/Text/Tertiary` (~#5f5f66), trocar os zinc pelos tokens e usar `Brand/Primary/Dark` em textos pequenos sobre fundos claros. Lote com antes e depois no Figma. Ao terminar, tirar o `reviewOnFail` do `preview.tsx`.
 
 Ver também [[Responsividade]].

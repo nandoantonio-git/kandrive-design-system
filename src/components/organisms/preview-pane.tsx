@@ -108,7 +108,7 @@ function PreviewPane({ file, tags = [], onClose, onSave, onShare, className, ...
       {...props}
     >
       <div className="flex items-center justify-between border-b border-brand-teal/20 pb-4">
-        <h3 className="text-xl font-bold text-zinc-700 dark:text-zinc-300">Detalhes</h3>
+        <h2 className="text-xl font-bold text-zinc-700 dark:text-zinc-300">Detalhes</h2>
         <ClearButton
           label="Fechar"
           onClick={onClose}
@@ -123,7 +123,7 @@ function PreviewPane({ file, tags = [], onClose, onSave, onShare, className, ...
         />
       </div>
       <div className="flex flex-col gap-3">
-        <h4 className="text-2xl font-medium text-zinc-700 dark:text-zinc-300">{file.name}</h4>
+        <h3 className="text-2xl font-medium text-zinc-700 dark:text-zinc-300">{file.name}</h3>
         <dl className="grid grid-cols-2 gap-y-3 border-t border-zinc-200 pt-3 text-sm dark:border-zinc-700">
           <dt className="text-zinc-600 dark:text-zinc-300">Proprietário</dt>
           <dd className="text-xs text-zinc-800 dark:text-zinc-100">{file.owner}</dd>

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 import { useState } from "react"
 
 import { HandPicker } from "../../src/components/molecules/hand-picker"
@@ -19,6 +20,14 @@ export const Default: Story = {
   render: function Render(args) {
     const [value, setValue] = useState<Hand>(args.value)
     return <HandPicker {...args} value={value} onValueChange={setValue} />
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const left = canvas.getByRole("radio", { name: /Esquerda/ })
+    await userEvent.click(left)
+    await expect(left).toHaveAttribute("aria-checked", "true")
+    await userEvent.keyboard("{ArrowRight}")
+    await expect(canvas.getByRole("radio", { name: /Direita/ })).toHaveAttribute("aria-checked", "true")
   },
 }
 

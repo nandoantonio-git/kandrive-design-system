@@ -45,10 +45,12 @@ const preview: Preview = {
     },
 
     a11y: {
-      // 'todo' - show a11y violations in the test UI only
-      // 'error' - fail CI on a11y violations
-      // 'off' - skip a11y checks entirely
-      test: 'todo'
+      // Gate (fase D, 2026-09-25): qualquer violação do axe quebra o teste.
+      test: 'error',
+      // Exceção explícita (Q17): o contraste de cor aparece no painel como
+      // "precisa de revisão", sem quebrar o teste, até o lote de paleta que
+      // vem depois da fase E (761 ocorrências em 4 pares de cor).
+      config: { rules: [{ id: 'color-contrast', reviewOnFail: true }] },
     },
 
     // Sem isso, o Storybook ordena as categorias de topo alfabeticamente

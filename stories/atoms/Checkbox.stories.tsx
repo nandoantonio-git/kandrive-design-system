@@ -1,5 +1,6 @@
 import * as React from "react"
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 
 import { Checkbox } from "../../src/components/atoms/checkbox"
 
@@ -26,6 +27,14 @@ export const Interactive: Story = {
   render: function Render(args) {
     const [checked, setChecked] = React.useState(args.checked ?? false)
     return <Checkbox {...args} checked={checked} onCheckedChange={setChecked} />
+  },
+  play: async ({ canvasElement }) => {
+    const box = within(canvasElement).getByRole("checkbox")
+    await expect(box).toHaveAttribute("aria-checked", "false")
+    await userEvent.click(box)
+    await expect(box).toHaveAttribute("aria-checked", "true")
+    await userEvent.keyboard(" ")
+    await expect(box).toHaveAttribute("aria-checked", "false")
   },
 }
 

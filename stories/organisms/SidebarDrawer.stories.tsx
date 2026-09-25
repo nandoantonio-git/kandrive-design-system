@@ -1,5 +1,6 @@
 import * as React from "react"
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 
 import { SidebarDrawer, type DrawerItem } from "../../src/components/organisms/sidebar-drawer"
 import { HamburgerButton } from "../../src/components/atoms/hamburger-button"
@@ -30,5 +31,14 @@ export const Interactive: Story = {
         <SidebarDrawer {...args} open={open} onOpenChange={setOpen} active={active} onNavigate={(item) => { setActive(item); setOpen(false) }} />
       </>
     )
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const drawer = canvasElement.querySelector('[data-slot="sidebar-drawer"]') as HTMLElement
+    await expect(drawer).toHaveAttribute("data-state", "closed")
+    await userEvent.click(canvas.getAllByRole("button", { name: /menu/i })[0])
+    await expect(drawer).toHaveAttribute("data-state", "open")
+    await userEvent.keyboard("{Escape}")
+    await expect(drawer).toHaveAttribute("data-state", "closed")
   },
 }
