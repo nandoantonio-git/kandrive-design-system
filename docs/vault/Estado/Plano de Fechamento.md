@@ -29,13 +29,13 @@ Decidido com o Nando em sessão de perguntas (grill), Q1–Q16. Ordem: A → B �
 
 ## Fase C: telas novas (proposta no Figma → aprovação → oficial → código)
 
-**Propostas montadas em 2026-09-24**, na seção `🧪 Propostas · Fase C` (`3180:29646`) da página 📐Pages do V0.2.1, fora das telas oficiais: F5 (`3180:29647`), F10 (`3180:29725`), F6 (`3180:29791`) e F8 (`3181:29768`, `3181:29820`, `3181:29847`, `3181:29878`). Aguardando aprovação do Nando.
+**Propostas montadas em 2026-09-24**, na seção `🧪 Propostas · Fase C` (`3180:29646`) da página 📐Pages do V0.2.1, fora das telas oficiais: F5 (`3180:29647`), F10 (`3180:29725`), F6 (`3180:29791`) e F8 (`3181:29768`, `3181:29820`, `3181:29847`, `3181:29878`). Aprovadas e promovidas a oficiais (Light e Dark; F5 e F10 também em tablet e desktop), e implementadas no código: `HandPicker`, `UserProfileCard`, `Avatar`, `FaqTopicChips`, `OnboardingPage`; o Header abre Settings → Conta pelo avatar e pelo ícone de conta.
 
 
-- [ ] **F5:** par "Direita | Esquerda" em Settings → Aparência, nos 3 dispositivos, com o ícone de um celular mostrando o lado do FAB (Q7).
-- [ ] **F6:** faixa de chips com os tópicos abaixo do título do FAQ mobile, que rola até a seção (Q8).
-- [ ] **F8:** onboarding mínimo: boas-vindas com o Kan, mão dominante, tema e conclusão com o `MobileSuccess`, com "Pular" em todas (Q9).
-- [ ] **F10:** o avatar abre Settings → Conta, com o bloco de usuário no topo (foto, nome, e-mail, "Editar perfil" e "Trocar conta") (Q10).
+- [x] **F5:** par "Direita | Esquerda" em Settings → Aparência, nos 3 dispositivos, com o ícone de um celular mostrando o lado do FAB (Q7).
+- [x] **F6:** faixa de chips com os tópicos abaixo do título do FAQ mobile, que rola até a seção (Q8).
+- [x] **F8:** onboarding mínimo: boas-vindas com o Kan, mão dominante, tema e conclusão com o `MobileSuccess`, com "Pular" em todas (Q9).
+- [x] **F10:** o avatar abre Settings → Conta, com o bloco de usuário no topo (foto, nome, e-mail, "Editar perfil" e "Trocar conta") (Q10).
 
 ## Fase D: teste automatizado (Q11)
 

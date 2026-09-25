@@ -3,6 +3,7 @@ import { create } from 'storybook/theming/create'
 import { withThemeByClassName } from '@storybook/addon-themes'
 
 import '../src/index.css'
+import { PreferencesProvider } from '../src/lib/preferences'
 
 // Mesmo tema de `.storybook/manager.ts`, aplicado aos blocos de docs
 // (tabelas de Args, etc.) — decisão humana 2026-08-14, ver manager.ts.
@@ -70,6 +71,13 @@ const preview: Preview = {
   // de cada story, não só nos blocos de Docs (esses seguem o tema fixo
   // `light` de `docsTheme` acima, decisão humana anterior, não mexido).
   decorators: [
+    // Preferências do usuário (mão dominante): permite trocar a opção em
+    // Settings → Aparência e ver o FAB mudar de lado nas outras stories.
+    (Story) => (
+      <PreferencesProvider>
+        <Story />
+      </PreferencesProvider>
+    ),
     withThemeByClassName({
       themes: {
         light: '',

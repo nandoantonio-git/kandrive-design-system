@@ -65,13 +65,13 @@ Decisões de 2026-09-24, tomadas numa entrevista (grill) com o Nando. A versão 
 
 ## Pendências de desenho (Nando)
 
-- **F5:** opção "Mão dominante" em Settings/Appearance, nos 3 dispositivos.
-- **F6:** barra de links rápidos para os tópicos do FAQ mobile. O `organism/FaqFastLinks` do desktop pode servir de ponto de partida.
-- **F8:** onboarding com a configuração inicial (mão dominante etc.).
+- ~~**F5**~~ ✅ 2026-09-24: "Mão dominante" em Settings → Aparência (`HandPicker`), nos 3 dispositivos.
+- ~~**F6**~~ ✅ 2026-09-24: faixa de chips com os tópicos no FAQ mobile (`FaqTopicChips`).
+- ~~**F8**~~ ✅ 2026-09-24: onboarding mínimo (`OnboardingPage`: boas-vindas, mão dominante, tema, conclusão).
 - ~~**F11 (Figma)**~~ ✅ corrigido no Figma em 2026-09-24: nas telas Home/Grid/Mobile e Home/List/Mobile, trocar o `atom/SortButton` (e a cópia solta "Ordenar por") pelo `molecule/DropdownSelect/GroupBy` `Device=Mobile` (decisão da Fase 4 e Q25). O `SortButton` fica como candidato a descarte.
 - ~~**F12**~~ resolvido pelo próprio Figma: no mobile não há etapa de arrastar; a etapa mostra a revisão, só com o FAB ✓/✕.
 - **F16 (novo):** no `FolderCard` Dark, o rótulo "Pasta" fica quase invisível.
-- **F10 (decidido, fase C):** o que aparece ao tocar na foto de perfil no Header mobile, em Light e Dark. Hoje o avatar não abre nada. Decidir o conteúdo (conta, plano, sair…) e o formato (menu, folha inferior, tela).
+- ~~**F10**~~ ✅ 2026-09-24: o avatar abre Settings → Conta, com o `UserProfileCard` (Editar perfil, Trocar conta).
 - ~~**F13 (Figma)**~~ ✅ corrigido no Figma em 2026-09-24: `LongTermStorage/SelectFilesSelected/Mobile` marca "Organizar" na TabBar, e `SelectFiles` marca "Guardar". O código usa Guardar nas duas.
 - ~~**F14**~~ ✅ corrigido no Figma e no código em 2026-09-24 com `Brand/Primary/Dark`. Em `RecoveryPending` Dark, o nome do arquivo usa `Brand/Primary/Mid` (#337084 nos dois modos), com pouco contraste sobre o fundo escuro.
 - ~~**F15 (Figma)**~~ ✅ corrigido no Figma em 2026-09-24: no `molecule/StorageStatus Tier=Alert`, o aviso de limite usa `Brand/Feedback/Danger/Subtle` (35%, ilegível); a tela `Storage/LimitReached` sobrescreve com o vermelho cheio. Os botões Liberar/Comprar aparecem Disabled em todas as variantes do componente.

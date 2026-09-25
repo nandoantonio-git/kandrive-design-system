@@ -1,6 +1,9 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import { usePreferences } from "@/lib/preferences"
+import { UserProfileCard } from "@/components/organisms/user-profile-card"
+import { HandPicker } from "@/components/molecules/hand-picker"
 import { AppShell } from "@/components/templates/app-shell"
 import { Sidebar, type SettingsSection } from "@/components/organisms/sidebar"
 import { Breadcrumb } from "@/components/molecules/breadcrumb"
@@ -44,6 +47,10 @@ const NOTIFICATION_ROWS: NotificationRow[] = [
 ]
 
 export interface SettingsPageProps extends React.ComponentProps<"div"> {
+  /** Bloco de usuário no topo de Conta (F10). */
+  user?: { name: string; email: string; avatarSrc?: string }
+  onEditProfile?: () => void
+  onSwitchAccount?: () => void
   activeSection?: SettingsSection
   onNavigateSection?: (section: SettingsSection) => void
   planInterval?: PlanInterval
@@ -98,9 +105,13 @@ function SettingsPage({
   onNavigateSection,
   planInterval = "annual",
   onPlanIntervalChange,
+  user = { name: "Cassandra Ribeiro", email: "cassandra@kandrive.com.br" },
+  onEditProfile,
+  onSwitchAccount,
   className,
   ...props
 }: SettingsPageProps) {
+  const { hand, setHand } = usePreferences()
   return (
     <AppShell
       data-slot="settings-page"
@@ -145,6 +156,7 @@ function SettingsPage({
           <div className="flex min-w-0 flex-1 flex-col gap-6">
             {activeSection === "conta" ? (
               <>
+                <UserProfileCard {...user} onEditProfile={onEditProfile} onSwitchAccount={onSwitchAccount} />
                 <SettingsCard title="Conta" caption="Atualize suas informações pessoais">
                   <div className="flex w-full flex-col items-stretch gap-4 tablet:flex-row tablet:items-start">
                     <SettingsField label="Nome" type="text" />
@@ -238,6 +250,10 @@ function SettingsPage({
                     <RadioButton option="personal" checked />
                     <RadioButton option="saved" />
                   </div>
+                </SettingsCard>
+                {/* F5 (Figma V0.2.1, 2026-09-24): muda o lado do FAB no MobileBottomNav. */}
+                <SettingsCard title="Mão dominante" caption="Posição do botão de ação no celular.">
+                  <HandPicker value={hand} onValueChange={setHand} />
                 </SettingsCard>
               </>
             ) : null}

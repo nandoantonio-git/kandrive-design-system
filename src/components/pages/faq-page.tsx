@@ -10,6 +10,18 @@ import { FaqInfoCard } from "@/components/organisms/faq-info-card"
 import { FaqInfoCardCollapsed, type FaqTopic } from "@/components/organisms/faq-info-card-collapsed"
 import { CardNeedMoreHelp } from "@/components/organisms/card-need-more-help"
 import { FaqFastLinks } from "@/components/organisms/faq-fast-links"
+import { FaqTopicChips } from "@/components/molecules/faq-topic-chips"
+
+/** Rótulos curtos dos chips do mobile (F6), na mesma ordem do Figma. */
+const TOPIC_CHIP_LABEL: Record<FaqTopic, string> = {
+  FirstSteps: "Primeiros passos",
+  LongTermStorage: "Longo prazo",
+  Organization: "Templates",
+  LabelsTags: "Etiquetas",
+  Duplicates: "Duplicados",
+  Storage: "Armazenamento",
+  FrequentIssues: "Problemas comuns",
+}
 
 const TOPIC_ORDER: FaqTopic[] = [
   "FirstSteps",
@@ -55,23 +67,25 @@ function FaqPage({ variant = "expanded", sidebarProps, onContactSupport, classNa
       className={cn("bg-zinc-200 dark:bg-zinc-900", className)}
       headerProps={{ page: "settings" }}
       sidebar={<Sidebar {...sidebarProps} />}
-      // Mobile: sem barra inferior (decisão de 2026-09-24). Uma barra de links rápidos
-      // para os tópicos está a desenhar (F6).
+      // Mobile: sem barra inferior (decisão de 2026-09-24). Os links rápidos para os
+      // tópicos ficam numa faixa de chips abaixo do título (F6, Figma V0.2.1).
       {...props}
     >
       <div className="flex w-full flex-col items-center gap-2 tablet:pb-5">
         <Breadcrumb segments={["Home", "Perguntas Frequentes"]} className="hidden w-full tablet:flex" />
         <PageLead title="Perguntas Frequentes" caption="Consulte suas principais dúvidas" className="w-full" />
+        <FaqTopicChips
+          className="w-full tablet:hidden"
+          topics={TOPIC_ORDER.map((topic) => ({ targetId: `faq-${topic}`, label: TOPIC_CHIP_LABEL[topic] }))}
+        />
       </div>
       <div className="flex w-full items-start gap-8">
         <div className="flex w-full min-w-0 flex-1 flex-col gap-6 desktop:max-w-[927px]">
           <SearchInput className="w-full max-w-none" />
           {TOPIC_ORDER.map((topic) =>
-            variant === "expanded" ? (
-              <FaqInfoCard key={topic} topic={topic} />
-            ) : (
-              <FaqInfoCardCollapsed key={topic} topic={topic} />
-            )
+            <div key={topic} id={`faq-${topic}`} className="scroll-mt-4">
+              {variant === "expanded" ? <FaqInfoCard topic={topic} /> : <FaqInfoCardCollapsed topic={topic} />}
+            </div>
           )}
           <CardNeedMoreHelp onContactSupport={onContactSupport} />
         </div>

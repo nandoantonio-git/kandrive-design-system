@@ -1,0 +1,30 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as Stories from './Onboarding.stories';
+
+<Meta of={Stories} />
+
+# Onboarding
+
+✅ Figma KanDrive V0.2.1: `Onboarding/Welcome`, `DominantHand`, `Theme` e `Done` (Mobile), aprovados em 2026-09-24 (F8).
+
+## Uso
+
+A configuração inicial, no primeiro acesso depois do cadastro: mão dominante e tema. Há "Pular" em todas as etapas. O tour pelas funções ficou para uma fase seguinte.
+
+<Canvas of={Stories.Welcome} />
+<Controls />
+
+## Etapas
+
+| Etapa | Conteúdo |
+| --- | --- |
+| `welcome` | Tela cheia teal com o Kan (`MobileSuccess`): "Bem-vindo ao KanDrive", "Começar" e "Pular" |
+| `hand` | "Com qual mão você usa o celular?", com o `HandPicker` ligado às preferências |
+| `theme` | "Claro ou escuro?", com o card Tema de Aparência |
+| `done` | Tela cheia teal com o Kan: "Tudo pronto!" e "Ir para a Home" |
+
+- **Boas-vindas e conclusão** são telas de feedback: sem gaveta nem barras e iguais no Light e no Dark. O botão Secondary fica com as cores do Light.
+- **Etapas 2 e 3:** 3 pontos de progresso, título 25px Medium, texto 16px, e na base "Continuar" (`Button` Primary LG Pill) e "Pular".
+- **No tablet e no desktop**, o conteúdo fica numa coluna central de até 420px. O Figma só tem o mobile.
+
+<Canvas of={Stories.DominantHand} />

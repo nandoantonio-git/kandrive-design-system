@@ -8,6 +8,13 @@ export interface MobileSuccessProps extends React.ComponentProps<"div"> {
   message?: "organized" | "stored"
   /** Linha com ✓ abaixo do título. Só na mensagem Organized. */
   fileName?: string
+  /**
+   * Substitui o título da mensagem. Usado no onboarding (F8): "Bem-vindo ao
+   * KanDrive" e "Tudo pronto!", com a mesma ilustração.
+   */
+  title?: string
+  /** Texto abaixo do título, 16px `Neutral/Text/OnDark` (usado no onboarding). */
+  description?: string
 }
 
 /**
@@ -23,7 +30,7 @@ export interface MobileSuccessProps extends React.ComponentProps<"div"> {
  *   constantes, e não tokens que mudam com o tema.
  * - Fica sobre o fundo teal (`Brand/Primary/Action`) da tela de feedback.
  */
-function MobileSuccess({ message = "organized", fileName, className, ...props }: MobileSuccessProps) {
+function MobileSuccess({ message = "organized", fileName, title, description, className, ...props }: MobileSuccessProps) {
   return (
     <div
       data-slot="mobile-success"
@@ -34,7 +41,12 @@ function MobileSuccess({ message = "organized", fileName, className, ...props }:
     >
       <img src={kanSuccess} alt="" aria-hidden="true" className="h-[213px] w-[218px]" />
       <div className="flex flex-col items-center gap-2">
-        {message === "organized" ? (
+        {title ? (
+          <>
+            <p className="text-xl leading-[29px] font-bold text-white">{title}</p>
+            {description ? <p className="text-base leading-5 text-white">{description}</p> : null}
+          </>
+        ) : message === "organized" ? (
           <>
             <p className="text-xl leading-[29px] font-bold text-white">Organização concluída</p>
             {fileName ? <p className="text-[0.625rem] leading-3 font-bold text-[#c8dce3]">✓ {fileName}</p> : null}

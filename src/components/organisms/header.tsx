@@ -18,7 +18,7 @@ export interface HeaderProps extends React.ComponentProps<"header"> {
   onSave?: () => void
   /** Mobile: toque no ☰ (abre a gaveta). */
   onMenuClick?: () => void
-  /** Mobile: toque no avatar. ⚠️ O que ele abre ainda está em aberto (F10, com o design). */
+  /** Toque no avatar (mobile) ou no ícone de conta (tablet e desktop): abre Settings → Conta, com o bloco de usuário (F10, 2026-09-24). */
   onAvatarClick?: () => void
 }
 
@@ -102,7 +102,7 @@ function Header({ page = "navbar", searchProps, onOrganize, onSave, onMenuClick,
         actions={[
           { name: "Help", label: "Ajuda" },
           { name: "Settings", label: "Configurações" },
-          { name: "SpatialAudioOff", label: "Conta" },
+          { name: "SpatialAudioOff", label: "Conta", onClick: onAvatarClick },
         ]}
       />
       <button

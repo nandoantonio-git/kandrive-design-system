@@ -93,3 +93,5 @@ export const PrivacyMobile: Story = { parameters: FIG("1702-22694"), globals: vp
 
 /** Mobile · 390, Excluir conta. Figma `Settings/DeleteAccount/Mobile`. */
 export const DeleteAccountMobile: Story = { parameters: FIG("1702-22932"), globals: vp("kdMobile"), render: controlled("excluir-conta") }
+/** Mobile · 390: Aparência, com o card "Mão dominante" (F5). Troque a opção e veja o FAB nas outras telas. Figma `Settings/Appearance/Mobile`. */
+export const AppearanceMobile: Story = { parameters: FIG("1702-22005"), globals: vp("kdMobile"), render: controlled("aparencia") }

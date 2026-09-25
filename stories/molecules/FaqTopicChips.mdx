@@ -1,0 +1,15 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as Stories from './FaqTopicChips.stories';
+
+<Meta of={Stories} />
+
+# FaqTopicChips
+
+✅ Figma KanDrive V0.2.1: `FaqQuickLinks` em `FAQ/Collapsed` e `FAQ/Expanded` Mobile (F6, aprovado em 2026-09-24).
+
+## Uso
+
+Os links rápidos do FAQ no mobile: uma faixa horizontal de `atom/Chip` com os tópicos, logo abaixo do título, que rola para o lado. Tocar num chip rola a página até a seção. A partir do desktop, o papel é do `FaqFastLinks` lateral.
+
+<Canvas of={Stories.Default} />
+<Controls />
