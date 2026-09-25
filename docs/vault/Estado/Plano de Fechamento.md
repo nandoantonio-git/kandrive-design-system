@@ -48,7 +48,7 @@ Decidido com o Nando em sessão de perguntas (grill), Q1–Q16. Ordem: A → B �
 - [x] **Regra 2:** o nome oficial é o do Figma; o CSS é uma tradução mecânica, com os sufixos `-action` e `-surface` como exceções aceitas; o `figma-color-bridge.ts` é a tabela oficial.
 - [x] **Regra 3:** "perigo" com duas leituras válidas: texto vermelho sobre neutro para a ação que pede confirmação; vermelho sólido para status e para a confirmação final.
 - [x] Migrar o `PushButton` para o `Button` e removê-lo do código e do Storybook.
-- [ ] `FolderTagChip` expandido: mantido como está (Regra 9 — mudar por inferência arriscaria um chip vazio por padrão). Fica para uma decisão do Nando com uma captura do Figma; não é um proposta a construir, é uma pergunta a responder.
+- [x] `FolderTagChip` expandido: decisão do Nando (2026-09-25) — implementar literal ao Figma. `isExpanded=false` deixa o ícone e o rótulo em `opacity: 0`.
 - [x] Placeholder do `SearchInput`, estados do `SearchBar` e limpeza do [[Conflitos Abertos]].
 
 ## Lote de paleta (depois da fase E, Q17)
@@ -57,4 +57,4 @@ Decidido com o Nando em sessão de perguntas (grill), Q1–Q16. Ordem: A → B �
 
 Ver também [[Responsividade]].
 
-**Fase E aplicada em 2026-09-25**, exceto `FolderTagChip` (pergunta em aberto ao Nando).
+**Fase E aplicada em 2026-09-25**, incluindo o `FolderTagChip` (decisão do Nando: implementar literal ao Figma).

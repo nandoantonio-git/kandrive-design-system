@@ -15,9 +15,7 @@ Fonte completa: `making-of/conflicts.md` (log de todas as entradas, incluindo j�
 - ~~**`atom/Icon/SpatialAudioOff`**~~ ✅ renomeado para `atom/Icon/Account` no Figma (fase A) e no código (`ICONS.Account`).
 - ~~**F16, rótulo "Pasta" do `FolderCard` no Dark**~~ ✅ não confirmado: capturas novas do `FolderCard` e do `Organize/Saved/Mobile` no Dark mostram o texto (`Brand/Primary/Dark`, `#2391aa` no Dark) com contraste bom sobre o fundo escuro. Sem reprodução, ficou marcado como resolvido — se voltar a acontecer numa tela específica, reabrir com a captura.
 
-## 🟡 Média urgência
-
-**`FolderTagChip` — `isExpanded`** — comportamento visual exato do estado expandido é 🧩 inferido, não confirmado pixel-a-pixel. No estado `Default` (`isExpanded=false`), o Figma mostra o chip sem ícone de pasta nem rótulo visível — layout bem diferente do `isExpanded=true`. Mantido como está (mesma composição nos dois estados, Regra 9): mudar por inferência arriscaria um chip sem nenhum conteúdo visível por padrão. Fica para decisão humana, com uma captura do Figma.
+- ~~**`FolderTagChip` — `isExpanded`**~~ ✅ 2026-09-25 (decisão humana): implementado literal ao Figma — com `isExpanded=false` (o padrão), o ícone de pasta e o rótulo ficam com `opacity: 0`, sobra só o botão de remover. Nenhuma tela do produto usa este chip hoje.
 
 ## 🟢 Baixa urgência (gaps de polish, não de decisão)
 
