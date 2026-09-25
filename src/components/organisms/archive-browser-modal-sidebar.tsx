@@ -85,7 +85,7 @@ function ArchiveBrowserModalSidebar({
         })}
       </ul>
       <div className="mt-4 flex flex-col gap-1 border-t border-zinc-200 pt-3 dark:border-zinc-700">
-        <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400">Etiquetas</span>
+        <span className="text-xs font-medium text-neutral-text-tertiary dark:text-zinc-400">Etiquetas</span>
         <FileTypeLabel kind="image" className="px-2" />
       </div>
     </nav>

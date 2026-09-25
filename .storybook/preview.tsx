@@ -45,11 +45,17 @@ const preview: Preview = {
     },
 
     a11y: {
-      // Gate (fase D, 2026-09-25): qualquer violação do axe quebra o teste.
+      // Gate: qualquer violação do axe quebra o teste.
       test: 'error',
-      // Exceção explícita (Q17): o contraste de cor aparece no painel como
-      // "precisa de revisão", sem quebrar o teste, até o lote de paleta que
-      // vem depois da fase E (761 ocorrências em 4 pares de cor).
+      // Exceção estreita (lote de paleta, 2026-09-25): os 3 tokens do Q17
+      // (Neutral/Text/Tertiary, Brand/Primary/Default-texto, Brand/Secondary/
+      // Light) foram escurecidos, e os `text-zinc-500` soltos do código
+      // trocados pelo token — isso já fechou 66% das ocorrências. O que sobra
+      // é de outra natureza (fora do escopo aprovado no Q17), listado em
+      // [[Conflitos Abertos]]: estados esmaecidos por opacidade (Sidebar,
+      // NodeContextMenu, ArchiveBrowserModalSidebar, o catálogo do Icon) e
+      // cores semânticas de badge (âmbar "Duplicado", rosa "Urgente", azul de
+      // foco do CardLogin). Fica `reviewOnFail` até uma decisão sobre elas.
       config: { rules: [{ id: 'color-contrast', reviewOnFail: true }] },
     },
 

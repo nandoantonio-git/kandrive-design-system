@@ -137,7 +137,7 @@ function UploadPopover({
           <div className="flex flex-col">
             <span className="text-sm font-bold text-zinc-900 dark:text-zinc-100">Enviando {fileCount} arquivos</span>
             {secondsLeft !== undefined ? (
-              <span className="text-xs text-zinc-500 dark:text-zinc-400">{secondsLeft} segundos restantes</span>
+              <span className="text-xs text-neutral-text-tertiary dark:text-zinc-400">{secondsLeft} segundos restantes</span>
             ) : null}
           </div>
         </div>
@@ -146,7 +146,7 @@ function UploadPopover({
             type="button"
             aria-label="Pausar envio"
             onClick={onPause}
-            className="rounded-md p-1.5 text-zinc-500 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
+            className="rounded-md p-1.5 text-neutral-text-tertiary hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
           >
             <Pause aria-hidden="true" className="size-3" />
           </button>
@@ -154,7 +154,7 @@ function UploadPopover({
             type="button"
             aria-label="Maximizar"
             onClick={onExpand}
-            className="rounded-md p-1.5 text-zinc-500 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
+            className="rounded-md p-1.5 text-neutral-text-tertiary hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
           >
             <Maximize2 aria-hidden="true" className="size-3" />
           </button>
@@ -162,7 +162,7 @@ function UploadPopover({
             type="button"
             aria-label="Mais opções"
             onClick={onMore}
-            className="rounded-md p-1.5 text-zinc-500 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
+            className="rounded-md p-1.5 text-neutral-text-tertiary hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
           >
             <MoreVertical aria-hidden="true" className="size-3" />
           </button>
@@ -171,7 +171,7 @@ function UploadPopover({
             type="button"
             aria-label="Fechar"
             onClick={onClose}
-            className="rounded-md p-1.5 text-zinc-500 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
+            className="rounded-md p-1.5 text-neutral-text-tertiary hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
           >
             <X aria-hidden="true" className="size-3" />
           </button>

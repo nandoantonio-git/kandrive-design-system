@@ -53,7 +53,11 @@ Decidido com o Nando em sessão de perguntas (grill), Q1–Q16. Ordem: A → B �
 
 ## Lote de paleta (depois da fase E, Q17)
 
-- [ ] Contraste de cor: 761 ocorrências abaixo de 4.5:1, em 4 pares — `Neutral/Text/Tertiary` (#71717a) sobre cinzas (4.0–4.4:1); cinzas zinc-400/500 do código fora dos tokens (2.6–3.5:1); teal de texto #007e96 sobre cinza/teal claro (3.6–4.3:1); `Brand/Secondary/Light` #6b6b68 sobre cinza (~4.1:1). Proposta: escurecer `Neutral/Text/Tertiary` (~#5f5f66), trocar os zinc pelos tokens e usar `Brand/Primary/Dark` em textos pequenos sobre fundos claros. Lote com antes e depois no Figma. Ao terminar, tirar o `reviewOnFail` do `preview.tsx`.
+- [x] **Contraste de cor (2026-09-25):** dos 761, fechados ~500 (66%). No Figma e no código (Light): `Neutral/Text/Tertiary` #71717a→#59595f, `Brand/Primary/Default` (papel de texto, `--brand-teal`) #007e96→#006579, `Brand/Secondary/Light` #6b6b68→#565652. No código: os `text-zinc-500` soltos (42 arquivos) trocados pelo token; o hex solto `#71717a` do item "Excluir conta" da Sidebar trocado pelo token.
+  - **Sobram 259 ocorrências, fora do escopo do Q17** — dois grupos, cada um pedindo uma decisão própria:
+    - **Estados esmaecidos por opacidade** (`opacity-50`/`60` sobre texto, em vez de um token de cor): Sidebar (nav e "Excluir conta" antes do fix), FAQ/Home/Organization/StorageStatus (rótulos inativos), `UploadPopover`, `NodeContextMenu`/`NodeContextMenuItem`, `ArchiveBrowserModalSidebar`, a página `Atoms/Icon` do catálogo. Reduzir a opacidade dói o "de-ênfase" visual: trocar por um token de cor mantém o contraste sem tirar a hierarquia, mas é uma mudança de padrão em vários componentes.
+    - **Cores semânticas de badge:** âmbar `#c38418` ("Duplicado", `TypeLabel`/`Callout`/`TemplateReviewModalItem`), rosa `#e8476a` com texto branco ("Urgente", `Tag`/`TypeLabel`), azul de foco `#92ccff` sobre teal (`CardLogin`/Login).
+  - `.storybook/preview.tsx`: `color-contrast` fica `reviewOnFail` (não quebra o `npm test`), estreito a esses dois grupos — documentado ali com a lista exata.
 
 Ver também [[Responsividade]].
 

@@ -99,7 +99,7 @@ function CleanSpaceListSelection({
       </span>
       <div className="min-w-0 flex-1">
         <p className="truncate text-base tracking-[0.0192px] text-zinc-950 dark:text-zinc-100">{name}</p>
-        <p className="truncate text-[0.625rem] tracking-[0.012px] text-zinc-500 dark:text-zinc-400">{meta}</p>
+        <p className="truncate text-[0.625rem] tracking-[0.012px] text-neutral-text-tertiary dark:text-zinc-400">{meta}</p>
       </div>
       <StorageTierBadge tier={tier} />
     </div>

@@ -112,13 +112,13 @@ function SaveLongTermFileStorage({
           </div>
           <div className="flex flex-col gap-1.5">
             <p className="text-xl font-bold text-zinc-900 dark:text-zinc-100">Por que guardar?</p>
-            <p className="text-sm text-zinc-500 dark:text-zinc-400">
+            <p className="text-sm text-neutral-text-tertiary dark:text-zinc-400">
               Arquivos em longo prazo ficam seguros por anos e liberam espaço ativo. Para resgatar, é só solicitar,
               você recebe um link por e-mail e o arquivo volta para o seu armazenamento em até 8h.
             </p>
           </div>
           <div className="flex flex-col gap-1">
-            <span className="text-xs text-zinc-500 dark:text-zinc-400">Destino:</span>
+            <span className="text-xs text-neutral-text-tertiary dark:text-zinc-400">Destino:</span>
             <span className="flex w-fit items-center gap-1.5 rounded-md bg-zinc-100 px-3 py-1.5 text-xs text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100">
               <Icon name="Arquivar" className="size-4" />
               Guardados
@@ -126,7 +126,7 @@ function SaveLongTermFileStorage({
           </div>
         </div>
       </div>
-      <p className="rounded-lg bg-effect-glass-white-70 px-3 py-2.5 text-xs text-zinc-500 dark:text-zinc-400">
+      <p className="rounded-lg bg-effect-glass-white-70 px-3 py-2.5 text-xs text-neutral-text-tertiary dark:text-zinc-400">
         {`Se algum nome já existir no destino, o Kandrive adiciona automaticamente um sufixo (ex.: "arquivo (1)") para evitar substituir o arquivo existente.`}
       </p>
       <div className="flex flex-wrap items-center justify-between gap-3">

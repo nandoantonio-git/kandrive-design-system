@@ -28,7 +28,7 @@ function SelectBox({ value, className }: { value: string; className?: string }) 
       )}
     >
       <span className="text-zinc-950 dark:text-zinc-100">{value}</span>
-      <span className="text-zinc-500 dark:text-zinc-400">⌄</span>
+      <span className="text-neutral-text-tertiary dark:text-zinc-400">⌄</span>
     </div>
   )
 }
@@ -183,7 +183,7 @@ function SettingsPage({
                   <div className="flex w-full flex-col gap-1.5">
                     <div className="flex w-full items-center justify-between text-sm text-zinc-950 dark:text-zinc-100">
                       <span>0 Bytes de 5 TB usados</span>
-                      <span className="text-zinc-500 dark:text-zinc-400">0 arquivos</span>
+                      <span className="text-neutral-text-tertiary dark:text-zinc-400">0 arquivos</span>
                     </div>
                     <StorageBar tier="long-term" value={8} className="h-2 max-w-none" />
                   </div>
@@ -197,7 +197,7 @@ function SettingsPage({
                       <div key={tier} className="flex min-w-px flex-1 flex-col gap-2 rounded-lg border border-zinc-200 p-3 dark:border-zinc-700">
                         <span className="text-sm font-medium text-zinc-950 dark:text-zinc-100">{label}</span>
                         <StorageBar tier={tier} value={18} className="h-2 max-w-none" />
-                        <span className="text-[0.6875rem] text-zinc-500 dark:text-zinc-400">
+                        <span className="text-[0.6875rem] text-neutral-text-tertiary dark:text-zinc-400">
                           Estimativa — uso por tier ainda não disponível no backend.
                         </span>
                       </div>
@@ -222,7 +222,7 @@ function SettingsPage({
                   <div key={row.id} className="flex w-full items-start justify-between gap-4">
                     <div className="flex flex-col gap-0.5">
                       <p className="text-sm font-medium text-zinc-950 dark:text-zinc-100">{row.title}</p>
-                      <p className="text-[0.8125rem] text-zinc-500 dark:text-zinc-400">{row.description}</p>
+                      <p className="text-[0.8125rem] text-neutral-text-tertiary dark:text-zinc-400">{row.description}</p>
                     </div>
                     <Switch defaultChecked aria-label={row.title} className="mt-0.5 shrink-0" />
                   </div>
@@ -263,13 +263,13 @@ function SettingsPage({
                 <div className="flex w-full flex-col items-start justify-between gap-4 tablet:flex-row tablet:items-center">
                   <div className="flex flex-col gap-0.5">
                     <p className="text-sm font-medium text-zinc-950 dark:text-zinc-100">Exportar meus dados</p>
-                    <p className="text-[0.8125rem] text-zinc-500 dark:text-zinc-400">Baixe uma cópia de todos os seus dados no Kandrive.</p>
+                    <p className="text-[0.8125rem] text-neutral-text-tertiary dark:text-zinc-400">Baixe uma cópia de todos os seus dados no Kandrive.</p>
                   </div>
                   <Button variant="outline" className="shrink-0">
                     Exportar dados
                   </Button>
                 </div>
-                <p className="text-[0.8125rem] text-zinc-500 dark:text-zinc-400">
+                <p className="text-[0.8125rem] text-neutral-text-tertiary dark:text-zinc-400">
                   Consulte nossa Política de Privacidade para saber como tratamos seus dados, conforme a LGPD.
                 </p>
               </SettingsCard>
@@ -279,7 +279,7 @@ function SettingsPage({
               // Item de nav Figma-confirmado (`1255:23300`), sem nenhuma tela
               // `page/*` correspondente no inventário — nada renderizado além
               // do nav (Regra 9, ver docs/conflicts.md).
-              <p className="text-sm text-zinc-500 dark:text-zinc-400">
+              <p className="text-sm text-neutral-text-tertiary dark:text-zinc-400">
                 Painel ainda não tem tela Figma confirmada para "Organização padrão".
               </p>
             ) : null}

@@ -13,7 +13,7 @@ export interface SettingsCardProps extends React.ComponentProps<"div"> {
  * `1439:21211`/`1439:21268`/`1439:21297`/`1439:21327`): card
  * `w-[1089px]` no Figma desktop (no código, `w-full`: a largura vem do layout responsivo, 2026-09-24), `bg-effect-glass-white-50`, `border-[#e5e5e5]`,
  * `rounded-xl`, `p-6`, cabeçalho título (16px semibold) + legenda
- * (13px, `text-zinc-500`). Extraído como molecule único (Regra 1/10) em
+ * (13px, `text-neutral-text-tertiary`). Extraído como molecule único (Regra 1/10) em
  * vez de repetido em cada painel — mesmo shell em todas as 7 telas, só o
  * conteúdo interno muda.
  */
@@ -29,7 +29,7 @@ function SettingsCard({ title, caption, className, children, ...props }: Setting
     >
       <div className="flex flex-col gap-0.5">
         <p className="text-base font-semibold text-zinc-950 dark:text-zinc-100">{title}</p>
-        {caption ? <p className="text-[0.8125rem] text-zinc-500 dark:text-zinc-400">{caption}</p> : null}
+        {caption ? <p className="text-[0.8125rem] text-neutral-text-tertiary dark:text-zinc-400">{caption}</p> : null}
       </div>
       {children}
     </div>

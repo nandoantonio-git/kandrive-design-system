@@ -16,7 +16,7 @@ const STYLE_CLASSNAME: Record<NonNullable<ClearButtonProps["style"]>, string> = 
   // não têm estado Hover no Figma). Cores literais do Figma (Regra 3,
   // sem token semântico definido para `neutral-surface-ghost-map`).
   default:
-    "text-zinc-500 hover:bg-[rgba(107,107,104,0.18)] hover:text-zinc-700 active:bg-[#c8dce3] dark:text-zinc-400 dark:hover:bg-[rgba(168,166,161,0.18)] dark:hover:text-zinc-300 dark:active:bg-[#173239]",
+    "text-neutral-text-tertiary hover:bg-[rgba(107,107,104,0.18)] hover:text-zinc-700 active:bg-[#c8dce3] dark:text-zinc-400 dark:hover:bg-[rgba(168,166,161,0.18)] dark:hover:text-zinc-300 dark:active:bg-[#173239]",
   red: "text-destructive",
   white: "text-white",
 }

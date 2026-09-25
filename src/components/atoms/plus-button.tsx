@@ -10,7 +10,7 @@ export interface PlusButtonProps
 }
 
 const STYLE_CLASSNAME: Record<NonNullable<PlusButtonProps["style"]>, string> = {
-  default: "text-zinc-500 hover:text-zinc-800 active:opacity-60 dark:text-zinc-400 dark:hover:text-zinc-100",
+  default: "text-neutral-text-tertiary hover:text-zinc-800 active:opacity-60 dark:text-zinc-400 dark:hover:text-zinc-100",
   primary: "text-brand-teal hover:opacity-80 active:opacity-60",
   white: "text-white hover:opacity-80 active:opacity-60",
 }

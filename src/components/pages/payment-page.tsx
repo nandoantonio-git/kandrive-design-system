@@ -78,9 +78,9 @@ function CollapsibleSection({
           {title}
         </span>
         <span className="flex items-center gap-4">
-          {!open && summary ? <span className="text-sm text-zinc-500 dark:text-zinc-400">{summary}</span> : null}
+          {!open && summary ? <span className="text-sm text-neutral-text-tertiary dark:text-zinc-400">{summary}</span> : null}
           <ChevronDown
-            className={cn("size-4 text-zinc-500 dark:text-zinc-400 transition-transform", open && "rotate-180")}
+            className={cn("size-4 text-neutral-text-tertiary dark:text-zinc-400 transition-transform", open && "rotate-180")}
             aria-hidden="true"
           />
         </span>
@@ -163,7 +163,7 @@ function PaymentPage({
             <CollapsibleSection icon={HardDrive} title="Seu armazenamento" summary="92% usado" defaultOpen={defaultOpen}>
               <div className="flex items-center justify-between text-sm">
                 <span className="text-zinc-950 dark:text-zinc-100">13.8 GB de 15 GB usados</span>
-                <span className="rounded-full border border-zinc-200 px-2 py-0.5 text-xs text-zinc-500 dark:border-zinc-700 dark:text-zinc-400">Plano Free</span>
+                <span className="rounded-full border border-zinc-200 px-2 py-0.5 text-xs text-neutral-text-tertiary dark:border-zinc-700 dark:text-zinc-400">Plano Free</span>
               </div>
               <StorageBarExpanded
                 segments={[
@@ -172,7 +172,7 @@ function PaymentPage({
                 ]}
                 className="h-2.5 max-w-none"
               />
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-1 text-sm text-zinc-500 dark:text-zinc-400">
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-1 text-sm text-neutral-text-tertiary dark:text-zinc-400">
                 <span className="flex items-center gap-1.5">
                   <span className="size-2 shrink-0 rounded-full bg-brand-pink-dark" aria-hidden="true" />
                   Acesso rápido: 9.2 GB
@@ -199,7 +199,7 @@ function PaymentPage({
                       <div className="flex items-start justify-between">
                         <div>
                           <p className="text-base font-semibold text-zinc-950 dark:text-zinc-100">{plan.name}</p>
-                          <p className="text-[0.8125rem] text-zinc-500 dark:text-zinc-400">{plan.storageLabel}</p>
+                          <p className="text-[0.8125rem] text-neutral-text-tertiary dark:text-zinc-400">{plan.storageLabel}</p>
                         </div>
                         {plan.status ? (
                           <span className="rounded-full bg-white/80 px-2 py-0.5 text-[0.6875rem] font-medium text-brand-secondary dark:bg-zinc-900/80">
@@ -207,7 +207,7 @@ function PaymentPage({
                           </span>
                         ) : null}
                       </div>
-                      {plan.description ? <p className="text-sm text-zinc-500 dark:text-zinc-400">{plan.description}</p> : null}
+                      {plan.description ? <p className="text-sm text-neutral-text-tertiary dark:text-zinc-400">{plan.description}</p> : null}
                       <p className="text-[1.375rem] font-bold text-zinc-950 dark:text-zinc-100">{plan.price}</p>
                       <ul className="flex flex-col gap-1.5">
                         {plan.features.map((feature) => (
@@ -247,7 +247,7 @@ function PaymentPage({
                     onClick={() => onBillingCycleChange?.("monthly")}
                     className={cn(
                       "rounded-md px-3 py-1.5 text-sm font-medium",
-                      billingCycle === "monthly" ? "bg-brand-teal-action text-brand-teal-foreground" : "text-zinc-500 dark:text-zinc-400"
+                      billingCycle === "monthly" ? "bg-brand-teal-action text-brand-teal-foreground" : "text-neutral-text-tertiary dark:text-zinc-400"
                     )}
                   >
                     Mensal
@@ -257,14 +257,14 @@ function PaymentPage({
                     onClick={() => onBillingCycleChange?.("annual")}
                     className={cn(
                       "rounded-md px-3 py-1.5 text-sm font-medium",
-                      billingCycle === "annual" ? "bg-brand-teal-action text-brand-teal-foreground" : "text-zinc-500 dark:text-zinc-400"
+                      billingCycle === "annual" ? "bg-brand-teal-action text-brand-teal-foreground" : "text-neutral-text-tertiary dark:text-zinc-400"
                     )}
                   >
                     Anual <span className="text-xs opacity-80">· economize 17%</span>
                   </button>
                 </div>
                 <div className="rounded-md bg-zinc-100 p-3 dark:bg-zinc-800">
-                  <p className="text-[0.8125rem] text-zinc-500 dark:text-zinc-400">A partir de hoje</p>
+                  <p className="text-[0.8125rem] text-neutral-text-tertiary dark:text-zinc-400">A partir de hoje</p>
                   <p className="text-2xl font-bold text-zinc-950 dark:text-zinc-100">$12/mês</p>
                 </div>
                 <div className="flex flex-col gap-2 text-sm text-zinc-700 dark:text-zinc-300">
@@ -289,8 +289,8 @@ function PaymentPage({
               </div>
               <SettingsField label="E-mail para recibo" type="email" placeholder="voce@email.com" className="w-full" />
               <div className="flex items-start gap-2.5 rounded-lg bg-zinc-100 p-3.5 dark:bg-zinc-800">
-                <Info className="mt-0.5 size-4 shrink-0 text-zinc-500 dark:text-zinc-400" aria-hidden="true" />
-                <p className="flex items-start gap-1.5 text-[0.8125rem] text-zinc-500 dark:text-zinc-400">
+                <Info className="mt-0.5 size-4 shrink-0 text-neutral-text-tertiary dark:text-zinc-400" aria-hidden="true" />
+                <p className="flex items-start gap-1.5 text-[0.8125rem] text-neutral-text-tertiary dark:text-zinc-400">
                   <Lock className="mt-0.5 size-3.5 shrink-0" aria-hidden="true" />
                   Stripe Elements protege os dados do cartão. O Kandrive não armazena o número completo.
                 </p>

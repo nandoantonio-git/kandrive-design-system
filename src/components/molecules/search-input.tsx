@@ -77,12 +77,12 @@ function SearchInput({
       />
       {loading ? (
         <Loader2Icon
-          className="pointer-events-none absolute left-3 size-4 animate-spin text-zinc-500 dark:text-zinc-400"
+          className="pointer-events-none absolute left-3 size-4 animate-spin text-neutral-text-tertiary dark:text-zinc-400"
           aria-hidden="true"
         />
       ) : (
         <SearchIcon
-          className="pointer-events-none absolute left-3 size-4 text-zinc-500 dark:text-zinc-400"
+          className="pointer-events-none absolute left-3 size-4 text-neutral-text-tertiary dark:text-zinc-400"
           aria-hidden="true"
         />
       )}

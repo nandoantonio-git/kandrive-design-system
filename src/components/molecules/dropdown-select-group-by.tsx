@@ -75,7 +75,7 @@ function DropdownSelectGroupBy({
       )}
       {...props}
     >
-      {mobile ? null : <span className="px-1 text-[0.625rem] font-bold tracking-wide text-zinc-500 dark:text-zinc-400">AGRUPAR</span>}
+      {mobile ? null : <span className="px-1 text-[0.625rem] font-bold tracking-wide text-neutral-text-tertiary dark:text-zinc-400">AGRUPAR</span>}
       <div className="relative flex w-full flex-col items-start gap-1 rounded-xl glass-edge glass-shadow-sm bg-effect-glass-light-45 py-2 backdrop-blur-sm">
         <button
           type="button"

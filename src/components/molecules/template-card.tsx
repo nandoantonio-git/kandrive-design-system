@@ -55,8 +55,8 @@ function TemplateCard({
         <img src={illustration} alt="" aria-hidden="true" className="h-24 w-auto" />
       )}
       <span className="flex w-full flex-col items-start gap-1.5 px-1.5 text-left">
-        <span className="whitespace-nowrap text-xl font-bold text-zinc-500 dark:text-zinc-400">{title}</span>
-        <span className="text-xs text-zinc-500 dark:text-zinc-400">{description}</span>
+        <span className="whitespace-nowrap text-xl font-bold text-neutral-text-tertiary dark:text-zinc-400">{title}</span>
+        <span className="text-xs text-neutral-text-tertiary dark:text-zinc-400">{description}</span>
       </span>
     </button>
   )

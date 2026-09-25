@@ -41,7 +41,7 @@ function TypeSpecimen({ token, weightLabel, fontWeight, sizePx, sizeRem, lineHei
         >
           {copied === token ? "Copiado!" : token}
         </button>
-        <span className="text-[0.6875rem] text-zinc-500 dark:text-zinc-400">
+        <span className="text-[0.6875rem] text-neutral-text-tertiary dark:text-zinc-400">
           {weightLabel} · {sizePx}px · {lineHeight} lh
         </span>
         <button
@@ -50,7 +50,7 @@ function TypeSpecimen({ token, weightLabel, fontWeight, sizePx, sizeRem, lineHei
           className="cursor-pointer"
           title="Copiar classe Tailwind"
         >
-          <code className="rounded bg-zinc-100 px-1 py-0.5 text-[0.625rem] text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400 hover:text-brand-teal">
+          <code className="rounded bg-zinc-100 px-1 py-0.5 text-[0.625rem] text-neutral-text-tertiary dark:bg-zinc-800 dark:text-zinc-400 hover:text-brand-teal">
             {copied === cssSnippet ? "Copiado!" : cssSnippet}
           </code>
         </button>

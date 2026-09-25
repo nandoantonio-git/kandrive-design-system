@@ -17,6 +17,10 @@ Fonte completa: `making-of/conflicts.md` (log de todas as entradas, incluindo j�
 
 - ~~**`FolderTagChip` — `isExpanded`**~~ ✅ 2026-09-25 (decisão humana): implementado literal ao Figma — com `isExpanded=false` (o padrão), o ícone de pasta e o rótulo ficam com `opacity: 0`, sobra só o botão de remover. Nenhuma tela do produto usa este chip hoje.
 
+## 🟡 Média urgência
+
+**Contraste de cor — 2 grupos fora do lote de paleta de 2026-09-25** (ver [[Plano de Fechamento]]): estados esmaecidos por `opacity-50`/`60` em vez de um token de cor (Sidebar, FAQ/Home/Organization/StorageStatus, UploadPopover, NodeContextMenu, ArchiveBrowserModalSidebar, catálogo do Icon); e as cores semânticas de badge (âmbar "Duplicado", rosa "Urgente", azul de foco do CardLogin/Login). `color-contrast` continua `reviewOnFail` no gate até uma decisão sobre os dois.
+
 ## 🟢 Baixa urgência (gaps de polish, não de decisão)
 
 - **`celule/MainCanvas/Organization/FreeMode/Buttons` (2026-08-20)** — única das 10 peças da extinta camada `Cells` ainda não renomeada `molecule/` no Figma fonte (`1431:20043`). Código já trata como `molecule`; só a fonte Figma precisa da correção manual.

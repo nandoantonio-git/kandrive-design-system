@@ -140,7 +140,7 @@ function HomePage({
             <div className="flex size-48 items-center justify-center rounded-full bg-zinc-100 tablet:size-[267px] dark:bg-zinc-800">
               <Icon name="CloudDownload" className="size-16 text-zinc-400 tablet:size-[85px] dark:text-zinc-500" aria-hidden="true" />
             </div>
-            <div className="flex flex-col gap-1 text-zinc-500 dark:text-zinc-400">
+            <div className="flex flex-col gap-1 text-neutral-text-tertiary dark:text-zinc-400">
               <p>Arraste os arquivos que deseja armazenar</p>
               <p>ou use o botão &quot;Adicionar&quot;</p>
             </div>

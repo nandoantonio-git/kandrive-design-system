@@ -30,7 +30,7 @@ function Breadcrumb({ segments, className, ...props }: BreadcrumbProps) {
           ) : null}
           <span
             className={cn(
-              "text-sm whitespace-nowrap text-zinc-500 dark:text-zinc-400",
+              "text-sm whitespace-nowrap text-neutral-text-tertiary dark:text-zinc-400",
               index === segments.length - 1 && "text-brand-teal"
             )}
           >

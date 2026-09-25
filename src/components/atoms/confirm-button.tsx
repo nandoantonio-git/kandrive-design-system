@@ -14,7 +14,7 @@ export interface ConfirmButtonProps
 // necessidade real de affordance interativa — nunca como fundo/pílula
 // (Regra 9: removido em US-026 por não ser Figma-confirmado).
 const STYLE_CLASSNAME: Record<NonNullable<ConfirmButtonProps["style"]>, string> = {
-  default: "text-zinc-500 hover:text-zinc-700 active:opacity-60 dark:text-zinc-400 dark:hover:text-zinc-300",
+  default: "text-neutral-text-tertiary hover:text-zinc-700 active:opacity-60 dark:text-zinc-400 dark:hover:text-zinc-300",
   primary: "text-brand-teal hover:opacity-80 active:opacity-60",
   white: "text-white hover:opacity-80 active:opacity-60",
 }

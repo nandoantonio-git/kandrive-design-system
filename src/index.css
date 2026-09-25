@@ -188,7 +188,10 @@
        no Figma). Nome da variável CSS mantido (--brand-teal) por enquanto
        para não quebrar todo o código de uma vez — reavaliar rename em
        US-009. */
-    --brand-teal: #007e96;
+    /* Regra 3 (2026-09-25): escurecido de #007e96 pra passar 4.5:1 nos fundos
+       cinza mais comuns (#e4e4e7 etc.). Fundos preenchidos (botões, chips
+       selecionados) usam --brand-teal-action, separado (Regra 2). */
+    --brand-teal: #006579;
     --brand-teal-foreground: oklch(1 0 0);
     /* cor/marca/primária/teal-dark — Figma-confirmado
        (var(--brand-primary-dark)), achado 2x nesta US (US-021,
@@ -224,7 +227,9 @@
        `--brand-secondary` (default, #31302d): dark para heading/ênfase,
        light para corpo/legenda. */
     --brand-secondary-dark: #1a1714;
-    --brand-secondary-light: #6b6b68;
+    /* Regra 3 (2026-09-25): escurecido de #6b6b68 pra passar 4.5:1 (papel de
+       texto de corpo, não de superfície). */
+    --brand-secondary-light: #565652;
     /* cor/efeito/vidro/* — Liquid Glass, Figma-confirmado (Tokens/Materials,
        get_variable_defs em 1427:16958); nunca reimplementar spec aqui, só
        os valores de cor de tint (Regra 10) */
@@ -261,7 +266,8 @@
     --brand-primary-focus: #92ccff;
     --neutral-surface-medium: #52525b;
     /* Figma-confirmado (Figma V0.2.1, coleção Core): usados pelos componentes mobile (R2 de responsividade, 2026-09-24). */
-    --neutral-text-tertiary: #71717a;
+    /* Regra 3 (2026-09-25): escurecido de #71717a pra passar 4.5:1. */
+    --neutral-text-tertiary: #59595f;
     --neutral-text-placeholder: #bfc7d2;
     --neutral-surface-elevated: #ffffff;
     --neutral-surface-background-alt: #f7f7f7;

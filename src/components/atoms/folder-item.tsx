@@ -170,7 +170,7 @@ function FolderItem({
         <span
           className={cn(
             "block h-3 w-full truncate text-center text-[0.625rem] leading-normal tracking-[0.012px]",
-            isDisabled ? "text-zinc-500 dark:text-zinc-400" : "text-zinc-700 dark:text-zinc-300"
+            isDisabled ? "text-neutral-text-tertiary dark:text-zinc-400" : "text-zinc-700 dark:text-zinc-300"
           )}
         >
           {name}

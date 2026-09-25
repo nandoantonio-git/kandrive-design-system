@@ -108,7 +108,7 @@ function TemplateReviewModalItem({ item, isExpanded, onToggleExpand, device = "d
             aria-expanded={isExpanded}
             disabled={!hasChildren}
             onClick={onToggleExpand}
-            className="flex size-6 shrink-0 items-center justify-center text-zinc-500 disabled:opacity-30 dark:text-zinc-400"
+            className="flex size-6 shrink-0 items-center justify-center text-neutral-text-tertiary disabled:opacity-30 dark:text-zinc-400"
           >
             {isExpanded ? (
               <ChevronDown aria-hidden="true" className="size-4" />
@@ -116,7 +116,7 @@ function TemplateReviewModalItem({ item, isExpanded, onToggleExpand, device = "d
               <ChevronRight aria-hidden="true" className="size-4" />
             )}
           </button>
-          <Folder aria-hidden="true" className="size-4 shrink-0 text-zinc-500 dark:text-zinc-400" />
+          <Folder aria-hidden="true" className="size-4 shrink-0 text-neutral-text-tertiary dark:text-zinc-400" />
           <div className={cn("flex flex-col gap-1", mobile && "min-w-0")}>
             <span className={cn(mobile ? "truncate text-base text-neutral-text-primary" : "text-sm text-zinc-900 dark:text-zinc-100")}>{item.name}</span>
             <span className="text-xs text-zinc-600 dark:text-zinc-300">{item.itemsLabel}</span>
@@ -131,7 +131,7 @@ function TemplateReviewModalItem({ item, isExpanded, onToggleExpand, device = "d
           <button
             type="button"
             onClick={item.onRename}
-            className="rounded-sm text-sm font-medium text-zinc-500 transition-all hover:text-zinc-700 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 motion-safe:active:scale-[0.98] dark:text-zinc-400 dark:hover:text-zinc-300"
+            className="rounded-sm text-sm font-medium text-neutral-text-tertiary transition-all hover:text-zinc-700 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 motion-safe:active:scale-[0.98] dark:text-zinc-400 dark:hover:text-zinc-300"
           >
             Renomear
           </button>

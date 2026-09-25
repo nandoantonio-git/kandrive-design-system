@@ -84,7 +84,7 @@ function FolderTagChip({
       {...props}
     >
       <FolderIcon
-        className={cn("size-3.5 shrink-0 text-zinc-500 dark:text-zinc-400", !isExpanded && "opacity-0")}
+        className={cn("size-3.5 shrink-0 text-neutral-text-tertiary dark:text-zinc-400", !isExpanded && "opacity-0")}
         aria-hidden="true"
       />
       <span className={cn("truncate", isExpanded ? "max-w-none" : "opacity-0")}>{label}</span>
@@ -96,7 +96,7 @@ function FolderTagChip({
           disabled={disabled}
           onClick={onRemove}
           className={cn(
-            "inline-flex size-5 shrink-0 items-center justify-center rounded-full text-zinc-500 dark:text-zinc-400",
+            "inline-flex size-5 shrink-0 items-center justify-center rounded-full text-neutral-text-tertiary dark:text-zinc-400",
             "transition-colors motion-safe:active:scale-95",
             "hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:text-zinc-700 dark:hover:text-zinc-300",
             "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50"

@@ -19,7 +19,7 @@ function PageLead({ title, caption = "Gerencie seu armazenamento", className, ..
   return (
     <div data-slot="page-lead" className={cn("flex flex-col justify-between gap-1", className)} {...props}>
       <h1 className="text-[2.5rem] leading-none font-bold text-black dark:text-zinc-100">{title}</h1>
-      <p className="text-sm text-zinc-500 dark:text-zinc-400">{caption}</p>
+      <p className="text-sm text-neutral-text-tertiary dark:text-zinc-400">{caption}</p>
     </div>
   )
 }

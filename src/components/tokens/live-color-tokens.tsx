@@ -149,7 +149,7 @@ function TokenRow({ token }: { token: ColorToken }) {
         >
           {copied === `var(${token.name})` ? "Copiado!" : token.name}
         </button>
-        <span className="text-[0.6875rem] text-zinc-500">{token.figma ?? "sem variável no Figma"}</span>
+        <span className="text-[0.6875rem] text-neutral-text-tertiary">{token.figma ?? "sem variável no Figma"}</span>
         <span className={cn("w-fit rounded-full px-1.5 py-0.5 text-[0.625rem] font-medium", STATUS[token.status].className)}>
           {STATUS[token.status].label}
         </span>
@@ -187,9 +187,9 @@ function LiveColorTokens() {
         return (
           <section key={group.key} className="flex flex-col">
             <h3 className="mb-2 text-base font-semibold text-zinc-900">
-              {group.title} <span className="font-normal text-zinc-500">({rows.length})</span>
+              {group.title} <span className="font-normal text-neutral-text-tertiary">({rows.length})</span>
             </h3>
-            <div className="hidden grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)_minmax(0,1fr)] gap-2 pb-1 text-[0.6875rem] font-medium tracking-wide text-zinc-500 uppercase sm:grid">
+            <div className="hidden grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)_minmax(0,1fr)] gap-2 pb-1 text-[0.6875rem] font-medium tracking-wide text-neutral-text-tertiary uppercase sm:grid">
               <span>Token CSS · Figma</span>
               <span>Light</span>
               <span>Dark</span>

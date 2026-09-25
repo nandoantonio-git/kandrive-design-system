@@ -68,7 +68,7 @@ function ViewModeToggle({ mode, onModeChange, size = "default", modes, className
       {...props}
     >
       {compact ? null : (
-        <span className="px-1 text-[0.625rem] font-bold tracking-wide text-zinc-500 dark:text-zinc-400">
+        <span className="px-1 text-[0.625rem] font-bold tracking-wide text-neutral-text-tertiary dark:text-zinc-400">
           VISUALIZAR
         </span>
       )}

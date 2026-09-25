@@ -70,7 +70,7 @@ function FreeModeFilterPanel({ className }: { className?: string }) {
         <span className="rounded-md border border-zinc-600 bg-zinc-700 px-2 py-1 text-[0.6875rem] text-white">
           1.0 GB
         </span>
-        <button type="button" aria-label="Remover regra" className="text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300">
+        <button type="button" aria-label="Remover regra" className="text-neutral-text-tertiary hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300">
           <X aria-hidden="true" className="size-3" />
         </button>
       </div>
@@ -286,7 +286,7 @@ function OrganizeFreeModeCanvas({
           <p className="text-[0.8125rem] text-zinc-600 dark:text-zinc-300">
             {rulesCount} regras · {affectedFilesCount} arquivos afetados · {sizeLabel}
           </p>
-          <p className="pt-1 text-[0.6875rem] leading-4 text-zinc-500 dark:text-zinc-400">
+          <p className="pt-1 text-[0.6875rem] leading-4 text-neutral-text-tertiary dark:text-zinc-400">
             Você poderá excluir este template depois e reverter a organização.
           </p>
         </div>

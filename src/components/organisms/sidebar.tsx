@@ -145,10 +145,11 @@ export interface SidebarProps extends React.ComponentProps<"nav"> {
  * Armazenamento e plano/Notificações/Aparência e exibição/Privacidade e
  * dados/Organização padrão/[divisor]/Idioma e região/[divisor]/Excluir
  * conta — Figma-confirmado nos nós `1255:23289`–`1255:23306`). "Excluir
- * conta" usa `text-[#71717a]` mesmo no estado inativo (não o
- * `neutral-text-tertiary` dos outros itens inativos — Figma-confirmado,
- * tratamento visualmente idêntico na prática, mas o node não reusa a
- * variável). "Organização padrão" é item de nav real (Figma-confirmado),
+ * conta" usava um hex solto (`#71717a`) mesmo no estado inativo — o próprio
+ * comentário original já dizia "tratamento visualmente idêntico" ao
+ * `neutral-text-tertiary` dos outros itens; trocado pelo token em 2026-09-25
+ * (lote de paleta) pra acompanhar o escurecimento do token e não ficar
+ * desatualizado sozinho. "Organização padrão" é item de nav real (Figma-confirmado),
  * mas não tem nenhuma das 23 telas `page/*` correspondente no inventário
  * — sem conteúdo Figma-confirmado pra esse painel ainda (Regra 9,
  * `docs/conflicts.md`).
@@ -202,7 +203,7 @@ function Sidebar({
               className={cn(
                 "rounded-md px-2 py-1.5 text-left text-base font-medium text-zinc-900 transition-colors dark:text-zinc-100",
                 "hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 dark:hover:bg-zinc-800",
-                activeSection === section ? "bg-zinc-100 dark:bg-zinc-800" : "text-zinc-500 dark:text-zinc-400"
+                activeSection === section ? "bg-zinc-100 dark:bg-zinc-800" : "text-neutral-text-tertiary dark:text-zinc-400"
               )}
             >
               {label}
@@ -216,7 +217,7 @@ function Sidebar({
           aria-current={activeSection === "excluir-conta" ? "page" : undefined}
           onClick={() => onNavigateSection?.("excluir-conta")}
           className={cn(
-            "rounded-md px-2 py-1.5 text-left text-base font-medium text-[#71717a] transition-colors dark:text-zinc-400",
+            "rounded-md px-2 py-1.5 text-left text-base font-medium text-neutral-text-tertiary transition-colors",
             "hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 dark:hover:bg-zinc-800",
             activeSection === "excluir-conta" && "bg-zinc-100 dark:bg-zinc-800"
           )}
@@ -249,7 +250,7 @@ function Sidebar({
           data-slot="sidebar-collapse"
           aria-label="Expandir sidebar"
           onClick={handleToggleCollapse}
-          className="flex size-6 shrink-0 items-center justify-center rounded-full text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-900 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
+          className="flex size-6 shrink-0 items-center justify-center rounded-full text-neutral-text-tertiary transition-colors hover:bg-zinc-100 hover:text-zinc-900 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
         >
           <PanelLeft aria-hidden="true" className="size-3.5" />
         </button>
@@ -275,7 +276,7 @@ function Sidebar({
           data-slot="sidebar-collapse"
           aria-label="Colapsar sidebar"
           onClick={handleToggleCollapse}
-          className="flex size-6 items-center justify-center rounded-full text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-900 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
+          className="flex size-6 items-center justify-center rounded-full text-neutral-text-tertiary transition-colors hover:bg-zinc-100 hover:text-zinc-900 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
         >
           <PanelLeft aria-hidden="true" className="size-3.5" />
         </button>
@@ -307,7 +308,7 @@ function Sidebar({
       </ul>
       {tags.length > 0 ? (
         <div className="flex flex-col gap-1 border-t border-zinc-200 pt-3 dark:border-zinc-700">
-          <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400">Etiquetas</span>
+          <span className="text-xs font-medium text-neutral-text-tertiary dark:text-zinc-400">Etiquetas</span>
           {tags.map((tag) => (
             <SidebarTagsItem
               key={tag}

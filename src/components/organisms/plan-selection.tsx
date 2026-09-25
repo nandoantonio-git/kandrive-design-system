@@ -110,7 +110,7 @@ function PlanSelection({
       <div className="flex items-start justify-between">
         <div className="flex flex-col gap-0.5">
           <p className="text-base font-semibold text-zinc-950 dark:text-zinc-100">Assinatura</p>
-          <p className="text-[0.8125rem] text-zinc-500 dark:text-zinc-400">Gerencie seu plano de armazenamento</p>
+          <p className="text-[0.8125rem] text-neutral-text-tertiary dark:text-zinc-400">Gerencie seu plano de armazenamento</p>
         </div>
       </div>
 
@@ -119,7 +119,7 @@ function PlanSelection({
           <span className="inline-flex items-center rounded-full bg-brand-teal-action px-2.5 py-0.5 text-xs font-medium text-brand-teal-foreground">
             Ativa
           </span>
-          <p className="text-[0.8125rem] text-zinc-500 dark:text-zinc-400">{nextBillingLabel}</p>
+          <p className="text-[0.8125rem] text-neutral-text-tertiary dark:text-zinc-400">{nextBillingLabel}</p>
         </div>
         <div className="inline-flex items-start rounded-lg border border-zinc-300 p-0.5 dark:border-zinc-700" role="tablist" aria-label="Intervalo de cobrança">
           <button
@@ -129,7 +129,7 @@ function PlanSelection({
             onClick={() => onIntervalChange?.("monthly")}
             className={cn(
               "rounded-md px-3 py-1 text-[0.8125rem] font-medium",
-              interval === "monthly" ? "bg-brand-teal-action text-brand-teal-foreground" : "text-zinc-500 dark:text-zinc-400"
+              interval === "monthly" ? "bg-brand-teal-action text-brand-teal-foreground" : "text-neutral-text-tertiary dark:text-zinc-400"
             )}
           >
             Mensal
@@ -141,7 +141,7 @@ function PlanSelection({
             onClick={() => onIntervalChange?.("annual")}
             className={cn(
               "rounded-md px-3 py-1 text-[0.8125rem] font-medium",
-              interval === "annual" ? "bg-brand-teal-action text-brand-teal-foreground" : "text-zinc-500 dark:text-zinc-400"
+              interval === "annual" ? "bg-brand-teal-action text-brand-teal-foreground" : "text-neutral-text-tertiary dark:text-zinc-400"
             )}
           >
             Anual
@@ -169,10 +169,10 @@ function PlanSelection({
               </span>
             ) : null}
             <p className="text-base font-semibold text-zinc-950 dark:text-zinc-100">{plan.name}</p>
-            <p className="text-[0.8125rem] text-zinc-500 dark:text-zinc-400">{plan.storageLabel}</p>
+            <p className="text-[0.8125rem] text-neutral-text-tertiary dark:text-zinc-400">{plan.storageLabel}</p>
             <p className="flex items-baseline gap-0.5">
               <span className="text-[1.375rem] font-bold text-zinc-950 dark:text-zinc-100">{price}</span>
-              <span className="text-[0.8125rem] text-zinc-500 dark:text-zinc-400">{priceSuffix}</span>
+              <span className="text-[0.8125rem] text-neutral-text-tertiary dark:text-zinc-400">{priceSuffix}</span>
             </p>
             {isCurrent ? (
               <span className="flex items-center gap-1 text-[0.8125rem] font-medium text-brand-teal">
@@ -196,7 +196,7 @@ function PlanSelection({
       <div className="h-px w-full bg-zinc-200 dark:bg-zinc-700" />
 
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <p className="text-[0.8125rem] text-zinc-500 dark:text-zinc-400">
+        <p className="text-[0.8125rem] text-neutral-text-tertiary dark:text-zinc-400">
           Atualize o método de pagamento, visualize ordens de pagamento, ou cancele no portal da Stripe
         </p>
         <Button

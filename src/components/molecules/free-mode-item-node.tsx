@@ -177,15 +177,15 @@ function FreeModeItemNode({
           {isExpandedResultado ? (
             <div className="mt-4 flex w-full flex-col border-t border-zinc-500 dark:border-zinc-400 pt-[13px]">
               <div className="flex items-center justify-between">
-                <span className="text-[0.6875rem] leading-[16.5px] text-zinc-500 dark:text-zinc-400">Arquivos incluídos</span>
+                <span className="text-[0.6875rem] leading-[16.5px] text-neutral-text-tertiary dark:text-zinc-400">Arquivos incluídos</span>
                 <span className="text-[0.6875rem] leading-[16.5px] font-semibold text-zinc-700 dark:text-zinc-300">{affectedFilesCount}</span>
               </div>
               <div className="flex items-center justify-between pt-3">
-                <span className="text-[0.6875rem] leading-[16.5px] text-zinc-500 dark:text-zinc-400">Tamanho estimado</span>
+                <span className="text-[0.6875rem] leading-[16.5px] text-neutral-text-tertiary dark:text-zinc-400">Tamanho estimado</span>
                 <span className="text-[0.6875rem] leading-[16.5px] font-semibold text-zinc-700 dark:text-zinc-300">{sizeLabel}</span>
               </div>
               <div className="flex items-center justify-between pt-3">
-                <span className="text-[0.6875rem] leading-[16.5px] text-zinc-500 dark:text-zinc-400">Regras aplicadas</span>
+                <span className="text-[0.6875rem] leading-[16.5px] text-neutral-text-tertiary dark:text-zinc-400">Regras aplicadas</span>
                 <span className="text-[0.6875rem] leading-[16.5px] font-semibold text-zinc-700 dark:text-zinc-300">{rulesCount}</span>
               </div>
               <div className="mt-3 flex w-full flex-col rounded-[10.4px] border border-zinc-200 bg-white/60 p-[9px] dark:border-zinc-700 dark:bg-zinc-900/60">
@@ -195,7 +195,7 @@ function FreeModeItemNode({
                 </div>
                 <ul className="mt-2 flex w-full flex-col gap-1">
                   {fileNames.map((name) => (
-                    <li key={name} className="text-[0.625rem] leading-[15px] text-zinc-500 dark:text-zinc-400">
+                    <li key={name} className="text-[0.625rem] leading-[15px] text-neutral-text-tertiary dark:text-zinc-400">
                       {name}
                     </li>
                   ))}
@@ -222,7 +222,7 @@ function FreeModeItemNode({
               <div className="flex flex-col">
                 <p className="text-sm leading-5 font-semibold whitespace-nowrap text-zinc-700 dark:text-zinc-300">{visibleLabel}</p>
                 {visibleSubtitle ? (
-                  <p className="text-[0.625rem] leading-[15px] whitespace-nowrap text-zinc-500 dark:text-zinc-400">{visibleSubtitle}</p>
+                  <p className="text-[0.625rem] leading-[15px] whitespace-nowrap text-neutral-text-tertiary dark:text-zinc-400">{visibleSubtitle}</p>
                 ) : null}
               </div>
             </div>
