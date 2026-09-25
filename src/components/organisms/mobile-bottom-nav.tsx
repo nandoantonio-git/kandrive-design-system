@@ -48,9 +48,10 @@ export interface MobileBottomNavProps extends React.ComponentProps<"div"> {
  *   fica no lado do FAB, e a variante None tem a barra reta.
  * - Ícone ativo: `Brand/Primary/Default`. Ícones inativos:
  *   `Effect/Overlay/Default` a 50%.
- * - Rótulos: `Neutral/Text/Placeholder`, 11px. ⚠️ No Light, fica abaixo do
- *   WCAG AA; é um achado aberto (F9), com o time de design, e não foi
- *   corrigido aqui.
+ * - Rótulos: 11px. Inativos em `Neutral/Text/Tertiary`; o do destino atual
+ *   em `Brand/Primary/Default`, como o ícone. Corrigido no Figma e no código em
+ *   2026-09-24 (F9): antes, todos usavam `Neutral/Text/Placeholder`, abaixo do
+ *   WCAG AA no Light.
  * - Ícones: glifos SF exportados do Figma como SVG em contorno.
  * - FAB: 62px, `Brand/Primary/Action`, glifo branco.
  * - ✕ de cancelar: 44px, `Neutral/Surface/Constant/Light`, glifo `destructive`.
@@ -95,7 +96,7 @@ function MobileBottomNav({
               <span className={cn("flex h-[22px] items-end", selected ? "text-brand-teal" : "text-effect-overlay-default/50")}>
                 <Glyph aria-hidden="true" className="h-[19px] w-auto" />
               </span>
-              <span className="text-[0.6875rem] leading-[17px] text-neutral-text-placeholder">{label}</span>
+              <span className={cn("text-[0.6875rem] leading-[17px]", selected ? "text-brand-teal" : "text-neutral-text-tertiary")}>{label}</span>
             </button>
           )
         })}

@@ -24,8 +24,8 @@ Decidido com o Nando em sessão de perguntas (grill), Q1–Q16. Ordem: A → B �
 
 ## Fase B: cor e contraste no código
 
-- [ ] F9 e F14 no código: tokens, `MobileBottomNav` e `RecoveryPending`.
-- [ ] Conflito do rótulo do Button fechado no vault: fica em 16px.
+- [x] F9 e F14 no código: `MobileBottomNav` (rótulos Tertiary e ativo em Primary) e `RecoveryPending` (nome em `Brand/Primary/Dark`).
+- [x] Conflito do rótulo do Button fechado no vault: fica em 16px. Alturas e raios arredondados para cima, em pares: MD 36px, Glass raio 10, LG Rounded 46px (commit `3882a86`).
 
 ## Fase C: telas novas (proposta no Figma → aprovação → oficial → código)
 

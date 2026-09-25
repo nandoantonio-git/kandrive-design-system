@@ -24,7 +24,9 @@ export interface RecoveryPendingProps extends React.ComponentProps<"div"> {
  *   (raio interno de 82%) e o Kan espiando da bolsa.
  * - 🧩 O Kan foi redesenhado em SVG a partir dos traços do `atom/MobileSuccess`:
  *   no Figma é uma imagem raster ("Prancheta 14").
- * - Nome do arquivo: 10px Bold `Brand/Primary/Mid` (microtexto). Título: 25px
+ * - Nome do arquivo: 10px Bold `Brand/Primary/Dark` (microtexto), que fica
+ *   teal claro no Dark. Corrigido em 2026-09-24 (F14): antes usava
+ *   `Brand/Primary/Mid`, que é a cor do logo e não muda no Dark. Título: 25px
  *   Medium `Neutral/Text/Primary`.
  * - Texto e aviso em 16px (Regra 4). ⚠️ No Figma têm 13px e 11px.
  * - Aviso: fundo `Brand/Primary/Disabled`, texto `Brand/Primary/Dark`, raio 8.
@@ -53,7 +55,7 @@ function RecoveryPending({ fileName, eta = "até 8h", progress = 0.75, onBack, c
         <img src={kanPeeking} alt="" aria-hidden="true" className="absolute top-[42px] left-1/2 w-[112px] -translate-x-1/2" />
       </div>
       <div className="flex flex-col gap-2">
-        <p className="text-[0.625rem] leading-3 font-bold text-brand-primary-mid">{fileName}</p>
+        <p className="text-[0.625rem] leading-3 font-bold text-brand-teal-dark">{fileName}</p>
         <h1 className="text-[1.5625rem] leading-[30px] font-medium text-neutral-text-primary">Recuperação pendente</h1>
         <p className="text-base leading-5 text-neutral-text-tertiary">
           Seu arquivo está sendo recuperado do armazenamento de longo prazo. Tempo estimado de espera:{" "}

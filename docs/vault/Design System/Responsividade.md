@@ -73,8 +73,8 @@ Decisões de 2026-09-24, tomadas numa entrevista (grill) com o Nando. A versão 
 - **F16 (novo):** no `FolderCard` Dark, o rótulo "Pasta" fica quase invisível.
 - **F10 (decidido, fase C):** o que aparece ao tocar na foto de perfil no Header mobile, em Light e Dark. Hoje o avatar não abre nada. Decidir o conteúdo (conta, plano, sair…) e o formato (menu, folha inferior, tela).
 - ~~**F13 (Figma)**~~ ✅ corrigido no Figma em 2026-09-24: `LongTermStorage/SelectFilesSelected/Mobile` marca "Organizar" na TabBar, e `SelectFiles` marca "Guardar". O código usa Guardar nas duas.
-- **F14:** ✅ corrigido no Figma em 2026-09-24 com `Brand/Primary/Dark` (código na fase B). Em `RecoveryPending` Dark, o nome do arquivo usa `Brand/Primary/Mid` (#337084 nos dois modos), com pouco contraste sobre o fundo escuro.
+- ~~**F14**~~ ✅ corrigido no Figma e no código em 2026-09-24 com `Brand/Primary/Dark`. Em `RecoveryPending` Dark, o nome do arquivo usa `Brand/Primary/Mid` (#337084 nos dois modos), com pouco contraste sobre o fundo escuro.
 - ~~**F15 (Figma)**~~ ✅ corrigido no Figma em 2026-09-24: no `molecule/StorageStatus Tier=Alert`, o aviso de limite usa `Brand/Feedback/Danger/Subtle` (35%, ilegível); a tela `Storage/LimitReached` sobrescreve com o vermelho cheio. Os botões Liberar/Comprar aparecem Disabled em todas as variantes do componente.
-- **F9:** ✅ corrigido no Figma em 2026-09-24 (código na fase B). Contraste dos rótulos inativos do `MobileBottomNav` no Light (`Neutral/Text/Placeholder`, abaixo do WCAG AA).
+- ~~**F9**~~ ✅ corrigido no Figma e no código em 2026-09-24. Contraste dos rótulos inativos do `MobileBottomNav` no Light (`Neutral/Text/Placeholder`, abaixo do WCAG AA).
 
 Ver também [[Camadas Atômicas]], [[Fonte Figma]], [[Regra 4 - Tipografia e Acessibilidade]].
