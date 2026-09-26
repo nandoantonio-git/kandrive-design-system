@@ -1,0 +1,19 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as Stories from './Avatar.stories';
+
+<Meta of={Stories} />
+
+# Avatar
+
+✅ Figma-confirmado: `atom/Avatar` (`3028:3715`), KanDrive V0.2.1.
+
+## Uso
+
+A foto do usuário: 36px no Header e 56px no bloco de usuário de Settings → Conta (`UserProfileCard`). Sem foto, mostra as iniciais do nome (🧩 extensão de engenharia: o Figma só desenha o círculo).
+
+<Canvas of={Stories.Initials} />
+<Controls />
+
+## Tokens
+
+Borda `Brand/Primary/Dark`, fundo `Neutral/Surface/Gray`, iniciais em `Neutral/Text/Secondary`. O nome vira o texto alternativo ("Foto de …").

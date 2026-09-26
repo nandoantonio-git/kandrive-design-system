@@ -14,7 +14,7 @@ export interface FirstUploadSymbolProps extends React.ComponentProps<"div"> {}
  * Corrigido em 2026-08-11 (achado do usuário): vetor real exportado do
  * Figma (`download_assets`) confirma círculo cinza neutro `#D9D9D9` +
  * glifo `#6B6B68` — a versão anterior usava as cores de marca
- * (`bg-brand-teal-light`/`text-brand-teal`), que não correspondem ao
+ * (`bg-brand-teal-light-surface`/`text-brand-teal`), que não correspondem ao
  * Figma. Cores literais usadas aqui por serem específicas desta
  * ilustração, sem token semântico equivalente já definido.
  *

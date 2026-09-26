@@ -1,0 +1,18 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as MobileFooterSettingsStories from './MobileFooterSettings.stories';
+
+<Meta of={MobileFooterSettingsStories} />
+
+# MobileFooterSettings
+
+✅ Figma-confirmado: `molecule/MobileFooterSettings` (`1756:57824`), com eixos `Page` (Settings · Payment) × `Active`.
+
+É a barra de chips na base das telas de **Settings** e **Payment** no mobile, no lugar da Sidebar de seções do desktop. Usa o `atom/Chip` Solid, o estilo canônico definido em 24/09/2026: as 7 telas do Figma tinham 7 desenhos diferentes de chip, e foram unificadas.
+
+<Canvas of={MobileFooterSettingsStories.Interactive} />
+<Controls />
+
+A faixa rola na horizontal, e o chip ativo é rolado até ficar visível. No Figma, as variantes de Privacidade, Idioma e Excluir conta vêm alinhadas à direita pelo mesmo motivo.
+
+<Canvas of={MobileFooterSettingsStories.SettingsPrivacy} />
+<Canvas of={MobileFooterSettingsStories.Payment} />

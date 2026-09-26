@@ -59,7 +59,7 @@ function ArchiveBrowserModalListItem({
       <ArchiveItemGlyph aria-hidden="true" className="h-[41px] w-[36.68px] shrink-0" />
       <div className="flex min-w-0 flex-1 flex-col items-start gap-0.5 overflow-hidden">
         <p className="w-full truncate text-base tracking-[0.0192px] text-zinc-950 dark:text-zinc-100">{fileName}</p>
-        <p className="w-full truncate text-[0.6875rem] leading-4 tracking-[0.2px] text-zinc-500 dark:text-zinc-400">{meta}</p>
+        <p className="w-full truncate text-[0.6875rem] leading-4 tracking-[0.2px] text-neutral-text-tertiary dark:text-zinc-400">{meta}</p>
       </div>
     </div>
   )

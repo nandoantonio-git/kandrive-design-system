@@ -92,10 +92,10 @@ function FileList({
       data-state={state}
       className={cn(
         "flex w-full cursor-pointer items-center gap-4 rounded-lg px-3 py-2 transition-colors",
-        "hover:bg-zinc-100 dark:hover:bg-zinc-800 active:bg-brand-teal-light",
+        "hover:bg-zinc-100 dark:hover:bg-zinc-800 active:bg-brand-teal-light-surface",
         isSm ? "max-w-[560px]" : "max-w-[1025px]",
         state === "hover" && "bg-zinc-100 dark:bg-zinc-800",
-        state === "pressed" && "bg-brand-teal-light",
+        state === "pressed" && "bg-brand-teal-light-surface",
         className
       )}
       {...props}

@@ -13,7 +13,7 @@ const kandriveTheme = create({
   base: 'light',
 
   brandTitle: 'Kandrive',
-  brandUrl: 'https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive',
+  brandUrl: 'https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1',
   brandImage: '/kandrive-logo.svg',
   brandTarget: '_blank',
 

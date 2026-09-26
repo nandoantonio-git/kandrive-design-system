@@ -1,18 +1,16 @@
-import * as React from "react"
-
 import PlusButtonGlyph from "@/assets/icons/PlusButtonGlyph.svg?react"
 import { cn } from "@/lib/utils"
 import { IconActionButton, type IconActionButtonProps } from "./icon-action-button"
 
 export interface PlusButtonProps
-  extends Omit<IconActionButtonProps, "icon" | "label"> {
+  extends Omit<IconActionButtonProps, "icon" | "label" | "style"> {
   /** Eixo `style` confirmado no Figma (`Default`|`Primary`|`White`). */
   style?: "default" | "primary" | "white"
   label?: string
 }
 
 const STYLE_CLASSNAME: Record<NonNullable<PlusButtonProps["style"]>, string> = {
-  default: "text-zinc-500 hover:text-zinc-800 active:opacity-60 dark:text-zinc-400 dark:hover:text-zinc-100",
+  default: "text-neutral-text-tertiary hover:text-zinc-800 active:opacity-60 dark:text-zinc-400 dark:hover:text-zinc-100",
   primary: "text-brand-teal hover:opacity-80 active:opacity-60",
   white: "text-white hover:opacity-80 active:opacity-60",
 }

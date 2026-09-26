@@ -58,7 +58,7 @@ function ArchiveBrowserModalSidebar({
     <nav
       data-slot="archive-browser-modal-sidebar"
       className={cn(
-        "h-full w-60 shrink-0 rounded-xl bg-effect-glass-white-36 px-4 pt-8 pb-6 shadow-[0px_8px_20px_rgba(0,0,0,0.12)] dark:shadow-[0px_8px_20px_rgba(0,0,0,0.5)]",
+        "flex h-full w-60 shrink-0 flex-col rounded-xl bg-effect-glass-white-36 px-4 pt-8 pb-6 shadow-[0px_8px_20px_rgba(0,0,0,0.12)] dark:shadow-[0px_8px_20px_rgba(0,0,0,0.5)]",
         className
       )}
       {...props}
@@ -85,7 +85,7 @@ function ArchiveBrowserModalSidebar({
         })}
       </ul>
       <div className="mt-4 flex flex-col gap-1 border-t border-zinc-200 pt-3 dark:border-zinc-700">
-        <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400">Etiquetas</span>
+        <span className="text-xs font-medium text-neutral-text-tertiary dark:text-zinc-400">Etiquetas</span>
         <FileTypeLabel kind="image" className="px-2" />
       </div>
     </nav>

@@ -1,0 +1,17 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as MobileTabBarStories from './MobileTabBar.stories';
+
+<Meta of={MobileTabBarStories} />
+
+# MobileTabBar
+
+✅ Figma-confirmado: `molecule/MobileTabBar` (`3029:3996`).
+
+É a barra de vidro que flutua no topo das telas de arquivos no mobile, logo abaixo do Header. Traz as **ações principais do app**: Home, Organizar e Guardar. No desktop, essas ações ficam no Header. No `AppShell`, ela entra pela prop `mobileTabBar` e some a partir de `tablet:`.
+
+<Canvas of={MobileTabBarStories.Interactive} />
+<Controls />
+
+- A aba ativa usa `Brand/Primary/Default` sobre `Effect/Overlay/Light` a 60%.
+- As abas inativas usam `Neutral/Text/Tertiary`.
+- ⚠️ No Figma, os rótulos têm 10px. Aqui têm 11px, o piso de microtexto da Regra 4.

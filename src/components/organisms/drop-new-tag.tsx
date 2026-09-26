@@ -6,9 +6,13 @@ import { TagColor, type TagColorName } from "@/components/molecules/tag-color"
 export type { TagColorName }
 
 export interface DropNewTagProps extends React.ComponentProps<"div"> {
+  /** Nome da etiqueta — controlado; quando omitido, o componente gerencia sozinho. */
   label?: string
+  defaultLabel?: string
   onLabelChange?: (label: string) => void
+  /** Cor da etiqueta — controlada; quando omitida, o componente gerencia sozinho (clique troca a cor de verdade). */
   color?: TagColorName
+  defaultColor?: TagColorName
   onColorChange?: (color: TagColorName) => void
 }
 
@@ -24,16 +28,49 @@ export interface DropNewTagProps extends React.ComponentProps<"div"> {
  * 🧩 Inferido (Regra 9): tema escuro não confirmado no Figma — sombra de
  * elevação composta (anel 1px + blur) não coberta pela tabela-espelho,
  * opacidade aumentada por analogia à regra de elevação padrão.
+ *
+ * **Corrigido em 2026-09-25** (achado do usuário: "tem uma linha que
+ * aparece quando ativo"): existia um `<span>` absoluto simulando o cursor
+ * de texto, numa posição fixa (`top-[3px] left-[9px]`) que só aparecia com
+ * o campo vazio e focado — redundante com o cursor nativo do `<input>` e,
+ * diferente dele, não acompanhava onde o usuário de fato clicou/digitou.
+ * Removido; a cor azul (`--accents-blue`) que ele tentava mostrar virou
+ * `caret-color` do próprio input, que já é Figma-fiel e funciona de
+ * verdade (segue a posição real do cursor).
+ *
+ * **Corrigido em 2026-09-26** (achado do usuário, clarificado: "propagação"
+ * = a cor clicada em `TagColor` não refletia em lugar nenhum): `label`/
+ * `color` eram 100% controlados, sem fallback — as stories `Default`/
+ * `WithLabel` passavam valores fixos sem `onColorChange`/`onLabelChange`,
+ * então clicar numa cor não fazia nada de visível. Reescrito com o mesmo
+ * padrão já usado em `ArchiveItem`/`FolderTagChip`: `label`/`color`
+ * continuam controláveis, mas quando as props são omitidas o componente
+ * gerencia o próprio estado (clique muda a cor de verdade).
  */
 function DropNewTag({
-  label = "",
+  label: controlledLabel,
+  defaultLabel = "",
   onLabelChange,
-  color = "success",
+  color: controlledColor,
+  defaultColor = "success",
   onColorChange,
   className,
   ...props
 }: DropNewTagProps) {
-  const [isFocused, setIsFocused] = React.useState(false)
+  const [internalLabel, setInternalLabel] = React.useState(defaultLabel)
+  const [internalColor, setInternalColor] = React.useState<TagColorName>(defaultColor)
+  const label = controlledLabel ?? internalLabel
+  const color = controlledColor ?? internalColor
+
+  const handleLabelChange = (next: string) => {
+    if (controlledLabel === undefined) setInternalLabel(next)
+    onLabelChange?.(next)
+  }
+  const handleColorChange = (next: TagColorName) => {
+    if (controlledColor === undefined) setInternalColor(next)
+    onColorChange?.(next)
+  }
+
   return (
     <div
       data-slot="drop-new-tag"
@@ -52,22 +89,14 @@ function DropNewTag({
         type="text"
           aria-label="Nome da etiqueta"
         value={label}
-        onChange={(event) => onLabelChange?.(event.target.value)}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
+        onChange={(event) => handleLabelChange(event.target.value)}
         placeholder="Nome da etiqueta"
-          className="absolute top-px left-0 h-3 w-20 rounded-md border-0 bg-zinc-50 px-1 text-[0.625rem] leading-3 text-zinc-700 placeholder:text-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal/50 dark:bg-zinc-900 dark:text-zinc-300"
+          className="absolute top-px left-0 h-3 w-20 rounded-md border-0 bg-zinc-50 px-1 text-[0.625rem] leading-3 text-zinc-700 caret-[var(--accents-blue,#08f)] placeholder:text-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal/50 dark:bg-zinc-900 dark:text-zinc-300"
       />
-        {!label && isFocused ? (
-          <span
-            aria-hidden="true"
-            className="absolute top-[3px] left-[9px] h-2 w-px rounded-full bg-[var(--accents-blue,#08f)]"
-          />
-        ) : null}
       </div>
       <TagColor
         value={color}
-        onValueChange={onColorChange}
+        onValueChange={handleColorChange}
         className="absolute top-[26px] left-3.5"
       />
     </div>

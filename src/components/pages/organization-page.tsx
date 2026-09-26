@@ -1,7 +1,8 @@
 import * as React from "react"
+import { Info } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { Header } from "@/components/organisms/header"
+import { AppShell } from "@/components/templates/app-shell"
 import { Sidebar, type SidebarProps } from "@/components/organisms/sidebar"
 import { Breadcrumb } from "@/components/molecules/breadcrumb"
 import { PageLead } from "@/components/molecules/page-lead"
@@ -14,9 +15,22 @@ import { SaveOrganizationModal, type SaveOrganizationModalProps } from "@/compon
 import { OrganizePanelDropZone, type OrganizePanelDropZoneProps } from "@/components/organisms/organize-panel-drop-zone"
 import { FolderCard, type FolderCardProps } from "@/components/molecules/folder-card"
 import { PopoverNotification, type PopoverNotificationProps } from "@/components/molecules/popover-notification"
+import { TemplateReviewModal, type ReviewItem } from "@/components/templates/template-review-modal"
+import { MethodOrganizeButton, MOBILE_ORGANIZE_METHODS, type MobileOrganizeMethod } from "@/components/molecules/method-organize-button"
+import { FileSelectList } from "@/components/organisms/file-select-list"
+import type { FileRowProps } from "@/components/molecules/file-row"
+import { MobileSuccess } from "@/components/atoms/mobile-success"
+import { useMinWidth } from "@/lib/use-min-width"
+import { PagePickerButton } from "@/components/molecules/page-picker-button"
 import type { HomePageGridItem } from "@/components/pages/home-page"
 
-export type OrganizationPageStep = "default" | "template-drop-zone" | "saved"
+export type OrganizationPageStep = "default" | "template-drop-zone" | "review" | "review-done" | "saved"
+
+export interface OrganizationMobileFile {
+  name: string
+  /** Ex.: "4.2 MB". */
+  meta: string
+}
 
 export interface OrganizationPageProps extends React.ComponentProps<"div"> {
   viewMode: ViewMode
@@ -38,6 +52,16 @@ export interface OrganizationPageProps extends React.ComponentProps<"div"> {
   dropZoneProps?: OrganizePanelDropZoneProps
   folderCardProps?: FolderCardProps
   notificationProps?: PopoverNotificationProps
+  /** Itens da revisão (`review`, `review-done` e, no mobile, `template-drop-zone`). */
+  reviewItems?: ReviewItem[]
+  /** Mobile, `default`: a lista "Selecionar arquivos". */
+  mobileFiles?: OrganizationMobileFile[]
+  /** Mobile, `default`: método inicial do seletor. */
+  mobileMethod?: MobileOrganizeMethod
+  /** Mobile, `saved`: o grupo criado (ex. "2000") e as linhas dele. */
+  savedGroup?: { label: string; rows: FileRowProps[] }
+  /** `review-done`: arquivo exibido na confirmação ("✓ Backup_Documentos.tar"). */
+  organizedFileName?: string
 }
 
 /**
@@ -85,77 +109,222 @@ function OrganizationPage({
   dropZoneProps,
   folderCardProps,
   notificationProps,
+  reviewItems = [],
+  mobileFiles = [],
+  mobileMethod = "projeto",
+  savedGroup,
+  organizedFileName,
   className,
   ...props
 }: OrganizationPageProps) {
-  return (
-    <div data-slot="organization-page" className={cn("relative flex w-full flex-col bg-zinc-200 dark:bg-zinc-900", className)} {...props}>
-      <Header page="navbar" />
-      <div className="mx-auto flex w-[1376px] items-start gap-12 px-1 py-2.5">
-        <Sidebar {...sidebarProps} />
-        <div className="flex flex-1 flex-col gap-5">
-          {step === "template-drop-zone" ? (
-            <>
-              <div className="flex items-start justify-between gap-4">
-                <Breadcrumb segments={["Home", "Templates de organização"]} className="w-full" />
-              </div>
-              <div className="flex items-start justify-between gap-4">
-                <PageLead title="Organização" caption="Organize seus arquivos em templates" className="flex-1" />
-                <div className="flex shrink-0 items-center gap-4">
-                  <DropdownSelectGroupBy />
-                  <Label />
-                  <ViewModeToggle mode={viewMode} onModeChange={onViewModeChange} />
-                </div>
-              </div>
-              <div className="flex items-start gap-8">
-                <div className="flex flex-1 flex-wrap gap-8">
-                  {gridItems.map((item) =>
-                    item.kind === "image" ? (
-                      <ImageItem key={item.name} name={item.name} />
-                    ) : (
-                      <FileArchiveCard key={item.name} label={item.name} interactive={item.interactive} />
-                    )
-                  )}
-                </div>
-                <OrganizePanelDropZone mode="Data" {...dropZoneProps} className={cn("w-[560px] shrink-0", dropZoneProps?.className)} />
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="flex items-start justify-between gap-4">
-                <h1 className="flex-1 text-[2.5rem] leading-none font-bold text-black dark:text-zinc-100">Bem-vindo ao Kandrive!</h1>
-                <div className="flex shrink-0 items-center gap-4">
-                  <DropdownSelectGroupBy />
-                  <Label />
-                  <ViewModeToggle mode={viewMode} onModeChange={onViewModeChange} />
-                </div>
-              </div>
-              {step === "saved" ? (
-                <FolderCard {...folderCardProps} />
-              ) : (
-                <div className="flex flex-wrap gap-8">
-                  {gridItems.map((item) =>
-                    item.kind === "image" ? (
-                      <ImageItem key={item.name} name={item.name} />
-                    ) : (
-                      <FileArchiveCard key={item.name} label={item.name} interactive={item.interactive} />
-                    )
-                  )}
-                </div>
-              )}
-            </>
-          )}
-        </div>
+  const tablet = useMinWidth("tablet")
+  const task = step !== "saved"
+  if (!tablet) {
+    return (
+      <OrganizationPageMobile
+        step={step}
+        className={className}
+        reviewItems={reviewItems}
+        mobileFiles={mobileFiles}
+        mobileMethod={mobileMethod}
+        savedGroup={savedGroup}
+        organizedFileName={organizedFileName}
+        viewMode={viewMode}
+        onViewModeChange={onViewModeChange}
+        {...props}
+      />
+    )
+  }
+  const toolbar = (
+    <>
+      <div className="hidden shrink-0 items-center gap-4 tablet:flex">
+        <DropdownSelectGroupBy />
+        <Label />
+        <ViewModeToggle mode={viewMode} onModeChange={onViewModeChange} />
       </div>
+      <div className="flex w-full items-center justify-between gap-2.5 tablet:hidden">
+        <DropdownSelectGroupBy device="mobile" />
+        <ViewModeToggle size="compact" mode={viewMode === "columns" ? "list" : viewMode} onModeChange={onViewModeChange} />
+      </div>
+    </>
+  )
+  const grid = (
+    <div className="flex flex-1 flex-wrap gap-6 tablet:gap-8">
+      {gridItems.map((item) =>
+        item.kind === "image" ? (
+          <ImageItem key={item.name} name={item.name} />
+        ) : (
+          <FileArchiveCard key={item.name} label={item.name} interactive={item.interactive} />
+        )
+      )}
+    </div>
+  )
+  return (
+    <AppShell
+      data-slot="organization-page"
+      className={cn("bg-zinc-200 dark:bg-zinc-900", className)}
+      headerProps={{ page: "navbar" }}
+      sidebar={<Sidebar {...sidebarProps} />}
+      // Mobile: salvar e arrastar são tarefa (Confirmar + ✕, cancelar volta para a Home, sem TabBar);
+      // "salvo" volta ao modo de arquivos (TabBar + Adicionar), como em Organize/Saved/Mobile.
+      mobileTabBar={task ? undefined : { active: "organize" }}
+      mobileBottomNav={task ? { action: "confirm", active: "pessoal" } : { action: "add", active: "pessoal" }}
+      {...props}
+    >
+      {step === "template-drop-zone" || step === "review" || step === "review-done" ? (
+        <>
+          <Breadcrumb segments={["Home", "Templates de organização"]} className="hidden w-full tablet:flex" />
+          <div className="flex flex-col items-start justify-between gap-4 desktop:flex-row">
+            <PageLead title="Organização" caption="Organize seus arquivos em templates" className="flex-1" />
+            {toolbar}
+          </div>
+          {/* Mobile e tablet: o painel de arrastar vai para baixo da grade. */}
+          <div className="flex flex-col items-start gap-6 desktop:flex-row desktop:gap-8">
+            {grid}
+            <OrganizePanelDropZone mode="Data" {...dropZoneProps} className={cn("w-full shrink-0 desktop:w-[560px]", dropZoneProps?.className)} />
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="flex flex-col items-start justify-between gap-4 desktop:flex-row">
+            <h1 className="hidden flex-1 text-[2.5rem] leading-none font-bold text-black tablet:block dark:text-zinc-100">Bem-vindo ao Kandrive!</h1>
+            {toolbar}
+          </div>
+          {step === "saved" ? <FolderCard {...folderCardProps} /> : grid}
+        </>
+      )}
+
+      {step === "review" ? (
+        <div className="absolute inset-0 z-40 flex items-center justify-center bg-black/20 p-6">
+          <TemplateReviewModal items={reviewItems} className="h-auto max-h-[613px] w-full max-w-[768px]" />
+        </div>
+      ) : null}
+      {step === "review-done" ? <OrganizedFeedback fileName={organizedFileName} /> : null}
       {step === "default" && modalOpen ? (
-        <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+        <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/20 p-4 tablet:absolute">
           <SaveOrganizationModal {...modalProps} />
         </div>
       ) : null}
       {step === "saved" ? (
-        <PopoverNotification {...notificationProps} className={cn("absolute right-8 bottom-8", notificationProps?.className)} />
+        <PopoverNotification
+          {...notificationProps}
+          className={cn("fixed right-4 bottom-[176px] left-4 z-30 mx-auto tablet:absolute tablet:right-8 tablet:bottom-8 tablet:left-auto", notificationProps?.className)}
+        />
       ) : null}
+    </AppShell>
+  )
+}
+
+/** `Organize/ReviewDone`: feedback de tela cheia, fixo na paleta Light (sem `dark:`). */
+function OrganizedFeedback({ fileName }: { fileName?: string }) {
+  return (
+    <div data-slot="organize-review-done" className="fixed inset-0 z-50 flex items-center justify-center bg-[#007e96] px-4">
+      <MobileSuccess message="organized" fileName={fileName} />
     </div>
+  )
+}
+
+type OrganizationPageMobileProps = Pick<
+  OrganizationPageProps,
+  "step" | "reviewItems" | "mobileFiles" | "mobileMethod" | "savedGroup" | "organizedFileName" | "viewMode" | "onViewModeChange"
+> &
+  Omit<React.ComponentProps<"div">, "children">
+
+/** As composições mobile do Figma V0.2.1 (ver `OrganizationPage`). */
+function OrganizationPageMobile({
+  step = "default",
+  reviewItems = [],
+  mobileFiles = [],
+  mobileMethod = "projeto",
+  savedGroup,
+  organizedFileName,
+  viewMode,
+  onViewModeChange,
+  className,
+  ...props
+}: OrganizationPageMobileProps) {
+  const [method, setMethod] = React.useState<MobileOrganizeMethod>(mobileMethod)
+  const [methodsOpen, setMethodsOpen] = React.useState(false)
+  const [selected, setSelected] = React.useState<Set<string>>(() => new Set())
+  const toggle = (name: string, checked: boolean) =>
+    setSelected((previous) => {
+      const next = new Set(previous)
+      if (checked) next.add(name)
+      else next.delete(name)
+      return next
+    })
+
+  const saved = step === "saved"
+  const review = step === "template-drop-zone" || step === "review" || step === "review-done"
+  const heading = "text-[1.5625rem] leading-[30px] font-medium text-neutral-text-primary"
+  const lead = "text-base leading-5 text-neutral-text-secondary"
+  const caption = "text-[0.6875rem] leading-4 text-neutral-text-tertiary"
+
+  return (
+    <AppShell
+      data-slot="organization-page"
+      data-device="mobile"
+      className={cn("bg-zinc-200 dark:bg-zinc-900", className)}
+      headerProps={{ page: "navbar" }}
+      mobileTabBar={{ active: saved ? "home" : "organize" }}
+      mobileBottomNav={saved ? { action: "add", active: "pessoal" } : { action: "confirm", active: "pessoal" }}
+      drawer={step === "review-done" ? false : undefined}
+      {...props}
+    >
+      {saved ? (
+        <>
+          <div className="flex w-full items-center justify-between gap-2.5 border-b border-neutral-border-subtle pb-1.5">
+            <DropdownSelectGroupBy device="mobile" value="Data de compartilhamento" />
+            <ViewModeToggle size="compact" mode={viewMode === "columns" ? "list" : viewMode} onModeChange={onViewModeChange} />
+          </div>
+          <FolderCard device="mobile" label={savedGroup?.label} rows={savedGroup?.rows} className="pr-0" />
+        </>
+      ) : review ? (
+        <>
+          <div className="flex flex-col gap-2">
+            <h1 className={heading}>Revisar Organização</h1>
+            <p className={lead}>Revise o template sugerido antes de aplicar as mudanças.</p>
+          </div>
+          <TemplateReviewModal device="mobile" items={reviewItems} />
+          <p className={cn("flex items-center gap-2", caption)}>
+            <Info aria-hidden="true" className="size-3.5 shrink-0" />
+            Garanta que sua estrutura de arquivos seja clara e sem duplicidades.
+          </p>
+        </>
+      ) : (
+        <>
+          <div className="flex flex-col gap-1">
+            <h1 className={heading}>Organização</h1>
+            <p className={lead}>Selecione como os dados serão visualizados e correlacionados no seu workspace.</p>
+          </div>
+          <div className="flex flex-col gap-2">
+            <MethodOrganizeButton method={method} expanded={methodsOpen} onClick={() => setMethodsOpen((open) => !open)} />
+            {methodsOpen
+              ? MOBILE_ORGANIZE_METHODS.filter((option) => option !== method).map((option) => (
+                  <MethodOrganizeButton
+                    key={option}
+                    method={option}
+                    withChevron={false}
+                    onClick={() => {
+                      setMethod(option)
+                      setMethodsOpen(false)
+                    }}
+                  />
+                ))
+              : null}
+          </div>
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center gap-2">
+              <span className={caption}>Ordenar por:</span>
+              <DropdownSelectGroupBy device="mobile" value="Data de compartilhamento" />
+            </div>
+            <PagePickerButton />
+          </div>
+          <FileSelectList files={mobileFiles} selected={selected} onSelectedChange={toggle} />
+        </>
+      )}
+      {step === "review-done" ? <OrganizedFeedback fileName={organizedFileName} /> : null}
+    </AppShell>
   )
 }
 

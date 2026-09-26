@@ -1,0 +1,32 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as CheckboxStories from './Checkbox.stories';
+
+<Meta of={CheckboxStories} />
+
+# Checkbox
+
+✅ Figma-confirmado: `atom/Checkbox` (`3051:9590`), KanDrive V0.2.1.
+
+## Uso
+
+Seleção múltipla em listas, por exemplo nos arquivos de "Liberar espaço" (`CleanSpaceListSelection`). O checkbox não tem texto visível próprio, então `aria-label` é obrigatório.
+
+<Canvas of={CheckboxStories.Interactive} />
+<Controls />
+
+## Variantes
+
+<Canvas of={CheckboxStories.Matrix} />
+
+| `size` | Figma | Uso |
+| --- | --- | --- |
+| `sm` | SM, 16px | Listas no desktop. ✅ Os dois estados estão confirmados. |
+| `md` | MD, 20px | Linhas no mobile. ✅ Desmarcado confirmado; 🧩 o marcado é o SM ampliado. |
+
+## Estados
+
+Desmarcado · Marcado · Hover · Active · Focus (anel, só pelo teclado) · Disabled (50%). Hover, active e foco são extensão de engenharia (Regra 8), porque o Figma não tem eixo `Hover`.
+
+## Acessibilidade
+
+É um `<button role="checkbox" aria-checked>`: responde a clique, Espaço e Enter, e o leitor de tela anuncia "caixa de seleção, marcada / não marcada".

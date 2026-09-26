@@ -1,7 +1,7 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
-import { PushButton } from "@/components/atoms/push-button"
+import { Button } from "@/components/atoms/button"
 import { ArchiveItem } from "@/components/atoms/archive-item"
 import { ImageItem } from "@/components/atoms/image-item"
 import { TagOrgTemplateName } from "@/components/atoms/tag-org-template-name"
@@ -107,7 +107,7 @@ function OrganizePanelDropZone({
       data-slot="organize-panel-drop-zone"
       data-state={state}
       className={cn(
-        "relative flex h-[772px] w-[560px] flex-col justify-between overflow-hidden rounded-[34px] glass-edge bg-effect-glass-white-70 p-6 shadow-lg",
+        "relative flex min-h-[420px] w-full flex-col justify-between desktop:h-[772px] desktop:w-[560px] overflow-hidden rounded-[34px] glass-edge bg-effect-glass-white-70 p-6 shadow-lg",
         "data-[state=dragover]:ring-2 data-[state=dragover]:ring-[#007aff]/25",
         className
       )}
@@ -138,24 +138,25 @@ function OrganizePanelDropZone({
           {quantity >= 3 ? <ArchiveItem name="Arquivo 3" /> : null}
           {quantity >= 4 && mode === "Data" ? <ArchiveItem name="Maio - 1997" /> : null}
         </div>
-      ) : state === "dragover" ? (
-        <FolderOrganizeActiveGlyph
-          aria-hidden="true"
-          className="absolute top-[260px] right-[33.57%] left-[33.57%] aspect-square"
-        />
       ) : (
-        <FolderOrganizeGlyph
-          aria-hidden="true"
-          className="absolute top-[260px] right-[33.57%] left-[33.57%] aspect-square"
-        />
+        // Centralizado entre o cabeçalho e os botões, em qualquer altura de painel
+        // (pedido do usuário, 2026-09-24). Antes: `absolute top-[260px]`, que só
+        // funcionava no painel de 772px do desktop.
+        <div className="relative flex flex-1 items-center justify-center py-6">
+          {state === "dragover" ? (
+            <FolderOrganizeActiveGlyph aria-hidden="true" className="aspect-square w-1/3 max-w-[188px]" />
+          ) : (
+            <FolderOrganizeGlyph aria-hidden="true" className="aspect-square w-1/3 max-w-[188px]" />
+          )}
+        </div>
       )}
       <div className="relative flex items-center justify-end gap-4">
-        <PushButton variant="neutral" className="h-8 px-4 text-xs" onClick={onCancel}>
+        <Button variant="outline" className="h-8 px-4 text-xs" onClick={onCancel}>
           Cancelar
-        </PushButton>
-        <PushButton variant="primary" className="h-8 px-4 text-xs" onClick={onContinue}>
+        </Button>
+        <Button className="h-8 px-4 text-xs" onClick={onContinue}>
           Continuar
-        </PushButton>
+        </Button>
       </div>
     </div>
   )

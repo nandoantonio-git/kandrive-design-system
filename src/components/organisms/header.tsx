@@ -1,11 +1,14 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import { HamburgerButton } from "@/components/atoms/hamburger-button"
 import { SearchInput, type SearchInputProps } from "@/components/molecules/search-input"
-import { PushButton } from "@/components/atoms/push-button"
+import { Button } from "@/components/atoms/button"
 import { ICONS } from "@/components/atoms/icon"
 import { ActionPill } from "@/components/molecules/action-pill"
+import { Avatar } from "@/components/atoms/avatar"
 import kandriveLogo from "@/assets/logo/kandrive-logo.svg"
+import kandriveLogoDark from "@/assets/logo/kandrive-logo-dark.svg"
 
 export type HeaderPage = "navbar" | "settings" | "storage"
 
@@ -14,12 +17,18 @@ export interface HeaderProps extends React.ComponentProps<"header"> {
   searchProps?: SearchInputProps
   onOrganize?: () => void
   onSave?: () => void
+  /** Mobile: toque no ☰ (abre a gaveta). */
+  onMenuClick?: () => void
+  /** Toque no avatar (mobile) ou no ícone de conta (tablet e desktop): abre Settings → Conta, com o bloco de usuário (F10, 2026-09-24). */
+  onAvatarClick?: () => void
+  /** Usuário logado — mesmo shape de `UserProfileCard`/`Settings`, mostrado no `atom/Avatar` mobile. */
+  user?: { name?: string; avatarSrc?: string }
 }
 
 /**
  * organism/Header (`1421:19918`) — Figma-confirmado: "header". Variante
  * `page=Navbar` expõe 2 ações de fluxo ao vivo: "Organizar" e "Guardar"
- * (`PushButton variant="primary"`, Regra 1 — nenhum componente separado).
+ * (`atom/Button`, migrado de `PushButton` em 2026-09-25, fase E).
  * "Guardar" é termo aprovado (Regra 5); "Organizar" não está na lista
  * travada mas também não é termo proibido — gap de terminologia baixo,
  * ver docs/conflicts.md. Compõe `molecule/input-search` (placeholder local
@@ -36,7 +45,7 @@ export interface HeaderProps extends React.ComponentProps<"header"> {
  * `download_assets` para `src/assets/logo/kandrive-logo.svg` e usado como
  * asset, nunca como texto. A composição de `molecule/action-pill` também foi
  * corrigida na mesma auditoria (ver `ActionPill.mdx`) — os 3 ícones reais são
- * Help/Settings/Conta, não 2×Settings+SpatialAudioOff.
+ * Help/Settings/Conta, não 2×Settings+Account.
  *
  * ⚠️ Corrigido em 2026-08-11 (Regra 11, auditoria de fixed-point): a pílula
  * de ações (Help/Settings/Conta) é renderizada a `opacity: 50%` no Figma
@@ -59,41 +68,74 @@ export interface HeaderProps extends React.ComponentProps<"header"> {
  * Figma) — como este achado é novo (não está na lista de 8 organisms com
  * gap conhecido/deferido em `PushButton.mdx`), removido o `className`
  * inteiro para herdar os defaults corretos do átomo.
+ *
+ * **Corrigido em 2026-09-25** (achado do usuário: "Header desatualizado"):
+ * o botão de conta no mobile era um círculo vazio (`border` + `bg`
+ * hand-rolled), sem iniciais nem foto — desde a F10 (2026-09-24), o
+ * `atom/Avatar` já documenta no próprio JSDoc "Figma: 36 no Header, 56 no
+ * bloco de usuário de Settings → Conta", mas o Header nunca foi atualizado
+ * pra usá-lo. Trocado pelo `Avatar` de verdade (36px, mesma prop `user`
+ * usada em `Settings`).
  */
-function Header({ page = "navbar", searchProps, onOrganize, onSave, className, ...props }: HeaderProps) {
+function Header({
+  page = "navbar",
+  searchProps,
+  onOrganize,
+  onSave,
+  onMenuClick,
+  onAvatarClick,
+  user = { name: "Cassandra Ribeiro" },
+  className,
+  ...props
+}: HeaderProps) {
   return (
     <header
       data-slot="header"
       className={cn(
-        "flex h-24 w-full items-center gap-8 border-b border-[var(--neutral-border-default,#707070)] bg-[var(--neutral-surface-background,#f3f3f3)] px-6 py-6",
+        "flex h-24 w-full items-center gap-4 tablet:gap-8 border-b border-[var(--neutral-border-default,#707070)] bg-[var(--neutral-surface-background,#f3f3f3)] px-6 py-6",
         className
       )}
       {...props}
     >
-      <img src={kandriveLogo} alt="Kandrive" className="h-11 w-[173px] shrink-0" />
+      {/* Mobile (Figma Header Device=Mobile): ☰ + busca + avatar. A partir de `tablet:`, o layout de sempre. */}
+      <HamburgerButton className="tablet:hidden" onClick={onMenuClick} />
+      <img src={kandriveLogo} alt="Kandrive" className="hidden h-11 w-[173px] shrink-0 tablet:block dark:hidden" />
+      {/* Logo sobre fundo escuro (Figma Logo/* dark): "Kan" + canguru (Kan) #F5F4F2, "drive" #337084 (Brand/Primary/Mid), símbolo #337084→#1A5E6E. */}
+      <img src={kandriveLogoDark} alt="Kandrive" className="hidden h-11 w-[173px] shrink-0 tablet:dark:block" />
       <SearchInput
         {...searchProps}
         placeholder={searchProps?.placeholder ?? "Pesquisar"}
         className="min-w-0 max-w-[560px] flex-1"
       />
       {page === "navbar" ? (
-        <div className="flex shrink-0 items-center gap-5">
-          <PushButton variant="primary" icon={ICONS.Organize} onClick={onOrganize}>
-            Organizar
-          </PushButton>
-          <PushButton variant="primary" icon={ICONS.Keep} onClick={onSave}>
-            Guardar
-          </PushButton>
+        <div className="hidden shrink-0 items-center gap-5 tablet:flex">
+          {/* Tablet: só o ícone (Figma Header Device=Tablet); o rótulo aparece a partir de `desktop:`. */}
+          <Button onClick={onOrganize} aria-label="Organizar">
+            <ICONS.Organize className="size-4" aria-hidden="true" />
+            <span className="hidden desktop:inline">Organizar</span>
+          </Button>
+          <Button onClick={onSave} aria-label="Guardar">
+            <ICONS.Keep className="size-4" aria-hidden="true" />
+            <span className="hidden desktop:inline">Guardar</span>
+          </Button>
         </div>
       ) : null}
       <ActionPill
-        className="ml-auto shrink-0 opacity-50"
+        className="ml-auto hidden shrink-0 opacity-50 tablet:flex"
         actions={[
           { name: "Help", label: "Ajuda" },
           { name: "Settings", label: "Configurações" },
-          { name: "SpatialAudioOff", label: "Conta" },
+          { name: "Account", label: "Conta", onClick: onAvatarClick },
         ]}
       />
+      <button
+        type="button"
+        aria-label="Conta"
+        onClick={onAvatarClick}
+        className="touch-target ml-auto shrink-0 cursor-pointer rounded-full focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none tablet:hidden"
+      >
+        <Avatar name={user?.name} src={user?.avatarSrc} size={36} />
+      </button>
     </header>
   )
 }

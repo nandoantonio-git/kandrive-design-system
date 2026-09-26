@@ -22,6 +22,12 @@ export interface DropdownSelectGroupByProps
   expanded?: boolean
   onExpandedChange?: (expanded: boolean) => void
   disabled?: boolean
+  /**
+   * Figma `Device`: desktop (com o título "AGRUPAR") · mobile (só o botão
+   * compacto de 35px, sem título). Na Home mobile, substitui o `atom/SortButton`
+   * (decisão da Fase 4 e Q25, 2026-09-24).
+   */
+  device?: "desktop" | "mobile"
 }
 
 /**
@@ -50,23 +56,26 @@ function DropdownSelectGroupBy({
   expanded = false,
   onExpandedChange,
   disabled,
+  device = "desktop",
   className,
   ...props
 }: DropdownSelectGroupByProps) {
+  const mobile = device === "mobile"
   return (
     <div
       data-slot="dropdown-select-group-by"
       data-disabled={disabled || undefined}
       data-expanded={expanded || undefined}
       className={cn(
-        "flex w-[105px] flex-col items-start gap-1 data-[expanded]:h-auto",
-        !expanded && "h-[54px]",
+        "flex flex-col items-start gap-1 data-[expanded]:h-auto",
+        mobile ? "w-fit min-w-[105px]" : "w-[105px]",
+        !expanded && (mobile ? "h-[35px]" : "h-[54px]"),
         "data-[disabled]:pointer-events-none data-[disabled]:opacity-[0.32]",
         className
       )}
       {...props}
     >
-      <span className="px-1 text-[0.625rem] font-bold tracking-wide text-zinc-500 dark:text-zinc-400">AGRUPAR</span>
+      {mobile ? null : <span className="px-1 text-[0.625rem] font-bold tracking-wide text-neutral-text-tertiary dark:text-zinc-400">AGRUPAR</span>}
       <div className="relative flex w-full flex-col items-start gap-1 rounded-xl glass-edge glass-shadow-sm bg-effect-glass-light-45 py-2 backdrop-blur-sm">
         <button
           type="button"
@@ -74,7 +83,7 @@ function DropdownSelectGroupBy({
           aria-expanded={expanded}
           disabled={disabled}
           onClick={() => onExpandedChange?.(!expanded)}
-          className="flex w-full items-center gap-2 px-3 text-xs text-zinc-700 dark:text-zinc-300"
+          className={cn("flex w-full items-center gap-2 px-3 text-xs text-zinc-700 dark:text-zinc-300", mobile && "touch-target")}
         >
           <Icon name="Group" className="size-3.5 shrink-0" />
           <span className="min-w-0 flex-1 truncate">{value ?? "Agrupar"}</span>

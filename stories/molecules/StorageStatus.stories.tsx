@@ -8,7 +8,7 @@ const meta = {
   component: StorageStatus,
   parameters: {
     layout: "padded",
-    design: { type: 'figma', url: 'https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1421-18354' },
+    design: { type: 'figma', url: 'https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=231-4553' },
   },
   argTypes: {
     variant: { control: "radio", options: ["sidebar", "expanded"] },
@@ -73,4 +73,10 @@ export const Interactive: StoryObj = {
       />
     )
   },
+}
+
+/** Figma `Tier=Alert` (V0.2.1): limite atingido. Valor e aviso em vermelho, barra cheia. */
+export const LimitReached: Story = {
+  args: { scope: "global", usedAmount: "90GB", totalAmount: "90GB", percent: 100, limitReached: true },
+  parameters: { design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1765-62468" } },
 }

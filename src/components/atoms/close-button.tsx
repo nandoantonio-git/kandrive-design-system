@@ -1,12 +1,8 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
-import closeButtonMdHover from "@/assets/icons/CloseButtonMdHover.svg"
 import closeButtonMdIdle from "@/assets/icons/CloseButtonMdIdle.svg"
-import closeButtonMdPressed from "@/assets/icons/CloseButtonMdPressed.svg"
-import closeButtonSmHover from "@/assets/icons/CloseButtonSmHover.svg"
 import closeButtonSmIdle from "@/assets/icons/CloseButtonSmIdle.svg"
-import closeButtonSmPressed from "@/assets/icons/CloseButtonSmPressed.svg"
 import ClearGlyph from "@/assets/icons/ClearButtonGlyph.svg?react"
 
 export type CloseButtonSize = "sm" | "md"

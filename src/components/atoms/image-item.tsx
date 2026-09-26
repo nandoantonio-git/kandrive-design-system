@@ -105,6 +105,10 @@ const SELECTED_STATES: readonly ImageItemState[] = [
  *    documentação), mas quando omitido o componente rastreia hover/press
  *    reais e clique alterna seleção sozinho (`selected`/`defaultSelected`/
  *    `onSelectedChange`, controlado ou não).
+ *
+ * **Corrigido em 2026-09-25**: adicionado `shrink-0` no container raiz —
+ * mesmo bug e mesmo fix do `ArchiveItem` (ver notas lá), nome cortando
+ * quando o item comprime como flex-child sem espaço.
  */
 function ImageItem({
   state: explicitState,
@@ -161,7 +165,7 @@ function ImageItem({
       aria-pressed={isSelected}
       aria-disabled={isDisabled || undefined}
       className={cn(
-        "relative flex w-fit min-w-[35.14px] flex-col items-center gap-1 px-1 py-0.5",
+        "relative flex w-fit min-w-[35.14px] shrink-0 flex-col items-center gap-1 px-1 py-0.5",
         "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
         isDisabled ? "cursor-not-allowed" : "cursor-pointer",
         className
@@ -198,10 +202,10 @@ function ImageItem({
     >
       <div className="relative h-[41px] w-[35.14px] shrink-0">
         <img alt="" aria-hidden="true" className="absolute inset-0 size-full" src={IMAGE[state]} />
-        {/* 🧩 Inferido (Regra 9): `--effect-glass-fill-light` não é um token real (sem entrada em index.css) — fallback rgba espelhado com a mesma base #1a1a1a já usada pelos tokens effect-glass-white-* em modo escuro */}
+        {/* Vidro do símbolo fixo no valor Light (Effect/Glass/Fill/Light, #fafafa a 60%): o símbolo fica igual no Light e no Dark (pedido do usuário, 2026-09-24). */}
         <div
           aria-hidden="true"
-          className="absolute top-[2px] left-[2.07px] h-7 w-[31px] rounded glass-edge bg-[var(--effect-glass-fill-light,rgba(250,250,250,0.6))] dark:bg-[rgba(26,26,26,0.6)]"
+          className="absolute top-[2px] left-[2.07px] h-7 w-[31px] rounded glass-edge bg-[rgba(250,250,250,0.6)]"
         />
         {SELECTED_STATES.includes(state) ? (
           <SelectState className="absolute right-[2px] bottom-0" />
@@ -211,7 +215,7 @@ function ImageItem({
         <span
           className={cn(
             "block h-3 w-full truncate text-center text-[0.625rem] leading-normal tracking-[0.012px]",
-            isDisabled ? "text-zinc-500 dark:text-zinc-400" : "text-zinc-700 dark:text-zinc-300"
+            isDisabled ? "text-neutral-text-tertiary dark:text-zinc-400" : "text-zinc-700 dark:text-zinc-300"
           )}
         >
           {name}

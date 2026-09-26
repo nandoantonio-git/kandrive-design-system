@@ -10,7 +10,9 @@ import ViewModeListIdle from "@/assets/icons/ViewModeListIdle.svg?react"
 
 export type ViewMode = "grid" | "list" | "columns"
 
-const MODES = [
+type SvgIcon = typeof ViewModeGridActive
+
+const MODES: ReadonlyArray<{ value: ViewMode; label: string; ActiveIcon: SvgIcon; IdleIcon: SvgIcon; iconClassName: string }> = [
   {
     value: "grid",
     label: "Grid",
@@ -38,6 +40,15 @@ export interface ViewModeToggleProps
   extends Omit<React.ComponentProps<"div">, "onChange"> {
   mode: ViewMode
   onModeChange?: (mode: ViewMode) => void
+  /** Figma `Size`: default (com o título "VISUALIZAR" e os rótulos) · compact (73×31, só ícones, mobile). */
+  size?: "default" | "compact"
+  /**
+   * Quais modos oferecer. Quando omitido, segue `size`: `compact` (mobile)
+   * já exclui "columns" por padrão (Colunas é exclusivo de tablet/desktop,
+   * decisão de 2026-09-24) — não precisa passar esta prop pra isso, é
+   * automático. Só use `modes` pra um recorte diferente do padrão.
+   */
+  modes?: readonly ViewMode[]
 }
 
 /**
@@ -52,19 +63,32 @@ export interface ViewModeToggleProps
  * `var(--brand-primary-light,#c8dce3)` para o texto ativo (mesmo token já
  * mapeado como `brand-teal-light` neste projeto, achado US-013) — a
  * implementação anterior usava `text-white` puro, mais claro que o Figma.
+ *
+ * **Alterado em 2026-09-25** (pedido do usuário): a exclusão de "columns"
+ * no mobile (decisão de 2026-09-24) antes dependia de cada página lembrar
+ * de passar `modes={["grid","list"]}` no `size="compact"` — 3 páginas
+ * repetiam isso manualmente, frágil (uma página nova podia esquecer).
+ * Passou a ser automático: `size="compact"` já exclui "columns" por
+ * padrão, sem precisar da prop `modes`.
  */
-function ViewModeToggle({ mode, onModeChange, className, ...props }: ViewModeToggleProps) {
+const COMPACT_DEFAULT_MODES: readonly ViewMode[] = ["grid", "list"]
+
+function ViewModeToggle({ mode, onModeChange, size = "default", modes, className, ...props }: ViewModeToggleProps) {
+  const compact = size === "compact"
+  const effectiveModes = modes ?? (compact ? COMPACT_DEFAULT_MODES : undefined)
   return (
     <div
       data-slot="view-mode-toggle"
       className={cn("flex w-fit flex-col items-start gap-1", className)}
       {...props}
     >
-      <span className="px-1 text-[0.625rem] font-bold tracking-wide text-zinc-500 dark:text-zinc-400">
-        VISUALIZAR
-      </span>
+      {compact ? null : (
+        <span className="px-1 text-[0.625rem] font-bold tracking-wide text-neutral-text-tertiary dark:text-zinc-400">
+          VISUALIZAR
+        </span>
+      )}
       <div className="relative flex items-center gap-1 rounded-xl glass-edge glass-shadow-sm bg-effect-glass-light-45 p-1 backdrop-blur-sm">
-        {MODES.map(({ value, label, ActiveIcon, IdleIcon, iconClassName }) => {
+        {MODES.filter((m) => !effectiveModes || effectiveModes.includes(m.value)).map(({ value, label, ActiveIcon, IdleIcon, iconClassName }) => {
           const selected = value === mode
           const ModeIcon = selected ? ActiveIcon : IdleIcon
           return (
@@ -77,13 +101,14 @@ function ViewModeToggle({ mode, onModeChange, className, ...props }: ViewModeTog
               onClick={() => onModeChange?.(value)}
               className={cn(
                 "flex items-center gap-2 rounded-md px-1 py-1.5 text-xs font-semibold transition-colors",
+                compact && "touch-target px-2",
                 selected
-                  ? "bg-zinc-600 px-3 text-brand-teal-light"
+                  ? cn("bg-zinc-600 text-brand-teal-light", !compact && "px-3")
                   : "text-zinc-700 dark:text-zinc-300 hover:bg-zinc-600/10"
               )}
             >
               <ModeIcon className={iconClassName} aria-hidden="true" />
-              {label}
+              {compact ? null : label}
             </button>
           )
         })}

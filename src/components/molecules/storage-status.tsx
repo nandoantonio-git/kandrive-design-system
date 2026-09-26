@@ -1,7 +1,7 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
-import { PushButton } from "@/components/atoms/push-button"
+import { Button } from "@/components/atoms/button"
 import { StorageBar, StorageBarExpanded } from "@/components/molecules/storage-bar"
 import { FileTypeLabel, ScopeTypeLabel } from "@/components/atoms/type-label"
 
@@ -24,6 +24,14 @@ export interface StorageStatusProps extends React.ComponentProps<"div"> {
   freeLabel?: string
   onManageSpace?: () => void
   onBuySpace?: () => void
+  /**
+   * Figma `Tier=Alert` (`1765:62468`, V0.2.1), usado em `Storage/LimitReached`:
+   * o valor usado em `Brand/Feedback/Danger/Default`, o aviso de limite abaixo
+   * dos botões e a barra cheia em `Brand/Feedback/Danger/Surface`. Só no
+   * escopo global. ⚠️ No componente do Figma, o aviso usa `Danger/Subtle`
+   * (35%, ilegível); a tela usa o vermelho cheio, que é o que o código segue.
+   */
+  limitReached?: boolean
 }
 
 const SCOPE_LABEL: Record<StorageScope, string> = {
@@ -70,9 +78,11 @@ function StorageStatus({
   freeLabel,
   onManageSpace,
   onBuySpace,
+  limitReached = false,
   className,
   ...props
 }: StorageStatusProps) {
+  const alert = limitReached && scope === "global"
   const clamped = Math.min(100, Math.max(0, percent))
 
   if (variant === "sidebar") {
@@ -97,6 +107,7 @@ function StorageStatus({
       data-slot="storage-status"
       data-variant="expanded"
       data-scope={scope}
+      data-limit-reached={alert || undefined}
       className={cn(
         "flex w-[1036px] max-w-full flex-col items-start gap-1 rounded-xl border border-zinc-300 dark:border-zinc-700 px-4",
         className
@@ -124,25 +135,40 @@ function StorageStatus({
         />
       </div>
 
-      <div className="flex items-center gap-2 pr-2">
-        <span className="text-[1.5625rem] font-medium text-zinc-950 dark:text-zinc-100">Armazenamento usado:</span>
-        <span className="text-[1.5625rem] font-medium text-zinc-950 dark:text-zinc-100">{usedAmount}</span>
-        <span className="text-xl text-zinc-950 dark:text-zinc-100">de {totalAmount}</span>
-        <span className="text-[0.625rem] font-bold text-zinc-500 dark:text-zinc-400">(AC+AL)</span>
+      <div className="flex flex-wrap items-baseline gap-x-2 pr-2 desktop:items-center">
+        <span className={cn("shrink-0 whitespace-nowrap text-[1.5625rem] font-medium", alert ? "text-destructive" : "text-zinc-950 dark:text-zinc-100")}>Armazenamento usado:</span>
+        <span className={cn("shrink-0 whitespace-nowrap text-[1.5625rem] font-medium", alert ? "text-destructive" : "text-zinc-950 dark:text-zinc-100")}>{usedAmount}</span>
+        <span className={cn("shrink-0 whitespace-nowrap text-xl", alert ? "text-destructive" : "text-zinc-950 dark:text-zinc-100")}>de {totalAmount}</span>
+        <span className="shrink-0 whitespace-nowrap text-[0.625rem] font-bold text-neutral-text-tertiary dark:text-zinc-400">(AC+AL)</span>
       </div>
 
       <div className="flex items-center gap-2 py-2">
         {scope === "global" ? (
-          <PushButton variant="neutral" onClick={onManageSpace} className="h-auto px-4 py-1 text-[0.625rem]">
+          <Button variant="outline" onClick={onManageSpace} className="h-auto px-4 py-1 text-[0.625rem]">
             Liberar Espaço
-          </PushButton>
+          </Button>
         ) : null}
-        <PushButton variant="primary" onClick={onBuySpace} className="h-auto px-4 py-1 text-[0.625rem]">
+        <Button onClick={onBuySpace} className="h-auto px-4 py-1 text-[0.625rem]">
           Comprar Espaço
-        </PushButton>
+        </Button>
       </div>
 
-      {scope === "global" ? (
+      {alert ? (
+        <p role="alert" className="text-base leading-5 text-destructive">
+          Seu limite de {totalAmount} foi totalmente atingido. O upload de novos arquivos e sincronização automática foram suspensos.
+        </p>
+      ) : null}
+
+      {alert ? (
+        <div
+          role="progressbar"
+          aria-label="Armazenamento usado"
+          aria-valuenow={100}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          className="h-1 w-full rounded-full bg-destructive-surface"
+        />
+      ) : scope === "global" ? (
         // Família de cor por tipo de arquivo — não é a segmentação real de tier
         // (Regra 6, diretório do arquivo), é só reuso da paleta teal/rosa do
         // `StorageBarExpanded` pra bater com o ponto de cor de cada
@@ -176,7 +202,7 @@ function StorageStatus({
           : null}
         {scope !== "global" && usedLabel ? (
           <span className="flex items-center gap-1.5 text-[0.625rem] text-brand-secondary-light">
-            <span aria-hidden="true" className="size-[7px] shrink-0 rounded-full bg-brand-teal" />
+            <span aria-hidden="true" className="size-[7px] shrink-0 rounded-full bg-brand-teal-action" />
             {usedLabel}
           </span>
         ) : null}

@@ -2,7 +2,7 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 import { type FileTypeKind, DangerTypeLabel } from "@/components/atoms/type-label"
-import { ClearButton } from "@/components/atoms/clear-button"
+import { CloseButton } from "@/components/atoms/close-button"
 import { ThumbnailLarge } from "@/components/molecules/thumbnail-large"
 import BookmarkBorderGlyph from "@/assets/icons/BookmarkBorder.svg?react"
 import ShareGlyph from "@/assets/icons/Share.svg?react"
@@ -99,6 +99,13 @@ function fileTypeKind(format: string): FileTypeKind {
  * (header, `molecule/thumbnail-large`) têm `border-b`/`border` em
  * `brand-primary-light`. `border border-brand-teal/20` na raiz removida;
  * as bordas internas (linha abaixo, thumbnail-large) já estavam corretas.
+ *
+ * **Corrigido em 2026-09-25** (achado do usuário: "botão close
+ * desatualizado"): o botão de fechar usava `atom/ClearButton` (ícone
+ * genérico de cancelar) em vez do `atom/CloseButton` dedicado — todos os
+ * outros modais/painéis (`SaveOrganizationModal`, `TemplateReviewModal`,
+ * `ArchiveBrowserModal`, `SaveLongTermFileStorage`) já usam `CloseButton
+ * size="md"`; este nunca foi migrado.
  */
 function PreviewPane({ file, tags = [], onClose, onSave, onShare, className, ...props }: PreviewPaneProps) {
   return (
@@ -108,13 +115,8 @@ function PreviewPane({ file, tags = [], onClose, onSave, onShare, className, ...
       {...props}
     >
       <div className="flex items-center justify-between border-b border-brand-teal/20 pb-4">
-        <h3 className="text-xl font-bold text-zinc-700 dark:text-zinc-300">Detalhes</h3>
-        <ClearButton
-          label="Fechar"
-          onClick={onClose}
-          className="text-zinc-500 dark:text-zinc-400"
-          iconClassName="size-4"
-        />
+        <h2 className="text-xl font-bold text-zinc-700 dark:text-zinc-300">Detalhes</h2>
+        <CloseButton size="md" onClick={onClose} />
       </div>
       <div className="flex items-center justify-center">
         <ThumbnailLarge
@@ -123,7 +125,7 @@ function PreviewPane({ file, tags = [], onClose, onSave, onShare, className, ...
         />
       </div>
       <div className="flex flex-col gap-3">
-        <h4 className="text-2xl font-medium text-zinc-700 dark:text-zinc-300">{file.name}</h4>
+        <h3 className="text-2xl font-medium text-zinc-700 dark:text-zinc-300">{file.name}</h3>
         <dl className="grid grid-cols-2 gap-y-3 border-t border-zinc-200 pt-3 text-sm dark:border-zinc-700">
           <dt className="text-zinc-600 dark:text-zinc-300">Proprietário</dt>
           <dd className="text-xs text-zinc-800 dark:text-zinc-100">{file.owner}</dd>

@@ -5,7 +5,7 @@ import { OrganizePanelDropZone } from "../../src/components/organisms/organize-p
 const meta = {
   title: "Organisms/OrganizePanelDropZone",
   component: OrganizePanelDropZone,
-  parameters: { layout: "centered", design: { type: 'figma', url: 'https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1421-18781' } },
+  parameters: { layout: "centered", design: { type: 'figma', url: 'https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=309-14839' } },
   argTypes: {
     mode: { control: "radio", options: ["Data", "Projeto", "Tipo"] },
     state: { control: "radio", options: ["idle", "dragover", "filled"] },

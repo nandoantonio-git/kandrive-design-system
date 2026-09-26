@@ -137,7 +137,7 @@ function UploadPopover({
           <div className="flex flex-col">
             <span className="text-sm font-bold text-zinc-900 dark:text-zinc-100">Enviando {fileCount} arquivos</span>
             {secondsLeft !== undefined ? (
-              <span className="text-xs text-zinc-500 dark:text-zinc-400">{secondsLeft} segundos restantes</span>
+              <span className="text-xs text-neutral-text-tertiary dark:text-zinc-400">{secondsLeft} segundos restantes</span>
             ) : null}
           </div>
         </div>
@@ -146,7 +146,7 @@ function UploadPopover({
             type="button"
             aria-label="Pausar envio"
             onClick={onPause}
-            className="rounded-md p-1.5 text-zinc-500 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
+            className="rounded-md p-1.5 text-neutral-text-tertiary hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
           >
             <Pause aria-hidden="true" className="size-3" />
           </button>
@@ -154,7 +154,7 @@ function UploadPopover({
             type="button"
             aria-label="Maximizar"
             onClick={onExpand}
-            className="rounded-md p-1.5 text-zinc-500 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
+            className="rounded-md p-1.5 text-neutral-text-tertiary hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
           >
             <Maximize2 aria-hidden="true" className="size-3" />
           </button>
@@ -162,7 +162,7 @@ function UploadPopover({
             type="button"
             aria-label="Mais opções"
             onClick={onMore}
-            className="rounded-md p-1.5 text-zinc-500 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
+            className="rounded-md p-1.5 text-neutral-text-tertiary hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
           >
             <MoreVertical aria-hidden="true" className="size-3" />
           </button>
@@ -171,7 +171,7 @@ function UploadPopover({
             type="button"
             aria-label="Fechar"
             onClick={onClose}
-            className="rounded-md p-1.5 text-zinc-500 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
+            className="rounded-md p-1.5 text-neutral-text-tertiary hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
           >
             <X aria-hidden="true" className="size-3" />
           </button>
@@ -185,7 +185,7 @@ function UploadPopover({
               <span>{clamped}%</span>
             </div>
             <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-800">
-              <div className="h-full rounded-full bg-brand-teal transition-[width]" style={{ width: `${clamped}%` }} />
+              <div className="h-full rounded-full bg-brand-teal-action transition-[width]" style={{ width: `${clamped}%` }} />
             </div>
           </div>
           <ul className="flex flex-col gap-1 border-t border-zinc-200 pt-2 dark:border-zinc-700">
@@ -196,7 +196,7 @@ function UploadPopover({
                 {file.done ? (
                   <CheckCircle2 aria-hidden="true" className="size-2.5 shrink-0 text-brand-teal" />
                 ) : (
-                  <span aria-hidden="true" className="size-2 shrink-0 rounded-full bg-brand-teal" />
+                  <span aria-hidden="true" className="size-2 shrink-0 rounded-full bg-brand-teal-action" />
                 )}
               </li>
             ))}

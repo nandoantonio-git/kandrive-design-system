@@ -2,7 +2,7 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 import { CloseButton } from "@/components/atoms/close-button"
-import { PushButton } from "@/components/atoms/push-button"
+import { Button } from "@/components/atoms/button"
 import { ArchiveBrowserModalSearch } from "@/components/molecules/archive-browser-modal-search"
 import { ArchiveBrowserModalSidebar } from "@/components/organisms/archive-browser-modal-sidebar"
 
@@ -24,7 +24,7 @@ export interface ArchiveBrowserModalProps extends React.ComponentProps<"div"> {
  * template/ArchiveBrowserModal (`1439:16909`) — Figma-confirmado: "janela
  * de seleção de arquivos que será guardados(glacier/long term archive)".
  * Título verbatim "Adicionar arquivos", ação primária "Adicionar N
- * arquivos" (`PushButton variant="primary"`). Reusa uma versão compacta dos
+ * arquivos" (`Button`, migrado de `PushButton` em 2026-09-25). Reusa uma versão compacta dos
  * itens de navegação de `organism/Sidebar` (mesmos 4 primeiros rótulos
  * Figma-confirmados) — não a `Sidebar` completa, pois esta instância não
  * inclui o painel de armazenamento (composição menor, confirmada no nó
@@ -63,7 +63,7 @@ function ArchiveBrowserModal({
       role="dialog"
       aria-label="Adicionar arquivos"
       className={cn(
-        "flex h-[544px] w-[760px] flex-col gap-4 overflow-hidden rounded-[32px] glass-edge bg-effect-glass-white-70 px-6 pt-6 pb-5 shadow-[0px_8px_20px_rgba(0,0,0,0.12)] dark:shadow-[0px_8px_20px_rgba(0,0,0,0.5)]",
+        "flex max-h-[calc(100dvh-2rem)] w-full flex-col gap-4 overflow-y-auto rounded-[32px] desktop:h-[544px] desktop:max-h-none desktop:w-[760px] desktop:overflow-hidden glass-edge bg-effect-glass-white-70 backdrop-blur-md px-6 pt-6 pb-5 shadow-[0px_8px_20px_rgba(0,0,0,0.12)] dark:shadow-[0px_8px_20px_rgba(0,0,0,0.5)]",
         className
       )}
       {...props}
@@ -75,25 +75,26 @@ function ArchiveBrowserModal({
         </div>
         <CloseButton size="md" onClick={onCancel} />
       </div>
-      <div className="flex h-[361px] gap-5">
-        <ArchiveBrowserModalSidebar />
+      {/* Mobile: sem a coluna de pastas (no Figma, o equivalente mobile é LongTermStorage/SelectFiles). */}
+      <div className="flex flex-col gap-4 tablet:h-[361px] tablet:flex-row tablet:gap-5">
+        <ArchiveBrowserModalSidebar className="hidden tablet:flex" />
         <ArchiveBrowserModalSearch
-          className="w-[452px] shrink-0"
+          className="w-full min-w-0 tablet:flex-1 desktop:w-[452px] desktop:flex-none desktop:shrink-0"
           breadcrumb={breadcrumb}
           files={files.map((file) => ({ fileName: file.name, meta: file.meta }))}
         />
       </div>
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="text-sm font-medium text-zinc-800 dark:text-zinc-100">
           {selectedCount} selecionados · economia de {savingsLabel}
         </p>
         <div className="flex gap-3">
-          <PushButton variant="neutral" className="h-8 px-4 text-xs" onClick={onCancel}>
+          <Button variant="outline" className="h-8 px-4 text-xs" onClick={onCancel}>
             Cancelar
-          </PushButton>
-          <PushButton variant="primary" className="h-8 px-4 text-xs" onClick={onAdd}>
+          </Button>
+          <Button className="h-8 px-4 text-xs" onClick={onAdd}>
             Adicionar {selectedCount} arquivos
-          </PushButton>
+          </Button>
         </div>
       </div>
     </div>

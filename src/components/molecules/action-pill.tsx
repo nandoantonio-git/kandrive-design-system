@@ -22,7 +22,7 @@ export interface ActionPillProps extends Omit<React.ComponentProps<"div">, "chil
  * Tokens/Materials (Regra 10).
  *
  * Reconfirmado em auditoria Regra 11 (US-026, 3ª passada): os 3 ícones
- * (Help/"?", Settings/gear, SpatialAudioOff/conta) são reais e distintos,
+ * (Help/"?", Settings/gear, Account/conta) são reais e distintos,
  * não um artefato de export — nomes de layer enganosos no Figma (drift de
  * instância trocada sem renomear), não duplicata. A API continua genérica
  * (`actions: { name, label, onClick }[]`, reutilizando `atom/Icon`) porque

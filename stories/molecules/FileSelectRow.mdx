@@ -1,0 +1,29 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as Stories from './FileSelectRow.stories';
+
+<Meta of={Stories} />
+
+# FileSelectRow
+
+🧩 Extraído de frames do Figma: as linhas `file-row-*` de `Organize/ChooseMethod/Mobile` (`1700:21974`), KanDrive V0.2.1. No Figma não são um componente; foram extraídas porque se repetem.
+
+## Uso
+
+A lista "Selecionar arquivos" do Organize no mobile. Tocar em qualquer ponto da linha marca o arquivo, e o checkbox também responde ao teclado.
+
+<Canvas of={Stories.List} />
+<Controls />
+
+## Estados
+
+<Canvas of={Stories.Default} />
+<Canvas of={Stories.Checked} />
+
+## Tokens e tipografia
+
+- 60px de altura, padding 10/16, divisória `Neutral/Border/Subtle`. A lista fica num card `Neutral/Surface/Card`, com raio 12.
+- Símbolo de pasta de 36×32, opaco e igual no Light e no Dark.
+- Nome em 16px (Regra 4). ⚠️ No Figma, o nome tem 14px.
+- Tamanho em 11px, `Neutral/Text/Tertiary` (exceção de microtexto).
+- `atom/Checkbox` MD, com área de toque de 44px.
+- 🧩 A linha marcada ganha um fundo `Brand/Primary/Light` a 20%. O Figma só desenha linhas desmarcadas.

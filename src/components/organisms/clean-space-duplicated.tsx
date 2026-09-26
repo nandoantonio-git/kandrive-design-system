@@ -2,7 +2,7 @@ import * as React from "react"
 import { Trash2 } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { PushButton } from "@/components/atoms/push-button"
+import { Button } from "@/components/atoms/button"
 
 export interface CleanSpaceDuplicateGroup {
   name: string
@@ -36,6 +36,11 @@ export interface CleanSpaceDuplicatedProps extends React.ComponentProps<"section
  * `border-[#bbb]` (`neutral-border-light`, sem token CSS equivalente
  * ainda) — antes `bg-effect-glass-white-70` sem borda própria. Ambos
  * corrigidos.
+ *
+ * **Corrigido em 2026-09-25** (achado do usuário: "hover nos botões
+ * escritos"): mesma classe do "Excluir cópias" trazia `text-destructive
+ * hover:text-destructive` — mesma cor em repouso e hover, um no-op.
+ * Trocado para `hover:text-destructive/80`.
  */
 function CleanSpaceDuplicated({ groups, onDeleteDuplicates, className, ...props }: CleanSpaceDuplicatedProps) {
   return (
@@ -48,7 +53,7 @@ function CleanSpaceDuplicated({ groups, onDeleteDuplicates, className, ...props 
         <h3 className="text-xl font-medium text-zinc-900 dark:text-zinc-100">Arquivos duplicados</h3>
         <span className="rounded-md border border-zinc-200 bg-zinc-100 px-2 py-0.5 text-xs text-zinc-900 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100">Prévia</span>
       </div>
-      <p className="text-sm text-zinc-500 dark:text-zinc-400">
+      <p className="text-sm text-neutral-text-tertiary dark:text-zinc-400">
         Detecção de duplicados ainda não existe de verdade, os grupos abaixo são exemplos ilustrativos.
       </p>
       <ul className="flex flex-col gap-2">
@@ -56,17 +61,16 @@ function CleanSpaceDuplicated({ groups, onDeleteDuplicates, className, ...props 
           <li key={group.name} className="flex items-center justify-between rounded-lg border border-zinc-200 p-3 dark:border-zinc-700">
             <div>
               <p className="text-base text-zinc-900 dark:text-zinc-100">{group.name}</p>
-              <p className="text-sm text-zinc-500 dark:text-zinc-400">{group.copiesLabel}</p>
+              <p className="text-sm text-neutral-text-tertiary dark:text-zinc-400">{group.copiesLabel}</p>
             </div>
-            <PushButton
-              variant="neutral"
-              isDestructive
-              icon={Trash2}
+            <Button
+              variant="outline"
               onClick={() => onDeleteDuplicates?.(group)}
-              className="h-8.5 gap-2 rounded-md border-[#bbb] dark:border-[#52525b] bg-effect-glass-white-36 px-4 text-xs"
+              className="h-8.5 gap-2 rounded-md border-[#bbb] text-destructive hover:text-destructive/80 dark:border-[#52525b] bg-effect-glass-white-36 px-4 text-xs"
             >
+              <Trash2 className="size-4" aria-hidden="true" />
               Excluir cópias
-            </PushButton>
+            </Button>
           </li>
         ))}
       </ul>

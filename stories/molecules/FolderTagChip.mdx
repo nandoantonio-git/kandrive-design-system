@@ -17,8 +17,19 @@ usuário pode limpar; sem a prop, é só um rótulo informativo.
 ## Anatomia
 
 Ícone de pasta + rótulo + botão de remover opcional (`removable`). Também
-tem uma prop `isExpanded` — quando expandido, o rótulo perde o truncamento
-e o botão de remover fica sempre visível.
+tem uma prop `isExpanded` — quando expandido, o ícone e o rótulo ficam
+visíveis e o rótulo perde o truncamento.
+
+## Colapsado (`isExpanded=false`, o padrão)
+
+<Canvas of={FolderTagChipStories.Collapsed} />
+
+**Decisão humana em 2026-09-25:** implementação literal do Figma (`568:8695`,
+`State=Default, Expanded=false`) — o ícone de pasta e o rótulo ficam com
+`opacity: 0`, e só o botão de remover aparece. Nenhuma tela do produto usa
+este chip hoje, então essa fidelidade não afeta nenhuma composição real. O
+nome da pasta continua no DOM (não `aria-hidden`), para o leitor de tela
+anunciar mesmo com o chip visualmente vazio.
 
 <Canvas of={FolderTagChipStories.Expanded} />
 <Canvas of={FolderTagChipStories.Selected} />

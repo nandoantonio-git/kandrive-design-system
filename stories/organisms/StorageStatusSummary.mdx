@@ -1,0 +1,26 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as Stories from './StorageStatusSummary.stories';
+
+<Meta of={Stories} />
+
+# StorageStatusSummary
+
+✅ Figma-confirmado: `molecule/StorageStatusSummary` (`1742:25489`), KanDrive V0.2.1, com o eixo `Device` (Desktop · Tablet). A versão mobile vem da tela `Storage/Total/Mobile` (🧩 frames, não uma variante). Fica em `Organisms/` no código porque compõe outras moléculas.
+
+## Uso
+
+A parte de baixo da página de Storage, logo abaixo do card `StorageStatus`: filtro do escopo ("Filtrar no Total"), botão de filtros, Agrupar e Etiquetar, e a lista de arquivos ordenada por armazenamento. Criado em 2026-09-24: o código não tinha essa parte em nenhuma largura.
+
+<Canvas of={Stories.Desktop} />
+<Controls />
+
+## Mobile
+
+<Canvas of={Stories.Mobile} />
+
+O filtro fica sozinho na primeira linha, Agrupar e Etiquetar na segunda, e a lista vira uma tabela em card `Neutral/Surface/Elevated` (raio 12): cabeçalho "Nome" | "↓ Armazenamento" e linhas com o símbolo de pasta, nome, proprietário e tamanho.
+
+## Tipografia
+
+- Nome em 16px (Regra 4). ⚠️ No Figma mobile, 13px.
+- Proprietário e tamanho em 11px, `Neutral/Text/Tertiary` (exceção de microtexto; no Figma, 10 e 11px).

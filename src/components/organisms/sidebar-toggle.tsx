@@ -59,13 +59,13 @@ function SidebarToggle({
       )}
       {...props}
     >
-      <span className="flex items-center gap-1.5">
-        <Icon name="CloudQueue" aria-hidden="true" className="size-4 text-zinc-500 dark:text-zinc-400" />
-        {label}
+      <span className="flex min-w-0 items-center gap-1.5">
+        <Icon name="CloudQueue" aria-hidden="true" className="size-4 shrink-0 text-neutral-text-tertiary dark:text-zinc-400" />
+        <span className="min-w-0 truncate">{label}</span>
       </span>
       <ChevronDown
         aria-hidden="true"
-        className={cn("size-4 text-zinc-500 dark:text-zinc-400 transition-transform", expanded && "rotate-180")}
+        className={cn("size-4 shrink-0 text-neutral-text-tertiary dark:text-zinc-400 transition-transform", expanded && "rotate-180")}
       />
     </button>
   )

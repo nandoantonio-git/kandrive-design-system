@@ -66,6 +66,10 @@ const SELECTED_STATES: readonly VideoItemState[] = [
  * interação), mas quando omitido o componente rastreia hover/press reais e
  * clique alterna seleção sozinho (`selected`/`defaultSelected`/
  * `onSelectedChange`, controlado ou não).
+ *
+ * **Corrigido em 2026-09-25**: adicionado `shrink-0` no container raiz —
+ * mesmo bug e mesmo fix do `ArchiveItem` (ver notas lá), nome cortando
+ * quando o item comprime como flex-child sem espaço.
  */
 function VideoItem({
   state: explicitState,
@@ -122,7 +126,7 @@ function VideoItem({
       aria-pressed={isSelected}
       aria-disabled={isDisabled || undefined}
       className={cn(
-        "relative flex w-fit min-w-[45px] flex-col items-center gap-1 px-1 py-0.5",
+        "relative flex w-fit min-w-[45px] shrink-0 flex-col items-center gap-1 px-1 py-0.5",
         "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
         isDisabled ? "cursor-not-allowed" : "cursor-pointer",
         className
@@ -178,7 +182,7 @@ function VideoItem({
         <span
           className={cn(
             "block h-3 w-full truncate text-center text-[0.625rem] leading-normal tracking-[0.012px]",
-            isDisabled ? "text-zinc-500 dark:text-zinc-400" : "text-zinc-700 dark:text-zinc-300"
+            isDisabled ? "text-neutral-text-tertiary dark:text-zinc-400" : "text-zinc-700 dark:text-zinc-300"
           )}
         >
           {name}

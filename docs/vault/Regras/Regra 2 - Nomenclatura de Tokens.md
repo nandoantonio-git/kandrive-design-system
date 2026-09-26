@@ -4,11 +4,20 @@ tags: [regra, travada]
 
 # Regra 2 — Nomenclatura de Tokens
 
-Todo token semântico usa o formato `cor/categoria/papel/valor-semântico` — **nunca** um nome que vaza detalhe de implementação (nunca `$primaria-100`, `zinc-500-hover`).
+**Resolvido em 2026-09-25** (Q13, fase E do plano de fechamento): o nome oficial de um token é o do Figma (`Categoria/Papel`, ex. `Neutral/Text/Primary`), não o formato antigo `cor/categoria/papel/valor-semântico`. O CSS é uma **tradução mecânica**: `/` vira `-` e tudo minúsculo (`Neutral/Text/Primary` → `--neutral-text-primary`). A coluna "Figma" das páginas de tokens e da documentação sempre cita o nome do Figma; o código usa a tradução.
 
-## ⚠️ Conflito de formato ainda aberto (achado #9, urgência alta)
+`src/components/tokens/figma-color-bridge.ts` (`CSS_TO_FIGMA`, `FIGMA_COLORS`) é a **tabela oficial** dessa tradução — qualquer token novo entra ali antes de virar variável CSS.
 
-O nome real das variáveis no Figma é `var(--categoria-papel-valor)` (kebab-case, ex. `--brand-primary-default`), **não** `cor/categoria/papel/valor-semântico`. As 2 variáveis de rosa usam ainda um 3º formato (`Brand/Theme/Pink/Dark`). A coluna "Token semântico" da documentação é a *tradução* pro formato-alvo — não é o nome literal do Figma. Sem decisão humana ainda sobre normalizar o Figma ou aceitar a tradução como camada de abstração permanente.
+## Exceção aceita: papel de texto × papel de superfície
+
+Alguns tokens do código não são a tradução direta de 1 variável Figma — eles separam explicitamente o papel de **texto** do papel de **superfície/fundo**, porque um único nome do Figma às vezes serve pros dois sem distinguir (achado da revisão dark/WCAG de 2026-09-23/24, ver [[Regra 3 - Cores da Marca|Regra 3]]). Nesses casos, o sufixo `-action` ou `-surface` marca o papel de superfície, e o nome sem sufixo é o papel de texto:
+
+| Texto | Superfície |
+| --- | --- |
+| `--brand-teal` | `--brand-teal-action` |
+| `--brand-teal-dark` | `--brand-teal-dark-surface` |
+
+Isso é uma exceção **aceita** à tradução mecânica, não um desvio — documentar o novo par nesta tabela quando surgir outro.
 
 ## Aplicação prática
 
@@ -17,4 +26,4 @@ Quando um valor não tem token semântico formal ainda mas é reaproveitado de u
 ## Ver também
 
 - [[Tokens de Cor]]
-- [[Conflitos Abertos]]
+- [[Regra 3 - Cores da Marca]]

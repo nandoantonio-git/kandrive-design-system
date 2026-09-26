@@ -11,11 +11,14 @@ export interface FolderTagChipProps extends React.ComponentProps<"span"> {
   disabled?: boolean
   /**
    * Eixo `isExpanded` (Figma-confirmado em `celule/chip/folder-tag`,
-   * `1421:19040`: "Chip de tag de pasta com estado expansível. Props:
-   * isExpanded (bool)..."). O comportamento exato de "expandido" não tem
-   * descrição própria além do booleano — implementado aqui como 🧩 inferido:
-   * remove o truncamento do rótulo e mantém o botão de remover sempre
-   * visível/focável.
+   * `1421:19040`). **Implementação literal do Figma, decisão humana em
+   * 2026-09-25**: com `isExpanded=false` (o padrão), o ícone de pasta e o
+   * rótulo ficam com `opacity: 0` — exatamente como as camadas
+   * `Symbol`/`Label` do node `568:8695` (`State=Default, Expanded=false`),
+   * sobra só o botão de remover. Com `isExpanded=true`, os dois ficam
+   * visíveis e o rótulo perde o truncamento. O texto continua no DOM (não
+   * `aria-hidden`) para o leitor de tela anunciar o nome da pasta mesmo
+   * colapsado (Regra 8 — extensão de acessibilidade, não muda o visual).
    */
   isExpanded?: boolean
   /**
@@ -44,22 +47,16 @@ export interface FolderTagChipProps extends React.ComponentProps<"span"> {
  * tokens Figma-confirmados exatos: `Idle` → `bg-zinc-100` (aprox. de
  * `neutral-surface-background` `#f3f3f3`), `Hover` → `bg-zinc-200` (aprox.
  * de `neutral-surface-subtle` `#eaeaea`), `Selected`/`Pressed` →
- * `bg-brand-teal-light` (`var(--brand-primary-light,#c8dce3)`, hex exato) +
+ * `bg-brand-teal-light-surface` (`var(--brand-primary-light,#c8dce3)`, hex exato) +
  * `text-brand-teal-dark` (`var(--brand-primary-dark,#1a5e6e)`, hex exato) —
- * antes usava `bg-brand-teal/10`/`text-brand-teal` (`#007e96`), que não
+ * antes usava `bg-brand-teal-action/10`/`text-brand-teal` (`#007e96`), que não
  * corresponde ao token de "selecionado" real do Figma.
  *
- * ⚠️ Achado novo (não corrigido, área ambígua): no estado `Default`
- * (`isExpanded=false`), o export Figma mostra o chip **sem** o ícone de
- * pasta nem o rótulo visível (só um ícone utilitário à direita,
- * `atom/icon/base`, sem nome semântico) — layout bem diferente do estado
- * `isExpanded=true` (ícone de pasta + rótulo + ícone final). A implementação
- * atual usa a MESMA composição (ícone de pasta + rótulo) em ambos os
- * estados, variando só o truncamento (`max-w-none`) — mantido assim porque
- * o significado exato do estado "colapsado" (chip funcionalmente vazio?)
- * não é claramente confirmável a partir do Figma sozinho (Regra 9); mudar
- * o comportamento por inferência arriscaria inventar uma UX pior (chip sem
- * nenhum conteúdo visível por padrão). Registrado para decisão humana.
+ * **Resolvido em 2026-09-25** (decisão humana, ver [[Conflitos Abertos]]):
+ * no estado `Default` (`isExpanded=false`), o ícone de pasta e o rótulo
+ * ficam com `opacity: 0`, como no Figma (`568:8695`) — sobra só o botão de
+ * remover. Nenhuma tela do produto usa este chip hoje (só existe no
+ * catálogo), então a fidelidade literal não quebra nenhuma composição real.
  */
 function FolderTagChip({
   label,
@@ -80,14 +77,17 @@ function FolderTagChip({
         "inline-flex h-7 shrink-0 items-center gap-1.5 rounded-full bg-zinc-100 dark:bg-zinc-800 pr-2 pl-2.5 text-sm font-medium text-zinc-700 dark:text-zinc-300",
         "transition-colors",
         "hover:bg-zinc-200 dark:hover:bg-zinc-800",
-        "data-[selected]:bg-brand-teal-light data-[selected]:text-brand-teal-dark",
+        "data-[selected]:bg-brand-teal-light-surface data-[selected]:text-brand-teal-dark",
         "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
         className
       )}
       {...props}
     >
-      <FolderIcon className="size-3.5 shrink-0 text-zinc-500 dark:text-zinc-400" aria-hidden="true" />
-      <span className={cn("truncate", isExpanded && "max-w-none")}>{label}</span>
+      <FolderIcon
+        className={cn("size-3.5 shrink-0 text-neutral-text-tertiary dark:text-zinc-400", !isExpanded && "opacity-0")}
+        aria-hidden="true"
+      />
+      <span className={cn("truncate", isExpanded ? "max-w-none" : "opacity-0")}>{label}</span>
       {onRemove ? (
         <button
           type="button"
@@ -96,7 +96,7 @@ function FolderTagChip({
           disabled={disabled}
           onClick={onRemove}
           className={cn(
-            "inline-flex size-5 shrink-0 items-center justify-center rounded-full text-zinc-500 dark:text-zinc-400",
+            "inline-flex size-5 shrink-0 items-center justify-center rounded-full text-neutral-text-tertiary dark:text-zinc-400",
             "transition-colors motion-safe:active:scale-95",
             "hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:text-zinc-700 dark:hover:text-zinc-300",
             "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50"

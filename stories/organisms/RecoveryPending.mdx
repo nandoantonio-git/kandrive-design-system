@@ -1,0 +1,24 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as Stories from './RecoveryPending.stories';
+
+<Meta of={Stories} />
+
+# RecoveryPending
+
+🧩 Extraído de uma tela do Figma: o conteúdo de `LongTermStorage/RecoveryPending/Mobile` (`1765:61487`, KanDrive V0.2.1).
+
+## Uso
+
+Mostra que um arquivo está voltando do longo prazo: o anel de progresso com o Kan espiando da bolsa, o nome do arquivo, o tempo estimado e o aviso de e-mail. É um estado, então vale em todas as larguras (`Pages/LongTermStorage`, `step="recovery-pending"`).
+
+<Canvas of={Stories.Default} />
+<Controls />
+
+## Tokens e tipografia
+
+- Círculo de 160px `Neutral/Surface/Background/Alt`, borda `Brand/Primary/Light`, sombra de 10px a 10%. Anel `Brand/Primary/Default` com raio interno de 82%, preenchido por `progress` (o Figma mostra 3/4).
+- Nome do arquivo 10px Bold `Brand/Primary/Dark` (teal claro no Dark); título 25px Medium `Neutral/Text/Primary`.
+- Texto e aviso em 16px (Regra 4). ⚠️ No Figma têm 13px e 11px.
+- Aviso: `Brand/Primary/Disabled` com texto `Brand/Primary/Dark`. Botão `atom/Button` Secondary LG Pill.
+- 🧩 O Kan foi redesenhado em SVG a partir dos traços do `MobileSuccess`: no Figma é uma imagem raster.
+- ✅ F14 (2026-09-24): o nome do arquivo usava `Brand/Primary/Mid`, a cor do logo, que não muda no Dark e ficava com pouco contraste. Passou a usar `Brand/Primary/Dark`, no Figma e no código.

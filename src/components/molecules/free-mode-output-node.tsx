@@ -78,15 +78,15 @@ function FreeModeOutputNode({
       </div>
       <div className="mt-4 flex w-full flex-col border-t border-zinc-500 dark:border-zinc-400 pt-[13px]">
         <div className="flex items-center justify-between">
-          <span className="text-[0.6875rem] leading-[16.5px] text-zinc-500 dark:text-zinc-400">Arquivos incluídos</span>
+          <span className="text-[0.6875rem] leading-[16.5px] text-neutral-text-tertiary dark:text-zinc-400">Arquivos incluídos</span>
           <span className="text-[0.6875rem] leading-[16.5px] font-semibold text-zinc-700 dark:text-zinc-300">{affectedFilesCount}</span>
         </div>
         <div className="flex items-center justify-between pt-3">
-          <span className="text-[0.6875rem] leading-[16.5px] text-zinc-500 dark:text-zinc-400">Tamanho estimado</span>
+          <span className="text-[0.6875rem] leading-[16.5px] text-neutral-text-tertiary dark:text-zinc-400">Tamanho estimado</span>
           <span className="text-[0.6875rem] leading-[16.5px] font-semibold text-zinc-700 dark:text-zinc-300">{sizeLabel}</span>
         </div>
         <div className="flex items-center justify-between pt-3">
-          <span className="text-[0.6875rem] leading-[16.5px] text-zinc-500 dark:text-zinc-400">Regras aplicadas</span>
+          <span className="text-[0.6875rem] leading-[16.5px] text-neutral-text-tertiary dark:text-zinc-400">Regras aplicadas</span>
           <span className="text-[0.6875rem] leading-[16.5px] font-semibold text-zinc-700 dark:text-zinc-300">{rulesCount}</span>
         </div>
         <div
@@ -109,7 +109,7 @@ function FreeModeOutputNode({
           </button>
           <ul className="mt-2 flex w-full flex-col gap-1">
             {fileNames.map((name) => (
-              <li key={name} className="text-[0.625rem] leading-[15px] text-zinc-500 dark:text-zinc-400">
+              <li key={name} className="text-[0.625rem] leading-[15px] text-neutral-text-tertiary dark:text-zinc-400">
                 {name}
               </li>
             ))}

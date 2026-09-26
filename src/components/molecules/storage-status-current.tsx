@@ -48,13 +48,13 @@ function StorageStatusCurrent({
         <span className="text-base text-zinc-950 dark:text-zinc-100">Armazenamento usado:</span>
         <span className="text-[1.5625rem] font-medium text-zinc-950 dark:text-zinc-100">{usedAmount}</span>
         <span className="text-xl text-zinc-950 dark:text-zinc-100">de {totalAmount}</span>
-        <span className="text-[0.625rem] font-bold text-zinc-500 dark:text-zinc-400">{scopeAbbr}</span>
+        <span className="text-[0.625rem] font-bold text-neutral-text-tertiary dark:text-zinc-400">{scopeAbbr}</span>
       </div>
 
       <button
         type="button"
         onClick={onBuySpace}
-        className="rounded-md bg-brand-teal px-4 py-1 text-[0.625rem] text-white transition-colors hover:bg-brand-teal/90 motion-safe:active:scale-95"
+        className="rounded-md bg-brand-teal-action px-4 py-1 text-[0.625rem] text-brand-teal-foreground transition-colors hover:bg-brand-teal-action/90 motion-safe:active:scale-95"
       >
         Comprar espaço
       </button>

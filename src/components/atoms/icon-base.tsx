@@ -42,7 +42,7 @@ function IconBase({ icon: Icon = IconBaseGlyph, isHoverOn = false, className, ..
       data-slot="icon-base"
       data-hover-on={isHoverOn || undefined}
       className={cn(
-        "inline-flex shrink-0 items-center justify-center text-zinc-500 transition-colors hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-100",
+        "inline-flex shrink-0 items-center justify-center text-neutral-text-tertiary transition-colors hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-100",
         isHoverOn && "text-zinc-800 dark:text-zinc-100",
         className
       )}

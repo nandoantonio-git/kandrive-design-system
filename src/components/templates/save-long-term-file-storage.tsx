@@ -1,7 +1,7 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
-import { PushButton } from "@/components/atoms/push-button"
+import { Button } from "@/components/atoms/button"
 import { Icon } from "@/components/atoms/icon"
 import { CloseButton } from "@/components/atoms/close-button"
 import { SearchInput } from "@/components/molecules/search-input"
@@ -87,7 +87,7 @@ function SaveLongTermFileStorage({
       role="dialog"
       aria-label="Guardar no longo prazo"
       className={cn(
-        "flex w-[700px] flex-col gap-5 overflow-hidden rounded-3xl glass-edge bg-effect-glass-white-70 p-6 shadow-lg",
+        "flex max-h-[calc(100dvh-2rem)] w-full flex-col gap-5 overflow-y-auto rounded-3xl tablet:w-[700px] tablet:max-h-none tablet:overflow-hidden glass-edge bg-effect-glass-white-70 backdrop-blur-md p-6 shadow-lg",
         className
       )}
       {...props}
@@ -100,7 +100,7 @@ function SaveLongTermFileStorage({
         <CloseButton size="md" onClick={onCancel} />
       </div>
       <SearchInput className="w-full max-w-none" />
-      <div className="flex gap-8">
+      <div className="flex flex-col gap-4 tablet:flex-row tablet:gap-8">
         <SaveLongTermFileStorageSelectedFiles files={files} onAddFiles={onAddFiles} />
         <div className="flex flex-1 flex-col gap-3">
           <div className="flex flex-wrap gap-2">
@@ -112,13 +112,13 @@ function SaveLongTermFileStorage({
           </div>
           <div className="flex flex-col gap-1.5">
             <p className="text-xl font-bold text-zinc-900 dark:text-zinc-100">Por que guardar?</p>
-            <p className="text-sm text-zinc-500 dark:text-zinc-400">
+            <p className="text-sm text-neutral-text-tertiary dark:text-zinc-400">
               Arquivos em longo prazo ficam seguros por anos e liberam espaço ativo. Para resgatar, é só solicitar,
               você recebe um link por e-mail e o arquivo volta para o seu armazenamento em até 8h.
             </p>
           </div>
           <div className="flex flex-col gap-1">
-            <span className="text-xs text-zinc-500 dark:text-zinc-400">Destino:</span>
+            <span className="text-xs text-neutral-text-tertiary dark:text-zinc-400">Destino:</span>
             <span className="flex w-fit items-center gap-1.5 rounded-md bg-zinc-100 px-3 py-1.5 text-xs text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100">
               <Icon name="Arquivar" className="size-4" />
               Guardados
@@ -126,20 +126,20 @@ function SaveLongTermFileStorage({
           </div>
         </div>
       </div>
-      <p className="rounded-lg bg-effect-glass-white-70 px-3 py-2.5 text-xs text-zinc-500 dark:text-zinc-400">
+      <p className="rounded-lg bg-effect-glass-white-70 px-3 py-2.5 text-xs text-neutral-text-tertiary dark:text-zinc-400">
         {`Se algum nome já existir no destino, o Kandrive adiciona automaticamente um sufixo (ex.: "arquivo (1)") para evitar substituir o arquivo existente.`}
       </p>
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="text-xs text-zinc-800 dark:text-zinc-100">
           {selectedCount} selecionado · economia de {savingsLabel}
         </p>
         <div className="flex gap-3">
-          <PushButton variant="neutral" className="h-8 px-4 text-xs" onClick={onCancel}>
+          <Button variant="outline" className="h-8 px-4 text-xs" onClick={onCancel}>
             Cancelar
-          </PushButton>
-          <PushButton variant="primary" className="h-8 px-4 text-xs" onClick={onContinue}>
+          </Button>
+          <Button className="h-8 px-4 text-xs" onClick={onContinue}>
             Continuar
-          </PushButton>
+          </Button>
         </div>
       </div>
     </div>

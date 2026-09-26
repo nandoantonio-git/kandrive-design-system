@@ -9,14 +9,17 @@ import svgr from 'vite-plugin-svgr';
 import { fileURLToPath } from 'node:url';
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
 import { playwright } from '@vitest/browser-playwright';
-const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
+const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
   plugins: [react(), tailwindcss(), svgr()],
+  // Dependências CommonJS do testing-library: sem o pré-empacotamento, o setup do addon-vitest
+  // falha no navegador ("does not provide an export named 'elementRoles'").
+  optimizeDeps: { include: ['aria-query', 'lz-string', 'dom-accessibility-api', 'pretty-format', 'react-is'] },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src')
+      '@': path.resolve(dirname, './src')
     }
   },
   test: {
@@ -33,7 +36,8 @@ export default defineConfig({
         browser: {
           enabled: true,
           headless: true,
-          provider: playwright({}),
+          // Chrome do sistema: os navegadores do Playwright não são baixados neste projeto.
+          provider: playwright({ launchOptions: { channel: 'chrome' } }),
           instances: [{
             browser: 'chromium'
           }]

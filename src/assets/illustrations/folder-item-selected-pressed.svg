@@ -1,4 +1,19 @@
 <svg width="47" height="41" viewBox="0 0 47 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- Base opaca (Neutral/Surface/Background Light): o símbolo fica igual no Light e no Dark (2026-09-24). -->
+<defs><filter id="kd-solid-folderitemselectedpressed" x="0" y="0" width="100%" height="100%" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-color="#F3F3F3" result="c"/><feMorphology in="SourceAlpha" operator="erode" radius="0.4" result="m"/><feComponentTransfer in="m" result="a"><feFuncA type="discrete" tableValues="0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1"/></feComponentTransfer><feComposite in="c" in2="a" operator="in"/></filter></defs><defs>
+<linearGradient id="paint0_linear_1421_17272" x1="31.3528" y1="2.32953" x2="31.3528" y2="11.6477" gradientUnits="userSpaceOnUse">
+<stop stop-color="#097489"/>
+<stop offset="1" stop-color="#1A5E6E"/>
+</linearGradient>
+<linearGradient id="paint1_linear_1421_17272" x1="23.1738" y1="4.65935" x2="23.1738" y2="8.15365" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="#6E797D"/>
+</linearGradient>
+<linearGradient id="paint2_linear_1421_17272" x1="23.1738" y1="6.52246" x2="47.2878" y2="53.3276" gradientUnits="userSpaceOnUse">
+<stop stop-color="#007E96"/>
+<stop offset="1" stop-color="#1A5E6E"/>
+</linearGradient>
+</defs><use href="#kd-symbol-folderitemselectedpressed" filter="url(#kd-solid-folderitemselectedpressed)"/><g id="kd-symbol-folderitemselectedpressed">
 <g id="atom/FolderItem">
 <g id="State=Selected - Pressed">
 <g id="Group 8">
@@ -19,18 +34,6 @@
 </g>
 </g>
 </g>
-<defs>
-<linearGradient id="paint0_linear_1421_17272" x1="31.3528" y1="2.32953" x2="31.3528" y2="11.6477" gradientUnits="userSpaceOnUse">
-<stop stop-color="#097489"/>
-<stop offset="1" stop-color="#1A5E6E"/>
-</linearGradient>
-<linearGradient id="paint1_linear_1421_17272" x1="23.1738" y1="4.65935" x2="23.1738" y2="8.15365" gradientUnits="userSpaceOnUse">
-<stop stop-color="white"/>
-<stop offset="1" stop-color="#6E797D"/>
-</linearGradient>
-<linearGradient id="paint2_linear_1421_17272" x1="23.1738" y1="6.52246" x2="47.2878" y2="53.3276" gradientUnits="userSpaceOnUse">
-<stop stop-color="#007E96"/>
-<stop offset="1" stop-color="#1A5E6E"/>
-</linearGradient>
-</defs>
+
+</g>
 </svg>

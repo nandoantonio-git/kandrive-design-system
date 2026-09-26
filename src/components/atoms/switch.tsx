@@ -42,7 +42,7 @@ function Switch({
         "transition-colors motion-safe:duration-150",
         "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
         "disabled:pointer-events-none disabled:opacity-50",
-        checked ? "bg-brand-teal" : "bg-[#d9d9d9] dark:bg-[#27272a]",
+        checked ? "bg-brand-teal-action" : "bg-[#d9d9d9] dark:bg-[#27272a]",
         className
       )}
       {...props}

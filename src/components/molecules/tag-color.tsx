@@ -4,8 +4,8 @@ import { cn } from "@/lib/utils"
 
 const TAG_COLORS = [
   { name: "success", className: "bg-[var(--brand-feedback-success-default,#096)] dark:bg-[#22c55e]" },
-  { name: "primary", className: "bg-brand-teal" },
-  { name: "primary-dark", className: "bg-brand-teal-dark" },
+  { name: "primary", className: "bg-brand-teal-action" },
+  { name: "primary-dark", className: "bg-brand-teal-dark-surface" },
   { name: "pink-light", className: "bg-brand-pink-light" },
   { name: "danger", className: "bg-[var(--brand-feedback-danger-default,#bc3426)] dark:bg-[#e35d4a]" },
   { name: "warning", className: "bg-[var(--color-feedback-warning,#c38418)] dark:bg-[#fbbf24]" },

@@ -1,0 +1,14 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as HamburgerButtonStories from './HamburgerButton.stories';
+
+<Meta of={HamburgerButtonStories} />
+
+# HamburgerButton
+
+✅ Glifo do `atom/Icon/Hamburger` (`1637:23253`), modos Closed e Expand, exportado do Figma.
+
+O ☰ do Header mobile abre a gaveta (`SidebarDrawer`) em todas as telas, exceto nas de feedback visual. Dentro da gaveta, o modo Expand a fecha.
+
+<Canvas of={HamburgerButtonStories.Closed} />
+<Controls />
+<Canvas of={HamburgerButtonStories.Expand} />

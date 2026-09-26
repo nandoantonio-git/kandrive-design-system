@@ -1,0 +1,24 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as Stories from './UserProfileCard.stories';
+
+<Meta of={Stories} />
+
+# UserProfileCard
+
+✅ Figma KanDrive V0.2.1: o `UserBlock` no topo de `Settings/Account` Mobile, Tablet e Desktop (F10, aprovado em 2026-09-24).
+
+## Uso
+
+O bloco de usuário de Settings → Conta. Tocar no avatar do Header (mobile) ou no ícone de conta (tablet e desktop) abre esta tela. Tem duas ações: "Editar perfil" (foto, nome e e-mail) e "Trocar conta" (alternar entre contas conectadas).
+
+<Canvas of={Stories.Default} />
+<Controls />
+
+## Layout
+
+- Mobile e tablet: identidade em cima e ações abaixo.
+- Desktop: identidade à esquerda e ações à direita.
+
+## Tokens
+
+Card `Neutral/Surface/Card` com borda `Neutral/Border/Subtle` e raio 12. `Avatar` de 56px, nome 18px SemiBold, e-mail 14px `Neutral/Text/Secondary`. Ações: `Button` Outline MD.

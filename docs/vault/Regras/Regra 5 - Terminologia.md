@@ -42,5 +42,6 @@ A Regra 5 presumia que a página de Configurações de Plano teria um botão "Li
 ## Ver também
 
 - [[Glossário]]
+- [[Tom de Voz e Personalidade da Marca]]
 - [[CleanSpaceStorage]]
 - [[Conflitos Abertos]]

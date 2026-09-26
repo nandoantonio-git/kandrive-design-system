@@ -3,6 +3,7 @@ import { create } from 'storybook/theming/create'
 import { withThemeByClassName } from '@storybook/addon-themes'
 
 import '../src/index.css'
+import { PreferencesProvider } from '../src/lib/preferences'
 
 // Mesmo tema de `.storybook/manager.ts`, aplicado aos blocos de docs
 // (tabelas de Args, etc.) — decisão humana 2026-08-14, ver manager.ts.
@@ -31,11 +32,31 @@ const preview: Preview = {
       theme: docsTheme,
     },
 
+    // Viewports do KanDrive (decisão de responsividade, 2026-09-24): as
+    // mesmas larguras dos frames do Figma V0.2.1. Os breakpoints do código
+    // são outros: mobile < 720, tablet 720–1199, desktop ≥ 1200 (ver
+    // Tokens/Responsividade). Os presets genéricos saem.
+    viewport: {
+      options: {
+        kdMobile: { name: 'Mobile · 390', styles: { width: '390px', height: '844px' }, type: 'mobile' },
+        kdTablet: { name: 'Tablet · 720', styles: { width: '720px', height: '1024px' }, type: 'tablet' },
+        kdDesktop: { name: 'Desktop · 1440', styles: { width: '1440px', height: '900px' }, type: 'desktop' },
+      },
+    },
+
     a11y: {
-      // 'todo' - show a11y violations in the test UI only
-      // 'error' - fail CI on a11y violations
-      // 'off' - skip a11y checks entirely
-      test: 'todo'
+      // Gate: qualquer violação do axe quebra o teste.
+      test: 'error',
+      // Exceção estreita (lote de paleta, 2026-09-25): os 3 tokens do Q17
+      // (Neutral/Text/Tertiary, Brand/Primary/Default-texto, Brand/Secondary/
+      // Light) foram escurecidos, e os `text-zinc-500` soltos do código
+      // trocados pelo token — isso já fechou 66% das ocorrências. O que sobra
+      // é de outra natureza (fora do escopo aprovado no Q17), listado em
+      // [[Conflitos Abertos]]: estados esmaecidos por opacidade (Sidebar,
+      // NodeContextMenu, ArchiveBrowserModalSidebar, o catálogo do Icon) e
+      // cores semânticas de badge (âmbar "Duplicado", rosa "Urgente", azul de
+      // foco do CardLogin). Fica `reviewOnFail` até uma decisão sobre elas.
+      config: { rules: [{ id: 'color-contrast', reviewOnFail: true }] },
     },
 
     // Sem isso, o Storybook ordena as categorias de topo alfabeticamente
@@ -48,7 +69,7 @@ const preview: Preview = {
     options: {
       storySort: {
         method: 'alphabetical',
-        order: ['Atoms', 'Molecules', 'Organisms', 'Templates', 'Pages', 'Tokens'],
+        order: ['Introdução', 'Atoms', 'Molecules', 'Organisms', 'Templates', 'Pages', 'Tokens', ['Colors', 'Responsividade']],
       },
     },
   },
@@ -58,6 +79,13 @@ const preview: Preview = {
   // de cada story, não só nos blocos de Docs (esses seguem o tema fixo
   // `light` de `docsTheme` acima, decisão humana anterior, não mexido).
   decorators: [
+    // Preferências do usuário (mão dominante): permite trocar a opção em
+    // Settings → Aparência e ver o FAB mudar de lado nas outras stories.
+    (Story) => (
+      <PreferencesProvider>
+        <Story />
+      </PreferencesProvider>
+    ),
     withThemeByClassName({
       themes: {
         light: '',

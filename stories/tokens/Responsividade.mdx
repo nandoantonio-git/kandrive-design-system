@@ -1,0 +1,84 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { BreakpointIndicator } from '../../src/components/tokens/breakpoint-indicator';
+
+<Meta title="Tokens/Responsividade" />
+
+# Responsividade
+
+As regras de como o KanDrive se adapta a cada tamanho de tela, definidas em 24/09/2026. O Figma **KanDrive V0.2.1** tem telas em três larguras de frame (Desktop 1440, Tablet 720, Mobile 390), e esta página explica como o código cobre todas as larguras entre elas.
+
+<BreakpointIndicator />
+
+Redimensione o viewport pela barra de ferramentas (**Mobile · 390**, **Tablet · 720**, **Desktop · 1440**) para ver a faixa mudar.
+
+## 1. Breakpoints
+
+| Faixa | Largura | Classe Tailwind | Frame do Figma | Dispositivos típicos |
+| --- | --- | --- | --- | --- |
+| **Mobile** | < 720px | (sem prefixo) | 390 | celulares, 360–430 |
+| **Tablet** | 720–1199px | `tablet:` (45rem) | 720 | iPad em retrato e paisagem, 744–1194 |
+| **Desktop** | ≥ 1200px | `desktop:` (75rem) | 1440 | notebooks 1280/1366 e monitores |
+
+O código é **mobile-first**: o estilo sem prefixo vale para o mobile, e `tablet:` e `desktop:` acrescentam por cima. Os nomes são os da prop `Device` do Figma.
+
+## 2. Entre os breakpoints: fluido com máximo
+
+- A **Sidebar mantém a largura do Figma** em cada faixa, e o **conteúdo preenche** o espaço que sobra, como o tablet já faz no Figma.
+- **Margens laterais:** cerca de 16px no mobile, 24px no tablet e de 24 a 48px no desktop.
+- **Acima de 1440px**, o layout para de crescer e fica centralizado (`max-w-(--container-page)`), com o fundo ocupando a tela.
+- As **grades de arquivos ganham colunas** conforme a largura, em vez de esticar os cards.
+
+## 3. Navegação por faixa
+
+| Faixa | Topo | Lateral | Base |
+| --- | --- | --- | --- |
+| Desktop | Header (busca, Organizar, Guardar, ajuda, configurações, perfil) | Sidebar | Footer (em algumas telas) |
+| Tablet | Header | Sidebar (MD, ou SM em Settings) | Footer |
+| Mobile | Header com ☰ | Gaveta (`Sidebar Device=Mobile`), aberta pelo ☰ | depende do tipo de tela (abaixo) |
+
+**No mobile, por tipo de tela:**
+
+| Tipo de tela | Barras |
+| --- | --- |
+| Arquivos: Home (grade e lista), estados vazios, erro, loading | `MobileTabBar` no topo (Home · Organizar · Guardar) + `MobileBottomNav` com FAB **Adicionar** |
+| Storage | `MobileBottomNav` com FAB **Adicionar** |
+| Tarefa: revisar organização, selecionar para guardar | `MobileBottomNav` com FAB **Confirmar** e ✕. Cancelar volta para a Home. No Organize, o Figma mantém a `MobileTabBar` em "Organizar" |
+| Settings e Payment | `MobileFooterSettings` (chips) na base |
+| FAQ | sem barra na base; chips de tópicos abaixo do título (`FaqTopicChips`) |
+| Feedback visual (sucesso, confirmação) | sem gaveta nem barras: tela cheia com `MobileSuccess` |
+
+**Onde fica cada destino no mobile:**
+- **BottomNav:** Pessoal, Compartilhados, Recentes, Favoritos. Faz o papel da Sidebar do desktop.
+- **Gaveta:** Guardados, Armazenamento, Etiquetas, depois Lixeira, depois Configurações e Ajuda.
+- **TabBar:** as ações principais do app. Faz o papel das ações do Header.
+
+## 4. Como os componentes escolhem a versão
+
+1. **Layout e densidade vêm do CSS** (`tablet:` / `desktop:`): margens, colunas, largura da Sidebar, tamanho dos cards.
+2. **A troca de estrutura fica no `AppShell`**: Sidebar ou gaveta, TabBar e BottomNav ou Header com ações. Tudo num lugar só.
+3. **A prop `device` fica só onde o Figma tem desenhos realmente diferentes** para o mesmo componente (CardLogin, modais…). Ela é opcional: sem valor, segue o viewport. Nas stories, permite mostrar as versões lado a lado.
+
+## 5. Telas que não existem em todos os dispositivos
+
+| Tipo | Regra | Exemplos |
+| --- | --- | --- |
+| **Estado** | Vale em todos os dispositivos, aplicado pelas regras responsivas | loading, erro de rede, sem resultados, limite atingido, sucesso, recuperação pendente, seleção, excluir conta, Storage/Current e LongTerm |
+| **Fluxo equivalente** | A mesma tarefa com interação diferente, documentada em par | Organize/DropZone (arrastar) ↔ Organize/Review (mobile) · Intro e ArchiveBrowser (modais) ↔ SelectFiles (mobile) |
+| **Exclusivo** | Existe só onde há espaço | a visualização em Colunas: no mobile, o seletor oferece só Grade e Lista |
+
+## 6. Mão dominante
+
+`MobileBottomNav` tem a prop `hand` (right | left), que muda o lado do FAB. O usuário escolhe em **Settings → Aparência** (`HandPicker`), com Direita como padrão, e também no onboarding. A mão dominante não afeta nenhum outro elemento.
+
+## 7. Toque e tipografia
+
+- **A tipografia não muda por faixa.** A Regra 4 (Figtree, piso de 16px para leitura e ação) já garante legibilidade no mobile.
+- **Área de toque:** com ponteiro de toque (`@media (pointer: coarse)`), os alvos crescem de forma invisível até **44×44px**. Use o utilitário `touch-target` em botões de ícone e alvos pequenos, e a variante `touch:` para outros ajustes. Com mouse, o desenho do Figma fica intacto.
+
+## 8. No Storybook
+
+- **Viewports:** Mobile · 390, Tablet · 720 e Desktop · 1440, as larguras dos frames do Figma.
+- **Pages e templates** têm stories `Desktop`, `Tablet` e `Mobile`, cada uma já no viewport certo e com o link para o frame correspondente no Figma.
+- **Componentes com `device`** mostram as variantes lado a lado.
+
+> Pendências de desenho fechadas em 2026-09-24: a mão dominante fica em Aparência e no onboarding, e o FAQ mobile ganhou os chips de tópicos. O avatar do Header abre Settings → Conta.

@@ -1,0 +1,21 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as Stories from './PagePickerButton.stories';
+
+<Meta of={Stories} />
+
+# PagePickerButton
+
+🧩 Extraído de frames do Figma: o `page-button` de `Organize/ChooseMethod/Mobile` e de `LongTermStorage/SelectFiles/Mobile` (KanDrive V0.2.1). No Figma não é um componente; foi extraído porque se repete.
+
+## Uso
+
+Escolhe a página de origem (Pessoal, Compartilhados…) das listas de seleção no mobile.
+
+<Canvas of={Stories.Default} />
+<Controls />
+
+## Tokens
+
+- Botão: 32px, raio 8, fundo `Effect/Overlay/Subtle` a 10% com blur, borda `Brand/Primary/Light`.
+- Texto: 13px Medium, `Neutral/Text/Secondary`. Ícone, chevron e o rótulo "Página:" (11px): `Neutral/Text/Tertiary`.
+- Área de toque de 44px no toque (`touch-target`).

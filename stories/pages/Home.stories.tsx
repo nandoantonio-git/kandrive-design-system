@@ -28,7 +28,7 @@ type Story = StoryObj<typeof meta>
 
 export const GridMode: Story = {
   parameters: {
-    design: { type: "figma", url: "https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1439-19639" },
+    design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1745-11899" },
   },
   args: {
     viewMode: "grid",
@@ -49,7 +49,7 @@ export const GridMode: Story = {
 
 export const ListMode: Story = {
   parameters: {
-    design: { type: "figma", url: "https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1439-19791" },
+    design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1745-11899" },
   },
   args: {
     viewMode: "list",
@@ -70,7 +70,7 @@ export const ListMode: Story = {
 
 export const FirstUpload: Story = {
   parameters: {
-    design: { type: "figma", url: "https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1439-19658" },
+    design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1745-11899" },
   },
   args: {
     viewMode: "grid",
@@ -87,7 +87,7 @@ export const FirstUpload: Story = {
 
 export const ListModeSelected: Story = {
   parameters: {
-    design: { type: "figma", url: "https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1439-19810" },
+    design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1745-11899" },
   },
   args: {
     viewMode: "list",
@@ -109,7 +109,7 @@ export const ListModeSelected: Story = {
 
 export const ColumnsMode: Story = {
   parameters: {
-    design: { type: "figma", url: "https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1439-19829" },
+    design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1745-11899" },
   },
   args: {
     viewMode: "columns",
@@ -131,3 +131,26 @@ export const ColumnsMode: Story = {
     return <Controlled />
   },
 }
+
+// ─── Responsividade (2026-09-24) ─────────────────────────────────────────
+// Cada story abre no viewport do frame do Figma correspondente.
+const FIG = (id: string) => ({ design: { type: "figma" as const, url: `https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=${id}` } })
+const vp = (value: "kdMobile" | "kdTablet" | "kdDesktop") => ({ viewport: { value, isRotated: false } })
+
+/** Tablet · 720: Sidebar + conteúdo fluido. Figma `Home/Grid/Tablet`. */
+export const GridTablet: Story = { ...GridMode, parameters: FIG("1745-13794"), globals: vp("kdTablet") }
+
+/** Tablet · 720, modo Lista. Figma `Home/List/Tablet`. */
+export const ListTablet: Story = { ...ListMode, parameters: FIG("1745-13817"), globals: vp("kdTablet") }
+
+/**
+ * Mobile · 390: ☰ + TabBar no topo, GroupBy compacto, cards grandes numa coluna
+ * e BottomNav com FAB Adicionar. Figma `Home/Grid/Mobile`.
+ */
+export const GridMobile: Story = { ...GridMode, parameters: FIG("1715-9906"), globals: vp("kdMobile") }
+
+/** Mobile · 390, modo Lista: linhas FileRow. Figma `Home/List/Mobile`. */
+export const ListMobile: Story = { ...ListMode, parameters: FIG("1712-22251"), globals: vp("kdMobile") }
+
+/** Mobile · 390, estado vazio. Figma `Home/FirstUpload/Mobile`. */
+export const FirstUploadMobile: Story = { ...FirstUpload, parameters: FIG("1727-22365"), globals: vp("kdMobile") }

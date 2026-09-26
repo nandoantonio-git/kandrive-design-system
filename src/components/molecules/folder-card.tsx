@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils"
 import { ArchiveItem } from "@/components/atoms/archive-item"
 import { Icon } from "@/components/atoms/icon"
 import { ImageItem } from "@/components/atoms/image-item"
+import { FileRow, type FileRowProps } from "@/components/molecules/file-row"
 
 export interface FolderCardProps extends React.ComponentProps<"div"> {
   label?: string
@@ -15,6 +16,14 @@ export interface FolderCardProps extends React.ComponentProps<"div"> {
   /** Nomes das 3 miniaturas (Figma-confirmado: sempre 3 slots — doc/imagem/doc). */
   fileNames?: readonly [string, string, string]
   onToggleExpanded?: () => void
+  /**
+   * Mobile (`Organize/Saved/Mobile`, V0.2.1): o grupo lista as linhas
+   * `molecule/FileRow Device=Mobile` em vez das 3 miniaturas, com gap de 24.
+   * 🧩 No Figma é um frame com o nome `molecule/FolderCard`, não uma variante.
+   */
+  device?: "desktop" | "mobile"
+  /** Linhas do grupo no mobile. */
+  rows?: FileRowProps[]
 }
 
 const DEFAULT_FILE_NAMES = ["Arquivo 1", "Arquivo 2", "Arquivo 3"] as const
@@ -64,9 +73,12 @@ function FolderCard({
   state = "idle",
   fileNames = DEFAULT_FILE_NAMES,
   onToggleExpanded,
+  device = "desktop",
+  rows = [],
   className,
   ...props
 }: FolderCardProps) {
+  const mobile = device === "mobile"
   return (
     <div
       data-slot="folder-card"
@@ -74,6 +86,7 @@ function FolderCard({
       data-expanded={expanded || undefined}
       className={cn(
         "flex w-full max-w-[972px] flex-col items-start gap-6 overflow-hidden rounded-md pb-6 pr-4",
+        mobile && "pt-2",
         className
       )}
       {...props}
@@ -88,14 +101,15 @@ function FolderCard({
             "flex items-center gap-2 rounded-md px-2 py-1 text-base text-brand-teal-dark",
             "hover:bg-[#71717a33] dark:hover:bg-[#a1a1aa33]",
             state === "hover" && "bg-[#71717a33] dark:bg-[#a1a1aa33]",
-            state === "selected" && "bg-brand-teal-light"
+            state === "selected" && "bg-brand-teal-light-surface"
           )}
         >
           <Icon name="ArrowDropDown" className="size-4 shrink-0" />
           {label}
         </button>
       </div>
-      {expanded ? (
+      {expanded && mobile ? rows.map((row) => <FileRow key={row.name} {...row} />) : null}
+      {expanded && !mobile ? (
         <div className="flex w-full items-start gap-8">
           <ArchiveItem name={fileNames[0]} />
           <ImageItem name={fileNames[1]} />

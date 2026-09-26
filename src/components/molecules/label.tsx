@@ -91,7 +91,7 @@ function Label({
       )}
       {...props}
     >
-      <span className="w-full px-1 text-[0.625rem] font-bold tracking-[0.012px] text-zinc-500 dark:text-zinc-400">
+      <span className="w-full px-1 text-[0.625rem] font-bold tracking-[0.012px] text-neutral-text-tertiary dark:text-zinc-400">
         ETIQUETAR
       </span>
 
@@ -127,7 +127,7 @@ function Label({
           ) : (
             <div className="flex w-full flex-1 flex-col items-center gap-1">
               <div className="flex h-5 w-[86px] items-center gap-1.5 rounded-md bg-[#ccced6] dark:bg-[#3a3a3f] px-1">
-                <LabelSearchGlyph aria-hidden="true" className="size-3 shrink-0 text-zinc-500 dark:text-zinc-400" />
+                <LabelSearchGlyph aria-hidden="true" className="size-3 shrink-0 text-neutral-text-tertiary dark:text-zinc-400" />
               </div>
               <div className="flex w-[109px] flex-col items-center gap-1 px-3 pb-1">
                 <FileTypeLabel kind="document" className="w-full" />

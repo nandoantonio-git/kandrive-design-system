@@ -12,8 +12,8 @@ export interface TagProps extends React.ComponentProps<"span"> {
 }
 
 const VARIANT_STYLES: Record<TagVariant, string> = {
-  primary: "bg-brand-teal text-white",
-  "primary-dark": "bg-brand-teal-dark text-white",
+  primary: "bg-brand-teal-action text-brand-teal-foreground",
+  "primary-dark": "bg-brand-teal-dark-surface text-white",
   // cor/categoria/acesso-rápido (Regra 3) — mesmo par claro/escuro do rosa
   // já usado em molecule/StorageBar para a categoria "Acesso rápido".
   secondary: "bg-brand-pink-light text-white",
@@ -81,7 +81,7 @@ function Tag({
         "inline-flex items-center gap-2 rounded-md px-2 py-1 text-[0.6875rem] leading-none tracking-[0.006px] whitespace-nowrap transition-colors",
         VARIANT_STYLES[variant],
         isHover && variant === "secondary" && "bg-brand-pink-dark",
-        state === "default" && variant === "primary" && "hover:bg-brand-teal-dark",
+        state === "default" && variant === "primary" && "hover:bg-brand-teal-dark-surface",
         state === "default" && variant === "secondary" && "hover:bg-brand-pink-dark",
         state === "default" && (variant === "primary-dark" || variant === "file-name") && "hover:brightness-90",
         className

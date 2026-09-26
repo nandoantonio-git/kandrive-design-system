@@ -1,11 +1,9 @@
-import * as React from "react"
-
 import KeepButtonGlyph from "@/assets/icons/KeepButtonGlyph.svg?react"
 import { cn } from "@/lib/utils"
 import { IconActionButton, type IconActionButtonProps } from "./icon-action-button"
 
 export interface KeepButtonProps
-  extends Omit<IconActionButtonProps, "icon" | "label"> {
+  extends Omit<IconActionButtonProps, "icon" | "label" | "style"> {
   /** Eixo `style` confirmado no Figma (`Default`|`Primary`|`White`). */
   style?: "default" | "primary" | "white"
   label?: string
@@ -16,7 +14,7 @@ export interface KeepButtonProps
 // necessidade real de affordance interativa — nunca como fundo/pílula
 // (Regra 9: removido em US-026 por não ser Figma-confirmado).
 const STYLE_CLASSNAME: Record<NonNullable<KeepButtonProps["style"]>, string> = {
-  default: "text-zinc-500 hover:text-zinc-700 active:opacity-60 dark:text-zinc-400 dark:hover:text-zinc-300",
+  default: "text-neutral-text-tertiary hover:text-zinc-700 active:opacity-60 dark:text-zinc-400 dark:hover:text-zinc-300",
   primary: "text-brand-teal hover:opacity-80 active:opacity-60",
   white: "text-white hover:opacity-80 active:opacity-60",
 }

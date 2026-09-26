@@ -2,7 +2,7 @@ import * as React from "react"
 import { Filter, Plus, X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { PushButton } from "@/components/atoms/push-button"
+import { Button } from "@/components/atoms/button"
 import { FreeModeItemNode } from "@/components/molecules/free-mode-item-node"
 import { FreeModeOutputNode } from "@/components/molecules/free-mode-output-node"
 import { FreeModeButtons } from "@/components/molecules/free-mode-buttons"
@@ -70,7 +70,7 @@ function FreeModeFilterPanel({ className }: { className?: string }) {
         <span className="rounded-md border border-zinc-600 bg-zinc-700 px-2 py-1 text-[0.6875rem] text-white">
           1.0 GB
         </span>
-        <button type="button" aria-label="Remover regra" className="text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300">
+        <button type="button" aria-label="Remover regra" className="text-neutral-text-tertiary hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300">
           <X aria-hidden="true" className="size-3" />
         </button>
       </div>
@@ -97,12 +97,12 @@ function FreeModeFilterPanel({ className }: { className?: string }) {
         Adicionar regra
       </button>
       <div className="flex items-center justify-end gap-3 border-t border-zinc-300 pt-3 dark:border-zinc-700">
-        <PushButton variant="neutral" className="h-8 px-3 text-[10px]">
+        <Button variant="outline" className="h-8 px-3 text-[10px]">
           Descartar Mudanças
-        </PushButton>
-        <PushButton variant="primary" className="h-8 px-3 text-[10px]">
+        </Button>
+        <Button className="h-8 px-3 text-[10px]">
           Salvar Mudanças
-        </PushButton>
+        </Button>
       </div>
     </div>
   )
@@ -286,17 +286,17 @@ function OrganizeFreeModeCanvas({
           <p className="text-[0.8125rem] text-zinc-600 dark:text-zinc-300">
             {rulesCount} regras · {affectedFilesCount} arquivos afetados · {sizeLabel}
           </p>
-          <p className="pt-1 text-[0.6875rem] leading-4 text-zinc-500 dark:text-zinc-400">
+          <p className="pt-1 text-[0.6875rem] leading-4 text-neutral-text-tertiary dark:text-zinc-400">
             Você poderá excluir este template depois e reverter a organização.
           </p>
         </div>
         <div className="flex shrink-0 gap-3">
-          <PushButton variant="neutral" className="h-8 px-4 text-xs" onClick={onDiscard}>
+          <Button variant="outline" className="h-8 px-4 text-xs" onClick={onDiscard}>
             Descartar
-          </PushButton>
-          <PushButton variant="primary" className="h-8 px-4 text-xs" onClick={onSaveTemplate}>
+          </Button>
+          <Button className="h-8 px-4 text-xs" onClick={onSaveTemplate}>
             Salvar Template
-          </PushButton>
+          </Button>
         </div>
       </div>
     </div>

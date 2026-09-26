@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Check } from "lucide-react"
+import { Checkbox } from "@/components/atoms/checkbox"
 
 import { cn } from "@/lib/utils"
 import { StorageTierBadge, type StorageTier } from "@/components/atoms/storage-tier-badge"
@@ -89,28 +89,17 @@ function CleanSpaceListSelection({
       className={cn("flex items-center gap-3 rounded-[10.4px] p-[9px]", className)}
       {...props}
     >
-      <button
-        type="button"
-        role="checkbox"
-        aria-checked={selected}
+      <Checkbox
+        checked={selected}
+        onCheckedChange={(next) => onSelectedChange?.(next)}
         aria-label={`Selecionar ${name}`}
-        onClick={() => onSelectedChange?.(!selected)}
-        className={cn(
-          "flex size-4 shrink-0 items-center justify-center rounded-[4px] border shadow-[0_1px_2px_0_rgba(0,0,0,0.05)] transition-colors",
-          "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
-          selected
-            ? "border-transparent bg-brand-teal hover:bg-brand-teal/90 active:bg-brand-teal/80"
-            : "border-[#ececf0] bg-zinc-500/20 hover:bg-zinc-500/30 active:bg-zinc-500/40 dark:border-[#3f3f46] dark:bg-zinc-400/20 dark:hover:bg-zinc-400/30 dark:active:bg-zinc-400/40"
-        )}
-      >
-        {selected ? <Check aria-hidden="true" strokeWidth={2.5} className="size-3 text-white" /> : null}
-      </button>
+      />
       <span className="flex size-8 shrink-0 items-center justify-center rounded-[10.4px]">
         <FileGlyph aria-hidden="true" className="h-[23px] w-[21px]" />
       </span>
       <div className="min-w-0 flex-1">
         <p className="truncate text-base tracking-[0.0192px] text-zinc-950 dark:text-zinc-100">{name}</p>
-        <p className="truncate text-[0.625rem] tracking-[0.012px] text-zinc-500 dark:text-zinc-400">{meta}</p>
+        <p className="truncate text-[0.625rem] tracking-[0.012px] text-neutral-text-tertiary dark:text-zinc-400">{meta}</p>
       </div>
       <StorageTierBadge tier={tier} />
     </div>

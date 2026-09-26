@@ -77,7 +77,7 @@ const DEFAULT_FILE_NAMES = [
  * simplificação de eixo já usada em `celule/nodoContextMenuItem`. `baked`
  * (Junção/Filtro Type) reflete os 2 casos onde o asset do Figma já inclui
  * o fundo `--brand-primary-default` (`#007e96`) embutido no SVG — os
- * demais recebem o glifo dentro de uma caixa `bg-brand-teal` separada.
+ * demais recebem o glifo dentro de uma caixa `bg-brand-teal-action` separada.
  * `auto-archive` e `resultado` têm anatomia própria (ver Figma) e não
  * compartilham o layout ícone+rótulo simples.
  *
@@ -154,7 +154,7 @@ function FreeModeItemNode({
           <AutoArchiveGlyph aria-hidden="true" className="size-[34px] shrink-0" />
           <div className="flex flex-col">
             <p className="text-sm leading-5 font-semibold whitespace-nowrap text-zinc-700 dark:text-zinc-300">Auto-Archive</p>
-            <span className="mt-[3px] w-fit rounded-[4px] bg-brand-teal px-1.5 py-px text-[0.5rem] leading-3 font-bold text-brand-teal-light">
+            <span className="mt-[3px] w-fit rounded-[4px] bg-brand-teal-action px-1.5 py-px text-[0.5rem] leading-3 font-bold text-brand-teal-light">
               ACTIVE
             </span>
           </div>
@@ -162,7 +162,7 @@ function FreeModeItemNode({
       ) : isResultado ? (
         <>
           <div className="flex w-full items-center gap-3">
-            <div className="flex size-[34px] shrink-0 items-center justify-center rounded-[10.4px] bg-brand-teal">
+            <div className="flex size-[34px] shrink-0 items-center justify-center rounded-[10.4px] bg-brand-teal-action">
               <ResultadoGlyph aria-hidden="true" className="size-5" />
             </div>
             <div>
@@ -177,15 +177,15 @@ function FreeModeItemNode({
           {isExpandedResultado ? (
             <div className="mt-4 flex w-full flex-col border-t border-zinc-500 dark:border-zinc-400 pt-[13px]">
               <div className="flex items-center justify-between">
-                <span className="text-[0.6875rem] leading-[16.5px] text-zinc-500 dark:text-zinc-400">Arquivos incluídos</span>
+                <span className="text-[0.6875rem] leading-[16.5px] text-neutral-text-tertiary dark:text-zinc-400">Arquivos incluídos</span>
                 <span className="text-[0.6875rem] leading-[16.5px] font-semibold text-zinc-700 dark:text-zinc-300">{affectedFilesCount}</span>
               </div>
               <div className="flex items-center justify-between pt-3">
-                <span className="text-[0.6875rem] leading-[16.5px] text-zinc-500 dark:text-zinc-400">Tamanho estimado</span>
+                <span className="text-[0.6875rem] leading-[16.5px] text-neutral-text-tertiary dark:text-zinc-400">Tamanho estimado</span>
                 <span className="text-[0.6875rem] leading-[16.5px] font-semibold text-zinc-700 dark:text-zinc-300">{sizeLabel}</span>
               </div>
               <div className="flex items-center justify-between pt-3">
-                <span className="text-[0.6875rem] leading-[16.5px] text-zinc-500 dark:text-zinc-400">Regras aplicadas</span>
+                <span className="text-[0.6875rem] leading-[16.5px] text-neutral-text-tertiary dark:text-zinc-400">Regras aplicadas</span>
                 <span className="text-[0.6875rem] leading-[16.5px] font-semibold text-zinc-700 dark:text-zinc-300">{rulesCount}</span>
               </div>
               <div className="mt-3 flex w-full flex-col rounded-[10.4px] border border-zinc-200 bg-white/60 p-[9px] dark:border-zinc-700 dark:bg-zinc-900/60">
@@ -195,7 +195,7 @@ function FreeModeItemNode({
                 </div>
                 <ul className="mt-2 flex w-full flex-col gap-1">
                   {fileNames.map((name) => (
-                    <li key={name} className="text-[0.625rem] leading-[15px] text-zinc-500 dark:text-zinc-400">
+                    <li key={name} className="text-[0.625rem] leading-[15px] text-neutral-text-tertiary dark:text-zinc-400">
                       {name}
                     </li>
                   ))}
@@ -215,14 +215,14 @@ function FreeModeItemNode({
               {baked ? (
                 <Glyph aria-hidden="true" className="h-9 w-[37px] shrink-0" />
               ) : (
-                <div className="flex size-9 shrink-0 items-center justify-center rounded-md bg-brand-teal p-1.5">
+                <div className="flex size-9 shrink-0 items-center justify-center rounded-md bg-brand-teal-action p-1.5">
                   <Glyph aria-hidden="true" className="size-full" />
                 </div>
               )}
               <div className="flex flex-col">
                 <p className="text-sm leading-5 font-semibold whitespace-nowrap text-zinc-700 dark:text-zinc-300">{visibleLabel}</p>
                 {visibleSubtitle ? (
-                  <p className="text-[0.625rem] leading-[15px] whitespace-nowrap text-zinc-500 dark:text-zinc-400">{visibleSubtitle}</p>
+                  <p className="text-[0.625rem] leading-[15px] whitespace-nowrap text-neutral-text-tertiary dark:text-zinc-400">{visibleSubtitle}</p>
                 ) : null}
               </div>
             </div>

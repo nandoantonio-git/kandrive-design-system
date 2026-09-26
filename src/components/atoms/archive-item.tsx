@@ -102,6 +102,14 @@ const SELECTED_STATES: readonly ArchiveItemState[] = [
  * funcionando (freeze-frame pra documentação/auditoria), mas quando omitido
  * o componente rastreia hover/press reais e clique alterna seleção sozinho
  * (`selected`/`defaultSelected`/`onSelectedChange`, controlado ou não).
+ *
+ * **Corrigido em 2026-09-25** (achado do usuário: nome cortando em
+ * composições com vários itens lado a lado, ex. `FolderCard`): o container
+ * raiz não tinha `shrink-0` — como flex-child sem isso, o navegador
+ * comprimia o item até o `min-w-[36.68px]` (que só cobre a largura do
+ * glifo) quando o pai não tinha espaço sobrando, cortando o nome mesmo com
+ * `w-fit`/`truncate` corretos. Adicionado `shrink-0` (mesmo fix em
+ * `FolderItem`/`ImageItem`/`VideoItem`).
  */
 function ArchiveItem({
   state: explicitState,
@@ -160,7 +168,7 @@ function ArchiveItem({
       aria-pressed={isSelected}
       aria-disabled={isDisabled || undefined}
       className={cn(
-        "relative flex w-fit min-w-[36.68px] flex-col items-center gap-1 py-0.5",
+        "relative flex w-fit min-w-[36.68px] shrink-0 flex-col items-center gap-1 py-0.5",
         "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
         isDisabled ? "cursor-not-allowed" : "cursor-pointer",
         className
@@ -197,18 +205,18 @@ function ArchiveItem({
     >
       <div className="relative h-[41px] w-[36.68px] shrink-0">
         <img alt="" aria-hidden="true" className="absolute inset-0 size-full" src={BASE_IMAGE[state]} />
-        {/* 🧩 Inferido (Regra 9): `--effect-glass-fill-light` não é um token real (sem entrada em index.css) — fallback rgba espelhado com a mesma base #1a1a1a já usada pelos tokens effect-glass-white-* em modo escuro */}
+        {/* Vidro do símbolo fixo no valor Light (Effect/Glass/Fill/Light, #fafafa a 60%): o símbolo fica igual no Light e no Dark (pedido do usuário, 2026-09-24). */}
         <div
           aria-hidden="true"
-          className="absolute top-[6px] left-[5.34px] h-[3px] w-[26px] rounded-[6px] bg-[var(--effect-glass-fill-light,rgba(250,250,250,0.6))] dark:bg-[rgba(26,26,26,0.6)]"
+          className="absolute top-[6px] left-[5.34px] h-[3px] w-[26px] rounded-[6px] bg-[rgba(250,250,250,0.6)]"
         />
         <div
           aria-hidden="true"
-          className="absolute top-[13px] left-[5.34px] h-[3px] w-[26px] rounded-[6px] bg-[var(--effect-glass-fill-light,rgba(250,250,250,0.6))] dark:bg-[rgba(26,26,26,0.6)]"
+          className="absolute top-[13px] left-[5.34px] h-[3px] w-[26px] rounded-[6px] bg-[rgba(250,250,250,0.6)]"
         />
         <div
           aria-hidden="true"
-          className="absolute top-[20px] left-[5.34px] h-[3px] w-[16px] rounded-[6px] bg-[var(--effect-glass-fill-light,rgba(250,250,250,0.6))] dark:bg-[rgba(26,26,26,0.6)]"
+          className="absolute top-[20px] left-[5.34px] h-[3px] w-[16px] rounded-[6px] bg-[rgba(250,250,250,0.6)]"
         />
         {overlay ? (
           <img
@@ -229,7 +237,7 @@ function ArchiveItem({
         <span
           className={cn(
             "block h-3 w-full truncate text-center text-[0.625rem] leading-normal tracking-[0.012px]",
-            isDisabled ? "text-zinc-500 dark:text-zinc-400" : "text-zinc-700 dark:text-zinc-300"
+            isDisabled ? "text-neutral-text-tertiary dark:text-zinc-400" : "text-zinc-700 dark:text-zinc-300"
           )}
         >
           {name}

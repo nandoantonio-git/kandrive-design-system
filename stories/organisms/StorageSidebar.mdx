@@ -17,7 +17,7 @@ Widget de status de armazenamento embutido na Sidebar, com atalhos pra gerir esp
 | Peça | Origem |
 | --- | --- |
 | `molecule/StorageBar` | `Molecules/StorageBar` |
-| `atom/PushButton` (`variant="neutral"`/`"primary"`) | `Atoms/PushButton` |
+| `atom/Button` (`variant="outline"`/padrão) | `Atoms/Button` (migrado de `PushButton` em 25/09/2026) |
 | `organism/sidebar-toggle` | Este mesmo commit |
 
 ## Terminologia
@@ -29,4 +29,4 @@ O rótulo do segundo botão, "Comprar Espaço", e o tag "Corrente" (nome usado e
 ## Estados
 
 - Expanded/Collapsed — prop `expanded`, delega a `SidebarToggle`
-- Hover/Active dos botões — herdado do `PushButton`
+- Hover/Active dos botões — herdado do `atom/Button`

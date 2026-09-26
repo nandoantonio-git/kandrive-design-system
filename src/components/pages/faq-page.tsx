@@ -1,7 +1,7 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
-import { Header } from "@/components/organisms/header"
+import { AppShell } from "@/components/templates/app-shell"
 import { Sidebar, type SidebarProps } from "@/components/organisms/sidebar"
 import { Breadcrumb } from "@/components/molecules/breadcrumb"
 import { PageLead } from "@/components/molecules/page-lead"
@@ -10,6 +10,18 @@ import { FaqInfoCard } from "@/components/organisms/faq-info-card"
 import { FaqInfoCardCollapsed, type FaqTopic } from "@/components/organisms/faq-info-card-collapsed"
 import { CardNeedMoreHelp } from "@/components/organisms/card-need-more-help"
 import { FaqFastLinks } from "@/components/organisms/faq-fast-links"
+import { FaqTopicChips } from "@/components/molecules/faq-topic-chips"
+
+/** Rótulos curtos dos chips do mobile (F6), na mesma ordem do Figma. */
+const TOPIC_CHIP_LABEL: Record<FaqTopic, string> = {
+  FirstSteps: "Primeiros passos",
+  LongTermStorage: "Longo prazo",
+  Organization: "Templates",
+  LabelsTags: "Etiquetas",
+  Duplicates: "Duplicados",
+  Storage: "Armazenamento",
+  FrequentIssues: "Problemas comuns",
+}
 
 const TOPIC_ORDER: FaqTopic[] = [
   "FirstSteps",
@@ -50,32 +62,37 @@ export interface FaqPageProps extends React.ComponentProps<"div"> {
  */
 function FaqPage({ variant = "expanded", sidebarProps, onContactSupport, className, ...props }: FaqPageProps) {
   return (
-    <div data-slot="faq-page" className={cn("flex w-full flex-col bg-zinc-200 dark:bg-zinc-900", className)} {...props}>
-      <Header page="settings" />
-      <div className="mx-auto flex w-[1376px] items-start gap-12 px-1 py-2.5">
-        <Sidebar {...sidebarProps} />
-        <div className="flex flex-1 flex-col items-end gap-5">
-          <div className="flex w-full flex-col items-center gap-2 pb-5">
-            <Breadcrumb segments={["Home", "Perguntas Frequentes"]} className="w-full" />
-            <PageLead title="Perguntas Frequentes" caption="Consulte suas principais dúvidas" className="w-full" />
-          </div>
-          <div className="flex w-full items-start gap-8">
-            <div className="flex w-[927px] shrink-0 flex-col gap-6">
-              <SearchInput className="w-full" />
-              {TOPIC_ORDER.map((topic) =>
-                variant === "expanded" ? (
-                  <FaqInfoCard key={topic} topic={topic} />
-                ) : (
-                  <FaqInfoCardCollapsed key={topic} topic={topic} />
-                )
-              )}
-              <CardNeedMoreHelp onContactSupport={onContactSupport} />
-            </div>
-            <FaqFastLinks className="sticky top-4" />
-          </div>
-        </div>
+    <AppShell
+      data-slot="faq-page"
+      className={cn("bg-zinc-200 dark:bg-zinc-900", className)}
+      headerProps={{ page: "settings" }}
+      sidebar={<Sidebar {...sidebarProps} />}
+      // Mobile: sem barra inferior (decisão de 2026-09-24). Os links rápidos para os
+      // tópicos ficam numa faixa de chips abaixo do título (F6, Figma V0.2.1).
+      {...props}
+    >
+      <div className="flex w-full flex-col items-center gap-2 tablet:pb-5">
+        <Breadcrumb segments={["Home", "Perguntas Frequentes"]} className="hidden w-full tablet:flex" />
+        <PageLead title="Perguntas Frequentes" caption="Consulte suas principais dúvidas" className="w-full" />
+        <FaqTopicChips
+          className="w-full tablet:hidden"
+          topics={TOPIC_ORDER.map((topic) => ({ targetId: `faq-${topic}`, label: TOPIC_CHIP_LABEL[topic] }))}
+        />
       </div>
-    </div>
+      <div className="flex w-full items-start gap-8">
+        <div className="flex w-full min-w-0 flex-1 flex-col gap-6 desktop:max-w-[927px]">
+          <SearchInput className="w-full max-w-none" />
+          {TOPIC_ORDER.map((topic) =>
+            <div key={topic} id={`faq-${topic}`} className="scroll-mt-4">
+              {variant === "expanded" ? <FaqInfoCard topic={topic} /> : <FaqInfoCardCollapsed topic={topic} />}
+            </div>
+          )}
+          <CardNeedMoreHelp onContactSupport={onContactSupport} />
+        </div>
+        {/* Links rápidos laterais só a partir de desktop: (no tablet não há espaço). */}
+        <FaqFastLinks className="sticky top-4 hidden desktop:flex" />
+      </div>
+    </AppShell>
   )
 }
 

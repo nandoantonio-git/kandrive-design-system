@@ -7,7 +7,7 @@ const meta = {
   component: ContextHeader,
   parameters: {
     layout: "centered",
-    design: { type: 'figma', url: 'https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1421-19589' },
+    design: { type: 'figma', url: 'https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=790-7618' },
   },
   argTypes: {
     state: { control: "select", options: ["expanded", "collapsed"] },
@@ -40,4 +40,11 @@ export const Collapsed: Story = {
       </div>
     ),
   ],
+}
+
+/** `Layout=Minimal`, `Device=Mobile` (V0.2.1): só limpar + contador, 40px, largura fluida. Seleção do Long-term mobile. */
+export const MinimalMobile: Story = {
+  args: { layout: "minimal", itemsSelected: "2 itens selecionados" },
+  parameters: { design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1729-24977" } },
+  decorators: [(Story) => <div className="w-[356px]"><Story /></div>],
 }

@@ -9,6 +9,7 @@ import LongTermStorageIcon from "@/assets/icons/FaqCollapsedLongTermStorage.svg?
 import OrganizationIcon from "@/assets/icons/FaqCollapsedOrganization.svg?react"
 import StorageIcon from "@/assets/icons/FaqCollapsedStorage.svg?react"
 import { cn } from "@/lib/utils"
+import { AccordionItem } from "@/components/molecules/accordion-item"
 import { FaqCallout } from "@/components/organisms/faq-callout"
 
 export type FaqTopic =
@@ -39,6 +40,12 @@ interface FaqTopicData {
  * FrequentIssues) já dentro do contexto aprovado pela Regra 5
  * (Armazenamento). Ícones por tópico agora usam os SVGs exportados do nó
  * `1454:22003` na auditoria de ponto-fixo US-026.
+ *
+ * **Alterado em 2026-09-25 (decisão humana, diverge do literal Figma)**:
+ * o texto Figma dizia "Cronológico", mas o método já se chama "Por data"
+ * em `MethodOrganizeButton` (mobile) — decisão do usuário foi unificar em
+ * "Por data" em vez do inverso (achado do `Plano de Verificação`, mesmo
+ * ajuste em `save-organization-modal.tsx`).
  */
 const TOPIC_DATA: Record<FaqTopic, FaqTopicData> = {
   FirstSteps: {
@@ -62,7 +69,7 @@ const TOPIC_DATA: Record<FaqTopic, FaqTopicData> = {
             <p>Dois caminhos comuns:</p>
             <p>
               <strong className="font-bold">1. Organizar</strong> — aplique um template
-              (Cronológico, Por projeto, Por tipo de arquivo ou Modo livre) para deixar seus
+              (Por data, Por projeto, Por tipo de arquivo ou Modo livre) para deixar seus
               arquivos estruturados.
             </p>
             <p>
@@ -144,7 +151,7 @@ const TOPIC_DATA: Record<FaqTopic, FaqTopicData> = {
       {
         question: "Aplicar um template move ou apaga meus arquivos automaticamente?",
         answer:
-          "Não. Antes de qualquer mudança, você escolhe o método (Cronológico, Por projeto, Por tipo de arquivo ou Modo livre), revisa o preview e só então confirma. Nada é alterado antes dessa confirmação.",
+          "Não. Antes de qualquer mudança, você escolhe o método (Por data, Por projeto, Por tipo de arquivo ou Modo livre), revisa o preview e só então confirma. Nada é alterado antes dessa confirmação.",
       },
       {
         question: 'Por que não consigo escolher o "Modo Livre"?',
@@ -272,7 +279,7 @@ function FaqInfoCardCollapsed({ topic = "FirstSteps", className, ...props }: Faq
       )}
       {...props}
     >
-      <div className="flex items-start justify-between gap-24 px-6">
+      <div className="flex items-start justify-between gap-4 px-6 tablet:gap-24">
         <div className="flex items-center gap-2">
           <Icon className="size-4 shrink-0" aria-hidden="true" />
           <p className="text-base font-semibold text-brand-secondary-dark">{data.title}</p>
@@ -292,22 +299,9 @@ function FaqInfoCardCollapsed({ topic = "FirstSteps", className, ...props }: Faq
       {expanded ? (
         <div className="flex flex-col px-6">
           {data.questions.map((item, index) => (
-            <details
-              key={item.question}
-              className="group border-b border-zinc-500/20 py-4 last:border-b-0 dark:border-zinc-400/20"
-              open={index === 0}
-            >
-              <summary className="flex cursor-pointer list-none items-start justify-between gap-2 text-sm font-medium text-brand-secondary-dark [&::-webkit-details-marker]:hidden">
-                {item.question}
-                <ChevronIcon
-                  className="mt-0.5 size-4 shrink-0 transition-transform motion-safe:duration-150 group-open:rotate-180"
-                  aria-hidden="true"
-                />
-              </summary>
-              <div className="pt-2 text-[0.8125rem] leading-normal text-brand-secondary-light">
-                {item.answer}
-              </div>
-            </details>
+            <AccordionItem key={item.question} question={item.question} chevron={ChevronIcon} open={index === 0}>
+              {item.answer}
+            </AccordionItem>
           ))}
         </div>
       ) : null}

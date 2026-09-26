@@ -24,6 +24,16 @@ destaque de fundo e cor de texto de marca.
 <Canvas of={ViewModeToggleStories.List} />
 <Canvas of={ViewModeToggleStories.Columns} />
 
+## Compacto (mobile)
+
+<Canvas of={ViewModeToggleStories.Compact} />
+
+`size="compact"` (73×31, só ícones, sem o rótulo "VISUALIZAR") exclui
+"Columns" automaticamente — Colunas é exclusivo de tablet/desktop (decisão
+de 2026-09-24). Não precisa passar `modes` pra isso; é o comportamento
+padrão do componente desde 2026-09-25. Use `modes` só pra um recorte
+diferente do padrão.
+
 ## Estados
 
 | Estado | Nota |

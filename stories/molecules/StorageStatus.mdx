@@ -50,3 +50,9 @@ para eles.
 "Liberar espaço" é aprovado no contexto desta página (Armazenamento).
 "Comprar espaço" também aparece como rótulo de botão. Nenhum termo
 proibido é usado.
+
+## Limite atingido
+
+<Canvas of={StorageStatusStories.LimitReached} />
+
+`limitReached` (Figma `Tier=Alert`, `1765:62468`, V0.2.1), só no escopo global: o valor usado em `Brand/Feedback/Danger/Default`, o aviso "Seu limite de X foi totalmente atingido…" abaixo dos botões (16px, Regra 4) e a barra cheia em `Brand/Feedback/Danger/Surface`. ⚠️ No componente do Figma, o aviso usa `Danger/Subtle` (35%, ilegível); a tela `Storage/LimitReached` usa o vermelho cheio, que é o que o código segue.

@@ -30,7 +30,12 @@ O nav real da Sidebar (`pages="setting"`) tem 8 itens, mas só 7 têm node `page
 - **Aparência e exibição** — 3 `SettingsCard` com `molecule/RadioButton` (Tema: Claro/Escuro/Padrão do dispositivo; Densidade: Confortável/Compacta; Página inicial: Pessoal/Guardados — únicos 2 valores Figma-originais do componente). `RadioButton` generalizado em 2026-08-23 (`option`/`label` livres) pra suportar os grupos novos sem quebrar os 2 originais.
 - **Privacidade e dados** — 1 `SettingsCard` (linha "Exportar meus dados" + botão, nota de LGPD).
 - **Idioma e região** — 1 `SettingsCard` (2 selects — Idioma da interface/Formato de data — + "Salvar preferências").
-- **Excluir conta** — 1 `SettingsCard` com `molecule/Callout` (`variant="warning"`) + campo de senha + `atom/PushButton` `isDestructive` (chrome neutro, só texto vermelho — Regra 3).
+- **Excluir conta** — 1 `SettingsCard` com `molecule/Callout` (`variant="warning"`) + campo de senha + `atom/Button` (`variant="outline"`, migrado de `PushButton isDestructive` em 25/09/2026), chrome neutro, só texto vermelho — Regra 3.
+
+## Novidades do Figma V0.2.1 (2026-09-24)
+
+- **Conta:** o `UserProfileCard` no topo, com a foto, o nome, o e-mail, "Editar perfil" e "Trocar conta" (F10). Tocar no avatar do Header abre esta seção.
+- **Aparência:** o card "Mão dominante", com o `HandPicker` ligado às preferências (F5). Ele muda o lado do botão de ação do `MobileBottomNav`.
 
 ## Terminologia
 

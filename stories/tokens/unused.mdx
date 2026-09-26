@@ -77,20 +77,16 @@ consumidas.
 
 ### Referenciados (não órfãos)
 
-Para registro — estes **são** usados, por `src/components/ui/button.tsx`
-(o primitivo shadcn base) e por `atom/push-button.tsx` (via `--brand-teal`,
+Para registro — estes **eram** usados por `src/components/ui/button.tsx`
+(o primitivo shadcn base, removido em 2026-09-24) e por `atom/push-button.tsx`
+(também removido, migrado para `atom/button.tsx` em 25/09/2026, via `--brand-teal`,
 adicionado na US-004), e por isso não entram na lista de órfãos:
 `--background`, `--foreground`, `--primary` / `--primary-foreground`,
 `--secondary` / `--secondary-foreground`, `--muted` / `--muted-foreground`,
 `--destructive`, `--border`, `--input`, `--ring`, `--radius*`, `--brand-teal`
 / `--brand-teal-foreground`.
 
-Importante: o uso de `--primary`/`--secondary`/etc. é do **primitivo
-genérico do shadcn**, não de `atom/PushButton` (o único botão do MVP, Regra
-1) — `button.tsx` ainda não foi customizado com os tokens de marca
-Figma-confirmados nem documentado como story própria. Isso não é um conflito
-desta US (é escopo de implementação, US-004 já cobriu o `PushButton`
-dedicado), mas fica registrado aqui para não perder o contexto.
+Atualização de 2026-09-24: o primitivo `src/components/ui/button.tsx` do shadcn foi removido, porque nunca foi usado. O botão de ação do produto agora é o `atom/Button` (Regra 1 revogada em 2026-09-23), e ele só usa tokens de marca (`--brand-teal-action`, `--destructive-surface`, `--neutral-*`). Os tokens shadcn listados acima continuam referenciados por outros primitivos e pela base de tema.
 
 ## Próximos passos (fora do escopo desta US)
 

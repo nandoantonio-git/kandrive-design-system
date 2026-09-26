@@ -2,7 +2,7 @@ import * as React from "react"
 import { Trash2 } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { PushButton } from "@/components/atoms/push-button"
+import { Button } from "@/components/atoms/button"
 import { type StorageTier } from "@/components/atoms/storage-tier-badge"
 import { CleanSpaceListSelection } from "@/components/molecules/clean-space-list-selection"
 
@@ -42,7 +42,7 @@ export interface CleanSpaceLargeFilesProps extends React.ComponentProps<"section
  * embutido do átomo com `hover:bg-transparent` — texto estático, sem
  * feedback nenhum ao passar o mouse. Corrigido com `hover:text-brand-teal/70`/
  * `active:text-brand-teal/50` (equivalente em texto ao
- * `hover:bg-brand-teal/90`/`active:bg-brand-teal/80` que o `variant="primary"`
+ * `hover:bg-brand-teal-action/90`/`active:bg-brand-teal-action/80` que o `variant="primary"`
  * já usa pro chrome preenchido).
  *
  * Corrigido (achado do usuário: seleção de itens não funcionava —
@@ -62,6 +62,11 @@ export interface CleanSpaceLargeFilesProps extends React.ComponentProps<"section
  * sem token CSS equivalente ainda) — antes `bg-effect-glass-white-70` sem
  * borda própria (herdava `border-zinc-200` do `PushButton`, não o `#bbb`
  * confirmado). Ambos corrigidos.
+ *
+ * **Corrigido em 2026-09-25** (achado do usuário: "hover nos botões
+ * escritos"): mesma classe do "Excluir" trazia `text-destructive
+ * hover:text-destructive` — mesma cor em repouso e hover, um no-op.
+ * Trocado para `hover:text-destructive/80`.
  */
 function CleanSpaceLargeFiles({
   files,
@@ -111,24 +116,23 @@ function CleanSpaceLargeFiles({
       className={cn("flex flex-col gap-3 rounded-lg border border-zinc-200 bg-effect-glass-white-36 p-4 dark:border-zinc-700", className)}
       {...props}
     >
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
         <h3 className="text-xl font-medium text-zinc-900 dark:text-zinc-100">Arquivos grandes</h3>
-        <div className="flex gap-2">
-          <PushButton
-            variant="neutral"
+        <div className="flex shrink-0 gap-2">
+          <Button
+            variant="outline"
             disabled={selectedNames.length === 0}
             onClick={deselectAll}
             className="h-auto border-none bg-transparent p-0 text-xs font-normal text-zinc-300 hover:bg-transparent disabled:opacity-100 dark:text-zinc-700"
           >
             Desfazer seleção
-          </PushButton>
-          <PushButton
-            variant="primary"
+          </Button>
+          <Button
             onClick={selectAll}
             className="h-auto border-none bg-transparent p-0 text-xs font-normal text-brand-teal hover:bg-transparent hover:text-brand-teal/70 active:bg-transparent active:text-brand-teal/50"
           >
             Selecionar todos
-          </PushButton>
+          </Button>
         </div>
       </div>
       <ul className="flex max-h-64 flex-col gap-1 overflow-auto rounded-lg border border-zinc-100 p-1 dark:border-zinc-800">
@@ -145,16 +149,15 @@ function CleanSpaceLargeFiles({
         ))}
       </ul>
       <div className="flex justify-end">
-        <PushButton
-          variant="neutral"
-          isDestructive
+        <Button
+          variant="outline"
           disabled={selectedNames.length === 0}
-          icon={Trash2}
           onClick={deleteSelected}
-          className="h-8 gap-2 rounded-md border-[#bbb] dark:border-[#52525b] bg-effect-glass-white-36 px-3 text-xs"
+          className="h-8 gap-2 rounded-md border-[#bbb] text-destructive hover:text-destructive/80 dark:border-[#52525b] bg-effect-glass-white-36 px-3 text-xs"
         >
+          <Trash2 className="size-4" aria-hidden="true" />
           Excluir
-        </PushButton>
+        </Button>
       </div>
     </section>
   )

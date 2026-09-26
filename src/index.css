@@ -5,6 +5,8 @@
 @import "@fontsource-variable/geist";
 
 @custom-variant dark (&:is(.dark *));
+/* Ponteiro de toque (celular, tablet, notebook touch): `touch:` */
+@custom-variant touch (@media (pointer: coarse));
 
 @theme inline {
     --font-heading: var(--font-sans);
@@ -15,6 +17,14 @@
        Figma-confirmado onde o próprio Figma especifica Geist (ex.:
        atom/StorageTierBadge, "Geist:Medium" — não é a fonte do sistema). */
     --font-sans: 'Figtree Variable', sans-serif;
+    /* Breakpoints (decisão de responsividade, 2026-09-24). Os frames do Figma
+       V0.2.1 são 390 / 720 / 1440; cada um cai dentro da própria faixa:
+       mobile < 720 · tablet 720–1199 (`tablet:`) · desktop ≥ 1200 (`desktop:`).
+       Os nomes batem com a prop `Device` do Figma. */
+    --breakpoint-tablet: 45rem;
+    --breakpoint-desktop: 75rem;
+    /* Acima de 1440 o layout para de crescer e fica centralizado. */
+    --container-page: 90rem;
     --font-geist: 'Geist Variable', sans-serif;
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);
@@ -54,6 +64,7 @@
     --color-brand-pink-dark: var(--brand-pink-dark);
     --color-brand-pink-light: var(--brand-pink-light);
     --color-brand-teal-light: var(--brand-teal-light);
+    --color-brand-teal-light-surface: var(--brand-teal-light-surface);
     --color-brand-secondary-dark: var(--brand-secondary-dark);
     --color-brand-secondary-light: var(--brand-secondary-light);
     --color-effect-glass-light-45: var(--effect-glass-light-45);
@@ -65,6 +76,65 @@
     --color-effect-glass-surface-light: var(--effect-glass-surface-light);
     --color-effect-glass-surface-dark: var(--effect-glass-surface-dark);
     --color-effect-overlay-subtle: var(--effect-overlay-subtle);
+    /* Papéis texto × superfície (revisão dark/WCAG, Figma V0.2.1 2026-09-23). */
+    --color-brand-teal-action: var(--brand-teal-action);
+    --color-brand-teal-action-hover: var(--brand-teal-action-hover);
+    --color-brand-teal-dark-surface: var(--brand-teal-dark-surface);
+    --color-destructive-surface: var(--destructive-surface);
+    --color-storage-fast-access-surface: var(--storage-fast-access-surface);
+    --color-storage-long-term-surface: var(--storage-long-term-surface);
+    --color-brand-feedback-success-surface: var(--brand-feedback-success-surface);
+    --color-brand-feedback-warning-surface: var(--brand-feedback-warning-surface);
+    --color-brand-feedback-warning-surface-alt: var(--brand-feedback-warning-surface-alt);
+    --color-brand-secondary-foreground: var(--brand-secondary-foreground);
+    --color-neutral-surface-button-secondary: var(--neutral-surface-button-secondary);
+    --color-brand-primary-tint: var(--brand-primary-tint);
+    --color-brand-primary-tint-subtle: var(--brand-primary-tint-subtle);
+    --color-neutral-surface-subtle-cool: var(--neutral-surface-subtle-cool);
+    --color-neutral-surface-constant-light: var(--neutral-surface-constant-light);
+    --color-neutral-text-constant-dark: var(--neutral-text-constant-dark);
+    --color-neutral-text-vibrant-primary: var(--neutral-text-vibrant-primary);
+    --color-neutral-text-vibrant-secondary: var(--neutral-text-vibrant-secondary);
+    --color-neutral-text-vibrant-tertiary: var(--neutral-text-vibrant-tertiary);
+    /* 🧩 Tokens inferidos na auditoria do Figma V0.2.1 (Fase 6b, 2026-09-23):
+       cores cruas repetidas ≥3× nos componentes viraram variáveis Core.
+       Valor light = valor exato do Figma; valor dark = 🧩 inferido. */
+    --color-neutral-text-slate: var(--neutral-text-slate);
+    --color-neutral-text-slate-600: var(--neutral-text-slate-600);
+    --color-neutral-text-muted: var(--neutral-text-muted);
+    --color-neutral-text-graphite: var(--neutral-text-graphite);
+    --color-neutral-text-ink-85: var(--neutral-text-ink-85);
+    --color-neutral-icon-default: var(--neutral-icon-default);
+    --color-neutral-border-cool: var(--neutral-border-cool);
+    --color-neutral-border-medium: var(--neutral-border-medium);
+    --color-neutral-text-primary: var(--neutral-text-primary);
+    --color-neutral-text-secondary: var(--neutral-text-secondary);
+    --color-neutral-surface-subtle: var(--neutral-surface-subtle);
+    --color-neutral-border-light: var(--neutral-border-light);
+    --color-brand-primary-focus: var(--brand-primary-focus);
+    --color-neutral-surface-medium: var(--neutral-surface-medium);
+    --color-neutral-text-tertiary: var(--neutral-text-tertiary);
+    --color-neutral-text-placeholder: var(--neutral-text-placeholder);
+    --color-neutral-surface-elevated: var(--neutral-surface-elevated);
+    --color-neutral-surface-background-alt: var(--neutral-surface-background-alt);
+    --color-effect-overlay-default: var(--effect-overlay-default);
+    --color-effect-overlay-light: var(--effect-overlay-light);
+    --color-neutral-border-zinc: var(--neutral-border-zinc);
+    --color-neutral-border-subtle: var(--neutral-border-subtle);
+    --color-neutral-surface-card: var(--neutral-surface-card);
+    --color-brand-primary-mid: var(--brand-primary-mid);
+    --color-brand-primary-disabled: var(--brand-primary-disabled);
+    --color-neutral-slate-400: var(--neutral-slate-400);
+    --color-neutral-surface-gray: var(--neutral-surface-gray);
+    --color-neutral-surface-steel: var(--neutral-surface-steel);
+    --color-brand-primary-ink: var(--brand-primary-ink);
+    --color-brand-primary-ink-20: var(--brand-primary-ink-20);
+    --color-brand-primary-deep: var(--brand-primary-deep);
+    --color-brand-primary-teal-deep: var(--brand-primary-teal-deep);
+    --color-brand-feedback-warning-text: var(--brand-feedback-warning-text);
+    --color-effect-glass-frost-80: var(--effect-glass-frost-80);
+    --color-effect-glass-frost-90: var(--effect-glass-frost-90);
+    --color-effect-glass-white-60: var(--effect-glass-white-60);
     --radius-sm: calc(var(--radius) * 0.6);
     --radius-md: calc(var(--radius) * 0.8);
     --radius-lg: var(--radius);
@@ -118,7 +188,10 @@
        no Figma). Nome da variável CSS mantido (--brand-teal) por enquanto
        para não quebrar todo o código de uma vez — reavaliar rename em
        US-009. */
-    --brand-teal: #007e96;
+    /* Regra 3 (2026-09-25): escurecido de #007e96 pra passar 4.5:1 nos fundos
+       cinza mais comuns (#e4e4e7 etc.). Fundos preenchidos (botões, chips
+       selecionados) usam --brand-teal-action, separado (Regra 2). */
+    --brand-teal: #006579;
     --brand-teal-foreground: oklch(1 0 0);
     /* cor/marca/primária/teal-dark — Figma-confirmado
        (var(--brand-primary-dark)), achado 2x nesta US (US-021,
@@ -146,6 +219,7 @@
        primária — chip "Global" ativo no seletor de escopo, fundo de
        Callout informativo. */
     --brand-teal-light: #c8dce3;
+    --brand-teal-light-surface: #c8dce3;
     /* cor/marca/secundária/dark|light — Figma-confirmado
        (var(--brand-secondary-dark,#1a1714) / var(--brand-secondary-light,#6b6b68)),
        achado em US-013 (organism/CardNeedMoreHelp, organism/FAQ/info/Card,
@@ -153,7 +227,9 @@
        `--brand-secondary` (default, #31302d): dark para heading/ênfase,
        light para corpo/legenda. */
     --brand-secondary-dark: #1a1714;
-    --brand-secondary-light: #6b6b68;
+    /* Regra 3 (2026-09-25): escurecido de #6b6b68 pra passar 4.5:1 (papel de
+       texto de corpo, não de superfície). */
+    --brand-secondary-light: #565652;
     /* cor/efeito/vidro/* — Liquid Glass, Figma-confirmado (Tokens/Materials,
        get_variable_defs em 1427:16958); nunca reimplementar spec aqui, só
        os valores de cor de tint (Regra 10) */
@@ -182,6 +258,68 @@
        que já estava em uso, sem mudança visual em modo claro. */
     --neutral-surface-background: #f3f3f3;
     --neutral-border-default: #707070;
+    /* Figma-confirmado (Figma V0.2.1, coleção Core): usados por atom/Button, estilos Outline e Secondary (2026-09-24). */
+    --neutral-text-primary: #09090b;
+    --neutral-text-secondary: #3f3f46;
+    --neutral-surface-subtle: #eaeaea;
+    --neutral-border-light: #bbbbbb;
+    --brand-primary-focus: #92ccff;
+    --neutral-surface-medium: #52525b;
+    /* Figma-confirmado (Figma V0.2.1, coleção Core): usados pelos componentes mobile (R2 de responsividade, 2026-09-24). */
+    /* Regra 3 (2026-09-25): escurecido de #71717a pra passar 4.5:1. */
+    --neutral-text-tertiary: #59595f;
+    --neutral-text-placeholder: #bfc7d2;
+    --neutral-surface-elevated: #ffffff;
+    --neutral-surface-background-alt: #f7f7f7;
+    --effect-overlay-default: #00000080;
+    --effect-overlay-light: #eaeaea99;
+    /* Figma-confirmado (Figma V0.2.1, coleção Core): Organize mobile (2026-09-24). */
+    --neutral-border-subtle: #ececf0;
+    --neutral-surface-card: #ffffff;
+    /* Figma-confirmado (Figma V0.2.1, coleção Core): Long-term mobile (2026-09-24). */
+    --brand-primary-mid: #337084;
+    --brand-primary-disabled: #ecfbfde5;
+    /* Superfícies × texto (revisão dark/WCAG 2026-09-23): *-surface/*-action = fundo sólido com texto branco; o token base fica para texto/ícone. */
+    --brand-teal-action: #007e96;
+    --brand-teal-action-hover: #006b80;
+    --brand-teal-dark-surface: #1a5e6e;
+    --destructive-surface: #bc3426;
+    --storage-fast-access-surface: #b5254a;
+    --storage-long-term-surface: #1a5e6e;
+    --brand-feedback-success-surface: #009966;
+    --brand-feedback-warning-surface: #fff8e6;
+    --brand-feedback-warning-surface-alt: #fffbeb;
+    --brand-secondary-foreground: #ffffff;
+    --neutral-surface-button-secondary: #ffffffcc;
+    --brand-primary-tint: #e0f0f2;
+    --brand-primary-tint-subtle: #eef9fa;
+    --neutral-surface-subtle-cool: #f3f4f6;
+    --neutral-surface-constant-light: #f3f3f3;
+    --neutral-text-constant-dark: #3f3f46;
+    --neutral-text-vibrant-primary: #1a1a1a;
+    --neutral-text-vibrant-secondary: #727272;
+    --neutral-text-vibrant-tertiary: #bfbfbf;
+    /* 🧩 Inferidos — Figma V0.2.1 Fase 6b (nome = variável Core em kebab-case, Regra 2). */
+    --neutral-text-slate: #3e484c;
+    --neutral-text-slate-600: #475569;
+    --neutral-text-muted: #71717b;
+    --neutral-text-graphite: #1a1c1c;
+    --neutral-text-ink-85: #000000d9;
+    --neutral-icon-default: #32312e;
+    --neutral-border-cool: #bec8cc;
+    --neutral-border-medium: #d4d4d4;
+    --neutral-border-zinc: #e4e4e7;
+    --neutral-slate-400: #94a3b8;
+    --neutral-surface-gray: #d9d9d9;
+    --neutral-surface-steel: #6e797d;
+    --brand-primary-ink: #001f27;
+    --brand-primary-ink-20: #001f2733;
+    --brand-primary-deep: #006377;
+    --brand-primary-teal-deep: #176a78;
+    --brand-feedback-warning-text: #80590d;
+    --effect-glass-frost-80: #f9f9f9cc;
+    --effect-glass-frost-90: #f9f9f9e5;
+    --effect-glass-white-60: #ffffff99;
 }
 
 /*
@@ -191,11 +329,12 @@
  * real, ativado pela classe `.dark` (`@custom-variant dark` acima) via
  * toggle do Storybook (`@storybook/addon-themes`).
  *
- * 🧩 Inferido (Regra 9): o Figma só confirma `Mode=Dark` pro material
- * Liquid Glass (`Tokens/Materials`) — nenhuma tela/frame de componente de
- * UI tem variante dark confirmada. Os valores abaixo (exceto onde anotado
- * "Figma-confirmado") são derivados por engenharia a partir dos tokens
- * claros, nunca apresentados como fato do Figma.
+ * ✅ Atualizado em 2026-09-24: o Figma KanDrive V0.2.1 tem o modo Dark na
+ * coleção Core (quadro Foundation/Color Modes). Os tokens com variável no
+ * Figma são conferidos AO VIVO em Tokens/Colors: 61 de 61 batem nos dois
+ * modos (a ponte está em src/components/tokens/figma-color-bridge.ts). A base
+ * shadcn (--background, --card, --chart-*…) não existe no Figma e continua
+ * derivada por engenharia (Regra 9).
  *
  * Convenção de inversão da rampa Zinc (Regra 3: paleta neutra suspensa —
  * a maioria dos neutros do catálogo usa classes `zinc-*` literais do
@@ -230,7 +369,7 @@
        `#bc3426` substituiu o vermelho genérico) — clareado pra contraste
        em fundo escuro, mesma lógica de "aumentar lightness, manter matiz"
        aplicada aos demais tokens de marca abaixo. */
-    --destructive: #e35d4a;
+    --destructive: #f07a6a; /* texto no escuro (5.5:1); fundos sólidos usam --destructive-surface */
     --border: oklch(1 0 0 / 10%);
     --input: oklch(1 0 0 / 15%);
     --ring: oklch(0.556 0 0);
@@ -248,16 +387,21 @@
     --sidebar-border: oklch(1 0 0 / 10%);
     --sidebar-ring: oklch(0.556 0 0);
 
-    /* cor/marca/primária — clareada/dessaturada levemente pra contraste em
-       fundo quase-preto (mesma matiz, `lightness` maior — critério padrão
-       de tema escuro, não Figma-confirmado). */
-    --brand-teal: #29b6cf;
-    --brand-teal-dark: #1a8fa3;
+    /* cor/marca/primária no escuro = tom de BRANCO (decisão de design,
+       Figma V0.2.1 2026-09-23 — substitui o teal clareado #29b6cf, que fugia
+       da marca). Conteúdo sobre a primária (texto/ícone) usa o tom escuro da
+       primária. REVISÃO 2026-09-23: --brand-teal = papel de TEXTO/ícone/link;
+       superfícies (botões, chips, barras) usam --brand-teal-action (#007e96
+       em ambos os modos). Figma: Brand/Primary/Default · Brand/Primary/Action. */
+    --brand-teal: #f5f5f5;
+    --brand-teal-foreground: #ffffff; /* texto sobre --brand-teal-action (teal em ambos os modos, 4.7:1) */
+    --brand-teal-dark: #2391aa; /* papel de texto no escuro — teal claro da marca (Design Language); fundos usam --brand-teal-dark-surface */
     /* Papel de "tinta leve de fundo" se inverte no escuro: em modo claro é
        um lavado quase-branco (`#c8dce3`) pra usar como fundo sutil sobre
        cartão claro; no escuro o equivalente de baixa ênfase é um lavado
        escuro com matiz teal, não uma cor clara. */
-    --brand-teal-light: #173239;
+    --brand-teal-light-surface: #1a5e6e66; /* tint = marca #1a5e6e a 40% */
+    --brand-teal-light: #c8dce3; /* tom claro da marca mantém o nome nos dois modos (revisão 2026-09-24); fundos de tint usam --brand-teal-light-surface */
     --brand-secondary: #c9c7c2;
     /* Par heading/corpo de `--brand-secondary-dark/-light` se inverte:
        heading vira quase-branco, corpo vira cinza claro (mesmo padrão já
@@ -286,6 +430,63 @@
     --effect-overlay-subtle: #a8b0bd26;
     --neutral-surface-background: #18181b;
     --neutral-border-default: #52525b;
+    --neutral-text-primary: #fafafa;
+    --neutral-text-secondary: #d4d4d8;
+    --neutral-surface-subtle: #27272a;
+    --neutral-border-light: #3f3f46;
+    --brand-primary-focus: #92ccff;
+    --neutral-surface-medium: #a1a1aa;
+    --neutral-text-tertiary: #a1a1aa;
+    --neutral-text-placeholder: #a1a1aa;
+    --neutral-surface-elevated: #27272a;
+    --neutral-surface-background-alt: #1c1c1f;
+    --effect-overlay-default: #ffffff;
+    --effect-overlay-light: #27272a99;
+    --neutral-border-subtle: #ffffff1a;
+    --neutral-surface-card: #1f1f23;
+    --brand-primary-mid: #337084;
+    --brand-primary-disabled: #1a5e6e80;
+    /* Superfícies × texto — dark (WCAG AA). */
+    --brand-teal-action: #007e96;
+    --brand-teal-action-hover: #006b80;
+    --brand-teal-dark-surface: #1a5e6e;
+    --destructive-surface: #bc3426;
+    --storage-fast-access-surface: #b5254a;
+    --storage-long-term-surface: #007e96;
+    --brand-feedback-success-surface: #047857;
+    --brand-feedback-warning-surface: #3b2f12;
+    --brand-feedback-warning-surface-alt: #3b2f12;
+    --brand-secondary-foreground: #1a1714;
+    --neutral-surface-button-secondary: #3f3f46cc;
+    --brand-primary-tint: #1a5e6e66;
+    --brand-primary-tint-subtle: #1a5e6e33;
+    --neutral-surface-subtle-cool: #27272a;
+    --neutral-surface-constant-light: #f3f3f3;
+    --neutral-text-constant-dark: #3f3f46;
+    --neutral-text-vibrant-primary: #f5f5f5;
+    --neutral-text-vibrant-secondary: #d4d4d8;
+    --neutral-text-vibrant-tertiary: #a1a1aa;
+    /* 🧩 Inferidos — Figma V0.2.1 Fase 6b. */
+    --neutral-text-slate: #c5ced2;
+    --neutral-text-slate-600: #cbd5e1;
+    --neutral-text-muted: #a1a1aa;
+    --neutral-text-graphite: #ececec;
+    --neutral-text-ink-85: #ffffffd9;
+    --neutral-icon-default: #e5e4e0;
+    --neutral-border-cool: #48535a;
+    --neutral-border-medium: #404040;
+    --neutral-border-zinc: #3f3f46;
+    --neutral-slate-400: #64748b;
+    --neutral-surface-gray: #3a3a3a;
+    --neutral-surface-steel: #9aa5a9;
+    --brand-primary-ink: #c8dce3;
+    --brand-primary-ink-20: #c8dce333;
+    --brand-primary-deep: #2391aa;
+    --brand-primary-teal-deep: #2391aa;
+    --brand-feedback-warning-text: #f5c35a;
+    --effect-glass-frost-80: #1a1a1acc;
+    --effect-glass-frost-90: #1a1a1ae5;
+    --effect-glass-white-60: #1a1a1a99;
 }
 
 @layer base {
@@ -415,4 +616,25 @@
 .docs-story::-webkit-scrollbar-thumb {
   background: #007e96;
   border-radius: 999px;
+}
+
+/*
+ * Área mínima de toque (decisão de responsividade, 2026-09-24): com ponteiro
+ * de toque, o alvo clicável cresce de forma invisível até 44×44px (Apple HIG),
+ * sem mudar o desenho do Figma. Com mouse, nada muda. Use em botões de ícone
+ * e alvos pequenos: `class="touch-target"`.
+ */
+@utility touch-target {
+    position: relative;
+    @media (pointer: coarse) {
+        &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: max(100%, 44px);
+            height: max(100%, 44px);
+            transform: translate(-50%, -50%);
+        }
+    }
 }

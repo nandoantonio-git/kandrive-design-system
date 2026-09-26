@@ -1,22 +1,26 @@
 ---
-tags: [regra, travada]
+tags: [regra, revogada]
 ---
 
-# Regra 1 — Botão Único
+# Regra 1 — Botão Único (REVOGADA em 2026-09-23)
 
-`atom/PushButton` é o **único** componente de botão do MVP. Não existem `button/primary`/`button/secondary`/`button/destructive` como componentes separados — variações são props (`variant`, `isDestructive`), nunca componentes distintos.
+> **Status:** revogada pelo dono do produto na auditoria do Figma (KanDrive V0.2.1, decisão Q20). O Figma passou a ter **dois** componentes de botão com papéis distintos. Esta nota fica como histórico.
 
-Qualquer achado do Figma sugerindo um componente de botão separado é **CONFLICT**, nunca implementado silenciosamente.
+## Regra atual
 
-## Como funciona na prática
+| Componente | Papel | Props (Figma) |
+|---|---|---|
+| `atom/Button` | CTA de produto (Salvar alterações, Entrar, Confirmar upgrade, Adicionar arquivos…) | `Style` Primary · Outline · Destructive · Glass · Secondary — `Size` MD · LG — `Shape` Rounded · Pill — `Label` |
+| `atom/PushButton` | Botão estilo macOS de diálogos e toolbars | `Style` (8 valores) · `State` · `Selected` · `ActiveWindow` · `WithIcon` · `Label` · `Icon` |
+| `atom/IconButton` | Botão só com ícone | `Icon` · `Style` · `State` · `Selected` |
 
-- `variant="primary"` — ação principal da tela (ex. "Guardar")
-- `variant="neutral"` — ação secundária
-- `isDestructive` — sinaliza impacto (ex. "Excluir") sem trocar de componente; estilo real Figma-confirmado é chrome neutro/glass com só o **texto** na cor de perigo, nunca fundo vermelho preenchido (achado em `organism/cleanSpaceStorage`, botões "Excluir")
+- `atom/Button` foi extraído dos botões soltos das telas (Settings, Payment, Login, estados mobile) — valores Figma-confirmados. Hover/Pressed **não existem** nas telas → gap de engenharia (ver [[Regra 7 - Gaps Conhecidos]]), não inventar.
+- `Destructive` do `atom/Button` é **fundo vermelho preenchido** (`#bc3426`, tela Settings/DeleteAccount); o `isDestructive` do PushButton continua sendo só texto em cor de perigo.
+- Código: criar `atom/Button` (ou mapear para `ui/button` com as variantes acima) antes de substituir usos de PushButton em CTAs.
 
-## Achado aberto (baixa urgência)
+## Histórico (regra antiga)
 
-O Figma confirma um enum `Style` de 7 valores (`Bordered Colored`, `Bordered Destructive`, `Bordered Neutral`, `Bordered Secondary`, `Borderless`, `Borderless (Bezel)`, `Default`) — só 2 implementados (`primary`=Bordered Colored, `neutral`=Bordered Neutral). Não é violação da regra (continua sendo 1 componente), é cobertura parcial do enum de estilo. Ver [[Conflitos Abertos]].
+`atom/PushButton` era o **único** componente de botão do MVP; variações eram props (`variant`, `isDestructive`) e qualquer botão separado no Figma era CONFLICT. Achado antigo: o enum `Style` do PushButton tinha 7 valores no Figma e só 2 implementados — continua válido para o PushButton.
 
 ## Ver também
 

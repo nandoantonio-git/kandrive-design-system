@@ -52,11 +52,11 @@ function ArchiveBrowserModalSearch({
         {breadcrumb.map((crumb, index) => (
           <React.Fragment key={crumb}>
             {index > 0 ? (
-              <Icon name="ChevronRight" aria-hidden="true" className="size-3.5 shrink-0 text-zinc-500 dark:text-zinc-400" />
+              <Icon name="ChevronRight" aria-hidden="true" className="size-3.5 shrink-0 text-neutral-text-tertiary dark:text-zinc-400" />
             ) : null}
             <span
               className={cn(
-                "shrink-0 text-[0.6875rem] leading-4 tracking-[0.2px] whitespace-nowrap text-zinc-500 dark:text-zinc-400",
+                "shrink-0 text-[0.6875rem] leading-4 tracking-[0.2px] whitespace-nowrap text-neutral-text-tertiary dark:text-zinc-400",
                 index === breadcrumb.length - 1 && "text-brand-teal"
               )}
             >

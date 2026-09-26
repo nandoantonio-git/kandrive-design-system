@@ -168,14 +168,14 @@ function MaterialTintedDemo() {
     <TokenGrid>
       <TokenSwatch
         token="exemplo — tint de marca"
-        value="bg-brand-teal/30"
+        value="bg-brand-teal-action/30"
         role="Ilustrativo: o vidro aceita tint de accent color, não só neutros. Não é um token Figma-confirmado."
-        cssSnippet={cn("bg-brand-teal/30", "backdrop-blur-md", GLASS_BORDER_CLASS, GLASS_SHADOW_CLASS)}
+        cssSnippet={cn("bg-brand-teal-action/30", "backdrop-blur-md", GLASS_BORDER_CLASS, GLASS_SHADOW_CLASS)}
         preview={
           <GlassBackdrop>
             <div
               aria-hidden="true"
-              className={cn("absolute inset-4 rounded-lg bg-brand-teal/30 backdrop-blur-md", GLASS_BORDER_CLASS, GLASS_SHADOW_CLASS)}
+              className={cn("absolute inset-4 rounded-lg bg-brand-teal-action/30 backdrop-blur-md", GLASS_BORDER_CLASS, GLASS_SHADOW_CLASS)}
             />
           </GlassBackdrop>
         }

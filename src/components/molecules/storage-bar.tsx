@@ -30,12 +30,14 @@ export interface StorageBarProps extends Omit<React.ComponentProps<"div">, "chil
  * única `tier="quick-access"`). Corrigido para bater com o hex Figma real.
  */
 function StorageBar({ tier, value, className, ...props }: StorageBarProps) {
-  const clamped = Math.min(100, Math.max(0, value))
+  // Valor ausente ou inválido vira 0: evita aria-valuenow="NaN".
+  const clamped = Number.isFinite(value) ? Math.min(100, Math.max(0, value)) : 0
   return (
     <div
       data-slot="storage-bar"
       data-tier={tier}
       role="progressbar"
+      aria-label={tier === "quick-access" ? "Acesso rápido usado" : "Longo prazo usado"}
       aria-valuenow={clamped}
       aria-valuemin={0}
       aria-valuemax={100}
@@ -49,7 +51,7 @@ function StorageBar({ tier, value, className, ...props }: StorageBarProps) {
         data-slot="storage-bar-fill"
         className={cn(
           "h-full rounded-full transition-[width]",
-          tier === "quick-access" ? "bg-brand-pink-light" : "bg-brand-teal-dark"
+          tier === "quick-access" ? "bg-brand-pink-light" : "bg-brand-teal-dark-surface"
         )}
         style={{ width: `${clamped}%` }}
       />
@@ -86,7 +88,7 @@ export interface StorageBarExpandedProps extends Omit<React.ComponentProps<"div"
  */
 const TIER_SHADES: Record<StorageTier, readonly [string, string]> = {
   "quick-access": ["bg-brand-pink-dark", "bg-brand-pink-light"],
-  "long-term": ["bg-brand-teal", "bg-brand-teal-dark"],
+  "long-term": ["bg-brand-teal-action", "bg-brand-teal-dark-surface"],
 }
 
 /**

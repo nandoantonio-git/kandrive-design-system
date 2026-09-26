@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
 import { useState } from "react"
+import { expect, within } from "storybook/test"
 
 import { ViewModeToggle, type ViewMode } from "../../src/components/molecules/view-mode-toggle"
 
@@ -8,7 +9,7 @@ const meta = {
   component: ViewModeToggle,
   parameters: {
     layout: "centered",
-    design: { type: 'figma', url: 'https://www.figma.com/design/oFp2TLeCG4GJeCOFVhBvjg/KanDrive?node-id=1421-19069' },
+    design: { type: 'figma', url: 'https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=622-3468' },
   },
   argTypes: {
     mode: {
@@ -41,4 +42,18 @@ export const List: Story = {
 
 export const Columns: Story = {
   args: { mode: "columns" },
+}
+
+/**
+ * `size="compact"` (mobile) exclui "Columns" automaticamente — não precisa
+ * mais passar `modes={["grid","list"]}` manualmente (mudança de 2026-09-25).
+ */
+export const Compact: Story = {
+  args: { size: "compact" },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(canvas.getByRole("button", { name: "Grid" })).toBeInTheDocument()
+    await expect(canvas.getByRole("button", { name: "List" })).toBeInTheDocument()
+    await expect(canvas.queryByRole("button", { name: "Columns" })).toBeNull()
+  },
 }

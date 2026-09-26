@@ -31,7 +31,7 @@ function Callout({ variant = "warning", className, children, ...props }: Callout
       className={cn(
         "flex w-full items-start gap-2 rounded-lg border p-3",
         isInfo
-          ? "border-brand-teal bg-brand-teal-light"
+          ? "border-brand-teal bg-brand-teal-light-surface"
           : "border-[#fad98c] bg-[var(--color-feedback-warning-subtle,#f59e0b33)] dark:border-[#b45309] dark:bg-[#f59e0b4d]",
         className
       )}

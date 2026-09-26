@@ -12,7 +12,7 @@ import {
 } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { PushButton } from "@/components/atoms/push-button"
+import { Button } from "@/components/atoms/button"
 import { StorageSidebar, type StorageSidebarProps } from "@/components/organisms/storage-sidebar"
 import { SidebarTagsItem } from "@/components/atoms/sidebar-tags-item"
 import { Icon } from "@/components/atoms/icon"
@@ -108,7 +108,7 @@ export interface SidebarProps extends React.ComponentProps<"nav"> {
  *
  * Corrigido em auditoria Regra 11 (US-026): `get_design_context` real no nó
  * `Size=MD, Pages=Default` (`1421:17947`) confirma um botão "+ Adicionar"
- * (`atom/PushButton`, `variant="primary"`, ícone `plus`) entre o header e a
+ * (`atom/Button`, ícone `plus`, migrado de `PushButton` em 2026-09-25) entre o header e a
  * lista de navegação — ausente por completo na implementação anterior.
  * Adicionado com `PushButton`/`icon={Plus}` (Regra 1 — mesmo componente
  * único, sem `button/primary` separado).
@@ -145,10 +145,11 @@ export interface SidebarProps extends React.ComponentProps<"nav"> {
  * Armazenamento e plano/Notificações/Aparência e exibição/Privacidade e
  * dados/Organização padrão/[divisor]/Idioma e região/[divisor]/Excluir
  * conta — Figma-confirmado nos nós `1255:23289`–`1255:23306`). "Excluir
- * conta" usa `text-[#71717a]` mesmo no estado inativo (não o
- * `neutral-text-tertiary` dos outros itens inativos — Figma-confirmado,
- * tratamento visualmente idêntico na prática, mas o node não reusa a
- * variável). "Organização padrão" é item de nav real (Figma-confirmado),
+ * conta" usava um hex solto (`#71717a`) mesmo no estado inativo — o próprio
+ * comentário original já dizia "tratamento visualmente idêntico" ao
+ * `neutral-text-tertiary` dos outros itens; trocado pelo token em 2026-09-25
+ * (lote de paleta) pra acompanhar o escurecimento do token e não ficar
+ * desatualizado sozinho. "Organização padrão" é item de nav real (Figma-confirmado),
  * mas não tem nenhuma das 23 telas `page/*` correspondente no inventário
  * — sem conteúdo Figma-confirmado pra esse painel ainda (Regra 9,
  * `docs/conflicts.md`).
@@ -186,6 +187,7 @@ function Sidebar({
       <nav
         data-slot="sidebar"
         data-pages="setting"
+        aria-label="Seções de configurações"
         className={cn(
           "flex w-[223px] flex-col gap-1 rounded-2xl border border-zinc-200 bg-effect-glass-white-70 px-2 pt-3 pb-6 backdrop-blur-md dark:border-zinc-700",
           className
@@ -201,7 +203,7 @@ function Sidebar({
               className={cn(
                 "rounded-md px-2 py-1.5 text-left text-base font-medium text-zinc-900 transition-colors dark:text-zinc-100",
                 "hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 dark:hover:bg-zinc-800",
-                activeSection === section ? "bg-zinc-100 dark:bg-zinc-800" : "text-zinc-500 dark:text-zinc-400"
+                activeSection === section ? "bg-zinc-100 dark:bg-zinc-800" : "text-neutral-text-tertiary dark:text-zinc-400"
               )}
             >
               {label}
@@ -215,7 +217,7 @@ function Sidebar({
           aria-current={activeSection === "excluir-conta" ? "page" : undefined}
           onClick={() => onNavigateSection?.("excluir-conta")}
           className={cn(
-            "rounded-md px-2 py-1.5 text-left text-base font-medium text-[#71717a] transition-colors dark:text-zinc-400",
+            "rounded-md px-2 py-1.5 text-left text-base font-medium text-neutral-text-tertiary transition-colors",
             "hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 dark:hover:bg-zinc-800",
             activeSection === "excluir-conta" && "bg-zinc-100 dark:bg-zinc-800"
           )}
@@ -231,6 +233,7 @@ function Sidebar({
       <nav
         data-slot="sidebar"
         data-collapsed="true"
+        aria-label="Navegação lateral"
         className={cn(
           "flex w-fit items-center gap-2 rounded-lg border border-zinc-200 bg-effect-glass-white-70 px-3 py-2 shadow-md backdrop-blur-md dark:border-zinc-700",
           className
@@ -247,7 +250,7 @@ function Sidebar({
           data-slot="sidebar-collapse"
           aria-label="Expandir sidebar"
           onClick={handleToggleCollapse}
-          className="flex size-6 shrink-0 items-center justify-center rounded-full text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-900 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
+          className="flex size-6 shrink-0 items-center justify-center rounded-full text-neutral-text-tertiary transition-colors hover:bg-zinc-100 hover:text-zinc-900 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
         >
           <PanelLeft aria-hidden="true" className="size-3.5" />
         </button>
@@ -259,8 +262,10 @@ function Sidebar({
     <nav
       data-slot="sidebar"
       data-collapsed="false"
+      aria-label="Navegação lateral"
       className={cn(
-        "relative flex w-72 flex-col gap-4 rounded-2xl border border-zinc-200 bg-effect-glass-surface-light px-4 pt-1 pb-4 backdrop-blur-md dark:border-zinc-700",
+        // Tablet (720–1199): 150px e rótulos truncados, como o Figma `Sidebar Size=MD, Device=Tablet` (2026-09-24). Desktop: 288px.
+        "relative flex w-[150px] flex-col gap-4 rounded-2xl border border-zinc-200 bg-effect-glass-surface-light px-2 pt-1 pb-4 backdrop-blur-md desktop:w-72 desktop:px-4 dark:border-zinc-700",
         className
       )}
       {...props}
@@ -271,15 +276,16 @@ function Sidebar({
           data-slot="sidebar-collapse"
           aria-label="Colapsar sidebar"
           onClick={handleToggleCollapse}
-          className="flex size-6 items-center justify-center rounded-full text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-900 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
+          className="flex size-6 items-center justify-center rounded-full text-neutral-text-tertiary transition-colors hover:bg-zinc-100 hover:text-zinc-900 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
         >
           <PanelLeft aria-hidden="true" className="size-3.5" />
         </button>
       </div>
       <div data-slot="sidebar-add-row" className="flex w-full pt-1 pb-4">
-        <PushButton icon={Plus} onClick={onAdd} className="h-9 w-[121px] self-start rounded-md px-4 text-sm">
+        <Button onClick={onAdd} className="h-9 w-full self-start rounded-md px-4 text-sm desktop:w-[121px]">
+          <Plus className="size-4" aria-hidden="true" />
           Adicionar
-        </PushButton>
+        </Button>
       </div>
       <ul className="flex flex-col gap-1">
         {NAV_ITEMS.map(({ page, icon: ItemIcon }) => (
@@ -294,15 +300,15 @@ function Sidebar({
                 activePage === page ? "bg-zinc-100 dark:bg-zinc-800" : "opacity-50"
               )}
             >
-              <ItemIcon aria-hidden="true" className="size-4" />
-              {page}
+              <ItemIcon aria-hidden="true" className="size-4 shrink-0" />
+              <span className="min-w-0 truncate">{page}</span>
             </button>
           </li>
         ))}
       </ul>
       {tags.length > 0 ? (
         <div className="flex flex-col gap-1 border-t border-zinc-200 pt-3 dark:border-zinc-700">
-          <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400">Etiquetas</span>
+          <span className="text-xs font-medium text-neutral-text-tertiary dark:text-zinc-400">Etiquetas</span>
           {tags.map((tag) => (
             <SidebarTagsItem
               key={tag}
@@ -314,7 +320,8 @@ function Sidebar({
         </div>
       ) : null}
       <div className="border-t border-zinc-200 pt-3 dark:border-zinc-700">
-        <StorageSidebar {...storageProps} manageSpaceLabel="Gerir Espaço" />
+        {/* storageProps é opcional aqui, mas as pages o omitem e o painel sempre renderizou mesmo assim; o cast só mantém esse comportamento. */}
+        <StorageSidebar {...(storageProps as StorageSidebarProps)} manageSpaceLabel="Gerir Espaço" />
       </div>
     </nav>
   )

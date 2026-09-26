@@ -19,6 +19,10 @@ Header (`page="settings"`) + `Breadcrumb` ("Home/Perguntas Frequentes") + `PageL
 
 `FaqInfoCard` generalizado nesta reconciliação (`topic` prop, além do `variant` original de 2 valores) pra cobrir as 7 seções no estado sempre-expandido — a pergunta extra "Onde vejo quanto espaço já usei?" (só em `FirstSteps`, `1439:19945`) foi movida da condição `variant` pra `resolvedTopicKey`, senão sumiria ao renderizar via `topic`.
 
+## Mobile: links rápidos (Figma V0.2.1, 2026-09-24)
+
+No mobile, os tópicos ficam numa faixa de chips (`FaqTopicChips`) logo abaixo do título, que rola para o lado. Tocar num chip rola até a seção (F6). A partir do desktop, o papel é do `FaqFastLinks` lateral.
+
 ## Terminologia
 
 Nenhum termo proibido (Regra 5). "elegíveis" em `FrequentIssues` é prosa de resposta de FAQ, já documentado como não-violação em `docs/conflicts.md`.

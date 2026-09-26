@@ -1,0 +1,25 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as Stories from './HandPicker.stories';
+
+<Meta of={Stories} />
+
+# HandPicker
+
+✅ Figma KanDrive V0.2.1: o card "Mão dominante" de `Settings/Appearance` e a tela `Onboarding/DominantHand` (F5 e F8, aprovados em 2026-09-24).
+
+## Uso
+
+Escolhe a mão dominante, que muda só o lado do botão de ação (FAB) do `MobileBottomNav`. Aparece em Settings → Aparência, nos 3 dispositivos, e no onboarding. Nas páginas, fica ligado às preferências (`usePreferences`).
+
+<Canvas of={Stories.Default} />
+<Controls />
+
+## Anatomia
+
+- Duas opções, Direita e Esquerda, cada uma com a prévia: um celular com o FAB do lado correspondente.
+- Selecionada: borda de 1.5px `Brand/Primary/Default` e fundo `Brand/Primary/Disabled` (teal claro no Light, teal escuro no Dark).
+- Não selecionada: borda `Neutral/Border/Subtle`.
+
+## Acessibilidade
+
+É um `radiogroup` com dois `radio`: Tab entra no grupo, e as setas trocam a opção. O rótulo tem 16px (Regra 4).

@@ -91,7 +91,7 @@ function RadioButton({
             quadrado em 8px, achado do usuário em 2026-08-11. */}
         <span
           aria-hidden="true"
-          className="pointer-events-none size-2 scale-0 rounded-full bg-brand-teal transition-transform peer-checked:scale-100"
+          className="pointer-events-none size-2 scale-0 rounded-full bg-brand-teal-action transition-transform peer-checked:scale-100"
         />
       </span>
       <span className="text-base text-zinc-950 dark:text-zinc-100">{resolvedLabel}</span>
