@@ -68,6 +68,16 @@ export interface MobileBottomNavProps extends React.ComponentProps<"div"> {
  * da escala Tailwind), destoando dos componentes-irmãos de glass
  * (`MobileTabBar`/`ContextHeader`/`PopoverNotification`, todos
  * `backdrop-blur-md`). Adicionados os dois.
+ *
+ * **Corrigido em 2026-09-26, 2ª rodada** (usuário revisou de novo: "não
+ * reflete o Figma"): o achado anterior (blur/sombra) não era a causa
+ * principal. Medido pixel a pixel a screenshot real do Figma
+ * (`get_screenshot`) contra o fundo do canvas — barra em `rgb(199,199,199)`
+ * sobre fundo `rgb(68,68,68)` resolve pra alpha ≈ 70%, batendo exatamente
+ * com o token `--effect-glass-white-70`. O código tinha
+ * `bg-effect-glass-white-70/70` — o `/70` extra multiplicava a opacidade
+ * já embutida no token (70%) por mais 70%, resultando em ~49% real, bem
+ * mais transparente que o Figma. Removido o modificador solto.
  */
 function MobileBottomNav({
   action = "add",
@@ -80,7 +90,7 @@ function MobileBottomNav({
   ...props
 }: MobileBottomNavProps) {
   const left = hand === "left"
-  const glass = "bg-effect-glass-white-70/70 backdrop-blur-md drop-shadow-[0px_8px_40px_rgba(0,0,0,0.12)] dark:drop-shadow-[0px_8px_40px_rgba(0,0,0,0.5)]"
+  const glass = "bg-effect-glass-white-70 backdrop-blur-md drop-shadow-[0px_8px_40px_rgba(0,0,0,0.12)] dark:drop-shadow-[0px_8px_40px_rgba(0,0,0,0.5)]"
   return (
     <div data-slot="mobile-bottom-nav" data-hand={hand} data-action={action} className={cn("relative h-[160px] w-full", className)} {...props}>
       {/* Barra: peça do recorte (largura fixa) + resto fluido */}
