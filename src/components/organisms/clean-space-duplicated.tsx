@@ -36,6 +36,11 @@ export interface CleanSpaceDuplicatedProps extends React.ComponentProps<"section
  * `border-[#bbb]` (`neutral-border-light`, sem token CSS equivalente
  * ainda) — antes `bg-effect-glass-white-70` sem borda própria. Ambos
  * corrigidos.
+ *
+ * **Corrigido em 2026-09-25** (achado do usuário: "hover nos botões
+ * escritos"): mesma classe do "Excluir cópias" trazia `text-destructive
+ * hover:text-destructive` — mesma cor em repouso e hover, um no-op.
+ * Trocado para `hover:text-destructive/80`.
  */
 function CleanSpaceDuplicated({ groups, onDeleteDuplicates, className, ...props }: CleanSpaceDuplicatedProps) {
   return (
@@ -61,7 +66,7 @@ function CleanSpaceDuplicated({ groups, onDeleteDuplicates, className, ...props 
             <Button
               variant="outline"
               onClick={() => onDeleteDuplicates?.(group)}
-              className="h-8.5 gap-2 rounded-md border-[#bbb] text-destructive hover:text-destructive dark:border-[#52525b] bg-effect-glass-white-36 px-4 text-xs"
+              className="h-8.5 gap-2 rounded-md border-[#bbb] text-destructive hover:text-destructive/80 dark:border-[#52525b] bg-effect-glass-white-36 px-4 text-xs"
             >
               <Trash2 className="size-4" aria-hidden="true" />
               Excluir cópias

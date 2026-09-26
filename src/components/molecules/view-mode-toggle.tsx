@@ -42,7 +42,12 @@ export interface ViewModeToggleProps
   onModeChange?: (mode: ViewMode) => void
   /** Figma `Size`: default (com o título "VISUALIZAR" e os rótulos) · compact (73×31, só ícones, mobile). */
   size?: "default" | "compact"
-  /** Quais modos oferecer. No mobile, só Grade e Lista: Colunas é exclusivo de tablet e desktop (decisão de 2026-09-24). */
+  /**
+   * Quais modos oferecer. Quando omitido, segue `size`: `compact` (mobile)
+   * já exclui "columns" por padrão (Colunas é exclusivo de tablet/desktop,
+   * decisão de 2026-09-24) — não precisa passar esta prop pra isso, é
+   * automático. Só use `modes` pra um recorte diferente do padrão.
+   */
   modes?: readonly ViewMode[]
 }
 
@@ -58,9 +63,19 @@ export interface ViewModeToggleProps
  * `var(--brand-primary-light,#c8dce3)` para o texto ativo (mesmo token já
  * mapeado como `brand-teal-light` neste projeto, achado US-013) — a
  * implementação anterior usava `text-white` puro, mais claro que o Figma.
+ *
+ * **Alterado em 2026-09-25** (pedido do usuário): a exclusão de "columns"
+ * no mobile (decisão de 2026-09-24) antes dependia de cada página lembrar
+ * de passar `modes={["grid","list"]}` no `size="compact"` — 3 páginas
+ * repetiam isso manualmente, frágil (uma página nova podia esquecer).
+ * Passou a ser automático: `size="compact"` já exclui "columns" por
+ * padrão, sem precisar da prop `modes`.
  */
+const COMPACT_DEFAULT_MODES: readonly ViewMode[] = ["grid", "list"]
+
 function ViewModeToggle({ mode, onModeChange, size = "default", modes, className, ...props }: ViewModeToggleProps) {
   const compact = size === "compact"
+  const effectiveModes = modes ?? (compact ? COMPACT_DEFAULT_MODES : undefined)
   return (
     <div
       data-slot="view-mode-toggle"
@@ -73,7 +88,7 @@ function ViewModeToggle({ mode, onModeChange, size = "default", modes, className
         </span>
       )}
       <div className="relative flex items-center gap-1 rounded-xl glass-edge glass-shadow-sm bg-effect-glass-light-45 p-1 backdrop-blur-sm">
-        {MODES.filter((m) => !modes || modes.includes(m.value)).map(({ value, label, ActiveIcon, IdleIcon, iconClassName }) => {
+        {MODES.filter((m) => !effectiveModes || effectiveModes.includes(m.value)).map(({ value, label, ActiveIcon, IdleIcon, iconClassName }) => {
           const selected = value === mode
           const ModeIcon = selected ? ActiveIcon : IdleIcon
           return (

@@ -64,6 +64,15 @@ const SELECTED_STATES: readonly FolderItemState[] = [
  * funcionando (freeze-frame pra documentação/auditoria), mas quando omitido
  * o componente rastreia hover/press reais e clique alterna seleção sozinho
  * (`selected`/`defaultSelected`/`onSelectedChange`, controlado ou não).
+ *
+ * **Corrigido em 2026-09-25** (achado do usuário: nome cortando): o
+ * container raiz tinha largura fixa `w-[47px]` — qualquer `name` mais
+ * longo que isso era cortado, ao contrário dos irmãos `ArchiveItem`/
+ * `ImageItem`/`VideoItem`, que já usam `w-fit`+`min-w` (fix da auditoria
+ * US-026). Trocado para `w-fit min-w-[46.35px]` (acompanha o glifo como
+ * piso, cresce pro nome quando precisa) + `shrink-0` — sem `shrink-0`, um
+ * item de flex ainda comprime abaixo do `min-w` quando o pai (ex.
+ * `FolderCard`) não tem espaço, cortando o nome mesmo com a largura certa.
  */
 function FolderItem({
   state: explicitState,
@@ -120,7 +129,7 @@ function FolderItem({
       aria-pressed={isSelected}
       aria-disabled={isDisabled || undefined}
       className={cn(
-        "relative flex w-[47px] flex-col items-center gap-1 py-0.5",
+        "relative flex w-fit min-w-[46.35px] shrink-0 flex-col items-center gap-1 py-0.5",
         "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
         isDisabled ? "cursor-not-allowed" : "cursor-pointer",
         className

@@ -63,6 +63,13 @@ const SEVERITY_META: Record<ReviewSeverity, { label: string; icon: typeof AlertT
  * `get_design_context` extra por não ter sido encontrada nenhuma diferença
  * visual/textual (Regra 9).
  *
+ * **Corrigido em 2026-09-25** (achado do usuário: "hover nos botões
+ * escritos"): o botão "Excluir" tinha `text-destructive hover:text-destructive`
+ * — mesma cor em repouso e hover, um no-op (confirmado via `git show` do
+ * `push-button.tsx` original: nunca existiu hover de cor de texto nele,
+ * só de fundo). Trocado para `hover:text-destructive/80`, mesma convenção
+ * de opacidade usada em todo o resto do sistema.
+ *
  * Extraída de `template/Dialog/TemplateReviewModal` (Regra 10 — o template
  * agora compõe este organism em vez de markup duplicado inline); o estado
  * de expansão continua controlado pelo template pai (`items.map`), repassado
@@ -169,7 +176,7 @@ function TemplateReviewModalItem({ item, isExpanded, onToggleExpand, device = "d
               <Button
                 variant="outline"
                 onClick={child.onDelete}
-                className="h-8 gap-2 rounded-md border-none text-destructive hover:text-destructive bg-effect-glass-white-70 px-3 text-xs"
+                className="h-8 gap-2 rounded-md border-none text-destructive hover:text-destructive/80 bg-effect-glass-white-70 px-3 text-xs"
               >
                 <Trash2 className="size-4" aria-hidden="true" />
                 Excluir

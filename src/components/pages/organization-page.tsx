@@ -144,7 +144,7 @@ function OrganizationPage({
       </div>
       <div className="flex w-full items-center justify-between gap-2.5 tablet:hidden">
         <DropdownSelectGroupBy device="mobile" />
-        <ViewModeToggle size="compact" modes={["grid", "list"]} mode={viewMode === "columns" ? "list" : viewMode} onModeChange={onViewModeChange} />
+        <ViewModeToggle size="compact" mode={viewMode === "columns" ? "list" : viewMode} onModeChange={onViewModeChange} />
       </div>
     </>
   )
@@ -275,7 +275,7 @@ function OrganizationPageMobile({
         <>
           <div className="flex w-full items-center justify-between gap-2.5 border-b border-neutral-border-subtle pb-1.5">
             <DropdownSelectGroupBy device="mobile" value="Data de compartilhamento" />
-            <ViewModeToggle size="compact" modes={["grid", "list"]} mode={viewMode === "columns" ? "list" : viewMode} onModeChange={onViewModeChange} />
+            <ViewModeToggle size="compact" mode={viewMode === "columns" ? "list" : viewMode} onModeChange={onViewModeChange} />
           </div>
           <FolderCard device="mobile" label={savedGroup?.label} rows={savedGroup?.rows} className="pr-0" />
         </>

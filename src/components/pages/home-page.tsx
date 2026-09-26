@@ -128,7 +128,7 @@ function HomePage({
         {/* Mobile (Figma Home/Grid/Mobile): GroupBy compacto + visualização compacta (Grade e Lista) */}
         <div className="flex w-full items-center justify-between gap-2.5 tablet:hidden">
           <DropdownSelectGroupBy device="mobile" />
-          <ViewModeToggle size="compact" modes={["grid", "list"]} mode={mobileMode} onModeChange={onViewModeChange} />
+          <ViewModeToggle size="compact" mode={mobileMode} onModeChange={onViewModeChange} />
         </div>
       </div>
 

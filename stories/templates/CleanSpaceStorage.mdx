@@ -14,7 +14,7 @@ Modal do fluxo "Liberar Espaço" — lista arquivos grandes/duplicados pra o usu
 
 ## Composição
 
-Tags de tier reusam `atom/StorageTierBadge` em vez de markup duplicado — rótulos "Acesso rápido"/"Longo prazo". Botões "Excluir"/"Excluir cópias" usam `atom/PushButton` (`variant="neutral"`, `isDestructive`) — chrome neutro/glass, só o texto na cor de destrutivo, nunca fundo vermelho. "Selecionar todos" usa `variant="primary"`; "Desfazer seleção" fica `disabled` (estado lido/neutro).
+Tags de tier reusam `atom/StorageTierBadge` em vez de markup duplicado — rótulos "Acesso rápido"/"Longo prazo". Botões "Excluir"/"Excluir cópias" usam `atom/Button` (`variant="outline"`, migrado de `PushButton isDestructive` em 25/09/2026) — chrome neutro/glass, só o texto na cor de destrutivo, nunca fundo vermelho. "Selecionar todos" usa o padrão (`primary`); "Desfazer seleção" fica `disabled` (estado lido/neutro).
 
 ## Estados
 

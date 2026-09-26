@@ -48,6 +48,15 @@ export interface ContextHeaderProps extends React.ComponentProps<"div"> {
  * Cor de texto/ícones (`#001f27`, sem token semântico Figma) aproximada por
  * `zinc-800` (Regra 3, fallback de rampa Zinc para neutros sem
  * correspondência exata).
+ *
+ * 🧩 **Padronizado em 2026-09-25 por julgamento, sem Figma (achado do
+ * usuário: "escalas dos ícones")**: os 6 ícones do toolbar variavam de
+ * 12px a 24px sem justificativa documentada (`ShareFile`/`FileMoveRight`
+ * em 24px, `DeleteGlyph` em 12px, os outros 3 já em 16px). O node do
+ * Figma citado acima não resolveu mais na releitura — decisão humana foi
+ * padronizar todos em 16px (`size-4`, o valor já majoritário) em vez de
+ * bloquear a correção numa nova busca de node. Se o Figma real usar
+ * tamanhos diferentes por ícone, reabrir com o link atualizado.
  */
 function ContextHeader({
   itemsSelected = "X itens selecionado",
@@ -130,7 +139,7 @@ function ContextHeader({
                   onClick={onShare}
                   className="inline-flex items-center justify-center py-1.5 text-zinc-800 transition-colors dark:text-zinc-100 hover:text-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 active:opacity-60"
                 >
-                  <Icon name="ShareFile" className="size-6" />
+                  <Icon name="ShareFile" className="size-4" />
                 </button>
                 <button
                   type="button"
@@ -146,7 +155,7 @@ function ContextHeader({
                   onClick={onMove}
                   className="inline-flex items-center justify-center text-zinc-800 transition-colors dark:text-zinc-100 hover:text-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 active:opacity-60"
                 >
-                  <Icon name="FileMoveRight" className="size-6" />
+                  <Icon name="FileMoveRight" className="size-4" />
                 </button>
                 <button
                   type="button"
@@ -154,7 +163,7 @@ function ContextHeader({
                   onClick={onDelete}
                   className="inline-flex size-4 shrink-0 items-center justify-center text-zinc-800 transition-colors dark:text-zinc-100 hover:text-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 active:opacity-60"
                 >
-                  <DeleteGlyph aria-hidden="true" className="size-3" />
+                  <DeleteGlyph aria-hidden="true" className="size-4" />
                 </button>
                 <button
                   type="button"

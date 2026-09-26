@@ -62,6 +62,11 @@ export interface CleanSpaceLargeFilesProps extends React.ComponentProps<"section
  * sem token CSS equivalente ainda) — antes `bg-effect-glass-white-70` sem
  * borda própria (herdava `border-zinc-200` do `PushButton`, não o `#bbb`
  * confirmado). Ambos corrigidos.
+ *
+ * **Corrigido em 2026-09-25** (achado do usuário: "hover nos botões
+ * escritos"): mesma classe do "Excluir" trazia `text-destructive
+ * hover:text-destructive` — mesma cor em repouso e hover, um no-op.
+ * Trocado para `hover:text-destructive/80`.
  */
 function CleanSpaceLargeFiles({
   files,
@@ -148,7 +153,7 @@ function CleanSpaceLargeFiles({
           variant="outline"
           disabled={selectedNames.length === 0}
           onClick={deleteSelected}
-          className="h-8 gap-2 rounded-md border-[#bbb] text-destructive hover:text-destructive dark:border-[#52525b] bg-effect-glass-white-36 px-3 text-xs"
+          className="h-8 gap-2 rounded-md border-[#bbb] text-destructive hover:text-destructive/80 dark:border-[#52525b] bg-effect-glass-white-36 px-3 text-xs"
         >
           <Trash2 className="size-4" aria-hidden="true" />
           Excluir

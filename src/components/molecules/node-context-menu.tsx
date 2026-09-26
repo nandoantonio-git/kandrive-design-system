@@ -46,6 +46,13 @@ export interface NodeContextMenuProps extends React.ComponentProps<"div"> {
  * 🧩 Inferido (Regra 9): a trilha do toggle E/OU (`border-zinc-800
  * bg-zinc-900`, texto `zinc-400` não selecionado) é chrome escuro fixo
  * (mesmo critério de `NodeContextMenuItem`) — não recebeu pares `dark:`.
+ *
+ * **Corrigido em 2026-09-25** (achado do usuário: "ausência de droplists"):
+ * as pílulas "Atributo"/"Operação" da 1ª linha (condição já preenchida)
+ * mostravam o chevron mas não recebiam a prop `options` —
+ * `NodeContextMenuItem` só renderiza a lista quando `options` existe, então
+ * clicar não abria nada. A 2ª linha (nova condição) já estava correta.
+ * Adicionadas as mesmas listas de opções.
  */
 function NodeContextMenu({
   state = "floating-info-panel",
@@ -74,8 +81,12 @@ function NodeContextMenu({
         </div>
 
         <div className="flex items-center gap-2">
-          <NodeContextMenuItem label="Atributo" value="Tamanho" />
-          <NodeContextMenuItem label="Operação" value="Maior que" />
+          <NodeContextMenuItem label="Atributo" value="Tamanho" options={["Tamanho", "Data", "Tipo"]} />
+          <NodeContextMenuItem
+            label="Operação"
+            value="Maior que"
+            options={["> Maior", "< Menor", ">= Maior igual", "<= Menor igual", "=Igual", "!=Diferente"]}
+          />
           <NodeContextMenuItem label="Valor..." value="1.0 GB" hasChevron={false} />
           <button
             type="button"

@@ -21,10 +21,9 @@ import { cn } from "@/lib/utils"
  * disabled = opacidade 50%. Pressed não tem spec visual; o `translate-y-px`
  * no `:active` vem do código (Regra 8, feedback no press).
  *
- * ⚠️ CONFLICT (Regra 4 × Figma), registrado em docs/vault/Estado/Conflitos Abertos.md: o Figma usa
- * 14px no rótulo de MD e LG Rounded (16px só no Pill LG). A Regra 4 (travada)
- * exige no mínimo 16px em rótulo de botão, então o código usa 16px em todos,
- * como o `PushButton`, até uma decisão humana.
+ * ✅ Resolvido em 24/09/2026: o Figma passou os rótulos para 16px em todos os
+ * tamanhos (junto com o arredondamento de alturas/raios para cima), então a
+ * Regra 4 fica sem exceção — sem mais divergência entre Figma e código.
  *
  * Papéis (revisão dark/WCAG, 2026-09-24): o fundo usa tokens de SUPERFÍCIE,
  * que não mudam de tom no Dark (`brand-teal-action`, `destructive-surface`),

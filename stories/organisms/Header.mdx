@@ -17,14 +17,14 @@ Cabeçalho fixo do topo — 3 variantes por página (`Navbar`/`settings`/`storag
 | Peça | Origem |
 | --- | --- |
 | `molecule/input-search` | `Molecules/SearchInput` |
-| `atom/PushButton` (`variant="primary"`) | `Atoms/PushButton` |
+| `atom/Button` (padrão, `primary`) | `Atoms/Button` (migrado de `PushButton` em 25/09/2026) |
 | `molecule/action-pill` | `Molecules/ActionPill` — composição real Help/Settings/Conta |
 
-"Organizar" e "Guardar" usam `PushButton variant="primary"` — nenhum componente de botão separado. "Guardar" é termo aprovado.
+"Organizar" e "Guardar" usam `atom/Button` (padrão, `primary`) — nenhum componente de botão separado. "Guardar" é termo aprovado.
 
 ## Estados
 
-Herdados dos sub-componentes (`SearchInput`, `PushButton`, `ActionPill`) — nenhum estado próprio do container.
+Herdados dos sub-componentes (`SearchInput`, `Button`, `ActionPill`) — nenhum estado próprio do container.
 
 ## Material
 

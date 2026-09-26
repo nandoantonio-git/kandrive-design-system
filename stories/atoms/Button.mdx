@@ -9,12 +9,11 @@ import * as ButtonStories from './Button.stories';
 
 ## Uso
 
-É o **botão de texto das ações do produto**, como "Salvar alterações", "Guardar arquivos" e "Entrar". Desde que a Regra 1 foi revogada em 23/09/2026, há três botões, cada um com um papel:
+É o **botão de texto das ações do produto**, como "Salvar alterações", "Guardar arquivos" e "Entrar". Desde que a Regra 1 foi revogada em 23/09/2026, há dois botões, cada um com um papel — o antigo terceiro papel (`atom/PushButton`, diálogos e toolbars no estilo macOS) foi migrado para `atom/Button` e removido em 25/09/2026 (fase E do fechamento):
 
 | Componente | Quando usar |
 | --- | --- |
-| **Button** | Ações do produto nas telas: formulários, modais, CTAs de página |
-| **PushButton** | Diálogos e toolbars no estilo macOS |
+| **Button** | Ações do produto nas telas: formulários, modais, CTAs de página, diálogos e toolbars |
 | **IconButton** | Botões só com ícone (fechar, adicionar, excluir…) |
 
 <Canvas of={ButtonStories.Primary} />
@@ -44,7 +43,7 @@ Os fundos usam tokens de **superfície**, que mantêm o tom no Dark, então o te
 
 ## Tipografia
 
-⚠️ **Conflito aberto:** o Figma usa 14px nos rótulos de MD e LG Rounded. O código segue a Regra 4, com piso de 16px, como o PushButton, até haver uma decisão (ver *Conflitos Abertos* no vault).
+✅ **Resolvido em 24/09/2026:** o Figma passou os rótulos para 16px (junto com o arredondamento das alturas/raios para cima — MD 36px, Glass 36px, LG Rounded 46px, LG Pill 44px), então a Regra 4 fica sem exceção. Não há mais divergência entre Figma e código nesse ponto.
 
 ## Terminologia
 

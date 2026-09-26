@@ -102,6 +102,14 @@ const SELECTED_STATES: readonly ArchiveItemState[] = [
  * funcionando (freeze-frame pra documentação/auditoria), mas quando omitido
  * o componente rastreia hover/press reais e clique alterna seleção sozinho
  * (`selected`/`defaultSelected`/`onSelectedChange`, controlado ou não).
+ *
+ * **Corrigido em 2026-09-25** (achado do usuário: nome cortando em
+ * composições com vários itens lado a lado, ex. `FolderCard`): o container
+ * raiz não tinha `shrink-0` — como flex-child sem isso, o navegador
+ * comprimia o item até o `min-w-[36.68px]` (que só cobre a largura do
+ * glifo) quando o pai não tinha espaço sobrando, cortando o nome mesmo com
+ * `w-fit`/`truncate` corretos. Adicionado `shrink-0` (mesmo fix em
+ * `FolderItem`/`ImageItem`/`VideoItem`).
  */
 function ArchiveItem({
   state: explicitState,
@@ -160,7 +168,7 @@ function ArchiveItem({
       aria-pressed={isSelected}
       aria-disabled={isDisabled || undefined}
       className={cn(
-        "relative flex w-fit min-w-[36.68px] flex-col items-center gap-1 py-0.5",
+        "relative flex w-fit min-w-[36.68px] shrink-0 flex-col items-center gap-1 py-0.5",
         "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
         isDisabled ? "cursor-not-allowed" : "cursor-pointer",
         className

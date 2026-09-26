@@ -55,6 +55,11 @@ export interface MobileBottomNavProps extends React.ComponentProps<"div"> {
  * - Ícones: glifos SF exportados do Figma como SVG em contorno.
  * - FAB: 62px, `Brand/Primary/Action`, glifo branco.
  * - ✕ de cancelar: 44px, `Neutral/Surface/Constant/Light`, glifo `destructive`.
+ *
+ * **Corrigido em 2026-09-25**: os 4 botões de destino não tinham
+ * `transition-colors` (confirmado via `git log`: nunca tiveram, não é
+ * regressão) — a cor do ícone/rótulo ativo trocava sem transição, diferente
+ * do `MobileTabBar`, que já tinha. Adicionado pra consistência.
  */
 function MobileBottomNav({
   action = "add",
@@ -91,7 +96,7 @@ function MobileBottomNav({
               type="button"
               aria-current={selected ? "page" : undefined}
               onClick={() => onNavigate?.(value)}
-              className="touch-target flex cursor-pointer flex-col items-center gap-2 rounded-lg focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none"
+              className="touch-target flex cursor-pointer flex-col items-center gap-2 rounded-lg transition-colors focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none"
             >
               <span className={cn("flex h-[22px] items-end", selected ? "text-brand-teal" : "text-effect-overlay-default/50")}>
                 <Glyph aria-hidden="true" className="h-[19px] w-auto" />

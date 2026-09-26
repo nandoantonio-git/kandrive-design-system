@@ -105,6 +105,10 @@ const SELECTED_STATES: readonly ImageItemState[] = [
  *    documentação), mas quando omitido o componente rastreia hover/press
  *    reais e clique alterna seleção sozinho (`selected`/`defaultSelected`/
  *    `onSelectedChange`, controlado ou não).
+ *
+ * **Corrigido em 2026-09-25**: adicionado `shrink-0` no container raiz —
+ * mesmo bug e mesmo fix do `ArchiveItem` (ver notas lá), nome cortando
+ * quando o item comprime como flex-child sem espaço.
  */
 function ImageItem({
   state: explicitState,
@@ -161,7 +165,7 @@ function ImageItem({
       aria-pressed={isSelected}
       aria-disabled={isDisabled || undefined}
       className={cn(
-        "relative flex w-fit min-w-[35.14px] flex-col items-center gap-1 px-1 py-0.5",
+        "relative flex w-fit min-w-[35.14px] shrink-0 flex-col items-center gap-1 px-1 py-0.5",
         "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
         isDisabled ? "cursor-not-allowed" : "cursor-pointer",
         className

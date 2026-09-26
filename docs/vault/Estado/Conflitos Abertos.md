@@ -23,6 +23,9 @@ Fonte completa: `making-of/conflicts.md` (log de todas as entradas, incluindo j�
 
 ## 🟢 Baixa urgência (gaps de polish, não de decisão)
 
+- **`atom/Button` — feedback de "pressed" mais discreto que o `PushButton` antigo (2026-09-25).** `PushButton` tinha `scale-[0.98]` + escurecia 20% no `:active`; o `Button` que o substituiu (fase E) só desloca 1px (`translate-y-px`), sem escurecer. Nenhum dos dois é Figma-confirmado (extensão de código, Regra 8) — acharado incidental durante o [[Plano de Verificação (Regressões 2026-09-25)]], não é a causa da queixa original do usuário sobre animação (essa era sobre os ícones Guardar/Organizar, já resolvida como "sem spec no Figma"). Sem ação até o usuário decidir se quer revisitar.
+- **`HamburgerButton` — troca de ícone sem morph/transição (2026-09-25).** Hoje troca o SVG inteiro instantaneamente entre `mode="closed"`/`"expand"`. Acharado do [[Plano de Verificação (Regressões 2026-09-25)]], ainda sem investigação de spec Figma (Smart Animate) nem decisão de implementação.
+
 - **`celule/MainCanvas/Organization/FreeMode/Buttons` (2026-08-20)** — única das 10 peças da extinta camada `Cells` ainda não renomeada `molecule/` no Figma fonte (`1431:20043`). Código já trata como `molecule`; só a fonte Figma precisa da correção manual.
 - **2 telas sem o prefixo `page/*` consistente (2026-08-20)** — `Organização/ModoData/Organização/Saved` (sem prefixo) e `Page/login` (capitalização diferente + perdeu "Glassmorphism Edition"). Cosmético, não bloqueia implementação.
 - Placeholder do `SearchInput` diverge do Figma ("Search" vs. termo aprovado) — decisão deliberada, não bug.
