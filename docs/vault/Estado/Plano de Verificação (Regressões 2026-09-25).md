@@ -115,4 +115,6 @@ O usuário confirmou: a animação era feita por `transition` (equivalente em c�
   - **`DropNewTag`** — 🔴 bug real, corrigido: a "linha que aparece quando ativo" era um cursor de texto falso (span absoluto, posição fixa), redundante e desalinhado com o cursor nativo do input. Removido, cor virou `caret-color` de verdade.
   - **`DropNewTag` (dependências)** — confirmado com o usuário: exige estado global de etiquetas, fora de escopo do design system. Registrado em Conflitos Abertos.
   - **Copy "Cronológico"/"Por data"** — usuário decidiu por "Por data" (já usado no mobile). Unificado nos 3 lugares que diziam "Cronológico" (`SaveOrganizationModal` + 2x FAQ), inclusive contra o texto literal Figma do FAQ (decisão humana documentada).
-- [ ] Grupo 6 — sistêmico (tokens, radius modo coluna)
+- [x] **Grupo 6 — sistêmico.**
+  - **Radius modo coluna** — investigado, sem bug óbvio na leitura de código (`FileListContainer`/`PreviewPane` batem com a escala de radius documentada). Fica pendente até o usuário trazer print/link do Figma da tela real. Registrado em Conflitos Abertos.
+  - **"Rever aplicação dos tokens"** — confirmado com o usuário: é a mesma pendência 🟡 já registrada em Conflitos Abertos (2 grupos de contraste de cor fora do lote de paleta). Sem trabalho novo.
