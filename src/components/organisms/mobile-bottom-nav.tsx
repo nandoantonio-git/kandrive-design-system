@@ -60,6 +60,14 @@ export interface MobileBottomNavProps extends React.ComponentProps<"div"> {
  * `transition-colors` (confirmado via `git log`: nunca tiveram, não é
  * regressão) — a cor do ícone/rótulo ativo trocava sem transição, diferente
  * do `MobileTabBar`, que já tinha. Adicionado pra consistência.
+ *
+ * **Corrigido em 2026-09-26** (achado do usuário: "glass não bate com o
+ * Figma"): `get_design_context` fresco no nó real confirma
+ * `Effect/Shadow/LG` (`0px 8px 40px rgba(0,0,0,0.12)`) na barra — ausente
+ * no código. O blur também estava em `backdrop-blur-sm` (4px, o mais fraco
+ * da escala Tailwind), destoando dos componentes-irmãos de glass
+ * (`MobileTabBar`/`ContextHeader`/`PopoverNotification`, todos
+ * `backdrop-blur-md`). Adicionados os dois.
  */
 function MobileBottomNav({
   action = "add",
@@ -72,7 +80,7 @@ function MobileBottomNav({
   ...props
 }: MobileBottomNavProps) {
   const left = hand === "left"
-  const glass = "bg-effect-glass-white-70/70 backdrop-blur-sm"
+  const glass = "bg-effect-glass-white-70/70 backdrop-blur-md drop-shadow-[0px_8px_40px_rgba(0,0,0,0.12)] dark:drop-shadow-[0px_8px_40px_rgba(0,0,0,0.5)]"
   return (
     <div data-slot="mobile-bottom-nav" data-hand={hand} data-action={action} className={cn("relative h-[160px] w-full", className)} {...props}>
       {/* Barra: peça do recorte (largura fixa) + resto fluido */}
