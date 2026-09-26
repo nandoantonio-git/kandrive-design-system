@@ -15,7 +15,7 @@ const CARDS: { method: OrganizationMethod; eyebrow: string; title: string; descr
   {
     method: "data",
     eyebrow: "DATA",
-    title: "Cronológico",
+    title: "Por data",
     description: "Organize por ano, mês e dia. Ideal para memórias antigas e acervo histórico.",
     illustration: illustrationData,
   },
@@ -71,6 +71,11 @@ export interface SaveOrganizationModalProps extends React.ComponentProps<"div"> 
  * o node no Figma de `organism/DialogSave/OrganizationModal` para
  * `template/DialogSave/OrganizationModal`, mesmo nodeId `1421:18576`) — ver
  * `docs/vault/Design System/Camadas Atômicas.md`.
+ *
+ * **Alterado em 2026-09-25 (decisão humana)**: título do card "Data"
+ * trocado de "Cronológico" pra "Por data" — mesmo nome já usado no
+ * `MethodOrganizeButton` (mobile) pro mesmo método; unificado com o FAQ
+ * também (achado do `Plano de Verificação`).
  */
 function SaveOrganizationModal({
   selected,

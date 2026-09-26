@@ -40,6 +40,12 @@ interface FaqTopicData {
  * FrequentIssues) já dentro do contexto aprovado pela Regra 5
  * (Armazenamento). Ícones por tópico agora usam os SVGs exportados do nó
  * `1454:22003` na auditoria de ponto-fixo US-026.
+ *
+ * **Alterado em 2026-09-25 (decisão humana, diverge do literal Figma)**:
+ * o texto Figma dizia "Cronológico", mas o método já se chama "Por data"
+ * em `MethodOrganizeButton` (mobile) — decisão do usuário foi unificar em
+ * "Por data" em vez do inverso (achado do `Plano de Verificação`, mesmo
+ * ajuste em `save-organization-modal.tsx`).
  */
 const TOPIC_DATA: Record<FaqTopic, FaqTopicData> = {
   FirstSteps: {
@@ -63,7 +69,7 @@ const TOPIC_DATA: Record<FaqTopic, FaqTopicData> = {
             <p>Dois caminhos comuns:</p>
             <p>
               <strong className="font-bold">1. Organizar</strong> — aplique um template
-              (Cronológico, Por projeto, Por tipo de arquivo ou Modo livre) para deixar seus
+              (Por data, Por projeto, Por tipo de arquivo ou Modo livre) para deixar seus
               arquivos estruturados.
             </p>
             <p>
@@ -145,7 +151,7 @@ const TOPIC_DATA: Record<FaqTopic, FaqTopicData> = {
       {
         question: "Aplicar um template move ou apaga meus arquivos automaticamente?",
         answer:
-          "Não. Antes de qualquer mudança, você escolhe o método (Cronológico, Por projeto, Por tipo de arquivo ou Modo livre), revisa o preview e só então confirma. Nada é alterado antes dessa confirmação.",
+          "Não. Antes de qualquer mudança, você escolhe o método (Por data, Por projeto, Por tipo de arquivo ou Modo livre), revisa o preview e só então confirma. Nada é alterado antes dessa confirmação.",
       },
       {
         question: 'Por que não consigo escolher o "Modo Livre"?',

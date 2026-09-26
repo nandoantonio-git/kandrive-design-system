@@ -111,5 +111,8 @@ O usuário confirmou: a animação era feita por `transition` (equivalente em c�
   - **`PopoverNotification`** — 🔴 corrigido, literal ao pedido do usuário. Timestamp movido pra 1ª linha, ao lado do `CloseButton`.
   - **`SaveOrganizationModal`/`TemplateCard`** — 🔴 corrigido. `selected` só trocava a borda entre 2 cinzas quase idênticos; trocado pelo padrão de "selecionado" já usado em `FolderCard`/`PlanSelection`. Achei e corrigi um bug na própria correção: o `dark:bg-zinc-900` base (não condicional) ganhava do `bg-brand-teal-light-surface` no cascade — precisou de `dark:` explícito na classe do `selected` também. Confirmado visualmente nos dois modos.
   - **`StorageTierBadge`** — sem bug reproduzível. Texto cabe exatamente na caixa fixa de 84px (Figma-confirmado em auditoria anterior), sem overflow no DOM.
-- [ ] Grupo 5 — decisão de design (DropNewTag color-picker + dependências, copy TemplateCard)
+- [x] **Grupo 5 — decisão de design.**
+  - **`DropNewTag`** — 🔴 bug real, corrigido: a "linha que aparece quando ativo" era um cursor de texto falso (span absoluto, posição fixa), redundante e desalinhado com o cursor nativo do input. Removido, cor virou `caret-color` de verdade.
+  - **`DropNewTag` (dependências)** — confirmado com o usuário: exige estado global de etiquetas, fora de escopo do design system. Registrado em Conflitos Abertos.
+  - **Copy "Cronológico"/"Por data"** — usuário decidiu por "Por data" (já usado no mobile). Unificado nos 3 lugares que diziam "Cronológico" (`SaveOrganizationModal` + 2x FAQ), inclusive contra o texto literal Figma do FAQ (decisão humana documentada).
 - [ ] Grupo 6 — sistêmico (tokens, radius modo coluna)

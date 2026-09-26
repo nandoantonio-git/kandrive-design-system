@@ -23,6 +23,8 @@ Fonte completa: `making-of/conflicts.md` (log de todas as entradas, incluindo j�
 
 ## 🟢 Baixa urgência (gaps de polish, não de decisão)
 
+- **`DropNewTag` — cor da tag não propaga pra "dependências" (2026-09-25).** O usuário pediu que a cor escolhida no `DropNewTag` reflita em outros lugares do produto onde a mesma etiqueta aparece (linha de arquivo, chip, etc). Confirmado com o usuário: isso exige um estado global de etiquetas (registro de que tag existe, qual cor, quem usa) — responsabilidade do app consumidor, não deste design system/Storybook, que não tem estado entre páginas. `DropNewTag` não é consumido em nenhum outro componente do repositório hoje (nem `FolderTagChip`), então não há "dependência" real pra propagar aqui. Sem ação — decisão de arquitetura do app, fora de escopo.
+
 - **`atom/Button` — feedback de "pressed" mais discreto que o `PushButton` antigo (2026-09-25).** `PushButton` tinha `scale-[0.98]` + escurecia 20% no `:active`; o `Button` que o substituiu (fase E) só desloca 1px (`translate-y-px`), sem escurecer. Nenhum dos dois é Figma-confirmado (extensão de código, Regra 8) — acharado incidental durante o [[Plano de Verificação (Regressões 2026-09-25)]], não é a causa da queixa original do usuário sobre animação (essa era sobre os ícones Guardar/Organizar, já resolvida como "sem spec no Figma"). Sem ação até o usuário decidir se quer revisitar.
 - **`HamburgerButton` — troca de ícone sem morph/transição (2026-09-25).** Hoje troca o SVG inteiro instantaneamente entre `mode="closed"`/`"expand"`. Acharado do [[Plano de Verificação (Regressões 2026-09-25)]], ainda sem investigação de spec Figma (Smart Animate) nem decisão de implementação.
 
