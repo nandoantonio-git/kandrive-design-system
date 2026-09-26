@@ -105,6 +105,11 @@ O usuário confirmou: a animação era feita por `transition` (equivalente em c�
 ## Pendências abertas do Grupo 3
 
 - [ ] Hambúrguer: morph/transição entre os estados aberto/fechado — hoje é troca instantânea de SVG, sem animação.
-- [ ] Grupo 4 — fidelidade Figma (Header, PreviewPane, PopoverNotification, SaveOrganizationModal, StorageTierBadge)
+- [x] **Grupo 4 — fidelidade Figma.** O bridge do plugin Figma falhou pra todo node `1421:*` nesta sessão (nodes `3028:*`, mais recentes, funcionaram — provavelmente a página errada aberta no Figma desktop do usuário, não nodes deletados). Corrigido por julgamento onde fazia sentido, sem inventar spec nova:
+  - **`Header`** — 🔴 corrigido. Botão de conta no mobile era um círculo vazio; trocado pelo `atom/Avatar` de verdade (36px), que já documentava esse uso desde a F10 mas nunca tinha sido aplicado ali.
+  - **`PreviewPane`** — 🔴 corrigido. Botão de fechar usava `atom/ClearButton` (genérico) em vez do `atom/CloseButton` que todos os outros modais/painéis já usam.
+  - **`PopoverNotification`** — 🔴 corrigido, literal ao pedido do usuário. Timestamp movido pra 1ª linha, ao lado do `CloseButton`.
+  - **`SaveOrganizationModal`/`TemplateCard`** — 🔴 corrigido. `selected` só trocava a borda entre 2 cinzas quase idênticos; trocado pelo padrão de "selecionado" já usado em `FolderCard`/`PlanSelection`. Achei e corrigi um bug na própria correção: o `dark:bg-zinc-900` base (não condicional) ganhava do `bg-brand-teal-light-surface` no cascade — precisou de `dark:` explícito na classe do `selected` também. Confirmado visualmente nos dois modos.
+  - **`StorageTierBadge`** — sem bug reproduzível. Texto cabe exatamente na caixa fixa de 84px (Figma-confirmado em auditoria anterior), sem overflow no DOM.
 - [ ] Grupo 5 — decisão de design (DropNewTag color-picker + dependências, copy TemplateCard)
 - [ ] Grupo 6 — sistêmico (tokens, radius modo coluna)

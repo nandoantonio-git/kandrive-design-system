@@ -61,6 +61,12 @@ const DEFAULT_TITLE: Record<PopoverNotificationVariant, string> = {
  * topo/direita) para `p-3` uniforme; a altura por variante virou piso
  * (`min-h-*`) em vez de altura travada, pra não cortar o conteúdo com o
  * padding maior.
+ *
+ * **Corrigido em 2026-09-25** (pedido do usuário): o timestamp ficava
+ * posicionado de forma absoluta dentro da 2ª linha (a do título), abaixo
+ * do botão de fechar. Movido pra 1ª linha, ao lado do `CloseButton` —
+ * timestamp e fechar agora ficam alinhados no topo, na mesma linha. A
+ * imagem (`showImage`) migrou pra 2ª linha, ao lado do título.
  */
 function PopoverNotification({
   variant = "notification",
@@ -91,21 +97,19 @@ function PopoverNotification({
         <>
           <div aria-hidden="true" className="absolute inset-0 rounded-xl glass-edge glass-shadow-sm bg-effect-glass-white-36" />
           <div className="relative flex h-5 w-full items-center justify-end gap-2 overflow-clip px-px">
+            <span className="text-[0.6875rem] leading-[14px] whitespace-nowrap text-zinc-300 dark:text-zinc-400">{timestamp}</span>
             <CloseButton onClick={onClose} />
           </div>
-          <div className="relative h-3.5 w-full max-w-[322px]">
-            <p className="absolute top-0 left-0 w-[287px] text-base text-zinc-700 dark:text-zinc-300">{resolvedTitle}</p>
-            <div className="absolute top-0 left-[300px] flex flex-col items-end gap-2">
-              <span className="text-[0.6875rem] leading-[14px] whitespace-nowrap text-zinc-300 dark:text-zinc-400">{timestamp}</span>
-              {showImage ? (
-                <img
-                  alt=""
-                  aria-hidden="true"
-                  className="size-8 shrink-0 rounded-sm object-cover"
-                  src={notificationThumbnail}
-                />
-              ) : null}
-            </div>
+          <div className="relative flex w-full items-start justify-between gap-2">
+            <p className="text-base text-zinc-700 dark:text-zinc-300">{resolvedTitle}</p>
+            {showImage ? (
+              <img
+                alt=""
+                aria-hidden="true"
+                className="size-8 shrink-0 rounded-sm object-cover"
+                src={notificationThumbnail}
+              />
+            ) : null}
           </div>
         </>
       )}

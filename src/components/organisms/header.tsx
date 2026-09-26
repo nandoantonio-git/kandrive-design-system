@@ -6,6 +6,7 @@ import { SearchInput, type SearchInputProps } from "@/components/molecules/searc
 import { Button } from "@/components/atoms/button"
 import { ICONS } from "@/components/atoms/icon"
 import { ActionPill } from "@/components/molecules/action-pill"
+import { Avatar } from "@/components/atoms/avatar"
 import kandriveLogo from "@/assets/logo/kandrive-logo.svg"
 import kandriveLogoDark from "@/assets/logo/kandrive-logo-dark.svg"
 
@@ -20,6 +21,8 @@ export interface HeaderProps extends React.ComponentProps<"header"> {
   onMenuClick?: () => void
   /** Toque no avatar (mobile) ou no ícone de conta (tablet e desktop): abre Settings → Conta, com o bloco de usuário (F10, 2026-09-24). */
   onAvatarClick?: () => void
+  /** Usuário logado — mesmo shape de `UserProfileCard`/`Settings`, mostrado no `atom/Avatar` mobile. */
+  user?: { name?: string; avatarSrc?: string }
 }
 
 /**
@@ -65,8 +68,26 @@ export interface HeaderProps extends React.ComponentProps<"header"> {
  * Figma) — como este achado é novo (não está na lista de 8 organisms com
  * gap conhecido/deferido em `PushButton.mdx`), removido o `className`
  * inteiro para herdar os defaults corretos do átomo.
+ *
+ * **Corrigido em 2026-09-25** (achado do usuário: "Header desatualizado"):
+ * o botão de conta no mobile era um círculo vazio (`border` + `bg`
+ * hand-rolled), sem iniciais nem foto — desde a F10 (2026-09-24), o
+ * `atom/Avatar` já documenta no próprio JSDoc "Figma: 36 no Header, 56 no
+ * bloco de usuário de Settings → Conta", mas o Header nunca foi atualizado
+ * pra usá-lo. Trocado pelo `Avatar` de verdade (36px, mesma prop `user`
+ * usada em `Settings`).
  */
-function Header({ page = "navbar", searchProps, onOrganize, onSave, onMenuClick, onAvatarClick, className, ...props }: HeaderProps) {
+function Header({
+  page = "navbar",
+  searchProps,
+  onOrganize,
+  onSave,
+  onMenuClick,
+  onAvatarClick,
+  user = { name: "Cassandra Ribeiro" },
+  className,
+  ...props
+}: HeaderProps) {
   return (
     <header
       data-slot="header"
@@ -111,8 +132,10 @@ function Header({ page = "navbar", searchProps, onOrganize, onSave, onMenuClick,
         type="button"
         aria-label="Conta"
         onClick={onAvatarClick}
-        className="touch-target ml-auto size-[34px] shrink-0 cursor-pointer rounded-full border border-brand-teal-dark bg-neutral-surface-gray focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none tablet:hidden"
-      />
+        className="touch-target ml-auto shrink-0 cursor-pointer rounded-full focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none tablet:hidden"
+      >
+        <Avatar name={user?.name} src={user?.avatarSrc} size={36} />
+      </button>
     </header>
   )
 }

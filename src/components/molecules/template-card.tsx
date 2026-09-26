@@ -20,6 +20,16 @@ export interface TemplateCardProps
  * (`1421:18576`). Extraído do markup inline do template (Regra 10 — o
  * template agora compõe este molecule em vez de reimplementar os 4 cards
  * com dado hardcoded misturado à marcação).
+ *
+ * 🧩 **Corrigido em 2026-09-25 por julgamento (achado do usuário: "rever
+ * fidelidade com o Figma" no estado selecionado)**: `selected` só trocava
+ * a cor da borda entre dois tons de cinza quase idênticos
+ * (`zinc-300`→`zinc-400`), sem nenhum destaque perceptível. O Figma não
+ * pôde ser relido nesta sessão (bridge do plugin indisponível, todos os
+ * nodes `1421:*` retornaram "not found"). Trocado pelo mesmo padrão de
+ * "selecionado" já usado em `FolderCard`/`PlanSelection` (borda +
+ * `bg-brand-teal-light-surface`, já correto nos dois modos). Se a releitura
+ * do Figma mostrar outro tratamento, reabrir.
  */
 function TemplateCard({
   eyebrow,
@@ -39,7 +49,7 @@ function TemplateCard({
       className={cn(
         "flex h-96 w-[217.75px] shrink-0 flex-col items-center justify-between rounded-xl border border-zinc-300 bg-zinc-50 p-4 dark:border-zinc-700 dark:bg-zinc-900",
         "transition-colors hover:border-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
-        selected && "border-zinc-400 dark:border-zinc-600",
+        selected && "border-brand-teal bg-brand-teal-light-surface dark:border-brand-teal dark:bg-brand-teal-light-surface",
         className
       )}
       {...props}
