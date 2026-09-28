@@ -35,7 +35,7 @@ Continuação da [[Auditoria do Storybook (2026-09-26)]]. Pedido do usuário: dr
   - **Nodes:** FolderItem, ArchiveItem, FileArchiveCard e VideoItem apontam para suas variantes `Type=` de `molecule/FileItem`. Confirmados os componentes de Breadcrumb (`1239:13934`), FileRow (`3029:4009`), SettingsCard (`3029:3867`), SettingsField (= `molecule/TextField`, `3029:3843`) e FaqCallout (= `molecule/Callout`, `1288:16935`). SidebarDrawer aponta para `organism/Sidebar` `Device=Mobile` (`1771:35845`). UploadFolder fica "🧩 só código".
   - **HamburgerButton:** os 4 modos com o morph do protótipo (Closed→Open 200ms, Expand→Collapse 400ms). Os SVGs antigos foram removidos.
 - [x] **C — Marca.** Favicon = `foundation/Favicon`, no app e na aba do Storybook (`manager-head.html`). Logo vertical Light/Dark exportado do grupo `1623:23819`. Página `Tokens/Marca` com os logos horizontal e vertical, o símbolo, o favicon e as cores `Logo/*`, com link na Introdução. A barra lateral continua com o horizontal Light do código, que é o mesmo desenho do Figma com as cores `Logo/*` do Light. O componente do Figma é a versão para fundo escuro. Achado registrado em [[Conflitos Abertos]]: os nomes dos componentes de logo estão trocados.
-- [ ] **D — UX writing:** o relatório. Alterações só depois da aprovação.
-- [ ] **E — Figma:** o estado Expanded do PagePickerButton, depois o que o relatório de UX writing aprovar.
+- [~] **D — UX writing.** O relatório está em [[Revisão de UX writing (2026-09-28)]], com 34 itens numerados. **Aguarda aprovação**, e nada foi alterado ainda.
+- [~] **E — Figma.** O estado Expanded do PagePickerButton foi criado (`PagePickerButton/Expanded`, `3237:29768`, ao lado de `Organize/ChooseMethod/Mobile`) e ligado à story. Os textos entram depois que o relatório de UX writing for aprovado.
 
 Cada lote vai para `main` ao terminar (Q10 da auditoria).
