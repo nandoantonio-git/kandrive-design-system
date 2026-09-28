@@ -27,7 +27,7 @@ export const Default: Story = {
   // Cada botão do toolbar dispara o próprio callback.
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement)
-    await userEvent.click(canvas.getByRole("button", { name: "Adicionar nodo" }))
+    await userEvent.click(canvas.getByRole("button", { name: "Adicionar nó" }))
     await expect(args.onAddNode).toHaveBeenCalledOnce()
     await userEvent.click(canvas.getByRole("button", { name: "Excluir" }))
     await expect(args.onDelete).toHaveBeenCalledOnce()

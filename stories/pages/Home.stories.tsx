@@ -50,14 +50,14 @@ export const GridMode: Story = {
   // Vale também para GridTablet e GridMobile (herdam esta story): só um seletor fica visível por largura.
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
-    const grid = canvas.getByRole("button", { name: "Grid" })
+    const grid = canvas.getByRole("button", { name: "Grade" })
     await expect(grid).toHaveAttribute("aria-pressed", "true")
     await expect(canvas.getAllByText("Arquivo 1").length).toBeGreaterThan(0)
-    await userEvent.click(canvas.getByRole("button", { name: "List" }))
-    await expect(canvas.getByRole("button", { name: "List" })).toHaveAttribute("aria-pressed", "true")
+    await userEvent.click(canvas.getByRole("button", { name: "Lista" }))
+    await expect(canvas.getByRole("button", { name: "Lista" })).toHaveAttribute("aria-pressed", "true")
     await expect(canvas.queryByText("Arquivo 1")).toBeNull()
-    await userEvent.click(canvas.getByRole("button", { name: "Grid" }))
-    await expect(canvas.getByRole("button", { name: "Grid" })).toHaveAttribute("aria-pressed", "true")
+    await userEvent.click(canvas.getByRole("button", { name: "Grade" }))
+    await expect(canvas.getByRole("button", { name: "Grade" })).toHaveAttribute("aria-pressed", "true")
   },
 }
 

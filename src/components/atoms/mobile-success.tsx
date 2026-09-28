@@ -4,7 +4,12 @@ import { cn } from "@/lib/utils"
 import kanSuccess from "@/assets/illustrations/mobile-success-kan.svg"
 
 export interface MobileSuccessProps extends React.ComponentProps<"div"> {
-  /** Figma `Message`: Organized ("Organização concluída" + arquivo) · Stored ("Prontinho, arquivos guardados"). */
+  /**
+   * Figma `Message`: Organized ("Organização concluída" + arquivo) · Stored
+   * ("Prontinho, arquivos guardados"). 🧩 Texto adaptado (2026-09-28) para o
+   * padrão fixo de toast de sucesso ("Prontinho — " + resultado concreto),
+   * mantendo o ✓ com o nome do arquivo em Organized.
+   */
   message?: "organized" | "stored"
   /** Linha com ✓ abaixo do título. Só na mensagem Organized. */
   fileName?: string
@@ -48,14 +53,18 @@ function MobileSuccess({ message = "organized", fileName, title, description, cl
           </>
         ) : message === "organized" ? (
           <>
-            <p className="text-xl leading-[29px] font-bold text-white">Organização concluída</p>
+            <p className="text-xl leading-[29px] font-bold text-white">
+              Prontinho — seus arquivos
+              <br />
+              estão organizados
+            </p>
             {fileName ? <p className="text-[0.625rem] leading-3 font-bold text-[#c8dce3]">✓ {fileName}</p> : null}
           </>
         ) : (
           <p className="text-xl leading-[29px] font-bold text-white">
-            Prontinho,
+            Prontinho — seus arquivos
             <br />
-            arquivos guardados
+            estão guardados
           </p>
         )}
       </div>

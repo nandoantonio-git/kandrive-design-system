@@ -42,7 +42,7 @@ function StorageSidebar({
   quickAccessLabel,
   longTermValue,
   longTermLabel,
-  manageSpaceLabel = "Liberar Espaço",
+  manageSpaceLabel = "Gerir Espaço",
   onManageSpace,
   onBuySpace,
   className,

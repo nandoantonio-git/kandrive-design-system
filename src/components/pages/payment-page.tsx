@@ -142,7 +142,7 @@ function PaymentPage({
       headerProps={{ page: "settings" }}
       footer={
         <div className="flex w-full items-center justify-center py-4 text-base text-black dark:text-zinc-100">
-          <span>©2026 KanDrive</span>
+          <span>©2026 Kandrive</span>
         </div>
       }
       // Mobile (Figma Payment/*/Mobile): barra de chips Plano · Configurações · Home.
@@ -160,7 +160,7 @@ function PaymentPage({
         </div>
 
         <div className="flex w-full flex-col gap-6 rounded-xl border border-zinc-200 bg-effect-glass-white-50 dark:border-zinc-700">
-          <p className="px-5 pt-6 text-2xl font-bold text-zinc-950 dark:text-zinc-100">Confirmar upgrade para Kandrive Pro</p>
+          <p className="px-5 pt-6 text-2xl font-bold text-zinc-950 dark:text-zinc-100">Confirmar assinatura do Kandrive Pro</p>
 
           <div className="flex flex-col divide-y divide-zinc-200 border-t border-zinc-200 dark:divide-zinc-700 dark:border-zinc-700">
             <CollapsibleSection icon={HardDrive} title="Seu armazenamento" summary="92% usado" defaultOpen={defaultOpen}>
@@ -297,7 +297,7 @@ function PaymentPage({
                 <Info className="mt-0.5 size-4 shrink-0 text-neutral-text-tertiary dark:text-zinc-400" aria-hidden="true" />
                 <p className="flex items-start gap-1.5 text-[0.8125rem] text-neutral-text-tertiary dark:text-zinc-400">
                   <Lock className="mt-0.5 size-3.5 shrink-0" aria-hidden="true" />
-                  Stripe Elements protege os dados do cartão. O Kandrive não armazena o número completo.
+                  Os dados do cartão ficam protegidos pela Stripe. O Kandrive não guarda o número completo.
                 </p>
               </div>
             </CollapsibleSection>
@@ -305,7 +305,7 @@ function PaymentPage({
 
           <div className="px-5 pb-6">
             <Button className="h-12 w-full justify-center rounded-md text-base">
-              Confirmar upgrade para Pro · $12/mês
+              Assinar Pro · $12/mês
             </Button>
           </div>
         </div>

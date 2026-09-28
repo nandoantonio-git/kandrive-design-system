@@ -48,7 +48,7 @@ export const Default: Story = {
     await userEvent.click(canvas.getByRole("button", { name: "OU" }))
     await expect(canvas.getByRole("button", { name: "OU" })).toHaveAttribute("aria-pressed", "true")
     // Adicionar com a nova linha vazia mostra o aviso (State3 do Figma).
-    await userEvent.click(canvas.getByRole("button", { name: /Adicionar Regra/ }))
+    await userEvent.click(canvas.getByRole("button", { name: /Adicionar regra/ }))
     await expect(canvas.getByRole("alert")).toHaveTextContent("Preencha todas as informações")
     // Preencher a nova linha: Atributo e Operação pelas listas, Valor digitado.
     await userEvent.click(canvas.getAllByRole("button", { name: "Atributo" })[0])
@@ -58,12 +58,12 @@ export const Default: Story = {
     const inputs = canvas.getAllByRole("textbox", { name: "Valor" })
     await userEvent.type(inputs[inputs.length - 1], ".mp4")
     await expect(canvas.queryByRole("alert")).toBeNull()
-    await userEvent.click(canvas.getByRole("button", { name: /Adicionar Regra/ }))
+    await userEvent.click(canvas.getByRole("button", { name: /Adicionar regra/ }))
     await expect(args.onAddRule).toHaveBeenCalledWith({ attribute: "Tipo", operation: "=Igual", value: ".mp4" })
     await expect(canvas.getAllByRole("button", { name: /Remover condição/ })).toHaveLength(2)
     // Remover a primeira e salvar.
     await userEvent.click(canvas.getByRole("button", { name: "Remover condição 1" }))
-    await userEvent.click(canvas.getByRole("button", { name: "Salvar Mudanças" }))
+    await userEvent.click(canvas.getByRole("button", { name: "Salvar mudanças" }))
     await expect(args.onSave).toHaveBeenCalledWith([{ attribute: "Tipo", operation: "=Igual", value: ".mp4" }], "or")
   },
 }

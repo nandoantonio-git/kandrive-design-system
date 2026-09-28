@@ -21,7 +21,9 @@ export interface FaqFastLinksProps extends React.ComponentProps<"div"> {
 
 /**
  * organism/FAQ/FastLinks (`1454:25006`) — Figma-confirmado: "estrutura de
- * links rápidos da aba de FAQ". 3 itens Figma-confirmados: "API
+ * links rápidos da aba de FAQ". 🧩 Título traduzido de "Links Rápidos"
+ * (Figma) para "Atalhos" — evita inglês ("Links") e maiúsculas no meio da
+ * frase (revisão de UX writing, 2026-09-28). 3 itens Figma-confirmados: "API
  * Documentation", "Community Forum", "Video Tutorials" — traduzidos para PT
  * (Regra 9: mantidos como tradução direta, não literais, já que o resto da
  * aba de FAQ é inteiramente em português; mesmo critério já usado em
@@ -58,7 +60,7 @@ function FaqFastLinks({ links = DEFAULT_LINKS, className, ...props }: FaqFastLin
       {...props}
     >
       <div className="flex w-full flex-col items-start gap-4 p-1.5">
-        <p className="text-base text-zinc-950 dark:text-zinc-100">Links Rápidos</p>
+        <p className="text-base text-zinc-950 dark:text-zinc-100">Atalhos</p>
         <ul className="flex w-full flex-col gap-2">
           {links.map((link) => (
             <li key={link.label}>

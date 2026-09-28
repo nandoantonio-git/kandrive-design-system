@@ -15,21 +15,21 @@ type SvgIcon = typeof ViewModeGridActive
 const MODES: ReadonlyArray<{ value: ViewMode; label: string; ActiveIcon: SvgIcon; IdleIcon: SvgIcon; iconClassName: string }> = [
   {
     value: "grid",
-    label: "Grid",
+    label: "Grade",
     ActiveIcon: ViewModeGridActive,
     IdleIcon: ViewModeGridIdle,
     iconClassName: "size-[10.5px]",
   },
   {
     value: "list",
-    label: "List",
+    label: "Lista",
     ActiveIcon: ViewModeListActive,
     IdleIcon: ViewModeListIdle,
     iconClassName: "h-[5.833px] w-[10.5px]",
   },
   {
     value: "columns",
-    label: "Columns",
+    label: "Colunas",
     ActiveIcon: ViewModeColumnsActive,
     IdleIcon: ViewModeColumnsIdle,
     iconClassName: "h-[8.167px] w-[10.485px]",

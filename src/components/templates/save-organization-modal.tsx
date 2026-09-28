@@ -101,7 +101,7 @@ function SaveOrganizationModal({
         <CloseButton size="md" onClick={onCancel} />
       </div>
       <p className="text-base text-zinc-700 dark:text-zinc-300">
-        Selecione como os dados serão visualizados e correlacionados no seu workspace.
+        Escolha como seus arquivos vão ficar organizados.
       </p>
       {/* Mobile e tablet: os 4 métodos rolam na horizontal (responsividade, 2026-09-24). */}
       <div className="-mx-6 flex flex-1 items-start gap-1 overflow-x-auto px-6 desktop:mx-0 desktop:overflow-visible desktop:px-0">

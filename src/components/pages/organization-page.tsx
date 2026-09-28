@@ -283,7 +283,7 @@ function OrganizationPageMobile({
       ) : review ? (
         <>
           <div className="flex flex-col gap-2">
-            <h1 className={heading}>Revisar Organização</h1>
+            <h1 className={heading}>Revisar organização</h1>
             <p className={lead}>Revise o template sugerido antes de aplicar as mudanças.</p>
           </div>
           <TemplateReviewModal device="mobile" items={reviewItems} />

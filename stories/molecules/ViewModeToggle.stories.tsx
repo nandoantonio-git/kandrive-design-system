@@ -52,8 +52,8 @@ export const Compact: Story = {
   args: { size: "compact" },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
-    await expect(canvas.getByRole("button", { name: "Grid" })).toBeInTheDocument()
-    await expect(canvas.getByRole("button", { name: "List" })).toBeInTheDocument()
-    await expect(canvas.queryByRole("button", { name: "Columns" })).toBeNull()
+    await expect(canvas.getByRole("button", { name: "Grade" })).toBeInTheDocument()
+    await expect(canvas.getByRole("button", { name: "Lista" })).toBeInTheDocument()
+    await expect(canvas.queryByRole("button", { name: "Colunas" })).toBeNull()
   },
 }

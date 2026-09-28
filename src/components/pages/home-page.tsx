@@ -175,7 +175,7 @@ function HomePage({
                   // page/Home/ListMode/Selected (`1439:19810`): `ContextHeader`
                   // acima do `FileListHeader`, linhas em `state="pressed"`.
                   <ContextHeader
-                    itemsSelected={`${listSelectedCount} itens selecionado`}
+                    itemsSelected={`${listSelectedCount} ${listSelectedCount === 1 ? "item selecionado" : "itens selecionados"}`}
                     onClear={onListSelectionClear}
                     className="mb-2"
                   />

@@ -77,7 +77,7 @@ function FileListHeader({
         {isStorageStatus ? (
           <div className="flex items-center gap-16 pr-2">
             <span className="text-xl font-bold text-brand-secondary-light">Proprietário</span>
-            <span className="text-xl font-bold text-brand-secondary-light">Tamanho do Arquivo</span>
+            <span className="text-xl font-bold text-brand-secondary-light">Tamanho do arquivo</span>
           </div>
         ) : (
           <button

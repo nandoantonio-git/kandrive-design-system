@@ -74,7 +74,7 @@ function OnboardingPage({
             <div className="flex flex-1 items-center">
               <MobileSuccess
                 message="stored"
-                title={step === "welcome" ? "Bem-vindo ao KanDrive" : "Tudo pronto!"}
+                title={step === "welcome" ? "Boas-vindas ao Kandrive!" : "Tudo pronto!"}
                 description={
                   step === "welcome"
                     ? "O Kan guarda seus arquivos na bolsa, com segurança, por anos. Vamos deixar tudo do seu jeito."

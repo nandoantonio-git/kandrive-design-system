@@ -45,16 +45,16 @@ export interface OrganizeFreeModeCanvasProps extends React.ComponentProps<"div">
  * fixed-point de 2026-08-11 corrige a nota anterior desta US, que dizia o
  * nó ser "grande demais" para a ferramenta — na verdade retorna normalmente).
  * Textos confirmados: badge "Modo Livre", nós "Pasta 1", "Filtro: Grande"
- * (`Size > 1.0 GB`), **"Filtro: Formato"** (`Type = .mp4, .mov`, 2º nó de
+ * (Figma: `Size > 1.0 GB`, aqui "Tamanho > 1.0 GB"), **"Filtro: Formato"** (Figma: `Type = .mp4, .mov`, aqui "Tipo = .mp4, .mov", 2º nó de
  * filtro confirmado nesta releitura — estava faltando, adicionado agora
  * reaproveitando a variante `filtro-type` já existente de
- * `FreeModeItemNode`), "Junção", "Auto-Archive" (badge "ACTIVE"),
+ * `FreeModeItemNode`), "Junção", "Guardar automaticamente" (badge "ATIVO",
  * "Resultado" com métricas e "Prévia de arquivos", rodapé com resumo +
  * "Descartar"/"Salvar Template".
  *
  * 🔧 **Implementado em 2026-08-13 (US-026, pass16)**: o organism voltou a
  * usar uma composição absoluta 1117×933, alinhada ao node composto atual:
- * agrupamento "Arquivos", filtros empilhados, `Junção`, `Auto-Archive`
+ * agrupamento "Arquivos", filtros empilhados, `Junção`, `Guardar automaticamente`
  * abaixo, `Resultado` expandido, painel flutuante, minimap e footer.
  *
  * 🔧 **Implementado em 2026-08-12 (US-026, releitura de ponto-fixo)**: os 2
@@ -77,7 +77,7 @@ export interface OrganizeFreeModeCanvasProps extends React.ComponentProps<"div">
  * adicionar, remover, descartar e salvar funcionam em memória.
  *
  * Reconciliado em 2026-08-11 (US-020): os nós do canvas ("Filtro: Grande",
- * "Junção", "Auto-Archive", "Resultado") e o toolbar inferior agora
+ * "Junção", "Guardar automaticamente", "Resultado") e o toolbar inferior agora
  * compõem as 4 sub-peças reais `celule/MainCanvas/Organization/FreeMode/*`
  * (`ItemNode`/`OutputNode`/`ListItem`/`Buttons`, todas Figma-confirmadas
  * via `get_design_context` + ícones reais via `download_assets`) em vez
@@ -108,7 +108,7 @@ export interface OrganizeFreeModeCanvasProps extends React.ComponentProps<"div">
  *
  * 🔧 Corrigido em 2026-08-13 (US-026, 4ª passada): as instâncias de filtro
  * agora repassam os overrides Figma-confirmados ("Filtro: Grande"/
- * "Size > 1.0 GB" e "Filtro: Formato"/"Type = .mp4, .mov") para
+ * "Tamanho > 1.0 GB" e "Filtro: Formato"/"Tipo = .mp4, .mov") para
  * `FreeModeItemNode`. O celule mantém os defaults curtos do node base
  * (`1421:20108`) e o organism reproduz os textos específicos do node
  * composto (`1439:16906`).
@@ -182,14 +182,14 @@ function OrganizeFreeModeCanvas({
       <FreeModeItemNode
         variant="filtro-size"
         label="Filtro: Grande"
-        subtitle="Size > 1.0 GB"
+        subtitle="Tamanho > 1.0 GB"
         // 🧩 Inferido (Regra 9): dark:bg reaproveita a família teal-dark do token, hex sem par no Figma
         className="absolute top-[299px] left-[333px] w-[192px] border-brand-teal bg-[#d7f2fb] dark:bg-[#123840]"
       />
       <FreeModeItemNode
         variant="filtro-type"
         label="Filtro: Formato"
-        subtitle="Type = .mp4, .mov"
+        subtitle="Tipo = .mp4, .mov"
         className="absolute top-[377px] left-[333px] w-[192px] border-zinc-600"
       />
       <FreeModeItemNode variant="juncao" className="absolute top-[395px] left-[647px]" />
@@ -226,7 +226,7 @@ function OrganizeFreeModeCanvas({
             Descartar
           </Button>
           <Button className="h-8 px-4 text-xs" onClick={onSaveTemplate}>
-            Salvar Template
+            Salvar template
           </Button>
         </div>
       </div>

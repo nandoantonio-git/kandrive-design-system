@@ -64,7 +64,7 @@ function RecoveryPending({ fileName, eta = "até 8h", progress = 0.75, onBack, c
         </p>
       </div>
       <p className="w-full rounded-lg bg-brand-primary-disabled px-4 py-2 text-base leading-5 text-brand-teal-dark">
-        Enviaremos um e-mail para você assim que o arquivo estiver disponível para download.
+        Enviaremos um e-mail para você assim que o arquivo estiver disponível para baixar.
       </p>
       <Button variant="secondary" size="lg" shape="pill" onClick={onBack} className="mt-2 w-full">
         Voltar para arquivos

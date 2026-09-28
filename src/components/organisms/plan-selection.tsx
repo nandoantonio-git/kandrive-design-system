@@ -31,7 +31,7 @@ export interface PlanSelectionProps extends React.ComponentProps<"div"> {
 }
 
 const DEFAULT_PLANS: PlanSelectionPlan[] = [
-  { id: "starter", name: "Starter", storageLabel: "1 TB", monthlyPrice: "$3", annualPrice: "$30", actionLabel: "Rebaixar" },
+  { id: "starter", name: "Starter", storageLabel: "1 TB", monthlyPrice: "$3", annualPrice: "$30", actionLabel: "Mudar plano" },
   { id: "pro", name: "Pro", storageLabel: "5 TB", monthlyPrice: "$12", annualPrice: "$120", isCurrent: true },
   { id: "max", name: "Max", storageLabel: "10 TB", monthlyPrice: "$20", annualPrice: "$200", actionLabel: "Melhorar" },
 ]
@@ -156,7 +156,7 @@ function PlanSelection({
           const price = interval === "monthly" ? plan.monthlyPrice : plan.annualPrice
           const priceSuffix = interval === "monthly" ? "/mês" : "/ano"
           const isCurrent = plan.id === currentPlanId
-          const actionLabel = plan.actionLabel ?? (index < currentPlanIndex ? "Rebaixar" : "Melhorar")
+          const actionLabel = plan.actionLabel ?? (index < currentPlanIndex ? "Mudar plano" : "Melhorar")
           return (
           <div
             key={plan.id}
@@ -199,7 +199,7 @@ function PlanSelection({
 
       <div className="flex flex-wrap items-center justify-between gap-4">
         <p className="text-[0.8125rem] text-neutral-text-tertiary dark:text-zinc-400">
-          Atualize o método de pagamento, visualize ordens de pagamento, ou cancele no portal da Stripe
+          Troque o cartão, veja suas faturas ou cancele no portal da Stripe.
         </p>
         <Button
           variant="outline"

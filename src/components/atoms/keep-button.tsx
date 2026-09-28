@@ -35,7 +35,7 @@ const STYLE_CLASSNAME: Record<NonNullable<KeepButtonProps["style"]>, string> = {
  */
 function KeepButton({
   style = "default",
-  label = "Guardar em longo prazo",
+  label = "Guardar no longo prazo",
   className,
   ...props
 }: KeepButtonProps) {

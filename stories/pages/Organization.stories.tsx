@@ -21,7 +21,7 @@ const REVIEW_ITEMS: OrganizationPageProps["reviewItems"] = [
     itemsLabel: "Pasta · 12 itens",
     severity: "duplicado",
     suggestedPath: "Financeiro / 2023 / Relatórios",
-    suggestedPathLabel: "Taxonomia Sugerida:",
+    suggestedPathLabel: "Estrutura sugerida:",
     children: [{ name: "Q1_Report_v2.pdf", meta: "PDF · 2.4 MB" }],
   },
   { name: "Projetos_Antigos_Misc", itemsLabel: "Pasta · 45 itens", severity: "incongruente", suggestedPath: "Fotos / RAW" },

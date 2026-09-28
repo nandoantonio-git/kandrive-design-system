@@ -124,7 +124,7 @@ function SettingsPage({
       footer={
         // Figma organism/Footer (tablet e desktop). No mobile, os chips ocupam a base.
         <div className="flex w-full items-center gap-9 py-4 text-base text-black dark:text-zinc-100">
-          <span>©2026 KanDrive</span>
+          <span>©2026 Kandrive</span>
           <SelectBox value="Português (Brasil)" />
         </div>
       }
@@ -209,7 +209,7 @@ function SettingsPage({
                   </div>
                   <div className="flex items-center gap-3">
                     <Button variant="outline">
-                      Liberar espaço
+                      Gerir espaço
                     </Button>
                     <Button>
                       Comprar espaço
@@ -243,7 +243,7 @@ function SettingsPage({
                     <RadioButton name="tema" option="dispositivo" label="Padrão do dispositivo" checked={theme === "dispositivo"} onCheckedChange={setTheme} />
                   </div>
                 </SettingsCard>
-                <SettingsCard title="Densidade da listagem de arquivos" caption="Aplica-se às visualizações Grid, List e Columns nas telas de arquivos">
+                <SettingsCard title="Densidade da listagem de arquivos" caption="Aplica-se às visualizações Grade, Lista e Colunas nas telas de arquivos">
                   <div className="flex flex-col gap-4">
                     <RadioButton name="densidade" option="confortavel" label="Confortável" checked={density === "confortavel"} onCheckedChange={setDensity} />
                     <RadioButton name="densidade" option="compacta" label="Compacta" checked={density === "compacta"} onCheckedChange={setDensity} />
@@ -279,14 +279,14 @@ function SettingsPage({
               </SettingsCard>
             ) : null}
 
-            {activeSection === "organizacao-padrao" ? (
-              // Item de nav Figma-confirmado (`1255:23300`), sem nenhuma tela
-              // `page/*` correspondente no inventário — nada renderizado além
-              // do nav (Regra 9, ver docs/conflicts.md).
-              <p className="text-sm text-neutral-text-tertiary dark:text-zinc-400">
-                Painel ainda não tem tela Figma confirmada para "Organização padrão".
-              </p>
-            ) : null}
+            {/*
+              Item de nav Figma-confirmado (`1255:23300`), sem nenhuma tela
+              `page/*` correspondente no inventário — nada renderizado além do
+              nav (Regra 9, ver docs/conflicts.md). Até 2026-09-28 havia um
+              parágrafo dizendo isso na própria tela; removido na revisão de
+              UX writing por vazar nota de desenvolvimento para o usuário —
+              a explicação fica só aqui, no comentário.
+            */}
 
             {activeSection === "idioma" ? (
               <SettingsCard title="Idioma e região" caption="Personalize o idioma da interface e o formato de data">

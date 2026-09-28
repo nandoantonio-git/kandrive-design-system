@@ -40,7 +40,7 @@ export interface FreeModeItemNodeProps extends React.ComponentProps<"div"> {
   subtitle?: string
   /** Só `folder`: nome da pasta de destino (Figma-confirmado: "Pasta 1"). */
   folderName?: string
-  /** Só `folder`: legenda de tamanho/contagem (Figma-confirmado: "4.2 GB • 128 Files"). */
+  /** Só `folder`: legenda de tamanho/contagem (Figma: "4.2 GB • 128 Files"; texto traduzido para "arquivos"). */
   folderMeta?: string
   /** Só `folder`: percentual preenchido da barra de progresso, 0–100 (Figma-confirmado: ~66.66%). */
   folderProgress?: number
@@ -53,12 +53,12 @@ const SIMPLE_NODE_CONFIG: Record<
   { label: string; subtitle?: string; Glyph: React.FunctionComponent<React.SVGProps<SVGSVGElement>>; baked: boolean }
 > = {
   juncao: { label: "Junção", Glyph: JuncaoGlyph, baked: true },
-  intersseccao: { label: "Interssecção", Glyph: IntersseccaoGlyph, baked: false },
+  intersseccao: { label: "Interseção", Glyph: IntersseccaoGlyph, baked: false },
   exclusao: { label: "Exclusão", Glyph: ExclusaoGlyph, baked: false },
   subtracao: { label: "Subtração", Glyph: SubtracaoGlyph, baked: false },
-  "filtro-size": { label: "Filtro", subtitle: "Size ", Glyph: FiltroSizeGlyph, baked: false },
-  "filtro-type": { label: "Filtro", subtitle: "Type", Glyph: FiltroTypeGlyph, baked: true },
-  "filtro-date": { label: "Filtro", subtitle: "Date", Glyph: FiltroDateGlyph, baked: false },
+  "filtro-size": { label: "Filtro", subtitle: "Tamanho ", Glyph: FiltroSizeGlyph, baked: false },
+  "filtro-type": { label: "Filtro", subtitle: "Tipo", Glyph: FiltroTypeGlyph, baked: true },
+  "filtro-date": { label: "Filtro", subtitle: "Data", Glyph: FiltroDateGlyph, baked: false },
 }
 
 const DEFAULT_FILE_NAMES = [
@@ -83,7 +83,7 @@ const DEFAULT_FILE_NAMES = [
  *
  * `folder` (`Type=Folder`, node `1534:21103`) — variante nova adicionada
  * pelo usuário em 2026-08-18: ícone de pasta + nome + legenda
- * ("4.2 GB • 128 Files") + barra de progresso (~66,66% preenchida,
+ * ("4.2 GB • 128 arquivos", Figma: "128 Files") + barra de progresso (~66,66% preenchida,
  * Figma-confirmado). Anatomia própria, card mais largo (192px) e usa
  * `neutral-border-default`/`neutral-surface-background` em vez do par
  * zinc-500/zinc-100 dos demais nodos simples (Figma-confirmado, tokens
@@ -106,7 +106,7 @@ function FreeModeItemNode({
   label,
   subtitle,
   folderName = "Pasta 1",
-  folderMeta = "4.2 GB • 128 Files",
+  folderMeta = "4.2 GB • 128 arquivos",
   folderProgress = 66.66,
   className,
   ...props
@@ -153,9 +153,9 @@ function FreeModeItemNode({
         <div className="flex items-center gap-3">
           <AutoArchiveGlyph aria-hidden="true" className="size-[34px] shrink-0" />
           <div className="flex flex-col">
-            <p className="text-sm leading-5 font-semibold whitespace-nowrap text-zinc-700 dark:text-zinc-300">Auto-Archive</p>
+            <p className="text-sm leading-5 font-semibold whitespace-nowrap text-zinc-700 dark:text-zinc-300">Guardar automaticamente</p>
             <span className="mt-[3px] w-fit rounded-[4px] bg-brand-teal-action px-1.5 py-px text-[0.5rem] leading-3 font-bold text-brand-teal-light">
-              ACTIVE
+              ATIVO
             </span>
           </div>
         </div>

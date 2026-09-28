@@ -77,10 +77,10 @@ export const Interactive: StoryObj = {
   // Clicar num chip troca o escopo: o chip fica ativo e o painel muda de barra.
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
-    const quick = canvas.getByRole("button", { name: "Acesso Rápido" })
+    const quick = canvas.getByRole("button", { name: "Acesso rápido" })
     await userEvent.click(quick)
     await expect(quick).toHaveAttribute("aria-pressed", "true")
-    await expect(canvas.getByRole("button", { name: "Global" })).toHaveAttribute("aria-pressed", "false")
+    await expect(canvas.getByRole("button", { name: "Total" })).toHaveAttribute("aria-pressed", "false")
     await expect(canvas.getByRole("progressbar", { name: "Acesso rápido usado" })).toBeInTheDocument()
   },
 }

@@ -25,6 +25,9 @@ export type InfoPopoverProps = React.ComponentProps<"div"> &
  * determinado tempo." Duas variantes Figma-confirmadas: `content=Metadata`
  * (Criado/Modificado/Dimensões/Etiquetas) e `content=StorageInfo`
  * ("AL: Armazenamento de longo prazo" / "AC: Armazenamento corrente").
+ * 🧩 Texto adaptado (2026-09-28, revisão de UX writing): a definição de tom
+ * de voz proíbe siglas internas (ex. "AC+AL") — os rótulos viram "Longo
+ * prazo" e "Acesso rápido", mesma ordem e mesmo par de linhas do Figma.
  *
  * 🔧 Corrigido em 2026-08-11 (auditoria fixed-point, Regra 11) — achados
  * novos, este componente nunca tinha passado pelo protocolo real:
@@ -76,9 +79,9 @@ function InfoPopover({ className, ...props }: InfoPopoverProps) {
       />
       {isStorageInfo ? (
         <div className="absolute left-[13px] top-[10px] flex w-[228px] flex-col gap-1 p-2 text-[0.625rem] tracking-[0.012px] text-black/20">
-          <p>AL: Armazenamento de longo prazo</p>
+          <p>Longo prazo</p>
           <div className="h-0 w-full border-t border-brand-secondary-light opacity-35" />
-          <p>AC: Armazenamento corrente</p>
+          <p>Acesso rápido</p>
         </div>
       ) : (
         <div className="absolute left-[13px] top-[8px] flex w-[198px] flex-col gap-1 p-2">

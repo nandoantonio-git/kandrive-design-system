@@ -230,14 +230,14 @@ function NodeContextMenu({
           ) : null}
         </div>
 
-        <AddButton label="Adicionar Regra" onClick={addRule} className="w-full" />
+        <AddButton label="Adicionar regra" onClick={addRule} className="w-full" />
 
         <div className="flex items-center justify-end gap-4 border-t border-zinc-300 dark:border-zinc-700 py-3">
           <Button variant="outline" className="h-8 px-4 text-xs" onClick={discard}>
-            Descartar Mudanças
+            Descartar mudanças
           </Button>
           <Button className="h-8 px-4 text-xs" onClick={() => onSave?.(rules.map(({ id: _id, ...rule }) => rule), logicalOperator)}>
-            Salvar Mudanças
+            Salvar mudanças
           </Button>
         </div>
       </div>

@@ -36,10 +36,14 @@ export interface StorageStatusProps extends React.ComponentProps<"div"> {
   limitReached?: boolean
 }
 
+// 🧩 Texto adaptado (2026-09-28, revisão de UX writing): o Figma confirma
+// "Global"/"Acesso Rápido"/"Longo Prazo" nas abas `StorageType`, mas a
+// definição de tom de voz proíbe "Global" ("usar Total") e pede a grafia
+// minúscula da terminologia aceita ("Acesso rápido"/"Longo prazo").
 const SCOPE_LABEL: Record<StorageScope, string> = {
-  global: "Global",
-  "quick-access": "Acesso Rápido",
-  "long-term": "Longo Prazo",
+  global: "Total",
+  "quick-access": "Acesso rápido",
+  "long-term": "Longo prazo",
 }
 
 /**
@@ -148,13 +152,12 @@ function StorageStatus({
         <span className={cn("shrink-0 whitespace-nowrap text-[1.5625rem] font-medium", alert ? "text-destructive" : "text-zinc-950 dark:text-zinc-100")}>Armazenamento usado:</span>
         <span className={cn("shrink-0 whitespace-nowrap text-[1.5625rem] font-medium", alert ? "text-destructive" : "text-zinc-950 dark:text-zinc-100")}>{usedAmount}</span>
         <span className={cn("shrink-0 whitespace-nowrap text-xl", alert ? "text-destructive" : "text-zinc-950 dark:text-zinc-100")}>de {totalAmount}</span>
-        <span className="shrink-0 whitespace-nowrap text-[0.625rem] font-bold text-neutral-text-tertiary dark:text-zinc-400">(AC+AL)</span>
       </div>
 
       <div className="flex items-center gap-2 py-2">
         {scope === "global" ? (
           <Button variant="outline" onClick={onManageSpace} className="h-auto px-4 py-1 text-[0.625rem]">
-            Liberar Espaço
+            Gerir Espaço
           </Button>
         ) : null}
         <Button onClick={onBuySpace} className="h-auto px-4 py-1 text-[0.625rem]">

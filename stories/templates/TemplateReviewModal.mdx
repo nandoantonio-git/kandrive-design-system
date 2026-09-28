@@ -14,11 +14,11 @@ Modal de revisão da organização gerada automaticamente, antes de confirmar. U
 
 ## Composição
 
-Cada item de revisão mostra um ícone de pasta, um badge de severidade ("Duplicado"/"Incongruente"/"OK") e um caminho sugerido, com botão de expandir/colapsar. O item expandido revela a linha de arquivo filho com ação "Excluir".
+Cada item de revisão mostra um ícone de pasta, um badge de severidade ("Duplicado"/"Fora do padrão"/"OK", Figma: "Incongruente") e um caminho sugerido, com botão de expandir/colapsar. O item expandido revela a linha de arquivo filho com ação "Excluir".
 
 Botões `atom/Button` — "Cancelar" (`variant="outline"`) / "Continuar" (padrão, `primary`) no rodapé. "Renomear"/"Editar" são links de texto simples (sem chrome de botão); "Excluir" (linha de arquivo filho) usa `Button variant="outline"`, com o texto na cor de destrutivo (mesmo padrão usado em `organism/cleanSpaceStorage`).
 
-O rótulo da linha de caminho sugerido varia por item — o primeiro item (severidade "Duplicado") usa "Taxonomia Sugerida:", os demais usam "Template Sugerido:" (prop `suggestedPathLabel`, com esse default).
+O rótulo da linha de caminho sugerido varia por item — o primeiro item (severidade "Duplicado") usa "Estrutura sugerida:" (Figma: "Taxonomia Sugerida:", traduzido na revisão de UX writing por ser jargão), os demais usam "Template sugerido:" (prop `suggestedPathLabel`, com esse default).
 
 ### Material
 
@@ -26,7 +26,7 @@ Container usa o material Liquid Glass — ver [Tokens/Materials](../tokens/Mater
 
 ## Estados
 
-- Badges de severidade: Duplicado/Incongruente/OK, cada um com ícone e cor próprios
+- Badges de severidade: Duplicado/Fora do padrão/OK, cada um com ícone e cor próprios
 - Renomear/Editar: hover e clique com feedback leve, sem chrome adicional
 
 | Estado | Tratamento |

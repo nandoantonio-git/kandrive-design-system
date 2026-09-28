@@ -13,8 +13,8 @@ interface MenuEntry {
 
 const SIDEBAR_ITEMS: MenuEntry[] = [
   { label: "Nova pasta", icon: FolderPlus },
-  { label: "Upload de arquivo", icon: Upload },
-  { label: "Upload de pasta", icon: FolderUp },
+  { label: "Enviar arquivo", icon: Upload },
+  { label: "Enviar pasta", icon: FolderUp },
 ]
 
 const TEMPLATE_OPTIONS_ITEMS: MenuEntry[] = [

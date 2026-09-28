@@ -44,7 +44,7 @@ export const Default: Story = {
     await userEvent.click(canvas.getByRole("button", { name: "Melhorar" }))
     await expect(args.onSelectPlan).toHaveBeenCalledWith(expect.objectContaining({ id: "max" }))
     await expect(canvas.queryByRole("button", { name: "Melhorar" })).toBeNull()
-    await expect(canvas.getAllByRole("button", { name: "Rebaixar" })).toHaveLength(2)
+    await expect(canvas.getAllByRole("button", { name: "Mudar plano" })).toHaveLength(2)
   },
 }
 

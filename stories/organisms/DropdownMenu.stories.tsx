@@ -19,8 +19,8 @@ export const Sidebar: Story = {
   args: { variant: "sidebar", onItemSelect: fn() },
   // Escolher um item chama `onItemSelect` com o rótulo dele.
   play: async ({ args, canvasElement }) => {
-    await userEvent.click(within(canvasElement).getByRole("menuitem", { name: "Upload de arquivo" }))
-    await expect(args.onItemSelect).toHaveBeenCalledWith("Upload de arquivo")
+    await userEvent.click(within(canvasElement).getByRole("menuitem", { name: "Enviar arquivo" }))
+    await expect(args.onItemSelect).toHaveBeenCalledWith("Enviar arquivo")
   },
 }
 

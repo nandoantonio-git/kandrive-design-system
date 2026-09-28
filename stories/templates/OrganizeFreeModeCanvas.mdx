@@ -20,7 +20,7 @@ Canvas interativo do fluxo de organização em Modo Livre — compõe nós de fi
 
 O Figma real é um editor de nós totalmente interativo (arrastar/conectar/editar regras/painel de filtro flutuante). Esta story reproduz o **layout estático** dos elementos confirmados — não implementa drag-and-drop nem edição de regras de verdade. Duas peças em particular são aproximações deliberadas, não o comportamento real:
 
-1. **Linhas conectoras tracejadas** entre os nós — puramente decorativas. A geometria liga os centros dos nós vizinhos na cadeia linear do layout (Pasta 1 → Filtro → Junção → Auto-Archive → Resultado → saída); não reproduz o roteamento 2D exato do canvas do Figma.
+1. **Linhas conectoras tracejadas** entre os nós — puramente decorativas. A geometria liga os centros dos nós vizinhos na cadeia linear do layout (Pasta 1 → Filtro → Junção → Guardar automaticamente → Resultado → saída); não reproduz o roteamento 2D exato do canvas do Figma.
 2. **Painel de filtro** — é o `NodeContextMenu` real (instância `1422:24801` no Figma), então funciona: as pílulas Atributo e Operação abrem suas listas, o valor aceita texto, E/OU alterna, e adicionar, remover, descartar e salvar regras acontecem em memória. O que não acontece é o canvas reagir: as regras não mudam os nós nem o resultado.
 
 ### Material Liquid Glass
@@ -42,4 +42,4 @@ Os nós não se movem (sem drag-and-drop). O que é interativo herda os estados 
 
 ## Terminologia
 
-Rótulos fixos: "Descartar", "Salvar Template", "Junção", "Resultado", e os do `NodeContextMenu` ("Filtro", "Adicionar Regra", "Descartar Mudanças", "Salvar Mudanças"). Nenhum termo proibido (Regra 5). "Auto-Archive" aparece em inglês no nó do Figma e está mantido literal.
+Rótulos fixos: "Descartar", "Salvar template", "Junção", "Resultado", e os do `NodeContextMenu` ("Filtro", "Adicionar regra", "Descartar mudanças", "Salvar mudanças"). Nenhum termo proibido (Regra 5). 🧩 "Auto-Archive"/"ACTIVE" aparecem em inglês no nó do Figma — traduzidos para "Guardar automaticamente"/"ATIVO" na revisão de UX writing (2026-09-28).

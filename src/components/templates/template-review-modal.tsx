@@ -91,7 +91,7 @@ function TemplateReviewModal({ items, onCancel, onContinue, device = "desktop", 
     <div
       data-slot="template-review-modal"
       role="dialog"
-      aria-label="Revisar Organização"
+      aria-label="Revisar organização"
       className={cn(
         "flex h-[613px] w-[768px] max-w-none flex-col overflow-hidden rounded-xl glass-edge bg-effect-glass-white-70 shadow-[0px_8px_20px_rgba(0,0,0,0.12)] dark:shadow-[0px_8px_20px_rgba(0,0,0,0.5)] backdrop-blur-md",
         className
@@ -100,7 +100,7 @@ function TemplateReviewModal({ items, onCancel, onContinue, device = "desktop", 
     >
       <div className="flex items-start justify-between p-6 pb-4">
         <div className="flex flex-col gap-3">
-          <h2 className="text-2xl font-medium text-zinc-900 dark:text-zinc-100">Revisar Organização</h2>
+          <h2 className="text-2xl font-medium text-zinc-900 dark:text-zinc-100">Revisar organização</h2>
           <p className="text-base text-zinc-700 dark:text-zinc-300">Revise o template sugerido antes de aplicar as mudanças.</p>
         </div>
         <CloseButton size="md" onClick={onCancel} />

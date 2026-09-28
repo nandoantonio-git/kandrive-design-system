@@ -31,7 +31,7 @@ export interface DropdownSelectLabelItemProps
  * 🧩 Regra 8: foco e disabled não desenhados no Figma.
  */
 function DropdownSelectLabelItem({
-  label = "+ Nova Etiqueta",
+  label = "+ Nova etiqueta",
   active,
   className,
   onClick,
