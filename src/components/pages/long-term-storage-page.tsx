@@ -139,7 +139,7 @@ function LongTermStoragePage({
         <p className="text-base leading-5 text-neutral-text-tertiary">Arquivos em longo prazo ficam seguros por anos e liberam espaço ativo.</p>
       </div>
       <div className="flex w-full items-center justify-between gap-2.5">
-        <DropdownSelectGroupBy device="mobile" value="Data de compartilhamento" />
+        <DropdownSelectGroupBy device="mobile" defaultValue="Data de compartilhamento" />
         <ViewModeToggle size="compact" mode={viewMode === "columns" ? "list" : viewMode} onModeChange={setViewMode} />
       </div>
       <PagePickerButton />

@@ -18,7 +18,7 @@ type Story = StoryObj<typeof meta>
 /** Clique ou use as setas para trocar. */
 export const Default: Story = {
   render: function Render(args) {
-    const [value, setValue] = useState<Hand>(args.value)
+    const [value, setValue] = useState<Hand>(args.value ?? "right")
     return <HandPicker {...args} value={value} onValueChange={setValue} />
   },
   play: async ({ canvasElement }) => {

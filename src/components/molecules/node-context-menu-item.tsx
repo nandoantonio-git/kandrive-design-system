@@ -23,6 +23,12 @@ export interface NodeContextMenuItemProps
   onExpandedChange?: (expanded: boolean) => void
   options?: readonly string[]
   disabled?: boolean
+  /**
+   * 🧩 Regra 8: pílula sem chevron (`Value`) vira campo de texto — o Figma só
+   * desenha o placeholder "Valor...". `label` vira o placeholder e o texto
+   * digitado passa por `value`/`onValueChange`.
+   */
+  editable?: boolean
 }
 
 const WIDTH_BY_KIND = {
@@ -59,7 +65,8 @@ function inferKind(label: string, hasChevron: boolean): NonNullable<NodeContextM
  * remete a um componente de calendário externo, não a este nó).
  *
  * 🧩 Regra 8: foco do gatilho e hover/pressed/foco das opções não
- * desenhados no Figma.
+ * desenhados no Figma. Também são extensão: Esc e clique fora fecham a lista
+ * (2026-09-28), e a pílula de valor vira campo de texto com `editable`.
  *
  * 🧩 Inferido (Regra 9): toda a paleta zinc deste componente é
  * intencionalmente escura (zinc-500/600/800/900, nunca zinc-50/100/200/300)
@@ -81,6 +88,7 @@ function NodeContextMenuItem({
   onExpandedChange,
   options,
   disabled,
+  editable = false,
   className,
   ...props
 }: NodeContextMenuItemProps) {
@@ -100,18 +108,58 @@ function NodeContextMenuItem({
     setExpanded(false)
   }
 
+  const rootRef = React.useRef<HTMLDivElement>(null)
+  React.useEffect(() => {
+    if (!expanded) return
+    const onPointerDown = (event: PointerEvent) => {
+      if (!rootRef.current?.contains(event.target as Node)) setExpanded(false)
+    }
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setExpanded(false)
+    }
+    document.addEventListener("pointerdown", onPointerDown)
+    document.addEventListener("keydown", onKeyDown)
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown)
+      document.removeEventListener("keydown", onKeyDown)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [expanded])
+
   const visualKind = kind ?? inferKind(label, hasChevron)
-  const filled = value !== undefined
+  const filled = value !== undefined && value !== ""
   const widthClassName = WIDTH_BY_KIND[visualKind]
   const surfaceClassName = filled || visualKind === "date" ? "bg-zinc-800 text-zinc-200" : "bg-zinc-500/20 text-zinc-400"
   return (
     <div
+      ref={rootRef}
       data-slot="node-context-menu-item"
       data-kind={visualKind}
       data-expanded={expanded || undefined}
       className={cn("relative flex flex-col items-start rounded-[var(--radius-md)]", widthClassName, className)}
       {...props}
     >
+      {editable && !hasChevron ? (
+        <input
+          type="text"
+          data-slot="node-context-menu-item-input"
+          aria-label={label.replace(/\.+$/, "")}
+          placeholder={label}
+          value={value ?? ""}
+          disabled={disabled}
+          onChange={(event) => {
+            if (controlledValue === undefined) setInternalValue(event.target.value)
+            onValueChange?.(event.target.value)
+          }}
+          className={cn(
+            "h-6 w-full rounded-[var(--radius-md)] border px-2 text-center text-[0.6875rem] leading-4 outline-none transition-[color,background-color,border-color] placeholder:text-zinc-400",
+            "focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
+            surfaceClassName,
+            error ? "border-destructive shadow-[0_0_0_2px_rgba(188,52,38,0.35)]" : filled ? "border-zinc-700" : "border-zinc-500",
+            "disabled:pointer-events-none disabled:opacity-50"
+          )}
+        />
+      ) : (
       <button
         type="button"
         data-slot="node-context-menu-item-trigger"
@@ -129,7 +177,7 @@ function NodeContextMenuItem({
           "disabled:pointer-events-none disabled:opacity-50"
         )}
       >
-        <span className="truncate">{value ?? label}</span>
+        <span className="truncate">{filled ? value : label}</span>
         {hasChevron ? (
           <ChevronDownIcon
             className={cn("size-3 shrink-0 transition-transform", expanded && "rotate-180")}
@@ -137,6 +185,7 @@ function NodeContextMenuItem({
           />
         ) : null}
       </button>
+      )}
       {hasChevron && expanded && options && options.length > 0 ? (
         <ul
           data-slot="node-context-menu-item-list"

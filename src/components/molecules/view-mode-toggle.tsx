@@ -38,7 +38,9 @@ const MODES: ReadonlyArray<{ value: ViewMode; label: string; ActiveIcon: SvgIcon
 
 export interface ViewModeToggleProps
   extends Omit<React.ComponentProps<"div">, "onChange"> {
-  mode: ViewMode
+  /** Modo ativo — controlado; quando omitido, o componente guarda o último escolhido. */
+  mode?: ViewMode
+  defaultMode?: ViewMode
   onModeChange?: (mode: ViewMode) => void
   /** Figma `Size`: default (com o título "VISUALIZAR" e os rótulos) · compact (73×31, só ícones, mobile). */
   size?: "default" | "compact"
@@ -75,7 +77,13 @@ export interface ViewModeToggleProps
  */
 const COMPACT_DEFAULT_MODES: readonly ViewMode[] = ["grid", "list"]
 
-function ViewModeToggle({ mode, onModeChange, size = "default", modes, className, ...props }: ViewModeToggleProps) {
+function ViewModeToggle({ mode: controlledMode, defaultMode = "grid", onModeChange: onModeChangeProp, size = "default", modes, className, ...props }: ViewModeToggleProps) {
+  const [internalMode, setInternalMode] = React.useState(defaultMode)
+  const mode = controlledMode ?? internalMode
+  const onModeChange = (next: ViewMode) => {
+    if (controlledMode === undefined) setInternalMode(next)
+    onModeChangeProp?.(next)
+  }
   const compact = size === "compact"
   const effectiveModes = modes ?? (compact ? COMPACT_DEFAULT_MODES : undefined)
   return (
@@ -100,7 +108,7 @@ function ViewModeToggle({ mode, onModeChange, size = "default", modes, className
               data-slot="view-mode-toggle-button"
               aria-pressed={selected}
               aria-label={label}
-              onClick={() => onModeChange?.(value)}
+              onClick={() => onModeChange(value)}
               className={cn(
                 "flex items-center gap-2 rounded-md px-1 py-1.5 text-xs font-semibold transition-[color,background-color,opacity] active:opacity-70",
                 "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",

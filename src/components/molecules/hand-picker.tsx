@@ -9,7 +9,9 @@ const OPTIONS: { value: Hand; label: string }[] = [
 ]
 
 export interface HandPickerProps extends Omit<React.ComponentProps<"div">, "onChange"> {
-  value: Hand
+  /** Mão escolhida — controlada; quando omitida, o componente guarda a última escolhida. */
+  value?: Hand
+  defaultValue?: Hand
   onValueChange?: (value: Hand) => void
 }
 
@@ -27,7 +29,13 @@ export interface HandPickerProps extends Omit<React.ComponentProps<"div">, "onCh
  * - É um `radiogroup`: setas trocam a opção, e o rótulo tem 16px (Regra 4).
  * - 🧩 Regra 8: pressed não desenhado no Figma.
  */
-function HandPicker({ value, onValueChange, className, ...props }: HandPickerProps) {
+function HandPicker({ value: controlledValue, defaultValue = "right", onValueChange: onValueChangeProp, className, ...props }: HandPickerProps) {
+  const [internalValue, setInternalValue] = React.useState(defaultValue)
+  const value = controlledValue ?? internalValue
+  const onValueChange = (next: Hand) => {
+    if (controlledValue === undefined) setInternalValue(next)
+    onValueChangeProp?.(next)
+  }
   return (
     <div
       data-slot="hand-picker"

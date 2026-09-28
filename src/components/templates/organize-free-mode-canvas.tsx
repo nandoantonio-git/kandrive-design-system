@@ -1,5 +1,4 @@
 import * as React from "react"
-import { Filter, Plus, X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/atoms/button"
@@ -8,6 +7,7 @@ import { FreeModeOutputNode } from "@/components/molecules/free-mode-output-node
 import { FreeModeButtons } from "@/components/molecules/free-mode-buttons"
 import { FreeModeAddMenu } from "@/components/molecules/free-mode-add-menu"
 import { FreeModeMiniMap } from "@/components/molecules/free-mode-mini-map"
+import { NodeContextMenu } from "@/components/molecules/node-context-menu"
 
 /**
  * Conectores tracejados do canvas — elemento Figma-confirmado no nó
@@ -28,86 +28,6 @@ function FreeModeConnectors() {
       <path d="M753 429 H776" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="4 6" />
       <path d="M690 463 V540" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="4 6" />
     </svg>
-  )
-}
-
-/**
- * molecule/contextMenu/FreeMode (Figma-confirmado dentro do nó
- * `1439:16906`, sub-nó `1422:24801`) — painel flutuante de edição de regra
- * de filtro, Liquid Glass (Regra 10), que faltava por completo até esta
- * auditoria (ver `docs/conflicts.md`). Elementos Figma-confirmados
- * reproduzidos: título "Filtro" + ícone; linha de condição preenchida
- * ("Tamanho" / "Maior que" / "1.0 GB" + botão remover); toggle lógico
- * "E"/"OU" (E ativo); 2ª linha de condição em rascunho/desabilitada
- * ("Atributo" / "Operação" / "Valor..."); botão "+ Adicionar regra";
- * rodapé "Descartar Mudanças" / "Salvar Mudanças". Estático (Regra 9: não
- * implementa edição real, só a composição visual confirmada).
- *
- * 🧩 Inferido (Regra 9, dark-mode sweep): chips internos zinc-600/700/800/900
- * (linha "Tamanho"/"Maior que"/toggle E-OU) já são chrome escuro fixo — mantidos
- * sem par `dark:`, mesmo critério do zinc-800 "já dark-apropriado".
- *
- * 🧩 Regra 8: hover/pressed/foco de "Remover regra" e "Adicionar regra" não
- * desenhados no Figma.
- */
-function FreeModeFilterPanel({ className }: { className?: string }) {
-  return (
-    <div
-      data-slot="free-mode-filter-panel"
-      className={cn(
-        "flex w-[360px] flex-col gap-3 rounded-[36px] glass-edge bg-zinc-100/80 p-6 shadow-lg backdrop-blur-md dark:bg-zinc-800/80",
-        className
-      )}
-    >
-      <div className="flex items-center gap-2 px-1 pt-1">
-        <Filter aria-hidden="true" className="size-3.5 text-zinc-700 dark:text-zinc-300" />
-        <span className="text-sm font-bold text-zinc-700 dark:text-zinc-300">Filtro</span>
-      </div>
-      <div className="flex items-center gap-1.5">
-        <span className="rounded-md border border-zinc-600 bg-zinc-800 px-2 py-1 text-[0.6875rem] text-white">
-          Tamanho
-        </span>
-        <span className="rounded-md border border-zinc-600 bg-zinc-800 px-2 py-1 text-[0.6875rem] text-white">
-          Maior que
-        </span>
-        <span className="rounded-md border border-zinc-600 bg-zinc-700 px-2 py-1 text-[0.6875rem] text-white">
-          1.0 GB
-        </span>
-        <button type="button" aria-label="Remover regra" className="rounded-sm text-neutral-text-tertiary transition-[color,transform] hover:text-zinc-700 motion-safe:active:scale-95 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:text-zinc-400 dark:hover:text-zinc-300">
-          <X aria-hidden="true" className="size-3" />
-        </button>
-      </div>
-      <div className="flex w-fit items-center gap-0.5 rounded-lg border border-zinc-800 bg-zinc-900 p-0.5">
-        <span className="rounded-md bg-[#92ccff] px-3 py-0.5 text-[9px] font-bold text-[#001d31]">E</span>
-        <span className="rounded-md px-3 py-0.5 text-[9px] font-bold text-zinc-400">OU</span>
-      </div>
-      <div className="flex items-center gap-1.5 opacity-60">
-        <span className="rounded-md border border-zinc-400 bg-zinc-500/20 px-2 py-1 text-[0.6875rem] text-zinc-300">
-          Atributo
-        </span>
-        <span className="rounded-md border border-zinc-400 bg-zinc-500/20 px-2 py-1 text-[0.6875rem] text-zinc-300">
-          Operação
-        </span>
-        <span className="rounded-md border border-zinc-400 bg-zinc-500/20 px-2 py-1 text-[0.6875rem] text-zinc-300">
-          Valor...
-        </span>
-      </div>
-      <button
-        type="button"
-        className="flex items-center justify-center gap-2 rounded-md border border-zinc-400/60 bg-white/5 py-2 text-[10px] text-brand-teal-mid transition-colors hover:bg-white/15 active:bg-white/25 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50"
-      >
-        <Plus aria-hidden="true" className="size-3" />
-        Adicionar regra
-      </button>
-      <div className="flex items-center justify-end gap-3 border-t border-zinc-300 pt-3 dark:border-zinc-700">
-        <Button variant="outline" className="h-8 px-3 text-[10px]">
-          Descartar Mudanças
-        </Button>
-        <Button className="h-8 px-3 text-[10px]">
-          Salvar Mudanças
-        </Button>
-      </div>
-    </div>
   )
 }
 
@@ -147,6 +67,14 @@ export interface OrganizeFreeModeCanvasProps extends React.ComponentProps<"div">
  * rascunho, "+ Adicionar regra" e rodapé "Descartar/Salvar Mudanças" — só
  * a composição visual confirmada, sem drag-and-drop ou edição real (Regra
  * 9: nunca apresentar uma aproximação como funcionalidade real).
+ *
+ * 🔧 **Corrigido em 2026-09-28** (usuário: "revisar a interação dos
+ * filtros e droplists em modo livre"): o painel de filtro era uma cópia
+ * estática (`FreeModeFilterPanel`, pílulas `span` sem lista) em vez do
+ * componente real. O Figma usa uma instância de `molecule/NodeContextMenu`
+ * (`1422:24801`), então o canvas agora compõe `NodeContextMenu`: as pílulas
+ * Atributo/Operação abrem suas listas, o valor aceita texto, E/OU alterna, e
+ * adicionar, remover, descartar e salvar funcionam em memória.
  *
  * Reconciliado em 2026-08-11 (US-020): os nós do canvas ("Filtro: Grande",
  * "Junção", "Auto-Archive", "Resultado") e o toolbar inferior agora
@@ -241,8 +169,8 @@ function OrganizeFreeModeCanvas({
       {/* Mini-Map (Figma-confirmado, elemento visual estático — não funcional, ver nota acima) */}
       <FreeModeMiniMap className="absolute right-[42px] bottom-[158px]" />
 
-      {/* Painel flutuante de edição de filtro (Figma-confirmado, ver nota acima) */}
-      <FreeModeFilterPanel className="absolute top-[42px] right-[64px] z-20" />
+      {/* Painel do nó selecionado: instância `molecule/NodeContextMenu` (`1422:24801`) */}
+      <NodeContextMenu className="absolute top-[49px] left-[654px] z-20" />
 
       <div className="absolute top-[278px] left-8 h-[152px] w-[283px] rounded-3xl border border-zinc-500 bg-zinc-500/10">
         <span className="absolute -top-3 left-[98px] rounded-full bg-zinc-600 px-3 py-1 text-[0.625rem] font-bold text-brand-teal-light">

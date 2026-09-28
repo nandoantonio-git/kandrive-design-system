@@ -17,20 +17,32 @@ de etiquetar) — são 2 componentes distintos, mesmo parecidos.
 ## Anatomia
 
 Rótulo de seção "AGRUPAR" + botão "Agrupar" com ícone de agrupamento +,
-quando expandido, uma lista de 4 opções: "Data de modificação", "Tipo",
-"Tamanho", "Data de adição". Cada opção da lista é renderizada pelo
-componente `DropdownSelectGroupByItem` (ver [documentação
+quando expandido, uma lista de 4 critérios ("Data de modificação", "Tipo",
+"Tamanho", "Data de adição"), um divisor e a direção da ordem ("Mais
+recentes", "Mais antigos"). Critério e ordem são escolhas independentes:
+escolher o critério fecha a lista, escolher a ordem não. Cada opção é um
+`DropdownSelectGroupByItem` (ver [documentação
 própria](../atoms/DropdownSelectGroupByItem.mdx)).
+
+Abre e fecha sozinho quando `expanded` não é passado; Esc e clique fora
+fecham. A lista flutua sobre o conteúdo abaixo, sem empurrar o layout.
 
 ## Estados
 
 <Canvas of={DropdownSelectGroupByStories.Expanded} />
 <Canvas of={DropdownSelectGroupByStories.Disabled} />
 
+## Mobile
+
+<Canvas of={DropdownSelectGroupByStories.Mobile} />
+
+`device="mobile"` tira o rótulo "AGRUPAR"; as opções são as mesmas.
+
 | Estado | Tratamento |
 | --- | --- |
 | Default (fechado) | Gatilho "Agrupar" |
-| Expandido (`Expanded=true`) | Aberto, mostrando as 4 opções |
+| Expandido (`Expanded=true`) | Aberto: 4 critérios, divisor e 2 direções |
+| Selecionado | Fundo do item `selected` do `DropdownSelectGroupByItem` |
 | Disabled (`State=Disabled`) | Opacidade reduzida |
 | Hover | 🧩 Fundo `#71717a33` no gatilho (o mesmo do `Label`) |
 | Pressed | 🧩 `active:opacity-70` |
@@ -40,6 +52,6 @@ própria](../atoms/DropdownSelectGroupByItem.mdx)).
 
 ## Terminologia
 
-"AGRUPAR"/"Agrupar"/"Tipo"/"Data de modificação"/"Tamanho"/"Data de adição"
+"AGRUPAR"/"Agrupar"/"Tipo"/"Data de modificação"/"Tamanho"/"Data de adição"/"Mais recentes"/"Mais antigos"
 são texto do produto — vocabulário de organização de arquivos, sem
 restrições de terminologia aplicáveis.

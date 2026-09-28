@@ -15,7 +15,9 @@ export type TagColorName = (typeof TAG_COLORS)[number]["name"]
 
 export interface TagColorProps
   extends Omit<React.ComponentProps<"div">, "onChange"> {
+  /** Cor escolhida — controlada; quando omitida, o componente guarda a última escolhida. */
   value?: TagColorName
+  defaultValue?: TagColorName
   onValueChange?: (color: TagColorName) => void
 }
 
@@ -47,7 +49,13 @@ export interface TagColorProps
  *
  * 🧩 Regra 8: hover, pressed e foco das bolinhas não desenhados no Figma.
  */
-function TagColor({ value = "success", onValueChange, className, ...props }: TagColorProps) {
+function TagColor({ value: controlledValue, defaultValue = "success", onValueChange: onValueChangeProp, className, ...props }: TagColorProps) {
+  const [internalValue, setInternalValue] = React.useState(defaultValue)
+  const value = controlledValue ?? internalValue
+  const onValueChange = (next: TagColorName) => {
+    if (controlledValue === undefined) setInternalValue(next)
+    onValueChangeProp?.(next)
+  }
   const refs = React.useRef<(HTMLButtonElement | null)[]>([])
 
   // 🧩 Regra 8: grupo de rádio de verdade (mesmo padrão do `MethodCard`). As

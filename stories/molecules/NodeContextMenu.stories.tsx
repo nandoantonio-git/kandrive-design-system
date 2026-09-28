@@ -16,10 +16,7 @@ const meta = {
     state: { control: "select", options: ["floating-info-panel", "state-3"] },
     logicalOperator: { control: "select", options: ["and", "or"] },
   },
-  args: {
-    state: "floating-info-panel",
-    logicalOperator: "and",
-  },
+  args: {},
   decorators: [
     (Story) => (
       <div className="rounded-lg bg-[var(--neutral-surface-background,#f3f3f3)] p-8">
@@ -32,9 +29,9 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-/** Vivo — os botões E/OU trocam `logicalOperator` (os Controls acompanham); as pílulas abrem seus menus sozinhas. */
+/** Vivo — E/OU alterna, as pílulas abrem suas listas, e as regras são adicionadas, removidas, descartadas e salvas em memória. */
 export const Default: Story = {
-  args: { onSave: fn() },
+  args: { onSave: fn(), onAddRule: fn() },
   render: function Render(args) {
     const [, updateArgs] = useArgs()
     return (
@@ -45,14 +42,29 @@ export const Default: Story = {
       </LiveArgs>
     )
   },
-  // E/OU trocam o operador (`aria-pressed`); "Salvar Mudanças" dispara `onSave`.
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement)
+    // E/OU troca o operador.
     await userEvent.click(canvas.getByRole("button", { name: "OU" }))
     await expect(canvas.getByRole("button", { name: "OU" })).toHaveAttribute("aria-pressed", "true")
-    await expect(canvas.getByRole("button", { name: "E" })).toHaveAttribute("aria-pressed", "false")
+    // Adicionar com a nova linha vazia mostra o aviso (State3 do Figma).
+    await userEvent.click(canvas.getByRole("button", { name: /Adicionar Regra/ }))
+    await expect(canvas.getByRole("alert")).toHaveTextContent("Preencha todas as informações")
+    // Preencher a nova linha: Atributo e Operação pelas listas, Valor digitado.
+    await userEvent.click(canvas.getAllByRole("button", { name: "Atributo" })[0])
+    await userEvent.click(canvas.getByRole("button", { name: "Tipo" }))
+    await userEvent.click(canvas.getAllByRole("button", { name: "Operação" })[0])
+    await userEvent.click(canvas.getByRole("button", { name: "=Igual" }))
+    const inputs = canvas.getAllByRole("textbox", { name: "Valor" })
+    await userEvent.type(inputs[inputs.length - 1], ".mp4")
+    await expect(canvas.queryByRole("alert")).toBeNull()
+    await userEvent.click(canvas.getByRole("button", { name: /Adicionar Regra/ }))
+    await expect(args.onAddRule).toHaveBeenCalledWith({ attribute: "Tipo", operation: "=Igual", value: ".mp4" })
+    await expect(canvas.getAllByRole("button", { name: /Remover condição/ })).toHaveLength(2)
+    // Remover a primeira e salvar.
+    await userEvent.click(canvas.getByRole("button", { name: "Remover condição 1" }))
     await userEvent.click(canvas.getByRole("button", { name: "Salvar Mudanças" }))
-    await expect(args.onSave).toHaveBeenCalledOnce()
+    await expect(args.onSave).toHaveBeenCalledWith([{ attribute: "Tipo", operation: "=Igual", value: ".mp4" }], "or")
   },
 }
 

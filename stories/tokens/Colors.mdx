@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/addon-docs/blocks';
-import { LiveColorTokens, FigmaOnlyColors } from '../../src/components/tokens/live-color-tokens';
+import { ColorTokens } from '../../src/components/tokens/live-color-tokens';
 
 <Meta title="Tokens/Colors" parameters={{ design: { type: 'figma', url: 'https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=3099-9583' } }} />
 
@@ -14,6 +14,7 @@ Todos os tokens de cor do código, com **Light e Dark lado a lado**. Os valores 
 | ✅ Figma-confirmado | O token tem uma variável no Figma, e os valores Light e Dark são iguais |
 | ⚠️ Diverge do Figma | O token tem uma variável no Figma, mas algum valor é diferente. O valor do Figma aparece embaixo. |
 | 🧩 Só no código | Não existe variável no Figma. Em geral é a base do shadcn/ui. |
+| 🎨 Só no Figma | A variável existe no Figma mas não tem token CSS. Nas telas, costuma aparecer como `zinc-*` ou valor literal. |
 
 ## Como ler os papéis
 
@@ -30,13 +31,11 @@ Todos os tokens de cor do código, com **Light e Dark lado a lado**. Os valores 
 
 Para usar em um componente, clique no nome do token para copiar `var(--…)`. Pela classe do Tailwind, os mesmos tokens estão expostos em `@theme inline` (por exemplo `bg-brand-teal-action`, `text-brand-teal`).
 
-## Tokens do código
+## Paleta
 
-<LiveColorTokens />
+Uma tabela só, agrupada pela hierarquia do nome no Figma: família (Marca, Armazenamento, Neutros, Interface, Efeitos) › grupo (`Brand/Primary`, `Neutral/Text`…). Cada família recolhe clicando no título. Tokens sem variável no Figma ficam no fim, em *Base shadcn/ui*, e variáveis sem token CSS aparecem no próprio grupo, marcadas 🎨.
 
-## Variáveis do Figma sem token CSS
-
-<FigmaOnlyColors />
+<ColorTokens />
 
 ## Logo
 
