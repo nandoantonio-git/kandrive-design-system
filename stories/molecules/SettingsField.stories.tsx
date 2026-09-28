@@ -8,7 +8,7 @@ import { SettingsField } from "../../src/components/molecules/settings-field"
 const meta = {
   title: "Molecules/SettingsField",
   component: SettingsField,
-  parameters: { layout: "centered" },
+  parameters: { layout: "centered", design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=3029-3843" } },
   argTypes: {
     type: { control: "radio", options: ["text", "email", "password"] },
     disabled: { control: "boolean" },

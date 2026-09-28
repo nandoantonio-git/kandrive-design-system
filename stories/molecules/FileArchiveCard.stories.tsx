@@ -8,7 +8,7 @@ const meta = {
   component: FileArchiveCard,
   parameters: {
     layout: "centered",
-    design: { type: 'figma', url: 'https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=212-3691' },
+    design: { type: 'figma', url: 'https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1421-18215' },
   },
   args: {
     label: "Arquivo 1",
@@ -34,6 +34,6 @@ export const FileArchive2: Story = {
     await expect(args.onClick).toHaveBeenCalledTimes(2)
   },
   parameters: {
-    design: { type: 'figma', url: 'https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=212-3691' },
+    design: { type: 'figma', url: 'https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1421-18215' },
   },
 }

@@ -27,6 +27,10 @@ export interface StorageStatusSummaryProps extends React.ComponentProps<"div"> {
    * `FileListHeader` + `FileList`. Mobile: tabela em card, com linhas de 61px.
    */
   device?: "desktop" | "mobile"
+  /** Botão de filtros ligado — controlado; quando omitido, o botão alterna sozinho. */
+  filtersActive?: boolean
+  defaultFiltersActive?: boolean
+  onFiltersActiveChange?: (active: boolean) => void
 }
 
 /**
@@ -48,16 +52,40 @@ export interface StorageStatusSummaryProps extends React.ComponentProps<"div"> {
  *   em 11px, `Neutral/Text/Tertiary` (microtexto; no Figma, 10 e 11px).
  * - 🧩 Regra 8: pressed do botão de filtros e hover/pressed/foco do
  *   "Armazenamento" (mobile) não desenhados no Figma.
+ * - 🧩 "Filtros" (2026-09-28, decisão do usuário): o painel de filtros não
+ *   existe no Figma, então o botão só alterna ligado/desligado
+ *   (`aria-pressed`, ícone na cor da marca) e avisa em `onFiltersActiveChange`.
+ *   Abrir filtros de verdade é do app.
  */
-function StorageStatusSummary({ files, scopeLabel = "Total", device = "desktop", className, ...props }: StorageStatusSummaryProps) {
+function StorageStatusSummary({
+  files,
+  scopeLabel = "Total",
+  device = "desktop",
+  filtersActive: controlledFiltersActive,
+  defaultFiltersActive = false,
+  onFiltersActiveChange,
+  className,
+  ...props
+}: StorageStatusSummaryProps) {
   const mobile = device === "mobile"
+  const [internalFiltersActive, setInternalFiltersActive] = React.useState(defaultFiltersActive)
+  const filtersActive = controlledFiltersActive ?? internalFiltersActive
+  const toggleFilters = () => {
+    if (controlledFiltersActive === undefined) setInternalFiltersActive(!filtersActive)
+    onFiltersActiveChange?.(!filtersActive)
+  }
   const filter = (
     <div className={cn("flex items-center gap-3", mobile ? "w-full" : "min-w-[280px] max-w-[600px] flex-1")}>
       <SearchInput placeholder={`Filtrar no ${scopeLabel}`} aria-label={`Filtrar no ${scopeLabel}`} className="min-w-0 max-w-none flex-1" />
       <button
         type="button"
         aria-label="Filtros"
-        className="touch-target flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-md text-neutral-text-primary transition-colors hover:bg-neutral-surface-subtle active:bg-neutral-surface-medium focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none"
+        aria-pressed={filtersActive}
+        onClick={toggleFilters}
+        className={cn(
+          "touch-target flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-md transition-colors hover:bg-neutral-surface-subtle active:bg-neutral-surface-medium focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none",
+          filtersActive ? "bg-neutral-surface-subtle text-brand-teal" : "text-neutral-text-primary"
+        )}
       >
         <Icon name="Filter" className={mobile ? "size-4" : "size-6"} />
       </button>

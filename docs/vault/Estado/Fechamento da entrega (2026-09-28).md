@@ -30,7 +30,10 @@ Continuação da [[Auditoria do Storybook (2026-09-26)]]. Pedido do usuário: dr
   - **Modo livre:** usa o `NodeContextMenu` real no lugar da cópia estática. As pílulas abrem, o valor aceita texto, E/OU alterna, e adicionar (com o erro do State3), remover, descartar e salvar funcionam.
   - **Varredura:** ViewModeToggle, MobileTabBar, StorageStatus, TagColor e HandPicker passam a funcionar sozinhos. Os rádios de Configurações > Aparência estavam travados e foram ligados.
   - **Cores:** a página virou uma tabela só.
-- [ ] **B — Pendências da auditoria** (Q5 "Filtros", Q6 nodes).
+- [x] **B — Pendências da auditoria.**
+  - **"Filtros"** alterna ligado/desligado (`aria-pressed`).
+  - **Nodes:** FolderItem, ArchiveItem, FileArchiveCard e VideoItem apontam para suas variantes `Type=` de `molecule/FileItem`. Confirmados os componentes de Breadcrumb (`1239:13934`), FileRow (`3029:4009`), SettingsCard (`3029:3867`), SettingsField (= `molecule/TextField`, `3029:3843`) e FaqCallout (= `molecule/Callout`, `1288:16935`). SidebarDrawer aponta para `organism/Sidebar` `Device=Mobile` (`1771:35845`). UploadFolder fica "🧩 só código".
+  - **HamburgerButton:** os 4 modos com o morph do protótipo (Closed→Open 200ms, Expand→Collapse 400ms). Os SVGs antigos foram removidos.
 - [x] **C — Marca.** Favicon = `foundation/Favicon`, no app e na aba do Storybook (`manager-head.html`). Logo vertical Light/Dark exportado do grupo `1623:23819`. Página `Tokens/Marca` com os logos horizontal e vertical, o símbolo, o favicon e as cores `Logo/*`, com link na Introdução. A barra lateral continua com o horizontal Light do código, que é o mesmo desenho do Figma com as cores `Logo/*` do Light. O componente do Figma é a versão para fundo escuro. Achado registrado em [[Conflitos Abertos]]: os nomes dos componentes de logo estão trocados.
 - [ ] **D — UX writing:** o relatório. Alterações só depois da aprovação.
 - [ ] **E — Figma:** o estado Expanded do PagePickerButton, depois o que o relatório de UX writing aprovar.

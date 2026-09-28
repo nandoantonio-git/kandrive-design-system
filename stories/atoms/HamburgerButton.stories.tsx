@@ -46,3 +46,7 @@ export const Default: Story = {
 export const Closed: Story = { args: { mode: "closed" } }
 /** Dentro da gaveta: fecha. */
 export const Expand: Story = { args: { mode: "expand" } }
+/** Hover de `closed` (`Mode=Open`): a barra do meio encolhe. Congelado com `forceHover`. */
+export const Open: Story = { args: { mode: "closed", forceHover: true } }
+/** Hover de `expand` (`Mode=Collapse`): a barra do meio passa das bordas. Congelado com `forceHover`. */
+export const Collapse: Story = { args: { mode: "expand", forceHover: true } }
