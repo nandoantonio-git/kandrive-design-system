@@ -31,7 +31,7 @@ Continuação da [[Auditoria do Storybook (2026-09-26)]]. Pedido do usuário: dr
   - **Varredura:** ViewModeToggle, MobileTabBar, StorageStatus, TagColor e HandPicker passam a funcionar sozinhos. Os rádios de Configurações > Aparência estavam travados e foram ligados.
   - **Cores:** a página virou uma tabela só.
 - [ ] **B — Pendências da auditoria** (Q5 "Filtros", Q6 nodes).
-- [ ] **C — Marca** (favicon, logo da barra lateral, página `Tokens/Marca`).
+- [x] **C — Marca.** Favicon = `foundation/Favicon`, no app e na aba do Storybook (`manager-head.html`). Logo vertical Light/Dark exportado do grupo `1623:23819`. Página `Tokens/Marca` com os logos horizontal e vertical, o símbolo, o favicon e as cores `Logo/*`, com link na Introdução. A barra lateral continua com o horizontal Light do código, que é o mesmo desenho do Figma com as cores `Logo/*` do Light. O componente do Figma é a versão para fundo escuro. Achado registrado em [[Conflitos Abertos]]: os nomes dos componentes de logo estão trocados.
 - [ ] **D — UX writing:** o relatório. Alterações só depois da aprovação.
 - [ ] **E — Figma:** o estado Expanded do PagePickerButton, depois o que o relatório de UX writing aprovar.
 

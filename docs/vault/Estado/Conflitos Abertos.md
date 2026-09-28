@@ -21,6 +21,8 @@ Fonte completa: `making-of/conflicts.md` (log de todas as entradas, incluindo j�
 
 **Contraste de cor — 2 grupos fora do lote de paleta de 2026-09-25** (ver [[Plano de Fechamento]]): estados esmaecidos por `opacity-50`/`60` em vez de um token de cor (Sidebar, FAQ/Home/Organization/StorageStatus, UploadPopover, NodeContextMenu, ArchiveBrowserModalSidebar, catálogo do Icon); e as cores semânticas de badge (âmbar "Duplicado", rosa "Urgente", azul de foco do CardLogin/Login). `color-contrast` continua `reviewOnFail` no gate até uma decisão sobre os dois.
 
+**Logos no Figma (achado de 2026-09-28)**: o componente `foundation/LogoVertical` (`1427:16927`) tem proporção horizontal (7273×1803), e a instância dele na Design Language se chama `foundation/LogoHorizontal`. O logo vertical de verdade é só um grupo (`1623:23819`), sem componente e sem as variáveis `Logo/*`. Decidir: renomear o componente para `LogoHorizontal` e transformar o grupo em `foundation/LogoVertical` com as variáveis. O código já tem as duas versões (ver [[Logo]]).
+
 ## 🟢 Baixa urgência (gaps de polish, não de decisão)
 
 - ~~**Radius do modo coluna**~~ ✅ 2026-09-26: usuário trouxe o link do node real (`826:16143`, `organism/FileListContainer`). `get_design_context` confirma exatamente o que o código já tinha: `border-r` (só a direita) + `rounded-tl`/`rounded-bl` em `radius-md` (8px) — sem divergência. Fechado, sem mudança de código.
