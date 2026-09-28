@@ -55,6 +55,8 @@ export interface FreeModeListItemProps extends Omit<React.ComponentProps<"button
  * mesmo conceito): Figma chama esse eixo de `Clicked` nesse node, mas a
  * maioria do catálogo usa `Pressed`. Valor de código normalizado —
  * citação Figma acima preserva o nome original (Regra 9).
+ *
+ * 🧩 Regra 8: foco e disabled não desenhados no Figma.
  */
 function FreeModeListItem({
   operation,
@@ -76,6 +78,8 @@ function FreeModeListItem({
       onClick={onSelect}
       className={cn(
         "flex h-8 w-full items-center gap-3 rounded-md px-4 text-left text-base font-medium tracking-[0.1px] text-zinc-700 dark:text-zinc-300 transition-colors",
+        "active:bg-black/14 dark:active:bg-white/14 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
+        "disabled:pointer-events-none disabled:opacity-50",
         visualState === "pressed"
           ? "bg-black/14 dark:bg-white/14"
           : visualState === "hover"

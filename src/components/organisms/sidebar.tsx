@@ -153,6 +153,9 @@ export interface SidebarProps extends React.ComponentProps<"nav"> {
  * mas não tem nenhuma das 23 telas `page/*` correspondente no inventário
  * — sem conteúdo Figma-confirmado pra esse painel ainda (Regra 9,
  * `docs/conflicts.md`).
+ *
+ * 🧩 Regra 8: pressed e foco dos itens e dos botões de colapsar não desenhados
+ * no Figma.
  */
 function Sidebar({
   pages = "default",
@@ -202,7 +205,7 @@ function Sidebar({
               onClick={() => onNavigateSection?.(section)}
               className={cn(
                 "rounded-md px-2 py-1.5 text-left text-base font-medium text-zinc-900 transition-colors dark:text-zinc-100",
-                "hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 dark:hover:bg-zinc-800",
+                "hover:bg-zinc-100 active:bg-zinc-200 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:hover:bg-zinc-800 dark:active:bg-zinc-700",
                 activeSection === section ? "bg-zinc-100 dark:bg-zinc-800" : "text-neutral-text-tertiary dark:text-zinc-400"
               )}
             >
@@ -218,7 +221,7 @@ function Sidebar({
           onClick={() => onNavigateSection?.("excluir-conta")}
           className={cn(
             "rounded-md px-2 py-1.5 text-left text-base font-medium text-neutral-text-tertiary transition-colors",
-            "hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 dark:hover:bg-zinc-800",
+            "hover:bg-zinc-100 active:bg-zinc-200 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:hover:bg-zinc-800 dark:active:bg-zinc-700",
             activeSection === "excluir-conta" && "bg-zinc-100 dark:bg-zinc-800"
           )}
         >
@@ -250,7 +253,7 @@ function Sidebar({
           data-slot="sidebar-collapse"
           aria-label="Expandir sidebar"
           onClick={handleToggleCollapse}
-          className="flex size-6 shrink-0 items-center justify-center rounded-full text-neutral-text-tertiary transition-colors hover:bg-zinc-100 hover:text-zinc-900 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
+          className="flex size-6 shrink-0 items-center justify-center rounded-full text-neutral-text-tertiary transition-[color,background-color,transform] hover:bg-zinc-100 hover:text-zinc-900 motion-safe:active:scale-95 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
         >
           <PanelLeft aria-hidden="true" className="size-3.5" />
         </button>
@@ -276,7 +279,7 @@ function Sidebar({
           data-slot="sidebar-collapse"
           aria-label="Colapsar sidebar"
           onClick={handleToggleCollapse}
-          className="flex size-6 items-center justify-center rounded-full text-neutral-text-tertiary transition-colors hover:bg-zinc-100 hover:text-zinc-900 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
+          className="flex size-6 items-center justify-center rounded-full text-neutral-text-tertiary transition-[color,background-color,transform] hover:bg-zinc-100 hover:text-zinc-900 motion-safe:active:scale-95 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
         >
           <PanelLeft aria-hidden="true" className="size-3.5" />
         </button>
@@ -296,7 +299,7 @@ function Sidebar({
               onClick={() => onNavigate?.(page)}
               className={cn(
                 "flex w-full items-center gap-1.5 rounded-md px-2 py-1 text-base font-medium text-zinc-900 dark:text-zinc-100",
-                "transition-[opacity,background-color] hover:bg-zinc-100 hover:opacity-100 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 dark:hover:bg-zinc-800",
+                "transition-[opacity,background-color] hover:bg-zinc-100 hover:opacity-100 active:bg-zinc-200 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:hover:bg-zinc-800 dark:active:bg-zinc-700",
                 activePage === page ? "bg-zinc-100 dark:bg-zinc-800" : "opacity-50"
               )}
             >

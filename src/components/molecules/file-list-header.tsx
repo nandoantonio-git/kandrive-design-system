@@ -39,6 +39,8 @@ export interface FileListHeaderProps extends React.ComponentProps<"div"> {
  * (envolvendo as 2 linhas juntas), deixando "Hoje" acima da borda em vez
  * de abaixo — corrigido movendo `border-b` para a linha 1 e adicionando o
  * `gap-4` real do Figma entre as linhas.
+ *
+ * 🧩 Regra 8: foco do botão de ordenação não desenhado no Figma.
  */
 function FileListHeader({
   format = "home",
@@ -84,7 +86,7 @@ function FileListHeader({
             data-sort-direction={sortDirection}
             aria-label={`Ordenar por Armazenamento (${sortDirection === "desc" ? "decrescente" : "crescente"})`}
             onClick={toggleSortDirection}
-            className="flex items-center gap-2 pr-2 text-xl font-bold text-brand-secondary-light hover:text-brand-secondary active:opacity-70"
+            className="flex items-center gap-2 rounded-md pr-2 text-xl font-bold text-brand-secondary-light transition-[color,opacity] hover:text-brand-secondary active:opacity-70 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50"
           >
             <Icon name={sortDirection === "desc" ? "ArrowDown" : "ArrowUp"} className="size-4 shrink-0" />
             Armazenamento

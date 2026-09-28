@@ -76,6 +76,8 @@ export interface HeaderProps extends React.ComponentProps<"header"> {
  * bloco de usuário de Settings → Conta", mas o Header nunca foi atualizado
  * pra usá-lo. Trocado pelo `Avatar` de verdade (36px, mesma prop `user`
  * usada em `Settings`).
+ *
+ * 🧩 Regra 8: hover/pressed do avatar (mobile) não desenhados no Figma.
  */
 function Header({
   page = "navbar",
@@ -132,7 +134,7 @@ function Header({
         type="button"
         aria-label="Conta"
         onClick={onAvatarClick}
-        className="touch-target ml-auto shrink-0 cursor-pointer rounded-full focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none tablet:hidden"
+        className="touch-target ml-auto shrink-0 cursor-pointer rounded-full transition-[opacity,transform] hover:opacity-80 motion-safe:active:scale-95 focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none tablet:hidden"
       >
         <Avatar name={user?.name} src={user?.avatarSrc} size={36} />
       </button>

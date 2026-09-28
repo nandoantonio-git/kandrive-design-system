@@ -46,6 +46,9 @@ function FreeModeConnectors() {
  * 🧩 Inferido (Regra 9, dark-mode sweep): chips internos zinc-600/700/800/900
  * (linha "Tamanho"/"Maior que"/toggle E-OU) já são chrome escuro fixo — mantidos
  * sem par `dark:`, mesmo critério do zinc-800 "já dark-apropriado".
+ *
+ * 🧩 Regra 8: hover/pressed/foco de "Remover regra" e "Adicionar regra" não
+ * desenhados no Figma.
  */
 function FreeModeFilterPanel({ className }: { className?: string }) {
   return (
@@ -70,7 +73,7 @@ function FreeModeFilterPanel({ className }: { className?: string }) {
         <span className="rounded-md border border-zinc-600 bg-zinc-700 px-2 py-1 text-[0.6875rem] text-white">
           1.0 GB
         </span>
-        <button type="button" aria-label="Remover regra" className="text-neutral-text-tertiary hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300">
+        <button type="button" aria-label="Remover regra" className="rounded-sm text-neutral-text-tertiary transition-[color,transform] hover:text-zinc-700 motion-safe:active:scale-95 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:text-zinc-400 dark:hover:text-zinc-300">
           <X aria-hidden="true" className="size-3" />
         </button>
       </div>
@@ -91,7 +94,7 @@ function FreeModeFilterPanel({ className }: { className?: string }) {
       </div>
       <button
         type="button"
-        className="flex items-center justify-center gap-2 rounded-md border border-zinc-400/60 bg-white/5 py-2 text-[10px] text-brand-teal-mid"
+        className="flex items-center justify-center gap-2 rounded-md border border-zinc-400/60 bg-white/5 py-2 text-[10px] text-brand-teal-mid transition-colors hover:bg-white/15 active:bg-white/25 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50"
       >
         <Plus aria-hidden="true" className="size-3" />
         Adicionar regra

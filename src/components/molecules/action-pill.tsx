@@ -39,6 +39,8 @@ export interface ActionPillProps extends Omit<React.ComponentProps<"div">, "chil
  * o node Figma fixa o container em 104px. A implementação ainda estava em
  * `w-fit` e media 116px no iframe Playwright. Corrigido para largura fixa,
  * mantendo o grupo de ícones centralizado.
+ *
+ * 🧩 Regra 8: hover/pressed/foco dos botões não desenhados no Figma.
  */
 function ActionPill({ actions, disabled, className, ...props }: ActionPillProps) {
   return (
@@ -61,7 +63,7 @@ function ActionPill({ actions, disabled, className, ...props }: ActionPillProps)
           aria-label={label}
           disabled={disabled}
           onClick={onClick}
-          className="relative flex items-center justify-center rounded-full p-0.5 text-zinc-700 transition-colors dark:text-zinc-300 hover:text-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50"
+          className="relative flex items-center justify-center rounded-full p-0.5 text-zinc-700 transition-[color,transform] dark:text-zinc-300 hover:text-brand-teal motion-safe:active:scale-95 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50"
         >
           <Icon name={name} className="size-5" />
         </button>

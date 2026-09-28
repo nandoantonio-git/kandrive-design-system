@@ -8,8 +8,9 @@ import {
   type ArchiveBrowserModalListItemProps,
 } from "@/components/molecules/archive-browser-modal-list-item"
 
+/** `selected`/`onClick` são repassados à linha — com `onClick`, ela vira um item selecionável (ver `ArchiveBrowserModalListItem`). */
 export interface ArchiveBrowserModalSearchFile
-  extends Pick<ArchiveBrowserModalListItemProps, "fileName" | "meta"> {}
+  extends Pick<ArchiveBrowserModalListItemProps, "fileName" | "meta" | "selected" | "onClick"> {}
 
 export interface ArchiveBrowserModalSearchProps
   extends Omit<React.ComponentProps<"div">, "children"> {
@@ -68,7 +69,13 @@ function ArchiveBrowserModalSearch({
       <div className="h-[289px] w-full overflow-y-auto rounded-2xl shadow-[0px_8px_20px_rgba(0,0,0,0.12)] dark:shadow-[0px_8px_20px_rgba(0,0,0,0.5)]">
         <div className="relative flex min-h-full w-full flex-col items-start gap-0.5 rounded-xl glass-edge bg-effect-glass-white-70 px-2 py-4">
           {files.map((file) => (
-            <ArchiveBrowserModalListItem key={file.fileName} fileName={file.fileName} meta={file.meta} />
+            <ArchiveBrowserModalListItem
+              key={file.fileName}
+              fileName={file.fileName}
+              meta={file.meta}
+              selected={file.selected}
+              onClick={file.onClick}
+            />
           ))}
         </div>
       </div>

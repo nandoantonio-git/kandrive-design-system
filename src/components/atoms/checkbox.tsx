@@ -40,7 +40,7 @@ function Checkbox({ checked = false, onCheckedChange, size = "sm", className, on
       }}
       className={cn(
         "flex shrink-0 cursor-pointer items-center justify-center border transition-colors",
-        "focus-visible:ring-3 focus-visible:ring-brand-teal/50 focus-visible:outline-none",
+        "focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none",
         "disabled:pointer-events-none disabled:opacity-50",
         size === "sm" ? "size-4 rounded-[4px] shadow-[0_1px_2px_0_rgba(0,0,0,0.05)]" : "size-5",
         checked

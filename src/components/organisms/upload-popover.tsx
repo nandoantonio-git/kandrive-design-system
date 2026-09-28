@@ -79,6 +79,8 @@ export interface UploadPopoverProps extends React.ComponentProps<"div"> {
  * mais pronunciada (`shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]`).
  * `border-zinc-200`/`shadow-lg` antes eram aplicados sempre, nos 2 estados;
  * agora condicionados a `files.length === 0`.
+ *
+ * 🧩 Regra 8: pressed e foco dos botões de ação não desenhados no Figma.
  */
 function UploadPopover({
   fileCount,
@@ -146,7 +148,7 @@ function UploadPopover({
             type="button"
             aria-label="Pausar envio"
             onClick={onPause}
-            className="rounded-md p-1.5 text-neutral-text-tertiary hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
+            className="rounded-md p-1.5 text-neutral-text-tertiary transition-colors hover:bg-zinc-100 active:bg-zinc-200 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:active:bg-zinc-700"
           >
             <Pause aria-hidden="true" className="size-3" />
           </button>
@@ -154,7 +156,7 @@ function UploadPopover({
             type="button"
             aria-label="Maximizar"
             onClick={onExpand}
-            className="rounded-md p-1.5 text-neutral-text-tertiary hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
+            className="rounded-md p-1.5 text-neutral-text-tertiary transition-colors hover:bg-zinc-100 active:bg-zinc-200 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:active:bg-zinc-700"
           >
             <Maximize2 aria-hidden="true" className="size-3" />
           </button>
@@ -162,7 +164,7 @@ function UploadPopover({
             type="button"
             aria-label="Mais opções"
             onClick={onMore}
-            className="rounded-md p-1.5 text-neutral-text-tertiary hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
+            className="rounded-md p-1.5 text-neutral-text-tertiary transition-colors hover:bg-zinc-100 active:bg-zinc-200 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:active:bg-zinc-700"
           >
             <MoreVertical aria-hidden="true" className="size-3" />
           </button>
@@ -171,7 +173,7 @@ function UploadPopover({
             type="button"
             aria-label="Fechar"
             onClick={onClose}
-            className="rounded-md p-1.5 text-neutral-text-tertiary hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
+            className="rounded-md p-1.5 text-neutral-text-tertiary transition-colors hover:bg-zinc-100 active:bg-zinc-200 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:active:bg-zinc-700"
           >
             <X aria-hidden="true" className="size-3" />
           </button>

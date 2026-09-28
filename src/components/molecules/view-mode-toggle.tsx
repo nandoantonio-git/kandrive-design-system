@@ -70,6 +70,8 @@ export interface ViewModeToggleProps
  * repetiam isso manualmente, frágil (uma página nova podia esquecer).
  * Passou a ser automático: `size="compact"` já exclui "columns" por
  * padrão, sem precisar da prop `modes`.
+ *
+ * 🧩 Regra 8: pressed e foco não desenhados no Figma.
  */
 const COMPACT_DEFAULT_MODES: readonly ViewMode[] = ["grid", "list"]
 
@@ -100,7 +102,8 @@ function ViewModeToggle({ mode, onModeChange, size = "default", modes, className
               aria-label={label}
               onClick={() => onModeChange?.(value)}
               className={cn(
-                "flex items-center gap-2 rounded-md px-1 py-1.5 text-xs font-semibold transition-colors",
+                "flex items-center gap-2 rounded-md px-1 py-1.5 text-xs font-semibold transition-[color,background-color,opacity] active:opacity-70",
+                "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
                 compact && "touch-target px-2",
                 selected
                   ? cn("bg-zinc-600 text-brand-teal-light", !compact && "px-3")

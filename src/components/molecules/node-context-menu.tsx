@@ -53,6 +53,9 @@ export interface NodeContextMenuProps extends React.ComponentProps<"div"> {
  * `NodeContextMenuItem` só renderiza a lista quando `options` existe, então
  * clicar não abria nada. A 2ª linha (nova condição) já estava correta.
  * Adicionadas as mesmas listas de opções.
+ *
+ * 🧩 Regra 8: hover, pressed e foco do toggle E/OU e do botão de remover
+ * não desenhados no Figma.
  */
 function NodeContextMenu({
   state = "floating-info-panel",
@@ -92,7 +95,7 @@ function NodeContextMenu({
             type="button"
             aria-label="Remover condição"
             onClick={onRemoveCondition}
-            className="ml-auto text-zinc-400 hover:text-zinc-600 dark:text-zinc-500 dark:hover:text-zinc-300"
+            className="ml-auto rounded-sm text-zinc-400 transition-[color,opacity] hover:text-zinc-600 active:opacity-70 dark:text-zinc-500 dark:hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50"
           >
             <X aria-hidden="true" className="size-4" />
           </button>
@@ -104,8 +107,9 @@ function NodeContextMenu({
             aria-pressed={logicalOperator === "and"}
             onClick={() => onLogicalOperatorChange?.("and")}
             className={cn(
-              "rounded-sm px-3 py-1 text-[0.5625rem] font-bold",
-              logicalOperator === "and" ? "bg-brand-teal-action text-brand-teal-foreground" : "text-zinc-400"
+              "rounded-sm px-3 py-1 text-[0.5625rem] font-bold transition-[color,background-color,opacity] active:opacity-70",
+              "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-white/60",
+              logicalOperator === "and" ? "bg-brand-teal-action text-brand-teal-foreground" : "text-zinc-400 hover:text-zinc-200"
             )}
           >
             E
@@ -115,8 +119,9 @@ function NodeContextMenu({
             aria-pressed={logicalOperator === "or"}
             onClick={() => onLogicalOperatorChange?.("or")}
             className={cn(
-              "rounded-sm px-3 py-1 text-[0.5625rem] font-bold",
-              logicalOperator === "or" ? "bg-brand-teal-action text-brand-teal-foreground" : "text-zinc-400"
+              "rounded-sm px-3 py-1 text-[0.5625rem] font-bold transition-[color,background-color,opacity] active:opacity-70",
+              "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-white/60",
+              logicalOperator === "or" ? "bg-brand-teal-action text-brand-teal-foreground" : "text-zinc-400 hover:text-zinc-200"
             )}
           >
             OU

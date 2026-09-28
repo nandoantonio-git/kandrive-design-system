@@ -45,6 +45,8 @@ export interface SearchInputProps
  * já estabelecido no restante do projeto, não a fonte SF Pro/glifo SF
  * Symbol literais do node (mesmo critério de reuso de ícone já usado em
  * outros átomos deste arquivo).
+ *
+ * 🧩 Regra 8: hover do campo não desenhado no Figma.
  */
 function SearchInput({
   className,
@@ -93,12 +95,12 @@ function SearchInput({
         placeholder={placeholder}
         className={cn(
           "relative h-9 w-full rounded-full bg-transparent pr-3 pl-9 text-base text-zinc-900 placeholder:text-zinc-500 dark:text-zinc-100 dark:placeholder:text-zinc-400",
-          "transition-colors",
+          "transition-colors hover:bg-zinc-500/5 dark:hover:bg-zinc-400/10",
           "focus-visible:outline-none focus-visible:ring-3",
           state === "success" &&
             "focus-visible:ring-[color:var(--brand-feedback-success-default,#096)]/50",
           state === "danger" && "focus-visible:ring-destructive/50",
-          state === undefined && "focus-visible:ring-brand-teal/50",
+          state === undefined && "focus-visible:ring-brand-teal-action/50",
           "disabled:pointer-events-none disabled:opacity-50",
           "aria-invalid:ring-3 aria-invalid:ring-destructive/20"
         )}

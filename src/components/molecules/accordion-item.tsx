@@ -25,6 +25,8 @@ export interface AccordionItemProps extends Omit<React.ComponentProps<"details">
  * - Expanded=true: Figma-confirmado, vem da tela de FAQ.
  * - 🧩 Expanded=false: no Figma é o mesmo item sem o painel e com o chevron
  *   girado; aqui, o giro de 180° é o do `FaqInfoCardCollapsed`.
+ *
+ * 🧩 Regra 8: hover/pressed/foco do `<summary>` não desenhados no Figma.
  */
 function AccordionItem({ question, children, chevron: Chevron = DefaultChevron, className, ...props }: AccordionItemProps) {
   return (
@@ -33,7 +35,7 @@ function AccordionItem({ question, children, chevron: Chevron = DefaultChevron, 
       className={cn("group border-b border-zinc-500/20 py-4 last:border-b-0 dark:border-zinc-400/20", className)}
       {...props}
     >
-      <summary className="flex cursor-pointer list-none items-start justify-between gap-2 text-sm font-medium text-brand-secondary-dark [&::-webkit-details-marker]:hidden">
+      <summary className="flex cursor-pointer list-none items-start justify-between gap-2 rounded-sm text-sm font-medium text-brand-secondary-dark transition-opacity hover:opacity-80 active:opacity-60 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 [&::-webkit-details-marker]:hidden">
         {question}
         <Chevron
           className="mt-0.5 size-4 shrink-0 transition-transform motion-safe:duration-150 group-open:rotate-180"

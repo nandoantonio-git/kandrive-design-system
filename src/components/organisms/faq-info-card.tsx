@@ -58,6 +58,8 @@ export interface FaqInfoCardProps extends React.ComponentProps<"div"> {
  * expandido (botão "Recolher" fixo, sem alternância "Expandir"/"Recolher"
  * como no card colapsado) — representa o item já aberto dentro de uma
  * lista de FAQ, não um teaser recolhível.
+ *
+ * 🧩 Regra 8: foco do botão "Recolher"/"Expandir" não desenhado no Figma.
  */
 function FaqInfoCard({
   variant = "faq",
@@ -112,7 +114,8 @@ function FaqInfoCard({
         <button
           type="button"
           onClick={toggleCollapsed}
-          className="shrink-0 rounded-md border border-zinc-200 bg-white/80 px-2 py-1 text-[0.625rem] text-brand-secondary transition-colors hover:bg-white active:opacity-70 dark:border-zinc-700 dark:bg-zinc-900/80 dark:hover:bg-zinc-900"
+          aria-expanded={!collapsed}
+          className="shrink-0 rounded-md border border-zinc-200 bg-white/80 px-2 py-1 text-[0.625rem] text-brand-secondary transition-[color,background-color,opacity] focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 hover:bg-white active:opacity-70 dark:border-zinc-700 dark:bg-zinc-900/80 dark:hover:bg-zinc-900"
         >
           {collapsed ? "Expandir" : "Recolher"}
         </button>

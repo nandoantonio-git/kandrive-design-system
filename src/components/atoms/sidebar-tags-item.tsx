@@ -21,6 +21,10 @@ export interface SidebarTagsItemProps
  * codificada ad hoc dentro de `organism/Sidebar` (US-006) — mesmo ponto
  * `bg-brand-teal-action` (`#007e96`, Figma-confirmado no asset `Ellipse 14`) +
  * texto `brand-secondary-dark`, agora como átomo próprio com node real.
+ *
+ * No Figma V0.2.1 o 3º valor se chama `State=Pressed`: o mesmo fundo agora
+ * também aparece no `:active` real. 🧩 Regra 8: foco e disabled não
+ * desenhados no Figma.
  */
 function SidebarTagsItem({
   label,
@@ -40,9 +44,13 @@ function SidebarTagsItem({
       data-slot="sidebar-tags-item"
       data-state={visualState}
       data-selected={isSelected || undefined}
+      aria-pressed={isSelected}
       onClick={onClick}
       className={cn(
-        "flex w-full items-start rounded-[6px] py-0.5",
+        "group flex w-full items-start rounded-[6px] py-0.5 transition-colors",
+        "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
+        "active:bg-[#00000024] dark:active:bg-[#ffffff24]",
+        "disabled:pointer-events-none disabled:opacity-50",
         isSelected && "bg-[#00000024] dark:bg-[#ffffff24]",
         className
       )}
@@ -50,9 +58,9 @@ function SidebarTagsItem({
     >
       <span
         className={cn(
-          "flex w-full items-center gap-1.5 px-5",
+          "flex w-full items-center gap-1.5 px-5 transition-colors",
           isHover && "bg-effect-overlay-subtle",
-          !isSelected && "hover:bg-effect-overlay-subtle"
+          !isSelected && "group-hover:bg-effect-overlay-subtle"
         )}
       >
         <span aria-hidden="true" className="size-[7px] shrink-0 rounded-full bg-brand-teal-action" />

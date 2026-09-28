@@ -17,6 +17,8 @@ export interface ChipProps extends React.ComponentProps<"button"> {
  *
  * Texto de 12px: é microtexto de rótulo de navegação, dentro da exceção da
  * Regra 4 (≥ ~11px). Com toque, a área clicável cresce até 44px (`touch-target`).
+ *
+ * 🧩 Regra 8: hover do marcado, pressed e disabled não desenhados no Figma.
  */
 function Chip({ selected = false, className, type, ...props }: ChipProps) {
   return (
@@ -26,10 +28,11 @@ function Chip({ selected = false, className, type, ...props }: ChipProps) {
       data-selected={selected || undefined}
       aria-pressed={selected}
       className={cn(
-        "touch-target inline-flex h-7 shrink-0 cursor-pointer items-center justify-center rounded-full px-4 text-xs whitespace-nowrap transition-colors",
+        "touch-target inline-flex h-7 shrink-0 cursor-pointer items-center justify-center rounded-full px-4 text-xs whitespace-nowrap transition-[color,background-color,opacity]",
         "focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none",
+        "active:opacity-70 disabled:pointer-events-none disabled:opacity-50",
         selected
-          ? "bg-brand-teal-action text-brand-teal-foreground"
+          ? "bg-brand-teal-action text-brand-teal-foreground hover:bg-brand-teal-action/90"
           : "bg-neutral-surface-background-alt text-neutral-text-secondary hover:bg-neutral-surface-subtle",
         className
       )}

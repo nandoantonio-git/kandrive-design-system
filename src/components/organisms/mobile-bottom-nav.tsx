@@ -78,6 +78,9 @@ export interface MobileBottomNavProps extends React.ComponentProps<"div"> {
  * `bg-effect-glass-white-70/70` — o `/70` extra multiplicava a opacidade
  * já embutida no token (70%) por mais 70%, resultando em ~49% real, bem
  * mais transparente que o Figma. Removido o modificador solto.
+ *
+ * 🧩 Regra 8: hover/pressed/foco dos destinos, do FAB e do ✕ não desenhados
+ * no Figma.
  */
 function MobileBottomNav({
   action = "add",
@@ -114,7 +117,7 @@ function MobileBottomNav({
               type="button"
               aria-current={selected ? "page" : undefined}
               onClick={() => onNavigate?.(value)}
-              className="touch-target flex cursor-pointer flex-col items-center gap-2 rounded-lg transition-colors focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none"
+              className="touch-target flex cursor-pointer flex-col items-center gap-2 rounded-lg transition-[color,opacity] hover:opacity-80 active:opacity-60 focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none"
             >
               <span className={cn("flex h-[22px] items-end", selected ? "text-brand-teal" : "text-effect-overlay-default/50")}>
                 <Glyph aria-hidden="true" className="h-[19px] w-auto" />
@@ -131,8 +134,8 @@ function MobileBottomNav({
           onClick={onAction}
           aria-label={action === "add" ? "Adicionar" : "Confirmar"}
           className={cn(
-            "absolute top-0 flex size-[62px] cursor-pointer items-center justify-center rounded-full bg-brand-teal-action text-brand-teal-foreground shadow-[0_0_4px_rgba(0,0,0,0.25)] transition-transform",
-            "focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none active:scale-95",
+            "absolute top-0 flex size-[62px] cursor-pointer items-center justify-center rounded-full bg-brand-teal-action text-brand-teal-foreground shadow-[0_0_4px_rgba(0,0,0,0.25)] transition-[background-color,transform] hover:bg-brand-teal-action/90",
+            "focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none motion-safe:active:scale-95",
             left ? "left-4" : "right-4"
           )}
         >
@@ -146,8 +149,8 @@ function MobileBottomNav({
           onClick={onCancel}
           aria-label="Cancelar"
           className={cn(
-            "absolute top-[9px] flex size-11 cursor-pointer items-center justify-center rounded-full bg-neutral-surface-constant-light text-destructive shadow-[0_0_4px_rgba(0,0,0,0.25)] transition-transform",
-            "focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none active:scale-95",
+            "absolute top-[9px] flex size-11 cursor-pointer items-center justify-center rounded-full bg-neutral-surface-constant-light text-destructive shadow-[0_0_4px_rgba(0,0,0,0.25)] transition-[opacity,transform] hover:opacity-80",
+            "focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none motion-safe:active:scale-95",
             left ? "left-[94px]" : "right-[94px]"
           )}
         >

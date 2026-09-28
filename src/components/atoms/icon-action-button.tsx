@@ -48,7 +48,7 @@ function IconActionButton({
       className={cn(
         "inline-flex size-8 shrink-0 items-center justify-center rounded-full transition-all",
         "motion-safe:active:scale-90",
-        "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
+        "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
         "disabled:pointer-events-none disabled:opacity-40",
         className
       )}

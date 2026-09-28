@@ -72,6 +72,9 @@ export interface FileListProps extends React.ComponentProps<"div"> {
  * em `atom/CloseButton`. Adicionadas classes `hover:`/`active:` reais
  * (interação de mouse funciona sem prop nenhuma); a prop `state` continua
  * funcionando por cima pra fixar um estado estático nas stories.
+ *
+ * 🧩 Regra 8: foco não desenhado no Figma. Com `onClick`, a linha vira
+ * `role="button"` com Enter/Espaço.
  */
 function FileList({
   fileName,
@@ -81,17 +84,31 @@ function FileList({
   size,
   showIcon = true,
   className,
+  onClick,
+  onKeyDown,
   ...props
 }: FileListProps) {
   const isSm = format === "list-sm"
+  const interactive = onClick !== undefined
 
   return (
     <div
       data-slot="file-list"
       data-format={format}
       data-state={state}
+      role={interactive ? "button" : undefined}
+      tabIndex={interactive ? 0 : undefined}
+      onClick={onClick}
+      onKeyDown={(event) => {
+        onKeyDown?.(event)
+        if (interactive && event.target === event.currentTarget && (event.key === "Enter" || event.key === " ")) {
+          event.preventDefault()
+          event.currentTarget.click()
+        }
+      }}
       className={cn(
         "flex w-full cursor-pointer items-center gap-4 rounded-lg px-3 py-2 transition-colors",
+        interactive && "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
         "hover:bg-zinc-100 dark:hover:bg-zinc-800 active:bg-brand-teal-light-surface",
         isSm ? "max-w-[560px]" : "max-w-[1025px]",
         state === "hover" && "bg-zinc-100 dark:bg-zinc-800",

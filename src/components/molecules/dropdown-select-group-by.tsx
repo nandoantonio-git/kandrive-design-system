@@ -48,6 +48,8 @@ export interface DropdownSelectGroupByProps
  * achado nesta US) em vez do `<button>` inline anterior — item ganha o
  * tratamento visual real (fundo por estado, texto centralizado 10px) em
  * vez da aproximação anterior (texto colorido sem fundo).
+ *
+ * 🧩 Regra 8: hover, pressed e foco do gatilho não desenhados no Figma.
  */
 function DropdownSelectGroupBy({
   options = DEFAULT_OPTIONS,
@@ -83,7 +85,11 @@ function DropdownSelectGroupBy({
           aria-expanded={expanded}
           disabled={disabled}
           onClick={() => onExpandedChange?.(!expanded)}
-          className={cn("flex w-full items-center gap-2 px-3 text-xs text-zinc-700 dark:text-zinc-300", mobile && "touch-target")}
+          className={cn(
+            "flex w-full items-center gap-2 rounded-md px-3 text-xs text-zinc-700 transition-[background-color,opacity] dark:text-zinc-300",
+            "hover:bg-[#71717a33] active:opacity-70 dark:hover:bg-[#a1a1aa33] focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
+            mobile && "touch-target"
+          )}
         >
           <Icon name="Group" className="size-3.5 shrink-0" />
           <span className="min-w-0 flex-1 truncate">{value ?? "Agrupar"}</span>

@@ -26,6 +26,9 @@ export interface DropdownSelectLabelItemProps
  *
  * 🧩 Inferido (Regra 9): `dark:bg-[#a8a6a173]` reaproveita o valor dark já
  * definido p/ `--brand-secondary-light` em index.css (mesma cor base do rgba acima).
+ *
+ * `State=Pressed` do Figma (V0.2.1) também responde ao `:active` real.
+ * 🧩 Regra 8: foco e disabled não desenhados no Figma.
  */
 function DropdownSelectLabelItem({
   label = "+ Nova Etiqueta",
@@ -40,13 +43,20 @@ function DropdownSelectLabelItem({
       data-slot="dropdown-select-label-item"
       data-active={active || undefined}
       onClick={onClick}
-      className={cn("flex h-[18px] w-fit min-w-20 items-center justify-center rounded-[4px]", className)}
+      className={cn(
+        "group flex h-[18px] w-fit min-w-20 items-center justify-center rounded-[4px]",
+        "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
+        "disabled:pointer-events-none disabled:opacity-50",
+        className
+      )}
       {...props}
     >
       <span
         className={cn(
-          "flex h-full w-full items-center rounded-[4px] pl-1.5 pr-[6.5px]",
-          active ? "bg-[#6b6b6873] dark:bg-[#a8a6a173]" : "hover:bg-[#71717a33]"
+          "flex h-full w-full items-center rounded-[4px] pl-1.5 pr-[6.5px] transition-colors",
+          active
+            ? "bg-[#6b6b6873] dark:bg-[#a8a6a173]"
+            : "group-hover:bg-[#71717a33] group-active:bg-[#6b6b6873] dark:group-active:bg-[#a8a6a173]"
         )}
       >
         <span className="flex w-fit shrink-0 items-center gap-1.5 rounded-xl py-0.5 text-[0.625rem] whitespace-nowrap text-zinc-700 dark:text-zinc-300">

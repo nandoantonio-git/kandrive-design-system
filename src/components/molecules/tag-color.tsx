@@ -44,6 +44,8 @@ export interface TagColorProps
  * com os swatches irmãos (`brand-teal`/`brand-pink-light`, que já mudam de
  * tom no tema escuro); `danger` reusa o hex real de `--destructive` em
  * `.dark` (`#e35d4a`).
+ *
+ * 🧩 Regra 8: hover, pressed e foco das bolinhas não desenhados no Figma.
  */
 function TagColor({ value = "success", onValueChange, className, ...props }: TagColorProps) {
   return (
@@ -65,7 +67,7 @@ function TagColor({ value = "success", onValueChange, className, ...props }: Tag
             aria-checked={selected}
             aria-label={color.name}
             onClick={() => onValueChange?.(color.name)}
-            className="relative flex size-[7px] items-center justify-center rounded-full before:absolute before:-inset-1 before:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal/50"
+            className="relative flex size-[7px] items-center justify-center rounded-full before:absolute before:-inset-1 before:content-[''] transition-opacity hover:opacity-70 active:opacity-50 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50"
           >
             <span
               className={cn(

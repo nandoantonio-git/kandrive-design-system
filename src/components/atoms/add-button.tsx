@@ -54,7 +54,7 @@ function AddButton({
         state === "idle" && "hover:bg-zinc-500/15 active:bg-brand-teal-action active:text-brand-teal-foreground",
         state === "hover" && "bg-zinc-500/15",
         state === "pressed" && "bg-brand-teal-action text-brand-teal-foreground",
-        "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
+        "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
         "disabled:pointer-events-none disabled:text-zinc-300 disabled:opacity-60 dark:disabled:text-zinc-700",
         className
       )}

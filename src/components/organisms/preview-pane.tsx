@@ -106,6 +106,8 @@ function fileTypeKind(format: string): FileTypeKind {
  * outros modais/painéis (`SaveOrganizationModal`, `TemplateReviewModal`,
  * `ArchiveBrowserModal`, `SaveLongTermFileStorage`) já usam `CloseButton
  * size="md"`; este nunca foi migrado.
+ *
+ * 🧩 Regra 8: pressed e foco de "Salvar"/"Compartilhar" não desenhados no Figma.
  */
 function PreviewPane({ file, tags = [], onClose, onSave, onShare, className, ...props }: PreviewPaneProps) {
   return (
@@ -163,7 +165,7 @@ function PreviewPane({ file, tags = [], onClose, onSave, onShare, className, ...
         <button
           type="button"
           onClick={onSave}
-          className="flex h-8 flex-1 items-center justify-center gap-2 rounded-md border border-zinc-200 bg-zinc-50 text-xs text-zinc-600 transition-colors hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
+          className="flex h-8 flex-1 items-center justify-center gap-2 rounded-md border border-zinc-200 bg-zinc-50 text-xs text-zinc-600 transition-colors hover:bg-zinc-100 active:bg-zinc-200 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:active:bg-zinc-700"
         >
           <BookmarkBorderGlyph aria-hidden="true" className="h-5 w-6 text-zinc-600 dark:text-zinc-300" />
           Salvar
@@ -171,7 +173,7 @@ function PreviewPane({ file, tags = [], onClose, onSave, onShare, className, ...
         <button
           type="button"
           onClick={onShare}
-          className="flex h-8 flex-1 items-center justify-center gap-2 rounded-md border border-zinc-200 bg-zinc-100 text-xs text-zinc-900 transition-colors hover:bg-zinc-200 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-700"
+          className="flex h-8 flex-1 items-center justify-center gap-2 rounded-md border border-zinc-200 bg-zinc-100 text-xs text-zinc-900 transition-colors hover:bg-zinc-200 active:bg-zinc-300 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-700 dark:active:bg-zinc-600"
         >
           <ShareGlyph aria-hidden="true" className="size-3 text-zinc-900 dark:text-zinc-100" />
           Compartilhar

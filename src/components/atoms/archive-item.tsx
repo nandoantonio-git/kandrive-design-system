@@ -169,7 +169,7 @@ function ArchiveItem({
       aria-disabled={isDisabled || undefined}
       className={cn(
         "relative flex w-fit min-w-[36.68px] shrink-0 flex-col items-center gap-1 py-0.5",
-        "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
+        "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
         isDisabled ? "cursor-not-allowed" : "cursor-pointer",
         className
       )}

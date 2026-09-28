@@ -57,6 +57,13 @@ export interface FolderTagChipProps extends React.ComponentProps<"span"> {
  * ficam com `opacity: 0`, como no Figma (`568:8695`) — sobra só o botão de
  * remover. Nenhuma tela do produto usa este chip hoje (só existe no
  * catálogo), então a fidelidade literal não quebra nenhuma composição real.
+ *
+ * No V0.2.1 o eixo `State` é Default/Hover/Pressed (`558:8055`). `Pressed`
+ * aparece no `:active` real com o mesmo fundo do `selected`. Com `onClick`,
+ * o chip vira um botão de alternância (`role="button"`, `tabIndex=0`,
+ * Enter/Espaço, `aria-pressed` = `selected`). Continua `span`, e não
+ * `<button>`, porque já contém o botão de remover. 🧩 Regra 8: foco não
+ * desenhado no Figma.
  */
 function FolderTagChip({
   label,
@@ -65,18 +72,35 @@ function FolderTagChip({
   isExpanded,
   selected,
   className,
+  onClick,
+  onKeyDown,
   ...props
 }: FolderTagChipProps) {
+  const interactive = onClick !== undefined
   return (
     <span
       data-slot="folder-tag-chip"
       data-disabled={disabled || undefined}
       data-expanded={isExpanded || undefined}
       data-selected={selected || undefined}
+      role={interactive ? "button" : undefined}
+      tabIndex={interactive && !disabled ? 0 : undefined}
+      aria-pressed={interactive ? !!selected : undefined}
+      aria-disabled={interactive && disabled ? true : undefined}
+      onClick={disabled ? undefined : onClick}
+      onKeyDown={(event) => {
+        onKeyDown?.(event)
+        if (interactive && !disabled && event.target === event.currentTarget && (event.key === "Enter" || event.key === " ")) {
+          event.preventDefault()
+          event.currentTarget.click()
+        }
+      }}
       className={cn(
         "inline-flex h-7 shrink-0 items-center gap-1.5 rounded-full bg-zinc-100 dark:bg-zinc-800 pr-2 pl-2.5 text-sm font-medium text-zinc-700 dark:text-zinc-300",
         "transition-colors",
-        "hover:bg-zinc-200 dark:hover:bg-zinc-800",
+        "hover:bg-zinc-200 dark:hover:bg-zinc-700",
+        "active:bg-brand-teal-light-surface active:text-brand-teal-dark",
+        interactive && "cursor-pointer focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
         "data-[selected]:bg-brand-teal-light-surface data-[selected]:text-brand-teal-dark",
         "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
         className
@@ -97,9 +121,9 @@ function FolderTagChip({
           onClick={onRemove}
           className={cn(
             "inline-flex size-5 shrink-0 items-center justify-center rounded-full text-neutral-text-tertiary dark:text-zinc-400",
-            "transition-colors motion-safe:active:scale-95",
-            "hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:text-zinc-700 dark:hover:text-zinc-300",
-            "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50"
+            "transition-[color,background-color,transform] motion-safe:active:scale-95",
+            "hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-700 dark:hover:text-zinc-300",
+            "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50"
           )}
         >
           <XIcon className="size-3.5" aria-hidden="true" />

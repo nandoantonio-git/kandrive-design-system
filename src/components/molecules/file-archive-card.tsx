@@ -42,7 +42,7 @@ function FileArchiveCard({
       className={cn(
         "flex w-[45.675px] flex-col items-start gap-1 py-0.5",
         interactive &&
-          "rounded-md transition-opacity hover:opacity-70 active:opacity-50 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
+          "rounded-md transition-opacity hover:opacity-70 active:opacity-50 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
         className
       )}
       onClick={interactive ? onClick : undefined}

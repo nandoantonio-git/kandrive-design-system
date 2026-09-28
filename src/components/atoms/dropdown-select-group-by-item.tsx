@@ -25,6 +25,8 @@ export interface DropdownSelectGroupByItemProps
  *
  * 🧩 Inferido (Regra 9): `dark:bg-[#a8a6a173]` reaproveita o valor dark já
  * definido p/ `--brand-secondary-light` em index.css (mesma cor base do rgba acima).
+ *
+ * 🧩 Regra 8: pressed, foco e disabled não desenhados no Figma.
  */
 function DropdownSelectGroupByItem({
   label,
@@ -40,7 +42,9 @@ function DropdownSelectGroupByItem({
       data-selected={selected || undefined}
       onClick={onClick}
       className={cn(
-        "flex w-[104px] flex-col items-center gap-1 rounded-[4px] px-1.5 py-1",
+        "flex w-[104px] flex-col items-center gap-1 rounded-[4px] px-1.5 py-1 transition-[background-color,opacity]",
+        "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
+        "active:opacity-70 disabled:pointer-events-none disabled:opacity-50",
         selected ? "bg-[#6b6b6873] dark:bg-[#a8a6a173]" : "hover:bg-[#71717a33]",
         className
       )}

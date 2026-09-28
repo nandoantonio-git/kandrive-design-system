@@ -25,6 +25,7 @@ export interface HandPickerProps extends Omit<React.ComponentProps<"div">, "onCh
  * - Celular: 36×60, raio 8, contorno `Neutral/Text/Tertiary`; barra de base
  *   `Neutral/Border/Subtle`; FAB de 10px em `Brand/Primary/Default`.
  * - É um `radiogroup`: setas trocam a opção, e o rótulo tem 16px (Regra 4).
+ * - 🧩 Regra 8: pressed não desenhado no Figma.
  */
 function HandPicker({ value, onValueChange, className, ...props }: HandPickerProps) {
   return (
@@ -52,7 +53,7 @@ function HandPicker({ value, onValueChange, className, ...props }: HandPickerPro
             tabIndex={selected ? 0 : -1}
             onClick={() => onValueChange?.(option.value)}
             className={cn(
-              "flex flex-1 cursor-pointer flex-col items-center gap-2.5 rounded-xl p-3 transition-colors tablet:w-[168px] tablet:flex-none",
+              "flex flex-1 cursor-pointer flex-col items-center gap-2.5 rounded-xl p-3 transition-[background-color,border-color,opacity] tablet:w-[168px] tablet:flex-none active:opacity-70",
               "focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none",
               selected ? "border-[1.5px] border-brand-teal bg-brand-primary-disabled" : "border border-neutral-border-subtle hover:bg-neutral-surface-subtle"
             )}
