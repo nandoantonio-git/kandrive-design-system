@@ -3,14 +3,14 @@ import * as CardNeedMoreHelpStories from './CardNeedMoreHelp.stories';
 
 <Meta of={CardNeedMoreHelpStories} />
 
-# CardNeedMoreHelp (`organism/CardNeedMoreHelp`)
+# CardNeedMoreHelp (Figma: `organism/CardNeedMoreHelp`, `1454:20981`)
 
 ## Uso
 
 Card de call-to-action pro suporte — use no fim de fluxos de ajuda/FAQ quando o usuário ainda não resolveu o problema.
 
 <Canvas of={CardNeedMoreHelpStories.Default} />
-<Controls />
+<Controls of={CardNeedMoreHelpStories.Default} />
 
 ## Composição
 
@@ -18,16 +18,24 @@ Heading "Ainda precisa de ajuda?" + parágrafo com link inline "suporte" + botã
 
 O botão "Falar com o suporte" usa um chrome próprio (borda/fundo translúcido), não `atom/Button` — é um tratamento visual glass específico deste card, diferente das variantes padrão do `atom/Button`.
 
-## Material
+### Material
 
 Fundo com o material Liquid Glass — ver [Tokens/Materials](../tokens/Materials.mdx).
-
-## Terminologia
-
-Nenhum termo proibido no texto visível.
 
 ## Estados
 
 - Default
 - Hover no botão
 - Active/Pressed no botão (feedback leve no press)
+
+| Estado | Tratamento |
+| --- | --- |
+| Hover | 🧩 botão e link "suporte" |
+| Pressed | botão (feedback leve, com transição de transform); 🧩 link "suporte" |
+| Foco | 🧩 anel de foco no botão e no link |
+
+🧩 = Regra 8: hover/pressed/foco do link e do botão não desenhados no Figma.
+
+## Terminologia
+
+Nenhum termo proibido no texto visível.

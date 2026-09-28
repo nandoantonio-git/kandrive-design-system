@@ -3,14 +3,14 @@ import * as SidebarToggleStories from './SidebarToggle.stories';
 
 <Meta of={SidebarToggleStories} />
 
-# SidebarToggle (`organism/sidebar-toggle`)
+# SidebarToggle (Figma: `organism/SidebarToggle`, `624:4573`)
 
 ## Uso
 
 Controle de expandir/colapsar a seção de armazenamento dentro da Sidebar — use só nesse contexto específico, não é um toggle genérico de collapse. Label "Armazenamento", com ícone de nuvem à esquerda.
 
 <Canvas of={SidebarToggleStories.Expanded} />
-<Controls />
+<Controls of={SidebarToggleStories.Expanded} />
 
 ## Composição
 
@@ -21,6 +21,17 @@ Não é um botão de ação de fluxo — é um disclosure trigger (expande/colap
 ## Estados
 
 Idle · Hover · Pressed, combinados com o eixo `isExpanded` (`true`/`false`). O chevron gira ao expandir/colapsar (transição CSS nativa, reversível a qualquer momento).
+
+| Estado | Tratamento |
+| --- | --- |
+| Default / Hover / Pressed | eixo `State` do Figma, × `Expanded` |
+| Foco | anel `brand-teal-action/50` |
+| Expandido/Colapsado | chevron gira, com transição |
+
+<Canvas of={SidebarToggleStories.ExpandedHover} />
+<Canvas of={SidebarToggleStories.ExpandedPressed} />
+<Canvas of={SidebarToggleStories.CollapsedHover} />
+<Canvas of={SidebarToggleStories.CollapsedPressed} />
 
 ## Terminologia
 

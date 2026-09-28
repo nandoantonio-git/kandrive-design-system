@@ -57,7 +57,7 @@ function fileTypeKind(format: string): FileTypeKind {
 }
 
 /**
- * organism/preview-pane (`1421:19405`) — Figma-confirmado: "Painel de
+ * organism/preview-pane (`724:3597`) — Figma-confirmado: "Painel de
  * visualização dos detalhes dos arquivos, apenas disponível no formato de
  * visualização em coluna." Compõe `molecule/thumbnail-large` (`1421:19570`,
  * reconciliado em US-026 — o placeholder textual anterior citava "sem asset

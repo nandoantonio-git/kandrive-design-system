@@ -17,7 +17,7 @@ export interface ThumbnailLargeProps extends React.ComponentProps<"div"> {
 }
 
 /**
- * molecule/thumbnail-large (`1421:19570`, Figma-confirmado) — "thumbnail/
+ * molecule/thumbnail-large (`790:3663`, Figma-confirmado) — "thumbnail/
  * pre-visualização do arquivo selecionado no painel detalhes presente no
  * formato de visualização coluna." Header (favicon de tipo + nome de
  * arquivo, para `fileType="image"` \| favicon + `pageLabel`, para

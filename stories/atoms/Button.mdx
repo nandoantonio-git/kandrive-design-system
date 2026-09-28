@@ -3,7 +3,7 @@ import * as ButtonStories from './Button.stories';
 
 <Meta of={ButtonStories} />
 
-# Button
+# Button (Figma: `atom/Button`, `3028:3700`)
 
 ✅ Figma-confirmado: `atom/Button` (`3028:3700`), KanDrive V0.2.1.
 
@@ -17,9 +17,11 @@ import * as ButtonStories from './Button.stories';
 | **IconButton** | Botões só com ícone (fechar, adicionar, excluir…) |
 
 <Canvas of={ButtonStories.Primary} />
-<Controls />
+<Controls of={ButtonStories.Primary} />
 
-## Variantes
+## Anatomia
+
+### Variantes
 
 | `variant` | Figma `Style` | Uso |
 | --- | --- | --- |
@@ -31,19 +33,26 @@ import * as ButtonStories from './Button.stories';
 
 `size`: `md` (36px) · `lg` (46px Rounded, 44px Pill). Raios: MD 6px, Glass 10px, LG 12px, Pill totalmente arredondado. `shape`: `rounded` · `pill`.
 
-<Canvas of={ButtonStories.Matrix} />
+### Dark mode
+
+Os fundos usam tokens de **superfície**, que mantêm o tom no Dark, então o texto branco passa no WCAG nos dois modos. Na revisão de 24/09/2026, o Destructive do Figma passou de `Danger/Default` (que fica #f07a6a no Dark, com 2,5:1) para `Danger/Surface`.
+
+### Tipografia
+
+✅ **Resolvido em 24/09/2026:** o Figma passou os rótulos para 16px (junto com o arredondamento das alturas/raios para cima — MD 36px, Glass 36px, LG Rounded 46px, LG Pill 44px), então a Regra 4 fica sem exceção. Não há mais divergência entre Figma e código nesse ponto.
 
 ## Estados
 
 Default · Hover (fundo a 80%) · Focus (anel de 3px, só pelo teclado) · Disabled (50%) · Pressed (`translate-y-px`, extensão de código pela Regra 8). No Figma, os estados foram derivados do código e não aparecem nas telas.
 
-## Dark mode
+| Estado | Tratamento |
+| --- | --- |
+| Hover | Fundo a 80% (Figma `State=Hover`) |
+| Foco | Anel de 3px, só pelo teclado (Figma `State=Focus`) |
+| Pressed 🧩 | `translate-y-px` (Regra 8) |
+| Disabled | 50% de opacidade (Figma `State=Disabled`) |
 
-Os fundos usam tokens de **superfície**, que mantêm o tom no Dark, então o texto branco passa no WCAG nos dois modos. Na revisão de 24/09/2026, o Destructive do Figma passou de `Danger/Default` (que fica #f07a6a no Dark, com 2,5:1) para `Danger/Surface`.
-
-## Tipografia
-
-✅ **Resolvido em 24/09/2026:** o Figma passou os rótulos para 16px (junto com o arredondamento das alturas/raios para cima — MD 36px, Glass 36px, LG Rounded 46px, LG Pill 44px), então a Regra 4 fica sem exceção. Não há mais divergência entre Figma e código nesse ponto.
+<Canvas of={ButtonStories.Matrix} />
 
 ## Terminologia
 

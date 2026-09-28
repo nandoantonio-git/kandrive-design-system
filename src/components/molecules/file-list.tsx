@@ -25,7 +25,7 @@ export interface FileListProps extends React.ComponentProps<"div"> {
 }
 
 /**
- * molecule/FileList (`1421:19200`, Figma-confirmado, descrição verbatim:
+ * molecule/FileList (`666:9228`, Figma-confirmado, descrição verbatim:
  * "estrutura de lista de aqurivo de todos os tipos") — linha de lista de
  * arquivo/pasta.
  *

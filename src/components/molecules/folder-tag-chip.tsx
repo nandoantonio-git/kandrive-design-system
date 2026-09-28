@@ -30,7 +30,7 @@ export interface FolderTagChipProps extends React.ComponentProps<"span"> {
 }
 
 /**
- * molecule/chip-folder-tag (Figma: `celule/chip/folder-tag`, `1421:19040`) —
+ * molecule/chip-folder-tag (Figma: `celule/chip/folder-tag`, `558:8055`) —
  * reconciliado em 2026-08-09 contra `docs/figma-inventory.md` (achados
  * críticos #5/#6). `isExpanded` e `State=Selected` são Figma-confirmados
  * como props existentes (contrariam a suposição antiga de "isExpanded

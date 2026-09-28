@@ -3,16 +3,20 @@ import * as ClearButtonStories from './ClearButton.stories';
 
 <Meta of={ClearButtonStories} />
 
-# ClearButton (`atom/ClearButton`)
+# ClearButton (Figma: `atom/IconButton`, `174:384`)
 
 ## Uso
 
 Ícone-botão sem chrome de borda pra **cancelar** uma ação em andamento (ex.: limpar um campo, descartar uma edição). Alvo de clique independente do `atom/Button` — use quando a ação for secundária/de escape, não a ação primária da tela.
 
 <Canvas of={ClearButtonStories.Default} />
-<Controls />
+<Controls of={ClearButtonStories.Default} />
 
-## Variantes de cor
+## Anatomia
+
+No Figma é o `Icon=Clear` do set `atom/IconButton`. Construído sobre a base [IconActionButton](?path=/docs/atoms-iconbutton-iconactionbutton--docs) (alvo de 32px, anel de foco, press por escala, disabled).
+
+### Variantes de cor
 
 `style`: `Default` (cinza, com pílula de fundo em hover/clicked) · `Red` · `White` — sem pílula de fundo, só o glifo muda de cor.
 
@@ -23,6 +27,14 @@ import * as ClearButtonStories from './ClearButton.stories';
 ## Estados
 
 `Idle` · `Hover` · `Clicked` · `Disabled`. Sem loading/error.
+
+| Estado | Tratamento |
+| --- | --- |
+| Hover | `default`: pílula cinza translúcida + glifo mais escuro (Figma `State=Hover`); 🧩 `red`/`white`: glifo a 80% (Regra 8) |
+| Pressed | `default`: pílula `#c8dce3` (Figma `State=Pressed`); 🧩 `red`/`white`: glifo a 60% (Regra 8); `scale-90` via base |
+| Foco 🧩 | Anel `ring-3 brand-teal-action/50`, só pelo teclado (Regra 8, via base) |
+| Disabled | 40% de opacidade, sem ponteiro (Figma `State=Disabled`) |
+| Transição | `transition-all` (via base) |
 
 ## Terminologia
 

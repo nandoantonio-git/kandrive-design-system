@@ -3,14 +3,18 @@ import * as TemplateReviewModalItemStories from './TemplateReviewModalItem.stori
 
 <Meta of={TemplateReviewModalItemStories} />
 
-# TemplateReviewModalItem (`organism/Dialog/TemplateReviewModal/Item`)
+# TemplateReviewModalItem (Figma: `organism/TemplateReviewModalItem`, `1554:21151`)
 
 ## Uso
 
 Linha da árvore de revisão de [Templates/TemplateReviewModal](../templates/TemplateReviewModal.mdx) — um item por pasta/grupo revisado, com badge de severidade (Duplicado/Incongruente/OK) e ações "Renomear"/"Editar"/"Excluir". Extraída como symbol Figma próprio em 2026-08-20 (antes só existia inline dentro do modal, via `.map()`); conteúdo idêntico ao já reconciliado em `TemplateReviewModal`, sem divergência nova encontrada.
 
 <Canvas of={TemplateReviewModalItemStories.Collapsed} />
-<Controls />
+<Controls of={TemplateReviewModalItemStories.Collapsed} />
+
+## Composição
+
+Botão "Excluir" (linha filha) usa `atom/Button` (`variant="outline"`, migrado de `PushButton isDestructive` em 25/09/2026) — chrome neutro, só o texto na cor de destrutivo.
 
 ## Estados
 
@@ -20,9 +24,18 @@ Linha da árvore de revisão de [Templates/TemplateReviewModal](../templates/Tem
 
 O estado de expansão é controlado pelo componente pai (`TemplateReviewModal`), repassado via `isExpanded`/`onToggleExpand` — este componente não guarda estado próprio.
 
-## Composição
+| Estado | Tratamento |
+| --- | --- |
+| Collapsed/Expanded | `isExpanded`/`onToggleExpand` |
+| Hover / Pressed / Foco (chevron) | 🧩 com anel de foco; `disabled:pointer-events-none` |
+| Foco ("Renomear"/"Editar") | anel `brand-teal-action/50` |
+| Hover / Pressed / Foco ("Excluir") | herdados do `atom/Button` |
 
-Botão "Excluir" (linha filha) usa `atom/Button` (`variant="outline"`, migrado de `PushButton isDestructive` em 25/09/2026) — chrome neutro, só o texto na cor de destrutivo.
+🧩 = Regra 8: hover/pressed/foco do chevron não desenhados no Figma.
+
+<Canvas of={TemplateReviewModalItemStories.Expanded} />
+<Canvas of={TemplateReviewModalItemStories.Incongruente} />
+<Canvas of={TemplateReviewModalItemStories.Ok} />
 
 ## Terminologia
 

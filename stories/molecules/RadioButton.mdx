@@ -3,7 +3,7 @@ import * as RadioButtonStories from './RadioButton.stories';
 
 <Meta of={RadioButtonStories} />
 
-# RadioButton (`molecule/radioButton`)
+# RadioButton (Figma: `molecule/RadioButton`, `1454:24721`)
 
 ## Uso
 
@@ -12,21 +12,26 @@ exclusivo**. Pra seleção múltipla/independente, use `Switch` ou o
 indicador de seleção de item (`SelectState`), não este componente.
 
 <Canvas of={RadioButtonStories.Group} />
-<Controls />
+<Controls of={RadioButtonStories.Group} />
 
-## API
+## Anatomia
+
+### API
 
 `option: "personal" | "saved"` + `checked`/`onCheckedChange` (controlado,
 mesmo padrão de `atom/switch`).
 
 ## Estados
 
-| Estado | Nota |
+<Canvas of={RadioButtonStories.Disabled} />
+
+| Estado | Tratamento |
 | --- | --- |
-| Unchecked | Círculo vazio, borda neutra |
-| Checked | Ponto interno na cor de marca |
-| Hover | — |
-| Active/Pressed | Feedback imediato no press |
+| Unchecked (`Selected=false`) | Círculo vazio, borda neutra |
+| Checked (`Selected=true`) | Ponto interno na cor de marca |
+| Hover | 🧩 Borda mais escura no não marcado (via `group-hover` do label) |
+| Active/Pressed | Feedback imediato no press (`active:scale-90`, com transição) |
+| Foco | Anel de 3px `Brand/Primary/Action` a 50%, só pelo teclado |
 | Disabled | Extensão de engenharia para uso em formulários reais |
 
 ## Terminologia

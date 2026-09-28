@@ -15,7 +15,7 @@ export interface ActionPillProps extends Omit<React.ComponentProps<"div">, "chil
 }
 
 /**
- * molecule/action-pill (`1421:19027`) — Figma-confirmado: "pilula de botoes
+ * molecule/action-pill (`517:3818`) — Figma-confirmado: "pilula de botoes
  * de ação principais, presente no header". Estados Figma-confirmados:
  * Default\|Disabled. Fundo usa o material Liquid Glass
  * (`effect-glass-white-70` + `effect-glass-surface-light`) — ver

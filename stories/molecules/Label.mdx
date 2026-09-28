@@ -3,19 +3,16 @@ import * as LabelStories from './Label.stories';
 
 <Meta of={LabelStories} />
 
-# Label (Figma: `molecule/Label`, `1421:18687`)
+# Label (Figma: `molecule/Label`, `302:12809`)
 
 ## Uso
 
 Pílula de dropdown de etiquetas. Use nos fluxos gerais de etiquetagem de
 arquivo — inclusive dentro do canvas de organização, onde antes existia um
-componente separado (`DropdownSelectLabel`).
+componente separado (`DropdownSelectLabel`). Sem `state`, abre e fecha sozinho pelo clique.
 
 <Canvas of={LabelStories.Default} />
-<Canvas of={LabelStories.Expanded} />
-<Canvas of={LabelStories.Disabled} />
-<Canvas of={LabelStories.ExpandedDynamicList} />
-<Controls />
+<Controls of={LabelStories.Default} />
 
 ## Anatomia
 
@@ -26,9 +23,11 @@ chevron. Quando expandida, tem 2 modos (prop `labels`):
 - **Com `labels`** (mesmo array vazio) — lista dinâmica das etiquetas
   informadas + item "+ Nova Etiqueta" (`onValueChange` seleciona).
 
-## Consolidado com `DropdownSelectLabel` (2026-08-18)
+<Canvas of={LabelStories.ExpandedDynamicList} />
 
-`molecule/Label` (`1421:18687`) e `molecule/DropdownSelect/Label`
+### Histórico
+
+**Consolidado com `DropdownSelectLabel` (2026-08-18).** `molecule/Label` (citado então como `1421:18687`) e `molecule/DropdownSelect/Label`
 (`1439:19650`) eram estruturalmente quase idênticos no Figma (mesma
 legenda, mesma pílula, mesmo item de rodapé) e viviam como 2 componentes
 de código separados — achado de duplicação registrado desde 2026-08-11
@@ -41,10 +40,24 @@ usava — não há mais 2 implementações pra manter sincronizadas.
 
 ## Estados
 
+<Canvas of={LabelStories.Expanded} />
+<Canvas of={LabelStories.Disabled} />
+
 - `default` — fechado
 - `expanded` — aberto, mostrando busca e lista de etiquetas (ou lista
   dinâmica de `labels`, se informado)
 - `disabled`
+
+| Estado | Tratamento |
+| --- | --- |
+| Default (`Expanded=false`) | Fechado |
+| Expandido (`Expanded=true`) | Aberto; escolher uma opção atualiza a pílula e fecha |
+| Disabled (`State=Disabled`) | Opacidade reduzida, sem clique |
+| Hover | Fundo `#71717a33` na pílula |
+| Pressed | Feedback no `:active` |
+| Foco | 🧩 Anel de 3px `Brand/Primary/Action` a 50% nos 2 gatilhos, nas opções e na busca, só pelo teclado |
+| Fechar com Esc / clique fora | 🧩 Extensão de engenharia |
+| Busca | 🧩 `<input>` de verdade que filtra as opções |
 
 ## Terminologia
 

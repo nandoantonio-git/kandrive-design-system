@@ -26,7 +26,7 @@ export interface ContextHeaderProps extends React.ComponentProps<"div"> {
 }
 
 /**
- * molecule/context-header (`1421:19589`, Figma-confirmado) — "header de
+ * molecule/context-header (`790:7618`, Figma-confirmado) — "header de
  * contexto para dar feedback de quantos itens estão sendo selecionados".
  * Botão limpar seleção (glifo `clear`) + contador + divisor + ações
  * (`atom/Icon/ShareFile`, baixar, `atom/Icon/FileMoveRight`,

@@ -3,7 +3,7 @@ import * as NodeContextMenuItemStories from './NodeContextMenuItem.stories';
 
 <Meta of={NodeContextMenuItemStories} />
 
-# NodeContextMenuItem (Figma: `celule/nodoContextMenuItem`, `1421:20528`)
+# NodeContextMenuItem (Figma: `molecule/NodeContextMenuItem`, `1384:17074`)
 
 ## Uso
 
@@ -12,16 +12,11 @@ condição/filtro do `molecule/nodoContextMenu`. Peça de composição — não 
 fora desse menu de contexto do nodo.
 
 <Canvas of={NodeContextMenuItemStories.Placeholder} />
-<Controls />
+<Controls of={NodeContextMenuItemStories.Placeholder} />
 
-<Canvas of={NodeContextMenuItemStories.Filled} />
-<Canvas of={NodeContextMenuItemStories.StaticValue} />
-<Canvas of={NodeContextMenuItemStories.Error} />
-<Canvas of={NodeContextMenuItemStories.Expanded} />
-<Canvas of={NodeContextMenuItemStories.Disabled} />
-<Canvas of={NodeContextMenuItemStories.AllStates} />
+## Anatomia
 
-## Tipos (`kind`)
+### Tipos (`kind`)
 
 `attribute`, `condition`, `value`, `date`, `interval` — combináveis com
 `hasChevron`, `expanded`, `selectedOption`, `value` e `error`.
@@ -30,14 +25,29 @@ Seleção de data normalmente usaria um componente de calendário próprio (do
 navegador ou de uma biblioteca externa) — isso não faz parte deste
 componente, que cobre só a pílula seletora.
 
+<Canvas of={NodeContextMenuItemStories.StaticValue} />
+
 ## Estados
 
-- Placeholder — fechado, sem valor
-- Filled — fechado, com valor
-- Expanded — aberto, lista de opções (`options`)
-- Selected option — opção marcada dentro da lista
-- Error — borda/anel de erro (prop `error`)
-- Disabled
+<Canvas of={NodeContextMenuItemStories.AllStates} />
+<Canvas of={NodeContextMenuItemStories.Filled} />
+<Canvas of={NodeContextMenuItemStories.Expanded} />
+<Canvas of={NodeContextMenuItemStories.Error} />
+<Canvas of={NodeContextMenuItemStories.Disabled} />
+
+| Estado | Tratamento |
+| --- | --- |
+| Placeholder | Fechado, sem valor |
+| Filled | Fechado, com valor |
+| Expanded (`Open=true`) | Aberto, lista de opções (`options`); escolher preenche a pílula e fecha |
+| Selected option | Opção marcada dentro da lista |
+| Error (`Status=Error`) | Borda/anel de erro (prop `error`) |
+| Disabled | Sem clique |
+| Hover (gatilho) | Brilho (`brightness`), com transição |
+| Hover / pressed das opções | 🧩 `active:opacity-70` nas opções |
+| Foco | 🧩 Anel de 3px `Brand/Primary/Action` a 50% no gatilho e anel interno nas opções, só pelo teclado |
+
+🧩 Regra 8: foco do gatilho e hover/pressed/foco das opções não desenhados no Figma.
 
 ## Terminologia
 

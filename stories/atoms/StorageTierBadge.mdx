@@ -3,16 +3,18 @@ import * as StorageTierBadgeStories from './StorageTierBadge.stories';
 
 <Meta of={StorageTierBadgeStories} />
 
-# StorageTierBadge (`atom/StorageTierBadge`)
+# StorageTierBadge (Figma: `atom/StorageTierBadge`, `1023:13787`)
 
 ## Uso
 
 Selo por-arquivo indicando o tier de armazenamento do item (Acesso Rápido/Longo Prazo) — usado dentro de `organism/CleanSpaceStorage`, no escopo de um item individual. Não é um controle de navegação/filtro: a segmentação sistêmica entre arquivos "correntes" e "de longo prazo" continua sendo resolvida por pasta/diretório no sistema de arquivos — este badge só rotula o tier do item numa tela de detalhe.
 
 <Canvas of={StorageTierBadgeStories.Current} />
-<Controls />
+<Controls of={StorageTierBadgeStories.Current} />
 
-## Rótulos
+## Anatomia
+
+### Rótulos
 
 | Valor da prop `tier` | Rótulo exibido |
 | --- | --- |
@@ -21,4 +23,8 @@ Selo por-arquivo indicando o tier de armazenamento do item (Acesso Rápido/Longo
 
 ## Estados
 
-Elemento de exibição estática — não há hover/pressed/disabled, só o rótulo com o tier do arquivo.
+Elemento de exibição estática — não há hover/pressed/disabled, só o rótulo com o tier do arquivo. Sem estados interativos.
+
+## Terminologia
+
+"Acesso rápido" e "Longo prazo" — ambos aprovados (Regra 5). Nunca "camada", "frio" ou "congelado" como rótulo.

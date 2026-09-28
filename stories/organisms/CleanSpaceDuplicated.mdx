@@ -3,18 +3,24 @@ import * as CleanSpaceDuplicatedStories from './CleanSpaceDuplicated.stories';
 
 <Meta of={CleanSpaceDuplicatedStories} />
 
-# CleanSpaceDuplicated (`organism/cleanSpaceStorage/Duplicated`)
+# CleanSpaceDuplicated (Figma: `organism/CleanSpaceDuplicated`, `1554:21265`)
 
 ## Uso
 
 Seção "Arquivos duplicados" de [Templates/CleanSpaceStorage](../templates/CleanSpaceStorage.mdx) — agrupa possíveis cópias, com ação de excluir cópias por grupo. Extraída como symbol Figma próprio em 2026-08-20 (antes só existia inline dentro do modal); conteúdo idêntico ao já reconciliado em `CleanSpaceStorage`, sem divergência nova encontrada.
 
 <Canvas of={CleanSpaceDuplicatedStories.Default} />
-<Controls />
+<Controls of={CleanSpaceDuplicatedStories.Default} />
 
 ## Composição
 
 Badge "Prévia" avisa que a detecção de duplicados ainda não existe de verdade (grupos de exemplo ilustrativos, Figma-confirmado). "Excluir cópias" usa `atom/Button` (`variant="outline"`, migrado de `PushButton isDestructive` em 25/09/2026) — chrome neutro/glass, só o texto na cor de destrutivo, nunca fundo vermelho preenchido.
+
+## Estados
+
+| Estado | Tratamento |
+| --- | --- |
+| Hover / Pressed / Foco | herdados do `atom/Button` ("Excluir cópias") |
 
 ## Terminologia
 

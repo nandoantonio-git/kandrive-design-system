@@ -3,7 +3,7 @@ import * as DropListItemStories from './DropListItem.stories';
 
 <Meta of={DropListItemStories} />
 
-# DropListItem (Figma: `celule/dropListItem`, `1440:23803`)
+# DropListItem (Figma: `molecule/DropListItem`, `1440:23803`)
 
 ## Uso
 
@@ -13,16 +13,24 @@ nunca isolado numa tela. O item ocupa a largura total do menu que o
 contém.
 
 <Canvas of={DropListItemStories.Idle} />
-<Controls />
-
-<Canvas of={DropListItemStories.Active} />
-<Canvas of={DropListItemStories.Hover} />
+<Controls of={DropListItemStories.Idle} />
 
 ## Estados
+
+<Canvas of={DropListItemStories.Hover} />
+<Canvas of={DropListItemStories.Active} />
 
 - `idle`
 - `hover` — fundo cinza claro
 - `pressed` — fundo escuro semitransparente (Figma chama esse eixo de `Clicked`; normalizado no código pra bater com o resto do catálogo)
+
+| Estado | Tratamento |
+| --- | --- |
+| Default (`State=Default`) | Transparente |
+| Hover (`State=Hover`) | Fundo cinza claro |
+| Pressed (`State=Pressed`) | Fundo escuro semitransparente, também no `:active` real |
+| Foco | 🧩 Anel interno de 3px `Brand/Primary/Action` a 50%, só pelo teclado |
+| Disabled | 🧩 Opacidade reduzida, sem clique |
 
 ## Terminologia
 

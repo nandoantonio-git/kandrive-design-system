@@ -3,7 +3,7 @@ import * as Stories from './FileSelectList.stories';
 
 <Meta of={Stories} />
 
-# FileSelectList
+# FileSelectList (Figma: `file-list-section`, `1714:625`)
 
 🧩 Extraído de frames do Figma: o `file-list-section` de `Organize/ChooseMethod/Mobile` e de `LongTermStorage/SelectFiles/Mobile` (KanDrive V0.2.1).
 
@@ -12,9 +12,26 @@ import * as Stories from './FileSelectList.stories';
 A seção "Selecionar arquivos" das telas de tarefa no mobile. A seleção é controlada (`selected` + `onSelectedChange`), para a página mostrar o contador (`ContextHeader` Minimal) e confirmar pelo FAB do `MobileBottomNav`.
 
 <Canvas of={Stories.Default} />
-<Controls />
+<Controls of={Stories.Default} />
 
-## Tokens
+## Composição
+
+### Tokens
 
 - Título: 11px Bold em maiúsculas, `Neutral/Text/Tertiary`.
 - Lista: card `Neutral/Surface/Card`, borda `Neutral/Border/Subtle`, raio 12, com linhas [`FileSelectRow`](?path=/docs/molecules-fileselectrow--docs).
+
+## Estados
+
+| Estado | Tratamento |
+| --- | --- |
+| Marcado/Desmarcado | por linha, via `selected` |
+| Hover / Pressed / Foco | herdados do [`FileSelectRow`](?path=/docs/molecules-fileselectrow--docs) e do `atom/Checkbox` |
+
+## Mobile
+
+É um componente só-mobile: a story `Default` já é a versão mobile.
+
+## Terminologia
+
+"Selecionar arquivos" é o título fixo; não está na lista aprovada nem na proibida (Regra 5). Nomes e tamanhos de arquivo são conteúdo de exemplo.

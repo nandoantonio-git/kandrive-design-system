@@ -3,14 +3,38 @@ import * as ChipStories from './Chip.stories';
 
 <Meta of={ChipStories} />
 
-# Chip
+# Chip (Figma: `atom/Chip`, `3028:3707`)
 
 ✅ Figma-confirmado: `atom/Chip` (`3028:3707`), eixo `Selected`, material Solid.
+
+## Uso
 
 É um chip de seleção. Hoje ele é usado na barra de seções de Settings e Payment no mobile (`MobileFooterSettings`), onde é o estilo canônico definido em 24/09/2026.
 
 <Canvas of={ChipStories.Default} />
-<Controls />
+<Controls of={ChipStories.Default} />
+
+## Anatomia
+
+### Variantes
+
 <Canvas of={ChipStories.Selected} />
 
+### Tipografia
+
 O texto tem 12px: é microtexto de rótulo de navegação, dentro da exceção da Regra 4. Com toque, a área clicável cresce até 44px.
+
+## Estados
+
+| Estado | Tratamento |
+| --- | --- |
+| Desmarcado / Marcado | Figma `Selected=false/true` |
+| Hover | Fundo do desmarcado; 🧩 hover do marcado (Regra 8) |
+| Pressed 🧩 | `active:opacity-70` (Regra 8) |
+| Foco | Anel `ring-3 brand-teal-action/50`, só pelo teclado |
+| Disabled 🧩 | 50% de opacidade, sem ponteiro (Regra 8) |
+| Transição | Cor e opacidade animadas |
+
+## Terminologia
+
+O rótulo é conteúdo livre: cada uso passa o nome da seção (ex.: as seções de Settings/Payment em `MobileFooterSettings`).

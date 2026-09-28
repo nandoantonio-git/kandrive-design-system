@@ -15,7 +15,7 @@ export interface StorageTierBadgeProps
 }
 
 /**
- * atom/StorageTierBadge (`1457:21014`) — Figma-confirmado, 2 variantes
+ * atom/StorageTierBadge (`1023:13787`) — Figma-confirmado, 2 variantes
  * (`tier=current` / `tier=long term`). Escopo confirmado pelo usuário:
  * rótulo de item individual (ex.: linha de arquivo em
  * `organism/cleanSpaceStorage`), não navegação/filtro sistêmico — a

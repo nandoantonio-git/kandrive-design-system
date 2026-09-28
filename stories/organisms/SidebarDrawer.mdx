@@ -3,23 +3,51 @@ import * as SidebarDrawerStories from './SidebarDrawer.stories';
 
 <Meta of={SidebarDrawerStories} />
 
-# SidebarDrawer
+# SidebarDrawer (Figma: `Home/Drawer/Mobile`, `3139:49490`)
 
-✅ Figma-confirmado: `organism/Sidebar`, variante `Device=Mobile` (`1771:35845`). A tela de referência é `Home/Drawer/Mobile`.
+✅ Figma-confirmado: `organism/Sidebar`, variante `Device=Mobile` (`1771:35845`). A tela de referência é `Home/Drawer/Mobile` (`3139:49490`).
+
+## Uso
 
 É a **gaveta do mobile**. Abre pelo ☰ do Header em todas as telas, exceto nas de feedback visual. Reúne o que no desktop fica na Sidebar e no Header: configuração e informações gerais.
 
 <Canvas of={SidebarDrawerStories.Interactive} />
+<Controls of={SidebarDrawerStories.Interactive} />
 
-## Ordem
+## Composição
+
+### Ordem
 
 Guardados · Armazenamento · Etiquetas | Lixeira | Configurações · Ajuda
 
 Pessoal, Compartilhados, Recentes e Favoritos ficam no `MobileBottomNav`, então cada item aparece num lugar só.
 
-## Comportamento
+### Comportamento
 
 - Fecha pelo ☰, pelo Esc ou tocando no fundo escurecido.
 - É um `role="dialog"` com `aria-modal`, e o foco vai para o primeiro botão ao abrir.
+
+## Estados
+
 - Os ícones mudam de cor por estado, como no `atom/SidebarOption`: Default, Hover (`Brand/Primary/Default`) e Pressed (`Brand/Primary/Dark`).
 - 🧩 O destaque do item atual (`aria-current`) é uma extensão de código: o Figma não tem esse estado.
+
+| Estado | Tratamento |
+| --- | --- |
+| Aberta/Fechada | `open`/`onOpenChange`; fecha pelo ☰, Esc ou fundo escurecido |
+| Hover | ícone `Brand/Primary/Default`, com transição de cor; 🧩 fundo `Neutral/Surface/Subtle` |
+| Pressed | ícone `Brand/Primary/Dark`, fundo `Neutral/Surface/Medium` |
+| Foco | anel de foco visível; foco inicial no primeiro botão ao abrir |
+| Item atual | 🧩 `aria-current`, fundo `Neutral/Surface/Subtle` |
+
+🧩 = extensão de código sem estado correspondente no Figma.
+
+<Canvas of={SidebarDrawerStories.Open} />
+
+## Mobile
+
+É um componente só-mobile: as stories acima já abrem no viewport mobile.
+
+## Terminologia
+
+Rótulos fixos: Guardados, Armazenamento, Etiquetas, Lixeira, Configurações, Ajuda. "Guardados" segue a Regra 5 ("Guardar"); nenhum termo proibido.

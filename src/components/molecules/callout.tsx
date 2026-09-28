@@ -9,7 +9,7 @@ export interface CalloutProps extends React.ComponentProps<"div"> {
 }
 
 /**
- * celule/Callout (`1421:20028`, Figma-confirmado) — "utilizado para dar
+ * celule/Callout (`1288:16935`, Figma-confirmado) — "utilizado para dar
  * avisos importantes para usuário, previsão contra erro". 2 variantes
  * (`property1`): `Default` (aviso, âmbar) e `Variant2` (informativo,
  * primária/teal). O glifo do ícone usa a MESMA classe de cor (`#80590d`)

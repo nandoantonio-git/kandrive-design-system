@@ -3,17 +3,29 @@ import * as DropdownSelectLabelItemStories from './DropdownSelectLabelItem.stori
 
 <Meta of={DropdownSelectLabelItemStories} />
 
-# DropdownSelectLabelItem (Figma: `atom/DropdownSelect/Label/Item`, `1444:21704`)
+# DropdownSelectLabelItem (Figma: `atom/DropdownSelectLabelItem`, `1444:21704`)
 
 ## Uso
 
 Item de rodapé ("+ Nova Etiqueta") usado nas listas de dropdown de etiqueta — `molecule/Label` e `molecule/DropdownSelectLabel` reusam o mesmo item pra oferecer a ação de criar uma etiqueta nova ao final da lista.
 
 <Canvas of={DropdownSelectLabelItemStories.Idle} />
-<Controls />
-
-<Canvas of={DropdownSelectLabelItemStories.AllStates} />
+<Controls of={DropdownSelectLabelItemStories.Idle} />
 
 ## Estados
 
-`Idle` · `Hover` (via `:hover` nativo) · `Clicked` (prop `active`). Sem disabled/loading/error.
+`Idle` · `Hover` (via `:hover` nativo) · `Clicked` (prop `active`). Sem loading/error.
+
+| Estado | Tratamento |
+| --- | --- |
+| Hover | Fundo `#71717a33` (Figma `State=Hover`), via `group-hover` |
+| Pressed | Fundo do Figma `State=Pressed`, no `:active` real ou fixo pela prop `active` |
+| Foco 🧩 | Anel `ring-3 brand-teal-action/50`, só pelo teclado (Regra 8) |
+| Disabled 🧩 | 50% de opacidade, sem ponteiro (Regra 8) |
+| Transição | Troca de fundo animada |
+
+<Canvas of={DropdownSelectLabelItemStories.AllStates} />
+
+## Terminologia
+
+"Nova Etiqueta" — "etiqueta" é o termo usado em toda a família de rótulos; não aparece em nenhuma lista da Regra 5 (nem aprovado nem proibido).

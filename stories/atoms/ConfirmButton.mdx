@@ -3,16 +3,20 @@ import * as ConfirmButtonStories from './ConfirmButton.stories';
 
 <Meta of={ConfirmButtonStories} />
 
-# ConfirmButton (`atom/ActionButton/Confirm`)
+# ConfirmButton (Figma: `atom/IconButton`, `174:384`)
 
 ## Uso
 
 Ícone-botão sem chrome de borda pra **confirmar** uma ação (ex.: aceitar uma sugestão, validar um campo). Par funcional do `ClearButton` — normalmente aparecem juntos (confirmar/cancelar) num mesmo contexto de edição inline.
 
 <Canvas of={ConfirmButtonStories.Default} />
-<Controls />
+<Controls of={ConfirmButtonStories.Default} />
 
-## Variantes de cor
+## Anatomia
+
+No Figma é o `Icon=Confirm` do set `atom/IconButton` (antes citado como `atom/ActionButton/Confirm`). Construído sobre a base [IconActionButton](?path=/docs/atoms-iconbutton-iconactionbutton--docs).
+
+### Variantes de cor
 
 `style`: `Default` · `Primary` · `White`.
 
@@ -23,6 +27,14 @@ import * as ConfirmButtonStories from './ConfirmButton.stories';
 ## Estados
 
 `Idle` · `Clicked` (feedback via `scale-90`) · `Disabled`. Sem loading/error.
+
+| Estado | Tratamento |
+| --- | --- |
+| Hover | Glifo mais escuro (`default`) ou a 80% (`primary`/`white`) — só cor/opacidade, sem pílula |
+| Pressed | `scale-90` (via base) + glifo a 60% (Figma `State=Pressed`) |
+| Foco 🧩 | Anel `ring-3 brand-teal-action/50`, só pelo teclado (Regra 8, via base) |
+| Disabled | 40% de opacidade, sem ponteiro (Figma `State=Disabled`) |
+| Transição | `transition-all` (via base) |
 
 ## Terminologia
 

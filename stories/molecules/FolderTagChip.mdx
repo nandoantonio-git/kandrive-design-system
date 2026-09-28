@@ -3,7 +3,7 @@ import * as FolderTagChipStories from './FolderTagChip.stories';
 
 <Meta of={FolderTagChipStories} />
 
-# FolderTagChip (Figma: `celule/chip/folder-tag`, `1421:19040`)
+# FolderTagChip (Figma: `molecule/FolderTagChip`, `558:8055`)
 
 ## Uso
 
@@ -12,7 +12,7 @@ de remoção. Use `removable` quando o chip representar um filtro ativo que o
 usuário pode limpar; sem a prop, é só um rótulo informativo.
 
 <Canvas of={FolderTagChipStories.Default} />
-<Controls />
+<Controls of={FolderTagChipStories.Default} />
 
 ## Anatomia
 
@@ -20,7 +20,7 @@ usuário pode limpar; sem a prop, é só um rótulo informativo.
 tem uma prop `isExpanded` — quando expandido, o ícone e o rótulo ficam
 visíveis e o rótulo perde o truncamento.
 
-## Colapsado (`isExpanded=false`, o padrão)
+### Colapsado (`isExpanded=false`, o padrão)
 
 <Canvas of={FolderTagChipStories.Collapsed} />
 
@@ -32,21 +32,31 @@ nome da pasta continua no DOM (não `aria-hidden`), para o leitor de tela
 anunciar mesmo com o chip visualmente vazio.
 
 <Canvas of={FolderTagChipStories.Expanded} />
-<Canvas of={FolderTagChipStories.Selected} />
+
+### Tipografia
+
+Rótulo do chip usa 14px, acima do piso mínimo de 11px definido para
+microtexto decorativo (tags/badges).
 
 ## Estados
+
+<Canvas of={FolderTagChipStories.Selected} />
 
 - `default`
 - `hover`
 - `selected`
 - `disabled`
 
+| Estado | Tratamento |
+| --- | --- |
+| Default (`State=Default`) | Chip em repouso |
+| Hover (`State=Hover`) | Destaque do chip e do X (no Dark, zinc-800 → 700) |
+| Pressed (`State=Pressed`) | Fundo do selecionado no `:active` |
+| Selecionado (`selected`) | Com `onClick`, o chip vira alternância (`role="button"`, Enter/Espaço, `aria-pressed`) |
+| Disabled | `aria-disabled`, sem clique |
+| Foco | 🧩 Anel de 3px `Brand/Primary/Action` a 50%, só pelo teclado |
+
 ## Terminologia
 
 O rótulo é conteúdo livre (nome de pasta escolhido pelo usuário), não
 texto fixo de produto.
-
-## Tipografia
-
-Rótulo do chip usa 14px, acima do piso mínimo de 11px definido para
-microtexto decorativo (tags/badges).

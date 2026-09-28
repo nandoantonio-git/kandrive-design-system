@@ -3,14 +3,14 @@ import * as CleanSpaceLargeFilesStories from './CleanSpaceLargeFiles.stories';
 
 <Meta of={CleanSpaceLargeFilesStories} />
 
-# CleanSpaceLargeFiles (`organism/cleanSpaceStorage/LargeFiles`)
+# CleanSpaceLargeFiles (Figma: `organism/CleanSpaceLargeFiles`, `1554:21264`)
 
 ## Uso
 
 Seção "Arquivos grandes" de [Templates/CleanSpaceStorage](../templates/CleanSpaceStorage.mdx) — lista os arquivos que mais ocupam espaço, com ação de excluir por item. Extraída como symbol Figma próprio em 2026-08-20 (antes só existia inline dentro do modal); conteúdo idêntico ao já reconciliado em `CleanSpaceStorage`, sem divergência nova encontrada.
 
 <Canvas of={CleanSpaceLargeFilesStories.Default} />
-<Controls />
+<Controls of={CleanSpaceLargeFilesStories.Default} />
 
 ## Composição
 
@@ -20,6 +20,10 @@ Reusa `atom/StorageTierBadge` (rótulos "Acesso rápido"/"Longo prazo") via `mol
 
 - "Desfazer seleção" — `disabled` por padrão (estado lido/neutro)
 - "Selecionar todos" — ação primária de texto
+
+| Estado | Tratamento |
+| --- | --- |
+| Hover / Pressed / Foco / Disabled | herdados do `atom/Button` e do `molecule/CleanSpaceListSelection` |
 
 ## Terminologia
 

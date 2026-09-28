@@ -3,14 +3,14 @@ import * as FaqFastLinksStories from './FaqFastLinks.stories';
 
 <Meta of={FaqFastLinksStories} />
 
-# FaqFastLinks (`organism/FAQ/FastLinks`)
+# FaqFastLinks (Figma: `organism/FaqFastLinks`, `1454:25006`)
 
 ## Uso
 
 Bloco de links de referência externa (documentação, fórum, tutoriais) — use na aba de FAQ, ao lado dos cards de dúvida frequente.
 
 <Canvas of={FaqFastLinksStories.Default} />
-<Controls />
+<Controls of={FaqFastLinksStories.Default} />
 
 ## Composição
 
@@ -21,6 +21,14 @@ Diferente de `FaqInfoCard`/`FaqInfoCardCollapsed`, este bloco não usa o materia
 ## Estados
 
 - Hover no link — sublinhado
+
+| Estado | Tratamento |
+| --- | --- |
+| Hover | 🧩 sublinhado no link |
+| Pressed | 🧩 `active:opacity-70` |
+| Foco | 🧩 anel de foco visível |
+
+🧩 = Regra 8: hover/pressed/foco dos links não desenhados no Figma.
 
 ## Terminologia
 

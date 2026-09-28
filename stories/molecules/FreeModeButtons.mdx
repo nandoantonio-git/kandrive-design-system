@@ -3,7 +3,7 @@ import * as FreeModeButtonsStories from './FreeModeButtons.stories';
 
 <Meta of={FreeModeButtonsStories} />
 
-# FreeModeButtons (Figma: `celule/MainCanvas/Organization/FreeMode/Buttons`, `1431:20043`)
+# FreeModeButtons (Figma: `molecule/FreeModeButtons`, `1431:20043`)
 
 ## Uso
 
@@ -11,7 +11,7 @@ Painel de ações do toolbar inferior do canvas Modo Livre. Escopo fechado
 nesse canvas — não é um toolbar genérico reutilizável em outras telas.
 
 <Canvas of={FreeModeButtonsStories.Default} />
-<Controls />
+<Controls of={FreeModeButtonsStories.Default} />
 
 ## Anatomia
 
@@ -21,7 +21,7 @@ Redefinir, Excluir.
 ## Estados
 
 Herda os estados de `atom/boxIconButton` (hover, active, disabled,
-focus-visible).
+focus-visible). Cada botão chama o próprio callback.
 
 ## Terminologia
 

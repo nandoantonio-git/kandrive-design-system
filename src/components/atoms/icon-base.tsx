@@ -13,7 +13,7 @@ export interface IconBaseProps extends Omit<React.ComponentProps<"span">, "child
 }
 
 /**
- * atom/icon/base (`1421:17820`) — releitura via `get_design_context` em
+ * atom/icon/base (`3024:3792`) — releitura via `get_design_context` em
  * 2026-08-11 (auditoria US-026) corrige a descrição verbatim: **"icone
  * utilizado para expandir e colapsar a sidebar"** — não "sub-componente de
  * `celule/chip/folder-tag`" como a doc anterior registrava (leitura

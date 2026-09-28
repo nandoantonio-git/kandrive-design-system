@@ -3,23 +3,36 @@ import * as FolderItemStories from './FolderItem.stories';
 
 <Meta of={FolderItemStories} />
 
-# FolderItem (Figma: `atom/FolderItem`, `1440:24306`)
+# FolderItem (Figma: `molecule/FileItem`, `212:3691`)
 
 ## Uso
 
-Linha/card compacto pra representar **uma pasta** dentro de uma lista de arquivos — mesma anatomia de `ArchiveItem`/`ImageItem`/`VideoItem`, com os mesmos 5 estados de seleção/interação.
+Linha/card compacto pra representar **uma pasta** dentro de uma lista de arquivos — mesma anatomia de `ArchiveItem`/`ImageItem`/`VideoItem`, com os mesmos 5 estados de seleção/interação. No Figma é o `Type=Folder` do set `molecule/FileItem`.
 
 <Canvas of={FolderItemStories.Idle} />
-<Controls />
-
-<Canvas of={FolderItemStories.AllStates} />
+<Controls of={FolderItemStories.Idle} />
 
 ## Estados
 
 `Idle` · `Hover` · `Pressed` · `Disabled` · `Selected` · `Selected-Hover` · `Selected-Pressed`. Sem loading/error — é um glifo de item estático.
 
-## Interação
+| Estado | Tratamento |
+| --- | --- |
+| Hover | Glifo de hover do Figma (`State=Hover`) |
+| Pressed | Glifo de pressed do Figma (`State=Pressed`) |
+| Selected / Selected-Hover / Selected-Pressed | Glifo do estado + `atom/SelectState` no canto |
+| Foco 🧩 | Anel `ring-3 brand-teal-action/50`, só pelo teclado (Regra 8) |
+| Disabled | Glifo de disabled do Figma (`State=Disabled`), `aria-disabled` |
+| Transição | Sem transição CSS: os estados trocam o SVG (`src`), o que não é animável |
+
+<Canvas of={FolderItemStories.AllStates} />
+
+### Interação
 
 Sem `state` fixo — passe o mouse, clique/pressione Enter pra selecionar de verdade (não é freeze-frame). `state` continua disponível como override pra congelar um estado específico em documentação/auditoria.
 
 <Canvas of={FolderItemStories.Interactive} />
+
+## Terminologia
+
+Sem texto fixo de produto — o nome exibido é o nome real da pasta.

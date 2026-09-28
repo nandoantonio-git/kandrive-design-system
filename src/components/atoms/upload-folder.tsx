@@ -6,7 +6,7 @@ import UploadFolderGlyph from "@/assets/icons/UploadFolderGlyph.svg?react"
 export interface UploadFolderProps extends React.SVGProps<SVGSVGElement> {}
 
 /**
- * atom/UploadFolder (`1439:17053`, Figma-confirmado, descrição verbatim
+ * atom/UploadFolder (`212:3691`, Figma-confirmado, descrição verbatim
  * adicionada pelo usuário em 2026-08-14: *"icone de upload de uma
  * pasta"*) — glifo composto (pasta + seta de upload). Sem eixo de
  * variante/estado confirmado (`get_design_context` retorna um único

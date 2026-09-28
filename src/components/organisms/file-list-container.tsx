@@ -13,7 +13,7 @@ export interface FileListContainerProps extends React.ComponentProps<"div"> {
 }
 
 /**
- * organism/file-list-container (`1421:19687`) — Figma-confirmado:
+ * organism/file-list-container (`826:16143`) — Figma-confirmado:
  * "Visualização dos arquivos em formato de coluna/lista." Usada no modo de
  * visualização em colunas junto de `organism/preview-pane`.
  *

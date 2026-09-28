@@ -3,7 +3,7 @@ import * as CleanSpaceListSelectionStories from './CleanSpaceListSelection.stori
 
 <Meta of={CleanSpaceListSelectionStories} />
 
-# CleanSpaceListSelection (Figma: `celule/cleanSpaceStorage/listSelection`, `1436:20496`)
+# CleanSpaceListSelection (Figma: `molecule/CleanSpaceListSelection`, `1436:20496`)
 
 ## Uso
 
@@ -13,9 +13,8 @@ fluxo — não é um item de lista genérico; é composta diretamente em
 `organism/CleanSpaceStorage`.
 
 <Canvas of={CleanSpaceListSelectionStories.Unselected} />
-<Controls />
+<Controls of={CleanSpaceListSelectionStories.Unselected} />
 
-<Canvas of={CleanSpaceListSelectionStories.Selected} />
 <Canvas of={CleanSpaceListSelectionStories.Interactive} />
 
 ## Anatomia
@@ -25,8 +24,13 @@ renderizada como `atom/StorageTierBadge` à direita (ex.: "Acesso rápido").
 
 ## Estados
 
-- Não selecionado
-- Selecionado (prop `selected`)
+<Canvas of={CleanSpaceListSelectionStories.Selected} />
+
+| Estado | Tratamento |
+| --- | --- |
+| Não selecionado (`Selected=false`) | Checkbox vazio |
+| Selecionado (`Selected=true`, prop `selected`) | Checkbox marcado |
+| Hover, pressed, foco, disabled | Herdados de `atom/Checkbox`, que é o controle |
 
 ## Terminologia
 

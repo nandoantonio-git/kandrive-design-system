@@ -1,0 +1,33 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as Stories from './Breadcrumb.stories';
+
+<Meta of={Stories} />
+
+# Breadcrumb (Figma: sem node confirmado)
+
+O JSDoc cita `Navigation - Breadcrumb` (`1421:19875`), que não resolve no KanDrive V0.2.1. As telas do V0.2.1 usam instâncias de `molecule/Breadcrumb` (ex.: `1745:13477` em `Settings/Appearance/Desktop`), mas o componente principal ainda não foi confirmado.
+
+## Uso
+
+Trilha de navegação no topo do conteúdo principal das páginas (Home, Armazenamento, Configurações, Planos, FAQ, Templates de organização). Some no mobile: nas páginas, entra com `hidden tablet:flex`.
+
+<Canvas of={Stories.Default} />
+<Controls of={Stories.Default} />
+
+## Anatomia
+
+- Prop `segments`: um texto por nível, separados por `atom/Icon` `ChevronRight` (14px, decorativo).
+- Texto em 14px, `Neutral/Text/Tertiary`; o último nível fica em `Brand/Primary/Default`.
+- É um `<nav>` com `aria-label="Trilha de navegação"`.
+- Mesmo padrão do breadcrumb de `molecule/ArchiveBrowserModal/Search`.
+
+<Canvas of={Stories.HomeOnly} />
+<Canvas of={Stories.Pages} />
+
+## Estados
+
+Sem estados interativos: os níveis são texto, não links.
+
+## Terminologia
+
+Os níveis usam os nomes das páginas: "Home", "Configurações", "Armazenamento", "Planos Kandrive", "Perguntas Frequentes", "Templates de organização". Nenhum termo proibido (Regra 5).

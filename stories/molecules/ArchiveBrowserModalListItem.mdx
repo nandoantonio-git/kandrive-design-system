@@ -3,7 +3,7 @@ import * as ArchiveBrowserModalListItemStories from './ArchiveBrowserModalListIt
 
 <Meta of={ArchiveBrowserModalListItemStories} />
 
-# ArchiveBrowserModal/ListItem (Figma: `molecule/ArchiveBrowserModal/ListItem`, `1421:20896`)
+# ArchiveBrowserModal/ListItem (Figma: `molecule/ArchiveBrowserModalListItem`, `1421:20896`)
 
 ## Uso
 
@@ -12,8 +12,7 @@ Linha de arquivo dentro do modal "Adicionar arquivos"
 composição — não use fora desse modal.
 
 <Canvas of={ArchiveBrowserModalListItemStories.Default} />
-<Canvas of={ArchiveBrowserModalListItemStories.Selected} />
-<Controls />
+<Controls of={ArchiveBrowserModalListItemStories.Default} />
 
 ## Anatomia
 
@@ -24,8 +23,20 @@ isolado.
 
 ## Estados
 
+<Canvas of={ArchiveBrowserModalListItemStories.Selected} />
+
 - `ArchiveFileRow` — linha padrão, não selecionável
 - `ArchiveSelectableRow` — linha selecionada (prop `selected`)
+
+| Estado | Tratamento |
+| --- | --- |
+| Não selecionada (`Selectable=false`) | Linha padrão |
+| Selecionada (`Selectable=true`) | Prop `selected` |
+| Hover | Destaque de fundo |
+| Pressed | 🧩 `active:opacity-70` |
+| Foco | 🧩 Anel de 3px `Brand/Primary/Action` a 50%, só pelo teclado |
+
+Com `onClick`, a linha vira `role="button"` com `tabIndex=0`, Enter/Espaço e `aria-pressed`. Sem `onClick` (lista só de leitura), não é parada de Tab.
 
 ## Terminologia
 

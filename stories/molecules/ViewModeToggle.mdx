@@ -3,7 +3,7 @@ import * as ViewModeToggleStories from './ViewModeToggle.stories';
 
 <Meta of={ViewModeToggleStories} />
 
-# ViewModeToggle (Figma: `molecule/view-mode-toggle`, `1421:19069`)
+# ViewModeToggle (Figma: `molecule/ViewModeToggle`, `622:3468`)
 
 ## Uso
 
@@ -13,7 +13,7 @@ arquivos que suporte mais de um layout — se a tela só tem um layout
 possível, não adicione o toggle.
 
 <Canvas of={ViewModeToggleStories.Grid} />
-<Controls />
+<Controls of={ViewModeToggleStories.Grid} />
 
 ## Anatomia
 
@@ -24,7 +24,18 @@ destaque de fundo e cor de texto de marca.
 <Canvas of={ViewModeToggleStories.List} />
 <Canvas of={ViewModeToggleStories.Columns} />
 
-## Compacto (mobile)
+## Estados
+
+| Estado | Tratamento |
+| --- | --- |
+| Selecionado | Fundo escuro + texto na cor de marca clara |
+| Não selecionado | Texto neutro |
+| Hover | Leve destaque de fundo (`zinc-600` a 10%) |
+| Pressed | 🧩 `active:opacity-70` |
+| Foco | 🧩 Anel de 3px `Brand/Primary/Action` a 50%, só pelo teclado |
+| Disabled | Não implementado |
+
+## Mobile
 
 <Canvas of={ViewModeToggleStories.Compact} />
 
@@ -33,15 +44,6 @@ destaque de fundo e cor de texto de marca.
 de 2026-09-24). Não precisa passar `modes` pra isso; é o comportamento
 padrão do componente desde 2026-09-25. Use `modes` só pra um recorte
 diferente do padrão.
-
-## Estados
-
-| Estado | Nota |
-| --- | --- |
-| Selecionado | Fundo escuro + texto na cor de marca clara |
-| Não selecionado | Texto neutro |
-| Hover | Leve destaque de fundo |
-| Disabled | Não implementado |
 
 ## Terminologia
 

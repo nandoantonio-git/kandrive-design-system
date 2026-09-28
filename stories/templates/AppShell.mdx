@@ -3,14 +3,13 @@ import * as AppShellStories from './AppShell.stories';
 
 <Meta of={AppShellStories} />
 
-# AppShell
+# AppShell (Figma: `Home/Grid/Mobile`, `1715:9906`)
+
+O link do story aponta para a tela `Home/Grid/Mobile` (`1715:9906`), que mostra a casca mobile montada (`organism/Header`, `molecule/MobileTabBar`, `organism/MobileBottomNav`). No Figma não existe um componente `AppShell`: é uma composição de código.
+
+## Uso
 
 É a casca de navegação responsiva. Troca a estrutura da navegação por faixa num lugar só, pelas decisões de responsividade de 24/09/2026 (veja **Tokens/Responsividade**).
-
-| Faixa | Topo | Lateral | Base |
-| --- | --- | --- | --- |
-| Desktop ≥ 1200 e Tablet 720–1199 | `Header` | `sidebar` | `footer` |
-| Mobile < 720 | `Header` com ☰ (+ `mobileTabBar`) | gaveta pelo ☰ | `mobileBottomNav` ou `mobileFooterSettings` |
 
 As páginas passam o que cada tela tem, e o `AppShell` decide o que aparece em cada faixa:
 
@@ -20,6 +19,53 @@ As páginas passam o que cada tela tem, e o `AppShell` decide o que aparece em c
 - **Settings e Payment:** `mobileFooterSettings`.
 - **Feedback visual:** `drawer={false}`.
 
-A mão dominante vem de `PreferencesProvider` (`src/lib/preferences.tsx`).
+<Canvas of={AppShellStories.Desktop} />
+<Controls of={AppShellStories.Desktop} />
 
 Veja as stories **Desktop**, **Tablet** e **Mobile…**: cada uma já abre no viewport certo.
+
+## Composição
+
+| Faixa | Topo | Lateral | Base |
+| --- | --- | --- | --- |
+| Desktop ≥ 1200 e Tablet 720–1199 | `Header` | `sidebar` | `footer` |
+| Mobile < 720 | `Header` com ☰ (+ `mobileTabBar`) | gaveta pelo ☰ | `mobileBottomNav` ou `mobileFooterSettings` |
+
+- O conteúdo é fluido; a Sidebar mantém a largura do Figma.
+- Acima de 1440px, o layout fica centralizado (`--container-page`).
+- A mão dominante vem de `PreferencesProvider` (`src/lib/preferences.tsx`).
+
+### Tablet
+
+<Canvas of={AppShellStories.Tablet} />
+
+## Estados
+
+Sem estados interativos próprios: só compõe. O que muda é a gaveta mobile (aberta pelo ☰, fechada pelo Esc, ☰ ou fundo) e os estados herdados de `Header`, `Sidebar`, `SidebarDrawer`, `MobileTabBar`, `MobileBottomNav` e `MobileFooterSettings`.
+
+| Estado | Tratamento |
+| --- | --- |
+| Gaveta aberta/fechada (mobile) | ☰ do Header abre; Esc, ☰ ou fundo fecham |
+| Hover / Pressed / Foco | herdados dos componentes compostos |
+
+## Mobile
+
+Tela de arquivos: ☰ + TabBar no topo, BottomNav com FAB Adicionar na base.
+
+<Canvas of={AppShellStories.MobileFiles} />
+
+Mão esquerda: o FAB muda de lado.
+
+<Canvas of={AppShellStories.MobileLeftHand} />
+
+Tela de tarefa: só o BottomNav com Confirmar e ✕.
+
+<Canvas of={AppShellStories.MobileTask} />
+
+Settings: a barra de chips na base.
+
+<Canvas of={AppShellStories.MobileSettings} />
+
+## Terminologia
+
+Sem texto fixo de produto: os rótulos vêm dos componentes compostos (ver as páginas de cada um).

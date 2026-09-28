@@ -26,7 +26,7 @@ export interface HeaderProps extends React.ComponentProps<"header"> {
 }
 
 /**
- * organism/Header (`1421:19918`) — Figma-confirmado: "header". Variante
+ * organism/Header (`1255:22352`) — Figma-confirmado: "header". Variante
  * `page=Navbar` expõe 2 ações de fluxo ao vivo: "Organizar" e "Guardar"
  * (`atom/Button`, migrado de `PushButton` em 2026-09-25, fase E).
  * "Guardar" é termo aprovado (Regra 5); "Organizar" não está na lista

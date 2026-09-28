@@ -3,7 +3,7 @@ import * as PopoverNotificationStories from './PopoverNotification.stories';
 
 <Meta of={PopoverNotificationStories} />
 
-# PopoverNotification (Figma: `molecule/popover/Notification`, `1421:19626`)
+# PopoverNotification (Figma: `molecule/PopoverNotification`, `826:15269`)
 
 ## Uso
 
@@ -13,9 +13,11 @@ idêntico, sem variantes) — este componente cobre os dois casos via `variant`
 (`"notification"` é o default, equivalente ao toast avulso anterior).
 
 <Canvas of={PopoverNotificationStories.Default} />
-<Controls />
+<Controls of={PopoverNotificationStories.Default} />
 
-## Variantes
+## Anatomia
+
+### Variantes
 
 | Variante | Altura | Texto |
 | --- | --- | --- |
@@ -28,16 +30,22 @@ idêntico, sem variantes) — este componente cobre os dois casos via `variant`
 
 <Canvas of={PopoverNotificationStories.Adition} />
 <Canvas of={PopoverNotificationStories.DeepArchive} />
-<Canvas of={PopoverNotificationStories.Entering} />
-<Canvas of={PopoverNotificationStories.Collapsed} />
 
 ## Estados
+
+<Canvas of={PopoverNotificationStories.Entering} />
+<Canvas of={PopoverNotificationStories.Collapsed} />
 
 - Fechar (`onClose`) — ausente nas variantes transientes (`entering`/`collapsed`)
 - Miniatura opcional (`showImage`)
 - Entrada/saída (`entering`/`collapsed`)
 
+| Estado | Tratamento |
+| --- | --- |
+| Entrada / saída (`entering`/`collapsed`) | 🧩 Altura e opacidade zeradas: estados de animação, não variantes em repouso |
+| Fechar | Hover, pressed, foco e disabled herdados de `atom/CloseButton` |
+
 ## Terminologia
 
 "Arquivo adicionado"/"Arquivos guardados com sucesso." são texto de
-produto.
+produto. "Guardar" é termo aprovado (Regra 5).

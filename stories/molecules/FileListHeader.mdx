@@ -3,7 +3,7 @@ import * as FileListHeaderStories from './FileListHeader.stories';
 
 <Meta of={FileListHeaderStories} />
 
-# FileListHeader (Figma: `molecule/FileList/Header`, `1421:19184`)
+# FileListHeader (Figma: `molecule/FileListHeader`, `665:9172`)
 
 ## Uso
 
@@ -12,9 +12,11 @@ largura máxima (1025px), para alinhar colunas visualmente. Use sempre
 junto de `FileList` no formato `list` — sem sentido isolado.
 
 <Canvas of={FileListHeaderStories.Home} />
-<Controls />
+<Controls of={FileListHeaderStories.Home} />
 
-## Formatos
+## Anatomia
+
+### Formatos
 
 | Formato | Composição |
 | --- | --- |
@@ -26,7 +28,13 @@ junto de `FileList` no formato `list` — sem sentido isolado.
 ## Estados
 
 Cabeçalho estático, sem interação além do botão de ordenação (formato
-`home`) — a ordenação em si não está implementada.
+`home`): clicar em "Armazenamento" inverte a ordem (`asc`/`desc`) e troca a seta (para baixo ou para cima). A lista em si é ordenada por quem usa (`onSortDirectionChange`).
+
+| Estado | Tratamento |
+| --- | --- |
+| Ordem (`asc`/`desc`) | Seta do botão "Armazenamento" acompanha a ordem (`ArrowDown`/`ArrowUp`) |
+| Hover, pressed | Feedback do botão de ordenar |
+| Foco | 🧩 Anel de 3px `Brand/Primary/Action` a 50%, só pelo teclado |
 
 ## Terminologia
 

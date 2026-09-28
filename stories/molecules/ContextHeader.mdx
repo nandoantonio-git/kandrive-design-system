@@ -3,7 +3,7 @@ import * as ContextHeaderStories from './ContextHeader.stories';
 
 <Meta of={ContextHeaderStories} />
 
-# ContextHeader (Figma: `molecule/context-header`, `1421:19589`)
+# ContextHeader (Figma: `molecule/ContextHeader`, `790:7618`)
 
 ## Uso
 
@@ -12,7 +12,7 @@ selecionados. Use sempre que uma seleção em lote estiver ativa numa
 lista/grid — desaparece quando a seleção é limpa.
 
 <Canvas of={ContextHeaderStories.Default} />
-<Controls />
+<Controls of={ContextHeaderStories.Default} />
 
 ## Anatomia
 
@@ -20,25 +20,37 @@ Botão de limpar seleção + contador de itens ("X itens selecionado") +
 divisor vertical + 5 ações: compartilhar, baixar, mover, excluir e mais
 opções (menu).
 
+### Tipografia
+
+Este componente usa Figtree em vez de Manrope, que é
+o que o arquivo Figma original especifica — ver `docs/conflicts.md` para
+o histórico dessa decisão (Figtree é a família única do design system).
+
 ## Estados
+
+<Canvas of={ContextHeaderStories.Collapsed} />
 
 - `expanded` (padrão)
 - `collapsed` (altura/opacidade reduzidas, usado ao recolher o header)
 
-<Canvas of={ContextHeaderStories.Collapsed} />
+| Estado | Tratamento |
+| --- | --- |
+| Expandido (`Expanded=true`) | Header visível com contador e ações |
+| Recolhido (`Expanded=false`) | 🧩 Altura e opacidade zeradas: estado de saída, não uma variante em repouso |
+| Hover | Destaque dos 7 botões |
+| Pressed | `active:opacity-60` |
+| Foco | 🧩 Anel de 3px `Brand/Primary/Action` a 50%, só pelo teclado |
+
+Transição de cor e opacidade nos botões.
+
+## Mobile
+
+<Canvas of={ContextHeaderStories.MinimalMobile} />
+
+`layout="minimal"` (Figma `Device=Mobile, Layout=Minimal`, `1729:24977`, V0.2.1): só o botão de limpar e o contador, com 40px de altura e largura fluida. Aparece na seleção de arquivos do Long-term mobile (`LongTermStorage/SelectFilesSelected`). 🧩 O Layout Compact do Figma ainda não tem uso no código.
 
 ## Terminologia
 
 O rótulo do contador ("X itens selecionado") é texto Figma literal —
 inclui a concordância no singular mesmo com contagem plural, preservada
 propositalmente por fidelidade ao texto original.
-
-Nota de tipografia: este componente usa Figtree em vez de Manrope, que é
-o que o arquivo Figma original especifica — ver `docs/conflicts.md` para
-o histórico dessa decisão (Figtree é a família única do design system).
-
-## Minimal (mobile)
-
-<Canvas of={ContextHeaderStories.MinimalMobile} />
-
-`layout="minimal"` (Figma `Device=Mobile, Layout=Minimal`, `1729:24977`, V0.2.1): só o botão de limpar e o contador, com 40px de altura e largura fluida. Aparece na seleção de arquivos do Long-term mobile (`LongTermStorage/SelectFilesSelected`). 🧩 O Layout Compact do Figma ainda não tem uso no código.

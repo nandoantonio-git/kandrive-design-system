@@ -3,7 +3,7 @@ import * as Stories from './MobileSuccess.stories';
 
 <Meta of={Stories} />
 
-# MobileSuccess
+# MobileSuccess (Figma: `atom/MobileSuccess`, `1765:62024`)
 
 ✅ Figma-confirmado: `atom/MobileSuccess` (`1765:62024`), KanDrive V0.2.1.
 
@@ -12,9 +12,11 @@ import * as Stories from './MobileSuccess.stories';
 A confirmação de sucesso do mobile: o Kan, o canguru, comemorando ao lado da caixa, com o texto abaixo. Fica no centro de uma tela cheia `Brand/Primary/Action`, sem gaveta nem barras (tela de feedback visual). Hoje aparece em `Organize/ReviewDone`, e a mensagem Stored é do Long-term.
 
 <Canvas of={Stories.Organized} />
-<Controls />
+<Controls of={Stories.Organized} />
 
-## Variantes
+## Anatomia
+
+### Variantes
 
 <Canvas of={Stories.Stored} />
 
@@ -23,6 +25,14 @@ A confirmação de sucesso do mobile: o Kan, o canguru, comemorando ao lado da c
 | `organized` | Message=Organized | "Organização concluída" + "✓ arquivo" (`fileName`) |
 | `stored` | Message=Stored | "Prontinho, arquivos guardados" |
 
-## Tema
+### Tema
 
 Fixo na paleta Light: as telas de feedback positivo são iguais no Light e no Dark (decisão de design de 2026-09-23). Título 20px Bold branco; linha do arquivo 10px Bold `Brand/Primary/Light` (exceção de microtexto da Regra 4).
+
+## Estados
+
+Sem estados interativos.
+
+## Terminologia
+
+"Organização concluída" e "Prontinho, arquivos guardados" — "guardados" segue o termo aprovado "Guardar" (Regra 5); nenhum termo proibido.

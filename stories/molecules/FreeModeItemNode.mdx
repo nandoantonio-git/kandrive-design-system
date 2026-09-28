@@ -3,7 +3,7 @@ import * as FreeModeItemNodeStories from './FreeModeItemNode.stories';
 
 <Meta of={FreeModeItemNodeStories} />
 
-# FreeModeItemNode (Figma: `celule/MainCanvas/Organization/FreeMode/ItemNode`, `1421:20108`)
+# FreeModeItemNode (Figma: `molecule/FreeModeItemNode`, `1421:20108`)
 
 ## Uso
 
@@ -13,9 +13,11 @@ resultado dentro do fluxo de organização — sempre consumido pelo canvas
 pai, nunca usado standalone numa tela.
 
 <Canvas of={FreeModeItemNodeStories.Juncao} />
-<Controls />
+<Controls of={FreeModeItemNodeStories.Juncao} />
 
-## Variantes
+## Anatomia
+
+### Variantes
 
 | `variant` | Rótulo | Subtítulo | Ícone |
 | --- | --- | --- | --- |
@@ -39,7 +41,7 @@ pai, nunca usado standalone numa tela.
 <Canvas of={FreeModeItemNodeStories.ResultadoCollapsed} />
 <Canvas of={FreeModeItemNodeStories.ResultadoExpanded} />
 
-## Variante `resultado`: colapsada vs. expandida
+### Variante `resultado`: colapsada vs. expandida
 
 Colapsada, mostra só a linha "Resultado" + nome da pasta + chevron.
 Expandida (prop `expanded`), adiciona abaixo de uma borda divisória 3
@@ -52,7 +54,7 @@ usados quando o canvas precisa mostrar o texto específico de uma instância
 (ex.: "Filtro: Grande" / "Size > 1.0 GB") em vez do rótulo padrão da
 variante.
 
-## Ícones
+### Ícones
 
 Os ícones deste componente são assets exportados do Figma (não glifos
 genéricos) e são compartilhados com `celule/FreeModeOutputNode` na

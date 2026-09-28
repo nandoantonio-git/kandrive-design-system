@@ -21,7 +21,7 @@ export interface NodeContextMenuProps extends React.ComponentProps<"div"> {
 }
 
 /**
- * molecule/nodoContextMenu (`1440:23821`, Figma-confirmado) — "menu
+ * molecule/nodoContextMenu (`1383:15617`, Figma-confirmado) — "menu
  * contextual do nodo selecionado presente no canva/tela de modo livre de
  * templates. possibilita criar filtro e operações condicionais." Composto
  * por `celule/nodoContextMenuItem` (pílulas de condição), `atom/buttonAdd`

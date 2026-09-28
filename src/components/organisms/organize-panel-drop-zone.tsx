@@ -36,7 +36,7 @@ export interface OrganizePanelDropZoneProps extends React.ComponentProps<"div"> 
 }
 
 /**
- * organism/OrganizePanel/DropZone (`1421:18781`) — Figma-confirmado:
+ * organism/OrganizePanel/DropZone (`309:14839`) — Figma-confirmado:
  * "Painel de sandbox, onde o usuário pode arrastar o/os item/itens
  * selecionados para serem usados no template. tem um bagde para identificar
  * o formato de template selecionado e uma aba para nomear o template. e 2

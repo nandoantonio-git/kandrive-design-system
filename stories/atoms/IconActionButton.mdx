@@ -1,0 +1,56 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as IconActionButtonStories from './IconActionButton.stories';
+
+<Meta of={IconActionButtonStories} />
+
+# IconActionButton (Figma: `atom/IconButton`, `174:384`)
+
+## Uso
+
+Base de código compartilhada dos ícones-botão sem chrome de borda — **não é um átomo do Figma por si só**, é a anatomia comum do set `atom/IconButton` extraída para não duplicar o mesmo botão 5 vezes. É a base de:
+
+- [ClearButton](?path=/docs/atoms-iconbutton-clear--docs) — cancelar (`Icon=Clear`)
+- [ConfirmButton](?path=/docs/atoms-iconbutton-confirm--docs) — confirmar (`Icon=Confirm`)
+- [DeleteButton](?path=/docs/atoms-iconbutton-delete--docs) — ação destrutiva pontual (`Icon=Delete`)
+- [KeepButton](?path=/docs/atoms-iconbutton-keep--docs) — guardar em longo prazo (`Icon=Keep`)
+- [PlusButton](?path=/docs/atoms-iconbutton-plus--docs) — ação aditiva pontual (`Icon=Plus`)
+
+Em tela, use sempre um desses 5 átomos: eles já trazem o glifo, o `aria-label` e as cores do Figma. Use a base diretamente só para criar um novo ícone-botão do mesmo set.
+
+<Canvas of={IconActionButtonStories.Default} />
+<Controls of={IconActionButtonStories.Default} />
+
+## Anatomia
+
+Glifo centralizado (`size-5` por padrão, ajustável via `iconClassName`), sem borda, dentro de um alvo de toque circular de 32px (piso de acessibilidade — nenhum dos 5 tem essa medida confirmada no Figma; mantida por ser área de toque, não elemento visual).
+
+### Props
+
+| Prop | Papel |
+| --- | --- |
+| `icon` | Componente SVG do glifo (obrigatório) |
+| `label` | Nome acessível (`aria-label`) — obrigatório, porque o botão só renderiza um ícone |
+| `iconClassName` | Tamanho visual do SVG; o alvo de toque continua 32px |
+| `className` | Cor do glifo e, se houver, fundo de hover — cada átomo consumidor define o seu |
+
+<Canvas of={IconActionButtonStories.Glyphs} />
+
+### Histórico
+
+Corrigido em auditoria US-026 (2026-08-11, Regra 11.4): a base **não** define fundo/pílula de hover — isso é opt-in via `className` de cada átomo, porque só o `ClearButton` (e só em `style="default"`) tem essa pílula confirmada no Figma. Antes, os 4 demais herdavam uma pílula cinza inventada.
+
+## Estados
+
+| Estado | Tratamento |
+| --- | --- |
+| Hover | Nenhum na base — opt-in por átomo via `className` |
+| Pressed | `motion-safe:active:scale-90` |
+| Foco 🧩 | Anel `ring-3 brand-teal-action/50`, só pelo teclado (Regra 8) — herdado pelos 5 átomos |
+| Disabled | 40% de opacidade, sem ponteiro |
+| Transição | `transition-all` |
+
+<Canvas of={IconActionButtonStories.Disabled} />
+
+## Terminologia
+
+Sem texto fixo de produto — o `label` é obrigatório e cada átomo consumidor passa o seu ("Cancelar", "Confirmar", "Excluir", "Guardar em longo prazo", "Adicionar").

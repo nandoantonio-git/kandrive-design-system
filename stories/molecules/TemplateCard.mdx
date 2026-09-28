@@ -3,27 +3,45 @@ import * as TemplateCardStories from './TemplateCard.stories';
 
 <Meta of={TemplateCardStories} />
 
-# TemplateCard (Figma: `molecule/template-card`, `1421:19695`)
+# TemplateCard (Figma: `molecule/TemplateCard`, `900:11221`)
 
 ## Uso
 
 Card de método de organização usado em `template/DialogSave/OrganizationModal`
-— 4 instâncias (Cronológico/Por projeto/Por tipo de arquivo/Modo livre).
+— 4 instâncias (Por data/Por projeto/Por tipo de arquivo/Modo livre).
 Extraído do markup antes inline do template (Regra 10) para não misturar
 dado (`CARDS`) com marcação reutilizável.
 
 <Canvas of={TemplateCardStories.Default} />
-<Controls />
+<Controls of={TemplateCardStories.Default} />
 
-<Canvas of={TemplateCardStories.Selected} />
+## Anatomia
+
+### Variantes
+
 <Canvas of={TemplateCardStories.DashedIllustrationFrame} />
 
+`dashedIllustrationFrame` — moldura tracejada ao redor da ilustração, usada
+só pelo card "Modo livre" (Figma-confirmado).
+
 ## Estados
+
+<Canvas of={TemplateCardStories.Selected} />
 
 `selected` (borda `zinc-400`) · hover (`hover:border-brand-teal`) ·
 focus-visible.
 
-## Variantes
+| Estado | Tratamento |
+| --- | --- |
+| Default (`State=Default`) | Card em repouso |
+| Hover (`State=Hover`) | `hover:border-brand-teal` |
+| Selecionado (`selected`) | Borda `zinc-400`; clique alterna (`aria-pressed`) |
+| Pressed (`State=Pressed`) | `active:opacity-80` |
+| Disabled (`State=Disabled`, só no Modo livre no Figma) | Opacidade reduzida, sem clique |
+| Foco | Anel de 3px `Brand/Primary/Action` a 50%, só pelo teclado |
 
-`dashedIllustrationFrame` — moldura tracejada ao redor da ilustração, usada
-só pelo card "Modo livre" (Figma-confirmado).
+⚠️ O JSDoc do componente marca pressed e disabled como Regra 8, mas o `molecule/TemplateCard` (`900:11221`) do V0.2.1 desenha `State=Pressed` nos 4 métodos e `State=Disabled` no Modo livre.
+
+## Terminologia
+
+Os títulos dos métodos ("Por projeto", "Por tipo de arquivo", "Modo livre"…) vêm dos dados do `SaveOrganizationModal`. Nenhum termo proibido (Regra 5).

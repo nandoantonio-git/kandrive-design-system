@@ -1,0 +1,41 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as Stories from './SettingsField.stories';
+
+<Meta of={Stories} />
+
+# SettingsField (Figma: sem node confirmado)
+
+O JSDoc cita `page/Settings/Acount` (`1439:19849`) e `page/Settings/DeleteAccount` (`1439:21297`), que não resolvem no KanDrive V0.2.1. No Figma o campo é um frame "Field", não um componente.
+
+## Uso
+
+Par rótulo + campo de texto dos formulários de Settings (cards "Conta", "Senha" e "Excluir conta") e do checkout em Payment. Nenhum átomo de input genérico existia no catálogo — `molecule/SearchBar` é específico de busca (ícone de lupa, pílula). Extraído como molecule único (Regra 1/10) em vez de repetido em cada card.
+
+<Canvas of={Stories.Default} />
+<Controls of={Stories.Default} />
+
+## Anatomia
+
+- Rótulo em 13px medium, ligado ao campo (`<label htmlFor>` com id gerado).
+- Campo de 36px, raio 6, borda `#d4d4d4` (Dark: `#52525b`), fundo `Effect/Glass/White` a 70%, texto 14px.
+- Aceita as props nativas de `<input>` (`type`, `placeholder`, `value`…), menos `id`.
+
+<Canvas of={Stories.Password} />
+<Canvas of={Stories.WithPlaceholder} />
+
+## Estados
+
+<Canvas of={Stories.Disabled} />
+
+| Estado | Tratamento |
+| --- | --- |
+| Default | Borda `#d4d4d4` |
+| Hover | 🧩 Borda `zinc-400` (Dark: `zinc-500`) |
+| Foco | Anel de 3px `Brand/Primary/Action` a 50%, só pelo teclado |
+| Disabled | 🧩 Opacidade 50%, sem interação |
+
+Transição de cor na borda. 🧩 Regra 8: hover e disabled do campo não desenhados no Figma.
+
+## Terminologia
+
+O rótulo é conteúdo de cada formulário ("Nome", "E-mail", "Senha atual", "Nova senha", "Confirmar nova senha", "Confirme sua senha para continuar", "Nome no cartão", "E-mail para recibo"…). Nenhum termo proibido (Regra 5).

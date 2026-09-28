@@ -3,7 +3,7 @@ import * as CalloutStories from './Callout.stories';
 
 <Meta of={CalloutStories} />
 
-# Callout (Figma: `celule/Callout`, `1421:20028`)
+# Callout (Figma: `molecule/Callout`, `1288:16935`)
 
 ## Uso
 
@@ -19,14 +19,20 @@ desfeito. Isso também remove os arquivos guardados no longo prazo — eles não
 poderão ser recuperados depois."
 
 <Canvas of={CalloutStories.Warning} />
-<Controls />
+<Controls of={CalloutStories.Warning} />
+
+## Anatomia
+
+### Variantes
 
 <Canvas of={CalloutStories.Info} />
 
-## Estados
-
 - `warning` — fundo âmbar, ícone e texto em tom âmbar
 - `info` — fundo teal claro, ícone e texto em teal escuro
+
+## Estados
+
+Sem estados interativos.
 
 ## Terminologia
 

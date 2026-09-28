@@ -3,16 +3,43 @@ import * as MobileFooterSettingsStories from './MobileFooterSettings.stories';
 
 <Meta of={MobileFooterSettingsStories} />
 
-# MobileFooterSettings
+# MobileFooterSettings (Figma: `molecule/MobileFooterSettings`, `1756:57824`)
 
 ✅ Figma-confirmado: `molecule/MobileFooterSettings` (`1756:57824`), com eixos `Page` (Settings · Payment) × `Active`.
+
+## Uso
 
 É a barra de chips na base das telas de **Settings** e **Payment** no mobile, no lugar da Sidebar de seções do desktop. Usa o `atom/Chip` Solid, o estilo canônico definido em 24/09/2026: as 7 telas do Figma tinham 7 desenhos diferentes de chip, e foram unificadas.
 
 <Canvas of={MobileFooterSettingsStories.Interactive} />
-<Controls />
+<Controls of={MobileFooterSettingsStories.Interactive} />
+
+## Anatomia
 
 A faixa rola na horizontal, e o chip ativo é rolado até ficar visível. No Figma, as variantes de Privacidade, Idioma e Excluir conta vêm alinhadas à direita pelo mesmo motivo.
 
+### Variantes
+
+| `page` | Figma | Seções |
+| --- | --- | --- |
+| `settings` | `Page=Settings` | Conta · Armazenamento · Notificações · Aparência · Privacidade · Idioma · Excluir conta |
+| `payment` | `Page=Payment` | Plano · Configurações · Home |
+
 <Canvas of={MobileFooterSettingsStories.SettingsPrivacy} />
 <Canvas of={MobileFooterSettingsStories.Payment} />
+
+## Estados
+
+| Estado | Tratamento |
+| --- | --- |
+| Ativo (`Active`) | Chip Solid marcado; tocar numa seção a marca e desmarca a anterior |
+| Inativo | Chip Solid sem marcação |
+| Hover, pressed, foco | Herdados de `atom/Chip` |
+
+## Mobile
+
+É um componente só do mobile: no desktop, as seções ficam na Sidebar.
+
+## Terminologia
+
+Os rótulos das seções são os nomes das telas de Settings e Payment ("Conta", "Armazenamento", "Notificações", "Aparência", "Privacidade", "Idioma", "Excluir conta", "Plano", "Configurações", "Home"). Nenhum termo proibido (Regra 5).

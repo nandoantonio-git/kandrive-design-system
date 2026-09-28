@@ -3,17 +3,30 @@ import * as SidebarTagsItemStories from './SidebarTagsItem.stories';
 
 <Meta of={SidebarTagsItemStories} />
 
-# SidebarTagsItem (Figma: `atom/Sidebar/Tags/Items`, `1421:20907`)
+# SidebarTagsItem (Figma: `atom/SidebarTagsItem`, `1421:20907`)
 
 ## Uso
 
 Linha de etiqueta dentro da lista de tags da Sidebar — usada quando o usuário já tem etiquetas criadas e precisa navegar/filtrar por elas no painel lateral. Ponto de cor (`brand-teal`) + nome da etiqueta.
 
 <Canvas of={SidebarTagsItemStories.Idle} />
-<Controls />
-
-<Canvas of={SidebarTagsItemStories.AllStates} />
+<Controls of={SidebarTagsItemStories.Idle} />
 
 ## Estados
 
 `idle` (sem fundo) · `hover` (fundo sutil) · `selected` (fundo escuro)
+
+| Estado | Tratamento |
+| --- | --- |
+| Hover | Fundo sutil (Figma `State=Hover`) |
+| Pressed | Fundo escuro do Figma `State=Pressed`, no `:active` real |
+| Selected | Mesmo fundo do Pressed, fixo; `aria-pressed` |
+| Foco 🧩 | Anel `ring-3 brand-teal-action/50`, só pelo teclado (Regra 8) |
+| Disabled 🧩 | 50% de opacidade, sem ponteiro (Regra 8) |
+| Transição | Troca de fundo animada |
+
+<Canvas of={SidebarTagsItemStories.AllStates} />
+
+## Terminologia
+
+O rótulo é conteúdo livre: o nome da etiqueta criada pelo usuário.

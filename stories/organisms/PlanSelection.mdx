@@ -3,14 +3,14 @@ import * as PlanSelectionStories from './PlanSelection.stories';
 
 <Meta of={PlanSelectionStories} />
 
-# PlanSelection (`organism/planSelection`)
+# PlanSelection (Figma: `organism/PlanSelection`, `1454:25057`)
 
 ## Uso
 
 Card de seleção/gestão de plano de assinatura (ciclo mensal/anual, forma de pagamento). Use na página de Configurações de Plano — este card não inclui um botão "Liberar Espaço" (esse fluxo mora em `molecule/StorageStatus`, `scope="global"`); a ponte entre as duas telas é o botão "Comprar Espaço" de lá pra cá, não o contrário (Regra 5, corrigida em 2026-08-18).
 
 <Canvas of={PlanSelectionStories.Default} />
-<Controls />
+<Controls of={PlanSelectionStories.Default} />
 
 ## Composição
 
@@ -22,15 +22,11 @@ Card de seleção/gestão de plano de assinatura (ciclo mensal/anual, forma de p
 
 Botões "Rebaixar"/"Melhorar"/"Editar plano" usam `atom/Button` (`variant="outline"`, migrado de `PushButton` em 25/09/2026) — nenhum botão deste nó usa a cor de destrutivo (não há ação destrutiva nesta tela).
 
-## Cores
+### Cores
 
 O card do plano corrente ("Pro") usa os tokens `border-brand-teal`/`bg-brand-teal-light`, a aproximação semântica mais próxima do valor original no tema. Badges "Ativo"/"Atual" e o toggle "Anual" selecionado usam `bg-brand-teal`.
 
-## Terminologia
-
-Traduzido pra PT-BR em 2026-08-18 (decisão humana, reverte a leitura literal de 2026-08-13) — "Ativa"/"Mensal"/"Anual"/"Atual"/"Ativo"/"Rebaixar"/"Melhorar" substituem os literais em inglês do Figma de origem, consistente com o resto do produto. "Starter"/"Pro"/"Max" continuam em inglês — são nome de plano (branding), não copy de interface.
-
-## Material
+### Material
 
 Container usa o material Liquid Glass — ver [Tokens/Materials](../tokens/Materials.mdx).
 
@@ -39,3 +35,17 @@ Container usa o material Liquid Glass — ver [Tokens/Materials](../tokens/Mater
 - Toggle Mensal/Anual — controlado, `role="tablist"`/`aria-selected`
 - Plano atual (sem ação) vs. planos com ação — indicador "✓ Ativo" substitui o botão só no card corrente
 - Hover/Active nos botões
+
+| Estado | Tratamento |
+| --- | --- |
+| Seletor Mensal/Anual | controlado (`interval`); 🧩 hover, pressed, anel de foco e transição |
+| Plano atual vs. com ação | "✓ Ativo" no lugar do botão no card corrente |
+| Hover / Pressed / Foco dos botões | herdados do `atom/Button` |
+
+🧩 = Regra 8: hover/pressed/foco do seletor Mensal/Anual não desenhados no Figma.
+
+<Canvas of={PlanSelectionStories.Monthly} />
+
+## Terminologia
+
+Traduzido pra PT-BR em 2026-08-18 (decisão humana, reverte a leitura literal de 2026-08-13) — "Ativa"/"Mensal"/"Anual"/"Atual"/"Ativo"/"Rebaixar"/"Melhorar" substituem os literais em inglês do Figma de origem, consistente com o resto do produto. "Starter"/"Pro"/"Max" continuam em inglês — são nome de plano (branding), não copy de interface.

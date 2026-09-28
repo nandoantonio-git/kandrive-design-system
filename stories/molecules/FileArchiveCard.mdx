@@ -3,7 +3,7 @@ import * as FileArchiveStories from './FileArchiveCard.stories';
 
 <Meta of={FileArchiveStories} />
 
-# FileArchive1 / FileArchive2 (Figma: `molecule/FileArchive1` `1439:19655`, `molecule/FileArchive2` `1439:19656`)
+# FileArchive1 / FileArchive2 (Figma: `molecule/FileItem`, `212:3691`)
 
 ## Uso
 
@@ -12,13 +12,16 @@ Miniatura de arquivo (ícone de pasta + rótulo) usada como thumbnail em
 como thumbnail dentro de um card/grade, nunca como linha de lista (aí é
 `FileList`).
 
-<Canvas of={FileArchiveStories.FileArchive1} />
 <Canvas of={FileArchiveStories.FileArchive2} />
-<Controls />
+<Controls of={FileArchiveStories.FileArchive2} />
 
-## Um único componente para os dois nodes
+## Anatomia
 
-`FileArchive1` e `FileArchive2` têm a mesma anatomia (ícone de pasta +
+<Canvas of={FileArchiveStories.FileArchive1} />
+
+### Um único componente para os dois nodes
+
+`FileArchive1` e `FileArchive2` (antes citados como `molecule/FileArchive1` `1439:19655` e `molecule/FileArchive2` `1439:19656`, nós que não resolvem no V0.2.1) têm a mesma anatomia (ícone de pasta +
 rótulo de 10px) e o mesmo asset visual — a única diferença é o conteúdo
 (rótulo de exemplo) e o segundo tem `cursor-pointer` (affordance de clique).
 Por isso um único componente `FileArchiveCard`, com props `label`/
@@ -26,8 +29,12 @@ Por isso um único componente `FileArchiveCard`, com props `label`/
 
 ## Estados
 
-Elemento estático de exibição — o único estado interativo é o cursor de
-clique (`interactive`) no segundo caso.
+| Estado | Tratamento |
+| --- | --- |
+| Estático (`FileArchive1`) | Só exibição |
+| Interativo (`interactive`) | `cursor-pointer`; clique e Enter chamam `onClick` |
+| Hover, pressed | Opacidade 70% e 50% |
+| Foco | 🧩 Anel de 3px `Brand/Primary/Action` a 50%, só pelo teclado |
 
 ## Terminologia
 

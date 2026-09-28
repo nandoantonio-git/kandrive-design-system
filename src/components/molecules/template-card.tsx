@@ -15,7 +15,7 @@ export interface TemplateCardProps
 }
 
 /**
- * molecule/template-card (`1421:19695`, Figma-confirmado) — card de método
+ * molecule/template-card (`900:11221`, Figma-confirmado) — card de método
  * de organização usado em `template/DialogSave/OrganizationModal`
  * (`1421:18576`). Extraído do markup inline do template (Regra 10 — o
  * template agora compõe este molecule em vez de reimplementar os 4 cards
@@ -31,7 +31,7 @@ export interface TemplateCardProps
  * `bg-brand-teal-light-surface`, já correto nos dois modos). Se a releitura
  * do Figma mostrar outro tratamento, reabrir.
  *
- * 🧩 Regra 8: pressed e disabled não desenhados no Figma.
+ * Pressed e disabled seguem os estados desenhados no Figma (`Pressed`/`Disabled`).
  */
 function TemplateCard({
   eyebrow,

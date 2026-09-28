@@ -3,14 +3,14 @@ import * as SaveLongTermFileStorageStories from './SaveLongTermFileStorage.stori
 
 <Meta of={SaveLongTermFileStorageStories} />
 
-# SaveLongTermFileStorage (`template/Save/LongTermFileStorage`)
+# SaveLongTermFileStorage (Figma: `template/SaveLongTermFileStorage/Device=Desktop`, `1439:16907`)
 
 ## Uso
 
 Tela de confirmação do fluxo "Guardar em longo prazo" — lista os arquivos selecionados antes de arquivar. Use como etapa final desse fluxo, depois de `ArchiveBrowserModal`. Título "Guardar no longo prazo", com seção "Por que guardar?" e destino "Guardados".
 
 <Canvas of={SaveLongTermFileStorageStories.Default} />
-<Controls />
+<Controls of={SaveLongTermFileStorageStories.Default} />
 
 ## Composição
 
@@ -23,14 +23,29 @@ Tela de confirmação do fluxo "Guardar em longo prazo" — lista os arquivos se
 
 O botão "Adicionar arquivos" e os chips de arquivo selecionado ainda não são componentes próprios documentados — implementados localmente como elementos simples.
 
+### Material
+
+Container usa o material Liquid Glass — ver [Tokens/Materials](../tokens/Materials.mdx).
+
 ## Estados
 
 - Lista de arquivos — renderização dinâmica via prop `files`
 - Seleção/economia — props `selectedCount`/`savingsLabel`
 
-## Material
+| Estado | Tratamento |
+| --- | --- |
+| Linhas de arquivo | só-leitura (instâncias `Selectable=false`); a seleção acontece no `ArchiveBrowserModal` |
+| Hover / Pressed / Foco | herdados de `atom/Button`, `SearchInput` e do "Adicionar arquivos" |
 
-Container usa o material Liquid Glass — ver [Tokens/Materials](../tokens/Materials.mdx).
+## Mobile
+
+Tablet · 720. Figma `template/SaveLongTermFileStorage` `Device=Tablet`.
+
+<Canvas of={SaveLongTermFileStorageStories.Tablet} />
+
+Mobile · 390: largura total, selecionados acima das etiquetas, com rolagem.
+
+<Canvas of={SaveLongTermFileStorageStories.Mobile} />
 
 ## Terminologia
 
