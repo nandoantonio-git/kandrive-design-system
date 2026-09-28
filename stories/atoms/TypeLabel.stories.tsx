@@ -1,4 +1,6 @@
+import * as React from "react"
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 
 import {
   FileTypeLabel,
@@ -131,15 +133,28 @@ export const ScopeMatrix: StoryObj = {
   ),
 }
 
-/** Chips do seletor de escopo em `molecule/StorageStatus` (`Style=Expanded`). */
+/** Chips do seletor de escopo em `molecule/StorageStatus` (`Style=Expanded`). Vivo — clique num chip pra ativá-lo. */
 export const ScopeSelector: StoryObj = {
-  render: () => (
-    <div className="flex gap-2">
-      <ScopeTypeLabel kind="global" label="Global" active />
-      <ScopeTypeLabel kind="quick-access" label="Acesso rápido" />
-      <ScopeTypeLabel kind="long-term" label="Longo prazo" />
-    </div>
-  ),
+  render: function Render() {
+    const [scope, setScope] = React.useState<"global" | "quick-access" | "long-term">("global")
+    return (
+      <div className="flex gap-2">
+        <ScopeTypeLabel kind="global" label="Global" active={scope === "global"} onClick={() => setScope("global")} />
+        <ScopeTypeLabel kind="quick-access" label="Acesso rápido" active={scope === "quick-access"} onClick={() => setScope("quick-access")} />
+        <ScopeTypeLabel kind="long-term" label="Longo prazo" active={scope === "long-term"} onClick={() => setScope("long-term")} />
+      </div>
+    )
+  },
+  // Clicar num chip inativo o ativa (`aria-pressed`) e desativa o anterior.
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const global = canvas.getByRole("button", { name: "Global" })
+    const quick = canvas.getByRole("button", { name: "Acesso rápido" })
+    await expect(global).toHaveAttribute("aria-pressed", "true")
+    await userEvent.click(quick)
+    await expect(quick).toHaveAttribute("aria-pressed", "true")
+    await expect(global).toHaveAttribute("aria-pressed", "false")
+  },
 }
 
 /** `Type=Tag, Style=Alert` — pílula de alerta/perigo. */

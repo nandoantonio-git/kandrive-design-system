@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 import { useArgs } from "storybook/preview-api"
+import { LiveArgs } from "../../.storybook/live-args"
 import { useState } from "react"
 
 import { CleanSpaceListSelection } from "../../src/components/molecules/clean-space-list-selection"
@@ -37,7 +39,22 @@ type Story = StoryObj<typeof meta>
 export const Unselected: Story = {
   render: function Render(args) {
     const [, updateArgs] = useArgs()
-    return <CleanSpaceListSelection {...args} onSelectedChange={(selected) => updateArgs({ selected })} />
+    return (
+      <LiveArgs args={args} updateArgs={updateArgs}>
+        {(live, updateLive) => (
+          <CleanSpaceListSelection {...live} onSelectedChange={(selected) => updateLive({ selected })} />
+        )}
+      </LiveArgs>
+    )
+  },
+  // Marcar o checkbox seleciona a linha; marcar de novo desfaz.
+  play: async ({ canvasElement }) => {
+    const box = within(canvasElement).getByRole("checkbox", { name: "Selecionar medium-report.pdf" })
+    await expect(box).toHaveAttribute("aria-checked", "false")
+    await userEvent.click(box)
+    await expect(box).toHaveAttribute("aria-checked", "true")
+    await userEvent.click(box)
+    await expect(box).toHaveAttribute("aria-checked", "false")
   },
 }
 

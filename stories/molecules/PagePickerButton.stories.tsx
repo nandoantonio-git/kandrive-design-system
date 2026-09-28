@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 
 import { PagePickerButton } from "../../src/components/molecules/page-picker-button"
 
@@ -12,6 +13,13 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+export const Default: Story = {
+  args: { onClick: fn() },
+  // Clique dispara `onClick` (quem consome abre a lista de páginas).
+  play: async ({ args, canvasElement }) => {
+    await userEvent.click(within(canvasElement).getByRole("button", { name: "Pessoal" }))
+    await expect(args.onClick).toHaveBeenCalledOnce()
+  },
+}
 
 export const WithoutLabel: Story = { args: { withLabel: false } }

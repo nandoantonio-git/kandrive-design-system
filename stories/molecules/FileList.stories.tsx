@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 
 import { FileList } from "../../src/components/molecules/file-list"
 
@@ -27,7 +28,17 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+export const Default: Story = {
+  args: { onClick: fn() },
+  // Com `onClick`, a linha vira botão: clique e Enter disparam o callback.
+  play: async ({ args, canvasElement }) => {
+    const row = within(canvasElement).getByRole("button", { name: /Arquivo 1/ })
+    await userEvent.click(row)
+    await expect(args.onClick).toHaveBeenCalledTimes(1)
+    await userEvent.keyboard("{Enter}")
+    await expect(args.onClick).toHaveBeenCalledTimes(2)
+  },
+}
 
 export const Hover: Story = {
   args: { state: "hover" },

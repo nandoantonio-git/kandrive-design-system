@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 
 import { FileListContainer } from "../../src/components/organisms/file-list-container"
 
@@ -18,4 +19,11 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+export const Default: Story = {
+  args: { onOpen: fn() },
+  // Clicar numa linha chama `onOpen` com a própria linha.
+  play: async ({ args, canvasElement }) => {
+    await userEvent.click(within(canvasElement).getByRole("button", { name: /Arquivo 2/ }))
+    await expect(args.onOpen).toHaveBeenCalledWith({ name: "Arquivo 2" })
+  },
+}

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 
 import { AccordionItem } from "../../src/components/molecules/accordion-item"
 
@@ -25,7 +26,20 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 /** Figma `Expanded=true`. */
-export const Expanded: Story = { args: { open: true } }
+export const Expanded: Story = {
+  args: { open: true },
+  // Clique no resumo fecha o item; outro clique abre de novo.
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const item = canvas.getByRole("group")
+    const summary = canvas.getByText("Como adiciono meus primeiros arquivos?")
+    await expect(item).toHaveAttribute("open")
+    await userEvent.click(summary)
+    await expect(item).not.toHaveAttribute("open")
+    await userEvent.click(summary)
+    await expect(item).toHaveAttribute("open")
+  },
+}
 
 /** 🧩 Figma `Expanded=false`: sem o painel e com o chevron girado. */
 export const Collapsed: Story = { args: { open: false } }

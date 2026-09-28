@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 
 import { CleanSpaceDuplicated } from "../../src/components/organisms/clean-space-duplicated"
 
@@ -20,4 +21,13 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+export const Default: Story = {
+  args: { onDeleteDuplicates: fn() },
+  // "Excluir cópias" chama `onDeleteDuplicates` com o grupo da própria linha.
+  play: async ({ args, canvasElement }) => {
+    const buttons = within(canvasElement).getAllByRole("button", { name: "Excluir cópias" })
+    await userEvent.click(buttons[1])
+    await expect(args.onDeleteDuplicates).toHaveBeenCalledOnce()
+    await expect(args.onDeleteDuplicates).toHaveBeenCalledWith(args.groups[1])
+  },
+}

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 
 import { Button } from "../../src/components/atoms/button"
 
@@ -30,7 +31,14 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 /** Figma: `Style=Primary, Size=MD, Shape=Rounded, State=Default`. */
-export const Primary: Story = {}
+export const Primary: Story = {
+  args: { onClick: fn() },
+  // Clique dispara o callback `onClick`.
+  play: async ({ args, canvasElement }) => {
+    await userEvent.click(within(canvasElement).getByRole("button", { name: "Salvar alterações" }))
+    await expect(args.onClick).toHaveBeenCalledOnce()
+  },
+}
 
 export const Outline: Story = { args: { variant: "outline", children: "Cancelar" } }
 
@@ -44,7 +52,16 @@ export const Secondary: Story = { args: { variant: "secondary", size: "lg", shap
 
 export const LargePill: Story = { args: { size: "lg", shape: "pill", children: "Guardar arquivos" } }
 
-export const Disabled: Story = { args: { disabled: true } }
+export const Disabled: Story = {
+  args: { disabled: true, onClick: fn() },
+  // Desabilitado: o clique não dispara `onClick`.
+  play: async ({ args, canvasElement }) => {
+    const button = within(canvasElement).getByRole("button", { name: "Salvar alterações" })
+    await expect(button).toBeDisabled()
+    await userEvent.click(button, { pointerEventsCheck: 0 })
+    await expect(args.onClick).not.toHaveBeenCalled()
+  },
+}
 
 /** `asChild`: o botão renderizado como link, com a mesma aparência. */
 export const AsLink: Story = {

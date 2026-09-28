@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 
 import { PaymentPage } from "../../src/components/pages/payment-page"
 
@@ -16,6 +17,18 @@ export const Expanded: Story = {
     design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1745-12477" },
   },
   args: { variant: "expanded" },
+  // Cada seção recolhe e expande sozinha; recolhida, mostra o resumo ("92% usado").
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const storage = canvas.getByRole("button", { name: "Seu armazenamento" })
+    await expect(storage).toHaveAttribute("aria-expanded", "true")
+    await userEvent.click(storage)
+    await expect(storage).toHaveAttribute("aria-expanded", "false")
+    await expect(canvas.getByText("92% usado")).toBeInTheDocument()
+    await expect(canvas.getByRole("button", { name: "Seu plano" })).toHaveAttribute("aria-expanded", "true")
+    await userEvent.click(storage)
+    await expect(storage).toHaveAttribute("aria-expanded", "true")
+  },
 }
 
 export const Collapsed: Story = {

@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 import { useArgs } from "storybook/preview-api"
+import { LiveArgs } from "../../.storybook/live-args"
 
 import { FaqTopicChips } from "../../src/components/molecules/faq-topic-chips"
 
@@ -20,6 +22,21 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   render: function Render(args) {
     const [, updateArgs] = useArgs()
-    return <FaqTopicChips {...args} onSelect={(active) => updateArgs({ active })} />
+    return (
+      <LiveArgs args={args} updateArgs={updateArgs}>
+        {(live, updateLive) => (
+          <FaqTopicChips {...live} onSelect={(active) => updateLive({ active })} />
+        )}
+      </LiveArgs>
+    )
+  },
+  // Tocar num chip o marca como ativo (`aria-pressed`).
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const chip = canvas.getByRole("button", { name: "Templates" })
+    await expect(chip).toHaveAttribute("aria-pressed", "false")
+    await userEvent.click(chip)
+    await expect(chip).toHaveAttribute("aria-pressed", "true")
+    await expect(canvas.getByRole("button", { name: "Primeiros passos" })).toHaveAttribute("aria-pressed", "false")
   },
 }

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 
 import { SearchInput } from "../../src/components/molecules/search-input"
 
@@ -27,7 +28,16 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 /** Estado default com o placeholder aprovado (Regra 5). */
-export const Default: Story = {}
+export const Default: Story = {
+  args: { onChange: fn() },
+  // O campo aceita digitação e avisa cada mudança por `onChange`.
+  play: async ({ args, canvasElement }) => {
+    const input = within(canvasElement).getByRole("searchbox", { name: "Buscar arquivos, pastas ou templates" })
+    await userEvent.type(input, "contrato")
+    await expect(input).toHaveValue("contrato")
+    await expect(args.onChange).toHaveBeenCalled()
+  },
+}
 
 /**
  * Hover e Focus (equivalente a Active para um input) são estados puramente
@@ -37,6 +47,13 @@ export const Default: Story = {}
 
 export const Disabled: Story = {
   args: { disabled: true },
+  // Desabilitado: não aceita digitação.
+  play: async ({ canvasElement }) => {
+    const input = within(canvasElement).getByRole("searchbox", { name: "Buscar arquivos, pastas ou templates" })
+    await expect(input).toBeDisabled()
+    await userEvent.type(input, "contrato", { pointerEventsCheck: 0 })
+    await expect(input).toHaveValue("")
+  },
 }
 
 export const Loading: Story = {

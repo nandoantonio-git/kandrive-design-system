@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 import { useState } from "react"
 
 import { NodeContextMenuItem } from "../../src/components/molecules/node-context-menu-item"
@@ -35,6 +36,16 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Placeholder: Story = {
+  // O gatilho abre a lista; escolher uma opção preenche a pílula e fecha a lista.
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const trigger = canvas.getByRole("button", { name: "Atributo" })
+    await userEvent.click(trigger)
+    await expect(trigger).toHaveAttribute("aria-expanded", "true")
+    await userEvent.click(canvas.getByRole("button", { name: "Data" }))
+    await expect(trigger).toHaveAccessibleName("Data")
+    await expect(trigger).toHaveAttribute("aria-expanded", "false")
+  },
   render: (args) => {
     function Controlled() {
       const [expanded, setExpanded] = useState(false)

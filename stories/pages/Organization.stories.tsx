@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 import { useState } from "react"
 
 import { OrganizationPage, type OrganizationPageProps } from "../../src/components/pages/organization-page"
@@ -142,7 +143,21 @@ const vp = (value: "kdMobile" | "kdTablet") => ({ viewport: { value, isRotated: 
 /** Tablet · 720, modal de método. Figma `Organize/ChooseMethod/Tablet`. */
 export const DefaultTablet: Story = { ...Default, parameters: FIG("1749-35196"), globals: vp("kdTablet") }
 /** Mobile · 390: seletor de método, "Ordenar por", "Página" e a lista com checkbox; TabBar em Organizar, BottomNav Confirmar + ✕. Figma `Organize/ChooseMethod/Mobile`. */
-export const DefaultMobile: Story = { ...Default, parameters: FIG("1700-21974"), globals: vp("kdMobile") }
+export const DefaultMobile: Story = {
+  ...Default,
+  parameters: FIG("1700-21974"),
+  globals: vp("kdMobile"),
+  // Seletor de método: o botão abre os cartões, escolher "Por data" fecha e mostra o método no botão.
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const trigger = canvas.getByRole("button", { name: /Por projeto/ })
+    await userEvent.click(trigger)
+    await expect(trigger).toHaveAttribute("aria-expanded", "true")
+    await userEvent.click(canvas.getByRole("radio", { name: /Por data/ }))
+    await expect(canvas.queryByRole("radiogroup")).toBeNull()
+    await expect(canvas.getByRole("button", { name: /Por data/ })).toHaveAttribute("aria-expanded", "false")
+  },
+}
 /** Tablet · 720: painel de arrastar abaixo da grade. Figma `Organize/DropZone/Tablet`. */
 export const TemplateDropZoneTablet: Story = { ...TemplateDropZone, parameters: FIG("1750-49555"), globals: vp("kdTablet") }
 /** Mobile · 390: no mobile não se arrasta, a etapa mostra a revisão (fluxo equivalente). Figma `Organize/Review/Mobile`. */

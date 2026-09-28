@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 import { useState } from "react"
 
 import { Sidebar } from "../../src/components/organisms/sidebar"
@@ -29,6 +30,17 @@ export const Default: Story = {
       return <Sidebar {...args} collapsed={collapsed} onCollapsedChange={setCollapsed} />
     }
     return <Controlled />
+  },
+  args: { onNavigate: fn() },
+  // Clicar numa página chama `onNavigate`; colapsar esconde a navegação e expandir traz de volta.
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole("button", { name: "Recentes" }))
+    await expect(args.onNavigate).toHaveBeenCalledWith("Recentes")
+    await userEvent.click(canvas.getByRole("button", { name: "Colapsar sidebar" }))
+    await expect(canvas.queryByRole("button", { name: "Recentes" })).toBeNull()
+    await userEvent.click(canvas.getByRole("button", { name: "Expandir sidebar" }))
+    await expect(canvas.getByRole("button", { name: "Recentes" })).toBeInTheDocument()
   },
 }
 

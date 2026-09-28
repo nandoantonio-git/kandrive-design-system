@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 
 import { SaveLongTermFileStorage } from "../../src/components/templates/save-long-term-file-storage"
 
@@ -20,7 +21,19 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+export const Default: Story = {
+  args: { onAddFiles: fn(), onCancel: fn(), onContinue: fn() },
+  // "Adicionar arquivos", "Cancelar" e "Continuar" chamam cada um o próprio callback.
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole("button", { name: "Adicionar arquivos" }))
+    await expect(args.onAddFiles).toHaveBeenCalledOnce()
+    await userEvent.click(canvas.getByRole("button", { name: "Continuar" }))
+    await expect(args.onContinue).toHaveBeenCalledOnce()
+    await userEvent.click(canvas.getByRole("button", { name: "Cancelar" }))
+    await expect(args.onCancel).toHaveBeenCalledOnce()
+  },
+}
 
 // ─── Responsividade (2026-09-24) ─────────────────────────────────────────
 const vp = (value: "kdMobile" | "kdTablet") => ({ viewport: { value, isRotated: false } })

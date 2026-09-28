@@ -1,5 +1,6 @@
 import * as React from "react"
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 
 import { RadioButton } from "../../src/components/molecules/radio-button"
 
@@ -36,7 +37,15 @@ export const Saved: Story = {
 }
 
 export const Disabled: Story = {
-  args: { option: "personal", disabled: true },
+  args: { option: "personal", disabled: true, onCheckedChange: fn() },
+  // Desabilitado: o clique não marca nem chama `onCheckedChange`.
+  play: async ({ args, canvasElement }) => {
+    const radio = within(canvasElement).getByRole("radio", { name: "Pessoal" })
+    await expect(radio).toBeDisabled()
+    await userEvent.click(radio, { pointerEventsCheck: 0 })
+    await expect(args.onCheckedChange).not.toHaveBeenCalled()
+    await expect(radio).not.toBeChecked()
+  },
 }
 
 /** Grupo controlado — só uma opção fica marcada por vez (feedback real no clique, Regra 8). */
@@ -45,9 +54,21 @@ export const Group: StoryObj = {
     const [selected, setSelected] = React.useState<string>("personal")
     return (
       <div className="flex flex-col gap-2">
-        <RadioButton option="personal" checked={selected === "personal"} onCheckedChange={setSelected} />
-        <RadioButton option="saved" checked={selected === "saved"} onCheckedChange={setSelected} />
+        <RadioButton option="personal" name="origem" checked={selected === "personal"} onCheckedChange={setSelected} />
+        <RadioButton option="saved" name="origem" checked={selected === "saved"} onCheckedChange={setSelected} />
       </div>
     )
+  },
+  // Clique marca só uma opção; as setas trocam a opção marcada.
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const personal = canvas.getByRole("radio", { name: "Pessoal" })
+    const saved = canvas.getByRole("radio", { name: "Guardados" })
+    await userEvent.click(saved)
+    await expect(saved).toBeChecked()
+    await expect(personal).not.toBeChecked()
+    await userEvent.keyboard("{ArrowUp}")
+    await expect(personal).toBeChecked()
+    await expect(saved).not.toBeChecked()
   },
 }

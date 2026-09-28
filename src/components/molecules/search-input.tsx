@@ -54,8 +54,14 @@ function SearchInput({
   disabled,
   state,
   placeholder = "Buscar arquivos, pastas ou templates",
+  "aria-label": ariaLabel,
   ...props
 }: SearchInputProps) {
+  // Sem rótulo visível: o placeholder vira o nome acessível, a menos que o
+  // consumidor já nomeie o campo (`aria-label`, `aria-labelledby` ou `id` com
+  // `<label>`). Achado dos testes de interação (lote 4, 2026-09-27).
+  const accessibleName = ariaLabel ?? (props["aria-labelledby"] || props.id ? undefined : placeholder)
+
   return (
     <div
       data-slot="search-input-wrapper"
@@ -93,6 +99,7 @@ function SearchInput({
         type="search"
         disabled={disabled || loading}
         placeholder={placeholder}
+        aria-label={accessibleName}
         className={cn(
           "relative h-9 w-full rounded-full bg-transparent pr-3 pl-9 text-base text-zinc-900 placeholder:text-zinc-500 dark:text-zinc-100 dark:placeholder:text-zinc-400",
           "transition-colors hover:bg-zinc-500/5 dark:hover:bg-zinc-400/10",

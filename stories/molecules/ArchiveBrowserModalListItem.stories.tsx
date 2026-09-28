@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 import { useArgs } from "storybook/preview-api"
+import { LiveArgs } from "../../.storybook/live-args"
 
 import { ArchiveBrowserModalListItem } from "../../src/components/molecules/archive-browser-modal-list-item"
 
@@ -25,7 +27,22 @@ export const Default: Story = {
   decorators: [(Story) => <div className="w-[650px]"><Story /></div>],
   render: function Render(args) {
     const [, updateArgs] = useArgs()
-    return <ArchiveBrowserModalListItem {...args} onClick={() => updateArgs({ selected: !args.selected })} />
+    return (
+      <LiveArgs args={args} updateArgs={updateArgs}>
+        {(live, updateLive) => (
+          <ArchiveBrowserModalListItem {...live} onClick={() => updateLive({ selected: !live.selected })} />
+        )}
+      </LiveArgs>
+    )
+  },
+  // Clique seleciona a linha (`aria-pressed`); Espaço desfaz.
+  play: async ({ canvasElement }) => {
+    const row = within(canvasElement).getByRole("button", { name: /Ceremonia-001\.jpg/ })
+    await expect(row).toHaveAttribute("aria-pressed", "false")
+    await userEvent.click(row)
+    await expect(row).toHaveAttribute("aria-pressed", "true")
+    await userEvent.keyboard(" ")
+    await expect(row).toHaveAttribute("aria-pressed", "false")
   },
 }
 

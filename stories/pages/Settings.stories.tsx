@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 import { useState } from "react"
 
 import { SettingsPage, type SettingsSection } from "../../src/components/pages/settings-page"
@@ -27,6 +28,17 @@ export const Account: Story = {
     design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1745-12111" },
   },
   render: controlled("conta"),
+  // Desktop: clicar numa seção da Sidebar a torna a atual e troca o conteúdo.
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(canvas.getByRole("button", { name: "Salvar alterações" })).toBeInTheDocument()
+    const nav = within(canvas.getByRole("navigation", { name: "Seções de configurações" }))
+    const plan = nav.getByRole("button", { name: "Armazenamento e plano" })
+    await userEvent.click(plan)
+    await expect(plan).toHaveAttribute("aria-current", "page")
+    await expect(nav.getByRole("button", { name: "Conta" })).not.toHaveAttribute("aria-current")
+    await expect(canvas.queryByRole("button", { name: "Salvar alterações" })).toBeNull()
+  },
 }
 
 export const Subscription: Story = {

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 
 import { FreeModeButtons } from "../../src/components/molecules/free-mode-buttons"
 
@@ -21,4 +22,15 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+export const Default: Story = {
+  args: { onAddNode: fn(), onExpand: fn(), onReset: fn(), onDelete: fn() },
+  // Cada botão do toolbar dispara o próprio callback.
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole("button", { name: "Adicionar nodo" }))
+    await expect(args.onAddNode).toHaveBeenCalledOnce()
+    await userEvent.click(canvas.getByRole("button", { name: "Excluir" }))
+    await expect(args.onDelete).toHaveBeenCalledOnce()
+    await expect(args.onReset).not.toHaveBeenCalled()
+  },
+}

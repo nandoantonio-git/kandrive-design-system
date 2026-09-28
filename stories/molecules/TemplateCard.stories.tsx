@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 import { useArgs } from "storybook/preview-api"
+import { LiveArgs } from "../../.storybook/live-args"
 
 import { TemplateCard } from "../../src/components/molecules/template-card"
 import illustrationData from "../../src/assets/illustrations/template-card-data.svg"
@@ -28,7 +30,20 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   render: function Render(args) {
     const [, updateArgs] = useArgs()
-    return <TemplateCard {...args} onClick={() => updateArgs({ selected: !args.selected })} />
+    return (
+      <LiveArgs args={args} updateArgs={updateArgs}>
+        {(live, updateLive) => (
+          <TemplateCard {...live} onClick={() => updateLive({ selected: !live.selected })} />
+        )}
+      </LiveArgs>
+    )
+  },
+  // Clique no card alterna `selected` (`aria-pressed`).
+  play: async ({ canvasElement }) => {
+    const card = within(canvasElement).getByRole("button", { name: /Cronológico/ })
+    await expect(card).toHaveAttribute("aria-pressed", "false")
+    await userEvent.click(card)
+    await expect(card).toHaveAttribute("aria-pressed", "true")
   },
 }
 

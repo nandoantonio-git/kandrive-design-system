@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 
 import { CleanSpaceStorage } from "../../src/components/templates/clean-space-storage"
 
@@ -22,4 +23,17 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+export const Default: Story = {
+  args: { onClose: fn(), onDeleteFile: fn(), onDeleteDuplicates: fn() },
+  // O modal repassa as ações: excluir os selecionados, excluir cópias e fechar.
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole("checkbox", { name: "Selecionar medium-report.pdf" }))
+    await userEvent.click(canvas.getByRole("button", { name: "Excluir" }))
+    await expect(args.onDeleteFile).toHaveBeenCalledWith(args.largeFiles[1])
+    await userEvent.click(canvas.getAllByRole("button", { name: "Excluir cópias" })[0])
+    await expect(args.onDeleteDuplicates).toHaveBeenCalledWith(args.duplicateGroups[0])
+    await userEvent.click(canvas.getByRole("button", { name: "Fechar" }))
+    await expect(args.onClose).toHaveBeenCalledOnce()
+  },
+}

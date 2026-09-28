@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 import { useState } from "react"
 
 import { PlanSelection, type PlanInterval } from "../../src/components/organisms/plan-selection"
@@ -31,6 +32,19 @@ export const Default: Story = {
       return <PlanSelection {...args} interval={interval} onIntervalChange={setInterval} />
     }
     return <Controlled />
+  },
+  args: { onSelectPlan: fn() },
+  // "Mensal" troca o intervalo e os preços; "Melhorar" torna o Max o plano atual.
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement)
+    const monthly = canvas.getByRole("tab", { name: "Mensal" })
+    await userEvent.click(monthly)
+    await expect(monthly).toHaveAttribute("aria-selected", "true")
+    await expect(canvas.getByText("$12")).toBeInTheDocument()
+    await userEvent.click(canvas.getByRole("button", { name: "Melhorar" }))
+    await expect(args.onSelectPlan).toHaveBeenCalledWith(expect.objectContaining({ id: "max" }))
+    await expect(canvas.queryByRole("button", { name: "Melhorar" })).toBeNull()
+    await expect(canvas.getAllByRole("button", { name: "Rebaixar" })).toHaveLength(2)
   },
 }
 

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 
 import { FreeModeAddMenu } from "../../src/components/molecules/free-mode-add-menu"
 
@@ -14,4 +15,11 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+export const Default: Story = {
+  args: { onSelect: fn() },
+  // Escolher uma operação chama `onSelect` com ela.
+  play: async ({ args, canvasElement }) => {
+    await userEvent.click(within(canvasElement).getByRole("button", { name: "Interssecção" }))
+    await expect(args.onSelect).toHaveBeenCalledWith("intersseccao")
+  },
+}

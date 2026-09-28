@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 
 import { FolderItem } from "../../src/components/atoms/folder-item"
 
@@ -32,7 +33,19 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 /** Sem `state` fixo — passe o mouse e clique pra selecionar (vivo). */
-export const Idle: Story = {}
+export const Idle: Story = {
+  args: { onSelectedChange: fn() },
+  // Clique seleciona (`aria-pressed`); Enter desfaz a seleção.
+  play: async ({ args, canvasElement }) => {
+    const item = within(canvasElement).getByRole("button", { name: "Arquivo 1" })
+    await expect(item).toHaveAttribute("aria-pressed", "false")
+    await userEvent.click(item)
+    await expect(item).toHaveAttribute("aria-pressed", "true")
+    await expect(args.onSelectedChange).toHaveBeenLastCalledWith(true)
+    await userEvent.keyboard("{Enter}")
+    await expect(item).toHaveAttribute("aria-pressed", "false")
+  },
+}
 
 export const Hover: Story = {
   args: { state: "hover" },
@@ -43,7 +56,15 @@ export const Pressed: Story = {
 }
 
 export const Disabled: Story = {
-  args: { state: "disabled" },
+  args: { state: "disabled", onSelectedChange: fn() },
+  // Desabilitado: o clique não seleciona.
+  play: async ({ args, canvasElement }) => {
+    const item = within(canvasElement).getByRole("button", { name: "Arquivo 1" })
+    await expect(item).toHaveAttribute("aria-disabled", "true")
+    await userEvent.click(item)
+    await expect(args.onSelectedChange).not.toHaveBeenCalled()
+    await expect(item).toHaveAttribute("aria-pressed", "false")
+  },
 }
 
 export const Selected: Story = {

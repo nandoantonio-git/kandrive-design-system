@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 
 import { FaqInfoCardCollapsed } from "../../src/components/organisms/faq-info-card-collapsed"
 
@@ -33,6 +34,17 @@ type Story = StoryObj<typeof meta>
 
 export const FirstSteps: Story = {
   args: { topic: "FirstSteps" },
+  // Começa sem perguntas; o botão abre a lista (`aria-expanded`) e fecha de novo.
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const toggle = canvas.getByRole("button", { expanded: false })
+    await expect(canvas.queryByText("Como adiciono meus primeiros arquivos?")).toBeNull()
+    await userEvent.click(toggle)
+    await expect(toggle).toHaveAttribute("aria-expanded", "true")
+    await expect(canvas.getByText("Como adiciono meus primeiros arquivos?")).toBeVisible()
+    await userEvent.click(toggle)
+    await expect(canvas.queryByText("Como adiciono meus primeiros arquivos?")).toBeNull()
+  },
 }
 
 export const Storage: Story = {

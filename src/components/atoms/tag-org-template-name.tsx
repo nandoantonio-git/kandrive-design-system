@@ -22,10 +22,15 @@ export interface TagOrgTemplateNameProps
  * (mesmo tratamento de `molecule/SearchInput`), não um estado Figma-
  * confirmado — o Figma só expõe o estado de repouso.
  * 🧩 Regra 8: hover e disabled também não desenhados no Figma.
+ *
+ * Nome acessível: o campo não tem rótulo visível (só placeholder), então
+ * leva `aria-label` padrão "Nome do template de organização" (sobrescrevível).
+ * Achado dos testes de interação (lote 4, 2026-09-27).
  */
 function TagOrgTemplateName({
   className,
   placeholder = "Adicionar Nome",
+  "aria-label": ariaLabel = "Nome do template de organização",
   ...props
 }: TagOrgTemplateNameProps) {
   return (
@@ -33,6 +38,7 @@ function TagOrgTemplateName({
       data-slot="tag-org-template-name"
       type="text"
       placeholder={placeholder}
+      aria-label={ariaLabel}
       className={cn(
         "h-9 min-w-0 rounded-md bg-brand-secondary-light/45 px-3 py-1.5 text-base text-zinc-950 placeholder:text-zinc-950 [field-sizing:content] dark:text-zinc-100 dark:placeholder:text-zinc-100",
         "transition-colors hover:bg-brand-secondary-light/55 focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none",

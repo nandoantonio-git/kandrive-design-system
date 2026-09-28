@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 
 import { Header } from "../../src/components/organisms/header"
 
@@ -14,7 +15,19 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Navbar: Story = {}
+export const Navbar: Story = {
+  args: { onOrganize: fn(), onSave: fn(), onAvatarClick: fn() },
+  // Tablet e desktop: "Organizar", "Guardar" e "Conta" chamam cada um o próprio callback.
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole("button", { name: "Organizar" }))
+    await expect(args.onOrganize).toHaveBeenCalledOnce()
+    await userEvent.click(canvas.getByRole("button", { name: "Guardar" }))
+    await expect(args.onSave).toHaveBeenCalledOnce()
+    await userEvent.click(canvas.getByRole("button", { name: "Conta" }))
+    await expect(args.onAvatarClick).toHaveBeenCalledOnce()
+  },
+}
 
 export const Settings: Story = {
   args: { page: "settings" },

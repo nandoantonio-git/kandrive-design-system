@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 import { useArgs } from "storybook/preview-api"
+import { LiveArgs } from "../../.storybook/live-args"
 
 import { ContextHeader } from "../../src/components/molecules/context-header"
 
@@ -31,9 +33,25 @@ type Story = StoryObj<typeof meta>
 
 /** Vivo — "Limpar seleção" recolhe o header (`state: "collapsed"`); volte pelos Controls. */
 export const Default: Story = {
+  args: { onDelete: fn() },
   render: function Render(args) {
     const [, updateArgs] = useArgs()
-    return <ContextHeader {...args} onClear={() => updateArgs({ state: "collapsed" })} />
+    return (
+      <LiveArgs args={args} updateArgs={updateArgs}>
+        {(live, updateLive) => (
+          <ContextHeader {...live} onClear={() => updateLive({ state: "collapsed" })} />
+        )}
+      </LiveArgs>
+    )
+  },
+  // As ações disparam seus callbacks; "Limpar seleção" recolhe o header.
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole("button", { name: "Excluir" }))
+    await expect(args.onDelete).toHaveBeenCalledOnce()
+    const clear = canvas.getByRole("button", { name: "Limpar seleção" })
+    await userEvent.click(clear)
+    await expect(clear.closest("[data-slot='context-header']")).toHaveAttribute("data-state", "collapsed")
   },
 }
 

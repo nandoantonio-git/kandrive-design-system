@@ -1,5 +1,6 @@
 import * as React from "react"
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 
 import { MobileBottomNav, type MobileDestination } from "../../src/components/organisms/mobile-bottom-nav"
 
@@ -30,8 +31,19 @@ export const Confirm: Story = { args: { action: "confirm", hand: "left" } }
 export const None: Story = { args: { action: "none" } }
 
 export const Interactive: Story = {
+  args: { onAction: fn() },
   render: function Render(args) {
     const [active, setActive] = React.useState<MobileDestination>(args.active ?? "pessoal")
     return <MobileBottomNav {...args} active={active} onNavigate={setActive} />
+  },
+  // Tocar num destino o torna o atual (`aria-current="page"`); o FAB chama `onAction`.
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement)
+    const recent = canvas.getByRole("button", { name: "Recentes" })
+    await userEvent.click(recent)
+    await expect(recent).toHaveAttribute("aria-current", "page")
+    await expect(canvas.getByRole("button", { name: "Pessoal" })).not.toHaveAttribute("aria-current")
+    await userEvent.click(canvas.getByRole("button", { name: "Adicionar" }))
+    await expect(args.onAction).toHaveBeenCalledOnce()
   },
 }

@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 import { useArgs } from "storybook/preview-api"
+import { LiveArgs } from "../../.storybook/live-args"
 
 import { DropListItem } from "../../src/components/molecules/drop-list-item"
 
@@ -33,7 +35,20 @@ type Story = StoryObj<typeof meta>
 export const Idle: Story = {
   render: function Render(args) {
     const [, updateArgs] = useArgs()
-    return <DropListItem {...args} onClick={() => updateArgs({ active: !args.active })} />
+    return (
+      <LiveArgs args={args} updateArgs={updateArgs}>
+        {(live, updateLive) => (
+          <DropListItem {...live} onClick={() => updateLive({ active: !live.active })} />
+        )}
+      </LiveArgs>
+    )
+  },
+  // Clique dispara `onClick`, que aqui alterna `active` (estado Pressed).
+  play: async ({ canvasElement }) => {
+    const item = within(canvasElement).getByRole("button", { name: "Nova pasta" })
+    await expect(item).not.toHaveAttribute("data-active")
+    await userEvent.click(item)
+    await expect(item).toHaveAttribute("data-active", "true")
   },
 }
 

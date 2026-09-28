@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 import { useArgs } from "storybook/preview-api"
+import { LiveArgs } from "../../.storybook/live-args"
 
 import { HamburgerButton } from "../../src/components/atoms/hamburger-button"
 
@@ -19,11 +21,24 @@ export const Default: Story = {
   render: function Render(args) {
     const [, updateArgs] = useArgs()
     return (
-      <HamburgerButton
-        {...args}
-        onClick={() => updateArgs({ mode: args.mode === "expand" ? "closed" : "expand" })}
-      />
+      <LiveArgs args={args} updateArgs={updateArgs}>
+        {(live, updateLive) => (
+          <HamburgerButton
+            {...live}
+            onClick={() => updateLive({ mode: live.mode === "expand" ? "closed" : "expand" })}
+          />
+        )}
+      </LiveArgs>
     )
+  },
+  // Clique alterna o modo: "Abrir menu" (fechado) ↔ "Fechar menu" (expandido).
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const open = canvas.getByRole("button", { name: "Abrir menu" })
+    await expect(open).toHaveAttribute("aria-expanded", "false")
+    await userEvent.click(open)
+    const close = await canvas.findByRole("button", { name: "Fechar menu" })
+    await expect(close).toHaveAttribute("aria-expanded", "true")
   },
 }
 

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 
 import { PopoverNotification } from "../../src/components/molecules/popover-notification"
 
@@ -33,7 +34,14 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+export const Default: Story = {
+  args: { onClose: fn() },
+  // O botão de fechar dispara `onClose`.
+  play: async ({ args, canvasElement }) => {
+    await userEvent.click(within(canvasElement).getByRole("button", { name: "Fechar" }))
+    await expect(args.onClose).toHaveBeenCalledOnce()
+  },
+}
 
 export const Adition: Story = {
   args: { variant: "adition" },

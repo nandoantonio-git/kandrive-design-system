@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 
 import { UserProfileCard } from "../../src/components/organisms/user-profile-card"
 
@@ -12,7 +13,17 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+export const Default: Story = {
+  args: { onEditProfile: fn(), onSwitchAccount: fn() },
+  // "Editar perfil" e "Trocar conta" chamam cada um o próprio callback.
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole("button", { name: "Editar perfil" }))
+    await expect(args.onEditProfile).toHaveBeenCalledOnce()
+    await userEvent.click(canvas.getByRole("button", { name: "Trocar conta" }))
+    await expect(args.onSwitchAccount).toHaveBeenCalledOnce()
+  },
+}
 
 const vp = (value: "kdMobile" | "kdTablet") => ({ viewport: { value, isRotated: false } })
 /** Mobile · 390: ações abaixo da identidade, dividindo a largura. */

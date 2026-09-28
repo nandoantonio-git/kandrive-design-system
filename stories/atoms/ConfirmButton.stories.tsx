@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 
 import { ConfirmButton } from "../../src/components/atoms/confirm-button"
 
@@ -22,7 +23,14 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+export const Default: Story = {
+  args: { onClick: fn() },
+  // Clique dispara o callback `onClick`.
+  play: async ({ args, canvasElement }) => {
+    await userEvent.click(within(canvasElement).getByRole("button", { name: "Confirmar" }))
+    await expect(args.onClick).toHaveBeenCalledOnce()
+  },
+}
 
 export const Primary: Story = {
   args: { style: "primary" },
@@ -40,5 +48,12 @@ export const White: Story = {
 }
 
 export const Disabled: Story = {
-  args: { disabled: true },
+  args: { disabled: true, onClick: fn() },
+  // Desabilitado: o clique não dispara `onClick`.
+  play: async ({ args, canvasElement }) => {
+    const button = within(canvasElement).getByRole("button", { name: "Confirmar" })
+    await expect(button).toBeDisabled()
+    await userEvent.click(button, { pointerEventsCheck: 0 })
+    await expect(args.onClick).not.toHaveBeenCalled()
+  },
 }

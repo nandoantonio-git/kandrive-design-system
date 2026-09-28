@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 
 import { OrganizeFreeModeCanvas } from "../../src/components/templates/organize-free-mode-canvas"
 
@@ -16,4 +17,17 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+export const Default: Story = {
+  args: { onSaveTemplate: fn(), onDiscard: fn() },
+  // "Adicionar nodo" abre o menu de operações, escolher uma o fecha; "Salvar Template" chama `onSaveTemplate`.
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(canvas.queryByRole("button", { name: "Interssecção" })).toBeNull()
+    await userEvent.click(canvas.getByRole("button", { name: "Adicionar nodo" }))
+    await userEvent.click(canvas.getByRole("button", { name: "Interssecção" }))
+    await expect(canvas.queryByRole("button", { name: "Interssecção" })).toBeNull()
+    await userEvent.click(canvas.getByRole("button", { name: "Salvar Template" }))
+    await expect(args.onSaveTemplate).toHaveBeenCalledOnce()
+    await expect(args.onDiscard).not.toHaveBeenCalled()
+  },
+}
