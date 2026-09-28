@@ -35,6 +35,9 @@ export interface CardLoginProps extends Omit<React.ComponentProps<"div">, "onSub
  * segue aproximada pela rampa Zinc — mesmo gap já registrado para a paleta
  * neutra geral do arquivo (`docs/conflicts.md`, "Paleta neutra"), não uma
  * divergência nova deste componente.
+ *
+ * 🧩 Regra 8: hover dos campos, pressed do link/olho/sociais e foco não
+ * desenhados no Figma.
  */
 function CardLogin({
   onSubmit,
@@ -50,6 +53,8 @@ function CardLogin({
     ? "border-neutral-border-cool bg-effect-glass-frost-80/80 text-neutral-text-primary placeholder:text-neutral-text-tertiary"
     : "border-zinc-300 bg-zinc-50/80 text-zinc-900 placeholder:text-zinc-400 dark:border-zinc-700 dark:bg-zinc-900/80 dark:text-zinc-100 dark:placeholder:text-zinc-500"
   const label = m ? "text-white" : "text-zinc-600 dark:text-zinc-300"
+  // Sobre o fundo teal do mobile, o anel teal some — lá vai o branco (padrão do projeto pra fundo teal/escuro).
+  const ring = cn("focus-visible:outline-none focus-visible:ring-3", m ? "focus-visible:ring-white/60" : "focus-visible:ring-brand-teal-action/50")
   const social = m
     ? "border-neutral-border-cool bg-effect-glass-frost-90/90 text-neutral-text-graphite hover:bg-effect-glass-frost-90"
     : "border-zinc-300 bg-zinc-50/90 text-zinc-900 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-900/90 dark:text-zinc-100 dark:hover:bg-zinc-800"
@@ -98,7 +103,7 @@ function CardLogin({
               placeholder="seu@email.com"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              className={cn("w-full rounded-lg border py-3.5 pr-3 pl-10 text-base focus-visible:border-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50", input)}
+              className={cn("w-full rounded-lg border py-3.5 pr-3 pl-10 text-base transition-colors hover:border-zinc-400 focus-visible:border-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:hover:border-zinc-500", input)}
             />
           </div>
         </div>
@@ -111,7 +116,7 @@ function CardLogin({
             <button
               type="button"
               onClick={onForgotPassword}
-              className={cn("text-xs font-medium hover:underline", m ? "text-brand-primary-focus" : "text-brand-teal")}
+              className={cn("rounded-sm text-xs font-medium transition-opacity hover:underline active:opacity-70", ring, m ? "text-brand-primary-focus" : "text-brand-teal")}
             >
               Esqueceu sua senha?
             </button>
@@ -125,13 +130,13 @@ function CardLogin({
               placeholder="••••••••"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
-              className={cn("w-full rounded-lg border py-3.5 pr-10 pl-10 text-base focus-visible:border-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50", input)}
+              className={cn("w-full rounded-lg border py-3.5 pr-10 pl-10 text-base transition-colors hover:border-zinc-400 focus-visible:border-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:hover:border-zinc-500", input)}
             />
             <button
               type="button"
               onClick={() => setShowPassword((value) => !value)}
               aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 dark:text-zinc-500 dark:hover:text-zinc-300"
+              className="absolute right-3 top-1/2 -translate-y-1/2 rounded-sm text-zinc-400 transition-colors hover:text-zinc-600 active:text-zinc-800 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:text-zinc-500 dark:hover:text-zinc-300 dark:active:text-zinc-100"
             >
               {showPassword ? <EyeOff aria-hidden="true" className="size-4" /> : <Eye aria-hidden="true" className="size-4" />}
             </button>
@@ -157,14 +162,14 @@ function CardLogin({
         <button
           type="button"
           onClick={onGoogleLogin}
-          className={cn("w-full rounded-xl border py-3.5 text-sm font-medium shadow-sm transition-colors", social)}
+          className={cn("w-full rounded-xl border py-3.5 text-sm font-medium shadow-sm transition-[color,background-color,transform] motion-safe:active:scale-[0.98]", ring, social)}
         >
           Entrar com Google
         </button>
         <button
           type="button"
           onClick={onAppleLogin}
-          className={cn("w-full rounded-xl border py-3.5 text-sm font-medium shadow-sm transition-colors", social)}
+          className={cn("w-full rounded-xl border py-3.5 text-sm font-medium shadow-sm transition-[color,background-color,transform] motion-safe:active:scale-[0.98]", ring, social)}
         >
           Entrar com Apple
         </button>

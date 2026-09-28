@@ -71,7 +71,7 @@ function CollapsibleSection({
         type="button"
         onClick={() => setOpen((value) => !value)}
         aria-expanded={open}
-        className="flex h-[54px] w-full items-center justify-between px-5 text-left"
+        className="flex h-[54px] w-full items-center justify-between px-5 text-left transition-colors hover:bg-neutral-surface-subtle active:bg-neutral-surface-medium focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50"
       >
         <span className="flex items-center gap-2 text-base font-medium text-zinc-950 dark:text-zinc-100">
           <Icon className="size-4 shrink-0" aria-hidden="true" />
@@ -119,6 +119,9 @@ export interface PaymentPageProps extends React.ComponentProps<"div"> {
  * `lucide-react` — mesma convenção já usada em `organism/PlanSelection`
  * (`Check`) e `organism/Sidebar` (`PanelLeft`/`Plus`) pra ícones genéricos
  * sem asset próprio exportado do Figma.
+ *
+ * 🧩 Regra 8: hover/pressed/foco das seções recolhíveis e do seletor
+ * Mensal/Anual não desenhados no Figma.
  */
 function PaymentPage({
   variant = "expanded",
@@ -245,9 +248,10 @@ function PaymentPage({
                   <button
                     type="button"
                     onClick={() => onBillingCycleChange?.("monthly")}
+                    aria-pressed={billingCycle === "monthly"}
                     className={cn(
-                      "rounded-md px-3 py-1.5 text-sm font-medium",
-                      billingCycle === "monthly" ? "bg-brand-teal-action text-brand-teal-foreground" : "text-neutral-text-tertiary dark:text-zinc-400"
+                      "rounded-md px-3 py-1.5 text-sm font-medium transition-[color,background-color,opacity] active:opacity-70 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
+                      billingCycle === "monthly" ? "bg-brand-teal-action text-brand-teal-foreground hover:bg-brand-teal-action/90" : "text-neutral-text-tertiary hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
                     )}
                   >
                     Mensal
@@ -255,9 +259,10 @@ function PaymentPage({
                   <button
                     type="button"
                     onClick={() => onBillingCycleChange?.("annual")}
+                    aria-pressed={billingCycle === "annual"}
                     className={cn(
-                      "rounded-md px-3 py-1.5 text-sm font-medium",
-                      billingCycle === "annual" ? "bg-brand-teal-action text-brand-teal-foreground" : "text-neutral-text-tertiary dark:text-zinc-400"
+                      "rounded-md px-3 py-1.5 text-sm font-medium transition-[color,background-color,opacity] active:opacity-70 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
+                      billingCycle === "annual" ? "bg-brand-teal-action text-brand-teal-foreground hover:bg-brand-teal-action/90" : "text-neutral-text-tertiary hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
                     )}
                   >
                     Anual <span className="text-xs opacity-80">· economize 17%</span>

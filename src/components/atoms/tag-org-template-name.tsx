@@ -21,6 +21,7 @@ export interface TagOrgTemplateNameProps
  * `focus-visible:ring` é affordance de acessibilidade padrão do projeto
  * (mesmo tratamento de `molecule/SearchInput`), não um estado Figma-
  * confirmado — o Figma só expõe o estado de repouso.
+ * 🧩 Regra 8: hover e disabled também não desenhados no Figma.
  */
 function TagOrgTemplateName({
   className,
@@ -34,7 +35,8 @@ function TagOrgTemplateName({
       placeholder={placeholder}
       className={cn(
         "h-9 min-w-0 rounded-md bg-brand-secondary-light/45 px-3 py-1.5 text-base text-zinc-950 placeholder:text-zinc-950 [field-sizing:content] dark:text-zinc-100 dark:placeholder:text-zinc-100",
-        "transition-colors focus-visible:ring-2 focus-visible:ring-brand-teal/50 focus-visible:outline-none",
+        "transition-colors hover:bg-brand-secondary-light/55 focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none",
+        "disabled:pointer-events-none disabled:opacity-50",
         className
       )}
       {...props}

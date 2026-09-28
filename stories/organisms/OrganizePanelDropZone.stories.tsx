@@ -14,14 +14,17 @@ const meta = {
   },
   args: {
     mode: "Data",
-    state: "idle",
   },
 } satisfies Meta<typeof OrganizePanelDropZone>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
-/** Vivo — o nome do template é editável (`templateName`; os Controls acompanham). */
+/**
+ * Vivo, sem `state` fixo: arraste arquivos do computador para o painel (vira
+ * `dragover`) e solte (vira `filled`, com um item por arquivo, até o máximo do
+ * Figma). O nome do template é editável (`templateName`; os Controls acompanham).
+ */
 export const Idle: Story = {
   render: function Render(args) {
     const [, updateArgs] = useArgs()

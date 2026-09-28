@@ -58,6 +58,9 @@ function inferKind(label: string, hasChevron: boolean): NonNullable<NodeContextM
  * fora de escopo de uma pílula de catálogo (a description do Figma já
  * remete a um componente de calendário externo, não a este nó).
  *
+ * 🧩 Regra 8: foco do gatilho e hover/pressed/foco das opções não
+ * desenhados no Figma.
+ *
  * 🧩 Inferido (Regra 9): toda a paleta zinc deste componente é
  * intencionalmente escura (zinc-500/600/800/900, nunca zinc-50/100/200/300)
  * — chip de contraste fixo sobre o painel translúcido do organism pai, já
@@ -116,7 +119,8 @@ function NodeContextMenuItem({
         disabled={disabled}
         onClick={() => hasChevron && setExpanded(!expanded)}
         className={cn(
-          "flex h-6 w-full items-center justify-center gap-1 whitespace-nowrap rounded-[var(--radius-md)] border px-2 text-[0.6875rem] leading-4 transition-colors",
+          "flex h-6 w-full items-center justify-center gap-1 whitespace-nowrap rounded-[var(--radius-md)] border px-2 text-[0.6875rem] leading-4 transition-[color,background-color,border-color,filter]",
+          "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
           surfaceClassName,
           expanded && hasChevron && "border-zinc-500 bg-zinc-600 text-zinc-300",
           error && "border-destructive shadow-[0_0_0_2px_rgba(188,52,38,0.35)]",
@@ -146,7 +150,8 @@ function NodeContextMenuItem({
                 aria-current={option === selectedOption || option === value}
                 onClick={() => selectValue(option)}
                 className={cn(
-                  "block h-[22px] w-full px-3 text-left text-[0.8125rem] leading-none whitespace-nowrap text-zinc-300 hover:bg-black/14",
+                  "block h-[22px] w-full px-3 text-left text-[0.8125rem] leading-none whitespace-nowrap text-zinc-300 transition-[background-color,opacity] hover:bg-black/14 active:opacity-70",
+                  "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:ring-inset",
                   (option === selectedOption || option === value) && "bg-black/14"
                 )}
               >

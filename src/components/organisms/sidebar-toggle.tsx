@@ -52,7 +52,7 @@ function SidebarToggle({
       className={cn(
         "flex w-full items-center justify-between rounded-md px-2 py-1 text-base font-medium text-zinc-900 dark:text-zinc-100",
         "transition-colors hover:bg-zinc-100 active:bg-zinc-200 dark:hover:bg-zinc-800 dark:active:bg-zinc-700",
-        "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
+        "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
         state === "hover" && "bg-zinc-100 dark:bg-zinc-800",
         state === "pressed" && "bg-zinc-200 dark:bg-zinc-700",
         className

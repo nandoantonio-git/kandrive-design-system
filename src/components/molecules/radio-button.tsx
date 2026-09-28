@@ -48,6 +48,8 @@ export interface RadioButtonProps
  * `atom/PushButton` (`Type/Button/MD`, 14px→16px) e ao nome de arquivo em
  * `celule/CleanSpaceListSelection` (`text-base`). Corrigido de `text-sm`
  * para `text-base`.
+ *
+ * 🧩 Regra 8: hover não desenhado no Figma.
  */
 function RadioButton({
   option,
@@ -66,7 +68,7 @@ function RadioButton({
       htmlFor={inputId}
       data-slot="radio-button"
       className={cn(
-        "inline-flex items-center gap-2",
+        "group inline-flex items-center gap-2",
         disabled ? "cursor-not-allowed opacity-50" : "cursor-pointer",
         className
       )}
@@ -80,9 +82,10 @@ function RadioButton({
           onChange={() => onCheckedChange?.(option)}
           className={cn(
             "peer absolute inset-0 size-4 shrink-0 appearance-none rounded-full border border-zinc-400 bg-white dark:border-zinc-600 dark:bg-zinc-900",
-            "transition-colors motion-safe:active:scale-90",
+            "transition-[border-color,background-color,transform] motion-safe:active:scale-90",
+            "group-hover:enabled:not-checked:border-zinc-500 dark:group-hover:enabled:not-checked:border-zinc-400",
             "checked:border-brand-teal",
-            "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50"
+            "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50"
           )}
           {...props}
         />

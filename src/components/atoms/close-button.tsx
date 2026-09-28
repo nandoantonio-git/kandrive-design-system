@@ -74,7 +74,8 @@ function CloseButton({ label = "Fechar", size = "sm", state = "idle", className,
       className={cn(
         "group relative flex shrink-0 cursor-pointer items-center justify-center rounded-full",
         size === "md" ? "size-4" : "size-2",
-        "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
+        "disabled:pointer-events-none disabled:opacity-50",
+        "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
         className
       )}
       {...props}

@@ -14,7 +14,14 @@ export interface ArchiveBrowserModalFile {
 export interface ArchiveBrowserModalProps extends React.ComponentProps<"div"> {
   breadcrumb: string[]
   files: ArchiveBrowserModalFile[]
-  selectedCount: number
+  /**
+   * Contagem exibida ("N selecionados" / "Adicionar N arquivos") — controlada.
+   * Quando omitida, o componente gerencia a seleção: clicar numa linha (ou
+   * Enter/Espaço) alterna o arquivo, e a contagem vem daí.
+   */
+  selectedCount?: number
+  /** Nomes dos arquivos selecionados, a cada troca (controlado ou não). */
+  onSelectionChange?: (names: string[]) => void
   savingsLabel: string
   onCancel?: () => void
   onAdd?: () => void
@@ -46,17 +53,32 @@ export interface ArchiveBrowserModalProps extends React.ComponentProps<"div"> {
  * `docs/vault/Design System/Camadas Atômicas.md`. A nav mini-sidebar ganhou
  * symbol Figma próprio (`organism/ArchiveBrowserModal/sidebar`,
  * `1555:21309`) — extraída para `ArchiveBrowserModalSidebar` (Regra 10).
+ *
+ * Seleção de arquivos: as linhas são `ArchiveBrowserModalListItem`, que tem o
+ * eixo `Selectable` no Figma — é uma janela de seleção ("2 selecionados" no
+ * rodapé do nó). Com `selectedCount` omitido, clicar numa linha alterna a
+ * seleção e a contagem deriva dela; `onSelectionChange` recebe os nomes.
  */
 function ArchiveBrowserModal({
   breadcrumb,
   files,
-  selectedCount,
+  selectedCount: controlledSelectedCount,
+  onSelectionChange,
   savingsLabel,
   onCancel,
   onAdd,
   className,
   ...props
 }: ArchiveBrowserModalProps) {
+  const [selectedNames, setSelectedNames] = React.useState<string[]>([])
+  const selectedCount = controlledSelectedCount ?? selectedNames.length
+
+  const toggleFile = (name: string) => {
+    const next = selectedNames.includes(name) ? selectedNames.filter((selected) => selected !== name) : [...selectedNames, name]
+    setSelectedNames(next)
+    onSelectionChange?.(next)
+  }
+
   return (
     <div
       data-slot="archive-browser-modal"
@@ -81,7 +103,12 @@ function ArchiveBrowserModal({
         <ArchiveBrowserModalSearch
           className="w-full min-w-0 tablet:flex-1 desktop:w-[452px] desktop:flex-none desktop:shrink-0"
           breadcrumb={breadcrumb}
-          files={files.map((file) => ({ fileName: file.name, meta: file.meta }))}
+          files={files.map((file) => ({
+            fileName: file.name,
+            meta: file.meta,
+            selected: selectedNames.includes(file.name),
+            onClick: () => toggleFile(file.name),
+          }))}
         />
       </div>
       <div className="flex flex-wrap items-center justify-between gap-3">

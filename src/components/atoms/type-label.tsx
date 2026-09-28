@@ -107,7 +107,7 @@ export interface ScopeTypeLabelProps
 
 const SCOPE_SELECTED_CLASSES: Record<ScopeKind, Record<Extract<TypeLabelState, "selected" | "selected-hover" | "selected-pressed">, string>> = {
   "quick-access": {
-    selected: "bg-brand-pink-light text-white active:bg-brand-pink-dark",
+    selected: "bg-brand-pink-light text-white",
     "selected-hover": "bg-brand-pink-dark text-white",
     "selected-pressed": "bg-[color-mix(in_srgb,var(--brand-pink-dark),black_45%)] text-white",
   },
@@ -128,12 +128,30 @@ const SCOPE_SELECTED_CLASSES: Record<ScopeKind, Record<Extract<TypeLabelState, "
   },
 }
 
+// Mapeia `Selected-Hover`/`Selected-Pressed` (Figma-confirmados) para
+// `:hover`/`:active` reais do chip ativo — antes só alcançáveis pela prop
+// `state`. Mesmas cores de `SCOPE_SELECTED_CLASSES`.
+const SCOPE_SELECTED_INTERACTIVE: Record<ScopeKind, string> = {
+  "quick-access":
+    "hover:bg-brand-pink-dark active:bg-[color-mix(in_srgb,var(--brand-pink-dark),black_45%)]",
+  "long-term":
+    "hover:bg-[color-mix(in_srgb,var(--brand-teal-dark),black_14%)] active:bg-[color-mix(in_srgb,var(--brand-teal-dark),black_50%)]",
+  global:
+    "hover:bg-[color-mix(in_srgb,var(--brand-teal-light),var(--color-zinc-500)_20%)] active:bg-[color-mix(in_srgb,var(--brand-teal-light),black_14%)]",
+  default:
+    "hover:bg-[color-mix(in_srgb,var(--brand-teal),black_14%)] hover:text-white active:bg-[color-mix(in_srgb,var(--brand-teal),black_45%)] active:text-white",
+}
+
 /**
  * `atom/badge/TypeLabel`, família `Type=Tag|Tag_Corrente|Tag_LongoPrazo|Tag_Global|DefaultTag` —
  * chip selecionável usado como seletor de escopo no cabeçalho de
  * `molecule/StorageStatus` (`Global`/`Acesso rápido`/`Longo prazo`). Estado
  * `active` preenche com a cor da categoria (Regra 3: rosa = "Acesso
  * rápido"); inativo fica outline neutro e clicável para trocar de escopo.
+ *
+ * `Selected-Hover`/`Selected-Pressed` respondem ao `:hover`/`:active` reais
+ * do chip ativo. 🧩 Regra 8: pressed do inativo, hover do `default` inativo,
+ * foco e disabled não desenhados no Figma.
  */
 function ScopeTypeLabel({ kind, label, active = false, state, className, ...props }: ScopeTypeLabelProps) {
   const resolvedState: TypeLabelState = state ?? (active ? "selected" : "idle")
@@ -150,15 +168,23 @@ function ScopeTypeLabel({ kind, label, active = false, state, className, ...prop
       data-kind={kind}
       data-state={resolvedState}
       data-active={Boolean(selectedState) || undefined}
+      aria-pressed={Boolean(selectedState)}
       className={cn(
-        "inline-flex items-center justify-center px-2 py-0.5 text-[0.625rem] transition-colors",
+        "inline-flex cursor-pointer items-center justify-center px-2 py-0.5 text-[0.625rem] transition-[color,background-color,opacity]",
+        "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
+        "disabled:pointer-events-none disabled:opacity-50",
         selectedState
-          ? cn("rounded-md", SCOPE_SELECTED_CLASSES[kind][selectedState])
+          ? cn(
+              "rounded-md",
+              SCOPE_SELECTED_CLASSES[kind][selectedState],
+              selectedState === "selected" && SCOPE_SELECTED_INTERACTIVE[kind]
+            )
           : isDefaultIdle
-            ? "rounded-xl text-zinc-700 dark:text-zinc-300"
+            ? "rounded-xl text-zinc-700 hover:bg-zinc-500/20 active:opacity-70 dark:text-zinc-300"
             : cn(
                 "cursor-pointer rounded-md border border-zinc-200 text-zinc-900 dark:border-zinc-700 dark:text-zinc-100",
-                resolvedState === "hover" ? "bg-zinc-500/20" : "bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-800"
+                "active:opacity-70",
+                resolvedState === "hover" ? "bg-zinc-500/20" : "bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700"
               ),
         className
       )}

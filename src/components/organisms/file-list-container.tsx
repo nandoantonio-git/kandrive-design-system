@@ -33,6 +33,8 @@ export interface FileListContainerProps extends React.ComponentProps<"div"> {
  * de largura cheia (1025px); este container é o painel estreito de
  * navegação em colunas (`max-w-lg`) — contextos de tela diferentes, não
  * assumidos como a mesma composição (Regra 9).
+ *
+ * 🧩 Regra 8: hover/pressed/foco das linhas não desenhados no Figma.
  */
 function FileListContainer({ rows, onOpen, className, ...props }: FileListContainerProps) {
   return (
@@ -49,7 +51,7 @@ function FileListContainer({ rows, onOpen, className, ...props }: FileListContai
           key={row.name}
           type="button"
           onClick={() => onOpen?.(row)}
-          className="w-full text-left transition-colors hover:bg-zinc-50 dark:hover:bg-zinc-900 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50"
+          className="w-full text-left transition-colors hover:bg-zinc-50 active:bg-zinc-100 dark:hover:bg-zinc-900 dark:active:bg-zinc-800 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50"
         >
           <FileList fileName={row.name} format="list-sm" showIcon className="max-w-none" />
         </button>

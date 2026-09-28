@@ -73,6 +73,8 @@ const DEFAULT_PLANS: PlanSelectionPlan[] = [
  * `organism/upload-popover`/`organism/Header`). Só os nomes de plano
  * ("Starter"/"Pro"/"Max") continuam em inglês — são branding, não copy de
  * interface.
+ *
+ * 🧩 Regra 8: hover/pressed/foco do seletor Mensal/Anual não desenhados no Figma.
  */
 function PlanSelection({
   plans = DEFAULT_PLANS,
@@ -128,8 +130,8 @@ function PlanSelection({
             aria-selected={interval === "monthly"}
             onClick={() => onIntervalChange?.("monthly")}
             className={cn(
-              "rounded-md px-3 py-1 text-[0.8125rem] font-medium",
-              interval === "monthly" ? "bg-brand-teal-action text-brand-teal-foreground" : "text-neutral-text-tertiary dark:text-zinc-400"
+              "rounded-md px-3 py-1 text-[0.8125rem] font-medium transition-[color,background-color,opacity] active:opacity-70 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
+              interval === "monthly" ? "bg-brand-teal-action text-brand-teal-foreground hover:bg-brand-teal-action/90" : "text-neutral-text-tertiary hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
             )}
           >
             Mensal
@@ -140,8 +142,8 @@ function PlanSelection({
             aria-selected={interval === "annual"}
             onClick={() => onIntervalChange?.("annual")}
             className={cn(
-              "rounded-md px-3 py-1 text-[0.8125rem] font-medium",
-              interval === "annual" ? "bg-brand-teal-action text-brand-teal-foreground" : "text-neutral-text-tertiary dark:text-zinc-400"
+              "rounded-md px-3 py-1 text-[0.8125rem] font-medium transition-[color,background-color,opacity] active:opacity-70 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
+              interval === "annual" ? "bg-brand-teal-action text-brand-teal-foreground hover:bg-brand-teal-action/90" : "text-neutral-text-tertiary hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
             )}
           >
             Anual

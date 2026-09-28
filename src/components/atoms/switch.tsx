@@ -20,6 +20,9 @@ export interface SwitchProps
  * de controle (não uma superfície neutra de página), precisa de contraste
  * contra a track em ambos os temas; espelhar pra `zinc-900` o esconderia
  * contra a track escura (`dark:bg-[#27272a]`).
+ *
+ * 🧩 Regra 8: hover da track não desenhado no Figma; o pressed (thumb
+ * encolhe) responde ao `:active` do botão inteiro, não só do thumb.
  */
 function Switch({
   className,
@@ -38,11 +41,13 @@ function Switch({
       disabled={disabled}
       onClick={() => onCheckedChange?.(!checked)}
       className={cn(
-        "inline-flex h-5 w-9 shrink-0 items-center rounded-full border border-transparent p-0.5",
+        "group inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full border border-transparent p-0.5",
         "transition-colors motion-safe:duration-150",
-        "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
+        "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
         "disabled:pointer-events-none disabled:opacity-50",
-        checked ? "bg-brand-teal-action" : "bg-[#d9d9d9] dark:bg-[#27272a]",
+        checked
+          ? "bg-brand-teal-action hover:bg-brand-teal-action/90"
+          : "bg-[#d9d9d9] hover:bg-[#d9d9d9]/80 dark:bg-[#27272a] dark:hover:bg-[#27272a]/80",
         className
       )}
       {...props}
@@ -52,7 +57,7 @@ function Switch({
         aria-hidden="true"
         className={cn(
           "block size-4 rounded-full bg-white shadow-sm",
-          "transition-transform motion-safe:duration-150 motion-safe:active:scale-90",
+          "transition-transform motion-safe:duration-150 motion-safe:group-active:scale-90",
           checked ? "translate-x-4" : "translate-x-0"
         )}
       />

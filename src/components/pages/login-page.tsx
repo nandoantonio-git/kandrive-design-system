@@ -36,6 +36,8 @@ export interface LoginPageProps extends React.ComponentProps<"div"> {
  * (`brand-teal`/`brand-pink-light`) em vez de inventar uma paleta nova,
  * Regra 9) + link de rodapé "Ainda não tem conta? Crie uma agora"
  * (`1439:21444`, texto literal Figma-confirmado).
+ *
+ * 🧩 Regra 8: pressed e foco do link "Crie uma agora" não desenhados no Figma.
  */
 function LoginPage({ cardProps, onCreateAccount, className, ...props }: LoginPageProps) {
   // Mobile (< 720): composição própria do Figma `Auth/Login/Mobile` — fundo teal, Kan
@@ -68,7 +70,7 @@ function LoginPage({ cardProps, onCreateAccount, className, ...props }: LoginPag
         {/* Logo sobre fundo escuro (Figma Logo/* dark): "Kan" + canguru (Kan) #F5F4F2, "drive" #337084 (Brand/Primary/Mid), símbolo #337084→#1A5E6E. */}
         <img src={kandriveLogoDark} alt="Kandrive" className="hidden h-[52px] w-[204px] shrink-0 tablet:dark:block" />
         <CardLogin {...cardProps} device={tablet ? "desktop" : "mobile"} />
-        <a href="#criar-conta" onClick={onCreateAccount} className="text-sm text-white hover:underline tablet:text-zinc-600 tablet:dark:text-zinc-300">
+        <a href="#criar-conta" onClick={onCreateAccount} className="rounded-sm text-sm text-white transition-opacity hover:underline active:opacity-70 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-white/60 tablet:text-zinc-600 tablet:focus-visible:ring-brand-teal-action/50 tablet:dark:text-zinc-300">
           Ainda não tem conta?{" "}
           <span className="font-medium text-brand-primary-focus tablet:text-brand-teal">Crie uma agora</span>
         </a>

@@ -15,14 +15,22 @@ export interface OrganizePanelDropZoneProps extends React.ComponentProps<"div"> 
   mode: OrganizePanelMode
   templateName?: string
   onTemplateNameChange?: (name: string) => void
+  /**
+   * Estado do painel — controlado; quando omitido, o componente gerencia
+   * sozinho a partir do arrastar-e-soltar nativo (entrar → `dragover`, sair →
+   * volta ao anterior, soltar → `filled`).
+   */
   state?: OrganizePanelState
   /**
    * Só relevante em `state="filled"` (eixo `Quantity` 1–4 Figma-confirmado
    * via `get_metadata`/`get_design_context` no nó `1421:18781`). 4 só é uma
    * combinação real quando `mode="Data"` (4º item rotulado por data, ex.
-   * "Maio - 1997"); nos demais `mode`s o Figma só confirma até 3.
+   * "Maio - 1997"); nos demais `mode`s o Figma só confirma até 3. Quando
+   * omitido, segue o número de arquivos soltos (limitado a esse máximo).
    */
   quantity?: 1 | 2 | 3 | 4
+  /** Arquivos soltos no painel (arrastar-e-soltar nativo). Chamado nos dois modos, controlado ou não. */
+  onFilesDrop?: (files: File[]) => void
   onCancel?: () => void
   onContinue?: () => void
 }
@@ -34,9 +42,13 @@ export interface OrganizePanelDropZoneProps extends React.ComponentProps<"div"> 
  * o formato de template selecionado e uma aba para nomear o template. e 2
  * botoes para confirmar ou cancelar a ação." Eixos Figma-confirmados via
  * `get_metadata`: `Mode` (Data\|Projeto\|Tipo) × `State`
- * (Idle\|Dragover\|Filled) × `Quantity` (1–4). O drag-and-drop real (D&D de
- * itens no canvas) não é implementado — fora do escopo de uma story
- * estática; `state` só controla o estilo visual da borda/fundo.
+ * (Idle\|Dragover\|Filled) × `Quantity` (1–4).
+ *
+ * 🧩 Regra 8: o arrastar-e-soltar real não é desenhado no Figma (lá são só os
+ * 3 estados). Com `state` omitido, o painel recebe arquivos arrastados de
+ * verdade: `dragenter`/`dragover` → `dragover`, sair do painel → estado
+ * anterior, soltar → `filled` (e `onFilesDrop`). Com `state` passado, a prop
+ * manda e o painel só repassa os arquivos soltos.
  *
  * ⚠️ Corrigido em 2026-08-11 após achado do usuário — auditoria anterior
  * não seguia a Regra 11: fundo/material estavam errados. `get_design_context`
@@ -93,19 +105,67 @@ function OrganizePanelDropZone({
   mode,
   templateName = "",
   onTemplateNameChange,
-  state = "idle",
-  quantity = 1,
+  state: controlledState,
+  quantity: quantityProp,
+  onFilesDrop,
   onCancel,
   onContinue,
+  onDragEnter,
+  onDragOver,
+  onDragLeave,
+  onDrop,
   className,
   ...props
 }: OrganizePanelDropZoneProps) {
+  const [internalState, setInternalState] = React.useState<OrganizePanelState>("idle")
+  const [droppedCount, setDroppedCount] = React.useState(1)
+  const stateBeforeDrag = React.useRef<OrganizePanelState>("idle")
+  const uncontrolled = controlledState === undefined
+  const state = controlledState ?? internalState
   const isFilled = state === "filled"
+  const maxQuantity = mode === "Data" ? 4 : 3
+  const quantity = quantityProp ?? (Math.min(Math.max(droppedCount, 1), maxQuantity) as 1 | 2 | 3 | 4)
+
+  const enterDrag = () => {
+    if (!uncontrolled || internalState === "dragover") return
+    stateBeforeDrag.current = internalState
+    setInternalState("dragover")
+  }
+  const handleDragEnter = (event: React.DragEvent<HTMLDivElement>) => {
+    onDragEnter?.(event)
+    event.preventDefault()
+    enterDrag()
+  }
+  const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
+    onDragOver?.(event)
+    event.preventDefault()
+    enterDrag()
+  }
+  const handleDragLeave = (event: React.DragEvent<HTMLDivElement>) => {
+    onDragLeave?.(event)
+    // Só conta a saída do painel em si, não a passagem entre filhos dele.
+    if (event.relatedTarget instanceof Node && event.currentTarget.contains(event.relatedTarget)) return
+    if (uncontrolled) setInternalState(stateBeforeDrag.current)
+  }
+  const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
+    onDrop?.(event)
+    event.preventDefault()
+    const files = Array.from(event.dataTransfer?.files ?? [])
+    if (uncontrolled) {
+      setDroppedCount(files.length)
+      setInternalState("filled")
+    }
+    onFilesDrop?.(files)
+  }
 
   return (
     <div
       data-slot="organize-panel-drop-zone"
       data-state={state}
+      onDragEnter={handleDragEnter}
+      onDragOver={handleDragOver}
+      onDragLeave={handleDragLeave}
+      onDrop={handleDrop}
       className={cn(
         "relative flex min-h-[420px] w-full flex-col justify-between desktop:h-[772px] desktop:w-[560px] overflow-hidden rounded-[34px] glass-edge bg-effect-glass-white-70 p-6 shadow-lg",
         "data-[state=dragover]:ring-2 data-[state=dragover]:ring-[#007aff]/25",

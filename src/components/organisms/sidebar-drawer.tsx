@@ -104,7 +104,7 @@ function SidebarDrawer({ open, onOpenChange, active, onNavigate, className, ...p
                       current && "bg-neutral-surface-subtle"
                     )}
                   >
-                    <span className="flex size-4 shrink-0 items-center justify-center text-effect-overlay-default group-hover:text-brand-teal group-active:text-brand-teal-dark">
+                    <span className="flex size-4 shrink-0 items-center justify-center text-effect-overlay-default transition-colors group-hover:text-brand-teal group-active:text-brand-teal-dark">
                       <Glyph aria-hidden="true" className="max-h-4 max-w-4" />
                     </span>
                     {label}

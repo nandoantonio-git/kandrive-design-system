@@ -38,6 +38,8 @@ export interface OnboardingPageProps extends Omit<React.ComponentProps<"div">, "
  *   `Brand/Primary/Default`), título 25px Medium, texto 16px e, na base,
  *   `Button` Primary LG Pill "Continuar" e "Pular".
  * - No tablet e no desktop, o conteúdo fica numa coluna central de até 420px.
+ *
+ * 🧩 Regra 8: hover/pressed/foco do "Pular" não desenhados no Figma.
  */
 function OnboardingPage({
   defaultStep = "welcome",
@@ -91,7 +93,7 @@ function OnboardingPage({
               {step === "welcome" ? "Começar" : "Ir para a Home"}
             </Button>
             {step === "welcome" ? (
-              <button type="button" onClick={onFinish} className="cursor-pointer text-base font-medium text-white">
+              <button type="button" onClick={onFinish} className="cursor-pointer rounded-sm text-base font-medium text-white transition-opacity hover:opacity-80 active:opacity-60 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-white/60">
                 Pular
               </button>
             ) : null}
@@ -137,7 +139,7 @@ function OnboardingPage({
             <Button size="lg" shape="pill" className="w-full" onClick={next}>
               Continuar
             </Button>
-            <button type="button" onClick={onFinish} className="cursor-pointer text-base font-medium text-neutral-text-secondary">
+            <button type="button" onClick={onFinish} className="cursor-pointer rounded-sm text-base font-medium text-neutral-text-secondary transition-opacity hover:opacity-80 active:opacity-60 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50">
               Pular
             </button>
           </>

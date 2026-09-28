@@ -90,6 +90,8 @@ const SEVERITY_META: Record<ReviewSeverity, { label: string; icon: typeof AlertT
  * `rgba(107,107,104,0.05)` espelhada pra `rgba(255,255,255,0.08)` (mesma
  * lógica do `--effect-glass-dark-20`: tint escuro sobre superfície clara
  * vira tint claro sobre superfície escura).
+ *
+ * 🧩 Regra 8: hover/pressed/foco do chevron não desenhados no Figma.
  */
 function TemplateReviewModalItem({ item, isExpanded, onToggleExpand, device = "desktop", className, ...props }: TemplateReviewModalItemProps) {
   const mobile = device === "mobile"
@@ -115,7 +117,7 @@ function TemplateReviewModalItem({ item, isExpanded, onToggleExpand, device = "d
             aria-expanded={isExpanded}
             disabled={!hasChildren}
             onClick={onToggleExpand}
-            className="flex size-6 shrink-0 items-center justify-center text-neutral-text-tertiary disabled:opacity-30 dark:text-zinc-400"
+            className="flex size-6 shrink-0 items-center justify-center rounded-sm text-neutral-text-tertiary transition-[color,transform] hover:text-zinc-700 motion-safe:active:scale-95 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 disabled:pointer-events-none disabled:opacity-30 dark:text-zinc-400 dark:hover:text-zinc-200"
           >
             {isExpanded ? (
               <ChevronDown aria-hidden="true" className="size-4" />
@@ -138,14 +140,14 @@ function TemplateReviewModalItem({ item, isExpanded, onToggleExpand, device = "d
           <button
             type="button"
             onClick={item.onRename}
-            className="rounded-sm text-sm font-medium text-neutral-text-tertiary transition-all hover:text-zinc-700 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 motion-safe:active:scale-[0.98] dark:text-zinc-400 dark:hover:text-zinc-300"
+            className="rounded-sm text-sm font-medium text-neutral-text-tertiary transition-all hover:text-zinc-700 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 motion-safe:active:scale-[0.98] dark:text-zinc-400 dark:hover:text-zinc-300"
           >
             Renomear
           </button>
           <button
             type="button"
             onClick={item.onEdit}
-            className="rounded-sm text-sm font-medium text-brand-teal transition-all hover:text-brand-teal/80 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 motion-safe:active:scale-[0.98]"
+            className="rounded-sm text-sm font-medium text-brand-teal transition-all hover:text-brand-teal/80 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 motion-safe:active:scale-[0.98]"
           >
             Editar
           </button>

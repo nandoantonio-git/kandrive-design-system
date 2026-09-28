@@ -57,6 +57,11 @@ Fatos levantados: [[Auditoria do Storybook - Inventário]].
   - **Pendência de teclado** (Lote 3): `ArchiveBrowserModalListItem` e `FolderTagChip` são `div`/`span` clicáveis, sem foco nem teclado.
   - `ContextHeader`: "Limpar seleção" recolhe o header; para reabrir, só pelos Controls.
   - Gate: `tsc -b` passou a cobrir `stories/` e `.storybook/` (`tsconfig.stories.json`); só apareceu 1 erro antigo, em `RadioButton.stories.tsx`, corrigido.
-- [ ] **3 — Piso de estados** por componente.
+- [x] **3 — Piso de estados** (2026-09-26): 89 componentes interativos revisados (23 átomos, 37 moléculas, 29 organismos/templates + elementos soltos das páginas), ~75 alterados. Tabela completa em [[Auditoria do Storybook - Piso de estados]].
+  - **Anel de foco no Dark:** ~20 componentes usavam `ring-brand-teal/50`; como `--brand-teal` vira quase branco no Dark, o anel sumia. Todos passaram para `ring-brand-teal-action/50` (sobre fundo teal, `ring-white/60`).
+  - **Estados do Figma que só existiam por prop** agora aparecem na interação real (ScopeTypeLabel, DropdownSelectLabelItem, SidebarTagsItem, DropListItem, FreeModeListItem, FolderTagChip).
+  - **Teclado:** ArchiveBrowserModalListItem, FolderTagChip e FileList viram `role="button"` com Enter/Space quando clicáveis.
+  - **Novos comportamentos descritos mas não ligados:** OrganizePanelDropZone recebe arquivos arrastados de verdade (`onFilesDrop`); ArchiveBrowserModal seleciona linhas e atualiza "Adicionar N arquivos" (`onSelectionChange`). SaveLongTermFileStorage fica como está: suas linhas são só leitura (`Selectable=false` no Figma).
+  - **Pendências:** ~30 node ids no JSDoc (quase todos `1421:*`) não resolvem no V0.2.1 (ex.: FolderTagChip é `558:8055`, não `1421:19040`) — corrigir no Lote 5. PagePickerButton anuncia `aria-haspopup` mas não existe a lista de páginas que ele abriria. HamburgerButton: Figma tem modos Open/Collapse sem glifo exportado. FileSelectRow sem teclado próprio (o checkbox faz a mesma ação). FolderTagChip com `onClick` e `onRemove` juntos seria controle dentro de controle (nenhuma tela usa).
 - [ ] **4 — `play` functions.**
 - [ ] **5 — Estrutura padrão dos Docs** (~119 páginas) + os 6 componentes sem story.

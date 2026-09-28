@@ -51,6 +51,8 @@ export interface DropdownMenuProps extends React.ComponentProps<"div"> {
  * cor neutra dos outros 2 itens — sem cor de destrutivo neste menu
  * específico (diferente de `atom/PushButton isDestructive`, que usa
  * `--brand-feedback-danger-default` de fato). Corrigido para neutro.
+ *
+ * 🧩 Regra 8: hover/pressed/foco dos itens não desenhados no Figma.
  */
 function DropdownMenu({ variant = "sidebar", onItemSelect, className, ...props }: DropdownMenuProps) {
   const items = variant === "sidebar" ? SIDEBAR_ITEMS : TEMPLATE_OPTIONS_ITEMS
@@ -73,7 +75,8 @@ function DropdownMenu({ variant = "sidebar", onItemSelect, className, ...props }
             role="menuitem"
             onClick={() => onItemSelect?.(item.label)}
             className={cn(
-              "flex items-center gap-3 px-4 py-3 text-left text-base font-medium text-zinc-700 transition-colors hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800",
+              "flex items-center gap-3 px-4 py-3 text-left text-base font-medium text-zinc-700 transition-colors hover:bg-zinc-100 active:bg-zinc-200 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:active:bg-zinc-700",
+              "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
               item.danger && "text-destructive"
             )}
           >

@@ -17,8 +17,10 @@ const STYLE_CLASSNAME: Record<NonNullable<ClearButtonProps["style"]>, string> = 
   // sem token semântico definido para `neutral-surface-ghost-map`).
   default:
     "text-neutral-text-tertiary hover:bg-[rgba(107,107,104,0.18)] hover:text-zinc-700 active:bg-[#c8dce3] dark:text-zinc-400 dark:hover:bg-[rgba(168,166,161,0.18)] dark:hover:text-zinc-300 dark:active:bg-[#173239]",
-  red: "text-destructive",
-  white: "text-white",
+  // 🧩 Regra 8: hover/pressed de `red`/`white` não desenhados no Figma — só
+  // opacidade do glifo, sem pílula (mesmo tratamento de Confirm/Delete/Keep).
+  red: "text-destructive hover:opacity-80 active:opacity-60",
+  white: "text-white hover:opacity-80 active:opacity-60",
 }
 
 /**

@@ -28,6 +28,7 @@ export interface MobileTabBarProps extends Omit<React.ComponentProps<"nav">, "on
  * - Abas inativas: `Neutral/Text/Tertiary`.
  * - O vidro segue a receita de Liquid Glass da Regra 10.
  * - ⚠️ No Figma, os rótulos têm 10px. Aqui têm 11px, o piso de microtexto da Regra 4.
+ * - 🧩 Regra 8: hover, pressed e foco não desenhados no Figma.
  */
 function MobileTabBar({ active = "home", onTabChange, className, ...props }: MobileTabBarProps) {
   return (
@@ -49,7 +50,7 @@ function MobileTabBar({ active = "home", onTabChange, className, ...props }: Mob
             aria-current={selected ? "page" : undefined}
             onClick={() => onTabChange?.(value)}
             className={cn(
-              "touch-target flex min-w-[47px] cursor-pointer flex-col items-center gap-1 rounded-2xl px-1.5 py-1 transition-colors",
+              "touch-target flex min-w-[47px] cursor-pointer flex-col items-center gap-1 rounded-2xl px-1.5 py-1 transition-[color,background-color,opacity] active:opacity-70",
               "focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none",
               selected ? "bg-effect-overlay-light/60 text-brand-teal" : "text-neutral-text-tertiary hover:text-brand-teal"
             )}

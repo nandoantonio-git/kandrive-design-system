@@ -30,6 +30,8 @@ export interface TemplateCardProps
  * "selecionado" já usado em `FolderCard`/`PlanSelection` (borda +
  * `bg-brand-teal-light-surface`, já correto nos dois modos). Se a releitura
  * do Figma mostrar outro tratamento, reabrir.
+ *
+ * 🧩 Regra 8: pressed e disabled não desenhados no Figma.
  */
 function TemplateCard({
   eyebrow,
@@ -48,7 +50,8 @@ function TemplateCard({
       aria-pressed={selected}
       className={cn(
         "flex h-96 w-[217.75px] shrink-0 flex-col items-center justify-between rounded-xl border border-zinc-300 bg-zinc-50 p-4 dark:border-zinc-700 dark:bg-zinc-900",
-        "transition-colors hover:border-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
+        "transition-[border-color,background-color,opacity] hover:border-brand-teal active:opacity-80 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
+        "disabled:pointer-events-none disabled:opacity-50",
         selected && "border-brand-teal bg-brand-teal-light-surface dark:border-brand-teal dark:bg-brand-teal-light-surface",
         className
       )}

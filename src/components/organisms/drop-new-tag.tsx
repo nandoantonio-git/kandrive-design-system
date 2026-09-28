@@ -38,6 +38,8 @@ export interface DropNewTagProps extends React.ComponentProps<"div"> {
  * `caret-color` do próprio input, que já é Figma-fiel e funciona de
  * verdade (segue a posição real do cursor).
  *
+ * 🧩 Regra 8: hover e foco do campo não desenhados no Figma.
+ *
  * **Corrigido em 2026-09-26** (achado do usuário, clarificado: "propagação"
  * = a cor clicada em `TagColor` não refletia em lugar nenhum): `label`/
  * `color` eram 100% controlados, sem fallback — as stories `Default`/
@@ -91,7 +93,7 @@ function DropNewTag({
         value={label}
         onChange={(event) => handleLabelChange(event.target.value)}
         placeholder="Nome da etiqueta"
-          className="absolute top-px left-0 h-3 w-20 rounded-md border-0 bg-zinc-50 px-1 text-[0.625rem] leading-3 text-zinc-700 caret-[var(--accents-blue,#08f)] placeholder:text-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal/50 dark:bg-zinc-900 dark:text-zinc-300"
+          className="absolute top-px left-0 h-3 w-20 rounded-md border-0 bg-zinc-50 px-1 text-[0.625rem] leading-3 text-zinc-700 caret-[var(--accents-blue,#08f)] transition-colors placeholder:text-transparent hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:bg-zinc-900 dark:hover:bg-zinc-800 dark:text-zinc-300"
       />
       </div>
       <TagColor

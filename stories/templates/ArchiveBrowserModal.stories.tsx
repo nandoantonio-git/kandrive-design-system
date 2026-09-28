@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 
 import { ArchiveBrowserModal } from "../../src/components/templates/archive-browser-modal"
 
@@ -13,7 +14,6 @@ const meta = {
       { name: "Ceremonia-002.jpg", meta: "JPG · 7.53 MB · 19 Jun" },
       { name: "Festa-014.jpg", meta: "JPG · 8.68 MB · 19 Jun" },
     ],
-    selectedCount: 2,
     savingsLabel: "15.35 MB",
   },
 } satisfies Meta<typeof ArchiveBrowserModal>
@@ -21,7 +21,26 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+/**
+ * Vivo, sem `selectedCount` fixo: clique numa linha (ou Enter/Espaço) para
+ * selecionar o arquivo — a contagem do rodapé e do botão acompanha.
+ */
+export const Default: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const row = canvas.getByRole("button", { name: /Ceremonia-001\.jpg/ })
+    await userEvent.click(row)
+    await expect(row).toHaveAttribute("aria-pressed", "true")
+    await expect(canvas.getByRole("button", { name: "Adicionar 1 arquivos" })).toBeInTheDocument()
+    await userEvent.click(row)
+    await expect(row).toHaveAttribute("aria-pressed", "false")
+  },
+}
+
+/** Contagem controlada (`selectedCount`), como no nó do Figma ("2 selecionados"). */
+export const ControlledCount: Story = {
+  args: { selectedCount: 2 },
+}
 
 // ─── Responsividade (2026-09-24) ─────────────────────────────────────────
 const vp = (value: "kdMobile" | "kdTablet") => ({ viewport: { value, isRotated: false } })

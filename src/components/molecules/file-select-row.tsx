@@ -22,6 +22,9 @@ export interface FileSelectRowProps extends Omit<React.ComponentProps<"div">, "o
  * - Nome em 16px, a Regra 4 para texto de leitura. ⚠️ No Figma, o nome tem 14px.
  * - Tamanho em 11px, `Neutral/Text/Tertiary`, dentro da exceção de microtexto.
  * - `atom/Checkbox` MD. Tocar em qualquer ponto da linha também marca.
+ *   No teclado, o foco vai direto no checkbox (a linha não vira botão, para
+ *   não aninhar dois controles).
+ * - 🧩 Regra 8: hover e pressed da linha não desenhados no Figma.
  */
 function FileSelectRow({ name, meta, checked = false, onCheckedChange, className, ...props }: FileSelectRowProps) {
   return (
@@ -30,8 +33,8 @@ function FileSelectRow({ name, meta, checked = false, onCheckedChange, className
       data-state={checked ? "checked" : "unchecked"}
       onClick={() => onCheckedChange?.(!checked)}
       className={cn(
-        "flex min-h-[60px] cursor-pointer items-center gap-3 border-b border-neutral-border-subtle px-4 py-2.5 last:border-b-0",
-        checked && "bg-brand-teal-light/20",
+        "flex min-h-[60px] cursor-pointer items-center gap-3 border-b border-neutral-border-subtle px-4 py-2.5 transition-[background-color,opacity] last:border-b-0 active:opacity-70",
+        checked ? "bg-brand-teal-light/20" : "hover:bg-neutral-surface-subtle",
         className
       )}
       {...props}

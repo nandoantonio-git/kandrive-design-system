@@ -44,6 +44,8 @@ export interface FaqFastLinksProps extends React.ComponentProps<"div"> {
  * 🧩 Inferido (Regra 9): tema escuro não confirmado no Figma — sombra de
  * elevação (`rgba(9,9,11,*)`) com opacidade maior no escuro, mesma lógica
  * do par documentado em `src/index.css`.
+ *
+ * 🧩 Regra 8: hover/pressed/foco dos links não desenhados no Figma.
  */
 function FaqFastLinks({ links = DEFAULT_LINKS, className, ...props }: FaqFastLinksProps) {
   return (
@@ -62,7 +64,7 @@ function FaqFastLinks({ links = DEFAULT_LINKS, className, ...props }: FaqFastLin
             <li key={link.label}>
               <a
                 href={link.href}
-                className="flex items-start gap-2 text-xs font-medium text-brand-teal hover:underline"
+                className="flex items-start gap-2 rounded-sm text-xs font-medium text-brand-teal transition-opacity hover:underline active:opacity-70 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50"
               >
                 <Icon name={link.icon} className="mt-0.5 size-3.5 shrink-0" />
                 {link.label}

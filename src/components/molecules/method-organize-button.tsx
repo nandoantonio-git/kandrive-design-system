@@ -42,6 +42,7 @@ export interface MethodOrganizeButtonProps extends React.ComponentProps<"button"
  *   aberto — mas o card existia no Figma, só nunca tinha ido para o código.
  *   Este botão continua só o gatilho: `expanded` vira o chevron, e quem
  *   renderiza o card é a tela.
+ * - 🧩 Regra 8: hover, pressed, foco e disabled não desenhados no Figma.
  */
 function MethodOrganizeButton({ method = "projeto", withChevron = true, expanded, className, ...props }: MethodOrganizeButtonProps) {
   const { label, tag, Glyph } = METHODS[method]
@@ -52,8 +53,9 @@ function MethodOrganizeButton({ method = "projeto", withChevron = true, expanded
       data-method={method}
       aria-expanded={withChevron ? !!expanded : undefined}
       className={cn(
-        "flex h-14 w-full cursor-pointer items-center gap-3 rounded-xl border-[0.5px] border-brand-teal bg-effect-overlay-subtle/10 px-4 text-left backdrop-blur-[15px] transition-colors",
-        "hover:bg-effect-overlay-subtle/20 focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none",
+        "flex h-14 w-full cursor-pointer items-center gap-3 rounded-xl border-[0.5px] border-brand-teal bg-effect-overlay-subtle/10 px-4 text-left backdrop-blur-[15px] transition-[background-color,opacity]",
+        "hover:bg-effect-overlay-subtle/20 active:opacity-70 focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none",
+        "disabled:pointer-events-none disabled:opacity-50",
         className
       )}
       {...props}

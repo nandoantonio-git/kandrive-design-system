@@ -27,6 +27,8 @@ export interface StorageStatusCurrentProps extends React.ComponentProps<"div"> {
  * corrigido para `brand-pink-light` — a barra local aqui já usava o tom
  * certo e permanece por composição própria (widget "irmão" autônomo, não
  * reutiliza `<StorageBar>` por design, ver `StorageStatusCurrent.mdx`).
+ *
+ * 🧩 Regra 8: foco do botão não desenhado no Figma.
  */
 function StorageStatusCurrent({
   usedAmount,
@@ -54,7 +56,7 @@ function StorageStatusCurrent({
       <button
         type="button"
         onClick={onBuySpace}
-        className="rounded-md bg-brand-teal-action px-4 py-1 text-[0.625rem] text-brand-teal-foreground transition-colors hover:bg-brand-teal-action/90 motion-safe:active:scale-95"
+        className="rounded-md bg-brand-teal-action px-4 py-1 text-[0.625rem] text-brand-teal-foreground transition-[background-color,transform] hover:bg-brand-teal-action/90 motion-safe:active:scale-95 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50"
       >
         Comprar espaço
       </button>

@@ -262,6 +262,8 @@ export interface FaqInfoCardCollapsedProps extends React.ComponentProps<"div"> {
  * expansível individualmente) — reutiliza `FaqCallout` para os destaques
  * ℹ️/⚠ Figma-confirmados. Composição compartilhada com
  * `organism/FAQ/info/Card` (mesmo padrão de item de pergunta).
+ *
+ * 🧩 Regra 8: foco do botão de cabeçalho não desenhado no Figma.
  */
 function FaqInfoCardCollapsed({ topic = "FirstSteps", className, ...props }: FaqInfoCardCollapsedProps) {
   const data = TOPIC_DATA[topic]
@@ -288,7 +290,7 @@ function FaqInfoCardCollapsed({ topic = "FirstSteps", className, ...props }: Faq
           type="button"
           onClick={() => setExpanded((value) => !value)}
           aria-expanded={expanded}
-          className="shrink-0 rounded-md border border-zinc-200 bg-white/80 px-2 py-1 text-[0.625rem] text-brand-secondary transition-colors hover:bg-zinc-100 motion-safe:active:scale-95 dark:border-zinc-700 dark:bg-zinc-900/80 dark:hover:bg-zinc-800"
+          className="shrink-0 rounded-md border border-zinc-200 bg-white/80 px-2 py-1 text-[0.625rem] text-brand-secondary transition-[color,background-color,transform] hover:bg-zinc-100 motion-safe:active:scale-95 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:border-zinc-700 dark:bg-zinc-900/80 dark:hover:bg-zinc-800"
         >
           {expanded ? "Recolher" : figmaButtonLabel}
         </button>

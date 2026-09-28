@@ -15,6 +15,8 @@ export interface SettingsFieldProps extends Omit<React.ComponentProps<"input">, 
  * input genérico existia no catálogo — `molecule/SearchBar` é específico
  * de busca (ícone de lupa, pill). Extraído como molecule único (Regra
  * 1/10) em vez de repetido em cada card.
+ *
+ * 🧩 Regra 8: hover e disabled do campo não desenhados no Figma.
  */
 function SettingsField({ label, className, ...props }: SettingsFieldProps) {
   const inputId = React.useId()
@@ -27,7 +29,9 @@ function SettingsField({ label, className, ...props }: SettingsFieldProps) {
         id={inputId}
         className={cn(
           "h-9 w-full rounded-md border border-[#d4d4d4] dark:border-[#52525b] bg-effect-glass-white-70 px-3 text-sm text-zinc-950 dark:text-zinc-100",
-          "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50",
+          "transition-colors hover:border-zinc-400 dark:hover:border-zinc-500",
+          "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
+          "disabled:pointer-events-none disabled:opacity-50",
           className
         )}
         {...props}

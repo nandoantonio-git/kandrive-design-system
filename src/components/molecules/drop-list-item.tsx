@@ -30,6 +30,8 @@ export interface DropListItemProps
  * catálogo usa `Pressed` pro mesmo estado de imprensão. Valor de código
  * normalizado pra `pressed` — a citação Figma acima preserva o nome
  * original (Regra 9).
+ *
+ * 🧩 Regra 8: foco e disabled não desenhados no Figma.
  */
 function DropListItem({
   label = "Nova pasta",
@@ -50,6 +52,8 @@ function DropListItem({
       onClick={onClick}
       className={cn(
         "flex h-8 w-full items-center gap-3 px-4 py-3 text-left transition-colors",
+        "active:bg-black/14 dark:active:bg-white/14 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:ring-inset",
+        "disabled:pointer-events-none disabled:opacity-50",
         resolvedState === "pressed"
           ? "bg-black/14 dark:bg-white/14"
           : resolvedState === "hover"

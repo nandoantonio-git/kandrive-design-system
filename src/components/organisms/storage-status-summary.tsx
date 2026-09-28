@@ -46,6 +46,8 @@ export interface StorageStatusSummaryProps extends React.ComponentProps<"div"> {
  *   nome, proprietário e tamanho.
  * - Nome em 16px (Regra 4). ⚠️ No Figma mobile, 13px. Proprietário e tamanho
  *   em 11px, `Neutral/Text/Tertiary` (microtexto; no Figma, 10 e 11px).
+ * - 🧩 Regra 8: pressed do botão de filtros e hover/pressed/foco do
+ *   "Armazenamento" (mobile) não desenhados no Figma.
  */
 function StorageStatusSummary({ files, scopeLabel = "Total", device = "desktop", className, ...props }: StorageStatusSummaryProps) {
   const mobile = device === "mobile"
@@ -55,7 +57,7 @@ function StorageStatusSummary({ files, scopeLabel = "Total", device = "desktop",
       <button
         type="button"
         aria-label="Filtros"
-        className="touch-target flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-md text-neutral-text-primary hover:bg-neutral-surface-subtle focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none"
+        className="touch-target flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-md text-neutral-text-primary transition-colors hover:bg-neutral-surface-subtle active:bg-neutral-surface-medium focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none"
       >
         <Icon name="Filter" className={mobile ? "size-4" : "size-6"} />
       </button>
@@ -76,7 +78,7 @@ function StorageStatusSummary({ files, scopeLabel = "Total", device = "desktop",
         <div className="overflow-hidden rounded-xl border border-neutral-border-subtle bg-neutral-surface-elevated">
           <div className="flex items-center justify-between border-b border-neutral-surface-subtle px-4 py-2.5 text-[0.8125rem] leading-5 text-neutral-text-primary">
             <span>Nome</span>
-            <button type="button" className="flex cursor-pointer items-center gap-1 font-bold">
+            <button type="button" className="flex cursor-pointer items-center gap-1 rounded-sm font-bold transition-opacity hover:opacity-80 active:opacity-60 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50">
               <ArrowDown aria-hidden="true" className="size-3" />
               Armazenamento
             </button>
