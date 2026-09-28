@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 import { useArgs } from "storybook/preview-api"
+import { LiveArgs } from "../../.storybook/live-args"
 
 import { FolderCard } from "../../src/components/molecules/folder-card"
 
@@ -28,7 +30,22 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   render: function Render(args) {
     const [, updateArgs] = useArgs()
-    return <FolderCard {...args} onToggleExpanded={() => updateArgs({ expanded: !args.expanded })} />
+    return (
+      <LiveArgs args={args} updateArgs={updateArgs}>
+        {(live, updateLive) => (
+          <FolderCard {...live} onToggleExpanded={() => updateLive({ expanded: !live.expanded })} />
+        )}
+      </LiveArgs>
+    )
+  },
+  // Clique no cabeçalho recolhe e expande o grupo.
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const toggle = canvas.getByRole("button", { name: "Pasta" })
+    await expect(toggle).toHaveAttribute("aria-expanded", "true")
+    await userEvent.click(toggle)
+    await expect(toggle).toHaveAttribute("aria-expanded", "false")
+    await expect(canvas.queryByRole("button", { name: "Arquivo 1" })).toBeNull()
   },
 }
 

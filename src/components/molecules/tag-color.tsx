@@ -48,6 +48,20 @@ export interface TagColorProps
  * 🧩 Regra 8: hover, pressed e foco das bolinhas não desenhados no Figma.
  */
 function TagColor({ value = "success", onValueChange, className, ...props }: TagColorProps) {
+  const refs = React.useRef<(HTMLButtonElement | null)[]>([])
+
+  // 🧩 Regra 8: grupo de rádio de verdade (mesmo padrão do `MethodCard`). As
+  // setas movem e marcam; Tab entra só na cor marcada. Achado dos testes de
+  // interação (lote 4, 2026-09-27): antes o `radiogroup` não respondia às setas.
+  const onKeyDown = (event: React.KeyboardEvent, index: number) => {
+    const step = event.key === "ArrowDown" || event.key === "ArrowRight" ? 1 : event.key === "ArrowUp" || event.key === "ArrowLeft" ? -1 : 0
+    if (!step) return
+    event.preventDefault()
+    const nextIndex = (index + step + TAG_COLORS.length) % TAG_COLORS.length
+    onValueChange?.(TAG_COLORS[nextIndex].name)
+    refs.current[nextIndex]?.focus()
+  }
+
   return (
     <div
       data-slot="tag-color"
@@ -56,17 +70,22 @@ function TagColor({ value = "success", onValueChange, className, ...props }: Tag
       className={cn("flex items-center gap-[6px]", className)}
       {...props}
     >
-      {TAG_COLORS.map((color) => {
+      {TAG_COLORS.map((color, index) => {
         const selected = value === color.name
         return (
           <button
             key={color.name}
+            ref={(node) => {
+              refs.current[index] = node
+            }}
             type="button"
             data-slot="tag-color-swatch"
             role="radio"
             aria-checked={selected}
             aria-label={color.name}
+            tabIndex={selected ? 0 : -1}
             onClick={() => onValueChange?.(color.name)}
+            onKeyDown={(event) => onKeyDown(event, index)}
             className="relative flex size-[7px] items-center justify-center rounded-full before:absolute before:-inset-1 before:content-[''] transition-opacity hover:opacity-70 active:opacity-50 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50"
           >
             <span

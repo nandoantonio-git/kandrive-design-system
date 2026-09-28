@@ -1,5 +1,6 @@
 import * as React from "react"
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 
 import { MobileFooterSettings } from "../../src/components/molecules/mobile-footer-settings"
 
@@ -24,5 +25,12 @@ export const Interactive: Story = {
   render: function Render(args) {
     const [active, setActive] = React.useState(args.active ?? "Conta")
     return <MobileFooterSettings {...args} active={active} onSelect={setActive} />
+  },
+  // Tocar numa seção a marca e desmarca a anterior.
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole("button", { name: "Privacidade" }))
+    await expect(canvas.getByRole("button", { name: "Privacidade" })).toHaveAttribute("aria-pressed", "true")
+    await expect(canvas.getByRole("button", { name: "Conta" })).toHaveAttribute("aria-pressed", "false")
   },
 }

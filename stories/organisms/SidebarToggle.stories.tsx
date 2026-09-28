@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 import { useArgs } from "storybook/preview-api"
+import { LiveArgs } from "../../.storybook/live-args"
 
 import { SidebarToggle } from "../../src/components/organisms/sidebar-toggle"
 
@@ -27,7 +29,20 @@ type Story = StoryObj<typeof meta>
 export const Expanded: Story = {
   render: function Render(args) {
     const [, updateArgs] = useArgs()
-    return <SidebarToggle {...args} onToggle={() => updateArgs({ expanded: !args.expanded })} />
+    return (
+      <LiveArgs args={args} updateArgs={updateArgs}>
+        {(live, updateLive) => <SidebarToggle {...live} onToggle={() => updateLive({ expanded: !live.expanded })} />}
+      </LiveArgs>
+    )
+  },
+  // Clique recolhe (`aria-expanded=false`); Enter expande de novo.
+  play: async ({ canvasElement }) => {
+    const toggle = within(canvasElement).getByRole("button", { name: "Armazenamento" })
+    await expect(toggle).toHaveAttribute("aria-expanded", "true")
+    await userEvent.click(toggle)
+    await expect(toggle).toHaveAttribute("aria-expanded", "false")
+    await userEvent.keyboard("{Enter}")
+    await expect(toggle).toHaveAttribute("aria-expanded", "true")
   },
 }
 

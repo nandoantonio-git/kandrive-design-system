@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 
 import { FileListHeader } from "../../src/components/molecules/file-list-header"
 
@@ -22,7 +23,16 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Home: Story = {}
+export const Home: Story = {
+  args: { onSortDirectionChange: fn() },
+  // Clique em "Armazenamento" inverte a ordenação (decrescente → crescente).
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole("button", { name: /decrescente/ }))
+    await expect(args.onSortDirectionChange).toHaveBeenCalledWith("asc")
+    await expect(canvas.getByRole("button", { name: /crescente/ })).toHaveAttribute("data-sort-direction", "asc")
+  },
+}
 
 export const StorageStatus: Story = {
   args: { format: "storage-status" },

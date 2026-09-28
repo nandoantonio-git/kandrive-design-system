@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 import { useArgs } from "storybook/preview-api"
+import { LiveArgs } from "../../.storybook/live-args"
 
 import { FreeModeListItem } from "../../src/components/molecules/free-mode-list-item"
 
@@ -35,7 +37,20 @@ type Story = StoryObj<typeof meta>
 export const Idle: Story = {
   render: function Render(args) {
     const [, updateArgs] = useArgs()
-    return <FreeModeListItem {...args} onSelect={() => updateArgs({ selected: !args.selected })} />
+    return (
+      <LiveArgs args={args} updateArgs={updateArgs}>
+        {(live, updateLive) => (
+          <FreeModeListItem {...live} onSelect={() => updateLive({ selected: !live.selected })} />
+        )}
+      </LiveArgs>
+    )
+  },
+  // Clique alterna `selected` (`aria-pressed`).
+  play: async ({ canvasElement }) => {
+    const item = within(canvasElement).getByRole("button", { name: "Junção" })
+    await expect(item).toHaveAttribute("aria-pressed", "false")
+    await userEvent.click(item)
+    await expect(item).toHaveAttribute("aria-pressed", "true")
   },
 }
 

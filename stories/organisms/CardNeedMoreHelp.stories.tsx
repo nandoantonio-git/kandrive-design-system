@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 
 import { CardNeedMoreHelp } from "../../src/components/organisms/card-need-more-help"
 
@@ -14,4 +15,11 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+export const Default: Story = {
+  args: { onContactSupport: fn() },
+  // "Falar com o suporte" chama `onContactSupport`.
+  play: async ({ args, canvasElement }) => {
+    await userEvent.click(within(canvasElement).getByRole("button", { name: "Falar com o suporte" }))
+    await expect(args.onContactSupport).toHaveBeenCalledOnce()
+  },
+}

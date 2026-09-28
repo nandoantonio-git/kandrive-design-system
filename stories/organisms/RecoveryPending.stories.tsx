@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 
 import { RecoveryPending } from "../../src/components/organisms/recovery-pending"
 
@@ -14,4 +15,11 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+export const Default: Story = {
+  args: { onBack: fn() },
+  // "Voltar para arquivos" chama `onBack`.
+  play: async ({ args, canvasElement }) => {
+    await userEvent.click(within(canvasElement).getByRole("button", { name: "Voltar para arquivos" }))
+    await expect(args.onBack).toHaveBeenCalledOnce()
+  },
+}

@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 import { useArgs } from "storybook/preview-api"
+import { LiveArgs } from "../../.storybook/live-args"
 
 import { NodeContextMenu } from "../../src/components/molecules/node-context-menu"
 
@@ -32,9 +34,25 @@ type Story = StoryObj<typeof meta>
 
 /** Vivo — os botões E/OU trocam `logicalOperator` (os Controls acompanham); as pílulas abrem seus menus sozinhas. */
 export const Default: Story = {
+  args: { onSave: fn() },
   render: function Render(args) {
     const [, updateArgs] = useArgs()
-    return <NodeContextMenu {...args} onLogicalOperatorChange={(logicalOperator) => updateArgs({ logicalOperator })} />
+    return (
+      <LiveArgs args={args} updateArgs={updateArgs}>
+        {(live, updateLive) => (
+          <NodeContextMenu {...live} onLogicalOperatorChange={(logicalOperator) => updateLive({ logicalOperator })} />
+        )}
+      </LiveArgs>
+    )
+  },
+  // E/OU trocam o operador (`aria-pressed`); "Salvar Mudanças" dispara `onSave`.
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole("button", { name: "OU" }))
+    await expect(canvas.getByRole("button", { name: "OU" })).toHaveAttribute("aria-pressed", "true")
+    await expect(canvas.getByRole("button", { name: "E" })).toHaveAttribute("aria-pressed", "false")
+    await userEvent.click(canvas.getByRole("button", { name: "Salvar Mudanças" }))
+    await expect(args.onSave).toHaveBeenCalledOnce()
   },
 }
 

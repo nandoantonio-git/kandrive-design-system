@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fireEvent, fn, userEvent, within } from "storybook/test"
 import { useArgs } from "storybook/preview-api"
+import { LiveArgs } from "../../.storybook/live-args"
 
 import { OrganizePanelDropZone } from "../../src/components/organisms/organize-panel-drop-zone"
 
@@ -26,9 +28,36 @@ type Story = StoryObj<typeof meta>
  * Figma). O nome do template é editável (`templateName`; os Controls acompanham).
  */
 export const Idle: Story = {
+  args: { onFilesDrop: fn(), onContinue: fn() },
   render: function Render(args) {
     const [, updateArgs] = useArgs()
-    return <OrganizePanelDropZone {...args} onTemplateNameChange={(templateName) => updateArgs({ templateName })} />
+    return (
+      <LiveArgs args={args} updateArgs={updateArgs}>
+        {(live, updateLive) => (
+          <OrganizePanelDropZone {...live} onTemplateNameChange={(templateName) => updateLive({ templateName })} />
+        )}
+      </LiveArgs>
+    )
+  },
+  // Digitar nomeia o template; arrastar vira `dragover`, soltar 2 arquivos vira `filled`; "Continuar" chama `onContinue`.
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement)
+    const name = canvas.getByRole("textbox", { name: "Nome do template de organização" })
+    await userEvent.type(name, "Viagem")
+    await expect(name).toHaveValue("Viagem")
+    const zone = canvasElement.querySelector<HTMLElement>('[data-slot="organize-panel-drop-zone"]')!
+    await fireEvent.dragEnter(zone)
+    await expect(zone).toHaveAttribute("data-state", "dragover")
+    // O `DragEvent` do Chrome não aceita `dataTransfer` sintético: o evento leva os arquivos numa propriedade própria.
+    const files = [new File(["a"], "a.txt"), new File(["b"], "b.txt")]
+    const drop = new Event("drop", { bubbles: true, cancelable: true })
+    Object.defineProperty(drop, "dataTransfer", { value: { files } })
+    await fireEvent(zone, drop)
+    await expect(zone).toHaveAttribute("data-state", "filled")
+    await expect(args.onFilesDrop).toHaveBeenCalledWith(files)
+    await expect(canvas.getByText("Arquivo 2")).toBeInTheDocument()
+    await userEvent.click(canvas.getByRole("button", { name: "Continuar" }))
+    await expect(args.onContinue).toHaveBeenCalledOnce()
   },
 }
 

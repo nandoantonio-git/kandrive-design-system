@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 
 import { SaveLongTermFileStorageSelectedFiles } from "../../src/components/organisms/save-long-term-file-storage-selected-files"
 
@@ -21,4 +22,11 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+export const Default: Story = {
+  args: { onAddFiles: fn() },
+  // "Adicionar arquivos" chama `onAddFiles`.
+  play: async ({ args, canvasElement }) => {
+    await userEvent.click(within(canvasElement).getByRole("button", { name: "Adicionar arquivos" }))
+    await expect(args.onAddFiles).toHaveBeenCalledOnce()
+  },
+}

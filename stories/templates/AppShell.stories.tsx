@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 
 import { AppShell } from "../../src/components/templates/app-shell"
 import { Sidebar } from "../../src/components/organisms/sidebar"
@@ -32,7 +33,18 @@ export const Desktop: Story = { globals: { viewport: { value: "kdDesktop", isRot
 export const Tablet: Story = { globals: { viewport: { value: "kdTablet", isRotated: false } } }
 
 /** Mobile · 390, tela de arquivos: ☰ + TabBar no topo, BottomNav com FAB Adicionar na base. */
-export const MobileFiles: Story = { globals: { viewport: { value: "kdMobile", isRotated: false } } }
+export const MobileFiles: Story = {
+  globals: { viewport: { value: "kdMobile", isRotated: false } },
+  // O ☰ do Header abre o drawer lateral; Escape fecha.
+  play: async ({ canvasElement }) => {
+    const drawer = canvasElement.querySelector<HTMLElement>('[data-slot="sidebar-drawer"]')!
+    await expect(drawer).toHaveAttribute("data-state", "closed")
+    await userEvent.click(within(canvasElement).getByRole("button", { name: "Abrir menu" }))
+    await expect(drawer).toHaveAttribute("data-state", "open")
+    await userEvent.keyboard("{Escape}")
+    await expect(drawer).toHaveAttribute("data-state", "closed")
+  },
+}
 
 /** Mobile com a mão esquerda: o FAB muda de lado. */
 export const MobileLeftHand: Story = {

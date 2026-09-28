@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 import { useArgs } from "storybook/preview-api"
+import { LiveArgs } from "../../.storybook/live-args"
 
 import { DropdownSelectGroupByItem } from "../../src/components/atoms/dropdown-select-group-by-item"
 
@@ -26,7 +28,20 @@ type Story = StoryObj<typeof meta>
 export const Idle: Story = {
   render: function Render(args) {
     const [, updateArgs] = useArgs()
-    return <DropdownSelectGroupByItem {...args} onClick={() => updateArgs({ selected: !args.selected })} />
+    return (
+      <LiveArgs args={args} updateArgs={updateArgs}>
+        {(live, updateLive) => (
+          <DropdownSelectGroupByItem {...live} onClick={() => updateLive({ selected: !live.selected })} />
+        )}
+      </LiveArgs>
+    )
+  },
+  // Clique dispara `onClick`, que aqui alterna `selected`.
+  play: async ({ canvasElement }) => {
+    const item = within(canvasElement).getByRole("button", { name: "Tipo" })
+    await expect(item).not.toHaveAttribute("data-selected")
+    await userEvent.click(item)
+    await expect(item).toHaveAttribute("data-selected", "true")
   },
 }
 

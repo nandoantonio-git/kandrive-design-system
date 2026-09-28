@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 
 import { FreeModeOutputNode } from "../../src/components/molecules/free-mode-output-node"
 
@@ -24,5 +25,14 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = { args: { variant: "default" } }
+export const Default: Story = {
+  args: { variant: "default" },
+  // "Prévia de arquivos" expande e recolhe a lista.
+  play: async ({ canvasElement }) => {
+    const toggle = within(canvasElement).getByRole("button", { name: "Prévia de arquivos" })
+    await expect(toggle).toHaveAttribute("aria-expanded", "false")
+    await userEvent.click(toggle)
+    await expect(toggle).toHaveAttribute("aria-expanded", "true")
+  },
+}
 export const Compact: Story = { args: { variant: "compact" } }

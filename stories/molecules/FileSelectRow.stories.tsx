@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 import { useState } from "react"
 
 import { FileSelectRow } from "../../src/components/molecules/file-select-row"
@@ -39,5 +40,14 @@ export const List: Story = {
       )
     }
     return <ListDemo />
+  },
+  // Tocar na linha marca o arquivo; o checkbox também desmarca.
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const box = canvas.getByRole("checkbox", { name: "Selecionar Fotos_Viagem_2024.zip" })
+    await userEvent.click(canvas.getByText("Fotos_Viagem_2024.zip"))
+    await expect(box).toHaveAttribute("aria-checked", "true")
+    await userEvent.click(box)
+    await expect(box).toHaveAttribute("aria-checked", "false")
   },
 }

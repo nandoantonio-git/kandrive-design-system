@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 import { useArgs } from "storybook/preview-api"
+import { LiveArgs } from "../../.storybook/live-args"
 
 import { TemplateReviewModalItem } from "../../src/components/organisms/template-review-modal-item"
 
@@ -30,7 +32,24 @@ type Story = StoryObj<typeof meta>
 export const Collapsed: Story = {
   render: function Render(args) {
     const [, updateArgs] = useArgs()
-    return <TemplateReviewModalItem {...args} onToggleExpand={() => updateArgs({ isExpanded: !args.isExpanded })} />
+    return (
+      <LiveArgs args={args} updateArgs={updateArgs}>
+        {(live, updateLive) => (
+          <TemplateReviewModalItem {...live} onToggleExpand={() => updateLive({ isExpanded: !live.isExpanded })} />
+        )}
+      </LiveArgs>
+    )
+  },
+  // A seta expande (mostra o arquivo filho) e colapsa de novo.
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(canvas.queryByText("Q1_Report_v2.pdf")).toBeNull()
+    await userEvent.click(canvas.getByRole("button", { name: "Expandir" }))
+    await expect(canvas.getByText("Q1_Report_v2.pdf")).toBeVisible()
+    const collapse = canvas.getByRole("button", { name: "Colapsar" })
+    await expect(collapse).toHaveAttribute("aria-expanded", "true")
+    await userEvent.click(collapse)
+    await expect(canvas.queryByText("Q1_Report_v2.pdf")).toBeNull()
   },
 }
 

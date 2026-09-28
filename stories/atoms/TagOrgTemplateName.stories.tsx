@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 
 import { TagOrgTemplateName } from "../../src/components/atoms/tag-org-template-name"
 
@@ -14,7 +15,14 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Placeholder: Story = {}
+export const Placeholder: Story = {
+  // O campo aceita digitação: o nome digitado vira o valor.
+  play: async ({ canvasElement }) => {
+    const input = within(canvasElement).getByRole("textbox", { name: "Nome do template de organização" })
+    await userEvent.type(input, "Fotos de Viagem")
+    await expect(input).toHaveValue("Fotos de Viagem")
+  },
+}
 
 export const Filled: Story = {
   args: { defaultValue: "Fotos de Viagem" },

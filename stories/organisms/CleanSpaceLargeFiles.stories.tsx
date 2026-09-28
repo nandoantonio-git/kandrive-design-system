@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 
 import { CleanSpaceLargeFiles } from "../../src/components/organisms/clean-space-large-files"
 
@@ -21,4 +22,20 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+export const Default: Story = {
+  args: { onDeleteSelected: fn() },
+  // Checkbox marca uma linha, "Selecionar todos" marca as 3, "Excluir" entrega as selecionadas e limpa a seleção.
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement)
+    const deleteButton = canvas.getByRole("button", { name: "Excluir" })
+    await expect(deleteButton).toBeDisabled()
+    const first = canvas.getByRole("checkbox", { name: "Selecionar huge-backup.zip" })
+    await userEvent.click(first)
+    await expect(first).toHaveAttribute("aria-checked", "true")
+    await userEvent.click(canvas.getByRole("button", { name: "Selecionar todos" }))
+    await expect(canvas.getAllByRole("checkbox", { checked: true })).toHaveLength(3)
+    await userEvent.click(deleteButton)
+    await expect(args.onDeleteSelected).toHaveBeenCalledWith(args.files)
+    await expect(canvas.queryAllByRole("checkbox", { checked: true })).toHaveLength(0)
+  },
+}

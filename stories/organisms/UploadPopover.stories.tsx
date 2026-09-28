@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 
 import { UploadPopover } from "../../src/components/organisms/upload-popover"
 
@@ -17,7 +18,17 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const InProgress: Story = {}
+export const InProgress: Story = {
+  args: { onPause: fn(), onClose: fn() },
+  // "Pausar envio" e "Fechar" chamam cada um o próprio callback.
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole("button", { name: "Pausar envio" }))
+    await expect(args.onPause).toHaveBeenCalledOnce()
+    await userEvent.click(canvas.getByRole("button", { name: "Fechar" }))
+    await expect(args.onClose).toHaveBeenCalledOnce()
+  },
+}
 
 export const WithFileList: Story = {
   args: {

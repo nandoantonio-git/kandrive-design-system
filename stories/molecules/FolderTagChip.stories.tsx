@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 import { useArgs } from "storybook/preview-api"
+import { LiveArgs } from "../../.storybook/live-args"
 
 import { FolderTagChip } from "../../src/components/molecules/folder-tag-chip"
 
@@ -37,7 +39,20 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   render: function Render(args) {
     const [, updateArgs] = useArgs()
-    return <FolderTagChip {...args} onClick={() => updateArgs({ selected: !args.selected })} />
+    return (
+      <LiveArgs args={args} updateArgs={updateArgs}>
+        {(live, updateLive) => (
+          <FolderTagChip {...live} onClick={() => updateLive({ selected: !live.selected })} />
+        )}
+      </LiveArgs>
+    )
+  },
+  // Clique no chip alterna `selected` (`aria-pressed`).
+  play: async ({ canvasElement }) => {
+    const chip = within(canvasElement).getByRole("button", { name: "Contratos 2026" })
+    await expect(chip).toHaveAttribute("aria-pressed", "false")
+    await userEvent.click(chip)
+    await expect(chip).toHaveAttribute("aria-pressed", "true")
   },
 }
 
@@ -57,14 +72,26 @@ export const Collapsed: Story = {
 
 export const Removable: Story = {
   args: {
-    onRemove: () => {},
+    onRemove: fn(),
+  },
+  // O botão de remover dispara `onRemove`.
+  play: async ({ args, canvasElement }) => {
+    await userEvent.click(within(canvasElement).getByRole("button", { name: "Remover Contratos 2026" }))
+    await expect(args.onRemove).toHaveBeenCalledOnce()
   },
 }
 
 export const Disabled: Story = {
   args: {
-    onRemove: () => {},
+    onRemove: fn(),
     disabled: true,
+  },
+  // Desabilitado: remover não dispara `onRemove`.
+  play: async ({ args, canvasElement }) => {
+    const remove = within(canvasElement).getByRole("button", { name: "Remover Contratos 2026" })
+    await expect(remove).toBeDisabled()
+    await userEvent.click(remove, { pointerEventsCheck: 0 })
+    await expect(args.onRemove).not.toHaveBeenCalled()
   },
 }
 

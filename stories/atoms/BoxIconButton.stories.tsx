@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 import { Plus, Maximize, RotateCcw, Trash2 } from "lucide-react"
 
 import { BoxIconButton } from "../../src/components/atoms/box-icon-button"
@@ -32,7 +33,14 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+export const Default: Story = {
+  args: { onClick: fn() },
+  // Clique dispara o callback `onClick`.
+  play: async ({ args, canvasElement }) => {
+    await userEvent.click(within(canvasElement).getByRole("button", { name: "Adicionar nodo" }))
+    await expect(args.onClick).toHaveBeenCalledOnce()
+  },
+}
 
 export const Toolbar: Story = {
   render: () => (
@@ -50,5 +58,12 @@ export const Danger: Story = {
 }
 
 export const Disabled: Story = {
-  args: { disabled: true },
+  args: { disabled: true, onClick: fn() },
+  // Desabilitado: o clique não dispara `onClick`.
+  play: async ({ args, canvasElement }) => {
+    const button = within(canvasElement).getByRole("button", { name: "Adicionar nodo" })
+    await expect(button).toBeDisabled()
+    await userEvent.click(button, { pointerEventsCheck: 0 })
+    await expect(args.onClick).not.toHaveBeenCalled()
+  },
 }

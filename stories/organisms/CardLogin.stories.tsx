@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 
 import { CardLogin } from "../../src/components/organisms/card-login"
 
@@ -14,7 +15,21 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+export const Default: Story = {
+  args: { onSubmit: fn() },
+  // Preencher e-mail e senha, mostrar a senha e enviar chama `onSubmit` com os valores.
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.type(canvas.getByRole("textbox", { name: "E-mail" }), "ana@kandrive.com")
+    const password = canvas.getByLabelText("Senha")
+    await userEvent.type(password, "segredo123")
+    await expect(password).toHaveAttribute("type", "password")
+    await userEvent.click(canvas.getByRole("button", { name: "Mostrar senha" }))
+    await expect(password).toHaveAttribute("type", "text")
+    await userEvent.click(canvas.getByRole("button", { name: "Entrar" }))
+    await expect(args.onSubmit).toHaveBeenCalledWith({ email: "ana@kandrive.com", password: "segredo123" })
+  },
+}
 
 /**
  * Figma `organism/CardLogin` `Device=Mobile`: formulário sem card, sobre o fundo teal

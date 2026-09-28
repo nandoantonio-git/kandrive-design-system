@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 import { useArgs } from "storybook/preview-api"
+import { LiveArgs } from "../../.storybook/live-args"
 
 import { StorageSidebar } from "../../src/components/organisms/storage-sidebar"
 
@@ -27,9 +29,24 @@ type Story = StoryObj<typeof meta>
 
 /** Vivo — clique no cabeçalho pra expandir/recolher (`expanded`; os Controls acompanham). */
 export const Default: Story = {
+  args: { onBuySpace: fn() },
   render: function Render(args) {
     const [, updateArgs] = useArgs()
-    return <StorageSidebar {...args} onToggle={() => updateArgs({ expanded: !args.expanded })} />
+    return (
+      <LiveArgs args={args} updateArgs={updateArgs}>
+        {(live, updateLive) => <StorageSidebar {...live} onToggle={() => updateLive({ expanded: !live.expanded })} />}
+      </LiveArgs>
+    )
+  },
+  // "Comprar Espaço" chama `onBuySpace`; clicar no cabeçalho recolhe o painel e esconde os botões.
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole("button", { name: "Comprar Espaço" }))
+    await expect(args.onBuySpace).toHaveBeenCalledOnce()
+    const toggle = canvas.getByRole("button", { name: "Armazenamento" })
+    await userEvent.click(toggle)
+    await expect(toggle).toHaveAttribute("aria-expanded", "false")
+    await expect(canvas.queryByRole("button", { name: "Comprar Espaço" })).toBeNull()
   },
 }
 

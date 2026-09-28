@@ -1,5 +1,6 @@
 import * as React from "react"
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 
 import { Switch } from "../../src/components/atoms/switch"
 
@@ -32,7 +33,14 @@ export const On: Story = {
 }
 
 export const Disabled: Story = {
-  args: { checked: false, disabled: true },
+  args: { checked: false, disabled: true, onCheckedChange: fn() },
+  // Desabilitado: o clique não chama `onCheckedChange`.
+  play: async ({ args, canvasElement }) => {
+    const toggle = within(canvasElement).getByRole("switch", { name: "Notificações por e-mail" })
+    await userEvent.click(toggle, { pointerEventsCheck: 0 })
+    await expect(args.onCheckedChange).not.toHaveBeenCalled()
+    await expect(toggle).toHaveAttribute("aria-checked", "false")
+  },
 }
 
 /** Controlado — clique alterna `checked` de verdade (feedback real no press/release, Regra 8). */
@@ -40,5 +48,14 @@ export const Interactive: Story = {
   render: function InteractiveSwitch(args) {
     const [checked, setChecked] = React.useState(args.checked ?? false)
     return <Switch {...args} checked={checked} onCheckedChange={setChecked} />
+  },
+  // Clique liga; Espaço (teclado) desliga.
+  play: async ({ canvasElement }) => {
+    const toggle = within(canvasElement).getByRole("switch", { name: "Notificações por e-mail" })
+    await expect(toggle).toHaveAttribute("aria-checked", "false")
+    await userEvent.click(toggle)
+    await expect(toggle).toHaveAttribute("aria-checked", "true")
+    await userEvent.keyboard(" ")
+    await expect(toggle).toHaveAttribute("aria-checked", "false")
   },
 }

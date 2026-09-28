@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 import { useArgs } from "storybook/preview-api"
+import { LiveArgs } from "../../.storybook/live-args"
 
 import { SidebarTagsItem } from "../../src/components/atoms/sidebar-tags-item"
 
@@ -34,10 +36,23 @@ export const Idle: Story = {
   render: function Render(args) {
     const [, updateArgs] = useArgs()
     return (
-      <div className="w-60">
-        <SidebarTagsItem {...args} onClick={() => updateArgs({ selected: !args.selected })} />
-      </div>
+      <LiveArgs args={args} updateArgs={updateArgs}>
+        {(live, updateLive) => (
+          <div className="w-60">
+            <SidebarTagsItem {...live} onClick={() => updateLive({ selected: !live.selected })} />
+          </div>
+        )}
+      </LiveArgs>
     )
+  },
+  // Clique seleciona a etiqueta (`aria-pressed`); segundo clique desfaz.
+  play: async ({ canvasElement }) => {
+    const item = within(canvasElement).getByRole("button", { name: "Image" })
+    await expect(item).toHaveAttribute("aria-pressed", "false")
+    await userEvent.click(item)
+    await expect(item).toHaveAttribute("aria-pressed", "true")
+    await userEvent.click(item)
+    await expect(item).toHaveAttribute("aria-pressed", "false")
   },
 }
 

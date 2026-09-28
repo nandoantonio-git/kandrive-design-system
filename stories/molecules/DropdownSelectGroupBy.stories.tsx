@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 import { useState } from "react"
 
 import { DropdownSelectGroupBy } from "../../src/components/molecules/dropdown-select-group-by"
@@ -42,7 +43,18 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+export const Default: Story = {
+  // O gatilho abre a lista; escolher uma opção fecha e mostra o critério no gatilho.
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const trigger = canvas.getByRole("button", { name: "Agrupar" })
+    await userEvent.click(trigger)
+    await expect(trigger).toHaveAttribute("aria-expanded", "true")
+    await userEvent.click(canvas.getByRole("button", { name: "Tipo" }))
+    await expect(canvas.getByRole("button", { name: "Tipo" })).toHaveAttribute("aria-expanded", "false")
+    await expect(canvas.queryByRole("list")).toBeNull()
+  },
+}
 
 export const Expanded: Story = {
   args: { expanded: true },

@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 import { useArgs } from "storybook/preview-api"
+import { LiveArgs } from "../../.storybook/live-args"
 import { useState } from "react"
 
 import { TagColor, type TagColorName } from "../../src/components/molecules/tag-color"
@@ -28,7 +30,24 @@ export const Default: Story = {
   args: { value: "success" },
   render: function Render(args) {
     const [, updateArgs] = useArgs()
-    return <TagColor {...args} onValueChange={(value) => updateArgs({ value })} />
+    return (
+      <LiveArgs args={args} updateArgs={updateArgs}>
+        {(live, updateLive) => (
+          <TagColor {...live} onValueChange={(value) => updateLive({ value })} />
+        )}
+      </LiveArgs>
+    )
+  },
+  // Clique marca a cor; as setas movem e marcam a próxima.
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole("radio", { name: "primary" }))
+    await expect(canvas.getByRole("radio", { name: "primary" })).toHaveAttribute("aria-checked", "true")
+    await expect(canvas.getByRole("radio", { name: "success" })).toHaveAttribute("aria-checked", "false")
+    await userEvent.keyboard("{ArrowRight}")
+    const next = canvas.getByRole("radio", { name: "primary-dark" })
+    await expect(next).toHaveAttribute("aria-checked", "true")
+    await expect(next).toHaveFocus()
   },
 }
 

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 
 import { StorageStatusCurrent } from "../../src/components/molecules/storage-status-current"
 
@@ -23,7 +24,14 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+export const Default: Story = {
+  args: { onBuySpace: fn() },
+  // "Comprar espaço" dispara `onBuySpace`.
+  play: async ({ args, canvasElement }) => {
+    await userEvent.click(within(canvasElement).getByRole("button", { name: "Comprar espaço" }))
+    await expect(args.onBuySpace).toHaveBeenCalledOnce()
+  },
+}
 
 export const NearLimit: Story = {
   args: { usedAmount: "92GB", percent: 92 },

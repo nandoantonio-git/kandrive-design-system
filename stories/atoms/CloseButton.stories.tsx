@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 
 import { CloseButton } from "../../src/components/atoms/close-button"
 
@@ -30,7 +31,14 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+export const Default: Story = {
+  args: { onClick: fn() },
+  // Clique dispara o callback `onClick`.
+  play: async ({ args, canvasElement }) => {
+    await userEvent.click(within(canvasElement).getByRole("button", { name: "Fechar" }))
+    await expect(args.onClick).toHaveBeenCalledOnce()
+  },
+}
 
 export const AllStates: Story = {
   render: () => (

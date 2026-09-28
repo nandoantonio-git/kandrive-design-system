@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 
 import { OnboardingPage } from "../../src/components/pages/onboarding-page"
 
@@ -16,7 +17,25 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 /** Mobile · 390. Os botões avançam pelas etapas. Figma `Onboarding/Welcome/Mobile`. */
-export const Welcome: Story = { parameters: FIG("3181-29768"), globals: vp("kdMobile") }
+export const Welcome: Story = {
+  parameters: FIG("3181-29768"),
+  globals: vp("kdMobile"),
+  args: { onFinish: fn() },
+  // Começar → mão → tema (escolher "Escuro") → pronto; "Ir para a Home" chama `onFinish`.
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole("button", { name: "Começar" }))
+    await expect(canvas.getByRole("heading", { name: "Com qual mão você usa o celular?" })).toBeInTheDocument()
+    await userEvent.click(canvas.getByRole("button", { name: "Continuar" }))
+    const dark = canvas.getByRole("radio", { name: "Escuro" })
+    await userEvent.click(dark)
+    await expect(dark).toBeChecked()
+    await userEvent.click(canvas.getByRole("button", { name: "Continuar" }))
+    await expect(canvas.getByText("Tudo pronto!")).toBeInTheDocument()
+    await userEvent.click(canvas.getByRole("button", { name: "Ir para a Home" }))
+    await expect(args.onFinish).toHaveBeenCalledOnce()
+  },
+}
 /** Mobile · 390. Figma `Onboarding/DominantHand/Mobile`. */
 export const DominantHand: Story = { args: { defaultStep: "hand" }, parameters: FIG("3181-29820"), globals: vp("kdMobile") }
 /** Mobile · 390. Figma `Onboarding/Theme/Mobile`. */

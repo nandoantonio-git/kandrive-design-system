@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent, within } from "storybook/test"
 
 import { ArchiveBrowserModalSidebar } from "../../src/components/organisms/archive-browser-modal-sidebar"
 
@@ -14,4 +15,15 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+export const Default: Story = {
+  args: { onActivePageChange: fn() },
+  // Clicar num item o torna a página ativa (`aria-current`) e avisa `onActivePageChange`.
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement)
+    const shared = canvas.getByRole("button", { name: "Compartilhados" })
+    await userEvent.click(shared)
+    await expect(shared).toHaveAttribute("aria-current", "true")
+    await expect(canvas.getByRole("button", { name: "Pessoal" })).not.toHaveAttribute("aria-current")
+    await expect(args.onActivePageChange).toHaveBeenCalledWith("Compartilhados")
+  },
+}

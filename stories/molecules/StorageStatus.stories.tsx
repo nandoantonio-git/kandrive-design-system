@@ -1,5 +1,6 @@
 import * as React from "react"
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, userEvent, within } from "storybook/test"
 
 import { StorageStatus, type StorageScope } from "../../src/components/molecules/storage-status"
 
@@ -72,6 +73,15 @@ export const Interactive: StoryObj = {
         ]}
       />
     )
+  },
+  // Clicar num chip troca o escopo: o chip fica ativo e o painel muda de barra.
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const quick = canvas.getByRole("button", { name: "Acesso Rápido" })
+    await userEvent.click(quick)
+    await expect(quick).toHaveAttribute("aria-pressed", "true")
+    await expect(canvas.getByRole("button", { name: "Global" })).toHaveAttribute("aria-pressed", "false")
+    await expect(canvas.getByRole("progressbar", { name: "Acesso rápido usado" })).toBeInTheDocument()
   },
 }
 
