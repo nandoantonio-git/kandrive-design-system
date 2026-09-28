@@ -8,7 +8,7 @@ import * as ViewModeToggleStories from './ViewModeToggle.stories';
 ## Uso
 
 Pílula de alternância do modo de visualização do grid de arquivos
-(Grid/List/Columns). Use no cabeçalho de qualquer tela com listagem de
+(Grade/Lista/Colunas). Use no cabeçalho de qualquer tela com listagem de
 arquivos que suporte mais de um layout — se a tela só tem um layout
 possível, não adicione o toggle.
 
@@ -17,7 +17,7 @@ possível, não adicione o toggle.
 
 ## Anatomia
 
-Rótulo de seção "VISUALIZAR" + 3 botões (Grid/List/Columns), cada um com
+Rótulo de seção "VISUALIZAR" + 3 botões (Grade/Lista/Colunas), cada um com
 ícone + label, sobre fundo Liquid Glass. O botão do modo ativo tem
 destaque de fundo e cor de texto de marca.
 
@@ -40,12 +40,14 @@ destaque de fundo e cor de texto de marca.
 <Canvas of={ViewModeToggleStories.Compact} />
 
 `size="compact"` (73×31, só ícones, sem o rótulo "VISUALIZAR") exclui
-"Columns" automaticamente — Colunas é exclusivo de tablet/desktop (decisão
+"Colunas" automaticamente — Colunas é exclusivo de tablet/desktop (decisão
 de 2026-09-24). Não precisa passar `modes` pra isso; é o comportamento
 padrão do componente desde 2026-09-25. Use `modes` só pra um recorte
 diferente do padrão.
 
 ## Terminologia
 
-Rótulos "Grid"/"List"/"Columns" e "VISUALIZAR" — mistura de inglês e
-português preservada do conteúdo original.
+🧩 Rótulos traduzidos na revisão de UX writing (2026-09-28): "Grade"/"Lista"/
+"Colunas" (Figma: "Grid"/"List"/"Columns") — a mistura de inglês e
+português do conteúdo original foi eliminada. "VISUALIZAR" é texto
+Figma-confirmado, mantido literal.

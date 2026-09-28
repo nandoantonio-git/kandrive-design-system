@@ -24,7 +24,9 @@ export interface ReviewItem {
    * o 1º item do nó (`Duplicado`) usa "Taxonomia Sugerida:", os demais
    * ("Incongruente"/"OK") usam "Template Sugerido:". Não confirmado como
    * regra sistêmica ligada à severidade (apenas 3 exemplos no nó) — exposto
-   * como prop por item em vez de inferido, default "Template Sugerido:".
+   * como prop por item em vez de inferido, default "Template sugerido:".
+   * 🧩 Texto adaptado (2026-09-28): "Taxonomia" é jargão — o default e o uso
+   * no 1º item viram "Estrutura sugerida:" (Figma: "Taxonomia Sugerida:").
    */
   suggestedPathLabel?: string
   onRename?: () => void
@@ -45,7 +47,7 @@ export interface TemplateReviewModalItemProps extends Omit<React.ComponentProps<
 
 const SEVERITY_META: Record<ReviewSeverity, { label: string; icon: typeof AlertTriangle; className: string }> = {
   duplicado: { label: "Duplicado", icon: AlertTriangle, className: "bg-[var(--color-feedback-warning-subtle,#f59e0b33)] text-[var(--color-feedback-warning,#c38418)] dark:bg-[#f59e0b4d] dark:text-[#fbbf24]" },
-  incongruente: { label: "Incongruente", icon: AlertCircle, className: "bg-zinc-200 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300" },
+  incongruente: { label: "Fora do padrão", icon: AlertCircle, className: "bg-zinc-200 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300" },
   ok: { label: "OK", icon: CheckCircle2, className: "bg-zinc-200 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300" },
 }
 
@@ -156,7 +158,7 @@ function TemplateReviewModalItem({ item, isExpanded, onToggleExpand, device = "d
       </div>
       <div className={cn("flex items-center gap-2 rounded border border-zinc-200 bg-zinc-50 p-2 text-xs text-zinc-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300", mobile && "flex-wrap gap-y-1")}>
         <Lightbulb aria-hidden="true" className="size-3.5 shrink-0" />
-        <span>{item.suggestedPathLabel ?? "Template Sugerido:"}</span>
+        <span>{item.suggestedPathLabel ?? "Template sugerido:"}</span>
         {pathSegments.map((segment, index) => (
           <React.Fragment key={segment}>
             {index > 0 ? <ChevronRight aria-hidden="true" className="size-3 text-zinc-400 dark:text-zinc-500" /> : null}

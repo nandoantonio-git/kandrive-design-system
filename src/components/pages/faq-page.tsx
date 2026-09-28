@@ -72,8 +72,8 @@ function FaqPage({ variant = "expanded", sidebarProps, onContactSupport, classNa
       {...props}
     >
       <div className="flex w-full flex-col items-center gap-2 tablet:pb-5">
-        <Breadcrumb segments={["Home", "Perguntas Frequentes"]} className="hidden w-full tablet:flex" />
-        <PageLead title="Perguntas Frequentes" caption="Consulte suas principais dúvidas" className="w-full" />
+        <Breadcrumb segments={["Home", "Perguntas frequentes"]} className="hidden w-full tablet:flex" />
+        <PageLead title="Perguntas frequentes" caption="Consulte suas principais dúvidas" className="w-full" />
         <FaqTopicChips
           className="w-full tablet:hidden"
           topics={TOPIC_ORDER.map((topic) => ({ targetId: `faq-${topic}`, label: TOPIC_CHIP_LABEL[topic] }))}

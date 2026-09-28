@@ -7,9 +7,9 @@ export type ScopeKind = "quick-access" | "long-term" | "global" | "default"
 export type TypeLabelState = "idle" | "hover" | "selected" | "selected-hover" | "selected-pressed"
 
 const FILE_TYPE_LABEL: Record<FileTypeKind, string> = {
-  image: "Image",
+  image: "Imagens",
   document: "Documentos",
-  video: "Videos",
+  video: "Vídeos",
   other: "Outros",
 }
 

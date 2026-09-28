@@ -251,7 +251,7 @@ function Sidebar({
         <button
           type="button"
           data-slot="sidebar-collapse"
-          aria-label="Expandir sidebar"
+          aria-label="Expandir barra lateral"
           onClick={handleToggleCollapse}
           className="flex size-6 shrink-0 items-center justify-center rounded-full text-neutral-text-tertiary transition-[color,background-color,transform] hover:bg-zinc-100 hover:text-zinc-900 motion-safe:active:scale-95 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
         >
@@ -277,7 +277,7 @@ function Sidebar({
         <button
           type="button"
           data-slot="sidebar-collapse"
-          aria-label="Colapsar sidebar"
+          aria-label="Recolher barra lateral"
           onClick={handleToggleCollapse}
           className="flex size-6 items-center justify-center rounded-full text-neutral-text-tertiary transition-[color,background-color,transform] hover:bg-zinc-100 hover:text-zinc-900 motion-safe:active:scale-95 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
         >

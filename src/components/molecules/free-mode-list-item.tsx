@@ -24,7 +24,7 @@ const OPERATION_CONFIG: Record<
 > = {
   juncao: { label: "Junção", Glyph: JuncaoGlyph },
   subtracao: { label: "Subtração", Glyph: SubtracaoGlyph },
-  intersseccao: { label: "Interssecção", Glyph: IntersseccaoGlyph },
+  intersseccao: { label: "Interseção", Glyph: IntersseccaoGlyph },
   exclusao: { label: "Exclusão", Glyph: ExclusaoGlyph },
   "filtro-tamanho": { label: "Filtrar por tamanho", Glyph: FiltroTamanhoGlyph },
   "filtro-formato": { label: "Filtrar por formato", Glyph: FiltroFormatoGlyph },
@@ -44,7 +44,9 @@ export interface FreeModeListItemProps extends Omit<React.ComponentProps<"button
  * celule/MainCanvas/Organization/FreeMode/ListItem (`1394:16408`,
  * Figma-confirmado) — linha da lista de tipos de nó disponíveis pra
  * adicionar ao canvas Modo Livre (7 operações: Junção/Subtração/
- * Interssecção/Exclusão + 3 filtros). Eixo `state` do Figma
+ * Interseção/Exclusão + 3 filtros; 🧩 "Interssecção" do Figma corrigido
+ * para "Interseção" — erro de grafia, revisão de UX writing 2026-09-28).
+ * Eixo `state` do Figma
  * (`idle`/`hover`/`Clicked`) mapeado para `state` para permitir captura
  * visual estática; o hover real continua disponível via CSS. A prop legada
  * `selected` ainda força `pressed` para consumidores existentes (

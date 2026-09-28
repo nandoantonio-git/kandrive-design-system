@@ -26,9 +26,9 @@ export const Interactive: Story = {
   // Tocar numa aba a torna a atual (`aria-current="page"`).
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
-    await expect(canvas.getByRole("button", { name: "Home" })).toHaveAttribute("aria-current", "page")
+    await expect(canvas.getByRole("button", { name: "Início" })).toHaveAttribute("aria-current", "page")
     await userEvent.click(canvas.getByRole("button", { name: "Organizar" }))
     await expect(canvas.getByRole("button", { name: "Organizar" })).toHaveAttribute("aria-current", "page")
-    await expect(canvas.getByRole("button", { name: "Home" })).not.toHaveAttribute("aria-current")
+    await expect(canvas.getByRole("button", { name: "Início" })).not.toHaveAttribute("aria-current")
   },
 }

@@ -19,7 +19,7 @@ export const Default: Story = {
   args: { onSelect: fn() },
   // Escolher uma operação chama `onSelect` com ela.
   play: async ({ args, canvasElement }) => {
-    await userEvent.click(within(canvasElement).getByRole("button", { name: "Interssecção" }))
+    await userEvent.click(within(canvasElement).getByRole("button", { name: "Interseção" }))
     await expect(args.onSelect).toHaveBeenCalledWith("intersseccao")
   },
 }

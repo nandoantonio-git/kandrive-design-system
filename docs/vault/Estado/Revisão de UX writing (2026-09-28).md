@@ -6,7 +6,15 @@ tags: [estado, ux-writing, proposta]
 
 Textos visíveis do código (`src/components`, ~460 strings), comparados com [[Tom de Voz e Personalidade da Marca]] e [[Regra 5 - Terminologia]].
 
-> **Revisado em 2026-09-28** com a definição "Tom de voz e terminologia — Kandrive" enviada pelo usuário, que é mais completa que a nota do vault. Os itens 7, 11, 13 e 28 mudaram, e a seção F é nova. ⚠️ A definição proíbe "Liberar espaço" e pede "Gerenciar espaço" em todas as telas, o que contradiz a [[Regra 5 - Terminologia]] (Gerir Espaço na Sidebar, Liberar Espaço em Armazenamento). Ver item 11. **Nada foi alterado ainda.** Aprove por número (ex.: "1–9, 12, 15 com ajuste X"). O que for aprovado muda no Storybook e no Figma V0.2.1: busco cada texto nas instâncias e troco em todas.
+> **Revisado em 2026-09-28** com a definição "Tom de voz e terminologia — Kandrive" enviada pelo usuário. Os itens 7, 11, 13 e 28 mudaram, e a seção F é nova.
+>
+> **✅ Aplicado em 2026-09-28** — todos os itens abaixo foram revisados um a um contra o código: cada texto só foi trocado quando violava uma regra explícita (DON'T de termo, inglês, sigla, maiúscula fora do padrão, ou o padrão fixo de toast). Quando um texto é **Figma-confirmado literal** e não viola nenhuma regra, ele foi **mantido** — a fonte de verdade do Figma não é sobrescrita por preferência de estilo sem uma razão explícita da definição. Cada item abaixo tem o resultado (✅ aplicado / ⏭️ mantido, com o motivo). O código, os testes (463/463) e o Storybook (build ok) já refletem as mudanças; commit e merge para `main` ao final.
+>
+> **Decisões do usuário que resolveram os pontos em aberto:**
+> 1. "Gerir Espaço" (não "Gerenciar espaço") em toda parte — Sidebar, Armazenamento, Configurações. [[Regra 5 - Terminologia]] atualizada.
+> 2. Auto-Archive → "Guardar automaticamente" (o nó move para o longo prazo).
+> 3. Sem confirmação nova antes de excluir (item 43): não criamos componente novo, só texto; e só removemos texto que não está no Figma.
+> 4. As notas de tom de voz do vault e a definição do usuário foram mescladas em [[Tom de Voz e Personalidade da Marca]], com mais peso para a definição do usuário. **Nada foi alterado ainda.** Aprove por número (ex.: "1–9, 12, 15 com ajuste X"). O que for aprovado muda no Storybook e no Figma V0.2.1: busco cada texto nas instâncias e troco em todas.
 
 **Ficaram de fora (validados):**
 - Terminologia aceita: Arquivar (= organizar), Guardar / Guardar no longo prazo / Guardar arquivos, Longo prazo, Acesso rápido, Pronto para guardar, Ver duplicados, Lixeira, "Buscar arquivos, pastas ou templates", Desfazer organização, Excluir pasta e arquivos, "solicitar resgate" (na ação, com o prazo).
@@ -93,6 +101,26 @@ Isto não é ajuste de tom: são avisos de desenvolvimento dentro da interface. 
 | 41 | FAQ | Links Rápidos | Atalhos | Sem inglês (e resolve a maiúscula do item 20). |
 | 42 | Botões que abrem mais etapas | "Guardar no longo prazo" (KeepButton), "Excluir conta", "Comprar espaço" | com reticências: "Guardar no longo prazo…", "Excluir conta…", "Comprar espaço…" | Reticências quando há mais etapas. ❓ Aplico só onde o clique abre um fluxo, e não em "Organizar" do Header, que é navegação. |
 | 43 | Liberar espaço › Duplicados e Grandes | "Excluir cópias" e "Excluir" agem direto | Confirmação antes de excluir, separada das outras ações | Ação destrutiva pede confirmação explícita. Isso é mudança de comportamento, não só de texto: sem node no Figma, o diálogo teria de ser montado com peças que já existem. |
+
+## Resultado (2026-09-28)
+
+**✅ Aplicados** (código + Storybook; ver `git log` desta pasta para o commit):
+1, 2, 3, 4, 5, 6, 8, 9, 10, 12(parcial — ver nota), 14(❌ ver "Mantidos"), 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 29, 30, 35, 36, 37, 38, 39, 40, 41.
+
+Com ajuste na aplicação:
+- **7** → "Guardar automaticamente" (decisão do usuário, não "Arquivar automaticamente").
+- **11** → unificado para **"Gerir Espaço"** em todo lugar (decisão do usuário, não "Gerenciar espaço" como a definição exemplificava).
+- **28** → "Mudar plano" no lugar de "Rebaixar" (genérico, o botão troca entre planos arbitrários, não só Free/Pro); "Melhorar" ficou como estava (decisão humana anterior, já en português, sem violar regra); "Confirmar upgrade para Kandrive Pro" → "Confirmar assinatura do Kandrive Pro"; "Confirmar upgrade para Pro · $12/mês" → "Assinar Pro · $12/mês".
+
+**⏭️ Mantidos como no Figma** (literal confirmado, sem violar nenhuma regra da definição — mudar seria estilo, não correção):
+- **14** — "Modo Livre" (canvas) vs. "Modo livre" (card): as duas grafias são Figma-confirmadas literalmente em seus respectivos nós; a inconsistência é do próprio Figma, registrada em [[Conflitos Abertos]], não corrigida no código sem decisão de mudar o Figma.
+- **31** — "Arraste os arquivos que deseja armazenar" (Home vazia): Figma-confirmado literal (`page/FristUpload`, `Home.mdx`), não viola nenhum DON'T — decisão revertida após checagem cruzada com o Docs existente.
+- **42** — reticências: nenhum dos 3 exemplos do relatório se encaixa de verdade ("Guardar no longo prazo" é `aria-label` de botão sem texto visível; "Excluir conta" é a ação destrutiva final, já com aviso explícito antes; "Comprar Espaço" é navegação, não um fluxo de mais etapas). Não aplicado.
+- **43** — confirmação explícita antes de excluir (Liberar/Gerir espaço → Duplicados/Grandes): decisão do usuário foi não criar componente novo nesta entrega, só texto. Fica pendente pra uma entrega própria — não é ajuste de UX writing, é comportamento novo.
+- **32, 34** — as duas notas de desenvolvimento ("Estimativa — uso por tier..." e "Detecção de duplicados ainda não existe...") são, na verdade, texto **Figma-confirmado literal** (o usuário escreveu essas notas de dev dentro do próprio Figma) — mantidas, por decisão do usuário ("só excluir o que não tiver no Figma").
+- **33** — removida: "Painel ainda não tem tela Figma confirmada..." não tem nenhuma tela Figma por trás — não é conteúdo do produto, é nota de dev. Virou comentário de código, a seção renderiza vazia (sem quebrar a navegação).
+
+Ver o diff completo em `git log -p` desta pasta ou peça o resumo por arquivo.
 
 ## Aplicação
 

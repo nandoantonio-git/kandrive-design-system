@@ -37,9 +37,9 @@ export const Default: Story = {
     const canvas = within(canvasElement)
     await userEvent.click(canvas.getByRole("button", { name: "Recentes" }))
     await expect(args.onNavigate).toHaveBeenCalledWith("Recentes")
-    await userEvent.click(canvas.getByRole("button", { name: "Colapsar sidebar" }))
+    await userEvent.click(canvas.getByRole("button", { name: "Recolher barra lateral" }))
     await expect(canvas.queryByRole("button", { name: "Recentes" })).toBeNull()
-    await userEvent.click(canvas.getByRole("button", { name: "Expandir sidebar" }))
+    await userEvent.click(canvas.getByRole("button", { name: "Expandir barra lateral" }))
     await expect(canvas.getByRole("button", { name: "Recentes" })).toBeInTheDocument()
   },
 }

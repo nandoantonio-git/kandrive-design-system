@@ -23,7 +23,7 @@ export interface FreeModeButtonsProps extends React.ComponentProps<"div"> {
 function FreeModeButtons({ onAddNode, onExpand, onReset, onDelete, className, ...props }: FreeModeButtonsProps) {
   return (
     <div data-slot="free-mode-buttons" className={cn("flex items-center gap-1.5", className)} {...props}>
-      <BoxIconButton icon={Plus} label="Adicionar nodo" onClick={onAddNode} />
+      <BoxIconButton icon={Plus} label="Adicionar nó" onClick={onAddNode} />
       <BoxIconButton icon={Maximize} label="Expandir" onClick={onExpand} />
       <BoxIconButton icon={RotateCcw} label="Redefinir" onClick={onReset} />
       <BoxIconButton icon={Trash2} label="Excluir" danger onClick={onDelete} />

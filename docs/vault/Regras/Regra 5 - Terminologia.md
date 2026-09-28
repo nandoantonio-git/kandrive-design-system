@@ -8,17 +8,21 @@ Terminologia é **sensível ao contexto** — o mesmo conceito pode ter termos d
 
 ## Lista aprovada
 
-"Acesso rápido" · "Longo prazo" · "Guardar" · "Arquivar" · "Pronto para guardar" · "Ver duplicados" · "Buscar arquivos, pastas ou templates" · **"Gerir Espaço"** (só na Sidebar) · **"Liberar Espaço"** (só em Armazenamento) · **"Comprar Espaço"** (`organism/storage-sidebar` e `molecule/StorageStatus`, botão de upgrade de plano) · **"Editar plano"** (Configurações de Plano, `organism/planSelection`) · **"Organizar"** (`organism/Header`, `page="navbar"`, fluxo ao vivo de organização)
+"Acesso rápido" · "Longo prazo" · "Guardar" · "Arquivar" · "Pronto para guardar" · "Ver duplicados" · "Buscar arquivos, pastas ou templates" · **"Gerir Espaço"** (qualquer contexto — Sidebar, Armazenamento, Configurações) · **"Comprar Espaço"** (`organism/storage-sidebar` e `molecule/StorageStatus`, botão de upgrade de plano) · **"Editar plano"** (Configurações de Plano, `organism/planSelection`) · **"Organizar"** (`organism/Header`, `page="navbar"`, fluxo ao vivo de organização)
+
+> ✅ **Unificado em 2026-09-28** (revisão de UX writing, decisão do usuário): antes o mesmo modal (`organism/cleanSpaceStorage`) tinha 2 gatilhos com nome diferente por contexto — "Gerir Espaço" na Sidebar, "Liberar Espaço" em Armazenamento e Configurações. A definição de tom de voz e terminologia entregue pelo usuário proíbe "Liberar espaço" explicitamente ("usar Gerenciar espaço" como exemplo de mesmo texto em toda tela); a decisão do usuário foi generalizar para **"Gerir Espaço"** em todo lugar, não "Gerenciar espaço". Isso revoga a seção "O caso 'Liberar Espaço' vs. 'Gerir Espaço'" abaixo — mantida só como histórico.
 
 > ⚠️ **Gap de cobertura, não termo proibido** — "Comprar Espaço" é texto real confirmado via `get_design_context` no nó `1421:19167` (`organism/storage-sidebar`, screenshot 2026-08-16, descrição Figma verbatim: *"botoes para página de gerir espaço ou para dar upgrade no plano de uso"*), mas não constava formalmente na lista aprovada nem na proibida — só registrado como gap de baixa urgência em `making-of/conflicts.md`. Adicionado aqui em 2026-08-16 por já estar em uso real e Figma-confirmado, não é uma decisão nova de produto. Mesmo critério aplicado a "Organizar" em 2026-08-23: texto literal Figma-confirmado no nó `1421:19918` (`organism/Header`), em uso desde a implementação original do Header, só nunca tinha sido formalmente adicionado à lista.
 
 ## Proibida como texto visível
 
-"freezer" · "congelado" · "frio" · "camada" (rótulo de UI) · "elegível" (rótulo de UI) · "Limpar Espaço" · "CTA"
+"freezer" · "congelado" · "frio" · "camada" (rótulo de UI) · "elegível" (rótulo de UI) · "Limpar Espaço" · "Liberar Espaço" (revogado em 2026-09-28, ver acima) · "CTA" · "Global" (rótulo de UI, usar "Total") · siglas internas (ex. "AC+AL", "AC:"/"AL:") · "Gerenciar espaço" (não é o termo escolhido — usar "Gerir Espaço", ver acima)
 
-## O caso "Liberar Espaço" vs. "Gerir Espaço"
+## Histórico — "Liberar Espaço" vs. "Gerir Espaço" (revogado 2026-09-28)
 
-Mesmo modal (`organism/cleanSpaceStorage`, node `1439:16908`), 2 gatilhos com termo diferente por contexto:
+> Registro histórico. Desde 2026-09-28 os dois gatilhos usam "Gerir Espaço" — ver a nota no topo desta página.
+
+Mesmo modal (`organism/cleanSpaceStorage`, node `1439:16908`), tinha 2 gatilhos com termo diferente por contexto:
 - Sidebar (painel persistente) → "Gerir Espaço"
 - Página de Armazenamento (`molecule/StorageStatus`, `scope="global"`) → "Liberar Espaço"
 

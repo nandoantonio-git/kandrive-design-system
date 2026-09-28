@@ -8,7 +8,7 @@ import KeepGlyph from "@/assets/icons/MobileTabKeep.svg?react"
 export type MobileTab = "home" | "organize" | "keep"
 
 const TABS: { value: MobileTab; label: string; Glyph: React.ComponentType<React.SVGProps<SVGSVGElement>> }[] = [
-  { value: "home", label: "Home", Glyph: HomeGlyph },
+  { value: "home", label: "Início", Glyph: HomeGlyph },
   { value: "organize", label: "Organizar", Glyph: OrganizeGlyph },
   { value: "keep", label: "Guardar", Glyph: KeepGlyph },
 ]

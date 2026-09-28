@@ -95,7 +95,7 @@ function SaveLongTermFileStorage({
       <div className="flex items-start justify-between">
         <div className="flex flex-col gap-3">
           <h2 className="text-2xl font-medium text-zinc-900 dark:text-zinc-100">Guardar no longo prazo</h2>
-          <p className="text-base text-zinc-700 dark:text-zinc-300">Revise a taxonomia sugerida antes de aplicar as mudanças.</p>
+          <p className="text-base text-zinc-700 dark:text-zinc-300">Revise os arquivos antes de guardar.</p>
         </div>
         <CloseButton size="md" onClick={onCancel} />
       </div>

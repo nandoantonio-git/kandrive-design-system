@@ -19,16 +19,21 @@ diretamente.
 
 ### Variante `Expanded` — seletor de escopo
 
-Tem 3 painéis (`Global`/`Corrente`/`Longo Prazo`) que funcionam como um
-seletor: o painel ativo mostra um chip preenchido com a cor da categoria,
-os outros 2 aparecem como chips outline clicáveis para trocar de painel.
-O botão "Liberar espaço" só aparece no painel `Global` — termo aprovado
-para esta página (Armazenamento) — e abre o modal de limpeza de espaço.
+Tem 3 painéis (Figma: `Tier=Global/Current/LongTerm`; texto na tela "Total"/
+"Acesso rápido"/"Longo prazo") que funcionam como um seletor: o painel
+ativo mostra um chip preenchido com a cor da categoria, os outros 2
+aparecem como chips outline clicáveis para trocar de painel. O botão
+"Gerir espaço" só aparece no painel "Total" — termo aprovado para esta
+página (Armazenamento) — e abre o modal de limpeza de espaço.
 
-No painel `Global`, a barra é segmentada por tipo de arquivo, com legenda
+🧩 O chip "Total" mostra "Global" no Figma — traduzido na revisão de UX
+writing (2026-09-28): a definição de tom de voz proíbe "Global" como
+rótulo de UI ("usar Total").
+
+No painel "Total", a barra é segmentada por tipo de arquivo, com legenda
 (Imagens/Documentos/Vídeos/Outros) logo abaixo usando as mesmas cores dos
-segmentos. Nos painéis `Corrente` e `Longo Prazo`, aparece uma legenda de
-2 itens abaixo da barra: "XX em uso" e "XX Livre".
+segmentos. Nos painéis "Acesso rápido" e "Longo prazo", aparece uma
+legenda de 2 itens abaixo da barra: "XX em uso" e "XX Livre".
 
 ### Variante `Sidebar` — versão compacta
 
@@ -43,7 +48,7 @@ seletor de escopo nem botões de ação.
 
 | Estado | Tratamento |
 | --- | --- |
-| `scope` (`global`/`current`/`long-term`) | Alterna entre os 3 painéis da variante Expanded (`Tier=Global/Current/LongTerm`) |
+| `scope` (`global`/`current`/`long-term`, valores internos da prop) | Alterna entre os 3 painéis da variante Expanded (Figma `Tier=Global/Current/LongTerm`; texto "Total"/"Acesso rápido"/"Longo prazo") |
 | `variant="sidebar"` | Versão compacta (`Layout=Sidebar`) |
 | Limite atingido (`limitReached`, `Tier=Alert`) | Valor e aviso em vermelho, barra cheia |
 | Hover/Active/Foco (chips, botões) | Herdados dos componentes filhos (`ScopeTypeLabel`, `Button`) |
@@ -56,6 +61,6 @@ para eles.
 
 ## Terminologia
 
-"Liberar espaço" é aprovado no contexto desta página (Armazenamento).
+"Gerir espaço" é aprovado no contexto desta página (Armazenamento).
 "Comprar espaço" também aparece como rótulo de botão. Nenhum termo
 proibido é usado.
