@@ -11,7 +11,9 @@ export interface StorageStatusProps extends React.ComponentProps<"div"> {
   /** `Style=Sidebar` (compacto, painel embutido) ou `Style=Expanded` (página cheia). */
   variant?: "sidebar" | "expanded"
   /** `StorageType` — só relevante em `variant="expanded"` (Figma-confirmado, 3 painéis). */
+  /** Escopo ativo — controlado; quando omitido, o componente guarda o último escolhido. */
   scope?: StorageScope
+  defaultScope?: StorageScope
   onScopeChange?: (scope: StorageScope) => void
   usedAmount: string
   totalAmount: string
@@ -68,8 +70,9 @@ const SCOPE_LABEL: Record<StorageScope, string> = {
  */
 function StorageStatus({
   variant = "expanded",
-  scope = "global",
-  onScopeChange,
+  scope: controlledScope,
+  defaultScope = "global",
+  onScopeChange: onScopeChangeProp,
   usedAmount,
   totalAmount,
   percent,
@@ -82,6 +85,12 @@ function StorageStatus({
   className,
   ...props
 }: StorageStatusProps) {
+  const [internalScope, setInternalScope] = React.useState(defaultScope)
+  const scope = controlledScope ?? internalScope
+  const onScopeChange = (next: StorageScope) => {
+    if (controlledScope === undefined) setInternalScope(next)
+    onScopeChangeProp?.(next)
+  }
   const alert = limitReached && scope === "global"
   const clamped = Math.min(100, Math.max(0, percent))
 

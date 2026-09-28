@@ -12,6 +12,12 @@ Organização em Modo Livre. Abre ao selecionar um `FreeModeItemNode` — não
 é um menu de contexto genérico de clique-direito. Possibilita criar filtro
 e operações condicionais sobre o nó selecionado.
 
+Funciona sozinho, com as regras em memória: as pílulas Atributo e Operação
+abrem suas listas, o valor aceita texto, E/OU alterna, "Adicionar Regra"
+transforma a nova linha em condição (ou mostra o erro, se estiver
+incompleta), o ✕ remove a condição, "Descartar Mudanças" volta ao início e
+"Salvar Mudanças" devolve as regras em `onSave(regras, operador)`.
+
 <Canvas of={NodeContextMenuStories.Default} />
 <Controls of={NodeContextMenuStories.Default} />
 
@@ -32,19 +38,20 @@ anel vermelho e aparece o aviso "Preencha todas as informações antes de
 adicionar a nova regra".
 
 - `floating-info-panel` — condição válida
-- `state-3` — nova regra em erro, com aviso
+- `state-3` — nova regra em erro, com aviso. Sem a prop `state`, aparece ao tentar adicionar uma regra incompleta, só nas pílulas que faltam, e some ao preencher.
 - Toggle lógico E/OU
 - Remover condição
 
 | Estado | Tratamento |
 | --- | --- |
 | Válido | Condições preenchidas |
-| Erro | Anel vermelho nas pílulas e aviso |
+| Erro | Anel vermelho nas pílulas vazias e aviso |
+| Valor | 🧩 Campo de texto com placeholder "Valor..." (o Figma só desenha o placeholder) |
 | Toggle E/OU | Troca o operador; hover 🧩 no inativo |
 | Pressed (toggle, remover) | 🧩 `active:opacity-70` |
 | Foco (toggle, remover) | 🧩 Anel `white/60` no toggle (trilha escura) e `Brand/Primary/Action` a 50% no remover, só pelo teclado |
 
-🧩 Regra 8: hover, pressed e foco do toggle E/OU e do botão de remover não desenhados no Figma.
+🧩 Regra 8: hover, pressed e foco do toggle E/OU e do botão de remover não desenhados no Figma. O `State3` do Figma repete o botão "Adicionar Regra"; aqui fica um só, porque os dois fariam a mesma coisa.
 
 ## Terminologia
 

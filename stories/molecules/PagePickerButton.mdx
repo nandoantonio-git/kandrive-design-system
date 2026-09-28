@@ -9,14 +9,19 @@ import * as Stories from './PagePickerButton.stories';
 
 ## Uso
 
-Escolhe a página de origem (Pessoal, Compartilhados…) das listas de seleção no mobile.
+Escolhe a página de origem das listas de seleção no mobile. O botão abre uma lista com as páginas; escolher uma fecha a lista e troca o texto do botão. Esc e clique fora fecham.
 
 <Canvas of={Stories.Default} />
 <Controls of={Stories.Default} />
 
 ## Anatomia
 
+Rótulo "Página:" (opcional), botão com ícone, nome da página e chevron, e a lista.
+
+<Canvas of={Stories.Expanded} />
 <Canvas of={Stories.WithoutLabel} />
+
+🧩 A lista não existe no Figma. Foi montada só com peças que já existem: o card de vidro do `DropdownSelectGroupBy` e seus itens (`DropdownSelectGroupByItem`). As páginas são mock: as mesmas da navegação (`Sidebar`), menos Lixeira. Troque com a prop `pages`.
 
 ### Tokens
 
@@ -29,10 +34,13 @@ Escolhe a página de origem (Pessoal, Compartilhados…) das listas de seleção
 | Estado | Tratamento |
 | --- | --- |
 | Default | Botão em repouso |
+| Expandido | 🧩 Lista aberta, chevron girado, página atual com fundo `selected` |
 | Hover | 🧩 Fundo `Effect/Overlay/Subtle` a 20% |
 | Pressed | 🧩 `active:opacity-70` |
 | Foco | Anel de 3px `Brand/Primary/Action` a 50%, só pelo teclado |
 | Disabled | 🧩 Opacidade reduzida, sem clique |
+
+<Canvas of={Stories.Disabled} />
 
 ## Mobile
 
@@ -40,4 +48,4 @@ Escolhe a página de origem (Pessoal, Compartilhados…) das listas de seleção
 
 ## Terminologia
 
-"Página:" e o nome da página ("Pessoal"). Nenhum termo proibido (Regra 5).
+"Página:" e os nomes das páginas da navegação (Pessoal, Compartilhados, Recentes, Favoritos, Guardados). Nenhum termo proibido (Regra 5).

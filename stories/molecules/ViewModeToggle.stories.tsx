@@ -22,7 +22,7 @@ const meta = {
   },
   render: (args) => {
     function Controlled() {
-      const [mode, setMode] = useState<ViewMode>(args.mode)
+      const [mode, setMode] = useState<ViewMode>(args.mode ?? "grid")
       return <ViewModeToggle {...args} mode={mode} onModeChange={setMode} />
     }
     return <Controlled />

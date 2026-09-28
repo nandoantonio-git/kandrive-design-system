@@ -14,9 +14,10 @@ import { CSS_TO_FIGMA, FIGMA_COLORS } from "@/components/tokens/figma-color-brid
  * a tabela é a mesma com o Storybook em Light ou Dark.
  */
 
-type Status = "match" | "diverge" | "code-only"
+type Status = "match" | "diverge" | "code-only" | "figma-only"
 
 interface ColorToken {
+  /** Nome do token CSS; vazio quando a variável só existe no Figma. */
   name: string
   light: string
   dark: string
@@ -114,15 +115,32 @@ const STATUS: Record<Status, { label: string; className: string }> = {
   match: { label: "✅ Figma-confirmado", className: "bg-emerald-50 text-emerald-800" },
   diverge: { label: "⚠️ Diverge do Figma", className: "bg-red-50 text-red-800" },
   "code-only": { label: "🧩 Só no código", className: "bg-zinc-100 text-zinc-600" },
+  "figma-only": { label: "🎨 Só no Figma", className: "bg-sky-50 text-sky-800" },
 }
 
-const GROUPS: { key: string; title: string; test: (t: ColorToken) => boolean }[] = [
-  { key: "brand", title: "Marca", test: (t) => !!t.figma?.startsWith("Brand/") },
-  { key: "storage", title: "Armazenamento", test: (t) => !!t.figma?.startsWith("Storage/") },
-  { key: "neutral", title: "Neutros", test: (t) => !!t.figma?.startsWith("Neutral/") },
-  { key: "effect", title: "Efeitos (Liquid Glass e overlays)", test: (t) => !!t.figma?.startsWith("Effect/") },
-  { key: "base", title: "Base shadcn/ui (fora do Figma)", test: (t) => !t.figma },
-]
+/** Ordem das famílias (1º nível do nome no Figma). */
+const FAMILY_ORDER = ["Brand", "Storage", "Neutral", "UI", "Effect"]
+const FAMILY_TITLE: Record<string, string> = {
+  Brand: "Marca",
+  Storage: "Armazenamento",
+  Neutral: "Neutros",
+  UI: "Interface",
+  Effect: "Efeitos (Liquid Glass e overlays)",
+  Base: "Base shadcn/ui (fora do Figma)",
+}
+
+/** Caminho hierárquico do token: família › grupo › nome restante. */
+function pathOf(token: ColorToken): [family: string, group: string, leaf: string] {
+  if (token.figma) {
+    const [family, group, ...rest] = token.figma.split("/")
+    return [family, group ?? "Geral", rest.join("/")]
+  }
+  // Tokens só do código: agrupados pelo prefixo do nome CSS (`--sidebar-*`, `--chart-*`…).
+  const bare = token.name.replace(/^--/, "")
+  const prefix = bare.split("-")[0]
+  const grouped = ["sidebar", "chart", "color"].includes(prefix)
+  return ["Base", grouped ? prefix : "Geral", bare]
+}
 
 function Swatch({ value, mode }: { value: string; mode: "light" | "dark" }) {
   return (
@@ -141,6 +159,7 @@ function TokenRow({ token }: { token: ColorToken }) {
   return (
     <div className="grid grid-cols-1 items-center gap-2 border-b border-zinc-100 py-2 sm:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)_minmax(0,1fr)]">
       <div className="flex flex-col gap-1">
+        {token.name ? (
         <button
           type="button"
           onClick={() => copy(`var(${token.name})`)}
@@ -149,6 +168,9 @@ function TokenRow({ token }: { token: ColorToken }) {
         >
           {copied === `var(${token.name})` ? "Copiado!" : token.name}
         </button>
+        ) : (
+          <span className="text-xs font-semibold text-zinc-900">sem token CSS</span>
+        )}
         <span className="text-[0.6875rem] text-neutral-text-tertiary">{token.figma ?? "sem variável no Figma"}</span>
         <span className={cn("w-fit rounded-full px-1.5 py-0.5 text-[0.625rem] font-medium", STATUS[token.status].className)}>
           {STATUS[token.status].label}
@@ -165,67 +187,80 @@ function TokenRow({ token }: { token: ColorToken }) {
   )
 }
 
-/** Tabela de todos os tokens de cor do código, agrupados, com Light e Dark lado a lado. */
-function LiveColorTokens() {
+function useAllColors(): ColorToken[] {
   const tokens = useColorTokens()
-  if (!tokens.length) return <p>Carregando tokens…</p>
-  const counts = {
-    total: tokens.length,
-    match: tokens.filter((t) => t.status === "match").length,
-    diverge: tokens.filter((t) => t.status === "diverge").length,
-    codeOnly: tokens.filter((t) => t.status === "code-only").length,
+  return React.useMemo(() => {
+    if (!tokens.length) return tokens
+    const mapped = new Set(tokens.map((t) => t.figma).filter(Boolean))
+    const figmaOnly: ColorToken[] = Object.entries(FIGMA_COLORS)
+      .filter(([name]) => !mapped.has(name))
+      .map(([figma, v]) => ({ name: "", light: v.light, dark: v.dark, figma, status: "figma-only" }))
+    return [...tokens, ...figmaOnly]
+  }, [tokens])
+}
+
+/**
+ * Tabela única de cor: tokens do código e variáveis que só existem no Figma,
+ * agrupados pela hierarquia do nome no Figma (família › grupo), com Light e
+ * Dark lado a lado. Cada família é um bloco recolhível.
+ *
+ * Consolidado em 2026-09-28 (pedido do usuário): antes eram duas áreas
+ * separadas, "Tokens do código" e "Variáveis do Figma sem token CSS".
+ */
+function ColorTokens() {
+  const all = useAllColors()
+  if (!all.length) return <p>Carregando tokens…</p>
+  const count = (status: Status) => all.filter((t) => t.status === status).length
+
+  const families = new Map<string, Map<string, ColorToken[]>>()
+  for (const token of all) {
+    const [family, group] = pathOf(token)
+    const groups = families.get(family) ?? new Map<string, ColorToken[]>()
+    groups.set(group, [...(groups.get(group) ?? []), token])
+    families.set(family, groups)
   }
+  const order = [...FAMILY_ORDER, ...[...families.keys()].filter((f) => !FAMILY_ORDER.includes(f) && f !== "Base"), "Base"]
+
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-4">
       <p className="text-sm text-zinc-700">
-        <strong>{counts.total}</strong> tokens de cor no código · <strong>{counts.match}</strong> iguais ao Figma nos dois
-        modos · <strong>{counts.diverge}</strong> divergentes · <strong>{counts.codeOnly}</strong> só no código.
+        <strong>{all.length}</strong> cores · <strong>{count("match")}</strong> iguais ao Figma nos dois modos ·{" "}
+        <strong>{count("diverge")}</strong> divergentes · <strong>{count("code-only")}</strong> só no código ·{" "}
+        <strong>{count("figma-only")}</strong> só no Figma (nas telas, em geral aparecem como `zinc-*` ou valor literal).
       </p>
-      {GROUPS.map((group) => {
-        const rows = tokens.filter(group.test)
-        if (!rows.length) return null
+      {order.map((family) => {
+        const groups = families.get(family)
+        if (!groups) return null
+        const total = [...groups.values()].reduce((n, rows) => n + rows.length, 0)
         return (
-          <section key={group.key} className="flex flex-col">
-            <h3 className="mb-2 text-base font-semibold text-zinc-900">
-              {group.title} <span className="font-normal text-neutral-text-tertiary">({rows.length})</span>
-            </h3>
-            <div className="hidden grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)_minmax(0,1fr)] gap-2 pb-1 text-[0.6875rem] font-medium tracking-wide text-neutral-text-tertiary uppercase sm:grid">
-              <span>Token CSS · Figma</span>
-              <span>Light</span>
-              <span>Dark</span>
-            </div>
-            {rows.map((t) => (
-              <TokenRow key={t.name} token={t} />
+          <details key={family} open className="group rounded-xl border border-zinc-200 px-4 py-2">
+            <summary className="cursor-pointer py-1 text-base font-semibold text-zinc-900">
+              {FAMILY_TITLE[family] ?? family}{" "}
+              <span className="font-normal text-neutral-text-tertiary">
+                {family === "Base" ? "" : `${family}/ `}({total})
+              </span>
+            </summary>
+            {[...groups.entries()].map(([group, rows]) => (
+              <section key={group} className="mt-3 flex flex-col">
+                <h4 className="mb-1 text-sm font-semibold text-zinc-700">
+                  {family === "Base" ? group : `${family}/${group}`}{" "}
+                  <span className="font-normal text-neutral-text-tertiary">({rows.length})</span>
+                </h4>
+                <div className="hidden grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)_minmax(0,1fr)] gap-2 pb-1 text-[0.6875rem] font-medium tracking-wide text-neutral-text-tertiary uppercase sm:grid">
+                  <span>Figma · Token CSS</span>
+                  <span>Light</span>
+                  <span>Dark</span>
+                </div>
+                {rows.map((t) => (
+                  <TokenRow key={t.name || t.figma} token={t} />
+                ))}
+              </section>
             ))}
-          </section>
+          </details>
         )
       })}
     </div>
   )
 }
 
-/** Variáveis de cor do Figma que ainda não têm token CSS. */
-function FigmaOnlyColors() {
-  const mapped = new Set(Object.values(CSS_TO_FIGMA))
-  const rows = Object.entries(FIGMA_COLORS).filter(([name]) => !mapped.has(name))
-  return (
-    <div className="flex flex-col">
-      <p className="mb-2 text-sm text-zinc-700">
-        <strong>{rows.length}</strong> variáveis do Figma sem token CSS. Nas telas, muitas aparecem como classes do
-        Tailwind (`zinc-*`) ou valores literais nos componentes.
-      </p>
-      {rows.map(([name, v]) => (
-        <div
-          key={name}
-          className="grid grid-cols-1 items-center gap-2 border-b border-zinc-100 py-2 sm:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)_minmax(0,1fr)]"
-        >
-          <span className="text-xs font-semibold text-zinc-900">{name}</span>
-          <Swatch value={v.light} mode="light" />
-          <Swatch value={v.dark} mode="dark" />
-        </div>
-      ))}
-    </div>
-  )
-}
-
-export { LiveColorTokens, FigmaOnlyColors }
+export { ColorTokens }

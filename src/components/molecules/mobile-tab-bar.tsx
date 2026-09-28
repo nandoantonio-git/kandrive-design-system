@@ -14,7 +14,9 @@ const TABS: { value: MobileTab; label: string; Glyph: React.ComponentType<React.
 ]
 
 export interface MobileTabBarProps extends Omit<React.ComponentProps<"nav">, "onChange"> {
+  /** Aba ativa — controlada; quando omitida, o componente guarda a última tocada. */
   active?: MobileTab
+  defaultActive?: MobileTab
   onTabChange?: (tab: MobileTab) => void
 }
 
@@ -30,7 +32,13 @@ export interface MobileTabBarProps extends Omit<React.ComponentProps<"nav">, "on
  * - ⚠️ No Figma, os rótulos têm 10px. Aqui têm 11px, o piso de microtexto da Regra 4.
  * - 🧩 Regra 8: hover, pressed e foco não desenhados no Figma.
  */
-function MobileTabBar({ active = "home", onTabChange, className, ...props }: MobileTabBarProps) {
+function MobileTabBar({ active: controlledActive, defaultActive = "home", onTabChange: onTabChangeProp, className, ...props }: MobileTabBarProps) {
+  const [internalActive, setInternalActive] = React.useState(defaultActive)
+  const active = controlledActive ?? internalActive
+  const onTabChange = (next: MobileTab) => {
+    if (controlledActive === undefined) setInternalActive(next)
+    onTabChangeProp?.(next)
+  }
   return (
     <nav
       data-slot="mobile-tab-bar"

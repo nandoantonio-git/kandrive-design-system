@@ -87,6 +87,13 @@ export interface LabelProps extends Omit<React.ComponentProps<"div">, "children"
  * de verdade que filtra as opções (antes era uma `div` sem campo); e as
  * linhas de tipo de arquivo viram opções clicáveis, como as da lista dinâmica.
  * 🧩 O anel de foco dos gatilhos também é Regra 8.
+ *
+ * **Corrigido em 2026-09-28** (usuário: "etiquetar perde um padding top
+ * expandido"): o card expandido tinha altura fixa de 145px e centralizava o
+ * conteúdo, então a lista empurrava o gatilho para fora do respiro de cima.
+ * Agora segue o `Expanded=true` (`307:14531`): altura pelo conteúdo, padding
+ * de 8px, gatilho no topo, busca e lista abaixo com gap de 8px. A lista
+ * flutua sobre o conteúdo (a raiz mantém 54px), como no `DropdownSelectGroupBy`.
  */
 function Label({
   state: controlledState,
@@ -154,7 +161,7 @@ function Label({
       data-slot="label"
       data-state={state}
       className={cn(
-        "flex w-[109px] flex-col items-start gap-1",
+        "relative flex h-[54px] w-[109px] flex-col items-start gap-1",
         isDisabled && "pointer-events-none opacity-[0.32]",
         className
       )}
@@ -165,7 +172,7 @@ function Label({
       </span>
 
       {isExpanded ? (
-        <div className="relative flex h-[145px] w-full flex-col items-center justify-center gap-2 rounded-xl glass-edge glass-shadow-sm bg-effect-glass-light-45 px-px py-2">
+        <div className="relative z-30 flex w-full flex-col items-start gap-2 rounded-xl glass-edge glass-shadow-sm bg-effect-glass-light-45 px-2 py-2 backdrop-blur-[10px]">
           <button
             type="button"
             aria-expanded="true"
@@ -194,8 +201,8 @@ function Label({
               </li>
             </ul>
           ) : (
-            <div className="flex w-full flex-1 flex-col items-center gap-1">
-              <label className="flex h-5 w-[86px] items-center gap-1.5 rounded-md bg-[#ccced6] dark:bg-[#3a3a3f] px-1 focus-within:ring-3 focus-within:ring-brand-teal-action/50">
+            <div className="flex w-full flex-col items-start gap-1 px-1">
+              <label className="flex h-5 w-full items-center gap-1.5 rounded-md bg-[#ccced6] dark:bg-[#3a3a3f] px-1 focus-within:ring-3 focus-within:ring-brand-teal-action/50">
                 <LabelSearchGlyph aria-hidden="true" className="size-3 shrink-0 text-neutral-text-tertiary dark:text-zinc-400" />
                 <input
                   type="search"
@@ -205,7 +212,7 @@ function Label({
                   className="h-full min-w-0 flex-1 bg-transparent text-[0.625rem] text-zinc-700 outline-none dark:text-zinc-300 [&::-webkit-search-cancel-button]:hidden"
                 />
               </label>
-              <div className="flex w-[109px] flex-col items-center gap-1 px-3 pb-1">
+              <div className="flex w-full flex-col items-center gap-1 py-1">
                 <div role="listbox" aria-label="Etiquetas" className="flex w-full flex-col items-center gap-1">
                 {fileTypes.map((kind) => (
                   <button

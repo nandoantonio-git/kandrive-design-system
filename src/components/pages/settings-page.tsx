@@ -112,6 +112,10 @@ function SettingsPage({
   ...props
 }: SettingsPageProps) {
   const { hand, setHand } = usePreferences()
+  // Escolhas de Aparência em memória: sem isso os rádios ficavam travados na opção inicial.
+  const [theme, setTheme] = React.useState("claro")
+  const [density, setDensity] = React.useState("confortavel")
+  const [homePage, setHomePage] = React.useState("personal")
   return (
     <AppShell
       data-slot="settings-page"
@@ -234,21 +238,21 @@ function SettingsPage({
               <>
                 <SettingsCard title="Tema" caption="Escolha a aparência da interface">
                   <div className="flex flex-col gap-4">
-                    <RadioButton option="claro" label="Claro" checked />
-                    <RadioButton option="escuro" label="Escuro" />
-                    <RadioButton option="dispositivo" label="Padrão do dispositivo" />
+                    <RadioButton name="tema" option="claro" label="Claro" checked={theme === "claro"} onCheckedChange={setTheme} />
+                    <RadioButton name="tema" option="escuro" label="Escuro" checked={theme === "escuro"} onCheckedChange={setTheme} />
+                    <RadioButton name="tema" option="dispositivo" label="Padrão do dispositivo" checked={theme === "dispositivo"} onCheckedChange={setTheme} />
                   </div>
                 </SettingsCard>
                 <SettingsCard title="Densidade da listagem de arquivos" caption="Aplica-se às visualizações Grid, List e Columns nas telas de arquivos">
                   <div className="flex flex-col gap-4">
-                    <RadioButton option="confortavel" label="Confortável" checked />
-                    <RadioButton option="compacta" label="Compacta" />
+                    <RadioButton name="densidade" option="confortavel" label="Confortável" checked={density === "confortavel"} onCheckedChange={setDensity} />
+                    <RadioButton name="densidade" option="compacta" label="Compacta" checked={density === "compacta"} onCheckedChange={setDensity} />
                   </div>
                 </SettingsCard>
                 <SettingsCard title="Página inicial" caption="Escolha o que você vê ao abrir o Kandrive.">
                   <div className="flex flex-col gap-4">
-                    <RadioButton option="personal" checked />
-                    <RadioButton option="saved" />
+                    <RadioButton name="pagina-inicial" option="personal" checked={homePage === "personal"} onCheckedChange={setHomePage} />
+                    <RadioButton name="pagina-inicial" option="saved" checked={homePage === "saved"} onCheckedChange={setHomePage} />
                   </div>
                 </SettingsCard>
                 {/* F5 (Figma V0.2.1, 2026-09-24): muda o lado do FAB no MobileBottomNav. */}

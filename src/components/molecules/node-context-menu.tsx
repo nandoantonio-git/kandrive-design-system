@@ -9,15 +9,32 @@ import NodeContextMenuFilter from "@/assets/icons/NodeContextMenuFilter.svg?reac
 
 export type NodeContextMenuLogicalOperator = "and" | "or"
 
-export interface NodeContextMenuProps extends React.ComponentProps<"div"> {
-  /** Eixo `state` do Figma: `FloatingInfoPanel` (linha de condição preenchida, sem erro) \| `State3` (linha nova em `wrongInput` + aviso). */
+export interface NodeContextMenuRule {
+  attribute: string
+  operation: string
+  value: string
+}
+
+const ATTRIBUTE_OPTIONS = ["Tamanho", "Data", "Tipo"] as const
+const OPERATION_OPTIONS = ["> Maior", "< Menor", ">= Maior igual", "<= Menor igual", "=Igual", "!=Diferente"] as const
+const DEFAULT_RULES: readonly NodeContextMenuRule[] = [{ attribute: "Tamanho", operation: "Maior que", value: "1.0 GB" }]
+
+export interface NodeContextMenuProps extends Omit<React.ComponentProps<"div">, "onSubmit"> {
+  /**
+   * Eixo `state` do Figma: `FloatingInfoPanel` (linha de condição preenchida, sem erro) \| `State3` (linha nova em `wrongInput` + aviso).
+   * Quando informado, fixa o estado (stories de estado); quando omitido, o erro aparece ao tentar adicionar uma regra incompleta.
+   */
   state?: "floating-info-panel" | "state-3"
+  /** Operador E/OU — controlado; quando omitido, o componente alterna sozinho. */
   logicalOperator?: NodeContextMenuLogicalOperator
+  defaultLogicalOperator?: NodeContextMenuLogicalOperator
   onLogicalOperatorChange?: (operator: NodeContextMenuLogicalOperator) => void
-  onRemoveCondition?: () => void
-  onAddRule?: () => void
+  /** Condições preenchidas iniciais (padrão: "Tamanho · Maior que · 1.0 GB", como no Figma). */
+  defaultRules?: readonly NodeContextMenuRule[]
+  onRemoveCondition?: (index: number) => void
+  onAddRule?: (rule: NodeContextMenuRule) => void
   onDiscard?: () => void
-  onSave?: () => void
+  onSave?: (rules: NodeContextMenuRule[], operator: NodeContextMenuLogicalOperator) => void
 }
 
 /**
@@ -54,13 +71,24 @@ export interface NodeContextMenuProps extends React.ComponentProps<"div"> {
  * clicar não abria nada. A 2ª linha (nova condição) já estava correta.
  * Adicionadas as mesmas listas de opções.
  *
+ * **Regras em memória (2026-09-28, usuário: "revisar a interação dos
+ * filtros e droplists em modo livre")**: sem `state`/`logicalOperator`/
+ * `rules`, o painel funciona sozinho. "Adicionar Regra" com a nova linha
+ * incompleta mostra o estado `State3` desenhado no Figma (anel vermelho +
+ * aviso); completa, a linha vira uma condição preenchida. O ✕ remove a
+ * condição, E/OU alterna, "Descartar Mudanças" volta ao início e "Salvar
+ * Mudanças" devolve as regras em `onSave`. Não é o editor de nós: nada disso
+ * altera o canvas.
+ *
  * 🧩 Regra 8: hover, pressed e foco do toggle E/OU e do botão de remover
- * não desenhados no Figma.
+ * não desenhados no Figma. O campo de texto do valor também é extensão.
  */
 function NodeContextMenu({
-  state = "floating-info-panel",
-  logicalOperator = "and",
+  state: controlledState,
+  logicalOperator: controlledOperator,
+  defaultLogicalOperator = "and",
   onLogicalOperatorChange,
+  defaultRules = DEFAULT_RULES,
   onRemoveCondition,
   onAddRule,
   onDiscard,
@@ -68,7 +96,75 @@ function NodeContextMenu({
   className,
   ...props
 }: NodeContextMenuProps) {
-  const isError = state === "state-3"
+  const [internalOperator, setInternalOperator] = React.useState(defaultLogicalOperator)
+  const nextId = React.useRef(0)
+  const withIds = (list: readonly NodeContextMenuRule[]) => list.map((rule) => ({ ...rule, id: nextId.current++ }))
+  const [rules, setRules] = React.useState(() => withIds(defaultRules))
+  const [draft, setDraft] = React.useState<Partial<NodeContextMenuRule>>({})
+  const [draftKey, setDraftKey] = React.useState(0)
+  const [showError, setShowError] = React.useState(false)
+
+  const logicalOperator = controlledOperator ?? internalOperator
+  const isError = controlledState ? controlledState === "state-3" : showError
+  const state = controlledState ?? (showError ? "state-3" : "floating-info-panel")
+
+  const setOperator = (next: NodeContextMenuLogicalOperator) => {
+    if (controlledOperator === undefined) setInternalOperator(next)
+    onLogicalOperatorChange?.(next)
+  }
+
+  const updateDraft = (patch: Partial<NodeContextMenuRule>) => {
+    setDraft((current) => ({ ...current, ...patch }))
+    setShowError(false)
+  }
+
+  const resetDraft = () => {
+    setDraft({})
+    setDraftKey((key) => key + 1)
+    setShowError(false)
+  }
+
+  const addRule = () => {
+    if (!draft.attribute || !draft.operation || !draft.value?.trim()) {
+      setShowError(true)
+      return
+    }
+    const rule = { attribute: draft.attribute, operation: draft.operation, value: draft.value.trim() }
+    setRules((current) => [...current, { ...rule, id: nextId.current++ }])
+    resetDraft()
+    onAddRule?.(rule)
+  }
+
+  const updateRule = (index: number, patch: Partial<NodeContextMenuRule>) =>
+    setRules((current) => current.map((rule, i) => (i === index ? { ...rule, ...patch } : rule)))
+
+  const removeRule = (index: number) => {
+    setRules((current) => current.filter((_, i) => i !== index))
+    onRemoveCondition?.(index)
+  }
+
+  const discard = () => {
+    setRules(withIds(defaultRules))
+    if (controlledOperator === undefined) setInternalOperator(defaultLogicalOperator)
+    resetDraft()
+    onDiscard?.()
+  }
+
+  const operatorButton = (operator: NodeContextMenuLogicalOperator, label: string) => (
+    <button
+      type="button"
+      aria-pressed={logicalOperator === operator}
+      onClick={() => setOperator(operator)}
+      className={cn(
+        "rounded-sm px-3 py-1 text-[0.5625rem] font-bold transition-[color,background-color,opacity] active:opacity-70",
+        "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-white/60",
+        logicalOperator === operator ? "bg-brand-teal-action text-brand-teal-foreground" : "text-zinc-400 hover:text-zinc-200"
+      )}
+    >
+      {label}
+    </button>
+  )
+
   return (
     <div
       data-slot="node-context-menu"
@@ -83,77 +179,64 @@ function NodeContextMenu({
           <span className="text-sm font-bold text-zinc-700 dark:text-zinc-300">Filtro</span>
         </div>
 
-        <div className="flex items-center gap-2">
-          <NodeContextMenuItem label="Atributo" value="Tamanho" options={["Tamanho", "Data", "Tipo"]} />
-          <NodeContextMenuItem
-            label="Operação"
-            value="Maior que"
-            options={["> Maior", "< Menor", ">= Maior igual", "<= Menor igual", "=Igual", "!=Diferente"]}
-          />
-          <NodeContextMenuItem label="Valor..." value="1.0 GB" hasChevron={false} />
-          <button
-            type="button"
-            aria-label="Remover condição"
-            onClick={onRemoveCondition}
-            className="ml-auto rounded-sm text-zinc-400 transition-[color,opacity] hover:text-zinc-600 active:opacity-70 dark:text-zinc-500 dark:hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50"
-          >
-            <X aria-hidden="true" className="size-4" />
-          </button>
-        </div>
+        {rules.map((rule, index) => (
+          <div key={rule.id} data-slot="node-context-menu-rule" className="flex items-center gap-2">
+            <NodeContextMenuItem label="Atributo" defaultValue={rule.attribute} options={ATTRIBUTE_OPTIONS} onValueChange={(attribute) => updateRule(index, { attribute })} />
+            <NodeContextMenuItem label="Operação" defaultValue={rule.operation} options={OPERATION_OPTIONS} onValueChange={(operation) => updateRule(index, { operation })} />
+            <NodeContextMenuItem label="Valor..." defaultValue={rule.value} hasChevron={false} editable onValueChange={(value) => updateRule(index, { value })} />
+            <button
+              type="button"
+              aria-label={`Remover condição ${index + 1}`}
+              onClick={() => removeRule(index)}
+              className="ml-auto rounded-sm text-zinc-400 transition-[color,opacity] hover:text-zinc-600 active:opacity-70 dark:text-zinc-500 dark:hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50"
+            >
+              <X aria-hidden="true" className="size-4" />
+            </button>
+          </div>
+        ))}
 
-        <div className="flex items-center gap-1 self-start rounded-md border border-zinc-800 bg-zinc-900 p-0.5">
-          <button
-            type="button"
-            aria-pressed={logicalOperator === "and"}
-            onClick={() => onLogicalOperatorChange?.("and")}
-            className={cn(
-              "rounded-sm px-3 py-1 text-[0.5625rem] font-bold transition-[color,background-color,opacity] active:opacity-70",
-              "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-white/60",
-              logicalOperator === "and" ? "bg-brand-teal-action text-brand-teal-foreground" : "text-zinc-400 hover:text-zinc-200"
-            )}
-          >
-            E
-          </button>
-          <button
-            type="button"
-            aria-pressed={logicalOperator === "or"}
-            onClick={() => onLogicalOperatorChange?.("or")}
-            className={cn(
-              "rounded-sm px-3 py-1 text-[0.5625rem] font-bold transition-[color,background-color,opacity] active:opacity-70",
-              "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-white/60",
-              logicalOperator === "or" ? "bg-brand-teal-action text-brand-teal-foreground" : "text-zinc-400 hover:text-zinc-200"
-            )}
-          >
-            OU
-          </button>
+        <div role="group" aria-label="Operador lógico" className="flex items-center gap-1 self-start rounded-md border border-zinc-800 bg-zinc-900 p-0.5">
+          {operatorButton("and", "E")}
+          {operatorButton("or", "OU")}
         </div>
 
         <div className="flex flex-col gap-1.5 pt-1">
-          <div className="flex items-center gap-2">
-            <NodeContextMenuItem label="Atributo" error={isError} options={["Tamanho", "Data", "Tipo"]} />
+          <div key={draftKey} data-slot="node-context-menu-draft" className="flex items-center gap-2">
+            <NodeContextMenuItem
+              label="Atributo"
+              error={isError && !draft.attribute}
+              options={ATTRIBUTE_OPTIONS}
+              onValueChange={(attribute) => updateDraft({ attribute })}
+            />
             <NodeContextMenuItem
               label="Operação"
-              error={isError}
-              options={["> Maior", "< Menor", ">= Maior igual", "<= Menor igual", "=Igual", "!=Diferente"]}
+              error={isError && !draft.operation}
+              options={OPERATION_OPTIONS}
+              onValueChange={(operation) => updateDraft({ operation })}
             />
-            <NodeContextMenuItem label="Valor..." error={isError} hasChevron={false} />
+            <NodeContextMenuItem
+              label="Valor..."
+              error={isError && !draft.value?.trim()}
+              hasChevron={false}
+              editable
+              onValueChange={(value) => updateDraft({ value })}
+            />
           </div>
           {isError ? (
-            <p className="flex items-center gap-1 text-[0.6875rem] text-destructive">
+            <p role="alert" className="flex items-center gap-1 text-[0.6875rem] text-destructive">
               <Info aria-hidden="true" className="size-3 shrink-0" />
               Preencha todas as informações antes de adicionar a nova regra
             </p>
           ) : null}
         </div>
 
-        <AddButton label="Adicionar Regra" onClick={onAddRule} className="w-full" />
-        {isError ? <AddButton label="Adicionar Regra" onClick={onAddRule} className="w-full" /> : null}
+        <AddButton label="Adicionar Regra" onClick={addRule} className="w-full" />
 
         <div className="flex items-center justify-end gap-4 border-t border-zinc-300 dark:border-zinc-700 py-3">
-          <Button variant="outline" className="h-8 px-4 text-xs" onClick={onDiscard}>
+          <Button variant="outline" className="h-8 px-4 text-xs" onClick={discard}>
             Descartar Mudanças
           </Button>
-          <Button className="h-8 px-4 text-xs" onClick={onSave}>
+          <Button className="h-8 px-4 text-xs" onClick={() => onSave?.(rules.map(({ id: _id, ...rule }) => rule), logicalOperator)}>
             Salvar Mudanças
           </Button>
         </div>
