@@ -37,7 +37,10 @@ export const Default: Story = {
   },
 }
 
-export const Expanded: Story = { args: { defaultExpanded: true } }
+export const Expanded: Story = {
+  args: { defaultExpanded: true },
+  parameters: { design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=3237-29768" } },
+}
 
 export const WithoutLabel: Story = { args: { withLabel: false } }
 
