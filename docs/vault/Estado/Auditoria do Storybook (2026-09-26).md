@@ -77,9 +77,11 @@ Fatos levantados: [[Auditoria do Storybook - Inventário]].
 
 ## Pendências que dependem de decisão
 
-- **PagePickerButton:** anuncia menu, mas a lista de páginas não existe no Figma nem no código.
-- **Botões sem ação:** "Filtros" do StorageStatusSummary; painel de filtro do Modo livre (story declaradamente estática).
-- **FileArchiveCard:** qual node citar (`212:3691` é o set inteiro de `molecule/FileItem`).
-- **ArchiveItem/FolderItem/VideoItem/UploadFolder** apontam para o set inteiro `molecule/FileItem`; UploadFolder parece não pertencer a ele.
-- **HamburgerButton:** modos Open/Collapse do Figma sem glifo exportado.
-- **SidebarDrawer:** story aponta para a tela (`3139:49490`), JSDoc para o componente (`1771:35845`).
+✅ Todas resolvidas em 2026-09-28 — ver [[Fechamento da entrega (2026-09-28)]].
+
+- ~~**PagePickerButton**~~: abre a lista de páginas (mock da navegação).
+- ~~**Botões sem ação**~~: "Filtros" alterna ligado/desligado; o painel do Modo livre é o `NodeContextMenu` real.
+- ~~**FileArchiveCard / ArchiveItem / FolderItem / VideoItem**~~: cada um aponta para sua variante `Type=` de `molecule/FileItem`. UploadFolder ficou "🧩 só código": não há componente no V0.2.1.
+- ~~**HamburgerButton**~~: os 4 modos com o morph do protótipo.
+- ~~**SidebarDrawer**~~: aponta para `organism/Sidebar` `Device=Mobile` (`1771:35845`).
+- ~~**Sem node**~~: Breadcrumb, FileRow, SettingsCard, SettingsField (`molecule/TextField`) e FaqCallout (`molecule/Callout`) confirmados; CloseButton e ImageItem já estavam.

@@ -5,7 +5,7 @@ import { FileRow } from "../../src/components/molecules/file-row"
 const meta = {
   title: "Molecules/FileRow",
   component: FileRow,
-  parameters: { layout: "centered" },
+  parameters: { layout: "centered", design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=3029-4009" } },
   globals: { viewport: { value: "kdMobile", isRotated: false } },
   argTypes: { type: { control: "radio", options: ["file", "folder"] } },
   args: { type: "file", name: "Arquivo 1", meta: "Proprietário • 100MB" },

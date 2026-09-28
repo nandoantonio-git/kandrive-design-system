@@ -5,7 +5,7 @@ import * as HamburgerButtonStories from './HamburgerButton.stories';
 
 # HamburgerButton (Figma: `atom/Icon/Hamburger`, `1637:23253`)
 
-✅ Glifo do `atom/Icon/Hamburger` (`1637:23253`), modos Closed e Expand, exportado do Figma.
+✅ Os 4 modos do `atom/Icon/Hamburger` (`1637:23253`): Closed, Open, Expand e Collapse, com o morph do protótipo do Figma.
 
 ## Uso
 
@@ -18,19 +18,28 @@ O ☰ do Header mobile abre a gaveta (`SidebarDrawer`) em todas as telas, exceto
 
 ### Modos
 
-`mode`: `closed` (☰, abre a gaveta) · `expand` (fecha a gaveta). O eixo `Mode` do Figma também tem `Open` e `Collapse`, ainda sem glifo exportado aqui.
+Três barras de 3px com cantos arredondados, numa caixa de 18×17.
 
+| `mode` | Parado | No hover | Transição |
+| --- | --- | --- | --- |
+| `closed` (☰, abre a gaveta) | `Mode=Closed`: 3 barras de 18px | `Mode=Open`: a do meio encolhe para 12px | 200ms |
+| `expand` (fecha a gaveta) | `Mode=Expand`: igual ao Open | `Mode=Collapse`: a do meio passa das bordas (22px) | 400ms |
+
+As durações e as posições vêm do protótipo do Figma (Smart Animate no hover). Como `Expand` tem o desenho do `Open`, abrir a gaveta com o mouse em cima não dá salto. Com movimento reduzido, a troca é instantânea. `forceHover` congela o hover para a documentação.
+
+<Canvas of={HamburgerButtonStories.Open} />
 <Canvas of={HamburgerButtonStories.Expand} />
+<Canvas of={HamburgerButtonStories.Collapse} />
 
 ## Estados
 
 | Estado | Tratamento |
 | --- | --- |
-| Hover | Fundo neutro sutil |
+| Hover | Fundo neutro sutil e o morph das barras (Open/Collapse) |
 | Pressed 🧩 | `active:scale-95` (Regra 8) |
 | Foco | Anel `ring-3 brand-teal-action/50`, só pelo teclado |
 | Disabled 🧩 | 50% de opacidade, sem ponteiro (Regra 8) |
-| Transição | `transition-[color,background-color,transform]` |
+| Transição | Botão: `transition-[color,background-color,transform]`. Barras: topo, largura e posição, 200/400ms |
 | Aberto/fechado | `aria-expanded` acompanha o `mode` |
 
 ## Terminologia

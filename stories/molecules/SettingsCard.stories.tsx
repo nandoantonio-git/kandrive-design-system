@@ -7,7 +7,7 @@ import { Button } from "../../src/components/atoms/button"
 const meta = {
   title: "Molecules/SettingsCard",
   component: SettingsCard,
-  parameters: { layout: "padded" },
+  parameters: { layout: "padded", design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=3029-3867" } },
   args: { title: "Senha", caption: "Altere sua senha" },
   decorators: [(Story) => <div className="max-w-2xl"><Story /></div>],
 } satisfies Meta<typeof SettingsCard>

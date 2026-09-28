@@ -8,7 +8,7 @@ import { HamburgerButton } from "../../src/components/atoms/hamburger-button"
 const meta = {
   title: "Organisms/SidebarDrawer",
   component: SidebarDrawer,
-  parameters: { layout: "fullscreen", design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=3139-49490" } },
+  parameters: { layout: "fullscreen", design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1771-35845" } },
   globals: { viewport: { value: "kdMobile", isRotated: false } },
   args: { open: true },
   decorators: [(Story) => <div className="relative h-[844px] overflow-hidden bg-neutral-surface-background p-6"><p className="pt-16 text-neutral-text-secondary">Conteúdo da tela</p><Story /></div>],
