@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { useArgs } from "storybook/preview-api"
 
 import { Chip } from "../../src/components/atoms/chip"
 
@@ -13,5 +14,11 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+/** Vivo — clique pra alternar `selected` (os Controls acompanham). */
+export const Default: Story = {
+  render: function Render(args) {
+    const [, updateArgs] = useArgs()
+    return <Chip {...args} onClick={() => updateArgs({ selected: !args.selected })} />
+  },
+}
 export const Selected: Story = { args: { selected: true } }

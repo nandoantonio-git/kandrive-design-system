@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { useArgs } from "storybook/preview-api"
 import { useState } from "react"
 
 import { CleanSpaceListSelection } from "../../src/components/molecules/clean-space-list-selection"
@@ -32,7 +33,13 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Unselected: Story = {}
+/** Vivo — marque o checkbox pra alternar `selected` (os Controls acompanham). */
+export const Unselected: Story = {
+  render: function Render(args) {
+    const [, updateArgs] = useArgs()
+    return <CleanSpaceListSelection {...args} onSelectedChange={(selected) => updateArgs({ selected })} />
+  },
+}
 
 export const Selected: Story = {
   args: { selected: true },

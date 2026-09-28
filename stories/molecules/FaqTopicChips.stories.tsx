@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { useArgs } from "storybook/preview-api"
 
 import { FaqTopicChips } from "../../src/components/molecules/faq-topic-chips"
 
@@ -15,4 +16,10 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+/** Vivo — toque num chip pra marcá-lo como `active` (os Controls acompanham). */
+export const Default: Story = {
+  render: function Render(args) {
+    const [, updateArgs] = useArgs()
+    return <FaqTopicChips {...args} onSelect={(active) => updateArgs({ active })} />
+  },
+}

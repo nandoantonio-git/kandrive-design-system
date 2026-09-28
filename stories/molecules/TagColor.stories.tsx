@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { useArgs } from "storybook/preview-api"
 import { useState } from "react"
 
 import { TagColor, type TagColorName } from "../../src/components/molecules/tag-color"
@@ -22,8 +23,13 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
+/** Vivo — clique numa cor pra selecioná-la (`value`; os Controls acompanham). */
 export const Default: Story = {
   args: { value: "success" },
+  render: function Render(args) {
+    const [, updateArgs] = useArgs()
+    return <TagColor {...args} onValueChange={(value) => updateArgs({ value })} />
+  },
 }
 
 export const Interactive: Story = {

@@ -52,7 +52,11 @@ Fatos levantados: [[Auditoria do Storybook - Inventário]].
   - `Label`: abre e fecha sozinho quando ninguém controla `state` (consertou as stories e as 3 telas: Home, Organização, Resumo de armazenamento). Busca vira `<input>` que filtra; opções clicáveis; Esc e clique fora fecham (Regra 8).
   - `MethodCard`: implementado (`molecule/method-card.tsx`), grupo de rádio com setas. A tela de Organização mobile troca a pilha de botões pelo card. `MethodOrganizeButton` virou só gatilho; export morto `MOBILE_ORGANIZE_METHODS` removido. No Figma V0.2.1, 12 vínculos `Storage/*` do `MethodCard` trocados por `Neutral/Text/Tertiary` e `Brand/Primary/Default`.
   - Stories com `play`: Label (2), MethodCard, MethodOrganizeButton. Gate: 120 arquivos / 439 testes.
-- [ ] **2 — Primeiro Canvas vivo** nas 34 páginas.
+- [x] **2 — Primeiro Canvas vivo** (2026-09-26): 25 de 28 páginas agora reagem ao clique no primeiro Canvas, via `useArgs` (Controls acompanham) ou tirando o `state` fixado no meta (ArchiveItem, FolderItem, ImageItem, VideoItem). Os estados congelados continuam nas stories de baixo. Label, MethodOrganizeButton e StorageStatusSummary já tinham sido resolvidos no Lote 1.
+  - **Sem como ficar vivo sem mudar o componente** (vão para o Lote 3): `PagePickerButton` (não tem estado nem callback; o menu não existe), `OrganizePanelDropZone` (nenhum callback muda `state`), `ArchiveBrowserModal` e `SaveLongTermFileStorage` (nenhum callback muda a seleção).
+  - **Pendência de teclado** (Lote 3): `ArchiveBrowserModalListItem` e `FolderTagChip` são `div`/`span` clicáveis, sem foco nem teclado.
+  - `ContextHeader`: "Limpar seleção" recolhe o header; para reabrir, só pelos Controls.
+  - Gate: `tsc -b` passou a cobrir `stories/` e `.storybook/` (`tsconfig.stories.json`); só apareceu 1 erro antigo, em `RadioButton.stories.tsx`, corrigido.
 - [ ] **3 — Piso de estados** por componente.
 - [ ] **4 — `play` functions.**
 - [ ] **5 — Estrutura padrão dos Docs** (~119 páginas) + os 6 componentes sem story.

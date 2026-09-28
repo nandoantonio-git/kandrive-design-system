@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { useArgs } from "storybook/preview-api"
 
 import { TemplateCard } from "../../src/components/molecules/template-card"
 import illustrationData from "../../src/assets/illustrations/template-card-data.svg"
@@ -23,7 +24,13 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+/** Vivo — clique no card pra alternar `selected` (os Controls acompanham). */
+export const Default: Story = {
+  render: function Render(args) {
+    const [, updateArgs] = useArgs()
+    return <TemplateCard {...args} onClick={() => updateArgs({ selected: !args.selected })} />
+  },
+}
 
 export const Selected: Story = {
   args: { selected: true },

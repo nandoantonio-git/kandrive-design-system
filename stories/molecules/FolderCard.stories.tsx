@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { useArgs } from "storybook/preview-api"
 
 import { FolderCard } from "../../src/components/molecules/folder-card"
 
@@ -23,7 +24,13 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+/** Vivo — clique no cabeçalho pra expandir/recolher (`expanded`; os Controls acompanham). */
+export const Default: Story = {
+  render: function Render(args) {
+    const [, updateArgs] = useArgs()
+    return <FolderCard {...args} onToggleExpanded={() => updateArgs({ expanded: !args.expanded })} />
+  },
+}
 
 export const Hover: Story = {
   args: { state: "hover" },

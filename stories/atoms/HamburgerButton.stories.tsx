@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { useArgs } from "storybook/preview-api"
 
 import { HamburgerButton } from "../../src/components/atoms/hamburger-button"
 
@@ -11,6 +12,20 @@ const meta = {
 
 export default meta
 type Story = StoryObj<typeof meta>
+
+/** Vivo — clique pra alternar `mode` entre `closed` e `expand` (os Controls acompanham). */
+export const Default: Story = {
+  args: { mode: "closed" },
+  render: function Render(args) {
+    const [, updateArgs] = useArgs()
+    return (
+      <HamburgerButton
+        {...args}
+        onClick={() => updateArgs({ mode: args.mode === "expand" ? "closed" : "expand" })}
+      />
+    )
+  },
+}
 
 /** No Header mobile: abre a gaveta. */
 export const Closed: Story = { args: { mode: "closed" } }
