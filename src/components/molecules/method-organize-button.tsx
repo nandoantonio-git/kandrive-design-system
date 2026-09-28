@@ -14,13 +14,12 @@ const METHODS: Record<MobileOrganizeMethod, { label: string; tag: string; Glyph:
   tipo: { label: "Por tipo de arquivo", tag: "Tipo", Glyph: TypeGlyph },
 }
 
-export const MOBILE_ORGANIZE_METHODS = Object.keys(METHODS) as MobileOrganizeMethod[]
-
 export interface MethodOrganizeButtonProps extends React.ComponentProps<"button"> {
   /** Figma `Method`: Project · Date · Type. */
   method?: MobileOrganizeMethod
-  /** Mostra o chevron de lista (o botão abre a escolha de método). Nas opções da lista, fica sem. */
+  /** Mostra o chevron de lista (o botão abre a escolha de método). */
   withChevron?: boolean
+  /** O card de métodos está aberto: vira o chevron e marca `aria-expanded`. A lista em si é o `MethodCard`. */
   expanded?: boolean
 }
 
@@ -37,8 +36,12 @@ export interface MethodOrganizeButtonProps extends React.ComponentProps<"button"
  *   maiúsculas, `Brand/Primary/Default`, com a mesma caixa em pílula.
  * - 🧩 Ícone: no Figma é um gradiente cinza a 60%. Aqui usa `currentColor`
  *   (`Neutral/Text/Secondary` a 60%) para acompanhar o Dark.
- * - 🧩 Abrir a lista de métodos (`expanded`) é extensão de engenharia: o Figma
- *   não desenha o estado aberto.
+ * - A lista aberta é o `molecule/MethodCard` (`3020:29527`), implementado em
+ *   2026-09-26. Até então a tela empilhava outros `MethodOrganizeButton` sem
+ *   chevron como opções, porque se achava que o Figma não desenhava o estado
+ *   aberto — mas o card existia no Figma, só nunca tinha ido para o código.
+ *   Este botão continua só o gatilho: `expanded` vira o chevron, e quem
+ *   renderiza o card é a tela.
  */
 function MethodOrganizeButton({ method = "projeto", withChevron = true, expanded, className, ...props }: MethodOrganizeButtonProps) {
   const { label, tag, Glyph } = METHODS[method]
