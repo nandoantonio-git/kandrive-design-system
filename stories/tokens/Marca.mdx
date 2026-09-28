@@ -1,0 +1,83 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import logoHorizontal from '../../src/assets/logo/kandrive-logo.svg';
+import logoHorizontalDark from '../../src/assets/logo/kandrive-logo-dark.svg';
+import logoVertical from '../../src/assets/logo/kandrive-logo-vertical.svg';
+import logoVerticalDark from '../../src/assets/logo/kandrive-logo-vertical-dark.svg';
+import brandIcon from '../../src/assets/logo/kandrive-mark.svg';
+import favicon from '../../src/assets/logo/kandrive-favicon.svg';
+
+<Meta title="Tokens/Marca" parameters={{ design: { type: 'figma', url: 'https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1594-8007' } }} />
+
+export const Tile = ({ dark, children, label }) => (
+  <figure style={{ margin: 0, display: 'flex', flexDirection: 'column', gap: 8 }}>
+    <div style={{ background: dark ? '#1f1f23' : '#ffffff', border: dark ? 'none' : '1px solid #e5e5e3', borderRadius: 16, padding: '32px 24px', minHeight: 140, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      {children}
+    </div>
+    <figcaption style={{ fontSize: 12, color: '#59595f' }}>{label}</figcaption>
+  </figure>
+);
+
+export const Grid = ({ children }) => (
+  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 16, margin: '16px 0 32px' }}>{children}</div>
+);
+
+# Marca
+
+Logo, símbolo e favicon do KanDrive, nas versões para fundo claro e escuro. Fonte: página **👾Design Language** (`1594:8007`) e a seção `Foundation/Brand` da página ✨Design System, KanDrive V0.2.1. O símbolo é o **Kan, o canguru**, que guarda as coisas na bolsa.
+
+As cores vêm das variáveis `Logo/*` do Figma (ver a tabela no fim). Os SVGs foram exportados do Figma, sem redesenho.
+
+## Logo horizontal
+
+Símbolo à esquerda, "Kan" + "drive" à direita. É o logo padrão: `organism/Header`, `pages/LoginPage` e a barra lateral do Storybook.
+
+<Grid>
+  <Tile label="Light · src/assets/logo/kandrive-logo.svg"><img src={logoHorizontal} alt="Kandrive, logo horizontal para fundo claro" style={{ height: 44 }} /></Tile>
+  <Tile dark label="Dark · src/assets/logo/kandrive-logo-dark.svg"><img src={logoHorizontalDark} alt="Kandrive, logo horizontal para fundo escuro" style={{ height: 44 }} /></Tile>
+</Grid>
+
+Figma: `Kandrive_logo_principal` e o componente `foundation/LogoVertical` (`1427:16927`). ⚠️ Esse componente tem proporção horizontal (7273×1803) apesar do nome, e a instância na Design Language se chama `foundation/LogoHorizontal`. Registrado em Conflitos Abertos.
+
+## Logo vertical
+
+Símbolo em cima, "Kandrive" embaixo. Para espaços quadrados ou estreitos: tela de abertura, onboarding, material de divulgação.
+
+<Grid>
+  <Tile label="Light · src/assets/logo/kandrive-logo-vertical.svg"><img src={logoVertical} alt="Kandrive, logo vertical para fundo claro" style={{ height: 120 }} /></Tile>
+  <Tile dark label="Dark · src/assets/logo/kandrive-logo-vertical-dark.svg"><img src={logoVerticalDark} alt="Kandrive, logo vertical para fundo escuro" style={{ height: 120 }} /></Tile>
+</Grid>
+
+Figma: grupo "logo vertical" (`1623:23819`) na Design Language. 🧩 Esse grupo não é componente nem usa as variáveis `Logo/*`, e foi desenhado para fundo escuro ("Kan" em branco). As duas versões aqui aplicam os valores `Logo/*` de cada modo sobre o desenho exportado.
+
+## Símbolo (BrandIcon)
+
+Só o Kan, sem o nome. Ícone de app e avatar da marca.
+
+<Grid>
+  <Tile label="src/assets/logo/kandrive-mark.svg"><img src={brandIcon} alt="Kandrive, símbolo" style={{ height: 72 }} /></Tile>
+  <Tile dark label="Mesmo arquivo sobre fundo escuro"><img src={brandIcon} alt="Kandrive, símbolo sobre fundo escuro" style={{ height: 72 }} /></Tile>
+</Grid>
+
+Figma: `foundation/BrandIcon` (`1427:16926`).
+
+## Favicon
+
+O "K" vazado num quadrado arredondado. É o ícone da aba do navegador, no app (`index.html`) e neste Storybook (`.storybook/manager-head.html`).
+
+<Grid>
+  <Tile label="Aba clara · src/assets/logo/kandrive-favicon.svg"><img src={favicon} alt="Kandrive, favicon" style={{ height: 48, colorScheme: 'light' }} /></Tile>
+  <Tile dark label="Aba escura: o mesmo arquivo troca de cor sozinho"><img src={favicon} alt="Kandrive, favicon em aba escura" style={{ height: 48, colorScheme: 'dark' }} /></Tile>
+</Grid>
+
+Figma: `foundation/Favicon` (`1427:16925`). 🧩 No Figma o quadrado usa `Neutral/Surface/Card`, que é branco no Light e sumiria numa aba clara. O arquivo usa `Logo/Wordmark/Base` (`#31302D`) e troca para `#F5F4F2` quando o sistema está em modo escuro (`prefers-color-scheme`).
+
+## Cores do logo
+
+| Parte | Variável | Light | Dark |
+| --- | --- | --- | --- |
+| "Kan" | `Logo/Wordmark/Base` | `#31302D` | `#F5F4F2` |
+| "drive" | `Logo/Wordmark/Accent` | `#007E96` | `#337084` |
+| Canguru | `Logo/Glyph` | `#FFFFFF` | `#F5F4F2` |
+| Fundo do símbolo (gradiente) | `Logo/Symbol/Stop1–4` | `#007E96` → `#1B5E6E` | `#337084` → `#1A5E6E` |
+
+Detalhes e histórico: nota `docs/vault/Design System/Logo.md`.
