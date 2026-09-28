@@ -57,6 +57,16 @@ export interface ContextHeaderProps extends React.ComponentProps<"div"> {
  * padronizar todos em 16px (`size-4`, o valor já majoritário) em vez de
  * bloquear a correção numa nova busca de node. Se o Figma real usar
  * tamanhos diferentes por ícone, reabrir com o link atualizado.
+ *
+ * **Corrigido em 2026-09-26** (usuário: "ícones permanecem sem padrão de
+ * escala"): a mesma caixa de 16px não bastava, porque 3 dos 6 SVGs vinham
+ * com enquadramento diferente do grid de 24 dos ícones Material que os
+ * outros usam — `ShareFile` (frame 36×29, desenho a 9×7px), `Settings2`
+ * (16×27) e `DeleteButtonGlyph` (10×12, sem respiro, desenho a 12×16px).
+ * `ShareFile.svg`/`Settings2.svg` ganharam o `viewBox` equivalente ao grid
+ * de 24 (e `currentColor` no lugar do `#001F27` chumbado, que não ficava
+ * teal no hover nem mudava no Dark). O `DeleteButtonGlyph` é compartilhado
+ * com `atom/DeleteButton`, então o reenquadramento é só aqui, via `viewBox`.
  */
 function ContextHeader({
   itemsSelected = "X itens selecionado",
@@ -163,7 +173,7 @@ function ContextHeader({
                   onClick={onDelete}
                   className="inline-flex size-4 shrink-0 items-center justify-center text-zinc-800 transition-colors dark:text-zinc-100 hover:text-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal/50 active:opacity-60"
                 >
-                  <DeleteGlyph aria-hidden="true" className="size-4" />
+                  <DeleteGlyph aria-hidden="true" viewBox="-3 -2 16 16" className="size-4" />
                 </button>
                 <button
                   type="button"

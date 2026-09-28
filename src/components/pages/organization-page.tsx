@@ -16,7 +16,8 @@ import { OrganizePanelDropZone, type OrganizePanelDropZoneProps } from "@/compon
 import { FolderCard, type FolderCardProps } from "@/components/molecules/folder-card"
 import { PopoverNotification, type PopoverNotificationProps } from "@/components/molecules/popover-notification"
 import { TemplateReviewModal, type ReviewItem } from "@/components/templates/template-review-modal"
-import { MethodOrganizeButton, MOBILE_ORGANIZE_METHODS, type MobileOrganizeMethod } from "@/components/molecules/method-organize-button"
+import { MethodOrganizeButton, type MobileOrganizeMethod } from "@/components/molecules/method-organize-button"
+import { MethodCard } from "@/components/molecules/method-card"
 import { FileSelectList } from "@/components/organisms/file-select-list"
 import type { FileRowProps } from "@/components/molecules/file-row"
 import { MobileSuccess } from "@/components/atoms/mobile-success"
@@ -299,19 +300,16 @@ function OrganizationPageMobile({
           </div>
           <div className="flex flex-col gap-2">
             <MethodOrganizeButton method={method} expanded={methodsOpen} onClick={() => setMethodsOpen((open) => !open)} />
-            {methodsOpen
-              ? MOBILE_ORGANIZE_METHODS.filter((option) => option !== method).map((option) => (
-                  <MethodOrganizeButton
-                    key={option}
-                    method={option}
-                    withChevron={false}
-                    onClick={() => {
-                      setMethod(option)
-                      setMethodsOpen(false)
-                    }}
-                  />
-                ))
-              : null}
+            {methodsOpen ? (
+              <MethodCard
+                value={method}
+                onValueChange={(option) => {
+                  setMethod(option)
+                  setMethodsOpen(false)
+                }}
+                className="max-w-none"
+              />
+            ) : null}
           </div>
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2">
