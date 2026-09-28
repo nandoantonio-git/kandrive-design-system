@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { useArgs } from "storybook/preview-api"
 
 import { DropListItem } from "../../src/components/molecules/drop-list-item"
 
@@ -28,7 +29,13 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Idle: Story = {}
+/** Vivo — clique pra alternar `active` (os Controls acompanham). */
+export const Idle: Story = {
+  render: function Render(args) {
+    const [, updateArgs] = useArgs()
+    return <DropListItem {...args} onClick={() => updateArgs({ active: !args.active })} />
+  },
+}
 
 export const Hover: Story = {
   args: { state: "hover" },

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { useArgs } from "storybook/preview-api"
 
 import { SaveOrganizationModal } from "../../src/components/templates/save-organization-modal"
 
@@ -14,7 +15,13 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+/** Vivo — clique num método pra selecioná-lo (`selected`; os Controls acompanham). */
+export const Default: Story = {
+  render: function Render(args) {
+    const [, updateArgs] = useArgs()
+    return <SaveOrganizationModal {...args} onMethodSelect={(selected) => updateArgs({ selected })} />
+  },
+}
 
 export const NoneSelected: Story = {
   args: { selected: undefined },

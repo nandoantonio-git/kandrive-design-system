@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { useArgs } from "storybook/preview-api"
 
 import { TemplateReviewModalItem } from "../../src/components/organisms/template-review-modal-item"
 
@@ -11,6 +12,7 @@ const meta = {
   },
   args: {
     isExpanded: false,
+    onToggleExpand: () => {},
     item: {
       name: "Relatórios 2023_Final",
       itemsLabel: "12 itens",
@@ -24,7 +26,13 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Collapsed: Story = {}
+/** Vivo — clique na seta pra expandir/colapsar (`isExpanded`; os Controls acompanham). */
+export const Collapsed: Story = {
+  render: function Render(args) {
+    const [, updateArgs] = useArgs()
+    return <TemplateReviewModalItem {...args} onToggleExpand={() => updateArgs({ isExpanded: !args.isExpanded })} />
+  },
+}
 
 export const Expanded: Story = {
   args: { isExpanded: true },

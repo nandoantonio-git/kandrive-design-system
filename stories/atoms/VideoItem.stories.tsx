@@ -25,7 +25,6 @@ const meta = {
     },
   },
   args: {
-    state: "idle",
     name: "Arquivo 2",
     showName: true,
   },
@@ -41,6 +40,7 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
+/** Sem `state` fixo — passe o mouse e clique pra selecionar (vivo). */
 export const Idle: Story = {}
 
 export const Hover: Story = {

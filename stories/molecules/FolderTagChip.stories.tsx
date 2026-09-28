@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { useArgs } from "storybook/preview-api"
 
 import { FolderTagChip } from "../../src/components/molecules/folder-tag-chip"
 
@@ -29,8 +30,16 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-/** Estado default, somente leitura — sem botão de remover (prop `onRemove` omitida). */
-export const Default: Story = {}
+/**
+ * Estado default, sem botão de remover (prop `onRemove` omitida). Vivo — clique
+ * no chip pra alternar `selected` (os Controls acompanham).
+ */
+export const Default: Story = {
+  render: function Render(args) {
+    const [, updateArgs] = useArgs()
+    return <FolderTagChip {...args} onClick={() => updateArgs({ selected: !args.selected })} />
+  },
+}
 
 /**
  * `isExpanded=false` (o padrão real do componente e a variante `State=Default,

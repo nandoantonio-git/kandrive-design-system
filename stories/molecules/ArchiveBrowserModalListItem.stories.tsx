@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { useArgs } from "storybook/preview-api"
 
 import { ArchiveBrowserModalListItem } from "../../src/components/molecules/archive-browser-modal-list-item"
 
@@ -19,9 +20,13 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-/** `Property 1=ArchiveFileRow` (Figma-confirmado). */
+/** `Property 1=ArchiveFileRow` (Figma-confirmado). Vivo — clique na linha pra alternar `selected` (os Controls acompanham). */
 export const Default: Story = {
   decorators: [(Story) => <div className="w-[650px]"><Story /></div>],
+  render: function Render(args) {
+    const [, updateArgs] = useArgs()
+    return <ArchiveBrowserModalListItem {...args} onClick={() => updateArgs({ selected: !args.selected })} />
+  },
 }
 
 /** `Property 1=ArchiveSelectableRow` (Figma-confirmado). */

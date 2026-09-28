@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { useArgs } from "storybook/preview-api"
 
 import { NodeContextMenu } from "../../src/components/molecules/node-context-menu"
 
@@ -29,7 +30,13 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+/** Vivo — os botões E/OU trocam `logicalOperator` (os Controls acompanham); as pílulas abrem seus menus sozinhas. */
+export const Default: Story = {
+  render: function Render(args) {
+    const [, updateArgs] = useArgs()
+    return <NodeContextMenu {...args} onLogicalOperatorChange={(logicalOperator) => updateArgs({ logicalOperator })} />
+  },
+}
 
 export const WrongInput: Story = {
   args: { state: "state-3" },

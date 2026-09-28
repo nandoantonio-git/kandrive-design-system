@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { useArgs } from "storybook/preview-api"
 
 import { SidebarToggle } from "../../src/components/organisms/sidebar-toggle"
 
@@ -22,7 +23,13 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Expanded: Story = {}
+/** Vivo — clique pra expandir/recolher (`expanded`; os Controls acompanham). */
+export const Expanded: Story = {
+  render: function Render(args) {
+    const [, updateArgs] = useArgs()
+    return <SidebarToggle {...args} onToggle={() => updateArgs({ expanded: !args.expanded })} />
+  },
+}
 
 export const Collapsed: Story = {
   args: { expanded: false },

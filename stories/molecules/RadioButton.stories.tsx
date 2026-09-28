@@ -1,7 +1,7 @@
 import * as React from "react"
 import type { Meta, StoryObj } from "@storybook/react-vite"
 
-import { RadioButton, type RadioOption } from "../../src/components/molecules/radio-button"
+import { RadioButton } from "../../src/components/molecules/radio-button"
 
 const meta = {
   title: "Molecules/RadioButton",
@@ -42,7 +42,7 @@ export const Disabled: Story = {
 /** Grupo controlado — só uma opção fica marcada por vez (feedback real no clique, Regra 8). */
 export const Group: StoryObj = {
   render: function RadioGroup() {
-    const [selected, setSelected] = React.useState<RadioOption>("personal")
+    const [selected, setSelected] = React.useState<string>("personal")
     return (
       <div className="flex flex-col gap-2">
         <RadioButton option="personal" checked={selected === "personal"} onCheckedChange={setSelected} />

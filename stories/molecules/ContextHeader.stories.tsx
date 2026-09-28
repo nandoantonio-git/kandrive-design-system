@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { useArgs } from "storybook/preview-api"
 
 import { ContextHeader } from "../../src/components/molecules/context-header"
 
@@ -28,7 +29,13 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+/** Vivo — "Limpar seleção" recolhe o header (`state: "collapsed"`); volte pelos Controls. */
+export const Default: Story = {
+  render: function Render(args) {
+    const [, updateArgs] = useArgs()
+    return <ContextHeader {...args} onClear={() => updateArgs({ state: "collapsed" })} />
+  },
+}
 
 export const Collapsed: Story = {
   args: { state: "collapsed" },

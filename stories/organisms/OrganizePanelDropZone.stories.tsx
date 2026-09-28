@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { useArgs } from "storybook/preview-api"
 
 import { OrganizePanelDropZone } from "../../src/components/organisms/organize-panel-drop-zone"
 
@@ -20,7 +21,13 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Idle: Story = {}
+/** Vivo — o nome do template é editável (`templateName`; os Controls acompanham). */
+export const Idle: Story = {
+  render: function Render(args) {
+    const [, updateArgs] = useArgs()
+    return <OrganizePanelDropZone {...args} onTemplateNameChange={(templateName) => updateArgs({ templateName })} />
+  },
+}
 
 export const Dragover: Story = {
   args: { state: "dragover" },

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { useArgs } from "storybook/preview-api"
 
 import { FreeModeListItem } from "../../src/components/molecules/free-mode-list-item"
 
@@ -30,7 +31,13 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Idle: Story = {}
+/** Vivo — clique pra alternar `selected` (os Controls acompanham). */
+export const Idle: Story = {
+  render: function Render(args) {
+    const [, updateArgs] = useArgs()
+    return <FreeModeListItem {...args} onSelect={() => updateArgs({ selected: !args.selected })} />
+  },
+}
 
 export const Selected: Story = { args: { selected: true } }
 
