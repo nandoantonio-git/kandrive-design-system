@@ -3,19 +3,32 @@ import * as TagOrgTemplateNameStories from './TagOrgTemplateName.stories';
 
 <Meta of={TagOrgTemplateNameStories} />
 
-# TagOrgTemplateName (Figma: `atom/TagOrgTemplateName`, `1421:18778`)
+# TagOrgTemplateName (Figma: `atom/TagOrgTemplateName`, `1039:17641`)
 
 ## Uso
 
 Tag com o nome do template de organização, em 2 estados: preenchida (nome real) ou placeholder (template ainda sem nome) — usada junto de `TagOrgMode` nos fluxos de organização.
 
 <Canvas of={TagOrgTemplateNameStories.Placeholder} />
-<Controls />
+<Controls of={TagOrgTemplateNameStories.Placeholder} />
 
 ## Anatomia
 
-É um `<input type="text">` real, não um texto estático — o usuário digita o nome do template diretamente no chip. Placeholder padrão: "Adicionar Nome".
+É um `<input type="text">` real, não um texto estático — o usuário digita o nome do template diretamente no chip. Placeholder padrão: "Adicionar Nome". Nome acessível padrão: "Nome do template de organização".
 
 ## Estados
 
 `placeholder` (vazio) · `preenchido` (com valor) · `focus`
+
+| Estado | Tratamento |
+| --- | --- |
+| Hover 🧩 | Fundo `brand-secondary-light/55` (Regra 8) |
+| Foco 🧩 | Anel `ring-3 brand-teal-action/50` (Regra 8) |
+| Disabled 🧩 | 50% de opacidade, sem ponteiro (Regra 8) |
+| Transição | `transition-colors` |
+
+<Canvas of={TagOrgTemplateNameStories.Filled} />
+
+## Terminologia
+
+"Adicionar Nome" (placeholder) — não aparece nas listas da Regra 5 (nem aprovado nem proibido). O valor é conteúdo livre.

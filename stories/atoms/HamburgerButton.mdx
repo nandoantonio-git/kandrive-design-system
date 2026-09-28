@@ -3,12 +3,36 @@ import * as HamburgerButtonStories from './HamburgerButton.stories';
 
 <Meta of={HamburgerButtonStories} />
 
-# HamburgerButton
+# HamburgerButton (Figma: `atom/Icon/Hamburger`, `1637:23253`)
 
 ✅ Glifo do `atom/Icon/Hamburger` (`1637:23253`), modos Closed e Expand, exportado do Figma.
+
+## Uso
 
 O ☰ do Header mobile abre a gaveta (`SidebarDrawer`) em todas as telas, exceto nas de feedback visual. Dentro da gaveta, o modo Expand a fecha.
 
 <Canvas of={HamburgerButtonStories.Default} />
-<Controls />
+<Controls of={HamburgerButtonStories.Default} />
+
+## Anatomia
+
+### Modos
+
+`mode`: `closed` (☰, abre a gaveta) · `expand` (fecha a gaveta). O eixo `Mode` do Figma também tem `Open` e `Collapse`, ainda sem glifo exportado aqui.
+
 <Canvas of={HamburgerButtonStories.Expand} />
+
+## Estados
+
+| Estado | Tratamento |
+| --- | --- |
+| Hover | Fundo neutro sutil |
+| Pressed 🧩 | `active:scale-95` (Regra 8) |
+| Foco | Anel `ring-3 brand-teal-action/50`, só pelo teclado |
+| Disabled 🧩 | 50% de opacidade, sem ponteiro (Regra 8) |
+| Transição | `transition-[color,background-color,transform]` |
+| Aberto/fechado | `aria-expanded` acompanha o `mode` |
+
+## Terminologia
+
+Não renderiza texto visível — só o nome acessível ("Abrir menu"/"Fechar menu").

@@ -20,7 +20,7 @@ const STYLE_CLASSNAME: Record<NonNullable<ConfirmButtonProps["style"]>, string> 
 }
 
 /**
- * atom/ActionButton/Confirm (`1421:17747`, Figma-confirmado) — "icone usado
+ * atom/ActionButton/Confirm (`174:384`, Figma-confirmado) — "icone usado
  * em funções de confirmar" (ícone base "check": check/confirm/done/ok/tick).
  * Mesma ressalva de `state` On/Idle e ausência de Loading/Error dos demais
  * ícones-botão (figma-inventory.md, Seção 2.2). Glifo exportado do Figma

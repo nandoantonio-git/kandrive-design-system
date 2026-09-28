@@ -3,23 +3,36 @@ import * as VideoItemStories from './VideoItem.stories';
 
 <Meta of={VideoItemStories} />
 
-# VideoItem (Figma: `atom /VideoItem`, `1442:7858`)
+# VideoItem (Figma: `molecule/FileItem`, `212:3691`)
 
 ## Uso
 
-Linha/card compacto para representar um vídeo dentro de uma lista de arquivos — mesma anatomia de `ArchiveItem`/`FolderItem`/`ImageItem`. A variante `favicon-header-thumbnail` omite o controle de seleção de propósito (contexto de thumbnail, não de lista selecionável).
+Linha/card compacto para representar um vídeo dentro de uma lista de arquivos — mesma anatomia de `ArchiveItem`/`FolderItem`/`ImageItem`. A variante `favicon-header-thumbnail` omite o controle de seleção de propósito (contexto de thumbnail, não de lista selecionável). No Figma é o `Type=Video` do set `molecule/FileItem`.
 
 <Canvas of={VideoItemStories.Idle} />
-<Controls />
-
-<Canvas of={VideoItemStories.AllStates} />
+<Controls of={VideoItemStories.Idle} />
 
 ## Estados
 
 `idle` · `hover` · `pressed` · `disabled` · `selected` · `selected-hover` · `selected-pressed` · `favicon-header-thumbnail`
 
-## Interação
+| Estado | Tratamento |
+| --- | --- |
+| Hover | Glifo de hover do Figma (`State=Hover`) |
+| Pressed | Glifo de pressed do Figma (`State=Pressed`) |
+| Selected / Selected-Hover / Selected-Pressed | Glifo do estado + `atom/SelectState` no canto |
+| Foco 🧩 | Anel `ring-3 brand-teal-action/50`, só pelo teclado (Regra 8) |
+| Disabled | Glifo de disabled do Figma (`State=Disabled`), `aria-disabled` |
+| Transição | Sem transição CSS: os estados trocam o SVG (`src`), o que não é animável |
+
+<Canvas of={VideoItemStories.AllStates} />
+
+### Interação
 
 Sem `state` fixo — passe o mouse, clique/pressione Enter pra selecionar de verdade (não é freeze-frame). `state` continua disponível como override pra congelar um estado específico (é o único jeito de chegar em `favicon-header-thumbnail`, que não faz parte do ciclo real de interação).
 
 <Canvas of={VideoItemStories.Interactive} />
+
+## Terminologia
+
+Sem texto fixo de produto — o nome exibido é o nome real do vídeo.

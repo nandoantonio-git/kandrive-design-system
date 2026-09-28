@@ -3,7 +3,7 @@ import * as ActionPillStories from './ActionPill.stories';
 
 <Meta of={ActionPillStories} />
 
-# ActionPill (Figma: `molecule/action-pill`, `1421:19027`)
+# ActionPill (Figma: `molecule/ActionPill`, `517:3818`)
 
 ## Uso
 
@@ -12,7 +12,7 @@ Pílula de ações principais exibida no header. Use quando precisar agrupar
 visual no topo da tela — não é pra ações contextuais de uma tela específica.
 
 <Canvas of={ActionPillStories.Default} />
-<Controls />
+<Controls of={ActionPillStories.Default} />
 
 ## Anatomia
 
@@ -24,10 +24,17 @@ componente.
 
 ## Estados
 
-- `default`
-- `disabled` (opacidade reduzida, ações desabilitadas)
-
 <Canvas of={ActionPillStories.Disabled} />
+
+| Estado | Tratamento |
+| --- | --- |
+| Default | Os três ícones ativos |
+| Disabled | Opacidade reduzida, ações desabilitadas |
+| Hover | 🧩 Destaque do botão sob o cursor |
+| Pressed | 🧩 `active:scale-95` (só com movimento permitido) |
+| Foco | 🧩 Anel de 3px `Brand/Primary/Action` a 50%, só pelo teclado |
+
+Transição inclui `transform`. 🧩 Regra 8: hover, pressed e foco dos botões não desenhados no Figma.
 
 ## Terminologia
 

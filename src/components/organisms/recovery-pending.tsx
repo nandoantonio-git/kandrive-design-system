@@ -15,7 +15,8 @@ export interface RecoveryPendingProps extends React.ComponentProps<"div"> {
 
 /**
  * Estado "Recuperação pendente" de um arquivo guardado no longo prazo
- * (`LongTermStorage/RecoveryPending/Mobile`, `1765:61487`, KanDrive V0.2.1).
+ * (`Content Container`, `1765:61503`, da tela `LongTermStorage/RecoveryPending/Mobile`,
+ * `1765:61487`, KanDrive V0.2.1).
  * 🧩 No Figma é o conteúdo de uma tela, não um componente: extraído para ter
  * story própria. É um estado, então vale em todas as larguras.
  *

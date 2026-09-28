@@ -3,16 +3,18 @@ import * as LabelStorageAlertStories from './LabelStorageAlert.stories';
 
 <Meta of={LabelStorageAlertStories} />
 
-# LabelStorageAlert (Figma: `atom/Label/Storage/Alert`, `1439:16885`)
+# LabelStorageAlert (Figma: `atom/LabelStorageAlert`, `1439:16885`)
 
 ## Uso
 
 Selo/label de **alerta de armazenamento** com 4 variantes visuais — usado quando o sistema precisa chamar atenção pra um estado de espaço (quase cheio, cheio, etc.) dentro de um item ou card, tipicamente no fluxo de revisão de template sugerido.
 
 <Canvas of={LabelStorageAlertStories.AllVariants} />
-<Controls />
+<Controls of={LabelStorageAlertStories.AllVariants} />
 
-## Variantes (`property1`)
+## Anatomia
+
+### Variantes (`property1`)
 
 | Valor | Rótulo | Alinhamento |
 | --- | --- | --- |
@@ -21,8 +23,12 @@ Selo/label de **alerta de armazenamento** com 4 variantes visuais — usado quan
 | `variant3` | Incongruente | `items-end` |
 | `variant4` | OK | `items-end` |
 
-Cada variante usa um glifo próprio, com tamanho visual individual.
+Cada variante usa um glifo próprio, com tamanho visual individual. No Figma, o eixo se chama `Reason` (`Group`/`Filter`/`Time`/`Ok`).
 
 ## Estados
 
-Apenas `Default` por variante — badge de exibição estática, sem hover/active/disabled.
+Apenas `Default` por variante — badge de exibição estática, sem hover/active/disabled. Sem estados interativos.
+
+## Terminologia
+
+"Incongruente" e "OK" — nenhum dos dois aparece nas listas da Regra 5 (nem aprovado nem proibido).

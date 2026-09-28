@@ -19,7 +19,7 @@ export interface FileListHeaderProps extends React.ComponentProps<"div"> {
 }
 
 /**
- * molecule/FileList/Header (`1421:19184`, Figma-confirmado, descrição
+ * molecule/FileList/Header (`665:9172`, Figma-confirmado, descrição
  * verbatim: "estrutura do header de lista") — cabeçalho de coluna acima de
  * `molecule/FileList` (mesma largura máxima, 1025px, pra alinhar colunas).
  *

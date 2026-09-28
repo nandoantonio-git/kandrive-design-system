@@ -31,7 +31,7 @@ export interface DropdownSelectGroupByProps
 }
 
 /**
- * molecule/DropdownSelect/GroupBy (`1421:18719`) — Figma-confirmado:
+ * molecule/DropdownSelect/GroupBy (`307:14252`) — Figma-confirmado:
  * "item da pilula de agrupar, no qual você seleciona a condição de
  * agrupamento". Estados Figma-confirmados: Default\|Expanded\|Disabled.
  * Rótulo de seção "AGRUPAR" e botão "Agrupar" são texto Figma-confirmado.

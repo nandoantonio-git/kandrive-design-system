@@ -3,7 +3,7 @@ import * as FileListStories from './FileList.stories';
 
 <Meta of={FileListStories} />
 
-# FileList (Figma: `molecule/FileList`, `1421:19200`)
+# FileList (Figma: `molecule/FileList`, `666:9228`)
 
 ## Uso
 
@@ -12,9 +12,11 @@ Use em qualquer visualização em **lista** (formatos `list`/`storage`/`list-sm`
 pra visualização em grade/thumbnail use `FileArchiveCard`.
 
 <Canvas of={FileListStories.Default} />
-<Controls />
+<Controls of={FileListStories.Default} />
 
-## Formatos
+## Anatomia
+
+### Formatos
 
 | Formato | Composição |
 | --- | --- |
@@ -24,18 +26,22 @@ pra visualização em grade/thumbnail use `FileArchiveCard`.
 
 A prop `showIcon` mostra/esconde o ícone de arquivo.
 
-<Canvas of={FileListStories.Hover} />
-<Canvas of={FileListStories.Pressed} />
 <Canvas of={FileListStories.Storage} />
 <Canvas of={FileListStories.SmallWithArrow} />
 
 ## Estados
 
-- `idle` — fundo transparente
-- `hover`
-- `pressed`
+<Canvas of={FileListStories.Hover} />
+<Canvas of={FileListStories.Pressed} />
 
-Disabled/loading/error não são suportados por este componente.
+| Estado | Tratamento |
+| --- | --- |
+| Idle (`State=Default`) | Fundo transparente |
+| Hover (`State=Hover`) | Destaque de fundo |
+| Pressed (`State=Pressed`) | Fundo de pressionado |
+| Foco | 🧩 Anel de 3px `Brand/Primary/Action` a 50%, só pelo teclado |
+
+Com `onClick`, a linha vira `role="button"` com `tabIndex=0` e Enter/Espaço. Disabled/loading/error não são suportados por este componente.
 
 ## Terminologia
 

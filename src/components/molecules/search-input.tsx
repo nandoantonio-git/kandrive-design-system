@@ -17,7 +17,7 @@ export interface SearchInputProps
 }
 
 /**
- * molecule/SearchBar (`1421:17857`, Figma-confirmado, descrição verbatim
+ * molecule/SearchBar (`3010:6061`, Figma-confirmado, descrição verbatim
  * adicionada pelo usuário em 2026-08-14: *"searchbar usada para pesquisar
  * valores"*) — placeholder usa o termo aprovado em AGENTS.md (Regra 5),
  * não o texto atual do Figma (gap de polish, ver docs/conflicts.md).

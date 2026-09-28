@@ -3,23 +3,33 @@ import * as DropNewTagStories from './DropNewTag.stories';
 
 <Meta of={DropNewTagStories} />
 
-# DropNewTag (`organism/drop/NewTag`)
+# DropNewTag (Figma: `organism/DropNewTag`, `1444:21624`)
 
 ## Uso
 
 Painel de criação de etiqueta nova (nome + cor). Abre a partir da ação "+ Nova Etiqueta" no dropdown de etiquetagem (`Label`, que consolida o antigo `DropdownSelectLabel` desde 2026-08-18). Compõe `celule/TagColor`, com 6 cores disponíveis (verde é a pré-selecionada por padrão).
 
 <Canvas of={DropNewTagStories.Default} />
-<Controls />
+<Controls of={DropNewTagStories.Default} />
+
+## Composição
+
+### Material
+
+Fundo com o material Liquid Glass — ver [Tokens/Materials](../tokens/Materials.mdx).
 
 ## Estados
 
 - Cor selecionada — anel de foco visual no swatch escolhido
 - Default: verde pré-selecionado
 
-## Material
+| Estado | Tratamento |
+| --- | --- |
+| Cor selecionada | anel no swatch escolhido |
+| Hover | 🧩 fundo do campo de nome |
+| Foco | 🧩 anel `ring-3` `brand-teal-action/50` no campo de nome |
 
-Fundo com o material Liquid Glass — ver [Tokens/Materials](../tokens/Materials.mdx).
+🧩 = Regra 8: hover e foco do campo não desenhados no Figma.
 
 ## Terminologia
 

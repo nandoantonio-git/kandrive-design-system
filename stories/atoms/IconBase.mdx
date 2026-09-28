@@ -3,22 +3,18 @@ import * as IconBaseStories from './IconBase.stories';
 
 <Meta of={IconBaseStories} />
 
-# IconBase (`atom/icon/base`)
+# IconBase (Figma: `Icons`, `3024:3792`)
 
 ## Uso
 
-Wrapper base pra um glifo reutilizado em mais de um contexto (hoje: expandir/colapsar a sidebar). **Não é um botão** — sem `aria-label` própria; o consumidor (ex. `SidebarToggle`) é quem deve prover semântica de ação.
+Wrapper base pra um glifo reutilizado em mais de um contexto (hoje: expandir/colapsar a sidebar). **Não é um botão** — sem `aria-label` própria; o consumidor (ex. `SidebarToggle`) é quem deve prover semântica de ação. Antes citado como `atom/icon/base`.
 
 <Canvas of={IconBaseStories.Default} />
-<Controls />
+<Controls of={IconBaseStories.Default} />
 
-## Estado `isHoverOn`
+## Anatomia
 
-Único eixo com efeito visível: tinge o glifo mais escuro.
-
-<Canvas of={IconBaseStories.HoverOn} />
-
-## Reuso com ícone customizado
+### Reuso com ícone customizado
 
 A prop `icon` aceita qualquer glifo (`lucide-react` ou `atom/Icon`) — útil pra reaproveitar o wrapper em contextos fora da sidebar.
 
@@ -26,4 +22,14 @@ A prop `icon` aceita qualquer glifo (`lucide-react` ou `atom/Icon`) — útil pr
 
 ## Estados
 
-`Idle` · `isHoverOn`. Loading/Error não se aplicam — é um slot estático, não uma ação.
+`Idle` · `isHoverOn`. Loading/Error não se aplicam — é um slot estático, não uma ação. Hover, foco e pressed reais ficam no consumidor (ex. `SidebarToggle`).
+
+| Estado | Tratamento |
+| --- | --- |
+| `isHoverOn` | Único eixo com efeito visível: tinge o glifo mais escuro |
+
+<Canvas of={IconBaseStories.HoverOn} />
+
+## Terminologia
+
+Sem texto fixo de produto.

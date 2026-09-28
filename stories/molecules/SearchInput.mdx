@@ -3,7 +3,7 @@ import * as SearchInputStories from './SearchInput.stories';
 
 <Meta of={SearchInputStories} />
 
-# SearchInput (Figma: `molecule/SearchBar`, `1421:17857`)
+# SearchInput (Figma: `molecule/SearchInput`, `3010:6061`)
 
 ## Uso
 
@@ -13,22 +13,26 @@ precisar dar feedback de validação persistente (anel de cor fixo) —
 diferente do anel de foco padrão, que é só feedback de interação.
 
 <Canvas of={SearchInputStories.Default} />
-<Canvas of={SearchInputStories.Success} />
-<Canvas of={SearchInputStories.Danger} />
-<Controls />
+<Controls of={SearchInputStories.Default} />
 
 ## Estados
 
-| Estado | Nota |
+<Canvas of={SearchInputStories.Success} />
+<Canvas of={SearchInputStories.Danger} />
+
+| Estado | Tratamento |
 | --- | --- |
 | Default | Borda e fundo neutros |
-| Hover | Borda um pouco mais escura |
-| Focus | Borda e anel na cor de marca |
-| Com valor | Suportado nativamente via `value`/`defaultValue` |
-| Disabled | Opacidade reduzida |
+| Hover | 🧩 Fundo levemente mais escuro no campo |
+| Focus (`State=Focus`) | Anel de 3px `Brand/Primary/Action` a 50% |
+| Com valor (`Filled=true`) | Suportado nativamente via `value`/`defaultValue` |
+| Disabled (`State=Disabled`) | Opacidade reduzida, não aceita digitação |
 | Loading | Spinner no lugar do ícone de busca |
+| Erro (`Status=Error`, `aria-invalid`) | Anel `destructive` |
 | `state="success"` | Anel persistente verde — feedback de validação positiva |
 | `state="danger"` | Anel persistente vermelho — feedback de validação de erro |
+
+🧩 Regra 8: hover do campo não desenhado no Figma.
 
 ## Terminologia
 

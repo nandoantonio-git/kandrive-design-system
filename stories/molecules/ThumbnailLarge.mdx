@@ -3,7 +3,7 @@ import * as ThumbnailLargeStories from './ThumbnailLarge.stories';
 
 <Meta of={ThumbnailLargeStories} />
 
-# ThumbnailLarge (Figma: `molecule/thumbnail-large`, `1421:19570`)
+# ThumbnailLarge (Figma: `molecule/ThumbnailLarge`, `790:3663`)
 
 ## Uso
 
@@ -13,7 +13,7 @@ presente no formato de visualização em coluna. Use só dentro de
 de grade genérico (esse é `FileArchiveCard`).
 
 <Canvas of={ThumbnailLargeStories.Default} />
-<Controls />
+<Controls of={ThumbnailLargeStories.Default} />
 
 ## Anatomia
 
@@ -23,7 +23,7 @@ cima, fundo com material Liquid Glass.
 
 <Canvas of={ThumbnailLargeStories.Document} />
 
-## Tipos suportados
+### Tipos suportados
 
 `Image` e `Document`. O favicon dá feedback visual do tipo de documento no
 header do card. Outros tipos de arquivo (vídeo, etc.) ainda não têm
@@ -31,7 +31,7 @@ variante própria.
 
 ## Estados
 
-Componente estático (pré-visualização de arquivo) — sem estados de
+Sem estados interativos. Componente estático (pré-visualização de arquivo) — sem estados de
 interação.
 
 ## Terminologia

@@ -42,7 +42,7 @@ const DEFAULT_TITLE: Record<PopoverNotificationVariant, string> = {
 }
 
 /**
- * molecule/popover/Notification (`1421:19626`, Figma-confirmado) —
+ * molecule/popover/Notification (`826:15269`, Figma-confirmado) —
  * "popover para notificar mudanças de estado, exemplo: uma organização
  * criada." `atom/CloseButton` + título + timestamp, com 6 variantes
  * confirmadas no Figma via eixo `variant`.

@@ -42,7 +42,7 @@ function inferKind(label: string, hasChevron: boolean): NonNullable<NodeContextM
 }
 
 /**
- * celule/nodoContextMenuItem (`1421:20528`, Figma-confirmado) — "dropdown de
+ * celule/nodoContextMenuItem (`1384:17074`, Figma-confirmado) — "dropdown de
  * seleção de atributos e condições do menu contextual do canva Modo livre
  * template. ha aba data será de acordo com o navegador ou de uma
  * biblioteca(seus rqueistos é escolher uma data ou um intervalo de datas."

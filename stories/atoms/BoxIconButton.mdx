@@ -3,16 +3,18 @@ import * as BoxIconButtonStories from './BoxIconButton.stories';
 
 <Meta of={BoxIconButtonStories} />
 
-# BoxIconButton (Figma: `atom/boxIconButton`, `1431:20102`)
+# BoxIconButton (Figma: `atom/BoxIconButton`, `1431:20102`)
 
 ## Uso
 
 Botão-ícone quadrado (40px) do toolbar de ações do canvas de **Organização em Modo Livre** — adicionar nodo, expandir, redefinir, excluir. Use só dentro desse toolbar; pra ações genéricas de UI prefira `atom/Button` (Regra 1) ou os ícone-botões sem chrome (`ClearButton`/`ConfirmButton`/etc.).
 
 <Canvas of={BoxIconButtonStories.Default} />
-<Controls />
+<Controls of={BoxIconButtonStories.Default} />
 
-## Variantes
+## Anatomia
+
+### Variantes
 
 4 glifos no toolbar: adicionar nodo, expandir, redefinir e excluir. O glifo de excluir usa a cor de perigo (`destructive/35`) em hover/clicked; os outros 3 usam a paleta secundária padrão.
 
@@ -23,6 +25,14 @@ Botão-ícone quadrado (40px) do toolbar de ações do canvas de **Organização
 ## Estados
 
 `Idle` · `Hover` · `Clicked` (com `scale-95` no press) · `Disabled`. Sem loading/error — é um botão de toolbar, sem operação assíncrona própria.
+
+| Estado | Tratamento |
+| --- | --- |
+| Hover | Fundo `brand-secondary` (excluir: `destructive/35`) — Figma `State=Hover` |
+| Pressed | Fundo `brand-secondary-dark` + `scale-95` (excluir: `destructive/35`) — Figma `State=Pressed` |
+| Foco 🧩 | Anel `ring-3 brand-teal-action/50`, só pelo teclado (Regra 8) |
+| Disabled 🧩 | 40% de opacidade, sem ponteiro (Regra 8) |
+| Transição | `transition-[color,background-color,transform]` |
 
 ## Terminologia
 

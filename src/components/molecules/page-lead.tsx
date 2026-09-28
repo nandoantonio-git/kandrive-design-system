@@ -8,7 +8,7 @@ export interface PageLeadProps extends React.ComponentProps<"div"> {
 }
 
 /**
- * celule/Pages/Lead (`1439:17048`, Figma-confirmado) — "Titulo e subtitulo
+ * celule/Pages/Lead (`1245:12212`, Figma-confirmado) — "Titulo e subtitulo
  * das paginas, foco em melhorar SEO". H1 (Figtree Bold, `40px`, `text-black`
  * literal — não `neutral-text-primary`, valores diferentes no Figma) +
  * legenda (`14px`, `#71717a`, bate exato com `zinc-500`). `title` sem

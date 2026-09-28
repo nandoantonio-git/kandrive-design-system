@@ -3,14 +3,14 @@ import * as LabelDuplicatedStories from './LabelDuplicated.stories';
 
 <Meta of={LabelDuplicatedStories} />
 
-# LabelDuplicated (Figma: `atom/Label/Duplicated`, `1439:16874`)
+# LabelDuplicated (Figma: `atom/LabelDuplicated`, `1439:16874`)
 
 ## Uso
 
 Selo/label pra sinalizar que um arquivo é uma **cópia duplicada** — usado em listas de arquivos grandes/duplicados (ex. dentro de `celule/CleanSpaceListSelection`), nunca como texto solto.
 
 <Canvas of={LabelDuplicatedStories.Default} />
-<Controls />
+<Controls of={LabelDuplicatedStories.Default} />
 
 ## Anatomia
 
@@ -18,4 +18,8 @@ Pílula com glifo de alerta (triângulo com exclamação) + rótulo "Duplicado".
 
 ## Estados
 
-Apenas `Default` — badge de exibição estática, sem hover/active/disabled.
+Apenas `Default` — badge de exibição estática, sem hover/active/disabled. Sem estados interativos.
+
+## Terminologia
+
+"Duplicado" — coerente com o termo aprovado "Ver duplicados" (Regra 5); não é termo proibido.

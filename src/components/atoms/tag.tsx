@@ -43,7 +43,7 @@ const HOVER_BACKGROUND: Partial<Record<TagVariant, React.CSSProperties>> = {
 }
 
 /**
- * atom/Tag (`1421:17929`, Figma-confirmado) — "ponto que de acordo com sua
+ * atom/Tag (`191:4894`, Figma-confirmado) — "ponto que de acordo com sua
  * cor demonstra a qual rótulo faz parte. no kandrive a segmentação é feita
  * por cor+label". Pílula compacta cor+texto. Sem `label`, colapsa para um
  * chip só de cor (é o estado default do Figma, `rotulo=""` — usado como

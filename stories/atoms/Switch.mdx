@@ -3,19 +3,34 @@ import * as SwitchStories from './Switch.stories';
 
 <Meta of={SwitchStories} />
 
-# Switch (`atom/switch`)
+# Switch (Figma: `atom/Switch`, `1454:20959`)
 
 ## Uso
 
 Interruptor liga/desliga genérico — use sempre que uma configuração binária precisa de um toggle imediato (sem confirmação), diferente de um checkbox de seleção em lista.
 
 <Canvas of={SwitchStories.Interactive} />
-<Controls />
+<Controls of={SwitchStories.Interactive} />
 
-## API
+## Anatomia
+
+### API
 
 Controlado via prop `checked` + `onCheckedChange` (`role="switch"`, `aria-checked`) em vez de um enum de string — API mais idiomática pra um toggle binário real em React/HTML.
 
 ## Estados
 
 `off` (track cinza, thumb à esquerda) · `on` (track `brand-teal`, thumb à direita) · `hover` · `pressed` · `disabled`
+
+| Estado | Tratamento |
+| --- | --- |
+| Off / On | Figma `Selected=false/true` |
+| Hover 🧩 | Track a 80–90% (Regra 8) |
+| Pressed | Thumb encolhe, via `:active` do botão inteiro |
+| Foco 🧩 | Anel `ring-3 brand-teal-action/50`, só pelo teclado (Regra 8) |
+| Disabled | 50% de opacidade, sem ponteiro |
+| Transição | `transition-colors`, 150ms |
+
+## Terminologia
+
+Sem texto fixo de produto — o rótulo da configuração fica fora do switch.

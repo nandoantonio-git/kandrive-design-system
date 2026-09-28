@@ -3,17 +3,30 @@ import * as DropdownSelectGroupByItemStories from './DropdownSelectGroupByItem.s
 
 <Meta of={DropdownSelectGroupByItemStories} />
 
-# DropdownSelectGroupByItem (Figma: `atom/DropdownSelect/GroupBy/Item`, `1444:21587`)
+# DropdownSelectGroupByItem (Figma: `atom/DropdownSelectGroupByItem`, `1444:21587`)
 
 ## Uso
 
 Item individual da pílula "Agrupar" (`DropdownSelectGroupBy`) — uma condição de agrupamento selecionável. Não é usado sozinho fora desse dropdown; é a peça que a `molecule/DropdownSelectGroupBy` compõe em lista.
 
 <Canvas of={DropdownSelectGroupByItemStories.Idle} />
-<Controls />
-
-<Canvas of={DropdownSelectGroupByItemStories.AllStates} />
+<Controls of={DropdownSelectGroupByItemStories.Idle} />
 
 ## Estados
 
-`Idle` · `Hover` (via `:hover` nativo) · `Selected` (prop `selected`). Sem disabled/loading/error.
+`Idle` · `Hover` (via `:hover` nativo) · `Selected` (prop `selected`). Sem loading/error.
+
+| Estado | Tratamento |
+| --- | --- |
+| Hover | Fundo de hover do Figma (`State=Hover`), via `:hover` nativo |
+| Selected | Prop `selected` (Figma `Selected=true`) |
+| Pressed 🧩 | `active:opacity-70` (Regra 8) |
+| Foco 🧩 | Anel `ring-3 brand-teal-action/50`, só pelo teclado (Regra 8) |
+| Disabled 🧩 | 50% de opacidade, sem ponteiro (Regra 8) |
+| Transição | Cor e opacidade animadas |
+
+<Canvas of={DropdownSelectGroupByItemStories.AllStates} />
+
+## Terminologia
+
+O rótulo é conteúdo livre: cada item recebe o nome da condição de agrupamento (ex.: "Tipo").

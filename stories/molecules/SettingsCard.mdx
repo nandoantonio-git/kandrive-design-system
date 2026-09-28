@@ -1,0 +1,31 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as Stories from './SettingsCard.stories';
+
+<Meta of={Stories} />
+
+# SettingsCard (Figma: sem node confirmado)
+
+O JSDoc cita as 7 telas `page/Settings/*` (`1439:19849`, `1439:21072`, `1439:21165`, `1439:21211`, `1439:21268`, `1439:21297`, `1439:21327`); esses nós não resolvem no KanDrive V0.2.1, e no Figma o card é um frame ("Card Header" + card raiz), não um componente.
+
+## Uso
+
+O card de cada seção das telas de Settings (Conta, Senha, Notificações, Tema, Privacidade e dados, Idioma e região, Excluir conta…) e do onboarding. É o mesmo shell em todas as telas; só o conteúdo muda. Extraído como molecule único (Regra 1/10) em vez de repetido em cada painel.
+
+<Canvas of={Stories.Default} />
+<Controls of={Stories.Default} />
+
+## Anatomia
+
+- Card `w-full` (no Figma desktop tem 1089px; no código a largura vem do layout responsivo, 2026-09-24), fundo `Effect/Glass/White` a 50%, borda `zinc-200` (Dark: `zinc-700`), raio 12 e padding 24.
+- Cabeçalho: título em 16px semibold e legenda opcional (`caption`) em 13px `Neutral/Text/Tertiary`.
+- O conteúdo (`children`) entra abaixo, com 16px de espaço.
+
+<Canvas of={Stories.HeaderOnly} />
+
+## Estados
+
+Sem estados interativos: os estados são os dos controles de dentro (`SettingsField`, `Button`, `RadioButton`, `Switch`).
+
+## Terminologia
+
+Título e legenda vêm de cada seção ("Senha" / "Altere sua senha", "Notificações" / "Escolha o que você quer ser avisado"…). Nenhum termo proibido (Regra 5).

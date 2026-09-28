@@ -3,7 +3,7 @@ import * as TagColorStories from './TagColor.stories';
 
 <Meta of={TagColorStories} />
 
-# TagColor (Figma: `celule/TagColor`, `1444:21979`)
+# TagColor (Figma: `molecule/TagColor`, `1444:21979`)
 
 ## Uso
 
@@ -12,11 +12,13 @@ pré-selecionado por padrão. Usado dentro do fluxo de criar/editar
 etiqueta, não como seletor de cor genérico do sistema.
 
 <Canvas of={TagColorStories.Default} />
-<Controls />
+<Controls of={TagColorStories.Default} />
 
 <Canvas of={TagColorStories.Interactive} />
 
-## Cores
+## Anatomia
+
+### Cores
 
 Na ordem: `success`, `primary`, `primary-dark`, `pink-light`, `danger`,
 `warning` — mesmas cores dos tokens de `Tokens/Colors`.
@@ -25,3 +27,17 @@ Na ordem: `success`, `primary`, `primary-dark`, `pink-light`, `danger`,
 
 - Selecionado — anel azul ao redor do swatch (prop `value`)
 - Não selecionado
+
+| Estado | Tratamento |
+| --- | --- |
+| Selecionado (`Selected=true`) | Anel ao redor do swatch (prop `value`) |
+| Não selecionado (`Selected=false`) | Só a bolinha |
+| Hover | 🧩 `hover:opacity-70` |
+| Pressed | 🧩 Opacidade reduzida no `:active` |
+| Foco | 🧩 Anel de 3px `Brand/Primary/Action` a 50%, só pelo teclado |
+
+🧩 É um grupo de rádio de verdade (mesmo padrão do `MethodCard`): as setas movem e marcam, e Tab entra só na cor marcada.
+
+## Terminologia
+
+Sem texto fixo de produto.

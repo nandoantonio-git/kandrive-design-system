@@ -3,15 +3,18 @@ import * as AddButtonStories from './AddButton.stories';
 
 <Meta of={AddButtonStories} />
 
-# AddButton (Figma: `atom/buttonAdd`, `1421:20509`)
+# AddButton (Figma: `atom/AddButton`, `1421:20509`)
 
 ## Uso
 
 Botão de ação aditiva (contorno + glifo `+`) usado em 2 fluxos reais: adicionar arquivos no fluxo de guardar em longo prazo, e adicionar regras de filtro no menu contextual do canvas de organização. Rótulo muda por contexto (`Adicionar Arquivos`/`Adicionar Regra`) — sempre passe o texto certo pro fluxo em que está sendo usado.
 
 <Canvas of={AddButtonStories.Default} />
-<Canvas of={AddButtonStories.AllStates} />
-<Controls />
+<Controls of={AddButtonStories.Default} />
+
+## Anatomia
+
+### Variantes
 
 <Canvas of={AddButtonStories.AdicionarArquivos} />
 <Canvas of={AddButtonStories.AdicionarRegra} />
@@ -20,6 +23,16 @@ Botão de ação aditiva (contorno + glifo `+`) usado em 2 fluxos reais: adicion
 ## Estados
 
 `Idle` (contorno + texto teal) · `Hover` · `Pressed` (preenchido teal, texto branco — Figma chama esse eixo de `Clicked`; normalizado no código pra bater com o resto do catálogo) · `Disabled`.
+
+| Estado | Tratamento |
+| --- | --- |
+| Hover | Fundo `zinc-500/15` (Figma `State=Hover`) |
+| Pressed | Preenchido `brand-teal-action`, texto branco (Figma `State=Pressed`) |
+| Foco 🧩 | Anel `ring-3 brand-teal-action/50`, só pelo teclado (Regra 8) |
+| Disabled | Texto `zinc-300`, 60% (Figma `State=Disabled`) |
+| Transição | `transition-colors` |
+
+<Canvas of={AddButtonStories.AllStates} />
 
 ## Terminologia
 

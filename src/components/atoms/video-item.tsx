@@ -50,7 +50,7 @@ const SELECTED_STATES: readonly VideoItemState[] = [
 ]
 
 /**
- * atom /VideoItem (`1442:7858`, Figma-confirmado) — "Simbolo para
+ * atom /VideoItem (`212:3691`, Figma-confirmado) — "Simbolo para
  * representar arquivos de formatos vídeos. Suporta seleção e badge de
  * tier. Variantes: state e tier." A exportação real mostra o corpo do
  * arquivo de vídeo por estado + uma lente/câmera sobreposta constante;

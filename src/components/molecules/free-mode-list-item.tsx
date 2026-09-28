@@ -41,7 +41,7 @@ export interface FreeModeListItemProps extends Omit<React.ComponentProps<"button
 }
 
 /**
- * celule/MainCanvas/Organization/FreeMode/ListItem (`1421:20757`,
+ * celule/MainCanvas/Organization/FreeMode/ListItem (`1394:16408`,
  * Figma-confirmado) — linha da lista de tipos de nó disponíveis pra
  * adicionar ao canvas Modo Livre (7 operações: Junção/Subtração/
  * Interssecção/Exclusão + 3 filtros). Eixo `state` do Figma

@@ -3,7 +3,7 @@ import * as FreeModeOutputNodeStories from './FreeModeOutputNode.stories';
 
 <Meta of={FreeModeOutputNodeStories} />
 
-# FreeModeOutputNode (Figma: `celule/MainCanvas/Organization/FreeMode/OutputNode`, `1421:20262`)
+# FreeModeOutputNode (Figma: `molecule/FreeModeOutputNode`, `1421:20262`)
 
 ## Uso
 
@@ -12,11 +12,13 @@ são organizados. Último nó da cadeia visual: sempre 1 por composição do
 canvas, nunca múltiplos na mesma tela.
 
 <Canvas of={FreeModeOutputNodeStories.Default} />
-<Controls />
+<Controls of={FreeModeOutputNodeStories.Default} />
+
+## Anatomia
+
+### Variantes
 
 <Canvas of={FreeModeOutputNodeStories.Compact} />
-
-## Variantes
 
 - `default` — mostra as estatísticas (arquivos incluídos, tamanho
   estimado, regras aplicadas) e a prévia de arquivos
@@ -26,14 +28,22 @@ canvas, nunca múltiplos na mesma tela.
 A caixa do ícone usa um tom de teal mais escuro (`#176a78`) que o restante
 do canvas — cor intencional deste nó, não um desvio a corrigir.
 
-## Ícones
+### Ícones
 
 Reaproveita os mesmos ícones da variante `resultado` de
 [`celule/FreeModeItemNode`](./FreeModeItemNode.mdx).
 
 ## Estados
 
-Nó estático, sem interação própria de hover/focus.
+O nó em si é estático; a única parte interativa é o botão "Prévia de arquivos", que expande a lista.
+
+| Estado | Tratamento |
+| --- | --- |
+| Expandido (`Expanded=true`) / recolhido (`Expanded=false`) | Variante `default` / `compact` |
+| Prévia aberta / fechada | "Prévia de arquivos" com `aria-expanded` |
+| Hover | 🧩 Opacidade reduzida em "Prévia de arquivos" |
+| Pressed | 🧩 Opacidade reduzida no `:active` |
+| Foco | 🧩 Anel de 3px `Brand/Primary/Action` a 50%, só pelo teclado |
 
 ## Terminologia
 

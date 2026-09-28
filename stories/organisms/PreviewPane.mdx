@@ -3,14 +3,14 @@ import * as PreviewPaneStories from './PreviewPane.stories';
 
 <Meta of={PreviewPaneStories} />
 
-# PreviewPane (`organism/preview-pane`)
+# PreviewPane (Figma: `organism/PreviewPane`, `724:3597`)
 
 ## Uso
 
 Painel de detalhe de um arquivo selecionado — metadados + ações (Salvar, Compartilhar). Só aparece no layout de visualização em coluna, ao lado de `FileListContainer`.
 
 <Canvas of={PreviewPaneStories.Default} />
-<Controls />
+<Controls of={PreviewPaneStories.Default} />
 
 ## Composição
 
@@ -20,14 +20,26 @@ A seção "Etiquetas" mostra 2 estilos de pílula: uma neutra (borda + fundo cin
 
 "Salvar"/"Compartilhar" são botões simples com ícone + label, sem chrome preenchido — não usam `atom/Button` (que tem um tratamento visual diferente, chrome preenchido/outline, reservado a ações primárias/secundárias de fluxo).
 
+### Material
+
+Container usa o material Liquid Glass — ver [Tokens/Materials](../tokens/Materials.mdx).
+
 ## Estados
 
 - Default
 - Seção "Etiquetas" omitida quando não há tags
 
-## Material
+| Estado | Tratamento |
+| --- | --- |
+| Expanded (painel aberto) | eixo `Expanded` do Figma |
+| Sem tags | seção "Etiquetas" omitida |
+| Hover ("Salvar"/"Compartilhar") | com transição |
+| Pressed ("Salvar"/"Compartilhar") | 🧩 `active:` |
+| Foco ("Salvar"/"Compartilhar") | 🧩 anel de foco visível |
 
-Container usa o material Liquid Glass — ver [Tokens/Materials](../tokens/Materials.mdx).
+🧩 = Regra 8: pressed e foco de "Salvar"/"Compartilhar" não desenhados no Figma.
+
+<Canvas of={PreviewPaneStories.WithoutTags} />
 
 ## Terminologia
 

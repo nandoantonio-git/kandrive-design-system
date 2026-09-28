@@ -33,7 +33,7 @@ export interface LabelProps extends Omit<React.ComponentProps<"div">, "children"
 }
 
 /**
- * molecule/Label (`1421:18687`, Figma-confirmado, descrição verbatim:
+ * molecule/Label (`302:12809`, Figma-confirmado, descrição verbatim:
  * "pilula de dropdown de etiquetas") — pílula "Etiquetar" com legenda
  * "ETIQUETAR" acima, Liquid Glass (`effect-glass-light-45`).
  *

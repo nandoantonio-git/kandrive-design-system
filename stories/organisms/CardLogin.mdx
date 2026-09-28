@@ -3,28 +3,28 @@ import * as CardLoginStories from './CardLogin.stories';
 
 <Meta of={CardLoginStories} />
 
-# CardLogin (`organism/Card/Login`)
+# CardLogin (Figma: `organism/CardLogin/Device=Desktop`, `1454:22055`)
 
 ## Uso
 
 Card de autenticação (login direto ou via Google). Use na tela de entrada do produto — não é um formulário de cadastro.
 
 <Canvas of={CardLoginStories.Default} />
-<Controls />
-
-## Nota de tipografia e cor
-
-O Figma deste card usa uma fonte (`Manrope`) e uma paleta de cor próprias, diferentes da tipografia (`Figtree`) e dos tokens de cor do resto do design system — sinal de que este card veio de um kit de autenticação genérico, não do sistema de tokens do Kandrive. Implementado com a fonte e os neutros padrão do projeto em vez da fonte/paleta originais; o acento de cor (`#007e96`, usado no link "Esqueceu sua senha?" e no botão "Entrar") é consistente com o resto do arquivo e foi preservado literalmente.
+<Controls of={CardLoginStories.Default} />
 
 ## Composição
 
 Heading "Bem-vindo de volta" + subtítulo "Acesse sua conta segura no Kandrive" + campos E-mail/Senha + link "Esqueceu sua senha?" + botão "Entrar" + divisor "OU" + botões "Entrar com Google"/"Entrar com Apple".
 
-## Anatomia
+### Anatomia
 
 Os campos são implementados como `<input>` reais (`type="email"`/`type="password"`), com `<label>` associado e toggle de visibilidade de senha (ícone de olho que alterna entre mostrar/ocultar a senha).
 
 Nenhum dos botões usa `atom/Button` — o card usa 3 tratamentos visuais de botão próprios (Entrar preenchido teal, Google/Apple outline claro), específicos deste componente.
+
+### Tipografia e cor
+
+O Figma deste card usa uma fonte (`Manrope`) e uma paleta de cor próprias, diferentes da tipografia (`Figtree`) e dos tokens de cor do resto do design system — sinal de que este card veio de um kit de autenticação genérico, não do sistema de tokens do Kandrive. Implementado com a fonte e os neutros padrão do projeto em vez da fonte/paleta originais; o acento de cor (`#007e96`, usado no link "Esqueceu sua senha?" e no botão "Entrar") é consistente com o resto do arquivo e foi preservado literalmente.
 
 ## Estados
 
@@ -33,6 +33,21 @@ Nenhum dos botões usa `atom/Button` — o card usa 3 tratamentos visuais de bot
 - Senha visível/oculta (toggle real)
 - Hover nos botões/link
 - Active/Pressed no botão "Entrar"
+
+| Estado | Tratamento |
+| --- | --- |
+| Hover | botões e link; 🧩 borda dos campos |
+| Foco | 🧩 anel `-action` nos inputs, no "Esqueceu", no olho e nos botões sociais (anel branco no mobile teal) |
+| Pressed | botão "Entrar"; 🧩 link "Esqueceu", olho e botões sociais |
+| Senha visível/oculta | toggle real do ícone de olho |
+
+🧩 = Regra 8: hover dos campos, pressed do link/olho/sociais e foco não desenhados no Figma.
+
+## Mobile
+
+<Canvas of={CardLoginStories.Mobile} />
+
+Figma `organism/CardLogin` `Device=Mobile`: formulário sem card, sobre o fundo teal da tela `Auth/Login/Mobile` (a story coloca esse fundo). Rótulos e campos mantêm 16px (Regra 4).
 
 ## Terminologia
 

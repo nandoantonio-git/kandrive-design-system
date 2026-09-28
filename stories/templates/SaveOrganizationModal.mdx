@@ -3,27 +3,34 @@ import * as SaveOrganizationModalStories from './SaveOrganizationModal.stories';
 
 <Meta of={SaveOrganizationModalStories} />
 
-# SaveOrganizationModal (`template/DialogSave/OrganizationModal`)
+# SaveOrganizationModal (Figma: `template/SaveOrganizationModal`, `251:4480`)
 
 ## Uso
 
-Modal de escolha de método de organização (Cronológico/Por projeto/Por tipo/Modo livre) — primeiro passo do fluxo de criar um template de organização. Título "Escolher método de organização".
+Modal de escolha de método de organização (Por data/Por projeto/Por tipo/Modo livre) — primeiro passo do fluxo de criar um template de organização. Título "Escolher método de organização".
 
 <Canvas of={SaveOrganizationModalStories.Default} />
-<Controls />
+<Controls of={SaveOrganizationModalStories.Default} />
 
 ## Composição
 
-4 cards de método (Cronológico/Por projeto/Por tipo de arquivo/Modo livre), cada um com eyebrow, título e descrição. Botões "Cancelar" (`variant="outline"`) / "Continuar" (padrão, `primary`) usam `atom/Button` (migrado de `PushButton` em 25/09/2026).
+4 cards de método (Por data/Por projeto/Por tipo de arquivo/Modo livre), cada um com eyebrow, título e descrição. Botões "Cancelar" (`variant="outline"`) / "Continuar" (padrão, `primary`) usam `atom/Button` (migrado de `PushButton` em 25/09/2026).
+
+### Material
+
+O container do modal usa o material Liquid Glass — ver [Tokens/Materials](../tokens/Materials.mdx).
 
 ## Estados
 
 - Default/Selected — card selecionado destacado com borda teal
 - Hover nos cards
 
-## Material
+| Estado | Tratamento |
+| --- | --- |
+| Default/Selected | card selecionado com borda teal |
+| Hover / Pressed / Foco | herdados do `TemplateCard` e do `atom/Button` |
 
-O container do modal usa o material Liquid Glass — ver [Tokens/Materials](../tokens/Materials.mdx).
+<Canvas of={SaveOrganizationModalStories.NoneSelected} />
 
 ## Terminologia
 

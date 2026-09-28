@@ -20,7 +20,7 @@ const STYLE_CLASSNAME: Record<NonNullable<KeepButtonProps["style"]>, string> = {
 }
 
 /**
- * atom/KeepButton (`1421:17793`, Figma-confirmado) — "icone usado em
+ * atom/KeepButton (`174:384`, Figma-confirmado) — "icone usado em
  * funções de guardar em longo prazo" (Regra 5: "Guardar"/"Arquivar" são os
  * termos aprovados para essa ação — não há termo proibido em jogo aqui, o
  * componente não renderiza texto). Glifo exportado do Figma via

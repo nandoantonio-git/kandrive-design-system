@@ -3,25 +3,36 @@ import * as CloseButtonStories from './CloseButton.stories';
 
 <Meta of={CloseButtonStories} />
 
-# CloseButton (Figma: `atom/CloseButton`, `1421:19008`)
+# CloseButton (Figma: sem node confirmado)
 
 ## Uso
 
 Botão circular pra **fechar** janelas, modais e popovers. Consumido por `Notification`/`PopoverNotification`/`ArchiveBrowserModal`/`Dialog/*` — use sempre que precisar de um botão de fechar padrão nesses contextos, em vez de recriar o círculo com um ícone solto.
 
 <Canvas of={CloseButtonStories.Default} />
-<Controls />
+<Controls of={CloseButtonStories.Default} />
 
 ## Anatomia
 
 Círculo escuro com glifo "×" branco sobreposto, 2 tamanhos (`sm` 8px, `md` 16px). Responde a hover/press reais do mouse — não precisa de prop `state` controlada pra funcionar (a prop existe só pra fixar um estado nas stories).
 
-<Canvas of={CloseButtonStories.AllStates} />
+O nó citado antes (`atom/CloseButton`, `1421:19008`) não resolve no KanDrive V0.2.1.
+
 <Canvas of={CloseButtonStories.Medium} />
 
 ## Estados
 
-`Idle` · `Hover` · `Pressed` — via CSS real (`:hover`/`:active`) ou via prop `state` pra documentação estática. Sem disabled/loading/error.
+`Idle` · `Hover` · `Pressed` — via CSS real (`:hover`/`:active`) ou via prop `state` pra documentação estática. Sem loading/error.
+
+| Estado | Tratamento |
+| --- | --- |
+| Hover | Overlay preto a 14% + glifo a 32% |
+| Pressed | Overlay preto a 45% (`sm`) / 20% (`md`) + glifo a 20% |
+| Foco 🧩 | Anel `ring-3 brand-teal-action/50`, só pelo teclado (Regra 8) |
+| Disabled 🧩 | 50% de opacidade, sem ponteiro (Regra 8) |
+| Transição | Opacidade do overlay e do glifo animada |
+
+<Canvas of={CloseButtonStories.AllStates} />
 
 ## Terminologia
 

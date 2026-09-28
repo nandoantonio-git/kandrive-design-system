@@ -20,7 +20,7 @@ const STYLE_CLASSNAME: Record<NonNullable<DeleteButtonProps["style"]>, string> =
 }
 
 /**
- * atom/DeleteButton (`1421:17705`, Figma-confirmado) — "ícone utilizado
+ * atom/DeleteButton (`174:384`, Figma-confirmado) — "ícone utilizado
  * para ações destrutivas". `state` Figma-confirmado: On|Idle|Clicked|
  * Disabled — On/Idle não têm diferença de comportamento descrita no Figma
  * (Regra 9: não inventada), então ambos mapeiam para o mesmo repouso visual

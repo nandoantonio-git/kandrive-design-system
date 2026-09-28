@@ -3,7 +3,7 @@ import * as AccordionItemStories from './AccordionItem.stories';
 
 <Meta of={AccordionItemStories} />
 
-# AccordionItem
+# AccordionItem (Figma: `molecule/AccordionItem`, `3051:9641`)
 
 ✅ Figma-confirmado: `molecule/AccordionItem` (`3051:9641`), KanDrive V0.2.1.
 
@@ -12,9 +12,11 @@ import * as AccordionItemStories from './AccordionItem.stories';
 Uma pergunta e sua resposta no FAQ. O `FaqInfoCard` e o `FaqInfoCardCollapsed` usam este componente em vez de repetir o markup (Regra 10).
 
 <Canvas of={AccordionItemStories.Expanded} />
-<Controls />
+<Controls of={AccordionItemStories.Expanded} />
 
-## Variantes
+## Anatomia
+
+### Variantes
 
 | Figma `Expanded` | Código | Status |
 | --- | --- | --- |
@@ -23,10 +25,22 @@ Uma pergunta e sua resposta no FAQ. O `FaqInfoCard` e o `FaqInfoCardCollapsed` u
 
 <Canvas of={AccordionItemStories.List} />
 
-## Acessibilidade
+### Acessibilidade
 
 Usa `<details>`/`<summary>` nativos: abre e fecha com clique, Enter ou Espaço, e o leitor de tela anuncia o estado expandido. O chevron é decorativo (`aria-hidden`).
 
-## Conteúdo
+## Estados
+
+| Estado | Tratamento |
+| --- | --- |
+| Aberto (`open`) | Painel da resposta visível, chevron para cima |
+| Fechado | Só a pergunta, chevron girado |
+| Hover | 🧩 Opacidade reduzida no `<summary>` |
+| Pressed | 🧩 Opacidade reduzida no `:active` |
+| Foco | 🧩 Anel de 3px `Brand/Primary/Action` a 50%, só pelo teclado |
+
+Transição de opacidade no `<summary>`.
+
+## Terminologia
 
 As respostas no FAQ usam o tom padrão da marca, sem o Kan. Sobre armazenamento, use os termos do Glossário ("Guardar", "Longo prazo").

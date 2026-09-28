@@ -12,7 +12,7 @@ export interface SidebarToggleProps extends Omit<React.ComponentProps<"button">,
 }
 
 /**
- * organism/sidebar-toggle (`1421:19118`) — Figma-confirmado: "aba de
+ * organism/sidebar-toggle (`624:4573`) — Figma-confirmado: "aba de
  * expandir/colapsar aba de armazenamento da sidebar". Estados Figma-
  * confirmados: `Idle`\|`Hover`\|`Pressed` — mapeados para CSS
  * hover/active nativos e também expostos via prop `state` para stories

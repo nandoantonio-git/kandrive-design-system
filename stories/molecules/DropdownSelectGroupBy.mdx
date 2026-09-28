@@ -3,7 +3,7 @@ import * as DropdownSelectGroupByStories from './DropdownSelectGroupBy.stories';
 
 <Meta of={DropdownSelectGroupByStories} />
 
-# DropdownSelectGroupBy (Figma: `molecule/DropdownSelect/GroupBy`, `1421:18719`)
+# DropdownSelectGroupBy (Figma: `molecule/DropdownSelectGroupBy`, `307:14252`)
 
 ## Uso
 
@@ -12,7 +12,7 @@ grid/lista de arquivos. Não confundir com `Label` (dropdown
 de etiquetar) — são 2 componentes distintos, mesmo parecidos.
 
 <Canvas of={DropdownSelectGroupByStories.Default} />
-<Controls />
+<Controls of={DropdownSelectGroupByStories.Default} />
 
 ## Anatomia
 
@@ -22,16 +22,21 @@ quando expandido, uma lista de 4 opções: "Data de modificação", "Tipo",
 componente `DropdownSelectGroupByItem` (ver [documentação
 própria](../atoms/DropdownSelectGroupByItem.mdx)).
 
+## Estados
+
 <Canvas of={DropdownSelectGroupByStories.Expanded} />
 <Canvas of={DropdownSelectGroupByStories.Disabled} />
 
-## Estados
+| Estado | Tratamento |
+| --- | --- |
+| Default (fechado) | Gatilho "Agrupar" |
+| Expandido (`Expanded=true`) | Aberto, mostrando as 4 opções |
+| Disabled (`State=Disabled`) | Opacidade reduzida |
+| Hover | 🧩 Fundo `#71717a33` no gatilho (o mesmo do `Label`) |
+| Pressed | 🧩 `active:opacity-70` |
+| Foco | 🧩 Anel de 3px `Brand/Primary/Action` a 50%, só pelo teclado |
 
-- `default` — fechado
-- `expanded` — aberto, mostrando as 4 opções
-- `disabled` — desabilitado (opacidade reduzida)
-
-Não há estado de hover próprio documentado neste componente.
+🧩 Regra 8: hover, pressed e foco do gatilho não desenhados no Figma.
 
 ## Terminologia
 

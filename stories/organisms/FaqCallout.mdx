@@ -1,0 +1,38 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as FaqCalloutStories from './FaqCallout.stories';
+
+<Meta of={FaqCalloutStories} />
+
+# FaqCallout (Figma: sem node confirmado)
+
+🧩 Não é um componente no Figma: é o bloco de destaque que reaparece dentro das respostas de `organism/FaqInfoCardCollapsed` e `organism/FaqInfoCard` (Figma-confirmado nó a nó em cada painel de tópico). Extraído no código para não duplicar a mesma marcação 5+ vezes entre os dois organisms.
+
+## Uso
+
+Destaca um ponto de atenção dentro de uma resposta do FAQ. Use só dentro de [FaqInfoCardCollapsed](./FaqInfoCardCollapsed.mdx) e [FaqInfoCard](./FaqInfoCard.mdx); para avisos fora do FAQ, use `Callout`.
+
+<Canvas of={FaqCalloutStories.Info} />
+<Controls of={FaqCalloutStories.Info} />
+
+## Anatomia
+
+Ícone à esquerda (ℹ️ ou ⚠, decorativo, `aria-hidden`) + parágrafo com o texto (`children`). Borda de 1px, raio 8, padding 12, texto 13px.
+
+### Variantes
+
+- `info` — `Brand/Primary/Light` / `Brand/Primary/Default` (ℹ️, Figma-confirmado).
+- `warning` — `#fff8e6` / `#fad98c` (⚠, Figma-confirmado, hex literal: sem token semântico próprio ainda, uso único em `LongTermStorage`, 🧩 não promovido a variável de tema).
+
+<Canvas of={FaqCalloutStories.Warning} />
+
+### Tema escuro
+
+🧩 Inferido (Regra 9): o tema escuro não é confirmado no Figma. O tom `warning` foi escurecido para um âmbar escuro equivalente, mantendo a família de cor.
+
+## Estados
+
+Sem estados interativos.
+
+## Terminologia
+
+O texto é conteúdo livre (`children`), vindo das respostas do FAQ. Sem texto fixo de produto.

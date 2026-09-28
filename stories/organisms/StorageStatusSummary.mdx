@@ -3,16 +3,33 @@ import * as Stories from './StorageStatusSummary.stories';
 
 <Meta of={Stories} />
 
-# StorageStatusSummary
+# StorageStatusSummary (Figma: `molecule/StorageStatusSummary`, `1742:25489`)
 
-✅ Figma-confirmado: `molecule/StorageStatusSummary` (`1742:25489`), KanDrive V0.2.1, com o eixo `Device` (Desktop · Tablet). A versão mobile vem da tela `Storage/Total/Mobile` (🧩 frames, não uma variante). Fica em `Organisms/` no código porque compõe outras moléculas.
+✅ Figma-confirmado: `molecule/StorageStatusSummary` (`1742:25489`), KanDrive V0.2.1, com o eixo `Device` (Desktop · Tablet). A versão mobile vem da tela `Storage/Total/Mobile` (`1663:8852`, 🧩 frames, não uma variante). Fica em `Organisms/` no código porque compõe outras moléculas.
 
 ## Uso
 
 A parte de baixo da página de Storage, logo abaixo do card `StorageStatus`: filtro do escopo ("Filtrar no Total"), botão de filtros, Agrupar e Etiquetar, e a lista de arquivos ordenada por armazenamento. Criado em 2026-09-24: o código não tinha essa parte em nenhuma largura.
 
 <Canvas of={Stories.Desktop} />
-<Controls />
+<Controls of={Stories.Desktop} />
+
+## Composição
+
+### Tipografia
+
+- Nome em 16px (Regra 4). ⚠️ No Figma mobile, 13px.
+- Proprietário e tamanho em 11px, `Neutral/Text/Tertiary` (exceção de microtexto; no Figma, 10 e 11px).
+
+## Estados
+
+| Estado | Tratamento |
+| --- | --- |
+| Hover / Foco (botão de filtros, Agrupar, Etiquetar) | herdados dos sub-componentes |
+| Pressed (botão de filtros) | 🧩 com transição |
+| Hover / Pressed / Foco ("Armazenamento", mobile) | 🧩 |
+
+🧩 = Regra 8: pressed do botão de filtros e hover/pressed/foco do "Armazenamento" (mobile) não desenhados no Figma.
 
 ## Mobile
 
@@ -20,7 +37,6 @@ A parte de baixo da página de Storage, logo abaixo do card `StorageStatus`: fil
 
 O filtro fica sozinho na primeira linha, Agrupar e Etiquetar na segunda, e a lista vira uma tabela em card `Neutral/Surface/Elevated` (raio 12): cabeçalho "Nome" | "↓ Armazenamento" e linhas com o símbolo de pasta, nome, proprietário e tamanho.
 
-## Tipografia
+## Terminologia
 
-- Nome em 16px (Regra 4). ⚠️ No Figma mobile, 13px.
-- Proprietário e tamanho em 11px, `Neutral/Text/Tertiary` (exceção de microtexto; no Figma, 10 e 11px).
+Rótulos fixos: "Filtrar no Total", "Agrupar", "Etiquetar", "Nome", "Armazenamento". Nenhum está na lista proibida da Regra 5.

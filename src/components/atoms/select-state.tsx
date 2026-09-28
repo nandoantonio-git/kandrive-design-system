@@ -24,7 +24,7 @@ const BACKGROUND: Record<SelectStateTheme, Partial<Record<SelectStateStateValue,
 }
 
 /**
- * atom/SelectState (`1421:18292`, Figma-confirmado) — "componente para
+ * atom/SelectState (`212:3726`, Figma-confirmado) — "componente para
  * feedback de seleção". Círculo 8px + glifo de check 12px sobreposto
  * (excede a caixa do círculo por design, centralizado). Usado como
  * sub-componente dentro de `ArchiveItem`/`FolderItem`/`ImageItem` (badge de

@@ -3,7 +3,7 @@ import * as ArchiveBrowserModalSearchStories from './ArchiveBrowserModalSearch.s
 
 <Meta of={ArchiveBrowserModalSearchStories} />
 
-# ArchiveBrowserModal/Search (Figma: `molecule/ArchiveBrowserModal/Search`, `1485:21074`)
+# ArchiveBrowserModal/Search (Figma: `molecule/ArchiveBrowserModalSearch`, `1485:21074`)
 
 ## Uso
 
@@ -13,7 +13,7 @@ faz sentido dentro de `organism/ArchiveBrowserModal`, não como busca
 genérica de tela.
 
 <Canvas of={ArchiveBrowserModalSearchStories.Default} />
-<Controls />
+<Controls of={ArchiveBrowserModalSearchStories.Default} />
 
 ## Composição
 
@@ -23,6 +23,10 @@ genérica de tela.
 
 ## Estados
 
-Composição estática de exibição — os estados interativos (foco da busca,
+Composição de exibição — os estados interativos (foco da busca,
 seleção de linha) pertencem aos componentes filhos (`SearchInput`,
-`ArchiveBrowserModalListItem`), não a este container.
+`ArchiveBrowserModalListItem`), não a este container. As linhas repassam `selected`/`onClick` ao `ListItem`, que é quem vira clicável.
+
+## Terminologia
+
+"Buscar arquivos, pastas ou templates" é termo aprovado (Regra 5). Os nomes do breadcrumb e das linhas são conteúdo de exemplo.

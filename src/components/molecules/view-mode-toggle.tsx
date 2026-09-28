@@ -52,7 +52,7 @@ export interface ViewModeToggleProps
 }
 
 /**
- * molecule/view-mode-toggle (`1421:19069`) — Figma-confirmado: "pilula de
+ * molecule/view-mode-toggle (`622:3468`) — Figma-confirmado: "pilula de
  * seleção do modo de vizualização do grid de arquivos". 3 modos (Grid/List/
  * Columns), fundo usa o material Liquid Glass (`effect-glass-light-45`) —
  * ver Tokens/Materials (Regra 10), não reimplementado aqui além da cor de

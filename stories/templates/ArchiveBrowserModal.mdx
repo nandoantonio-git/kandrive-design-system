@@ -3,14 +3,14 @@ import * as ArchiveBrowserModalStories from './ArchiveBrowserModal.stories';
 
 <Meta of={ArchiveBrowserModalStories} />
 
-# ArchiveBrowserModal (`template/ArchiveBrowserModal`)
+# ArchiveBrowserModal (Figma: `template/ArchiveBrowserModal/Device=Desktop`, `1439:16909`)
 
 ## Uso
 
 Modal pra selecionar arquivos que serão guardados em longo prazo (fluxo "Guardar"). Abre a partir da ação "Guardar" — não é um seletor de arquivo genérico do sistema operacional.
 
 <Canvas of={ArchiveBrowserModalStories.Default} />
-<Controls />
+<Controls of={ArchiveBrowserModalStories.Default} />
 
 ## Composição
 
@@ -20,14 +20,31 @@ Modal pra selecionar arquivos que serão guardados em longo prazo (fluxo "Guarda
 
 A mini-navegação lateral reusa só os 4 primeiros rótulos de `organism/Sidebar` (Pessoal/Compartilhados/Recentes/Favoritos), sem o painel de armazenamento — uma versão reduzida específica deste modal, não a Sidebar completa.
 
+### Material
+
+Container, mini-nav e lista de arquivos usam o material Liquid Glass — ver [Tokens/Materials](../tokens/Materials.mdx).
+
 ## Estados
 
 - Breadcrumb, com o último item destacado em teal
 - Seleção/economia de espaço (`selectedCount`/`savingsLabel`)
 
-## Material
+| Estado | Tratamento |
+| --- | --- |
+| Seleção de arquivos | não-controlada: linhas `ListItem` clicáveis, contagem derivada, `onSelectionChange`; `selectedCount` opcional a controla |
+| Hover / Pressed / Foco | herdados de `ListItem`, `ArchiveBrowserModalSidebar` e `atom/Button` |
 
-Container, mini-nav e lista de arquivos usam o material Liquid Glass — ver [Tokens/Materials](../tokens/Materials.mdx).
+<Canvas of={ArchiveBrowserModalStories.ControlledCount} />
+
+## Mobile
+
+Tablet · 720: largura fluida (760px só a partir de desktop). Figma `template/ArchiveBrowserModal` `Device=Tablet`.
+
+<Canvas of={ArchiveBrowserModalStories.Tablet} />
+
+Mobile · 390: sem a coluna de pastas, busca em largura total. No Figma, o fluxo mobile equivalente é a tela `LongTermStorage/SelectFiles` (composição própria, lote à parte).
+
+<Canvas of={ArchiveBrowserModalStories.Mobile} />
 
 ## Terminologia
 

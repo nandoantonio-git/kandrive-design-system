@@ -18,7 +18,7 @@ export interface FreeModeAddMenuProps extends Omit<React.ComponentProps<"div">, 
 }
 
 /**
- * molecule/Menuitem/freemodeOrganization (`1431:20042`) — Figma-confirmado:
+ * molecule/Menuitem/freemodeOrganization (`1394:16574`) — Figma-confirmado:
  * "dropup list com opções de nodos disponíveis de adição na aba de modo
  * livre de template". 7 operações (`Junção`/`Subtração`/`Interssecção`/
  * `Exclusão`/`Filtrar por tamanho`/`Filtrar por formato`/`Filtrar por

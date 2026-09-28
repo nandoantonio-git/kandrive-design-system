@@ -6,7 +6,7 @@ export interface TagOrgTemplateNameProps
   extends Omit<React.ComponentProps<"input">, "type" | "size"> {}
 
 /**
- * atom/TagOrgTemplateName (`1421:18778`) — Figma-confirmado: "badge presente
+ * atom/TagOrgTemplateName (`1039:17641`) — Figma-confirmado: "badge presente
  * no sandbox de organização, tem a possibilidade de input do nome desejado
  * da organização." Implementado como `<input>` real (não só texto estático)
  * porque a descrição confirma a capacidade de edição — visual idêntico ao

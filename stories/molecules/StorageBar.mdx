@@ -3,7 +3,7 @@ import * as StorageBarStories from './StorageBar.stories';
 
 <Meta of={StorageBarStories} />
 
-# StorageBar (Figma: `molecule/StorageBar`, `1421:17904`)
+# StorageBar (Figma: `molecule/StorageBar`, `191:4816`)
 
 ## Uso
 
@@ -12,9 +12,11 @@ Barra de progresso de uso de armazenamento, uma por tier. Use a variante
 rápido") quando precisar detalhar composição, não só total usado.
 
 <Canvas of={StorageBarStories.QuickAccess} />
-<Controls />
+<Controls of={StorageBarStories.QuickAccess} />
 
-## Props
+## Anatomia
+
+### Props
 
 - `tier="quick-access"` — barra rosa, uso de curto prazo
 - `tier="long-term"` — barra teal escuro, uso de longo prazo
@@ -23,7 +25,7 @@ rápido") quando precisar detalhar composição, não só total usado.
 <Canvas of={StorageBarStories.Empty} />
 <Canvas of={StorageBarStories.Full} />
 
-## Variante segmentada (`StorageBarExpanded`)
+### Variante segmentada (`StorageBarExpanded`)
 
 <Canvas of={StorageBarStories.Expanded} />
 
@@ -35,7 +37,7 @@ rápido" no design system.
 
 ## Estados
 
-`StorageBar` é um elemento de exibição estática (`role="progressbar"`),
+Sem estados interativos. `StorageBar` é um elemento de exibição estática (`role="progressbar"`),
 não interativo — não recebe foco, clique ou input do usuário. O
 preenchimento anima suavemente quando `value` muda.
 

@@ -3,14 +3,22 @@ import * as PlusButtonStories from './PlusButton.stories';
 
 <Meta of={PlusButtonStories} />
 
-# PlusButton (`atom/PlusButton`)
+# PlusButton (Figma: `atom/IconButton`, `174:384`)
 
 ## Uso
 
 Ícone-botão sem chrome de borda pra **ações aditivas** pontuais (ex. adicionar um item a uma lista já em edição) — pra um botão de adicionar mais proeminente/com rótulo, use `AddButton`. Alvo de clique independente do `atom/Button`.
 
 <Canvas of={PlusButtonStories.Default} />
-<Controls />
+<Controls of={PlusButtonStories.Default} />
+
+## Anatomia
+
+No Figma é o `Icon=Plus` do set `atom/IconButton`. Construído sobre a base [IconActionButton](?path=/docs/atoms-iconbutton-iconactionbutton--docs).
+
+### Variantes
+
+`style`: `Default` · `Primary` · `White`.
 
 <Canvas of={PlusButtonStories.Primary} />
 <Canvas of={PlusButtonStories.White} />
@@ -19,6 +27,14 @@ import * as PlusButtonStories from './PlusButton.stories';
 ## Estados
 
 `style`: `Default` · `Primary` · `White`. `state`: `On`/`Idle` · `Clicked` · `Disabled`. Sem loading/error.
+
+| Estado | Tratamento |
+| --- | --- |
+| Hover | Glifo mais escuro (`default`) ou a 80% (`primary`/`white`) — só cor/opacidade, sem pílula |
+| Pressed | `scale-90` (via base) + glifo a 60% (Figma `State=Pressed`) |
+| Foco 🧩 | Anel `ring-3 brand-teal-action/50`, só pelo teclado (Regra 8, via base) |
+| Disabled | 40% de opacidade, sem ponteiro (Figma `State=Disabled`) |
+| Transição | `transition-all` (via base) |
 
 ## Terminologia
 

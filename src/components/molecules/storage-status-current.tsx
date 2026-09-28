@@ -15,7 +15,7 @@ export interface StorageStatusCurrentProps extends React.ComponentProps<"div"> {
 }
 
 /**
- * molecule/StorageStatus/Current (`1439:17044`) — Figma-confirmado:
+ * molecule/StorageStatus/Current (`3020:29528`) — Figma-confirmado:
  * "componente que possibilita o usuário visualizar espaço utilizado em
  * curto prazo. há também botão comprar espaço- abre página de pagamento."
  *

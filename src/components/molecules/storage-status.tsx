@@ -41,7 +41,7 @@ const SCOPE_LABEL: Record<StorageScope, string> = {
 }
 
 /**
- * molecule/StorageStatus (`1421:18354`) — Figma-confirmado: "Widget de
+ * molecule/StorageStatus (`231:4553`) — Figma-confirmado: "Widget de
  * status de armazenamento — mostra totais por tier. Usado no Sidebar.
  * Variantes: Default/NearLimit/LimitReached/Empty." (os 4 últimos nomes de
  * variante citados na descrição não têm symbol formal confirmado — só

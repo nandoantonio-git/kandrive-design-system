@@ -17,7 +17,7 @@ export interface TagOrgModeProps
 }
 
 /**
- * atom/TagOrgMode (`1421:18769`) — Figma-confirmado: "badge presente no
+ * atom/TagOrgMode (`309:14704`) — Figma-confirmado: "badge presente no
  * sandbox de organização, tem o rótulo do modo de template selecionado".
  * 4 variantes de `mode` (`Modo Livre`/`Data`/`Projeto`/`Tipo`), pílula
  * estática (sem estado interativo confirmado no Figma).

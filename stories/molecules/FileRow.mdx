@@ -1,0 +1,41 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as Stories from './FileRow.stories';
+
+<Meta of={Stories} />
+
+# FileRow (Figma: sem node confirmado)
+
+O JSDoc descreve `molecule/FileRow` `Device=Mobile` como Figma-confirmado no KanDrive V0.2.1, mas não cita o id do nó.
+
+## Uso
+
+A linha da lista de arquivos no mobile: a Home em modo Lista e o grupo do `FolderCard` no mobile (`Organize/Saved/Mobile`). No desktop e no tablet, a lista usa `FileList`.
+
+<Canvas of={Stories.Default} />
+<Controls of={Stories.Default} />
+
+## Anatomia
+
+328×50, raio 16 e padding 8/12.
+
+- Pasta (`type="folder"`): fundo `Effect/Overlay/Subtle` a 10% e borda `Brand/Primary/Light`. Arquivo: sem fundo.
+- Metadados e data em 11px (`Neutral/Text/Tertiary`), dentro da exceção de microtexto da Regra 4.
+
+<Canvas of={Stories.Folder} />
+<Canvas of={Stories.List} />
+
+### Tipografia
+
+Nome em 16px, a Regra 4 para texto de leitura. ⚠️ No Figma, o nome tem 13px.
+
+## Estados
+
+Sem estados interativos.
+
+## Mobile
+
+É um componente só do mobile. No desktop e no tablet, a lista usa `FileList`.
+
+## Terminologia
+
+Sem texto fixo de produto: nome, metadados e data são conteúdo do arquivo.

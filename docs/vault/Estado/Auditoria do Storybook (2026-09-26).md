@@ -68,4 +68,18 @@ Fatos levantados: [[Auditoria do Storybook - Inventário]].
   - **Bugs que os testes expuseram, corrigidos:** `TagOrgTemplateName` e `SearchInput` sem nome acessível (só placeholder); `TagColor` era `radiogroup` mas ignorava as setas.
   - **Botões sem ação** (sem handler nem prop): "Filtros" do `StorageStatusSummary`; "Remover regra", "Adicionar regra", "Descartar/Salvar Mudanças" do painel de filtro do `OrganizeFreeModeCanvas` (a story já declara que é reprodução estática).
   - AccordionItem: Enter/Space vêm do `<summary>` nativo, que eventos simulados não disparam — testado só o clique.
-- [ ] **5 — Estrutura padrão dos Docs** (~119 páginas) + os 6 componentes sem story.
+- [x] **5 — Estrutura padrão dos Docs** (2026-09-28): 112 páginas de componente no padrão (35 átomos, 41 moléculas, 36 organismos/templates; Introdução, Tokens e Pages ficaram de fora, como decidido). Todo `<Controls>` aponta para a mesma story viva do primeiro Canvas. Detalhe em [[Auditoria do Storybook - Estrutura dos Docs]].
+  - **6 componentes sem story ganharam story e Docs:** IconActionButton (com `play`), Breadcrumb, FileRow, SettingsCard, SettingsField (com `play`), FaqCallout.
+  - **~46 node ids desatualizados corrigidos** no JSDoc, a partir da URL de design das stories (conferida com `get_metadata`).
+  - **Afirmações velhas corrigidas** nos Docs: FileListHeader ("ordenação não implementada"), DropdownSelectGroupBy ("trigger sem hover"), FreeModeOutputNode, StorageStatus ("LimitReached não implementado"), OrganizePanelDropZone ("sem drag and drop"), MobileBottomNav (F9 já resolvido), "Cronológico" que sobrava em SaveOrganizationModal/TemplateCard.
+  - **Sem node confirmado** (H1 diz isso): CloseButton, ImageItem, Breadcrumb, FileRow, SettingsCard, SettingsField, FaqCallout. **Apontam para uma tela, não um componente:** AppShell, UserProfileCard, FaqTopicChips, HandPicker, FileSelectRow, PagePickerButton, FreeModeMiniMap.
+  - Gate final: `tsc -b` (src + stories), oxlint 0 erros, `build-storybook` ok, `npm test` 126 arquivos / 458 testes.
+
+## Pendências que dependem de decisão
+
+- **PagePickerButton:** anuncia menu, mas a lista de páginas não existe no Figma nem no código.
+- **Botões sem ação:** "Filtros" do StorageStatusSummary; painel de filtro do Modo livre (story declaradamente estática).
+- **FileArchiveCard:** qual node citar (`212:3691` é o set inteiro de `molecule/FileItem`).
+- **ArchiveItem/FolderItem/VideoItem/UploadFolder** apontam para o set inteiro `molecule/FileItem`; UploadFolder parece não pertencer a ele.
+- **HamburgerButton:** modos Open/Collapse do Figma sem glifo exportado.
+- **SidebarDrawer:** story aponta para a tela (`3139:49490`), JSDoc para o componente (`1771:35845`).

@@ -3,14 +3,14 @@ import * as HeaderStories from './Header.stories';
 
 <Meta of={HeaderStories} />
 
-# Header (`organism/Header`)
+# Header (Figma: `organism/Header`, `1255:22352`)
 
 ## Uso
 
 Cabeçalho fixo do topo — 3 variantes por página (`Navbar`/`settings`/`storage`). Só `Navbar` expõe as ações de fluxo ao vivo (Organizar/Guardar); use `settings`/`storage` nas páginas correspondentes, sem essas ações.
 
 <Canvas of={HeaderStories.Navbar} />
-<Controls />
+<Controls of={HeaderStories.Navbar} />
 
 ## Composição
 
@@ -22,14 +22,22 @@ Cabeçalho fixo do topo — 3 variantes por página (`Navbar`/`settings`/`storag
 
 "Organizar" e "Guardar" usam `atom/Button` (padrão, `primary`) — nenhum componente de botão separado. "Guardar" é termo aprovado.
 
-## Estados
-
-Herdados dos sub-componentes (`SearchInput`, `Button`, `ActionPill`) — nenhum estado próprio do container.
-
-## Material
+### Material
 
 O `action-pill` embutido usa o material Liquid Glass — ver [ActionPill](../molecules/ActionPill.mdx)/[Tokens/Materials](../tokens/Materials.mdx); o `Header` em si (fundo sólido) não usa o material.
 
+## Estados
+
+Herdados dos sub-componentes (`SearchInput`, `Button`, `ActionPill`) — nenhum estado próprio do container, exceto o avatar do mobile.
+
+| Estado | Tratamento |
+| --- | --- |
+| Hover / Pressed / Foco | herdados de `SearchInput`, `Button` e `ActionPill` |
+| Hover (avatar, mobile) | 🧩 opacidade |
+| Pressed (avatar, mobile) | 🧩 `motion-safe:active:scale-95` |
+
+🧩 = Regra 8: hover/pressed do avatar (mobile) não desenhados no Figma.
+
 ## Terminologia
 
-"Guardar" é termo aprovado. "Organizar" não está formalmente na lista de terminologia aprovada nem na proibida — é Figma-confirmado literalmente e consistente com o domínio do produto.
+"Guardar" é termo aprovado. "Organizar" também consta da lista aprovada da Regra 5 (adicionado em 2026-08-23) — texto literal Figma-confirmado, consistente com o domínio do produto.

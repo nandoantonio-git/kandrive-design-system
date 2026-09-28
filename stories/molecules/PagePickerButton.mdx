@@ -3,7 +3,7 @@ import * as Stories from './PagePickerButton.stories';
 
 <Meta of={Stories} />
 
-# PagePickerButton
+# PagePickerButton (Figma: `page`, `1714:614`)
 
 🧩 Extraído de frames do Figma: o `page-button` de `Organize/ChooseMethod/Mobile` e de `LongTermStorage/SelectFiles/Mobile` (KanDrive V0.2.1). No Figma não é um componente; foi extraído porque se repete.
 
@@ -12,10 +12,32 @@ import * as Stories from './PagePickerButton.stories';
 Escolhe a página de origem (Pessoal, Compartilhados…) das listas de seleção no mobile.
 
 <Canvas of={Stories.Default} />
-<Controls />
+<Controls of={Stories.Default} />
 
-## Tokens
+## Anatomia
+
+<Canvas of={Stories.WithoutLabel} />
+
+### Tokens
 
 - Botão: 32px, raio 8, fundo `Effect/Overlay/Subtle` a 10% com blur, borda `Brand/Primary/Light`.
 - Texto: 13px Medium, `Neutral/Text/Secondary`. Ícone, chevron e o rótulo "Página:" (11px): `Neutral/Text/Tertiary`.
 - Área de toque de 44px no toque (`touch-target`).
+
+## Estados
+
+| Estado | Tratamento |
+| --- | --- |
+| Default | Botão em repouso |
+| Hover | 🧩 Fundo `Effect/Overlay/Subtle` a 20% |
+| Pressed | 🧩 `active:opacity-70` |
+| Foco | Anel de 3px `Brand/Primary/Action` a 50%, só pelo teclado |
+| Disabled | 🧩 Opacidade reduzida, sem clique |
+
+## Mobile
+
+É um componente só do mobile (listas de seleção do Organize e do Long-term).
+
+## Terminologia
+
+"Página:" e o nome da página ("Pessoal"). Nenhum termo proibido (Regra 5).

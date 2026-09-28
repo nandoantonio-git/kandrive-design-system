@@ -16,7 +16,7 @@ const meta = {
   },
   args: {
     eyebrow: "DATA",
-    title: "Cronológico",
+    title: "Por data",
     description: "Organize por ano, mês e dia. Ideal para memórias antigas e acervo histórico.",
     illustration: illustrationData,
     selected: false,
@@ -40,7 +40,7 @@ export const Default: Story = {
   },
   // Clique no card alterna `selected` (`aria-pressed`).
   play: async ({ canvasElement }) => {
-    const card = within(canvasElement).getByRole("button", { name: /Cronológico/ })
+    const card = within(canvasElement).getByRole("button", { name: /Por data/ })
     await expect(card).toHaveAttribute("aria-pressed", "false")
     await userEvent.click(card)
     await expect(card).toHaveAttribute("aria-pressed", "true")

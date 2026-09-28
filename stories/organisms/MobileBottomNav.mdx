@@ -3,16 +3,20 @@ import * as MobileBottomNavStories from './MobileBottomNav.stories';
 
 <Meta of={MobileBottomNavStories} />
 
-# MobileBottomNav
+# MobileBottomNav (Figma: `organism/MobileBottomNav`, `1715:9867`)
 
 ✅ Figma-confirmado: `organism/MobileBottomNav` (`1715:9867`), com eixos `Action` (Add · Confirm · None) × `Hand` (Left · Right).
+
+## Uso
 
 É o **menu contextual** na base das telas mobile. Traz os 4 destinos de arquivos, que fazem o papel da Sidebar do desktop, e um botão flutuante (FAB) que muda conforme a tela.
 
 <Canvas of={MobileBottomNavStories.Interactive} />
-<Controls />
+<Controls of={MobileBottomNavStories.Interactive} />
 
-## Variantes
+## Composição
+
+### Variantes
 
 | `action` | Onde | FAB |
 | --- | --- | --- |
@@ -24,12 +28,36 @@ import * as MobileBottomNavStories from './MobileBottomNav.stories';
 <Canvas of={MobileBottomNavStories.Confirm} />
 <Canvas of={MobileBottomNavStories.None} />
 
-## Mão dominante
+### Mão dominante
 
 `hand` muda o lado do FAB e do recorte. No `AppShell`, o valor vem das preferências do usuário (Settings → Aparência, com Direita como padrão).
 
-## Notas
+### Notas
 
 - Os ícones são os glifos SF do Figma, exportados como SVG em contorno.
 - A barra de vidro tem um recorte de 94px de largura fixa no lado do FAB, e o resto é fluido.
-- ⚠️ **Achado aberto (F9):** os rótulos usam `Neutral/Text/Placeholder` e, no Light, ficam abaixo do WCAG AA. É uma decisão de cor pendente com o design, e não foi corrigida aqui.
+- Rótulos em 11px: inativos em `Neutral/Text/Tertiary`; o do destino atual em `Brand/Primary/Default`, como o ícone.
+
+### Histórico
+
+- ✅ **F9 (2026-09-24), resolvido:** os rótulos usavam `Neutral/Text/Placeholder` e, no Light, ficavam abaixo do WCAG AA. Corrigido no Figma e no código (passaram a `Neutral/Text/Tertiary`). Esta nota dizia que o achado seguia aberto; atualizada conforme o JSDoc do componente.
+- 🔧 **2026-09-25:** os 4 botões de destino ganharam `transition-colors`, como o `MobileTabBar`.
+
+## Estados
+
+| Estado | Tratamento |
+| --- | --- |
+| Destino ativo | destaque do item atual |
+| Hover | 🧩 destinos por opacidade; FAB `/90`; ✕ |
+| Pressed | 🧩 destinos por opacidade; `motion-safe:active:scale-95` |
+| Foco | 🧩 anel de foco visível nos destinos, no FAB e no ✕ |
+
+🧩 = Regra 8: hover/pressed/foco dos destinos, do FAB e do ✕ não desenhados no Figma.
+
+## Mobile
+
+É um componente só-mobile: todas as stories acima já são a versão mobile.
+
+## Terminologia
+
+Os rótulos de destino são os mesmos da Sidebar (Pessoal, Compartilhados, Recentes, Favoritos), termos aprovados. Nenhum termo proibido (Regra 5).

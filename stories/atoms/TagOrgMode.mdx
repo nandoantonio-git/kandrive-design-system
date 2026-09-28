@@ -3,18 +3,18 @@ import * as TagOrgModeStories from './TagOrgMode.stories';
 
 <Meta of={TagOrgModeStories} />
 
-# TagOrgMode (Figma: `atom/TagOrgMode`, `1421:18769`)
+# TagOrgMode (Figma: `atom/TagOrgMode`, `309:14704`)
 
 ## Uso
 
 Tag que identifica o modo de organização ativo (Data/Livre/Projeto/Tipo) — usada nos fluxos de criação/edição de template de organização, para deixar claro qual critério está sendo aplicado. Aparece em `organism/OrganizeFreeModeCanvas`.
 
 <Canvas of={TagOrgModeStories.Free} />
-<Controls />
+<Controls of={TagOrgModeStories.Free} />
 
-<Canvas of={TagOrgModeStories.AllModes} />
+## Anatomia
 
-## Modos
+### Modos
 
 | Valor da prop `mode` | Rótulo exibido |
 | --- | --- |
@@ -23,6 +23,12 @@ Tag que identifica o modo de organização ativo (Data/Livre/Projeto/Tipo) — u
 | `project` | Projeto |
 | `type` | Tipo |
 
+<Canvas of={TagOrgModeStories.AllModes} />
+
 ## Estados
 
-Elemento de exibição estática — sem hover/pressed/disabled próprios, é um rótulo do sandbox de organização.
+Elemento de exibição estática — sem hover/pressed/disabled próprios, é um rótulo do sandbox de organização. Sem estados interativos.
+
+## Terminologia
+
+"Modo Livre", "Data", "Projeto", "Tipo" — nenhum aparece nas listas da Regra 5 (nem aprovado nem proibido).

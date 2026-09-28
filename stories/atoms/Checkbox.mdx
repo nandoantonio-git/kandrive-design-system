@@ -3,7 +3,7 @@ import * as CheckboxStories from './Checkbox.stories';
 
 <Meta of={CheckboxStories} />
 
-# Checkbox
+# Checkbox (Figma: `atom/Checkbox`, `3051:9590`)
 
 ✅ Figma-confirmado: `atom/Checkbox` (`3051:9590`), KanDrive V0.2.1.
 
@@ -12,9 +12,11 @@ import * as CheckboxStories from './Checkbox.stories';
 Seleção múltipla em listas, por exemplo nos arquivos de "Liberar espaço" (`CleanSpaceListSelection`). O checkbox não tem texto visível próprio, então `aria-label` é obrigatório.
 
 <Canvas of={CheckboxStories.Interactive} />
-<Controls />
+<Controls of={CheckboxStories.Interactive} />
 
-## Variantes
+## Anatomia
+
+### Variantes
 
 <Canvas of={CheckboxStories.Matrix} />
 
@@ -23,10 +25,23 @@ Seleção múltipla em listas, por exemplo nos arquivos de "Liberar espaço" (`C
 | `sm` | SM, 16px | Listas no desktop. ✅ Os dois estados estão confirmados. |
 | `md` | MD, 20px | Linhas no mobile. ✅ Desmarcado confirmado; 🧩 o marcado é o SM ampliado. |
 
+### Acessibilidade
+
+É um `<button role="checkbox" aria-checked>`: responde a clique, Espaço e Enter, e o leitor de tela anuncia "caixa de seleção, marcada / não marcada".
+
 ## Estados
 
 Desmarcado · Marcado · Hover · Active · Focus (anel, só pelo teclado) · Disabled (50%). Hover, active e foco são extensão de engenharia (Regra 8), porque o Figma não tem eixo `Hover`.
 
-## Acessibilidade
+| Estado | Tratamento |
+| --- | --- |
+| Desmarcado / Marcado | Figma `Selected=false/true` |
+| Hover 🧩 | Fundo um tom acima (marcado: `brand-teal-action/90`) — Regra 8 |
+| Pressed 🧩 | Fundo dois tons acima (marcado: `brand-teal-action/80`) — Regra 8 |
+| Foco 🧩 | Anel `ring-3 brand-teal-action/50`, só pelo teclado (Regra 8) |
+| Disabled 🧩 | 50% de opacidade, sem ponteiro (Regra 8) |
+| Transição | Troca de cor animada |
 
-É um `<button role="checkbox" aria-checked>`: responde a clique, Espaço e Enter, e o leitor de tela anuncia "caixa de seleção, marcada / não marcada".
+## Terminologia
+
+Sem texto fixo de produto — o nome acessível (`aria-label`) vem de cada uso.

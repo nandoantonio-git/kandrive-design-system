@@ -3,7 +3,7 @@ import * as NodeContextMenuStories from './NodeContextMenu.stories';
 
 <Meta of={NodeContextMenuStories} />
 
-# NodeContextMenu (Figma: `molecule/nodoContextMenu`, `1440:23821`)
+# NodeContextMenu (Figma: `molecule/NodeContextMenu`, `1383:15617`)
 
 ## Uso
 
@@ -13,7 +13,7 @@ Organização em Modo Livre. Abre ao selecionar um `FreeModeItemNode` — não
 e operações condicionais sobre o nó selecionado.
 
 <Canvas of={NodeContextMenuStories.Default} />
-<Controls />
+<Controls of={NodeContextMenuStories.Default} />
 
 ## Anatomia
 
@@ -21,21 +21,30 @@ Título "Filtro" com ícone + linha de condição preenchida + toggle lógico
 "E"/"OU" entre condições + segunda linha de condição (nova regra) + botão
 "Adicionar Regra" + rodapé com "Descartar Mudanças"/"Salvar Mudanças".
 
-<Canvas of={NodeContextMenuStories.WrongInput} />
 <Canvas of={NodeContextMenuStories.LogicalOr} />
 
-## Estado de erro
+## Estados
 
-Quando uma nova regra está incompleta, as pílulas da condição mostram um
+<Canvas of={NodeContextMenuStories.WrongInput} />
+
+**Estado de erro.** Quando uma nova regra está incompleta, as pílulas da condição mostram um
 anel vermelho e aparece o aviso "Preencha todas as informações antes de
 adicionar a nova regra".
-
-## Estados
 
 - `floating-info-panel` — condição válida
 - `state-3` — nova regra em erro, com aviso
 - Toggle lógico E/OU
 - Remover condição
+
+| Estado | Tratamento |
+| --- | --- |
+| Válido | Condições preenchidas |
+| Erro | Anel vermelho nas pílulas e aviso |
+| Toggle E/OU | Troca o operador; hover 🧩 no inativo |
+| Pressed (toggle, remover) | 🧩 `active:opacity-70` |
+| Foco (toggle, remover) | 🧩 Anel `white/60` no toggle (trilha escura) e `Brand/Primary/Action` a 50% no remover, só pelo teclado |
+
+🧩 Regra 8: hover, pressed e foco do toggle E/OU e do botão de remover não desenhados no Figma.
 
 ## Terminologia
 

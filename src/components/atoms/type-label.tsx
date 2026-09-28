@@ -39,7 +39,7 @@ const FILE_TYPE_DOT_CLASS: Record<FileTypeKind, string> = {
 }
 
 /**
- * `atom/badge/TypeLabel` (`1421:18415`), família `Type=Image|Document|Video|Other` —
+ * `atom/badge/TypeLabel` (`237:4728`), família `Type=Image|Document|Video|Other` —
  * etiqueta de tipo de arquivo (ponto de cor + rótulo). Usada em
  * `organism/PreviewPane` (lista de etiquetas), na legenda de
  * `molecule/StorageStatus` (segmentação da barra por tipo de arquivo) e nas

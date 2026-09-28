@@ -3,7 +3,7 @@ import * as PageLeadStories from './PageLead.stories';
 
 <Meta of={PageLeadStories} />
 
-# PageLead (Figma: `celule/Pages/Lead`, `1439:17048`)
+# PageLead (Figma: `molecule/PageLead`, `1245:12212`)
 
 ## Uso
 
@@ -13,16 +13,22 @@ etc.). Para sub-seções internas, use `Type/Heading/*` diretamente, não
 este componente.
 
 <Canvas of={PageLeadStories.Default} />
-<Controls />
+<Controls of={PageLeadStories.Default} />
 
-<Canvas of={PageLeadStories.OtherPage} />
+## Anatomia
 
-## Props
+### Props
 
 `title` é obrigatório — cada página define seu próprio H1. `caption` tem
 um valor padrão ("Gerencie seu armazenamento") mas pode ser sobrescrito
 por página.
 
+<Canvas of={PageLeadStories.OtherPage} />
+
 ## Estados
 
-Componente estático (título/legenda), sem interação.
+Sem estados interativos. Componente estático (título/legenda), sem interação.
+
+## Terminologia
+
+O título e a legenda são conteúdo de cada página ("Armazenamento", "Gerencie seu armazenamento", "Configurações de Plano"…). Nenhum termo proibido (Regra 5).

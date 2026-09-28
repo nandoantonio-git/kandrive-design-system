@@ -3,14 +3,14 @@ import * as SidebarStories from './Sidebar.stories';
 
 <Meta of={SidebarStories} />
 
-# Sidebar (`organism/Sidebar`)
+# Sidebar (Figma: `organism/Sidebar`, `197:6187`)
 
 ## Uso
 
 Navegação lateral persistente do produto — páginas, etiquetas e acesso ao armazenamento. Use como chrome fixo de toda tela autenticada, não como painel contextual pontual.
 
 <Canvas of={SidebarStories.Default} />
-<Controls />
+<Controls of={SidebarStories.Default} />
 
 ## Anatomia
 
@@ -22,17 +22,27 @@ Um botão no canto superior direito minimiza/colapsa a sidebar de verdade (`coll
 
 A seção "Etiquetas" (prop `tags`) renderiza [`atom/Sidebar/Tags/Items`](../atoms/SidebarTagsItem.mdx), com estados de hover/selecionado reais via prop `activeTag`/`onTagSelect`.
 
-## Composição
+### Composição
 
 Compõe `organism/storage-sidebar` — ver [StorageSidebar](./StorageSidebar.mdx).
+
+## Estados
+
+- Página ativa — `aria-current="page"` + destaque visual
+- Hover nos itens
+
+| Estado | Tratamento |
+| --- | --- |
+| Página ativa | `aria-current="page"` + fundo destacado, opacidade total |
+| Hover | itens |
+| Pressed | 🧩 `active:bg-zinc-200` nos itens; `motion-safe:active:scale-95` no botão de colapsar |
+| Foco | 🧩 anel `brand-teal-action/50` nos itens e nos botões de colapsar |
+| Colapsada/Expandida | `collapsed`/`defaultCollapsed`, controlado ou não |
+
+🧩 = Regra 8: pressed e foco dos itens e dos botões de colapsar não desenhados no Figma.
 
 ## Terminologia
 
 O botão de acesso ao armazenamento usa "Gerir Espaço" nesta composição (embutida/persistente), diferente de "Liberar Espaço" (usado na página de Armazenamento/Config. de Plano) — mesmo modal, rótulo diferente por contexto. Este componente força "Gerir Espaço" ao compor `organism/storage-sidebar` via prop `manageSpaceLabel`, independentemente do default desse componente.
 
 Todos os 6 rótulos de navegação são termos aprovados.
-
-## Estados
-
-- Página ativa — `aria-current="page"` + destaque visual
-- Hover nos itens

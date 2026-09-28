@@ -3,14 +3,14 @@ import * as FileListContainerStories from './FileListContainer.stories';
 
 <Meta of={FileListContainerStories} />
 
-# FileListContainer (`organism/file-list-container`)
+# FileListContainer (Figma: `organism/FileListContainer`, `826:16143`)
 
 ## Uso
 
 Container que compõe `FileList` em modo lista, junto de `PreviewPane` no layout de coluna. Use quando a tela precisar de navegação em lista com painel de detalhe ao lado — pra grade/thumbnail, componha `FileArchiveCard` direto.
 
 <Canvas of={FileListContainerStories.Default} />
-<Controls />
+<Controls of={FileListContainerStories.Default} />
 
 ## Composição
 
@@ -23,6 +23,14 @@ Cada linha compõe [`molecule/FileList`](../molecules/FileList.mdx) (`format="li
 - Default
 - Hover — `hover:bg-zinc-50`
 - Focus — `focus-visible:ring-3`
+
+| Estado | Tratamento |
+| --- | --- |
+| Hover | 🧩 `hover:bg-zinc-50` |
+| Pressed | 🧩 `active:bg-zinc-100` |
+| Foco | 🧩 `focus-visible:ring-3` `brand-teal-action/50` |
+
+🧩 = Regra 8: hover/pressed/foco das linhas não desenhados no Figma.
 
 ## Terminologia
 

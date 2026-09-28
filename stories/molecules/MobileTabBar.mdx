@@ -3,15 +3,45 @@ import * as MobileTabBarStories from './MobileTabBar.stories';
 
 <Meta of={MobileTabBarStories} />
 
-# MobileTabBar
+# MobileTabBar (Figma: `molecule/MobileTabBar` · `Active=Home`, `3029:3996`)
 
 ✅ Figma-confirmado: `molecule/MobileTabBar` (`3029:3996`).
+
+## Uso
 
 É a barra de vidro que flutua no topo das telas de arquivos no mobile, logo abaixo do Header. Traz as **ações principais do app**: Home, Organizar e Guardar. No desktop, essas ações ficam no Header. No `AppShell`, ela entra pela prop `mobileTabBar` e some a partir de `tablet:`.
 
 <Canvas of={MobileTabBarStories.Interactive} />
-<Controls />
+<Controls of={MobileTabBarStories.Interactive} />
+
+## Anatomia
 
 - A aba ativa usa `Brand/Primary/Default` sobre `Effect/Overlay/Light` a 60%.
 - As abas inativas usam `Neutral/Text/Tertiary`.
-- ⚠️ No Figma, os rótulos têm 10px. Aqui têm 11px, o piso de microtexto da Regra 4.
+- O vidro segue a receita de Liquid Glass da Regra 10.
+
+### Tipografia
+
+⚠️ No Figma, os rótulos têm 10px. Aqui têm 11px, o piso de microtexto da Regra 4.
+
+## Estados
+
+<Canvas of={MobileTabBarStories.Default} />
+
+| Estado | Figma | Tratamento |
+| --- | --- | --- |
+| Ativa | `Active=Home…` | Fundo `Effect/Overlay/Light` a 60%, cor `Brand/Primary/Default`, `aria-current="page"` |
+| Inativa | — | `Neutral/Text/Tertiary` |
+| Hover | 🧩 Regra 8 | Aba inativa passa a `Brand/Primary/Default` |
+| Pressed | 🧩 Regra 8 | `active:opacity-70` |
+| Foco | 🧩 Regra 8 | Anel de 3px `Brand/Primary/Action` a 50%, só pelo teclado |
+
+Transição de cor, fundo e opacidade.
+
+## Mobile
+
+É um componente só do mobile: some a partir de `tablet:`, e no desktop as ações ficam no Header.
+
+## Terminologia
+
+"Home", "Organizar" e "Guardar". "Guardar" e "Organizar" estão na lista aprovada da Regra 5.

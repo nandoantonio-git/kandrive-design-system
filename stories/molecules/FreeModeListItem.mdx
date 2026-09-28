@@ -3,7 +3,7 @@ import * as FreeModeListItemStories from './FreeModeListItem.stories';
 
 <Meta of={FreeModeListItemStories} />
 
-# FreeModeListItem (Figma: `celule/MainCanvas/Organization/FreeMode/ListItem`, `1421:20757`)
+# FreeModeListItem (Figma: `molecule/FreeModeListItem`, `1394:16408`)
 
 ## Uso
 
@@ -13,22 +13,33 @@ Livre — o menu que abre a partir do botão "Adicionar nodo" de
 menu — não é reutilizado em outras listas do produto.
 
 <Canvas of={FreeModeListItemStories.Idle} />
-<Controls />
+<Controls of={FreeModeListItemStories.Idle} />
 
-<Canvas of={FreeModeListItemStories.Selected} />
-<Canvas of={FreeModeListItemStories.Hover} />
-<Canvas of={FreeModeListItemStories.AllOperations} />
+## Anatomia
 
-## Operações
+### Operações
 
 Junção, Subtração, Interssecção, Exclusão, Filtrar por tamanho, Filtrar
 por formato, Filtrar por data (prop `operation`).
 
+<Canvas of={FreeModeListItemStories.AllOperations} />
+
 ## Estados
+
+<Canvas of={FreeModeListItemStories.Hover} />
+<Canvas of={FreeModeListItemStories.Selected} />
 
 - `idle` — transparente
 - `hover` — fundo cinza claro
 - `selected`/`pressed` — fundo escuro semitransparente (Figma chama esse eixo de `Clicked`; normalizado no código pra bater com o resto do catálogo)
+
+| Estado | Tratamento |
+| --- | --- |
+| Default (`State=Default`) | Transparente |
+| Hover (`State=Hover`) | Fundo cinza claro |
+| Pressed (`State=Pressed`) / `selected` | Fundo escuro semitransparente, também no `:active` real; clique alterna `selected` (`aria-pressed`) |
+| Foco | 🧩 Anel de 3px `Brand/Primary/Action` a 50%, só pelo teclado |
+| Disabled | 🧩 Opacidade reduzida, sem clique |
 
 ## Terminologia
 

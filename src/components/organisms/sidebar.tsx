@@ -77,7 +77,7 @@ export interface SidebarProps extends React.ComponentProps<"nav"> {
 }
 
 /**
- * organism/Sidebar (`1421:17946`) — Figma-confirmado: "sidebar contextual...
+ * organism/Sidebar (`197:6187`) — Figma-confirmado: "sidebar contextual...
  * possibilita navegar entra as paginas: pessoal, compartilhado, recente,
  * favorito, guardados(longo prazo) e lixeira. contem a aba armazenamento,
  * que possibilita gerir armazenamento." Composta por itens de navegação

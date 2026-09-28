@@ -48,7 +48,7 @@ const SELECTED_STATES: readonly FolderItemState[] = [
 ]
 
 /**
- * atom/FolderItem (`1440:24306`, Figma-confirmado) — "Simbolo para
+ * atom/FolderItem (`212:3691`, Figma-confirmado) — "Simbolo para
  * representar pastas. Suporta seleção e badge de tier. Variantes: state e
  * tier." Mesma família visual/composicional de `ArchiveItem` (ver notas lá
  * sobre a menção a "tier" ser gap, não prop real), mas aqui cada estado é

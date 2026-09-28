@@ -3,22 +3,40 @@ import * as Stories from './UserProfileCard.stories';
 
 <Meta of={Stories} />
 
-# UserProfileCard
+# UserProfileCard (Figma: `Settings/Account/Mobile`, `1702:22547`)
 
-✅ Figma KanDrive V0.2.1: o `UserBlock` no topo de `Settings/Account` Mobile, Tablet e Desktop (F10, aprovado em 2026-09-24).
+✅ Figma KanDrive V0.2.1: o `UserBlock` no topo de `Settings/Account` Mobile, Tablet e Desktop (F10, aprovado em 2026-09-24). O link do story aponta para a tela `Settings/Account/Mobile` (`1702:22547`), que contém o `UserBlock`.
 
 ## Uso
 
 O bloco de usuário de Settings → Conta. Tocar no avatar do Header (mobile) ou no ícone de conta (tablet e desktop) abre esta tela. Tem duas ações: "Editar perfil" (foto, nome e e-mail) e "Trocar conta" (alternar entre contas conectadas).
 
 <Canvas of={Stories.Default} />
-<Controls />
+<Controls of={Stories.Default} />
 
-## Layout
+## Composição
+
+### Layout
 
 - Mobile e tablet: identidade em cima e ações abaixo.
 - Desktop: identidade à esquerda e ações à direita.
 
-## Tokens
+### Tokens
 
 Card `Neutral/Surface/Card` com borda `Neutral/Border/Subtle` e raio 12. `Avatar` de 56px, nome 18px SemiBold, e-mail 14px `Neutral/Text/Secondary`. Ações: `Button` Outline MD.
+
+## Estados
+
+| Estado | Tratamento |
+| --- | --- |
+| Hover / Pressed / Foco | herdados do `atom/Button` |
+
+## Mobile
+
+<Canvas of={Stories.Mobile} />
+
+Mobile · 390: ações abaixo da identidade, dividindo a largura.
+
+## Terminologia
+
+"Editar perfil" e "Trocar conta" não estão na lista aprovada nem na proibida (Regra 5). Nome e e-mail são conteúdo do usuário.

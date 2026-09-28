@@ -3,15 +3,14 @@ import * as DropdownMenuStories from './DropdownMenu.stories';
 
 <Meta of={DropdownMenuStories} />
 
-# DropdownMenu (`organism/dropdownMenu`)
+# DropdownMenu (Figma: `organism/DropdownMenu`, `1440:23662`)
 
 ## Uso
 
 Menu de ações contextuais reutilizável — variante `Sidebar` (nova pasta/upload) ou `templateOptionsList` (editar/desfazer/excluir organização). Escolha a variante pelo contexto de onde o menu abre, não misture as duas listas de ação.
 
 <Canvas of={DropdownMenuStories.Sidebar} />
-<Canvas of={DropdownMenuStories.TemplateOptions} />
-<Controls />
+<Controls of={DropdownMenuStories.Sidebar} />
 
 ## Composição
 
@@ -19,14 +18,28 @@ Peça isolada — lista de itens de menu, sem sub-componentes compostos. Um úni
 
 Os itens de menu não usam chrome de botão — não são `atom/Button`. "Excluir organização" é neutro, na mesma cor dos outros itens do menu (diferente do `atom/Button` com texto de destrutivo, usado em `CleanSpaceStorage`/`TemplateReviewModal`, que aplica a cor de destrutivo de fato) — os dois padrões coexistem no produto, cada um no seu próprio contexto.
 
+### Variantes
+
+Figma `Menu=Sidebar` e `Menu=TemplateOptions`.
+
+<Canvas of={DropdownMenuStories.TemplateOptions} />
+
+### Material
+
+Fundo com o material Liquid Glass — ver [Tokens/Materials](../tokens/Materials.mdx).
+
 ## Estados
 
 - Default
 - Hover — `hover:bg-zinc-100`
 
-## Material
+| Estado | Tratamento |
+| --- | --- |
+| Hover | 🧩 `hover:bg-zinc-100` |
+| Pressed | 🧩 `active:bg-zinc-200` |
+| Foco | 🧩 anel de foco visível |
 
-Fundo com o material Liquid Glass — ver [Tokens/Materials](../tokens/Materials.mdx).
+🧩 = Regra 8: hover/pressed/foco dos itens não desenhados no Figma.
 
 ## Terminologia
 

@@ -12,7 +12,7 @@ de arquivo. Usado ao criar um template de organização — o estado expandido
 dá acesso às configurações da pasta.
 
 <Canvas of={FolderCardStories.Default} />
-<Controls />
+<Controls of={FolderCardStories.Default} />
 
 ## Anatomia
 
@@ -21,26 +21,30 @@ Alça de arrasto (3 pontos verticais) + pílula "Pasta" com seta expansível
 `atom/ArchiveItem`, a miniatura central usa `atom/ImageItem`), cada uma com
 legenda "Arquivo N".
 
+## Estados
+
 <Canvas of={FolderCardStories.Hover} />
 <Canvas of={FolderCardStories.Selected} />
 <Canvas of={FolderCardStories.Collapsed} />
 
-## Estados
-
-- `idle`
-- `hover`
-- `selected`
-- `expanded` / `collapsed` — mostra ou esconde as 3 miniaturas
+| Estado | Tratamento |
+| --- | --- |
+| Idle (`State=Default`) | Card em repouso |
+| Hover (`State=Hover`) | Destaque do card |
+| Selecionado (`Selected=true`) | Card marcado |
+| Expandido / recolhido (`Expanded`) | Mostra ou esconde as 3 miniaturas; o botão do título tem `aria-expanded` |
+| Pressed | 🧩 `active:opacity-70` no botão do título |
+| Foco | 🧩 Anel de 3px `Brand/Primary/Action` a 50%, só pelo teclado |
 
 Disabled/loading/error não são suportados por este componente.
-
-## Terminologia
-
-"Pasta"/"Arquivo N" são texto de produto (o segundo é conteúdo de
-exemplo).
 
 ## Mobile
 
 <Canvas of={FolderCardStories.Mobile} />
 
 `device="mobile"` (`Organize/Saved/Mobile`, V0.2.1): o grupo mostra as linhas `molecule/FileRow Device=Mobile` (prop `rows`) no lugar das 3 miniaturas. 🧩 No Figma é um frame com o nome `molecule/FolderCard`, não uma variante do componente.
+
+## Terminologia
+
+"Pasta"/"Arquivo N" são texto de produto (o segundo é conteúdo de
+exemplo).

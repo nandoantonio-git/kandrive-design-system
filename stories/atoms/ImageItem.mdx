@@ -3,18 +3,20 @@ import * as ImageItemStories from './ImageItem.stories';
 
 <Meta of={ImageItemStories} />
 
-# ImageItem (Figma: `atom/ImageItem`, `1421:18311`)
+# ImageItem (Figma: sem node confirmado)
 
 ## Uso
 
 Linha/card compacto pra representar **uma imagem** dentro de uma lista de arquivos — mesma anatomia de `ArchiveItem`/`FolderItem`/`VideoItem`.
 
 <Canvas of={ImageItemStories.Idle} />
-<Controls />
+<Controls of={ImageItemStories.Idle} />
 
-<Canvas of={ImageItemStories.AllStates} />
+## Anatomia
 
-## Retângulo de destaque translúcido
+O nó citado (`atom/ImageItem`, `1421:18311`) não resolve no KanDrive V0.2.1; os irmãos apontam para o `Type=Image` do set `molecule/FileItem` (`212:3691`), ainda não confirmado para este átomo.
+
+### Retângulo de destaque translúcido
 
 Além do glifo por estado, um retângulo `28×31px` translúcido (`--effect-glass-fill-light`) fica sobreposto em **todos** os estados, não só nos selecionados, sempre na mesma posição (`top-2px left-2.07px` relativo à caixa do ícone — Figma-confirmado via `get_metadata`, coordenadas absolutas dentro do símbolo, idêntico nos 7 estados). Uma correção anterior tentou uma posição condicional por grupo lida do CSS de referência do `get_design_context` — esses valores eram relativos ao container flex externo (com padding), não ao box do ícone, e só bateram por acidente nos `selected*`; a versão atual usa coordenada única, extraída direto do `get_metadata`.
 
@@ -22,4 +24,21 @@ Além do glifo por estado, um retângulo `28×31px` translúcido (`--effect-glas
 
 `Idle` · `Hover` · `Pressed` · `Disabled` · `Selected` · `Selected-Hover` · `Selected-Pressed`. Sem loading/error.
 
+| Estado | Tratamento |
+| --- | --- |
+| Hover | Glifo de hover |
+| Pressed | Glifo de pressed |
+| Selected / Selected-Hover / Selected-Pressed | Glifo do estado + `atom/SelectState` no canto |
+| Foco 🧩 | Anel `ring-3 brand-teal-action/50`, só pelo teclado (Regra 8) |
+| Disabled | Glifo de disabled, `aria-disabled` |
+| Transição | Sem transição CSS: os estados trocam o SVG (`src`), o que não é animável |
+
+<Canvas of={ImageItemStories.AllStates} />
+
 Sem `state` fixo — passe o mouse, clique/pressione Enter pra selecionar de verdade (não é freeze-frame). Ver a story `Interactive`.
+
+<Canvas of={ImageItemStories.Interactive} />
+
+## Terminologia
+
+Sem texto fixo de produto — o nome exibido é o nome real da imagem.

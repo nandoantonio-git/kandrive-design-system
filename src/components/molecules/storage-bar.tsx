@@ -12,7 +12,7 @@ export interface StorageBarProps extends Omit<React.ComponentProps<"div">, "chil
 }
 
 /**
- * molecule/StorageBar (`1421:17904`) — Figma-confirmado: "Barra de progresso
+ * molecule/StorageBar (`191:4816`) — Figma-confirmado: "Barra de progresso
  * do armazenamento. Mostra uso por tier (acesso rápido / longo prazo)."
  *
  * Cor corrigida em 2026-08-10: releitura do Figma (nó `1421:17907`, o único

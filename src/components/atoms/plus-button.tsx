@@ -16,7 +16,7 @@ const STYLE_CLASSNAME: Record<NonNullable<PlusButtonProps["style"]>, string> = {
 }
 
 /**
- * atom/PlusButton (`1421:17726`, Figma-confirmado) — "ícone utilizado para
+ * atom/PlusButton (`174:384`, Figma-confirmado) — "ícone utilizado para
  * ações aditivas". Mesma ressalva de `state` On/Idle e ausência de
  * Loading/Error do `DeleteButton` (figma-inventory.md, Seção 2.2). Glifo
  * exportado do Figma via `download_assets` (2026-08-11).

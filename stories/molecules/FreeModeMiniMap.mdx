@@ -3,7 +3,7 @@ import * as FreeModeMiniMapStories from './FreeModeMiniMap.stories';
 
 <Meta of={FreeModeMiniMapStories} />
 
-# FreeModeMiniMap (Figma: `template/MainCanvas/Organization/FreeMode`, `1439:16906`, elemento "Mini-Map")
+# FreeModeMiniMap (Figma: `template/OrganizeFreeModeCanvas`, `1439:16906`, elemento "Mini-Map" `1422:24802`)
 
 ## Uso
 
@@ -15,10 +15,16 @@ Escopo fechado nesse canvas — não é um minimapa genérico reutilizável em
 outras telas.
 
 <Canvas of={FreeModeMiniMapStories.Default} />
-<Controls />
+<Controls of={FreeModeMiniMapStories.Default} />
 
-## Interação
+## Estados
 
-Nenhuma — elemento visual estático (`aria-hidden`). Os blocos e o retângulo
+Sem estados interativos.
+
+Nenhuma interação — elemento visual estático (`aria-hidden`). Os blocos e o retângulo
 de "viewport" são decorativos, confirmados no Figma como composição visual,
 sem pan/zoom real (Regra 9: nunca apresentar como funcionalidade real).
+
+## Terminologia
+
+Sem texto fixo de produto.

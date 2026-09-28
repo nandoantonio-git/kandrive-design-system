@@ -24,7 +24,7 @@ const STYLE_CLASSNAME: Record<NonNullable<ClearButtonProps["style"]>, string> = 
 }
 
 /**
- * atom/ClearButton (`1421:17768`, Figma-confirmado) — "icone usado em
+ * atom/ClearButton (`174:384`, Figma-confirmado) — "icone usado em
  * funções de cancelar" (ícone base "clear": cancel/delete/erase/exit/x).
  * `state` Figma-confirmado tem 2 valores a mais que os outros ícones-botão:
  * `Hover` nomeado à parte (aqui é o `:hover` nativo, sem prop dedicada) e

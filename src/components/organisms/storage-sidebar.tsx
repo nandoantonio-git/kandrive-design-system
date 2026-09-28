@@ -28,7 +28,7 @@ export interface StorageSidebarProps extends React.ComponentProps<"div"> {
 }
 
 /**
- * organism/storage-sidebar (`1421:19167`) — Figma-confirmado: "componente
+ * organism/storage-sidebar (`635:5608`) — Figma-confirmado: "componente
  * da sidebar onde possibilita visualizar o status de curto prazo(corrente)
  * ou longo prazo. botoes para página de gerir espaço ou para dar upgrade no
  * plano de uso." Compõe `molecule/StorageBar` (US-005) + `PushButton`

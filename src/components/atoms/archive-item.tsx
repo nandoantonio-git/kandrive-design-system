@@ -56,7 +56,7 @@ const SELECTED_STATES: readonly ArchiveItemState[] = [
 ]
 
 /**
- * atom/ArchiveItem (`1421:18214`, Figma-confirmado) — "Simbolo para
+ * atom/ArchiveItem (`212:3691`, Figma-confirmado) — "Simbolo para
  * representar arquivos. Suporta seleção e badge de tier. Variantes: state e
  * tier." Glifo 3D-glass de arquivo (36.68×41) + nome abaixo. `get_metadata`/
  * `get_design_context` só retornam o eixo `state` (9 valores no Figma,

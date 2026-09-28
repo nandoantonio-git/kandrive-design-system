@@ -3,32 +3,28 @@ import * as FaqInfoCardStories from './FaqInfoCard.stories';
 
 <Meta of={FaqInfoCardStories} />
 
-# FaqInfoCard (`organism/FAQ/info/Card`)
+# FaqInfoCard (Figma: `organism/FaqInfoCard`, `1454:24788`)
 
 ## Uso
 
 Card-base de dúvida frequente, com callout opcional pra destacar um ponto de atenção. Use na aba de FAQ, um card por tópico.
 
 <Canvas of={FaqInfoCardStories.Faq} />
-<Controls />
-
-## Variantes
-
-Duas variantes: `faq` (reaproveita o conteúdo do tópico `FirstSteps`, mais uma pergunta exclusiva "Onde vejo quanto espaço já usei?") e `card-with-callout` (reaproveita o conteúdo completo do tópico `LongTermStorage`, 5 perguntas + 2 callouts). O conteúdo é compartilhado com `FaqInfoCardCollapsed` em vez de duplicado — evita duas fontes de verdade divergentes para o mesmo texto.
-
-Ao contrário do card colapsado, este organism sempre nasce expandido — o rótulo do cabeçalho é sempre "Recolher", sem alternância. Representa o item já aberto dentro de uma lista de FAQ, não um teaser recolhível.
-
-`card-with-callout` inclui 2 callouts (`info`, `warning`) — ver [FaqInfoCardCollapsed](./FaqInfoCardCollapsed.mdx) para a spec completa de tom/cor.
+<Controls of={FaqInfoCardStories.Faq} />
 
 ## Anatomia
 
 Cada pergunta é expansível individualmente (accordion nativo `<details>`/`<summary>`); nesta composição, todas as perguntas ficam abertas por padrão.
 
-## Terminologia
+### Variantes
 
-Nenhum termo proibido no texto visível.
+Duas variantes: `faq` (reaproveita o conteúdo do tópico `FirstSteps`, mais uma pergunta exclusiva "Onde vejo quanto espaço já usei?") e `card-with-callout` (reaproveita o conteúdo completo do tópico `LongTermStorage`, 5 perguntas + 2 callouts). O conteúdo é compartilhado com `FaqInfoCardCollapsed` em vez de duplicado — evita duas fontes de verdade divergentes para o mesmo texto.
 
-## Material
+Ao contrário do card colapsado, este organism sempre nasce expandido — o rótulo do cabeçalho é sempre "Recolher", sem alternância. Representa o item já aberto dentro de uma lista de FAQ, não um teaser recolhível.
+
+`card-with-callout` inclui 2 callouts (`info`, `warning`) — ver [FaqInfoCardCollapsed](./FaqInfoCardCollapsed.mdx) para a spec completa de tom/cor, e [FaqCallout](./FaqCallout.mdx) para o bloco em si.
+
+### Material
 
 Fundo com o material Liquid Glass — ver [Tokens/Materials](../tokens/Materials.mdx).
 
@@ -36,3 +32,15 @@ Fundo com o material Liquid Glass — ver [Tokens/Materials](../tokens/Materials
 
 - Aberto/Fechado por pergunta
 - Hover na seta/summary
+
+| Estado | Tratamento |
+| --- | --- |
+| Aberto/Fechado (pergunta) | `<details>` nativo |
+| Hover / Pressed | seta/summary e botão do cabeçalho, com transição de opacidade |
+| Foco | 🧩 anel no botão "Recolher"/"Expandir" (`aria-expanded`) |
+
+🧩 = Regra 8: foco do botão "Recolher"/"Expandir" não desenhado no Figma.
+
+## Terminologia
+
+Nenhum termo proibido no texto visível.

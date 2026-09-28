@@ -3,16 +3,20 @@ import * as DeleteButtonStories from './DeleteButton.stories';
 
 <Meta of={DeleteButtonStories} />
 
-# DeleteButton (`atom/DeleteButton`)
+# DeleteButton (Figma: `atom/IconButton`, `174:384`)
 
 ## Uso
 
 Ícone-botão sem chrome de borda pra **ações destrutivas** pontuais (remover um item de uma lista, por exemplo) — diferente do `atom/Button` com `isDestructive`, que é pra ação primária de destruição de uma tela inteira (ex. "Excluir" num modal).
 
 <Canvas of={DeleteButtonStories.Default} />
-<Controls />
+<Controls of={DeleteButtonStories.Default} />
 
-## Variantes de cor
+## Anatomia
+
+No Figma é o `Icon=Delete` do set `atom/IconButton`. Construído sobre a base [IconActionButton](?path=/docs/atoms-iconbutton-iconactionbutton--docs).
+
+### Variantes de cor
 
 `style`: `Default` · `Red` · `White`.
 
@@ -23,6 +27,14 @@ import * as DeleteButtonStories from './DeleteButton.stories';
 ## Estados
 
 `Idle` · `Clicked` (feedback via `scale-90`) · `Disabled`. Sem loading/error.
+
+| Estado | Tratamento |
+| --- | --- |
+| Hover 🧩 | Glifo mais escuro (`default`) ou a 80% (`red`/`white`) — só cor/opacidade, sem pílula (Regra 8: o Figma não tem `Hover` para este ícone) |
+| Pressed | `scale-90` (via base) + glifo a 60% (Figma `State=Pressed`) |
+| Foco 🧩 | Anel `ring-3 brand-teal-action/50`, só pelo teclado (Regra 8, via base) |
+| Disabled | 40% de opacidade, sem ponteiro (Figma `State=Disabled`) |
+| Transição | `transition-all` (via base) |
 
 ## Terminologia
 
