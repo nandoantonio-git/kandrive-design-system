@@ -1,9 +1,9 @@
 import * as React from "react"
-import { FolderPlus, Upload, FolderUp, FilePen, XCircle, Trash2, type LucideIcon } from "lucide-react"
+import { FolderPlus, Upload, FolderUp, FilePen, XCircle, Trash2, ArchiveRestore, type LucideIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
-export type DropdownMenuVariant = "sidebar" | "template-options"
+export type DropdownMenuVariant = "sidebar" | "template-options" | "guardados"
 
 interface MenuEntry {
   label: string
@@ -22,6 +22,8 @@ const TEMPLATE_OPTIONS_ITEMS: MenuEntry[] = [
   { label: "Desfazer organização", icon: XCircle },
   { label: "Excluir organização", icon: Trash2 },
 ]
+
+const GUARDADOS_ITEMS: MenuEntry[] = [{ label: "Resgatar", icon: ArchiveRestore }]
 
 export interface DropdownMenuProps extends React.ComponentProps<"div"> {
   variant?: DropdownMenuVariant
@@ -52,17 +54,23 @@ export interface DropdownMenuProps extends React.ComponentProps<"div"> {
  * específico (diferente de `atom/PushButton isDestructive`, que usa
  * `--brand-feedback-danger-default` de fato). Corrigido para neutro.
  *
+ * `variant="guardados"` — menu de contexto (botão direito) de um arquivo na área
+ * "Guardados", com o item "Resgatar". 🧩 Pedido pelo usuário em 2026-09-29: o
+ * resgate é solicitado por aqui e o arquivo chega por e-mail (não volta para o
+ * acesso rápido). Mesmo padrão visual do menu de "Adicionar"; no Figma é a
+ * variante `property1=Guardados`, com o item único.
+ *
  * 🧩 Regra 8: hover/pressed/foco dos itens não desenhados no Figma.
  */
 function DropdownMenu({ variant = "sidebar", onItemSelect, className, ...props }: DropdownMenuProps) {
-  const items = variant === "sidebar" ? SIDEBAR_ITEMS : TEMPLATE_OPTIONS_ITEMS
+  const items = variant === "sidebar" ? SIDEBAR_ITEMS : variant === "guardados" ? GUARDADOS_ITEMS : TEMPLATE_OPTIONS_ITEMS
   return (
     <div
       data-slot="dropdown-menu"
       role="menu"
       className={cn(
         "flex flex-col overflow-hidden rounded-md glass-edge bg-effect-glass-white-70 py-1 shadow-lg backdrop-blur-md",
-        variant === "sidebar" ? "w-[191px]" : "w-[217px]",
+        variant === "template-options" ? "w-[217px]" : "w-[191px]",
         className
       )}
       {...props}

@@ -40,7 +40,7 @@ interface NotificationRow {
 }
 
 const NOTIFICATION_ROWS: NotificationRow[] = [
-  { id: "resgate", title: "Arquivo pronto para resgate", description: "Avisar quando um arquivo guardado no longo prazo terminar o resgate." },
+  { id: "resgate", title: "Arquivo enviado por e-mail", description: "Avisar quando um arquivo resgatado do longo prazo for enviado para o seu e-mail." },
   { id: "limite", title: "Armazenamento quase cheio", description: "Avisar quando o uso se aproximar do limite do plano." },
   { id: "duplicados", title: "Duplicados encontrados", description: "Avisar quando novos arquivos duplicados forem detectados." },
   { id: "novidades", title: "Novidades do Kandrive", description: "Receber avisos sobre novos recursos e melhorias." },
