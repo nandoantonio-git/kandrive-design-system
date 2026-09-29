@@ -62,13 +62,13 @@ Outras regras de UI copy da definição do usuário:
 
 ## Padrão fixo — toast/mensagem de sucesso
 
-Sempre abre com **"Prontinho — "** seguido do resultado concreto da ação, nunca do nome da ação.
+Sempre abre com **"Prontinho! "** seguido do resultado concreto da ação, nunca do nome da ação. Até 2026-09-29 o padrão era "Prontinho — "; mudou com a [[Regra 12 - Sem Travessão]].
 
 | Contexto | Tom padrão | Modo sóbrio |
 |---|---|---|
 | Botão de ação principal | *Guardar arquivos* | *Guardar arquivos* |
-| Sucesso (Guardar) | *Prontinho — seus arquivos estão guardados no longo prazo.* | — |
-| Sucesso (Organizar) | *Prontinho — seus arquivos estão organizados.* | — |
+| Sucesso (Guardar) | *Prontinho! Seus arquivos estão guardados no longo prazo.* | — |
+| Sucesso (Organizar) | *Prontinho! Seus arquivos estão organizados.* | — |
 | Estado vazio | *Nada organizado por aqui ainda. Bora começar?* | — |
 | Erro de upload | — | *O envio falhou. Tente novamente.* |
 | Exclusão permanente | — | *Essa ação não pode ser desfeita. Confirmar exclusão?* |
@@ -76,7 +76,7 @@ Sempre abre com **"Prontinho — "** seguido do resultado concreto da ação, nu
 
 ## Terminologia aceita (da definição do usuário)
 
-Arquivar (= organizar, pattern geral) · Guardar / Guardar no longo prazo / Guardar arquivos (= mover para o longo prazo) · Longo prazo · Acesso rápido · Pronto para guardar · Ver duplicados · Lixeira (30 dias) · "Buscar arquivos, pastas ou templates" · Desfazer organização · Excluir pasta e arquivos · conflito de nome resolvido com sufixo automático "(1)" · "resgate"/"redundância" só como conceito interno — traduzir para o usuário ("solicitar resgate" é aceito na ação, com explicação do prazo).
+Arquivar (= organizar, pattern geral) · Guardar / Guardar no longo prazo / Guardar arquivos (= mover para o longo prazo) · Longo prazo · Acesso rápido · Pronto para guardar · Arquivos duplicados (seção de "Liberar espaço") · Lixeira (30 dias) · "Buscar arquivos, pastas ou templates" · Desfazer organização · Excluir pasta e arquivos · conflito de nome resolvido com sufixo automático "(1)" · "resgate"/"redundância" só como conceito interno — traduzir para o usuário ("solicitar resgate" é aceito na ação, com explicação do prazo).
 
 ## DON'Ts — termos (proibidos como texto visível)
 

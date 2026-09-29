@@ -1,17 +1,16 @@
-import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
-import * as FaqStories from './Faq.stories';
-
-<Meta of={FaqStories} />
+---
+tags: [pagina]
+---
 
 # Faq (`page/FAQ/Expanded`, `page/FAQ/Collapsed`)
+
+**No Storybook:** `Pages/Faq`, histórias `Expanded`, `Collapsed` (tela cheia).
+
 
 ## Uso
 
 2 nodes Figma distintos (`1439:19898` Expanded, `1439:20755` Collapsed) — Figma-inventory: "idêntica ao FAQ Expanded" (mesma composição recolhida, não uma tela nova). Implementado como **um componente único** parametrizado por `variant` (Regra 1/10, mesmo critério de `Pages/Home`/`viewMode`).
 
-<Canvas of={FaqStories.Expanded} />
-<Canvas of={FaqStories.Collapsed} />
-<Controls />
 
 ## Composição
 
@@ -26,3 +25,5 @@ No mobile, os tópicos ficam numa faixa de chips (`FaqTopicChips`) logo abaixo d
 ## Terminologia
 
 Nenhum termo proibido (Regra 5). "elegíveis" em `FrequentIssues` é prosa de resposta de FAQ, já documentado como não-violação em `docs/conflicts.md`.
+
+Antes era a aba Docs de `Pages/Faq` no Storybook; saiu em 2026-09-29 porque as telas de largura fixa quebravam dentro da Docs (ver [[Plano das pendências (2026-09-29)]]).

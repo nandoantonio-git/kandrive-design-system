@@ -17,6 +17,10 @@ export interface HeaderProps extends React.ComponentProps<"header"> {
   searchProps?: SearchInputProps
   onOrganize?: () => void
   onSave?: () => void
+  /** Destino do logo (tablet e desktop): o início do produto. 🧩 Link não desenhado no Figma como componente; pedido do usuário em 2026-09-29. */
+  homeHref?: string
+  /** Clique no logo; use `event.preventDefault()` para navegar por rota do app em vez do `href`. */
+  onLogoClick?: React.MouseEventHandler<HTMLAnchorElement>
   /** Mobile: toque no ☰ (abre a gaveta). */
   onMenuClick?: () => void
   /** Toque no avatar (mobile) ou no ícone de conta (tablet e desktop): abre Settings → Conta, com o bloco de usuário (F10, 2026-09-24). */
@@ -86,6 +90,8 @@ function Header({
   onSave,
   onMenuClick,
   onAvatarClick,
+  homeHref = "/",
+  onLogoClick,
   user = { name: "Cassandra Ribeiro" },
   className,
   ...props
@@ -101,9 +107,17 @@ function Header({
     >
       {/* Mobile (Figma Header Device=Mobile): ☰ + busca + avatar. A partir de `tablet:`, o layout de sempre. */}
       <HamburgerButton className="tablet:hidden" onClick={onMenuClick} />
-      <img src={kandriveLogo} alt="Kandrive" className="hidden h-11 w-[173px] shrink-0 tablet:block dark:hidden" />
-      {/* Logo sobre fundo escuro (Figma Logo/* dark): "Kan" + canguru (Kan) #F5F4F2, "drive" #337084 (Brand/Primary/Mid), símbolo #337084→#1A5E6E. */}
-      <img src={kandriveLogoDark} alt="Kandrive" className="hidden h-11 w-[173px] shrink-0 tablet:dark:block" />
+      {/* O logo leva ao início (pedido do usuário, 2026-09-29): um link só, com as duas versões do logo dentro. */}
+      <a
+        href={homeHref}
+        onClick={onLogoClick}
+        aria-label="Kandrive, ir para o início"
+        className="hidden shrink-0 rounded-md outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 tablet:block"
+      >
+        <img src={kandriveLogo} alt="" className="h-11 w-[173px] dark:hidden" />
+        {/* Logo sobre fundo escuro (Figma Logo/* dark): "Kan" + canguru (Kan) #F5F4F2, "drive" #337084 (Brand/Primary/Mid), símbolo #337084→#1A5E6E. */}
+        <img src={kandriveLogoDark} alt="" className="hidden h-11 w-[173px] dark:block" />
+      </a>
       <SearchInput
         {...searchProps}
         placeholder={searchProps?.placeholder ?? "Pesquisar"}

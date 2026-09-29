@@ -16,8 +16,8 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Navbar: Story = {
-  args: { onOrganize: fn(), onSave: fn(), onAvatarClick: fn() },
-  // Tablet e desktop: "Organizar", "Guardar" e "Conta" chamam cada um o próprio callback.
+  args: { onOrganize: fn(), onSave: fn(), onAvatarClick: fn(), onLogoClick: fn((event) => event.preventDefault()) },
+  // Tablet e desktop: "Organizar", "Guardar" e "Conta" chamam cada um o próprio callback; o logo é o link para o início.
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement)
     await userEvent.click(canvas.getByRole("button", { name: "Organizar" }))
@@ -26,6 +26,10 @@ export const Navbar: Story = {
     await expect(args.onSave).toHaveBeenCalledOnce()
     await userEvent.click(canvas.getByRole("button", { name: "Conta" }))
     await expect(args.onAvatarClick).toHaveBeenCalledOnce()
+    const home = canvas.getByRole("link", { name: "Kandrive, ir para o início" })
+    await expect(home).toHaveAttribute("href", "/")
+    await userEvent.click(home)
+    await expect(args.onLogoClick).toHaveBeenCalledOnce()
   },
 }
 

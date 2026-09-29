@@ -1,18 +1,16 @@
-import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
-import * as OrganizationStories from './Organization.stories';
-
-<Meta of={OrganizationStories} />
+---
+tags: [pagina]
+---
 
 # Organization (`page/Organização`)
+
+**No Storybook:** `Pages/Organization`, histórias `Default`, `TemplateDropZone`, `Saved`, `Review`, `DefaultMobile` (tela cheia).
+
 
 ## Uso
 
 Tela de Organização (`1439:19678`) — mesmo shell de [Pages/Home](./Home.mdx), com o modal `Templates/SaveOrganizationModal` (`template/DialogSave/OrganizationModal`) aberto em overlay por padrão, Figma-confirmado como composição fixa do node (não um estado transitório). Reconciliado em 2026-08-20 via `get_metadata` (recon da camada `pages`).
 
-<Canvas of={OrganizationStories.Default} />
-<Canvas of={OrganizationStories.TemplateDropZone} />
-<Canvas of={OrganizationStories.Saved} />
-<Controls />
 
 ## Estados adicionados em 2026-08-23
 
@@ -23,7 +21,6 @@ Tela de Organização (`1439:19678`) — mesmo shell de [Pages/Home](./Home.mdx)
 
 ## Revisão e conclusão (Figma V0.2.1, 2026-09-24)
 
-<Canvas of={OrganizationStories.Review} />
 
 - **`review`** (`Organize/Review/Desktop`, `1753:51532`): a composição de arrastar com o `TemplateReviewModal` por cima.
 - **`review-done`** (`Organize/ReviewDone/Mobile`, `1757:57986`): tela cheia `Brand/Primary/Action` com `Atoms/MobileSuccess`. É feedback visual: sem gaveta nem barras, e igual no Light e no Dark. Vale em todas as larguras.
@@ -43,7 +40,6 @@ No mobile, o Figma tem composições próprias para cada etapa. A página as esc
 - 🧩 **"Ordenar por"** usa o `DropdownSelectGroupBy` mobile, como na Home (decisão Q25: ele substitui o `atom/SortButton`).
 - ⚠️ Os títulos seguem a escala do código (Regra 4): a legenda tem 16px, e no Figma tem 13px.
 
-<Canvas of={OrganizationStories.DefaultMobile} />
 
 ## Diferenças confirmadas contra Home
 
@@ -57,3 +53,5 @@ No mobile, o Figma tem composições próprias para cada etapa. A página as esc
 ## Terminologia
 
 Nenhum termo proibido (Regra 5).
+
+Antes era a aba Docs de `Pages/Organization` no Storybook; saiu em 2026-09-29 porque as telas de largura fixa quebravam dentro da Docs (ver [[Plano das pendências (2026-09-29)]]).

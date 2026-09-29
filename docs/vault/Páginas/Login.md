@@ -1,16 +1,16 @@
-import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
-import * as LoginStories from './Login.stories';
-
-<Meta of={LoginStories} />
+---
+tags: [pagina]
+---
 
 # Login (`Page/login`)
+
+**No Storybook:** `Pages/Login`, histórias `Default` (tela cheia).
+
 
 ## Uso
 
 `Page/login` (`1439:21362`, antes "Kandrive Login - Glassmorphism Edition" — nome/capitalização divergem das outras 22 telas `page/*`). `figma-inventory.md` original (US-002) marcava esta tela como não verificada em profundidade ("0 instâncias de componente catalogado"). Auditoria fresca em 2026-08-23 resolve a dúvida.
 
-<Canvas of={LoginStories.Default} />
-<Controls />
 
 ## Achado: mesmo card já implementado
 
@@ -23,3 +23,5 @@ Logo centralizado (mesmo asset de `organism/Header`) + `CardLogin` + fundo decor
 ## Terminologia
 
 Nenhum termo proibido (Regra 5).
+
+Antes era a aba Docs de `Pages/Login` no Storybook; saiu em 2026-09-29 porque as telas de largura fixa quebravam dentro da Docs (ver [[Plano das pendências (2026-09-29)]]).
