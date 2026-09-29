@@ -15,7 +15,7 @@ Como não é possível rodar o modo de apresentação a partir daqui, o teste fo
 | Botão com dois destinos diferentes no mesmo gatilho (conflito) | 0 |
 | Ligações para telas escuras a partir das claras | 0 |
 | Ligações para o SandBox | 0 |
-| Telas sem nenhuma saída | 1, `Organize/SavedNotification/Tablet` (é só o aviso que aparece por cima; não deveria ter) |
+| Telas sem nenhuma saída | 1, `Organize/SavedNotification/Tablet`. **Corrigido depois**, a pedido do usuário: o aviso é a conclusão da ação de organizar, abre sobre `Saved/Tablet` e fecha sozinho em 4s (ver ‹V› no fechamento) |
 
 ## Alcance a partir dos pontos de início
 
