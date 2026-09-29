@@ -7,6 +7,18 @@ import kandriveLogoDark from '../src/assets/logo/kandrive-logo-dark.svg';
 export const VAULT = 'https://github.com/nandoantonio-git/kandrive-design-system/blob/main/docs/vault/';
 export const vault = (path) => VAULT + path.split('/').map(encodeURIComponent).join('/') + '.md';
 
+<video
+  src="./kandrive-motion.mp4"
+  poster="./kandrive-motion-poster.png"
+  autoPlay
+  muted
+  loop
+  playsInline
+  controls
+  aria-label="Animação do símbolo do Kandrive: o canguru guardião aparece dentro do selo e encolhe até o tamanho do favicon."
+  style={{ width: '100%', maxWidth: 960, borderRadius: 16, display: 'block', margin: '8px 0 24px' }}
+/>
+
 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 16, margin: '8px 0 32px' }}>
   <div style={{ background: '#ffffff', border: '1px solid #e5e5e3', borderRadius: 16, padding: '32px 24px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
     <img src={kandriveLogo} alt="Kandrive — logo para fundo claro" style={{ height: 44 }} />

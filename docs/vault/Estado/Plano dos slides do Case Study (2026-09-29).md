@@ -20,6 +20,11 @@ Página `🎞️ Case Study · KanDrive` (`3214:2`), 8 slides 1920×1080. Pedido
 | | Templates / Pages | `template/SaveLongTermFileStorage` e a tela Home/Grid/Desktop (no lugar do "AppShell", que não existe como componente) |
 | 06 Experiências | 4 recortes | Desktop + Mobile lado a lado: Home, Organizar (revisão), Longo prazo (selecionar e confirmar), Armazenamento — com legenda |
 
+## Atualização (mesmo dia)
+
+- **03** deixou de mostrar as mudanças de rótulo: agora explica o processo de pesquisa em 4 etapas (desk research, netnografia, survey, teste de usabilidade, com os números) e mantém **um** exemplo de achado (Global → Total).
+- Novo frame `00 / Abertura` (`3293:52`) antes da capa, com o vídeo `Kandrive motion` (o vídeo abre o case).
+
 ## Textos revisados (conforme combinado: 03, 04 e 06)
 
 - **03** — "Destino e recuperação explícitos" → "Destino e resgate por e-mail"; nova linha de números: "26 respostas · ~30 pessoas na netnografia · 4 testes, 3 tarefas · +37% a +42% acima do tempo esperado" (do artigo do usuário; 26 respostas, como ele escolheu, não 25).
