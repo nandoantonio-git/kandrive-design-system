@@ -209,7 +209,7 @@ function SettingsPage({
                   </div>
                   <div className="flex items-center gap-3">
                     <Button variant="outline">
-                      Gerir espaço
+                      Liberar espaço
                     </Button>
                     <Button>
                       Comprar espaço

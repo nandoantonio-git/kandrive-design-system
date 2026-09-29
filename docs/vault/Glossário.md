@@ -16,9 +16,9 @@ Terminologia do domínio Kandrive — ver [[Regra 5 - Terminologia]] pra regra c
 | Arquivar | Pattern **geral** de organização/agrupamento de arquivos — processo mais amplo, do qual "Guardar" é uma ação específica. **Nunca sinônimo de "Guardar"** — ver [[Regra 5 - Terminologia]] |
 | Pronto para guardar | Status de arquivo elegível pra arquivamento |
 | Ver duplicados | Ação de detecção de duplicados |
-| Gerir Espaço | Termo aprovado **só na [[Sidebar]]** |
-| Liberar Espaço | Termo aprovado **só em Armazenamento** (`molecule/StorageStatus`, `scope="global"`) — Configurações de Plano **não** tem gatilho pro mesmo modal, ver [[Regra 5 - Terminologia]] |
-| Comprar Espaço | Botão de upgrade de plano, `organism/storage-sidebar` (Figma-confirmado, node `1421:19167`) |
+| Gerir espaço | Termo aprovado **só na [[Sidebar]]** — leva à página Status de armazenamento (2026-09-29) |
+| Liberar espaço | Termo aprovado **só em Armazenamento** (`molecule/StorageStatus`, `scope="global"`) — Configurações de Plano **não** tem gatilho pro mesmo modal, ver [[Regra 5 - Terminologia]] |
+| Comprar espaço | Botão de upgrade de plano (leva ao Pagamento), `organism/storage-sidebar` (Figma-confirmado, node `1421:19167`) |
 | Editar plano | Configurações de Plano, `organism/planSelection` (Figma-confirmado, node `1454:25054`) |
 | Organizar | `organism/Header`, `page="navbar"` — fluxo ao vivo de organização |
 | Buscar arquivos, pastas ou templates | Placeholder do campo de busca (termo aprovado — Figma fonte ainda tem "Search", ver [[Conflitos Abertos]]) |

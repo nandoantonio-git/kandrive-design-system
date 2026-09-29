@@ -101,13 +101,13 @@ export const LimitReached: Story = {
   args: { usedAmount: "90GB", totalAmount: "90GB", percent: 100, limitReached: true },
   render: controlled("global"),
 }
-/** Modal "Gerir Espaço" por cima da página. Figma `Storage/ManageSpace/Desktop`. */
+/** Modal "Liberar espaço" por cima da página. Figma `Storage/ManageSpace/Desktop`. */
 export const ManageSpace: Story = { parameters: FIG("1755-55255"), args: { manageSpaceOpen: true }, render: controlled("global") }
 /** Tablet · 720. Figma `Storage/ManageSpace/Tablet`. */
 export const ManageSpaceTablet: Story = { ...ManageSpace, parameters: FIG("1765-59974"), globals: vp("kdTablet") }
 /** Mobile · 390: tela própria, sem título nem card. Figma `Storage/LimitReached/Mobile`. */
 export const LimitReachedMobile: Story = { ...LimitReached, parameters: FIG("1727-23116"), globals: vp("kdMobile") }
-/** Mobile · 390: o modal "Gerir Espaço" em largura total (estado; o Figma só tem desktop e tablet). */
+/** Mobile · 390: o modal "Liberar espaço" em largura total (estado; o Figma só tem desktop e tablet). */
 export const ManageSpaceMobile: Story = { ...ManageSpace, globals: vp("kdMobile") }
 
 /** Mobile · 390, Longo prazo (estado, pela regra dos 3 tipos: o Figma só tem no desktop). */

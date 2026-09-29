@@ -8,23 +8,23 @@ Terminologia é **sensível ao contexto** — o mesmo conceito pode ter termos d
 
 ## Lista aprovada
 
-"Acesso rápido" · "Longo prazo" · "Guardar" · "Arquivar" · "Pronto para guardar" · "Ver duplicados" · "Buscar arquivos, pastas ou templates" · **"Gerir Espaço"** (qualquer contexto — Sidebar, Armazenamento, Configurações) · **"Comprar Espaço"** (`organism/storage-sidebar` e `molecule/StorageStatus`, botão de upgrade de plano) · **"Editar plano"** (Configurações de Plano, `organism/planSelection`) · **"Organizar"** (`organism/Header`, `page="navbar"`, fluxo ao vivo de organização)
+"Acesso rápido" · "Longo prazo" · "Guardar" · "Arquivar" · "Pronto para guardar" · "Ver duplicados" · "Buscar arquivos, pastas ou templates" · **"Gerir espaço"** (só na Sidebar; leva à página Status de armazenamento) · **"Liberar espaço"** (só na página Status de armazenamento e em Configurações; abre o modal de duplicados e arquivos grandes) · **"Comprar espaço"** (`organism/storage-sidebar` e `molecule/StorageStatus`, leva sempre ao Pagamento) · **"Editar plano"** (Configurações de Plano, `organism/planSelection`) · **"Organizar"** (`organism/Header`, `page="navbar"`, fluxo ao vivo de organização)
 
-> ✅ **Unificado em 2026-09-28** (revisão de UX writing, decisão do usuário): antes o mesmo modal (`organism/cleanSpaceStorage`) tinha 2 gatilhos com nome diferente por contexto — "Gerir Espaço" na Sidebar, "Liberar Espaço" em Armazenamento e Configurações. A definição de tom de voz e terminologia entregue pelo usuário proíbe "Liberar espaço" explicitamente ("usar Gerenciar espaço" como exemplo de mesmo texto em toda tela); a decisão do usuário foi generalizar para **"Gerir Espaço"** em todo lugar, não "Gerenciar espaço". Isso revoga a seção "O caso 'Liberar Espaço' vs. 'Gerir Espaço'" abaixo — mantida só como histórico.
+> 🔁 **Decisão de 2026-09-29 (usuário)** — revoga a unificação de 2026-09-28: são **dois botões com duas ações**, não um botão só. Sidebar → **"Gerir espaço"** → página Status de armazenamento (Figma: "botões para página de gerir espaço"). Status de armazenamento (e Configurações) → **"Liberar espaço"** → modal `organism/cleanSpaceStorage` (duplicados e arquivos grandes). **"Comprar espaço"** (em qualquer tela) → Pagamento. Sentence case nos três. "Liberar espaço" passa a ser permitido **só nesse botão e no título do modal** — na definição de tom de voz continua na lista de evitados em qualquer outro uso.
 
 > ⚠️ **Gap de cobertura, não termo proibido** — "Comprar Espaço" é texto real confirmado via `get_design_context` no nó `1421:19167` (`organism/storage-sidebar`, screenshot 2026-08-16, descrição Figma verbatim: *"botoes para página de gerir espaço ou para dar upgrade no plano de uso"*), mas não constava formalmente na lista aprovada nem na proibida — só registrado como gap de baixa urgência em `making-of/conflicts.md`. Adicionado aqui em 2026-08-16 por já estar em uso real e Figma-confirmado, não é uma decisão nova de produto. Mesmo critério aplicado a "Organizar" em 2026-08-23: texto literal Figma-confirmado no nó `1421:19918` (`organism/Header`), em uso desde a implementação original do Header, só nunca tinha sido formalmente adicionado à lista.
 
 ## Proibida como texto visível
 
-"freezer" · "congelado" · "frio" · "camada" (rótulo de UI) · "elegível" (rótulo de UI) · "Limpar Espaço" · "Liberar Espaço" (revogado em 2026-09-28, ver acima) · "CTA" · "Global" (rótulo de UI, usar "Total") · siglas internas (ex. "AC+AL", "AC:"/"AL:") · "Gerenciar espaço" (não é o termo escolhido — usar "Gerir Espaço", ver acima)
+"freezer" · "congelado" · "frio" · "camada" (rótulo de UI) · "elegível" (rótulo de UI) · "Limpar Espaço" · "CTA" · "Global" (rótulo de UI, usar "Total") · siglas internas (ex. "AC+AL", "AC:"/"AL:") · "Gerenciar espaço" (não é o termo escolhido — usar "Gerir espaço" na Sidebar, ver acima)
 
-## Histórico — "Liberar Espaço" vs. "Gerir Espaço" (revogado 2026-09-28)
+## O caso "Gerir espaço" × "Liberar espaço" (vigente desde 2026-09-29)
 
-> Registro histórico. Desde 2026-09-28 os dois gatilhos usam "Gerir Espaço" — ver a nota no topo desta página.
+> Em 2026-09-28 os dois nomes chegaram a ser unificados; no dia seguinte o usuário restabeleceu a separação, agora com ações diferentes (antes eram dois gatilhos do mesmo modal).
 
-Mesmo modal (`organism/cleanSpaceStorage`, node `1439:16908`), tinha 2 gatilhos com termo diferente por contexto:
-- Sidebar (painel persistente) → "Gerir Espaço"
-- Página de Armazenamento (`molecule/StorageStatus`, `scope="global"`) → "Liberar Espaço"
+- Sidebar (painel persistente) → **"Gerir espaço"** → navega para a página Status de armazenamento
+- Página Status de armazenamento (`molecule/StorageStatus`, `scope="global"`) → **"Liberar espaço"** → abre o modal `organism/cleanSpaceStorage` (node `1439:16908`)
+- **"Comprar espaço"** → página de Pagamento
 
 Configurações de Plano **não** tem gatilho pro mesmo modal — ver seção de premissa corrigida abaixo.
 

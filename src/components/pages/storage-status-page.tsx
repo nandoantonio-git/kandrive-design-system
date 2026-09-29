@@ -27,7 +27,7 @@ export interface StorageStatusPageProps extends React.ComponentProps<"div"> {
   files?: StorageSummaryFile[]
   /** `Storage/LimitReached`: card em alerta (desktop e tablet) e tela própria no mobile. */
   limitReached?: boolean
-  /** `Storage/ManageSpace`: o modal "Gerir Espaço" (`CleanSpaceStorage`) por cima da página. */
+  /** `Storage/ManageSpace`: o modal "Liberar espaço" (`CleanSpaceStorage`) por cima da página. */
   manageSpaceOpen?: boolean
   cleanSpaceProps?: Omit<CleanSpaceStorageProps, "className">
 }
@@ -170,7 +170,7 @@ function StorageLimitReachedMobile({
           onClick={onManageSpace}
           className="w-full border-neutral-border-light bg-neutral-surface-card text-neutral-text-secondary"
         >
-          Gerir espaço
+          Liberar espaço
         </Button>
       </div>
     </div>

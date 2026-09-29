@@ -52,7 +52,7 @@ Roda de Mark & Pearson: **Inocente**, quadrante "Busca Espiritual", motivação 
 
 ## Regras de copy de botão
 
-Máx. 4 palavras · sem artigo · descreve o **estado subsequente** (não o atual) · verbo para ação / adjetivo para mudança de estado · reticências quando há mais etapas · mesmo texto em qualquer contexto onde a mesma ação aparece (ex.: "Gerir Espaço" idêntico em todo lugar, unificado em 2026-09-28 — ver [[Regra 5 - Terminologia]]).
+Máx. 4 palavras · sem artigo · descreve o **estado subsequente** (não o atual) · verbo para ação / adjetivo para mudança de estado · reticências quando há mais etapas · mesmo texto em qualquer contexto onde a mesma ação aparece (ex.: "Comprar espaço" idêntico em qualquer tela; "Gerir espaço" e "Liberar espaço" são ações diferentes, cada uma com seu texto — ver [[Regra 5 - Terminologia]]).
 
 Outras regras de UI copy da definição do usuário:
 - Pirâmide invertida: o mais importante primeiro; frases curtas.
@@ -80,7 +80,7 @@ Arquivar (= organizar, pattern geral) · Guardar / Guardar no longo prazo / Guar
 
 ## DON'Ts — termos (proibidos como texto visível)
 
-Freezer · congelado · frio · quente · corrente · elegível · camada (em UI) · "CTA" como texto visível · "Liberar espaço" (unificado para "Gerir Espaço", 2026-09-28) · "Guardar longo prazo" (sem "no") · "Finalizar" · "Pesquisar" (como placeholder) · "Global" (usar "Total") · siglas internas (ex.: AC+AL) · palavras em inglês na UI (Trash, Image, List, workspace).
+Freezer · congelado · frio · quente · corrente · elegível · camada (em UI) · "CTA" como texto visível · "Liberar espaço" (fora do botão da página Status de armazenamento e do modal de duplicados/grandes, onde é aprovado, 2026-09-29) · "Guardar longo prazo" (sem "no") · "Finalizar" · "Pesquisar" (como placeholder) · "Global" (usar "Total") · siglas internas (ex.: AC+AL) · palavras em inglês na UI (Trash, Image, List, workspace).
 
 ## DON'Ts — tom
 

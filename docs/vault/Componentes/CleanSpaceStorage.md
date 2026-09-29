@@ -7,7 +7,7 @@ tags: [componente, organism]
 `organism/cleanSpaceStorage` (`1439:16908`) — descrição verbatim: *"modal que abre em overlay ao selecionar a opção de liberar espaço. nele você pode otimizar seu espaço com arquivos grande e duplicados, economizando espaço."*
 
 - **Código:** `src/components/organisms/clean-space-storage.tsx`
-- **Título visível:** "Liberar Espaço" (Figma-confirmado 2026-08-10)
+- **Título visível:** "Liberar espaço" (Figma-confirmado 2026-08-10)
 
 ## Composição
 
@@ -17,10 +17,10 @@ Duas seções: "Arquivos grandes" (lista via `CleanSpaceListSelection` (molécul
 
 Trocados de aproximação `lucide-react` pro glifo real exportado do Figma (`favincon/ArchiveFormats`, node `1444:21914`) — cartão gradiente teal com 3 linhas brancas. A molécula `CleanSpaceListSelection` recebeu o fix; `cleanSpaceStorage` cascateou automaticamente por reusar a mesma peça.
 
-## Gatilhos — 2 termos, 1 modal
+## Gatilho
 
-- Sidebar → "Gerir Espaço"
-- Armazenamento / Configurações de Plano → "Liberar Espaço"
+- Armazenamento / Configurações → "Liberar espaço" (abre este modal)
+- Sidebar → "Gerir espaço" **não** abre o modal: leva à página Status de armazenamento (2026-09-29)
 
 Ver [[Regra 5 - Terminologia]].
 
