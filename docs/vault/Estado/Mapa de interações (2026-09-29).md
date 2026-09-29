@@ -4,7 +4,7 @@ tags: [estado, plano]
 
 # Mapa de interações e lacunas (2026-09-29)
 
-> ✅ **Atualização de 2026-09-29 (tarde):** G1 e G2 foram fechadas nas telas Desktop e Tablet, claras e escuras (o cabeçalho e a sidebar agora apontam para as telas atuais, ver [[Fechamento da entrega (2026-09-28)]] › M). As contagens abaixo são da leitura original, antes do fechamento. Nas telas claras, o restante do SandBox também virou estados (0 ligações legadas). G3 (só claro) foi fechada para Payment, Settings, FAQ, Login, Onboarding e Breadcrumb; ver ‹O› no fechamento. A barra de abas do Mobile também foi ligada (‹P›). G4 a G7 continuam abertas.
+> ✅ **Atualização de 2026-09-29 (tarde):** G1 e G2 foram fechadas nas telas Desktop e Tablet, claras e escuras (o cabeçalho e a sidebar agora apontam para as telas atuais, ver [[Fechamento da entrega (2026-09-28)]] › M). As contagens abaixo são da leitura original, antes do fechamento. Nas telas claras, o restante do SandBox também virou estados (0 ligações legadas). G3 (só claro) foi fechada para Payment, Settings, FAQ, Login, Onboarding e Breadcrumb; ver ‹O› no fechamento. A barra de abas do Mobile também foi ligada (‹P›). As lacunas restantes foram ordenadas e implementadas (‹T›), menos `Falar com o suporte`. G4 a G7 continuam abertas para o tema escuro.
 
 Relatório pedido pelo usuário depois que ele atualizou as interações entre as telas da 📐Pages. **Só mapeia, não corrige nada.** Fonte: leitura das reações de protótipo de todas as telas da seção `Pages - White` (92) e `Pages - Dark` (91), no Figma `2g7udqxWbGA8F9Or7PGNg3`. Só entram cliques (`ON_CLICK`, `MOUSE_UP`, `MOUSE_DOWN`, `ON_DRAG`, `ON_PRESS`, tempo, teclado); hover é acabamento de estado e não conta.
 
