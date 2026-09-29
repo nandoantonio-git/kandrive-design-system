@@ -7,7 +7,7 @@ import * as DropdownMenuStories from './DropdownMenu.stories';
 
 ## Uso
 
-Menu de ações contextuais reutilizável — variante `Sidebar` (nova pasta/upload) ou `templateOptionsList` (editar/desfazer/excluir organização). Escolha a variante pelo contexto de onde o menu abre, não misture as duas listas de ação.
+Menu de ações contextuais reutilizável — variante `Sidebar` (nova pasta/upload), `templateOptionsList` (editar/desfazer/excluir organização) ou `Guardados` (botão direito em um arquivo guardado no longo prazo: "Resgatar"). Escolha a variante pelo contexto de onde o menu abre, não misture as duas listas de ação.
 
 <Canvas of={DropdownMenuStories.Sidebar} />
 <Controls of={DropdownMenuStories.Sidebar} />
@@ -23,6 +23,10 @@ Os itens de menu não usam chrome de botão — não são `atom/Button`. "Exclui
 Figma `Menu=Sidebar` e `Menu=TemplateOptions`.
 
 <Canvas of={DropdownMenuStories.TemplateOptions} />
+
+**Guardados** (🧩 pedido em 2026-09-29): abre ao clicar com o botão direito em um arquivo de "Guardados" e tem um item só, "Resgatar". O resgate é pedido por aqui e o arquivo chega por e-mail em até 8h — ele não volta para o acesso rápido. Mesmo visual do menu de "Adicionar"; no Figma é a variante `property1=Guardados`, e nenhuma tela usa o menu ainda.
+
+<Canvas of={DropdownMenuStories.Guardados} />
 
 ### Material
 
@@ -43,4 +47,4 @@ Fundo com o material Liquid Glass — ver [Tokens/Materials](../tokens/Materials
 
 ## Terminologia
 
-Nenhum termo proibido nos 6 rótulos de item.
+Nenhum termo proibido nos 7 rótulos de item. "Resgatar" é a ação (o termo "resgate" só existe como ação, com o prazo explicado ao lado).

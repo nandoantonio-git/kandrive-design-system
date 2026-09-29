@@ -122,10 +122,10 @@ const TOPIC_DATA: Record<FaqTopic, FaqTopicData> = {
         question: "Como recupero (resgato) um arquivo guardado no longo prazo?",
         answer: (
           <>
-            <p>Acesse o arquivo e solicite o resgate na própria tela dele.</p>
+            <p>Em Guardados, clique com o botão direito no arquivo e escolha Resgatar.</p>
             <FaqCallout tone="info" className="mt-3">
-              Depois de um tempo de espera (até 8h), você recebe um link por e-mail para acessar o
-              arquivo novamente no acesso rápido.
+              Depois de um tempo de espera (até 8h), você recebe o arquivo por e-mail. Ele não volta
+              para o acesso rápido.
             </FaqCallout>
           </>
         ),

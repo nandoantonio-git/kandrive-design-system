@@ -8,7 +8,7 @@ const meta = {
   component: DropdownMenu,
   parameters: { layout: "centered", design: { type: 'figma', url: 'https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1440-23662' } },
   argTypes: {
-    variant: { control: "radio", options: ["sidebar", "template-options"] },
+    variant: { control: "radio", options: ["sidebar", "template-options", "guardados"] },
   },
 } satisfies Meta<typeof DropdownMenu>
 
@@ -26,4 +26,13 @@ export const Sidebar: Story = {
 
 export const TemplateOptions: Story = {
   args: { variant: "template-options" },
+}
+
+export const Guardados: Story = {
+  args: { variant: "guardados", onItemSelect: fn() },
+  // Menu de botão direito de um arquivo em "Guardados": "Resgatar" chama `onItemSelect`.
+  play: async ({ args, canvasElement }) => {
+    await userEvent.click(within(canvasElement).getByRole("menuitem", { name: "Resgatar" }))
+    await expect(args.onItemSelect).toHaveBeenCalledWith("Resgatar")
+  },
 }

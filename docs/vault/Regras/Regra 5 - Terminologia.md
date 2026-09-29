@@ -49,3 +49,12 @@ A Regra 5 presumia que a página de Configurações de Plano teria um botão "Li
 - [[Tom de Voz e Personalidade da Marca]]
 - [[CleanSpaceStorage]]
 - [[Conflitos Abertos]]
+
+## O resgate é por e-mail (2026-09-29)
+
+O conteúdo guardado no longo prazo **não** é resgatado dentro da plataforma: o usuário pede, e o arquivo chega por e-mail. Ele não volta para o acesso rápido.
+
+- Fluxo: Guardados → botão direito no arquivo → **Resgatar** (menu `DropdownMenu` `variant="guardados"`, 🧩 pendente de tela no Figma) → o arquivo é enviado por e-mail em até 8h.
+- Texto do modal Guardar no longo prazo (Figma, template `SaveLongTermFileStorage`): "Para resgatar, é só solicitar, você o recebe por e-mail e o espaço volta para o seu armazenamento em até 8h."
+- "resgate" existe só como ação/prazo. Nunca "volta para o acesso rápido" nem "terminar o resgate". Notificação: "Arquivo enviado por e-mail".
+

@@ -26,7 +26,7 @@ O nav real da Sidebar (`pages="setting"`) tem 8 itens, mas só 7 têm node `page
 
 - **Conta** — 2 `SettingsCard` (Conta: campos Nome/E-mail + "Salvar alterações"; Senha: Senha atual/Nova senha/Confirmar nova senha + "Atualizar senha"). Campos via `molecule/SettingsField`, novo — nenhum atom de input genérico existia antes (`molecule/SearchBar` é específico de busca).
 - **Assinatura** — card "Armazenamento e plano" (peça própria desta tela, uso + 2 tiers com legenda "Estimativa — uso por tier ainda não disponível no backend", texto literal Figma-confirmado) + `organism/PlanSelection` (`1454:25057`) inteiro, já existente — mesmo Starter/Pro/Max/"Editar plano" de Configurações de Plano.
-- **Notificações** — 1 `SettingsCard` com 4 linhas título+descrição+`atom/Switch` (Arquivo pronto para resgate, Armazenamento quase cheio, Duplicados encontrados, Novidades do Kandrive).
+- **Notificações** — 1 `SettingsCard` com 4 linhas título+descrição+`atom/Switch` (Arquivo enviado por e-mail, Armazenamento quase cheio, Duplicados encontrados, Novidades do Kandrive).
 - **Aparência e exibição** — 3 `SettingsCard` com `molecule/RadioButton` (Tema: Claro/Escuro/Padrão do dispositivo; Densidade: Confortável/Compacta; Página inicial: Pessoal/Guardados — únicos 2 valores Figma-originais do componente). `RadioButton` generalizado em 2026-08-23 (`option`/`label` livres) pra suportar os grupos novos sem quebrar os 2 originais.
 - **Privacidade e dados** — 1 `SettingsCard` (linha "Exportar meus dados" + botão, nota de LGPD).
 - **Idioma e região** — 1 `SettingsCard` (2 selects — Idioma da interface/Formato de data — + "Salvar preferências").

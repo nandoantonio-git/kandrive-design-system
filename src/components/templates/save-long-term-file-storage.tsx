@@ -114,7 +114,7 @@ function SaveLongTermFileStorage({
             <p className="text-xl font-bold text-zinc-900 dark:text-zinc-100">Por que guardar?</p>
             <p className="text-sm text-neutral-text-tertiary dark:text-zinc-400">
               Arquivos em longo prazo ficam seguros por anos e liberam espaço ativo. Para resgatar, é só solicitar,
-              você recebe um link por e-mail e o arquivo volta para o seu armazenamento em até 8h.
+              você o recebe por e-mail e o espaço volta para o seu armazenamento em até 8h.
             </p>
           </div>
           <div className="flex flex-col gap-1">
