@@ -99,3 +99,5 @@ A varredura completa do código contra esta definição, com os textos alterados
 - [[Regra 5 - Terminologia]]
 - [[Conflitos Abertos]]
 - [[Kandrive Design System]]
+
+> 🎨 O resumo visual desta nota está na página Design Language do Figma, seção `07 · Voz e tom` (2026-09-29).

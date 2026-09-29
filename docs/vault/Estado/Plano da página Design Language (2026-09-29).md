@@ -4,7 +4,7 @@ tags: [estado, plano]
 
 # Plano da página Design Language (2026-09-29)
 
-Pedido do usuário: analisar a página `👾Design Language` (`1594:8007`), propor um plano para alinhá-la ao estado atual do produto e deixar um slide introdutório (metade imagem, metade texto). A skill `img-to-html` não está instalada; usei a captura da página inteira e descrevi cada bloco em wireframe de texto, sem código. **Só o slide introdutório foi criado. **Atualização:** a mesa foi reorganizada em 5 seções (Marca, Mascote Kan, Cor, Tipografia, Iconografia), só movendo as peças, e os layers ganharam nome; Materiais e Voz e tom continuam pendentes.** O resto é plano, esperando aprovação.
+Pedido do usuário: analisar a página `👾Design Language` (`1594:8007`), propor um plano para alinhá-la ao estado atual do produto e deixar um slide introdutório (metade imagem, metade texto). A skill `img-to-html` não está instalada; usei a captura da página inteira e descrevi cada bloco em wireframe de texto, sem código. **Só o slide introdutório foi criado. **Atualização:** a mesa foi reorganizada em 5 seções (Marca, Mascote Kan, Cor, Tipografia, Iconografia), só movendo as peças, e os layers ganharam nome; As seções `06 · Materiais (Liquid Glass)` e `07 · Voz e tom` também foram criadas, com conteúdo que já existia (Design System e vault). A seção de ícones em vetor continua dependendo dos arquivos originais; por decisão do usuário, só nomeamos.** O resto é plano, esperando aprovação.
 
 ## Como a página está hoje (wireframe)
 
