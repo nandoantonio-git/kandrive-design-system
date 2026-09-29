@@ -7,7 +7,7 @@ import * as PlanSelectionStories from './PlanSelection.stories';
 
 ## Uso
 
-Card de seleção/gestão de plano de assinatura (ciclo mensal/anual, forma de pagamento). Use na página de Configurações de Plano — este card não inclui um botão "Gerir Espaço" (esse fluxo mora em `molecule/StorageStatus`, `scope="global"`); a ponte entre as duas telas é o botão "Comprar Espaço" de lá pra cá, não o contrário (Regra 5, corrigida em 2026-08-18).
+Card de seleção/gestão de plano de assinatura (ciclo mensal/anual, forma de pagamento). Use na página de Configurações de Plano — este card não inclui os botões "Gerir espaço"/"Liberar espaço" (esse fluxo mora em `molecule/StorageStatus`, `scope="global"`); a ponte entre as duas telas é o botão "Comprar espaço" de lá pra cá, não o contrário (Regra 5, corrigida em 2026-08-18).
 
 <Canvas of={PlanSelectionStories.Default} />
 <Controls of={PlanSelectionStories.Default} />

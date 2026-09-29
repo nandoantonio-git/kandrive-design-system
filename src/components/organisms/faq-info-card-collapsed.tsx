@@ -86,7 +86,7 @@ const TOPIC_DATA: Record<FaqTopic, FaqTopicData> = {
     icon: StorageIcon,
     questions: [
       {
-        question: '"Gerir espaço" apaga meus arquivos?',
+        question: '"Liberar espaço" apaga meus arquivos?',
         answer:
           "Não necessariamente — a opção reúne arquivos que podem ser guardados no longo prazo ou removidos, mas nenhuma ação é feita sem sua confirmação.",
       },
@@ -230,7 +230,7 @@ const TOPIC_DATA: Record<FaqTopic, FaqTopicData> = {
           "Antes de confirmar, o Kandrive sempre mostra o destino escolhido — para localizar um arquivo movido, use a busca ou confira a pasta de destino que foi exibida na confirmação.",
       },
       {
-        question: '"Gerir espaço" está desabilitado, isso é um erro?',
+        question: '"Liberar espaço" está desabilitado, isso é um erro?',
         // 🧩 "elegíveis" aqui é prosa de resposta de FAQ (Figma-confirmado
         // verbatim), não um rótulo de UI — Regra 5 proíbe "elegível" como
         // rótulo/tag visível, não como palavra em texto corrido. Mantido

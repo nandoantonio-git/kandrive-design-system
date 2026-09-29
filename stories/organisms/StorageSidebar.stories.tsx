@@ -38,15 +38,15 @@ export const Default: Story = {
       </LiveArgs>
     )
   },
-  // "Comprar Espaço" chama `onBuySpace`; clicar no cabeçalho recolhe o painel e esconde os botões.
+  // "Comprar espaço" chama `onBuySpace`; clicar no cabeçalho recolhe o painel e esconde os botões.
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement)
-    await userEvent.click(canvas.getByRole("button", { name: "Comprar Espaço" }))
+    await userEvent.click(canvas.getByRole("button", { name: "Comprar espaço" }))
     await expect(args.onBuySpace).toHaveBeenCalledOnce()
     const toggle = canvas.getByRole("button", { name: "Armazenamento" })
     await userEvent.click(toggle)
     await expect(toggle).toHaveAttribute("aria-expanded", "false")
-    await expect(canvas.queryByRole("button", { name: "Comprar Espaço" })).toBeNull()
+    await expect(canvas.queryByRole("button", { name: "Comprar espaço" })).toBeNull()
   },
 }
 

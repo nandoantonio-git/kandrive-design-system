@@ -122,9 +122,18 @@ Com ajuste na aplicação:
 
 Ver o diff completo em `git log -p` desta pasta ou peça o resumo por arquivo.
 
+## Sincronização com o Figma (2026-09-28)
+
+Todos os itens aplicados no código, exceto os listados abaixo como não sincronizados, foram também trocados nos componentes e instâncias da página ✨Design System: 1, 2, 3, 4, 5, 6 (já feito antes, junto de 7), 8, 9, 10, 16, 17, 18, 19, 20, 21, 22, 23 (via [[Conflitos Abertos]], já feito), 27, 29, 30, 35, 36, 37, 38, 39(parcial), 40, 41. Verificação final: 0 ocorrências restantes dos textos antigos na página.
+
+**Não sincronizados:**
+- **25** — "Taxonomia Sugerida:" → "Estrutura sugerida:": no código, só o primeiro item (severidade "Duplicado") usa esse texto, os demais mantêm "Template sugerido:". No Figma há 8 nós com "Taxonomia Sugerida:" espalhados por vários exemplos do `TemplateReviewModalItem`/`LongTermStorage`, e trocar todos sem checar qual é "o primeiro item" de cada tela arriscava aplicar errado. Fica pendente de uma checagem visual, nó a nó.
+- **26** — "Revise a taxonomia sugerida antes de aplicar as mudanças." → "Revise os arquivos antes de guardar.": o texto original não existe no Figma (0 ocorrências) — o texto do código já vinha copiado de outro lugar, não há nó pra sincronizar.
+- **12** — Exportar dados/Exportar meus dados: aplicação no código foi parcial, sem mudança de texto real a propagar.
+- **39** — "N itens selecionado" → plural correto: string dinâmica, sem nó fixo no Figma pra corrigir (o Figma mostra números de exemplo, não o texto do componente).
+
 ## Aplicação
 
-Depois da aprovação:
-1. Troco no código e atualizo testes, Docs e a seção Terminologia de cada página.
-2. Troco no Figma V0.2.1: textos dos componentes, com propagação para as instâncias, e textos soltos nas telas.
-3. Registro os termos novos na [[Regra 5 - Terminologia]].
+1. ✅ Código, testes, Docs e Terminologia de cada página — feito (ver "Resultado" acima).
+2. ✅ Figma V0.2.1 — feito (ver "Sincronização" acima), exceto os 4 itens listados como não sincronizados.
+3. ✅ [[Regra 5 - Terminologia]] atualizada com "Gerir Espaço".

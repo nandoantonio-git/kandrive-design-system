@@ -60,8 +60,8 @@ const SCOPE_LABEL: Record<StorageScope, string> = {
  * possibilita o usuário visualizar espaço utilizado globalmente... há
  * também dois botões: liberar espaço- abre um modal para gerir arquivos
  * grandes ou em duplicidade; comprar espaço- abre página de pagamento."
- * Botão "Liberar Espaço" usa o termo aprovado pela Regra 5 neste contexto
- * (página de Armazenamento) e abre `organism/cleanSpaceStorage`
+ * Botão "Liberar espaço" usa o termo aprovado pela Regra 5 neste contexto
+ * (página de Armazenamento; na Sidebar o botão equivalente é "Gerir espaço", e leva a esta página) e abre `organism/cleanSpaceStorage`
  * (`1439:16908`, mesmo modal referenciado na descrição).
  *
  * 🔧 **Achado corrigido em 2026-08-12 (3ª auditoria de ponto-fixo, US-026):**
@@ -157,11 +157,11 @@ function StorageStatus({
       <div className="flex items-center gap-2 py-2">
         {scope === "global" ? (
           <Button variant="outline" onClick={onManageSpace} className="h-auto px-4 py-1 text-[0.625rem]">
-            Gerir Espaço
+            Liberar espaço
           </Button>
         ) : null}
         <Button onClick={onBuySpace} className="h-auto px-4 py-1 text-[0.625rem]">
-          Comprar Espaço
+          Comprar espaço
         </Button>
       </div>
 

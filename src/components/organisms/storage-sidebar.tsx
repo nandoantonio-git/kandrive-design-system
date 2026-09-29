@@ -42,7 +42,7 @@ function StorageSidebar({
   quickAccessLabel,
   longTermValue,
   longTermLabel,
-  manageSpaceLabel = "Gerir Espaço",
+  manageSpaceLabel = "Gerir espaço",
   onManageSpace,
   onBuySpace,
   className,
@@ -75,7 +75,7 @@ function StorageSidebar({
               {manageSpaceLabel}
             </Button>
             <Button className="h-8 min-w-fit flex-1 basis-24 px-3 text-xs whitespace-nowrap" onClick={onBuySpace}>
-              Comprar Espaço
+              Comprar espaço
             </Button>
           </div>
         </>
