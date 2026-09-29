@@ -1,22 +1,16 @@
-import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
-import * as SettingsStories from './Settings.stories';
-
-<Meta of={SettingsStories} />
+---
+tags: [pagina]
+---
 
 # Settings (`page/Settings/*`)
+
+**No Storybook:** `Pages/Settings`, histórias `Account`, `Subscription`, `Notifications`, `Appearance`, `Privacy`, `Languages`, `DeleteAccount` (tela cheia).
+
 
 ## Uso
 
 7 telas Figma-confirmadas (`1439:19849` Conta, `1439:21072` Assinatura, `1439:21165` Notificações, `1439:21211` Aparência&Customização, `1439:21268` Privacidade, `1439:21297` Excluir conta, `1439:21327` Idioma), mesmo shell (`organism/Header` `page="settings"` + Breadcrumb "Home/Configurações" + `PageLead` "Configurações" + `organism/Sidebar` `pages="setting"` + rodapé com seletor de idioma), variando só o painel de conteúdo — implementado como **um componente único parametrizado por `activeSection`** (mesmo critério de `Pages/Home`/`viewMode`, Regra 1/10).
 
-<Canvas of={SettingsStories.Account} />
-<Canvas of={SettingsStories.Subscription} />
-<Canvas of={SettingsStories.Notifications} />
-<Canvas of={SettingsStories.Appearance} />
-<Canvas of={SettingsStories.Privacy} />
-<Canvas of={SettingsStories.Languages} />
-<Canvas of={SettingsStories.DeleteAccount} />
-<Controls />
 
 ## Nav com item sem tela confirmada
 
@@ -40,3 +34,5 @@ O nav real da Sidebar (`pages="setting"`) tem 8 itens, mas só 7 têm node `page
 ## Terminologia
 
 Nenhum termo proibido (Regra 5). "Estimativa — uso por tier ainda não disponível no backend" é nota de debug literal do Figma, já registrada em `docs/conflicts.md` para `Settings-Subscription`.
+
+Antes era a aba Docs de `Pages/Settings` no Storybook; saiu em 2026-09-29 porque as telas de largura fixa quebravam dentro da Docs (ver [[Plano das pendências (2026-09-29)]]).

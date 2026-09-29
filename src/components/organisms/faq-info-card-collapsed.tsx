@@ -68,12 +68,12 @@ const TOPIC_DATA: Record<FaqTopic, FaqTopicData> = {
           <div className="space-y-0.5">
             <p>Dois caminhos comuns:</p>
             <p>
-              <strong className="font-bold">1. Organizar</strong> — aplique um template
+              <strong className="font-bold">1. Organizar</strong>: aplique um template
               (Por data, Por projeto, Por tipo de arquivo ou Modo livre) para deixar seus
               arquivos estruturados.
             </p>
             <p>
-              <strong className="font-bold">2. Guardar</strong> — se já sabe quais arquivos não
+              <strong className="font-bold">2. Guardar</strong>: se já sabe quais arquivos não
               precisa acessar com frequência, mova-os direto para o longo prazo.
             </p>
           </div>
@@ -88,7 +88,7 @@ const TOPIC_DATA: Record<FaqTopic, FaqTopicData> = {
       {
         question: '"Liberar espaço" apaga meus arquivos?',
         answer:
-          "Não necessariamente — a opção reúne arquivos que podem ser guardados no longo prazo ou removidos, mas nenhuma ação é feita sem sua confirmação.",
+          "Não necessariamente. A opção reúne arquivos que podem ser guardados no longo prazo ou removidos, mas nenhuma ação é feita sem sua confirmação.",
       },
       {
         question: 'O que significa "Admin" ao lado de um arquivo na lista de armazenamento?',
@@ -137,7 +137,7 @@ const TOPIC_DATA: Record<FaqTopic, FaqTopicData> = {
           <>
             <p>Antes de guardar, você passa por uma página com a lista dos arquivos selecionados.</p>
             <FaqCallout tone="warning" className="mt-3">
-              {'Se algum nome já existir no destino, o Kandrive adiciona automaticamente um sufixo (ex.: "arquivo (1)") para evitar substituir o arquivo existente — nada é sobrescrito sem você perceber.'}
+              {'Se algum nome já existir no destino, o Kandrive adiciona automaticamente um sufixo (ex.: "arquivo (1)") para evitar substituir o arquivo existente. Nada é sobrescrito sem você perceber.'}
             </FaqCallout>
           </>
         ),
@@ -156,7 +156,7 @@ const TOPIC_DATA: Record<FaqTopic, FaqTopicData> = {
       {
         question: 'Por que não consigo escolher o "Modo Livre"?',
         answer:
-          "O Modo livre fica disponível depois que você já tem uma primeira organização configurada — recomendado para quem já tem um método próprio.",
+          "O Modo livre fica disponível depois que você já tem uma primeira organização configurada. É recomendado para quem já tem um método próprio.",
       },
       {
         question: "Depois de confirmar, ainda dá para desfazer?",
@@ -164,7 +164,7 @@ const TOPIC_DATA: Record<FaqTopic, FaqTopicData> = {
           <>
             <p>Sim.</p>
             <FaqCallout tone="info" className="mt-3">
-              {'Assim que o template é criado, aparece um aviso — "[Nome do template] criado com sucesso" — com os botões "Desfazer" e "Confirmar". Esse aviso fica visível até você tocar em um dos dois.'}
+              {'Assim que o template é criado, aparece o aviso "[Nome do template] criado com sucesso", com os botões "Desfazer" e "Confirmar". Esse aviso fica visível até você tocar em um dos dois.'}
             </FaqCallout>
           </>
         ),
@@ -173,7 +173,7 @@ const TOPIC_DATA: Record<FaqTopic, FaqTopicData> = {
         question: "O que mais posso fazer no menu (⋮) da pasta organizada?",
         answer: (
           <ul className="list-disc space-y-1 ps-4">
-            <li>Desfazer organização — devolve os arquivos aos locais anteriores.</li>
+            <li>Desfazer organização: devolve os arquivos aos locais anteriores.</li>
             <li>Renomear pasta.</li>
             <li>Editar organização.</li>
             <li>Ver dados da pasta.</li>
@@ -184,7 +184,7 @@ const TOPIC_DATA: Record<FaqTopic, FaqTopicData> = {
       {
         question: "Consigo trocar de método de organização depois de já ter aplicado um?",
         answer:
-          "Não é possível trocar um método já aplicado por outro. Mas dá para combinar métodos — ou seja, aplicar mais de um critério de organização ao mesmo tempo, funcionando como uma visualização combinada dos seus arquivos, não uma movimentação fixa.",
+          "Não é possível trocar um método já aplicado por outro. Mas dá para combinar métodos, ou seja, aplicar mais de um critério de organização ao mesmo tempo, funcionando como uma visualização combinada dos seus arquivos, não uma movimentação fixa.",
       },
     ],
   },
@@ -204,7 +204,7 @@ const TOPIC_DATA: Record<FaqTopic, FaqTopicData> = {
     questions: [
       {
         question: "Como sei quais arquivos estão duplicados?",
-        answer: 'Use a opção "Ver duplicados" — o Kandrive identifica arquivos repetidos e sugere uma decisão para cada um.',
+        answer: 'Em Status de armazenamento, toque em "Liberar espaço". Na seção "Arquivos duplicados", o Kandrive mostra os arquivos repetidos e sugere uma decisão para cada um.',
       },
     ],
   },
@@ -213,7 +213,7 @@ const TOPIC_DATA: Record<FaqTopic, FaqTopicData> = {
     icon: FrequentIssuesIcon,
     questions: [
       {
-        question: "Excluí um arquivo sem querer — dá para recuperar?",
+        question: "Excluí um arquivo sem querer. Dá para recuperar?",
         answer: (
           <>
             <p>Sim.</p>
@@ -227,7 +227,7 @@ const TOPIC_DATA: Record<FaqTopic, FaqTopicData> = {
       {
         question: "Movi um arquivo e não sei mais onde ele está.",
         answer:
-          "Antes de confirmar, o Kandrive sempre mostra o destino escolhido — para localizar um arquivo movido, use a busca ou confira a pasta de destino que foi exibida na confirmação.",
+          "Antes de confirmar, o Kandrive sempre mostra o destino escolhido. Para localizar um arquivo movido, use a busca ou confira a pasta de destino que foi exibida na confirmação.",
       },
       {
         question: '"Liberar espaço" está desabilitado, isso é um erro?',
@@ -240,7 +240,7 @@ const TOPIC_DATA: Record<FaqTopic, FaqTopicData> = {
       },
       {
         question: "Apliquei um template errado, como corrijo?",
-        answer: 'Toque no ícone de opções (⋮) ao lado da pasta organizada e escolha "Desfazer organização" — os arquivos voltam aos locais anteriores.',
+        answer: 'Toque no ícone de opções (⋮) ao lado da pasta organizada e escolha "Desfazer organização", e os arquivos voltam aos locais anteriores.',
       },
     ],
   },

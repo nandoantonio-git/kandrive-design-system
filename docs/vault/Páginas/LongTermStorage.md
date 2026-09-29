@@ -1,9 +1,11 @@
-import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
-import * as Stories from './LongTermStorage.stories';
-
-<Meta of={Stories} />
+---
+tags: [pagina]
+---
 
 # LongTermStorage
+
+**No Storybook:** `Pages/LongTermStorage`, histórias `Intro`, `RecoveryPending` (tela cheia).
+
 
 ✅ Telas do Figma KanDrive V0.2.1 (`LongTermStorage/*`), reunidas numa página em 2026-09-24. Antes, o fluxo só existia como os templates soltos `SaveLongTermFileStorage` e `ArchiveBrowserModal`.
 
@@ -11,8 +13,6 @@ import * as Stories from './LongTermStorage.stories';
 
 O fluxo "Guardar no longo prazo": escolher arquivos, confirmar, ver a confirmação e acompanhar a recuperação de um arquivo guardado. A etapa vem de `step`.
 
-<Canvas of={Stories.Intro} />
-<Controls />
 
 ## Etapas
 
@@ -23,7 +23,6 @@ O fluxo "Guardar no longo prazo": escolher arquivos, confirmar, ver a confirmaç
 | `stored` | `MobileSuccess` Stored em tela cheia | igual |
 | `recovery-pending` | `RecoveryPending` com a Sidebar | `RecoveryPending`, BottomNav Adicionar |
 
-<Canvas of={Stories.RecoveryPending} />
 
 ## Mobile
 
@@ -34,3 +33,5 @@ O fluxo "Guardar no longo prazo": escolher arquivos, confirmar, ver a confirmaç
 - 🧩 "Ordenar por" usa o `DropdownSelectGroupBy` mobile, como na Home (decisão Q25).
 - ⚠️ No Figma, `SelectFilesSelected/Mobile` marca "Organizar" na TabBar, o que é inconsistente com `SelectFiles` (Guardar). O código usa Guardar.
 - ⚠️ A legenda tem 16px (Regra 4). No Figma, 13px.
+
+Antes era a aba Docs de `Pages/LongTermStorage` no Storybook; saiu em 2026-09-29 porque as telas de largura fixa quebravam dentro da Docs (ver [[Plano das pendências (2026-09-29)]]).

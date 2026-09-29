@@ -7,7 +7,7 @@ export interface MobileSuccessProps extends React.ComponentProps<"div"> {
   /**
    * Figma `Message`: Organized ("Organização concluída" + arquivo) · Stored
    * ("Prontinho, arquivos guardados"). 🧩 Texto adaptado (2026-09-28) para o
-   * padrão fixo de toast de sucesso ("Prontinho — " + resultado concreto),
+   * padrão fixo de toast de sucesso ("Prontinho! " + resultado concreto),
    * mantendo o ✓ com o nome do arquivo em Organized.
    */
   message?: "organized" | "stored"
@@ -54,7 +54,7 @@ function MobileSuccess({ message = "organized", fileName, title, description, cl
         ) : message === "organized" ? (
           <>
             <p className="text-xl leading-[29px] font-bold text-white">
-              Prontinho — seus arquivos
+              Prontinho! Seus arquivos
               <br />
               estão organizados
             </p>
@@ -62,7 +62,7 @@ function MobileSuccess({ message = "organized", fileName, title, description, cl
           </>
         ) : (
           <p className="text-xl leading-[29px] font-bold text-white">
-            Prontinho — seus arquivos
+            Prontinho! Seus arquivos
             <br />
             estão guardados
           </p>

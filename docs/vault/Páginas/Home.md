@@ -1,20 +1,16 @@
-import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
-import * as HomeStories from './Home.stories';
-
-<Meta of={HomeStories} />
+---
+tags: [pagina]
+---
 
 # Home (`page/Home/GridMode`, `page/Home/ListMode`, `page/Home/Columns Mode/Item1`)
+
+**No Storybook:** `Pages/Home`, histórias `GridMode`, `FirstUpload`, `ListMode`, `ListModeSelected`, `ColumnsMode` (tela cheia).
+
 
 ## Uso
 
 Página inicial do produto — 3 nodes Figma distintos (`1439:19639`, `1439:19791`, `1439:19829`), implementados como **um componente único** parametrizado por `viewMode` (Regra 1/10: a Figma real já modela isso como eixo de visualização via `molecule/view-mode-toggle`, não 3 fluxos separados). Reconciliado em 2026-08-20 via `get_metadata` (recon da camada `pages`) — sem divergência de composição encontrada contra o catálogo já implementado.
 
-<Canvas of={HomeStories.GridMode} />
-<Canvas of={HomeStories.FirstUpload} />
-<Canvas of={HomeStories.ListMode} />
-<Canvas of={HomeStories.ListModeSelected} />
-<Canvas of={HomeStories.ColumnsMode} />
-<Controls />
 
 ## Estados adicionados em 2026-08-23
 
@@ -34,3 +30,5 @@ Nenhum markup próprio duplicado — todas as peças acima já existiam no catá
 ## Terminologia
 
 Nenhum termo proibido (Regra 5). "Bem-vindo ao Kandrive!" e a legenda de boas-vindas são texto Figma-confirmado (`get_design_context`, `page/Home/GridMode`).
+
+Antes era a aba Docs de `Pages/Home` no Storybook; saiu em 2026-09-29 porque as telas de largura fixa quebravam dentro da Docs (ver [[Plano das pendências (2026-09-29)]]).

@@ -1,17 +1,16 @@
-import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
-import * as PaymentStories from './Payment.stories';
-
-<Meta of={PaymentStories} />
+---
+tags: [pagina]
+---
 
 # Payment (`page/Payment /Expanded`, `page/Payment/Colapsed`)
+
+**No Storybook:** `Pages/Payment`, histórias `Expanded`, `Collapsed` (tela cheia).
+
 
 ## Uso
 
 2 nodes Figma distintos (`1439:20215` Expanded, `1439:20485` Colapsed) — mesma composição, só as 3 seções (Seu armazenamento/Seu plano/Pagamento) recolhidas por padrão na variante `Colapsed`. Implementado como **um componente único** parametrizado por `variant` (Regra 1/10).
 
-<Canvas of={PaymentStories.Expanded} />
-<Canvas of={PaymentStories.Collapsed} />
-<Controls />
 
 ## Distinto de PlanSelection
 
@@ -24,3 +23,5 @@ Header (`page="settings"`) + `Breadcrumb` ("Home/Planos Kandrive") + `PageLead` 
 ## Terminologia
 
 Nenhum termo proibido (Regra 5).
+
+Antes era a aba Docs de `Pages/Payment` no Storybook; saiu em 2026-09-29 porque as telas de largura fixa quebravam dentro da Docs (ver [[Plano das pendências (2026-09-29)]]).

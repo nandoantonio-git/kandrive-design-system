@@ -1,18 +1,16 @@
-import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
-import * as StorageStatusStories from './StorageStatus.stories';
-
-<Meta of={StorageStatusStories} />
+---
+tags: [pagina]
+---
 
 # StorageStatus (`page/FunctionStorageStatus/*`)
+
+**No Storybook:** `Pages/StorageStatus`, histórias `Global`, `QuickAccess`, `LongTerm`, `LimitReached`, `ManageSpace`, `LimitReachedMobile` (tela cheia).
+
 
 ## Uso
 
 3 nodes Figma distintos (`1439:19749` Total/Global, `1439:19763` Current/Acesso rápido, `1439:19777` LongoPrazo), mesmo shell (`organism/Header` + `organism/Sidebar` padrão + Breadcrumb + `PageLead` "Armazenamento") em torno de `molecule/StorageStatus` (`variant="expanded"`, já existente por completo) — implementado como **um componente único parametrizado por `scope`** (Regra 1/10, mesmo critério de `Pages/Home`/`viewMode`).
 
-<Canvas of={StorageStatusStories.Global} />
-<Canvas of={StorageStatusStories.QuickAccess} />
-<Canvas of={StorageStatusStories.LongTerm} />
-<Controls />
 
 ## Breadcrumb
 
@@ -24,15 +22,14 @@ O shell padrão em torno do `molecule/StorageStatus`, com a lista de arquivos (`
 
 ## Estados (Figma V0.2.1, 2026-09-24)
 
-<Canvas of={StorageStatusStories.LimitReached} />
-<Canvas of={StorageStatusStories.ManageSpace} />
 
 - **`files`:** a lista abaixo do card (filtro do escopo, filtros, Agrupar, Etiquetar e a lista por armazenamento). No mobile, vira uma tabela em card.
 - **`limitReached`** (`Storage/LimitReached`): no desktop e no tablet, o card entra em alerta. No mobile, a página troca por uma tela própria, sem título nem card: o valor em vermelho, a barra cheia, "Limite atingido (100%)" e os botões Comprar espaço e Gerir espaço.
 - **`manageSpaceOpen`** (`Storage/ManageSpace`): o modal "Liberar espaço" (`Templates/CleanSpaceStorage`) por cima da página. No mobile (estado, o Figma só tem desktop e tablet), o modal ocupa a largura toda.
 
-<Canvas of={StorageStatusStories.LimitReachedMobile} />
 
 ## Terminologia
 
 Nenhum termo proibido (Regra 5).
+
+Antes era a aba Docs de `Pages/StorageStatus` no Storybook; saiu em 2026-09-29 porque as telas de largura fixa quebravam dentro da Docs (ver [[Plano das pendências (2026-09-29)]]).

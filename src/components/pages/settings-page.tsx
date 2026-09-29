@@ -202,7 +202,7 @@ function SettingsPage({
                         <span className="text-sm font-medium text-zinc-950 dark:text-zinc-100">{label}</span>
                         <StorageBar tier={tier} value={18} className="h-2 max-w-none" />
                         <span className="text-[0.6875rem] text-neutral-text-tertiary dark:text-zinc-400">
-                          Estimativa — uso por tier ainda não disponível no backend.
+                          Estimativa: uso por tier ainda não disponível no backend.
                         </span>
                       </div>
                     ))}
@@ -310,7 +310,7 @@ function SettingsPage({
               <SettingsCard title="Excluir conta" caption="Ações irreversíveis e destrutivas">
                 <Callout variant="warning" className="w-full">
                   Excluir sua conta é permanente e não pode ser desfeito. Isso também remove os arquivos guardados no
-                  longo prazo — eles não poderão ser recuperados depois.
+                  longo prazo, e eles não poderão ser recuperados depois.
                 </Callout>
                 <SettingsField label="Confirme sua senha para continuar" type="password" className="w-full tablet:w-80" />
                 <Button variant="destructive">
