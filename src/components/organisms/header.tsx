@@ -103,19 +103,23 @@ function Header({
     <header
       data-slot="header"
       className={cn(
-        "flex h-24 w-full items-center gap-4 tablet:gap-8 border-b border-[var(--neutral-border-default,#707070)] bg-[var(--neutral-surface-background,#f3f3f3)] px-6 py-6",
+        "flex h-24 w-full items-center gap-4 tablet:gap-8 desktop:gap-6 border-b border-[var(--neutral-border-default,#707070)] bg-[var(--neutral-surface-background,#f3f3f3)] px-6 py-6",
+        // Desktop (Figma 1440, `Grid/Desktop`, 2026-09-30): o miolo acompanha o conteúdo da página, centrado acima de 1440px.
+        "desktop:px-[max(1.5rem,calc((100%-var(--container-page))/2+1.5rem))]",
         className
       )}
       {...props}
     >
       {/* Mobile (Figma Header Device=Mobile): ☰ + busca + avatar. A partir de `tablet:`, o layout de sempre. */}
       <HamburgerButton className="tablet:hidden" onClick={onMenuClick} />
-      {/* O logo leva ao início (pedido do usuário, 2026-09-29): um link só, com as duas versões do logo dentro. */}
+      {/* O logo leva ao início (pedido do usuário, 2026-09-29): um link só, com as duas versões do logo dentro.
+          Desktop (`Grid/Desktop`): logo nas colunas 1 e 2 (212px), busca nas colunas 3 a 7 (566px),
+          Organizar e Guardar a partir da coluna 8, ícones terminando na margem direita. */}
       <a
         href={homeHref}
         onClick={onLogoClick}
         aria-label="Kandrive, ir para o início"
-        className="hidden shrink-0 rounded-md outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 tablet:block"
+        className="hidden shrink-0 rounded-md outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 tablet:block desktop:w-[212px]"
       >
         <img src={kandriveLogo} alt="" className="h-11 w-[173px] dark:hidden" />
         {/* Logo sobre fundo escuro (Figma Logo/* dark): "Kan" + canguru (Kan) #F5F4F2, "drive" #337084 (Brand/Primary/Mid), símbolo #337084→#1A5E6E. */}
@@ -124,7 +128,7 @@ function Header({
       <SearchInput
         {...searchProps}
         placeholder={searchProps?.placeholder ?? "Pesquisar"}
-        className="min-w-0 max-w-[560px] flex-1"
+        className="min-w-0 max-w-[560px] flex-1 desktop:max-w-none desktop:w-[566px] desktop:flex-none"
       />
       {page === "navbar" ? (
         <div className="hidden shrink-0 items-center gap-6 tablet:flex">

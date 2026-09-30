@@ -30,6 +30,8 @@ Arquivo do Figma KanDrive V0.2.1, a partir de 2026-09-23.
 - Figma: variantes Tablet do Header renomeadas pelo uso; `FaqQuickLinks` virou variante do `MobileFooterSettings`.
 - Figma: variáveis em três coleções. `Primitives` (89 cores de base), `Color` (120 papéis por nome de papel: `Text/*`, `Surface/*`, `Border/*`, `Feedback/*`…, apontando para as cores de base) e `Dimension` (raio e espaçamento pelo valor em px). Valores praticamente iguais foram juntados (19 junções), e o código acompanhou.
 - Página de Cores em cartões (cor, nome, hex, RGB, cor de base e token CSS), com chave Light/Dark.
+- Header Desktop no grid (Figma e código): logo nas colunas 1 e 2, busca nas colunas 3 a 7 (566px), Organizar e Guardar a partir da coluna 8, ícones terminando na margem direita; acima de 1440px o Header acompanha o conteúdo centralizado.
+- Gerir espaço e Comprar espaço com rótulo de 16px (Regra 4), um sobre o outro na largura da barra; no Figma, `atom/PushButton` trocado por `atom/Button` (Outline e Primary), mantendo as 118 ligações do protótipo.
 - Código no grid Desktop do Figma (1440px): `AppShell` com margem e gap de 24 (antes 48), Sidebar de 212px em todas as vistas (antes 288px, e 150px na vista Colunas), FAQ com conteúdo de 920px e Atalhos de 212px, Pagamento a partir da coluna 3 com os planos em 920px.
 
 #### Corrigido
