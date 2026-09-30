@@ -51,7 +51,6 @@ import SvgFullscreen from "@/assets/icons/Fullscreen.svg?react"
 import SvgHelp from "@/assets/icons/Help.svg?react"
 import SvgAccount from "@/assets/icons/SpatialAudioOff.svg?react"
 import SvgOrganize from "@/assets/icons/Organize.svg?react"
-import SvgGroup from "@/assets/icons/Group.svg?react"
 import SvgShareFile from "@/assets/icons/ShareFile.svg?react"
 import SvgSettings2 from "@/assets/icons/Settings2.svg?react"
 import SvgShare from "@/assets/icons/Share.svg?react"
@@ -62,7 +61,7 @@ import SvgForum from "@/assets/icons/Forum.svg?react"
 import SvgSlideshow from "@/assets/icons/Slideshow.svg?react"
 
 import { cn } from "@/lib/utils"
-import { HomeIcon, KeepIcon, LabelIcon } from "@/components/atoms/animated-icons"
+import { GroupIcon, HomeIcon, KeepIcon, LabelIcon } from "@/components/atoms/animated-icons"
 
 type SvgComponent = FunctionComponent<SVGProps<SVGSVGElement>>
 
@@ -130,7 +129,7 @@ const ICONS = {
   // (SpatialAudioOff.svg) pra não reexportar o asset; só a chave pública mudou.
   Account: SvgAccount,
   Organize: SvgOrganize,
-  Group: SvgGroup,
+  Group: GroupIcon,
   // Etiquetar, Guardar e Home têm estado de hover no Figma (2026-09-29); ver animated-icons.tsx. O antigo TagSet foi consolidado em Label.
   Label: LabelIcon,
   Home: HomeIcon,
