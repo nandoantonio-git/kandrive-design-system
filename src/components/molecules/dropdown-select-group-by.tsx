@@ -163,8 +163,9 @@ function DropdownSelectGroupBy({
           disabled={disabled}
           onClick={() => setExpanded(!expanded)}
           className={cn(
-            "flex w-full items-center gap-2 rounded-md px-3 text-[0.625rem] text-zinc-700 transition-[background-color,opacity] dark:text-zinc-300",
-            "hover:bg-[#71717a33] active:opacity-70 dark:hover:bg-[#a1a1aa33] focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
+            // Figma: o GroupBy não tem estado de hover no contêiner; o hover é a smart animation do ícone (atom/Icon/Group).
+            "group flex w-full items-center gap-2 rounded-md px-3 text-[0.625rem] text-zinc-700 transition-opacity dark:text-zinc-300",
+            "active:opacity-70 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
             mobile && "touch-target"
           )}
         >

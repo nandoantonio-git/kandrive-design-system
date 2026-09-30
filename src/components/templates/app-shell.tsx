@@ -70,7 +70,7 @@ function AppShell({
       {footer ? <div className="mx-auto hidden w-full max-w-(--container-page) px-6 tablet:block desktop:px-12">{footer}</div> : null}
 
       {mobileBottomNav ? (
-        <div className="pointer-events-none sticky bottom-0 tablet:hidden [&>*]:pointer-events-auto">
+        <div className="pointer-events-none sticky bottom-0 z-40 tablet:hidden [&>*]:pointer-events-auto">
           <MobileBottomNav hand={hand} {...mobileBottomNav} />
         </div>
       ) : null}

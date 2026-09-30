@@ -22,7 +22,7 @@ Escopo combinado com o usuário: gate automático, paridade Figma × código, va
 - **No Figma, sem página no Storybook:** `atom/DisclosureHeader`, `atom/FreeModeButton`, `atom/SidebarOption`, `atom/SortButton`, `atom/Divider`, `atom/FileTypeIcon`, `molecule/MenuItemFloating`, `molecule/SearchHeader`, `molecule/StorageStatusHeaderSelector`, `molecule/SkeletonRow`, `molecule/SelectBox`, `organism/DropdownMenuSimple`, `organism/Footer`, `organism/StorageStatusSection`, `organism/PlanCard` e `organism/PageToolbar`. Vários existem no código como parte de outro componente (a barra da Home, o cabeçalho do StorageStatus, o seletor de Configurações); os `SearchBar*` são decisão já registrada (fora da marca). Fica para o usuário decidir quais merecem página própria.
 - **No Figma:** as 20 instâncias que ainda apontavam para o `atom/Icon/TagSet` apagado foram trocadas por `atom/Icon/Label`.
 - **Divergência mantida por decisão:** a legenda "(Acesso rápido+Longo prazo)" do StorageStatus aparece só no Total. O Figma a repete nas abas de tier, onde ela não é verdadeira.
-- **A conferir no Figma:** no `organism/Header`, as variantes `Page=Home, Device=Tablet` (sem botões) e `Page=Settings, Device=Tablet` (botões só com ícone) parecem ter os nomes trocados. O código segue o Tablet com botões só de ícone.
+- ~~**A conferir no Figma:** variantes Tablet do `organism/Header` com nomes trocados~~ ✅ Confirmado pelo uso nas telas e corrigido (2026-09-30): a variante com botões (usada em 26 telas de Home, Organizar, Storage e Guardar) passou a se chamar `Page=Home, Device=Tablet`, e a sem botões (22 telas de Configurações, FAQ e Pagamento), `Page=Settings, Device=Tablet`. As instâncias não mudaram. A variante `Page=HomeAlt, Device=Desktop`, sem nenhuma instância, foi apagada.
 
 ## 3. Storybook
 
@@ -48,3 +48,10 @@ Escopo combinado com o usuário: gate automático, paridade Figma × código, va
 - Contraste por opacidade (ver [[Conflitos Abertos]]).
 
 Ver [[Plano das pendências (2026-09-29)]].
+
+## Depois da auditoria (2026-09-30)
+
+- **Agrupar:** o hover era um fundo cinza por dentro da pílula (extensão do código). O Figma não tem hover no contêiner; tem a smart animation do `atom/Icon/Group` (300ms, ease-in-out): as três bolinhas convergem para o centro. O código agora faz isso, e o fundo interno saiu.
+- **Revisar organização no Mobile:** virou folha de baixo por cima da seleção (decisão do usuário), no Figma (`Organize/ReviewSheet/Mobile`, aberta como sobreposição, com faixa escurecida que fecha e o ✕ que fecha; o ✓ segue para "Revisão concluída") e no código (`pages/organization-page.tsx`, com teste). O fluxo R agora começa na tela de Organização. A tela antiga `Organize/Review/Mobile` ficou no arquivo como referência, fora dos fluxos.
+- **Token que faltava:** `--color-neutral-surface-background` não estava no tema do Tailwind, então a classe `bg-neutral-surface-background` não gerava nada (AppShell, Onboarding, molduras de mobile). Registrado.
+- **16 componentes:** plano em [[Plano dos 16 componentes sem página (2026-09-30)]].

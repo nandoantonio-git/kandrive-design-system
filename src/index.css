@@ -116,6 +116,8 @@
     --color-neutral-text-tertiary: var(--neutral-text-tertiary);
     --color-neutral-text-placeholder: var(--neutral-text-placeholder);
     --color-neutral-surface-elevated: var(--neutral-surface-elevated);
+    /* Faltava (achado em 2026-09-30): sem esta linha, `bg-neutral-surface-background` não gerava nada (AppShell, Onboarding, folha de revisão, molduras de mobile). */
+    --color-neutral-surface-background: var(--neutral-surface-background);
     --color-neutral-surface-background-alt: var(--neutral-surface-background-alt);
     --color-effect-overlay-default: var(--effect-overlay-default);
     --color-effect-overlay-light: var(--effect-overlay-light);
