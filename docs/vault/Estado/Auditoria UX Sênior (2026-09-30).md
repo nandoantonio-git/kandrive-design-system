@@ -223,3 +223,12 @@ Ver [[Auditoria final (2026-09-30)]] para o estado técnico (gate, paridade, pro
 - **Resultado nas telas claras:** abaixo de 12px, Desktop 0%, Tablet 0%, Mobile 0,2% (2 textos). Abaixo de 14px: 34%, 37% e 49%, quase tudo microtexto de 12px, permitido pela escala.
 - **Fica para o lote 3:** o Modo livre (nós do canvas e menu de contexto, com textos de 8 a 11px no Figma e no código) e as páginas de documentação de tipografia do Storybook, que ainda mostram a escala antiga.
 - **Achado de passagem, não corrigido:** "Liberar espaço" e "Comprar espaço" em botões com 13 a 14px nas telas de Armazenamento; a Regra 4 pede 16 para rótulo de botão.
+
+### Tipografia, lote 3, fechamento do C1 e do A7 (2026-09-30)
+- **Figma:** os 20 componentes que ainda tinham texto fora da escala foram migrados: Modo livre (`FreeModeItemNode`, `FreeModeOutputNode`, `NodeContextMenu`, `NodeContextMenuItem`, `OrganizeFreeModeCanvas`), `MethodCard`, `FaqInfoCard`, `FaqInfoCardCollapsed`, `PlanSelection`, `SettingsCard`, `TextField` e outros.
+- **Fontes fora da marca:** 128 textos usavam Manrope (Login, modal de revisão, `UploadPopover`, `ContextHeader`, `TextField`, `atom/Button`), Inter (Modo livre, `ViewModeToggle`, FAQ) e Geist (listas do "Liberar espaço"). Todos passaram para Figtree na escala. Os `SearchBar*`, legado já registrado fora da marca, ficaram como estão.
+- **Botões do Armazenamento:** "Liberar espaço" e "Comprar espaço" no `StorageStatus` e no `StorageTierCard` viraram `atom/Button` MD (16px), no Figma e no código; as 2 ligações de protótipo foram religadas.
+- **Reflow:** nó "Guardar automaticamente" com 200px e título em duas linhas (Figma e código); rótulos do rascunho do filtro em uma linha; seletor "Agrupar" do código com a largura do texto (virava "Agru...").
+- **Storybook:** `Tokens/Typography` documenta a escala de 3 degraus, e a tabela de estilos mostra os novos.
+- **De passagem:** "Acesso rápidp" corrigido em 15 textos.
+- **Resultado:** texto abaixo de 12px nas telas claras, de 30% para praticamente 0%; nenhuma fonte fora da marca nas telas. **C1 e A7 fechados.**

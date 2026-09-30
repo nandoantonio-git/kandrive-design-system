@@ -181,7 +181,7 @@ function OrganizeFreeModeCanvas({
       ) : null}
 
       <div className="absolute top-[278px] left-8 h-[152px] w-[283px] rounded-3xl border border-zinc-500 bg-zinc-500/10">
-        <span className="absolute -top-3 left-[98px] rounded-full bg-zinc-600 px-3 py-1 text-[0.625rem] font-bold text-brand-teal-light">
+        <span className="absolute -top-3 left-[98px] rounded-full bg-zinc-600 px-3 py-1 text-xs font-bold text-brand-teal-light">
           Arquivos
         </span>
         <FreeModeItemNode variant="folder" className="absolute top-[32px] left-[38px] shadow-sm" />
@@ -233,10 +233,10 @@ function OrganizeFreeModeCanvas({
 
       <div className="absolute inset-x-0 bottom-0 flex h-[127px] items-center justify-between border-t border-white/60 bg-zinc-100/90 px-8 pt-[17px] pb-4 dark:bg-zinc-800/90">
         <div>
-          <p className="text-[0.8125rem] text-zinc-600 dark:text-zinc-300">
+          <p className="text-sm text-zinc-600 dark:text-zinc-300">
             {rulesCount} regras · {affectedFilesCount} arquivos afetados · {sizeLabel}
           </p>
-          <p className="pt-1 text-[0.6875rem] leading-4 text-neutral-text-tertiary dark:text-zinc-400">
+          <p className="pt-1 text-xs leading-4 text-neutral-text-tertiary dark:text-zinc-400">
             Você poderá excluir este template depois e reverter a organização.
           </p>
         </div>

@@ -142,12 +142,12 @@ function StorageStatus({
       </div>
 
       <div className="flex items-center gap-2 py-2">
-        {/* Figma (2026-09-29): "Liberar espaço" em todas as abas; "Comprar espaço" só no Total. */}
-        <Button variant="outline" onClick={onManageSpace} className="h-auto px-4 py-1 text-xs">
+        {/* Figma (2026-09-29): "Liberar espaço" em todas as abas; "Comprar espaço" só no Total. Desde 2026-09-30, `atom/Button` MD com rótulo de 16px (Regra 4). */}
+        <Button variant="outline" onClick={onManageSpace}>
           Liberar espaço
         </Button>
         {scope === "global" ? (
-          <Button onClick={onBuySpace} className="h-auto px-4 py-1 text-xs">
+          <Button onClick={onBuySpace}>
             Comprar espaço
           </Button>
         ) : null}

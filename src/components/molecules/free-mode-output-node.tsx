@@ -81,22 +81,22 @@ function FreeModeOutputNode({
         </div>
         <div className="min-w-0 flex-1">
           <p className="truncate text-sm leading-5 font-semibold text-zinc-700 dark:text-zinc-300">Resultado</p>
-          <p className="truncate text-[0.625rem] leading-[15px] text-brand-teal">{folderLabel}</p>
+          <p className="truncate text-xs leading-[15px] text-brand-teal">{folderLabel}</p>
         </div>
         <ChevronGlyph aria-hidden="true" className={cn("size-4 shrink-0 transition-transform duration-200", !isCompact && "rotate-180")} />
       </button>
       <div className="mt-4 flex w-full flex-col border-t border-zinc-500 dark:border-zinc-400 pt-[13px]">
         <div className="flex items-center justify-between">
-          <span className="text-[0.6875rem] leading-[16.5px] text-neutral-text-tertiary dark:text-zinc-400">Arquivos incluídos</span>
-          <span className="text-[0.6875rem] leading-[16.5px] font-semibold text-zinc-700 dark:text-zinc-300">{affectedFilesCount}</span>
+          <span className="text-xs leading-[16.5px] text-neutral-text-tertiary dark:text-zinc-400">Arquivos incluídos</span>
+          <span className="text-xs leading-[16.5px] font-semibold text-zinc-700 dark:text-zinc-300">{affectedFilesCount}</span>
         </div>
         <div className="flex items-center justify-between pt-3">
-          <span className="text-[0.6875rem] leading-[16.5px] text-neutral-text-tertiary dark:text-zinc-400">Tamanho estimado</span>
-          <span className="text-[0.6875rem] leading-[16.5px] font-semibold text-zinc-700 dark:text-zinc-300">{sizeLabel}</span>
+          <span className="text-xs leading-[16.5px] text-neutral-text-tertiary dark:text-zinc-400">Tamanho estimado</span>
+          <span className="text-xs leading-[16.5px] font-semibold text-zinc-700 dark:text-zinc-300">{sizeLabel}</span>
         </div>
         <div className="flex items-center justify-between pt-3">
-          <span className="text-[0.6875rem] leading-[16.5px] text-neutral-text-tertiary dark:text-zinc-400">Regras aplicadas</span>
-          <span className="text-[0.6875rem] leading-[16.5px] font-semibold text-zinc-700 dark:text-zinc-300">{rulesCount}</span>
+          <span className="text-xs leading-[16.5px] text-neutral-text-tertiary dark:text-zinc-400">Regras aplicadas</span>
+          <span className="text-xs leading-[16.5px] font-semibold text-zinc-700 dark:text-zinc-300">{rulesCount}</span>
         </div>
         <div
           className={cn(
@@ -110,7 +110,7 @@ function FreeModeOutputNode({
             aria-expanded={previewExpanded}
             className="flex w-full cursor-pointer items-center justify-between rounded-sm transition-opacity hover:opacity-80 active:opacity-60 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50"
           >
-            <span className="text-[0.6875rem] leading-[16.5px] font-semibold text-zinc-700 dark:text-zinc-300">Prévia de arquivos</span>
+            <span className="text-xs leading-[16.5px] font-semibold text-zinc-700 dark:text-zinc-300">Prévia de arquivos</span>
             <PreviewChevronGlyph
               aria-hidden="true"
               className={cn("size-3 shrink-0 transition-transform", previewExpanded && "rotate-180")}
@@ -118,7 +118,7 @@ function FreeModeOutputNode({
           </button>
           <ul className="mt-2 flex w-full flex-col gap-1">
             {fileNames.map((name) => (
-              <li key={name} className="text-[0.625rem] leading-[15px] text-neutral-text-tertiary dark:text-zinc-400">
+              <li key={name} className="text-xs leading-[15px] text-neutral-text-tertiary dark:text-zinc-400">
                 {name}
               </li>
             ))}
