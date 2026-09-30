@@ -99,7 +99,7 @@ function SaveLongTermFileStorage({
         </div>
         <CloseButton size="md" onClick={onCancel} />
       </div>
-      <SearchInput className="w-full max-w-none" />
+      <SearchInput placeholder="Buscar para guardar" className="w-full max-w-none" />
       <div className="flex flex-col gap-4 tablet:flex-row tablet:gap-8">
         <SaveLongTermFileStorageSelectedFiles files={files} onAddFiles={onAddFiles} />
         <div className="flex flex-1 flex-col gap-3">

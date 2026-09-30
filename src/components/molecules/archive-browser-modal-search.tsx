@@ -50,7 +50,7 @@ function ArchiveBrowserModalSearch({
       {...props}
     >
       {/* Figma template/ArchiveBrowserModal: molecule/SearchHeader (busca, filtros, Agrupar e Etiquetar). */}
-      <SearchHeader placeholder={searchProps?.placeholder ?? "Buscar arquivos, pastas ou templates"} searchProps={searchProps} className="w-full" />
+      <SearchHeader placeholder={searchProps?.placeholder ?? "Buscar para guardar"} searchProps={searchProps} className="w-full" />
       <div className="flex items-center gap-1 overflow-hidden">
         {breadcrumb.map((crumb, index) => (
           <React.Fragment key={crumb}>

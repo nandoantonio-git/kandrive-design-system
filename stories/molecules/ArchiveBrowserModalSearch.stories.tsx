@@ -35,7 +35,7 @@ export const Default: Story = {
   // O campo de busca aceita digitação e a linha com `onClick` é clicável.
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement)
-    const search = canvas.getByRole("searchbox", { name: "Buscar arquivos, pastas ou templates" })
+    const search = canvas.getByRole("searchbox", { name: "Buscar para guardar" })
     await userEvent.type(search, "Festa")
     await expect(search).toHaveValue("Festa")
     await userEvent.click(canvas.getByRole("button", { name: /Ceremonia-001\.jpg/ }))
