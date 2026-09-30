@@ -11,7 +11,8 @@ Terminologia do domínio Kandrive — ver [[Regra 5 - Terminologia]] pra regra c
 | Termo | Onde usar |
 | --- | --- |
 | Acesso rápido | Categoria de armazenamento de curto prazo |
-| Longo prazo | Categoria de armazenamento arquivado |
+| Longo prazo | **Camada** de armazenamento arquivado; só aparece no Status e nas frases de uso. O **lugar** onde se abrem os arquivos é "Guardados" — ver o mapa em [[Regra 5 - Terminologia]] |
+| Guardados | **Lugar** (Sidebar e gaveta) onde ficam os arquivos guardados; nunca nome de camada |
 | Guardar | Ação **específica** de mover arquivos pro longo prazo. Ex.: "Guardar é a ação de mover um arquivo do acesso rápido para o longo prazo." (FAQ real, `faq-info-card-collapsed.tsx`) |
 | Arquivar | Pattern **geral** de organização/agrupamento de arquivos — processo mais amplo, do qual "Guardar" é uma ação específica. **Nunca sinônimo de "Guardar"** — ver [[Regra 5 - Terminologia]] |
 | Pronto para guardar | Status de arquivo elegível pra arquivamento |
