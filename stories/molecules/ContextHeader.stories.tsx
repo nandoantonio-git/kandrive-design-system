@@ -33,7 +33,7 @@ type Story = StoryObj<typeof meta>
 
 /** Vivo — "Limpar seleção" recolhe o header (`state: "collapsed"`); volte pelos Controls. */
 export const Default: Story = {
-  args: { onDelete: fn() },
+  args: { onDelete: fn(), onOrganize: fn(), onSave: fn() },
   render: function Render(args) {
     const [, updateArgs] = useArgs()
     return (
@@ -47,6 +47,10 @@ export const Default: Story = {
   // As ações disparam seus callbacks; "Limpar seleção" recolhe o header.
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole("button", { name: "Organizar" }))
+    await expect(args.onOrganize).toHaveBeenCalledOnce()
+    await userEvent.click(canvas.getByRole("button", { name: "Guardar" }))
+    await expect(args.onSave).toHaveBeenCalledOnce()
     await userEvent.click(canvas.getByRole("button", { name: "Excluir" }))
     await expect(args.onDelete).toHaveBeenCalledOnce()
     const clear = canvas.getByRole("button", { name: "Limpar seleção" })

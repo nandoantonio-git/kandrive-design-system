@@ -243,3 +243,9 @@ Ver [[Auditoria final (2026-09-30)]] para o estado técnico (gate, paridade, pro
 - **Slide 03:** o cartão do teste troca "+37% a +42% de tempo" por "4 de 4 travaram em Organizar" e "leitura qualitativa"; linha nova "Ainda não validado" com o próximo passo.
 - **Não inventado:** sucesso por tarefa e erros por participante não existem nos dados do artigo; ficaram declarados como lacuna em vez de estimados.
 - **To-do futuro (decidido em 2026-09-30):** o reteste (3 a 5 pessoas, as mesmas 3 tarefas, protótipo atual) sai desta rodada de ajustes e fica para depois. O C3 conta como fechado para a publicação; o reteste é o que o fecha de vez.
+
+### A3 e A2 (2026-09-30)
+- **A3, vocabulário:** mapa ação, lugar e camada na Regra 5 e no Glossário. Guardar é a ação, **Guardados** é o lugar (mantido por decisão do usuário, porque Total, Acesso rápido e Longo prazo já separam as camadas no Status) e Longo prazo é só a camada. Grafia "Longo prazo" e "Acesso rápido" padronizada (22 textos no Figma e o crumb do Status no código). A frase de ligação entra com o A4, no painel "Por que guardar?".
+- **A2, hierarquia de ação:** Adicionar é o único primário do Header e da barra lateral em uso normal. Organizar e Guardar em contorno (`atom/PushButton` BorderedNeutral no Figma, `variant="outline"` no código). "Comprar espaço" da barra lateral só a partir de 80% de uso; o botão do aviso de limite e o da aba Total do Status continuam. `ContextHeader` com Organizar e Guardar no lugar de Compartilhar (fora do escopo, slide 07).
+- **Dado de exemplo:** "20 TB de 2 GB usados" corrigido para "1 TB de 2 TB usados" em 61 telas.
+
