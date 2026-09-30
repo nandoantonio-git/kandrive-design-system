@@ -237,3 +237,9 @@ Ver [[Auditoria final (2026-09-30)]] para o estado técnico (gate, paridade, pro
 - **Case Study:** slide novo `07 / Escopo` ("O que entrou e o que ficou de fora"), com dois cartões: o que entrou no case e o que ficou de fora por enquanto (Compartilhados, Recentes, Favoritos e Lixeira; compartilhar, permissões e versões; status de backup por projeto; cadastro e recuperação de senha; busca com resultados reais). Navegação e Entrega viraram 08 e 09.
 - **Protótipo:** sobreposição `Overlay/Fora do escopo` (Desktop e Mobile), com o `organism/Dialog` informativo e o botão "Entendi" fechando. Compartilhados, Recentes, Favoritos e Lixeira da barra lateral (Desktop e Tablet), da barra inferior e da gaveta do Mobile abrem o aviso: 245 ligações nas telas claras. O avaliador não cai mais num clique morto.
 - O `organism/Dialog` não tem variante Info para Mobile; o aviso do Mobile usa a variante Desktop com 342px. Criar a variante fica como M-item. **C4 fechado.**
+
+### C3, resultado do teste (2026-09-30), parcial
+- **CASE-STUDY.md:** o resultado virou leitura qualitativa (o que aconteceu em cada tarefa e em quantos participantes), com os tempos como apoio e o "esperado" explicado como expectativa da equipe antes do teste, não referência externa. Seção nova "O que ainda não foi validado": sem reteste, sucesso e erros por participante não registrados, Mariana e Rafael fora do recrutamento, Tablet e Dark sem teste.
+- **Slide 03:** o cartão do teste troca "+37% a +42% de tempo" por "4 de 4 travaram em Organizar" e "leitura qualitativa"; linha nova "Ainda não validado" com o próximo passo.
+- **Não inventado:** sucesso por tarefa e erros por participante não existem nos dados do artigo; ficaram declarados como lacuna em vez de estimados.
+- **Continua aberto:** o reteste (3 a 5 pessoas, as mesmas 3 tarefas, protótipo atual). Só ele fecha o C3 de vez.
