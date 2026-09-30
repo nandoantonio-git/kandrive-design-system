@@ -107,8 +107,8 @@ function HomePage({
       data-slot="home-page"
       className={cn("bg-zinc-200 dark:bg-zinc-900", className)}
       headerProps={{ page: "navbar" }}
-      // Colunas (Figma `Home/ColumnsDetails/Desktop`): a barra lateral usa o tamanho Tablet (150px) também no desktop, para abrir espaço às duas colunas.
-      sidebar={<Sidebar {...sidebarProps} className={cn(viewMode === "columns" && "desktop:w-[150px] desktop:px-2", sidebarProps?.className)} />}
+      // Desktop (Figma 1440, `Grid/Desktop`): a Sidebar tem 212px em todas as vistas, inclusive Colunas (2026-09-30).
+      sidebar={<Sidebar {...sidebarProps} />}
       mobileTabBar={{ active: "home" }}
       mobileBottomNav={{ action: "add", active: "pessoal" }}
       // Figma: organism/Footer só nas telas Tablet da Home (no desktop a Home não tem rodapé).

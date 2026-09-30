@@ -54,7 +54,7 @@ function FaqFastLinks({ links = DEFAULT_LINKS, className, ...props }: FaqFastLin
     <div
       data-slot="faq-fast-links"
       className={cn(
-        "flex w-[158px] flex-col items-center justify-center rounded-3xl py-6 shadow-[0px_2px_4px_rgba(9,9,11,0.08)] dark:shadow-[0px_2px_4px_rgba(9,9,11,0.4)]",
+        "flex w-[212px] flex-col items-center justify-center rounded-3xl py-6 shadow-[0px_2px_4px_rgba(9,9,11,0.08)] dark:shadow-[0px_2px_4px_rgba(9,9,11,0.4)]",
         className
       )}
       {...props}

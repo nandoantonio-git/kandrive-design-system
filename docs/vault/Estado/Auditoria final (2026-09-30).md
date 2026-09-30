@@ -78,7 +78,7 @@ Ver [[Plano das pendências (2026-09-29)]].
 - Causa: nas telas de arquivos (Home, Organizar, Longo prazo, Armazenamento), a `organism/Sidebar` estava instanciada na variante Tablet (150px), e cada tela compensava de um jeito (conteúdo em 198, 258 ou 324; margens de 22 a 48).
 - Grid acordado: estilo `Grid/Desktop`, 12 colunas, margem 24, gutter 24 (colunas de 94px). Barra lateral nas colunas 1 e 2 (24→236, 212px), conteúdo nas colunas 3 a 12 (260→1416). No FAQ, a coluna "Atalhos" ocupa as colunas 11 e 12; no Pagamento, os planos ocupam 8 colunas (260→1180).
 - Aplicado nas 58 telas Desktop (claro e Dark): barra na variante Desktop, contêiner e conteúdo nas colunas, Configurações e FAQ de margem 48 para 24, Header de volta a x=0 no Armazenamento/Longo prazo, conteúdo que passava da tela recortado ou a tela passou a acompanhar a altura, `ViewModeToggle` na largura do conteúdo, `PageLead` encostado na coluna 3, ilustração da `Home/FirstUpload` centrada na área de conteúdo e 5 modais vazios (altura 0) apagados no Armazenamento. Conferido por medição (todas as bordas nas colunas) e por captura.
-- Pendente no código: o `AppShell` usa margem de 48 e 48 entre a barra e o conteúdo no Desktop, e a barra de arquivos tem 288px (150px na vista Colunas). O Figma agora é 24/24 com barra de 212px.
+- ✅ Código alinhado no mesmo dia, com o Desktop do Figma em 1440px: `AppShell` com margem e gap de 24, Sidebar de 212px em todas as vistas, FAQ com 920px + Atalhos 212px, Pagamento a partir da coluna 3 (planos em 920px). Conferido por captura a 1440px (Home, Colunas, FAQ, Pagamento).
 
 ## Fechamento (2026-09-30)
 
