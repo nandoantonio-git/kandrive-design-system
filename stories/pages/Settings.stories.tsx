@@ -81,6 +81,17 @@ export const DeleteAccount: Story = {
     design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1745-12111" },
   },
   render: controlled("excluir-conta"),
+  // "Excluir conta" abre o Dialog; Cancelar fecha sem excluir.
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    // O item "Excluir conta" da barra lateral também é um botão; o da página é o destrutivo.
+    const action = canvas.getAllByRole("button", { name: "Excluir conta" }).find((b) => b.dataset.variant === "destructive")!
+    await userEvent.click(action)
+    const dialog = await canvas.findByRole("alertdialog", { name: "Excluir conta?" })
+    await expect(dialog).toBeVisible()
+    await userEvent.click(within(dialog).getByRole("button", { name: "Cancelar" }))
+    await expect(canvas.queryByRole("alertdialog")).toBeNull()
+  },
 }
 
 // ─── Responsividade (2026-09-24) ─────────────────────────────────────────

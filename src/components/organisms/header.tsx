@@ -83,6 +83,8 @@ export interface HeaderProps extends React.ComponentProps<"header"> {
  *
  * 🧩 Regra 8: hover/pressed do avatar (mobile) não desenhados no Figma.
  */
+const HEADER_ACTION = "group h-10 gap-2 px-3 desktop:px-4"
+
 function Header({
   page = "navbar",
   searchProps,
@@ -124,13 +126,15 @@ function Header({
         className="min-w-0 max-w-[560px] flex-1"
       />
       {page === "navbar" ? (
-        <div className="hidden shrink-0 items-center gap-5 tablet:flex">
-          {/* Tablet: só o ícone (Figma Header Device=Tablet); o rótulo aparece a partir de `desktop:`. */}
-          <Button onClick={onOrganize} aria-label="Organizar">
-            <ICONS.Organize className="size-4" aria-hidden="true" />
+        <div className="hidden shrink-0 items-center gap-6 tablet:flex">
+          {/* Tablet: só o ícone (Figma Header Device=Tablet); o rótulo aparece a partir de `desktop:`.
+              Figma (2026-09-29): 40px de altura, 16px de padding lateral, 8px entre ícone e rótulo, 24px entre os botões.
+              `group` faz o ícone animar junto com o hover e o foco do botão (smart animation do Figma, ver animated-icons.tsx). */}
+          <Button onClick={onOrganize} aria-label="Organizar" className={HEADER_ACTION}>
+            <ICONS.Organize className="size-[18px]" aria-hidden="true" />
             <span className="hidden desktop:inline">Organizar</span>
           </Button>
-          <Button onClick={onSave} aria-label="Guardar">
+          <Button onClick={onSave} aria-label="Guardar" className={HEADER_ACTION}>
             <ICONS.Keep className="size-4" aria-hidden="true" />
             <span className="hidden desktop:inline">Guardar</span>
           </Button>

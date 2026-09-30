@@ -33,6 +33,11 @@ export const Default: Story = {
     await expect(toggle).toHaveAttribute("aria-expanded", "false")
     await userEvent.click(toggle)
     await expect(toggle).toHaveAttribute("aria-expanded", "true")
+    // O cabeçalho "Resultado" recolhe o nó inteiro.
+    const header = within(canvasElement).getByRole("button", { name: /Resultado/ })
+    await expect(header).toHaveAttribute("aria-expanded", "true")
+    await userEvent.click(header)
+    await expect(header).toHaveAttribute("aria-expanded", "false")
   },
 }
 export const Compact: Story = { args: { variant: "compact" } }

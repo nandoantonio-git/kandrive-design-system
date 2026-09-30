@@ -16,6 +16,7 @@ import { Switch } from "@/components/atoms/switch"
 import { Button } from "@/components/atoms/button"
 import { PlanSelection, type PlanInterval } from "@/components/organisms/plan-selection"
 import { StorageBar } from "@/components/molecules/storage-bar"
+import { Dialog } from "@/components/organisms/dialog"
 
 export type { SettingsSection }
 
@@ -55,6 +56,8 @@ export interface SettingsPageProps extends React.ComponentProps<"div"> {
   onNavigateSection?: (section: SettingsSection) => void
   planInterval?: PlanInterval
   onPlanIntervalChange?: (interval: PlanInterval) => void
+  /** "Excluir conta" confirmado no `Dialog` (a exclusão em si fica com quem usa a página). */
+  onDeleteAccount?: () => void
 }
 
 /**
@@ -108,9 +111,12 @@ function SettingsPage({
   user = { name: "Cassandra Ribeiro", email: "cassandra@kandrive.com.br" },
   onEditProfile,
   onSwitchAccount,
+  onDeleteAccount,
   className,
   ...props
 }: SettingsPageProps) {
+  // "Excluir conta" pede confirmação no organism/Dialog, como a sobreposição do protótipo (Overlay/Excluir conta).
+  const [confirmingDelete, setConfirmingDelete] = React.useState(false)
   const { hand, setHand } = usePreferences()
   // Escolhas de Aparência em memória: sem isso os rádios ficavam travados na opção inicial.
   const [theme, setTheme] = React.useState("claro")
@@ -313,10 +319,23 @@ function SettingsPage({
                   longo prazo, e eles não poderão ser recuperados depois.
                 </Callout>
                 <SettingsField label="Confirme sua senha para continuar" type="password" className="w-full tablet:w-80" />
-                <Button variant="destructive">
+                <Button variant="destructive" onClick={() => setConfirmingDelete(true)}>
                   Excluir conta
                 </Button>
               </SettingsCard>
+            ) : null}
+            {confirmingDelete ? (
+              <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-6">
+                <Dialog
+                  type="destructive"
+                  className="w-[342px] tablet:w-[480px]"
+                  onCancel={() => setConfirmingDelete(false)}
+                  onConfirm={() => {
+                    setConfirmingDelete(false)
+                    onDeleteAccount?.()
+                  }}
+                />
+              </div>
             ) : null}
           </div>
         </div>
