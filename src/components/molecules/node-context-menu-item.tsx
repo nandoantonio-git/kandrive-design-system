@@ -180,7 +180,7 @@ function NodeContextMenuItem({
         <span className="truncate">{filled ? value : label}</span>
         {hasChevron ? (
           <ChevronDownIcon
-            className={cn("size-3 shrink-0 transition-transform", expanded && "rotate-180")}
+            className={cn("size-3 shrink-0 transition-transform motion-reduce:transition-none", expanded && "rotate-180")}
             aria-hidden="true"
           />
         ) : null}

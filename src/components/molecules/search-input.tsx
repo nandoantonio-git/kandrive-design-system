@@ -85,7 +85,7 @@ function SearchInput({
       />
       {loading ? (
         <Loader2Icon
-          className="pointer-events-none absolute left-3 size-4 animate-spin text-neutral-text-tertiary dark:text-zinc-400"
+          className="pointer-events-none absolute left-3 size-4 animate-spin motion-reduce:animate-none text-neutral-text-tertiary dark:text-zinc-400"
           aria-hidden="true"
         />
       ) : (

@@ -28,6 +28,8 @@ Arquivo do Figma KanDrive V0.2.1, a partir de 2026-09-23.
 - Case Study: slide novo `08 / Personas` ("Quem é atendido por quê"), ligando Bruna, Mariana e Rafael ao que o case entrega e ao que ficou de fora; o deck passa a ter 10 slides (Navegação é o 09 e Entrega o 10). Slide 06 com miniaturas maiores, regeradas das telas atuais, e uma legenda de insight por experiência; slide 10 com números de valor (188 componentes no Figma e 139 em React, 494 testes, 179 telas, 92 cores base e 121 papéis) e o Graphify como nota de processo; texto mínimo de 20px nos slides 03, 09 e 10 (árvore do código com as contagens atuais).
 - `organism/Dialog` Info Mobile (342px), no Figma e no código, e o aviso "Fora do escopo deste case" do Mobile passa a usá-lo. `atom/PushButton` marcado como obsoleto na descrição (214 instâncias dentro de componentes ainda o usam; a migração fica como to-do futuro).
 - Revisar organização (M1): a página atrás do modal já aparece esmaecida no Figma; nada a mudar.
+- Movimento reduzido (auditoria UX, A8): `npm run check:motion` (`scripts/check-motion.mjs`) falha quando há transição de transform ou `animate-*` sem `motion-reduce`/`motion-safe`; 14 trechos corrigidos (setas de abrir e fechar, botões, rádio, spinner da busca e barra inferior do Mobile).
+- Figma: tela de limite atingido com a barra lateral coerente com o aviso (barras cheias, 30 GB de 30 GB e 60 GB de 60 GB); 125 cores soltas ligadas a variáveis (91 textos `#09090b` em `Text/Primary` e 34 preenchimentos `#007e96` em `Brand/Primary/Action`).
 
 #### Alterado
 

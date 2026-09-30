@@ -81,7 +81,7 @@ function CollapsibleSection({
         <span className="flex items-center gap-4">
           {!open && summary ? <span className="text-sm text-neutral-text-tertiary dark:text-zinc-400">{summary}</span> : null}
           <ChevronDown
-            className={cn("size-4 text-neutral-text-tertiary dark:text-zinc-400 transition-transform", open && "rotate-180")}
+            className={cn("size-4 text-neutral-text-tertiary dark:text-zinc-400 transition-transform motion-reduce:transition-none", open && "rotate-180")}
             aria-hidden="true"
           />
         </span>

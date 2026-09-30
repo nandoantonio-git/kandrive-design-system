@@ -174,7 +174,7 @@ function DropdownSelectGroupBy({
           <Icon name="Group" className="size-3.5 shrink-0" />
           <span className="min-w-0 flex-1 truncate text-left">{value ?? "Agrupar"}</span>
           <ChevronDownIcon
-            className={cn("size-3 shrink-0 transition-transform", expanded && "rotate-180")}
+            className={cn("size-3 shrink-0 transition-transform motion-reduce:transition-none", expanded && "rotate-180")}
             aria-hidden="true"
           />
         </button>

@@ -134,7 +134,7 @@ function MobileBottomNav({
           onClick={onAction}
           aria-label={action === "add" ? "Adicionar" : "Confirmar"}
           className={cn(
-            "absolute top-0 flex size-[62px] cursor-pointer items-center justify-center rounded-full bg-brand-teal-action text-brand-teal-foreground shadow-[0_0_4px_rgba(0,0,0,0.25)] transition-[background-color,transform] hover:bg-brand-teal-action/90",
+            "absolute top-0 flex size-[62px] cursor-pointer items-center justify-center rounded-full bg-brand-teal-action text-brand-teal-foreground shadow-[0_0_4px_rgba(0,0,0,0.25)] transition-[background-color,transform] motion-reduce:transition-none hover:bg-brand-teal-action/90",
             "focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none motion-safe:active:scale-95",
             left ? "left-4" : "right-4"
           )}
@@ -149,7 +149,7 @@ function MobileBottomNav({
           onClick={onCancel}
           aria-label="Cancelar"
           className={cn(
-            "absolute top-[9px] flex size-11 cursor-pointer items-center justify-center rounded-full bg-neutral-surface-constant-light text-destructive shadow-[0_0_4px_rgba(0,0,0,0.25)] transition-[opacity,transform] hover:opacity-80",
+            "absolute top-[9px] flex size-11 cursor-pointer items-center justify-center rounded-full bg-neutral-surface-constant-light text-destructive shadow-[0_0_4px_rgba(0,0,0,0.25)] transition-[opacity,transform] motion-reduce:transition-none hover:opacity-80",
             "focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none motion-safe:active:scale-95",
             left ? "left-[94px]" : "right-[94px]"
           )}

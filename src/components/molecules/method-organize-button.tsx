@@ -66,7 +66,7 @@ function MethodOrganizeButton({ method = "projeto", withChevron = true, expanded
         {tag}
       </span>
       {withChevron ? (
-        <svg aria-hidden="true" viewBox="0 0 10 10" className={cn("size-2.5 shrink-0 text-neutral-text-tertiary transition-transform", expanded && "rotate-180")}>
+        <svg aria-hidden="true" viewBox="0 0 10 10" className={cn("size-2.5 shrink-0 text-neutral-text-tertiary transition-transform motion-reduce:transition-none", expanded && "rotate-180")}>
           <path d="M1 3.5 5 7l4-3.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       ) : null}

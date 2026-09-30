@@ -14,7 +14,10 @@ O que ficou de fora da rodada final da auditoria UX ([[Auditoria UX Sênior (202
 ## Sistema
 - **M7, `atom/IconButton` com 66 variantes:** o ícone deveria ser uma propriedade de troca de instância.
 - **Migrar o `atom/PushButton`:** 214 instâncias dentro de Header, `OrganizePanelDropZone`, `PreviewPane`, modais e Sidebar ainda o usam. Ele já está marcado como obsoleto na descrição.
-- **M4, higiene das camadas:** cerca de 40% com nome genérico (`Frame 58`, `Group 12`) e hex soltos no Figma.
+- **M4, higiene das camadas:** 34% dos nós com nome genérico (`Frame 58`, `Group 12`), quase todos dentro de instâncias. Em 2026-09-30 os hex soltos mais comuns foram ligados (125 cores); sobram 464 preenchimentos soltos de 16.952 (cores de vidro e sombra, em sua maioria).
 - **M5, tokens pouco usados:** 14 dos 121 papéis de cor têm 3 usos ou menos.
-- **Movimento reduzido:** teste de história que garanta `prefers-reduced-motion` nas animações de ícone.
 - **Medição de contraste por camada no Figma:** refazer com o fundo real de cada botão.
+
+## Feito depois da rodada final (2026-09-30)
+- Teste de movimento reduzido: `npm run check:motion`.
+- Site publicado verificado: as histórias novas (`LongTermAfterSave`, `NearLimit`, `InfoMobile`) estão no ar.
