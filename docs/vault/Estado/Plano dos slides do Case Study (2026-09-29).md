@@ -32,6 +32,17 @@ Página `🎞️ Case Study · KanDrive` (`3214:2`), 8 slides 1920×1080. Pedido
 - **06** — só os recortes; o texto não mudou.
 - Efeito colateral: a mensagem de sucesso mobile da tela `LongTermStorage/Stored/Mobile` estava com o texto antigo no Figma ("Prontinho, arquivos guardados"); agora é "Prontinho — seus arquivos estão guardados", igual ao código.
 
+## Slides 07 e 08 preenchidos (2026-09-29, noite)
+
+- **07 Figma:** mapa das páginas do arquivo, montado em texto no próprio slide (página e para que serve).
+- **07 Storybook:** captura da barra lateral (Introdução, camadas e Pages).
+- **07 Código:** árvore de `src/components` com a contagem por camada (35 atoms, 46 molecules, 29 organisms, 7 templates, 9 pages, 9 tokens), em texto.
+- **07 Vault:** captura da nota Tom de Voz no GitHub, no padrão "Prontinho! ".
+- **08 Interface + documentação:** captura da Docs do `Header` (canvas, props, `homeHref`).
+- **08 Graphify:** grafo atualizado em 29/09/2026 (3.034 nós, 3.308 ligações), com a data no recorte.
+
+Falta só o **02** (ilustrações e fotos que dependem do usuário).
+
 ## O que ainda não temos (placeholders que ficaram) e como preencher
 
 | Slide | Placeholder | Falta | Como produzir (proposta) |
