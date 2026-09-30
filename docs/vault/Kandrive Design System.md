@@ -62,6 +62,7 @@ Ver [[Camadas Atômicas]] pro catálogo completo (84 componentes). Notas própri
 
 - [[Auditoria final (2026-09-30)]]: gate, paridade Figma × código, Storybook, vault e protótipo, com o que ficou para o usuário
 - [[Plano dos 16 componentes sem página (2026-09-30)]]: os 12 componentes extraídos em 3 lotes e os 4 sem uso
+- [[Auditoria UX Sênior (2026-09-30)]]: olhar de portfólio sobre narrativa, evidência, IA, interação, acessibilidade e sistema; 4 críticos, 8 altos e plano em 3 ondas
 - [[Plano da taxonomia de variáveis (2026-09-30)]]: três coleções no Figma (Primitives, Color, Dimension), junções e a tabela de renomeação, em aprovação
 - Changelog: `CHANGELOG.md` na raiz do projeto é a fonte; aparece na página Changelog do Storybook e na página 📝 Changelog do Figma (por versão do Figma e por dia)
 - [[Plano das pendências (2026-09-29)]]: o que foi decidido e feito na revisão final
