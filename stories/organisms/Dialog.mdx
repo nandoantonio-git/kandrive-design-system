@@ -21,6 +21,7 @@ Diálogo modal com duas finalidades:
 
 <Canvas of={DialogStories.DestructiveMobile} />
 <Canvas of={DialogStories.Info} />
+<Canvas of={DialogStories.InfoMobile} />
 <Canvas of={DialogStories.CustomText} />
 
 ## Composição
@@ -28,7 +29,7 @@ Diálogo modal com duas finalidades:
 | Parte | Figma | Código |
 | --- | --- | --- |
 | Painel | `Surface/Card`, raio 20, padding 28, espaço 16, sombra 0 12 32 (preto 18%) | `bg-neutral-surface-card rounded-[20px] p-7 gap-4` |
-| Largura | 480 (Desktop), 342 (Mobile), 440 (Info) | prop `device` e `type` |
+| Largura | 480 (Destrutivo Desktop), 440 (Info Desktop), 342 (Mobile, nos dois) | prop `device` e `type` |
 | Título | 28px bold (destrutivo), 26px bold (info), `Text/Primary` | `h2` |
 | Descrição | 16px, `Text/Secondary` | `p` |
 | Ações | à direita, 12px entre elas: `atom/Button` Outline + Destructive, ou Primary | `Button` |

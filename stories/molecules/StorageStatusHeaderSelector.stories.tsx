@@ -15,7 +15,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  render: (args) => {
+  render: function Render(args) {
     const [scope, setScope] = useState<StorageScope>(args.scope)
     return <StorageStatusHeaderSelector scope={scope} onScopeChange={setScope} />
   },

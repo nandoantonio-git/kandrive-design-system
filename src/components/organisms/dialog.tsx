@@ -9,7 +9,7 @@ type DialogDevice = "desktop" | "mobile"
 export interface DialogProps extends Omit<React.ComponentProps<"div">, "title"> {
   /** Figma `Type`: `destructive` confirma uma ação irreversível (Cancelar + ação); `info` é um aviso com uma ação só. */
   type?: DialogType
-  /** Figma `Device`: largura de 480px (desktop) ou 342px (mobile). O `info` só existe em desktop no Figma (440px). */
+  /** Figma `Device`: largura de 480px no destrutivo e 440px no info (desktop), 342px nos dois (mobile). */
   device?: DialogDevice
   title?: React.ReactNode
   description?: React.ReactNode
@@ -37,9 +37,9 @@ const DEFAULT_TEXT: Record<DialogType, { title: string; description: string; con
 }
 
 /**
- * organism/Dialog (`3334:37789`) — Figma-confirmado, 3 variantes:
+ * organism/Dialog (`3334:37789`) — Figma-confirmado, 4 variantes:
  * `Type=Destructive, Device=Desktop|Mobile` (Excluir conta) e
- * `Type=Info, Device=Desktop` (Falar com o suporte, mock). Nasceu das
+ * `Type=Info, Device=Desktop|Mobile` (Falar com o suporte, mock; Fora do escopo deste case). Nasceu das
  * sobreposições do protótipo da 📐Pages e foi integrado à ✨Design System
  * em 2026-09-29.
  *
@@ -97,7 +97,7 @@ function Dialog({
       }}
       className={cn(
         "flex flex-col gap-4 rounded-[20px] bg-neutral-surface-card p-7 shadow-[0_12px_32px_rgba(0,0,0,0.18)]",
-        isDestructive ? (device === "mobile" ? "w-[342px]" : "w-[480px]") : "w-[440px]",
+        device === "mobile" ? "w-[342px]" : isDestructive ? "w-[480px]" : "w-[440px]",
         "max-w-full",
         className
       )}

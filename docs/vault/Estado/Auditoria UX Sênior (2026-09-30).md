@@ -254,3 +254,10 @@ Ver [[Auditoria final (2026-09-30)]] para o estado técnico (gate, paridade, pro
 - Notificação depois de concluir em `Storage/LongTerm/Desktop` (claro e Dark): "Prontinho! 3 arquivos guardados e 2,6 GB liberados. Para resgatar, é só solicitar em Guardados." Sem tela nova e sem componente novo: instância do `PopoverNotification`. A tela completa `LongTermStorage/Stored/Desktop` ficou como to-do futuro.
 - Header: as 20 instâncias nas telas que ainda tinham o estilo antigo (teal cheio) passaram a contorno.
 
+### Fechamento da rodada final (2026-09-30)
+- **M1:** a página atrás do modal "Revisar organização" já aparece esmaecida no Figma; o painel por trás, com Cancelar e Continuar esmaecidos, é intencional (a revisão é uma etapa do fluxo). Sem mudança.
+- **Dialog Info Mobile** criado (342px), com o aviso do C4 usando-o; o código acompanhou. `atom/PushButton` **não foi removido**: 214 instâncias dentro de componentes ainda o usam; ficou marcado como obsoleto e a migração foi para o to-do futuro.
+- **A6:** slide `08 / Personas` (Bruna atendida, Mariana em parte, Rafael não atendido neste recorte), a partir do `CASE-STUDY.md`, sem dado novo. Deck em 10 slides.
+- **M8, M9, M10:** slide 06 com miniaturas maiores regeradas das telas atuais (as antigas mostravam o Header teal e a tela `Organize/Review/Mobile` removida) e legenda de insight; slide 10 com números de valor recontados hoje (188 componentes no Figma, 139 em React, 494 testes, 179 telas, 92 cores base, 121 papéis), Graphify como nota; texto mínimo de 20px nos slides 03, 09 e 10.
+- **Estado da auditoria:** C1 a C4, A2, A3, A4, A6, A7, A8, M1, M2, M8, M9 e M10 fechados ou resolvidos; C3 fechado para a publicação, com o reteste pendente. O que sobrou está em [[To-do futuro (2026-09-30)]].
+

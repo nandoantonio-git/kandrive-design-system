@@ -16,7 +16,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  render: (args) => {
+  render: function Render(args) {
     const [mode, setMode] = useState<ViewMode>("grid")
     return <PageToolbar {...args} viewMode={mode} onViewModeChange={setMode} />
   },

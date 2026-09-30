@@ -52,6 +52,11 @@ cliente/processo; lida com documentos e provas digitais sensíveis.
 Precisa de sigilo, controle de acesso, versionamento e retenção — pra ele
 o armazenamento envolve risco jurídico, não só conveniência.
 
+O slide 08 do Case Study liga cada persona ao que o protótipo entrega e ao que
+ficou de fora: Bruna é atendida, Mariana em parte (custo e uso, sem status de
+backup por projeto) e Rafael não é atendido neste recorte (sem compartilhar,
+permissões e versões).
+
 ## Teste de usabilidade — resultados
 
 Teste moderado com 4 participantes e 3 tarefas, num protótipo de média
@@ -123,6 +128,12 @@ veio da falta de retorno depois da ação.
 7. Diferenciar claramente armazenamento ativo, longo prazo, guardado,
    backup e arquivo recuperável — cada um com terminologia própria, sem
    sobreposição.
+
+No protótipo atual, as decisões 1, 3 e 4 aparecem assim: o rótulo **Total** no
+Status; Organizar e Guardar na barra de seleção, junto dos arquivos (e em
+contorno no Header, para que Adicionar seja o único botão principal); e o
+prazo de resgate (e-mail em até 8h) em destaque antes de confirmar, com um
+aviso depois de guardar. Nenhuma delas foi retestada com pessoas.
 
 Essas decisões viraram requisitos de conteúdo/terminologia diretamente
 verificáveis nos componentes deste design system — ver `Regra 5 —
