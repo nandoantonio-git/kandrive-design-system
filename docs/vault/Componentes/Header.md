@@ -30,3 +30,5 @@ tags: [componente, organism]
 - O logo é um link para o início (`homeHref`, `onLogoClick`), com rótulo "Kandrive, ir para o início".
 - Organizar e Guardar: 40px de altura, 8px entre ícone e rótulo, 24px entre os botões (Figma). Os ícones Guardar e Etiquetar animam no hover do botão, com o estado Hover que o Figma define.
 - No Figma, as variantes Tablet tinham os nomes trocados; foi corrigido: `Page=Home, Device=Tablet` tem os botões, `Page=Settings, Device=Tablet` não. A variante `HomeAlt`, sem uso, foi apagada.
+- A animação dos ícones Organizar e Guardar mora no `atom/IconButton` (`174:384`, Style=OnDark, Default → Hover, smart animate 300ms ease-out), que é o ícone dos dois botões do Header no Figma. O Organizar do Header passou a usar `OrganizeIcon` (desenho do `IconButton`, sem a seta do `atom/Icon/Organize`), animado; o Guardar passou para ease-out.
+- A engrenagem e o ? levam às Configurações e ao FAQ em todas as telas Desktop do protótipo.

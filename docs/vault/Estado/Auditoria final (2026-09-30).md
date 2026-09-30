@@ -63,6 +63,16 @@ Ver [[Plano das pendências (2026-09-29)]].
 - Resultado: 735 navegações, nenhum destino inexistente, 83 de 96 telas claras alcançáveis pelos fluxos (eram 78). As 13 restantes são variações de estado.
 - Sem ação: os 8 botões de salvar das Configurações (não há tela de destino) e o breadcrumb "Home" na própria Home.
 
+## Jornadas Desktop × Mobile (2026-09-30, terceira rodada)
+
+- **Fluxos:** os de Tablet (Entrar, Configurações, Ajuda) e o do Escuro saíram; as telas continuam no arquivo. Os fluxos agora andam em pares com o mesmo nome, de A a J (Entrar, Primeiro acesso só no Mobile, Início, Organizar, Guardar no longo prazo, Gerir espaço, Limite atingido, Pagamento, Configurações, Ajuda), mais K e L só no Mobile (Erro de rede, Recuperação pendente). Novos: Desktop e Mobile de Início, Guardar e Gerir espaço no Mobile, Configurações, Ajuda e Pagamento no Desktop.
+- **Desktop:** a engrenagem e o ? do Header levam às Configurações e ao FAQ em todas as telas (antes, só na Home). A camada do item "Excluir conta" da barra das Configurações tinha o nome "Idioma e região" e foi renomeada. No FAQ, cada tópico de "Nesta página" (`organism/Sidebar` Page=FAQ) rola a tela até ele.
+- **Mobile:** o ≡ abre a gaveta em todas as telas (antes, só na Home), e a gaveta leva a Guardados, Armazenamento, Configurações e Ajuda. No FAQ, o Expandir e o Recolher trocam as telas, como no Desktop.
+- **`FaqQuickLinks` virou variante:** `molecule/MobileFooterSettings` ganhou `Page=FAQ` com os 7 tópicos (um `Active` por tópico, no estilo das outras variantes). O componente solto foi apagado; tocar num chip rola até o tópico. No código, o `FaqTopicChips` (abaixo do título) saiu e o FAQ Mobile usa `MobileFooterSettings page="faq"` na base.
+- **Barra "Nesta página" no código:** o FAQ Desktop e Tablet usava a Sidebar de arquivos. Agora usa `Sidebar pages="faq"` (Figma `Page=FAQ`, `1267:16661`, 212px e 140px), que marca e rola até o tópico.
+- **Hover das Colunas no Tablet:** a linha (`molecule/FileList` CompactColumn e Compact, Device=Tablet) não tinha Hover e trocava para a variante Desktop de 560px, que quebrava a coluna. Foram criadas as duas variantes de Hover no tamanho do Tablet. A linha pressionada do Desktop voltava para a variante `Storage` e agora volta para a normal.
+- **Animação do Organizar e do Guardar:** mora no `atom/IconButton` (`174:384`), Style=OnDark, Default → Hover, smart animate, 300ms, ease-out, e o Header já usa essas variantes. No código, o Guardar passou para ease-out e o Organizar ganhou o `OrganizeIcon` animado, com o desenho do `IconButton` (sem a seta do `atom/Icon/Organize`): o quadro cresce, o quadrado sobe para dentro dele e os dois ficam a 70%. No protótipo, a animação só dispara com o ponteiro sobre o ícone, porque o hover do botão troca a variante do `PushButton` por cima.
+
 ## Fechamento (2026-09-30)
 
 - 140 componentes, 491 histórias, gate completo passando (`tsc -b`, `oxlint`, `build-storybook`, testes com axe).

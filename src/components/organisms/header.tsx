@@ -5,6 +5,7 @@ import { HamburgerButton } from "@/components/atoms/hamburger-button"
 import { SearchInput, type SearchInputProps } from "@/components/molecules/search-input"
 import { Button } from "@/components/atoms/button"
 import { ICONS } from "@/components/atoms/icon"
+import { OrganizeIcon } from "@/components/atoms/animated-icons"
 import { ActionPill } from "@/components/molecules/action-pill"
 import { Avatar } from "@/components/atoms/avatar"
 import kandriveLogo from "@/assets/logo/kandrive-logo.svg"
@@ -131,7 +132,8 @@ function Header({
               Figma (2026-09-29): 40px de altura, 16px de padding lateral, 8px entre ícone e rótulo, 24px entre os botões.
               `group` faz o ícone animar junto com o hover e o foco do botão (smart animation do Figma, ver animated-icons.tsx). */}
           <Button onClick={onOrganize} aria-label="Organizar" className={HEADER_ACTION}>
-            <ICONS.Organize className="size-[18px]" aria-hidden="true" />
+            {/* Figma: instância de atom/IconButton Icon=Organize (sem a seta do atom/Icon/Organize), 18px. */}
+            <OrganizeIcon className="size-[18px]" aria-hidden="true" />
             <span className="hidden desktop:inline">Organizar</span>
           </Button>
           <Button onClick={onSave} aria-label="Guardar" className={HEADER_ACTION}>

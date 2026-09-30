@@ -24,6 +24,12 @@ Um botão no canto superior direito minimiza/colapsa a sidebar de verdade (`coll
 
 A seção "Etiquetas" (prop `tags`) renderiza [`atom/Sidebar/Tags/Items`](../atoms/SidebarTagsItem.mdx), com estados de hover/selecionado reais via prop `activeTag`/`onTagSelect`.
 
+### Page=FAQ
+
+Nas telas de Perguntas frequentes (Desktop e Tablet), a barra mostra "Nesta página" e os 7 tópicos (`pages="faq"`, Figma `1267:16661`): vidro branco 50%, 212px no Desktop e 140px no Tablet. Tocar num tópico rola a página até ele e o marca.
+
+<Canvas of={SidebarStories.Faq} />
+
 ### Composição
 
 Compõe `organism/storage-sidebar` — ver [StorageSidebar](./StorageSidebar.mdx).

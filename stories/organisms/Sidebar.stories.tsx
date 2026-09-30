@@ -57,3 +57,22 @@ export const Collapsed: Story = {
     return <Controlled />
   },
 }
+
+/** Page=FAQ (`1267:16661`): "Nesta página" com os tópicos do FAQ. */
+export const Faq: Story = {
+  parameters: { design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1267-16661" } },
+  render: (args) => {
+    function Controlled() {
+      const [active, setActive] = useState(0)
+      return <Sidebar {...args} pages="faq" activeFaqTopic={active} onNavigateFaqTopic={setActive} />
+    }
+    return <Controlled />
+  },
+  // Tocar num tópico o marca como o lugar atual da página.
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole("button", { name: "Itens duplicados" }))
+    await expect(canvas.getByRole("button", { name: "Itens duplicados" })).toHaveAttribute("aria-current", "location")
+    await expect(canvas.getByRole("button", { name: "Primeiros Passos" })).not.toHaveAttribute("aria-current")
+  },
+}
