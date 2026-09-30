@@ -1,0 +1,25 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as PageToolbarStories from './PageToolbar.stories';
+
+<Meta of={PageToolbarStories} />
+
+# PageToolbar
+
+Figma: [`organism/PageToolbar`](https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=3029-3980)
+
+## Uso
+
+O título da página com as ferramentas da lista: Agrupar, Etiquetar e Visualizar (Grade, Lista, Colunas). Usado na Home, nas telas de Organizar e, por consequência, nas de Guardar (que abrem sobre a Home).
+
+<Canvas of={PageToolbarStories.Default} />
+<Controls of={PageToolbarStories.Default} />
+
+## Composição
+
+`PageLead` + `DropdownSelectGroupBy` + `Label` + `ViewModeToggle`, alinhados pelo topo: as listas abertas flutuam por cima do conteúdo, sem mover o título.
+
+| Largura | Comportamento |
+| --- | --- |
+| Desktop | título à esquerda, ferramentas à direita |
+| Tablet | título acima das ferramentas |
+| Mobile | sem título; Agrupar compacto e Visualizar compacto (Grade e Lista) |

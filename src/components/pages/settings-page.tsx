@@ -18,6 +18,7 @@ import { PlanSelection, type PlanInterval } from "@/components/organisms/plan-se
 import { StorageBar } from "@/components/molecules/storage-bar"
 import { Dialog } from "@/components/organisms/dialog"
 import { SelectBox } from "@/components/molecules/select-box"
+import { Footer } from "@/components/organisms/footer"
 
 const LANGUAGES = ["Português (Brasil)", "English (US)", "Español"] as const
 const DATE_FORMATS = ["DD/MM/AAAA", "MM/DD/AAAA", "AAAA-MM-DD"] as const
@@ -118,13 +119,8 @@ function SettingsPage({
       data-slot="settings-page"
       className={cn("bg-[#eaeaea] dark:bg-zinc-900", className)}
       headerProps={{ page: "settings" }}
-      footer={
-        // Figma organism/Footer (tablet e desktop). No mobile, os chips ocupam a base.
-        <div className="flex w-full items-center gap-9 py-4 text-base text-black dark:text-zinc-100">
-          <span>©2026 Kandrive</span>
-          <SelectBox options={LANGUAGES} aria-label="Idioma" />
-        </div>
-      }
+      // Figma organism/Footer (tablet e desktop). No mobile, os chips ocupam a base.
+      footer={<Footer />}
       mobileFooterSettings={{
         page: "settings",
         active: SECTION_TO_CHIP[activeSection],

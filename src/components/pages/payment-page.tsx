@@ -2,6 +2,7 @@ import * as React from "react"
 import { HardDrive, LayoutGrid, CreditCard, ChevronDown, Check, Receipt, CircleCheck, Info, Lock } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { Footer } from "@/components/organisms/footer"
 import { AppShell } from "@/components/templates/app-shell"
 import { Breadcrumb } from "@/components/molecules/breadcrumb"
 import { PageLead } from "@/components/molecules/page-lead"
@@ -140,11 +141,8 @@ function PaymentPage({
       data-slot="payment-page"
       className={cn("bg-[#eaeaea] dark:bg-zinc-900", className)}
       headerProps={{ page: "settings" }}
-      footer={
-        <div className="flex w-full items-center justify-center py-4 text-base text-black dark:text-zinc-100">
-          <span>©2026 Kandrive</span>
-        </div>
-      }
+      // Figma: organism/Footer (Full) só nas telas Tablet de Pagamento.
+      footer={<Footer className="desktop:hidden" />}
       // Mobile (Figma Payment/*/Mobile): barra de chips Plano · Configurações · Home.
       mobileFooterSettings={{ page: "payment", active: "Plano" }}
       {...props}

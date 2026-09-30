@@ -1,0 +1,28 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as SearchHeaderStories from './SearchHeader.stories';
+
+<Meta of={SearchHeaderStories} />
+
+# SearchHeader
+
+Figma: [`molecule/SearchHeader`](https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1755-56081)
+
+## Uso
+
+A linha de busca de uma lista de arquivos: campo de busca, botão de filtros, Agrupar e Etiquetar. Usada no modal Arquivo (`ArchiveBrowserModal`) e na lista da página de Armazenamento (`StorageStatusSummary`).
+
+<Canvas of={SearchHeaderStories.Default} />
+<Controls of={SearchHeaderStories.Default} />
+
+## Composição
+
+`SearchInput` + botão com `atom/Icon/Filter` + `DropdownSelectGroupBy` + `Label`. No mobile, a busca fica sobre Agrupar e Etiquetar.
+
+## Estados
+
+| Estado | Tratamento |
+| --- | --- |
+| Filtros ligados | 🧩 `aria-pressed`, fundo sutil e ícone teal |
+| Foco | 🧩 anel `ring-3 brand-teal-action/50` |
+
+🧩 = Regra 8: o Figma não desenha o estado ligado dos filtros.

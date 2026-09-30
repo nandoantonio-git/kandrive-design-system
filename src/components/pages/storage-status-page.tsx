@@ -1,12 +1,14 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import { Footer } from "@/components/organisms/footer"
 import { AppShell } from "@/components/templates/app-shell"
 import { Sidebar, type SidebarProps } from "@/components/organisms/sidebar"
 import { Breadcrumb } from "@/components/molecules/breadcrumb"
 import { PageLead } from "@/components/molecules/page-lead"
 import { StorageStatus, type StorageScope } from "@/components/molecules/storage-status"
-import { StorageStatusSummary, type StorageSummaryFile } from "@/components/organisms/storage-status-summary"
+import { type StorageSummaryFile } from "@/components/organisms/storage-status-summary"
+import { StorageStatusSection } from "@/components/organisms/storage-status-section"
 import { CleanSpaceStorage, type CleanSpaceStorageProps } from "@/components/templates/clean-space-storage"
 import { Button } from "@/components/atoms/button"
 import { useMinWidth } from "@/lib/use-min-width"
@@ -95,27 +97,17 @@ function StorageStatusPage({
       headerProps={{ page: "storage" }}
       sidebar={<Sidebar {...sidebarProps} />}
       mobileBottomNav={{ action: "add", active: "pessoal" }}
+      // Figma: organism/Footer só nas telas Tablet de Armazenamento.
+      footer={<Footer className="desktop:hidden" />}
       {...props}
     >
       <Breadcrumb segments={["Home", "Armazenamento"]} className="hidden tablet:flex" />
       <PageLead title="Armazenamento" className="tablet:pb-5" />
-      <StorageStatus
-        scope={scope}
-        onScopeChange={onScopeChange}
-        usedAmount={usedAmount}
-        totalAmount={totalAmount}
-        percent={percent}
-        fileTypeSegments={fileTypeSegments}
-        usedLabel={usedLabel}
-        freeLabel={freeLabel}
-        onManageSpace={onManageSpace}
-        onBuySpace={onBuySpace}
-        limitReached={limitReached}
-        className="w-full max-w-none"
+      <StorageStatusSection
+        layout={tablet ? "wide" : "compact"}
+        statusProps={{ scope, onScopeChange, usedAmount, totalAmount, percent, fileTypeSegments, usedLabel, freeLabel, onManageSpace, onBuySpace, limitReached }}
+        summaryProps={{ files, scopeLabel, device: tablet ? "desktop" : "mobile", className: tablet ? undefined : "pt-1" }}
       />
-      {files.length ? (
-        <StorageStatusSummary files={files} scopeLabel={scopeLabel} device={tablet ? "desktop" : "mobile"} className={tablet ? undefined : "pt-1"} />
-      ) : null}
       {manageSpaceOpen && cleanSpaceProps ? (
         <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/20 p-4 tablet:absolute tablet:p-6">
           <CleanSpaceStorage {...cleanSpaceProps} />

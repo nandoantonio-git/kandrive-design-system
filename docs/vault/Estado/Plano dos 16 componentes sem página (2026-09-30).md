@@ -65,3 +65,10 @@ Ver [[Plano das pendências (2026-09-29)]].
   - `atom/SidebarOption`: as 7 opções com Default, Hover e Pressed. A gaveta do Mobile (`SidebarDrawer`) passou a usá-la; a altura foi de 28px para os 24px do Figma, com a área de toque ampliada. O hover passou para `Neutral/Surface/Muted`, como no Figma.
   - `molecule/StorageStatusHeaderSelector`: a linha de chips do `StorageStatus`, agora um grupo com rótulo; espaço entre chips de 8px para os 10px do Figma.
   - `atom/FreeModeButton`: o "+ Adicionar regra" do painel de regras, que usava o `AddButton` (outro componente). ⚠️ rótulo em 16px (Figma: 10px), pela Regra 4.
+- ✅ **Lote 3 (2026-09-30).**
+  - `organism/Footer`: rodapé com "©2026 Kandrive" e o `SelectBox` de idioma. Entrou onde o Figma mostra: Configurações e FAQ (tablet e desktop) e as telas Tablet de Home, Organizar, Armazenamento e Pagamento. O Pagamento tinha no desktop um rodapé só com o texto, que não existe no Figma e saiu. A variante `minimal` existe, mas nenhuma tela a usa.
+  - `organism/StorageStatusSection`: o card e a lista da página de Armazenamento, que antes eram empilhados pela própria página.
+  - `organism/PageToolbar`: título + Agrupar + Etiquetar + Visualizar, que estava copiado na Home e na Organization. Na Organization, o título "Bem-vindo ao Kandrive!" era um `h1` em negrito, fora do `PageLead` Regular das outras telas; agora é o mesmo componente.
+  - `molecule/SearchHeader`: busca + filtros + Agrupar + Etiquetar. Saiu de dentro do `StorageStatusSummary` e entrou no modal Arquivo, que no Figma tem essa linha completa e no código tinha só a busca. O texto do campo no modal continua o termo aprovado "Buscar arquivos, pastas ou templates".
+
+**Os 12 componentes planejados estão entregues.** Os 4 do grupo C seguem só registrados.

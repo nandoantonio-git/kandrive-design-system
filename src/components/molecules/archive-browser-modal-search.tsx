@@ -1,6 +1,7 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import { SearchHeader } from "@/components/molecules/search-header"
 import { Icon } from "@/components/atoms/icon"
 import { SearchInput } from "@/components/molecules/search-input"
 import {
@@ -48,7 +49,8 @@ function ArchiveBrowserModalSearch({
       className={cn("flex h-[361px] w-full flex-col items-start gap-2.5", className)}
       {...props}
     >
-      <SearchInput {...searchProps} className={cn("w-full max-w-none", searchProps?.className)} />
+      {/* Figma template/ArchiveBrowserModal: molecule/SearchHeader (busca, filtros, Agrupar e Etiquetar). */}
+      <SearchHeader placeholder={searchProps?.placeholder ?? "Buscar arquivos, pastas ou templates"} searchProps={searchProps} className="w-full" />
       <div className="flex items-center gap-1 overflow-hidden">
         {breadcrumb.map((crumb, index) => (
           <React.Fragment key={crumb}>

@@ -1,15 +1,14 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import { PageToolbar } from "@/components/organisms/page-toolbar"
+import { Footer } from "@/components/organisms/footer"
 import { AppShell } from "@/components/templates/app-shell"
 import { ThumbnailLarge } from "@/components/molecules/thumbnail-large"
 import { FileRow } from "@/components/molecules/file-row"
 import { Sidebar, type SidebarProps } from "@/components/organisms/sidebar"
 import { Breadcrumb } from "@/components/molecules/breadcrumb"
-import { PageLead } from "@/components/molecules/page-lead"
-import { DropdownSelectGroupBy } from "@/components/molecules/dropdown-select-group-by"
-import { Label } from "@/components/molecules/label"
-import { ViewModeToggle, type ViewMode } from "@/components/molecules/view-mode-toggle"
+import { type ViewMode } from "@/components/molecules/view-mode-toggle"
 import { FileArchiveCard } from "@/components/molecules/file-archive-card"
 import { ImageItem } from "@/components/atoms/image-item"
 import { FileListHeader } from "@/components/molecules/file-list-header"
@@ -102,8 +101,6 @@ function HomePage({
   className,
   ...props
 }: HomePageProps) {
-  // Colunas é exclusivo de tablet e desktop: no mobile, cai para Lista.
-  const mobileMode: ViewMode = viewMode === "columns" ? "list" : viewMode
   const empty = viewMode === "grid" && gridItems.length === 0
   return (
     <AppShell
@@ -114,27 +111,17 @@ function HomePage({
       sidebar={<Sidebar {...sidebarProps} className={cn(viewMode === "columns" && "desktop:w-[150px] desktop:px-2", sidebarProps?.className)} />}
       mobileTabBar={{ active: "home" }}
       mobileBottomNav={{ action: "add", active: "pessoal" }}
+      // Figma: organism/Footer só nas telas Tablet da Home (no desktop a Home não tem rodapé).
+      footer={<Footer className="desktop:hidden" />}
       {...props}
     >
       <Breadcrumb segments={["Home"]} className="hidden tablet:flex" />
-      <div className="flex items-center justify-between gap-4 tablet:flex-col tablet:items-start desktop:flex-row">
-        <PageLead
-          title="Bem-vindo ao Kandrive!"
-          caption="Seu espaço para guardar arquivos por anos, com organização simples desde o primeiro dia."
-          className="hidden flex-1 tablet:flex"
-        />
-        {/* Desktop e tablet: GroupBy + Etiquetas + as 3 visualizações */}
-        <div className="hidden shrink-0 items-center gap-4 tablet:flex desktop:self-stretch">
-          <DropdownSelectGroupBy />
-          <Label />
-          <ViewModeToggle mode={viewMode} onModeChange={onViewModeChange} />
-        </div>
-        {/* Mobile (Figma Home/Grid/Mobile): GroupBy compacto + visualização compacta (Grade e Lista) */}
-        <div className="flex w-full items-center justify-between gap-2.5 tablet:hidden">
-          <DropdownSelectGroupBy device="mobile" />
-          <ViewModeToggle size="compact" mode={mobileMode} onModeChange={onViewModeChange} />
-        </div>
-      </div>
+      <PageToolbar
+        title="Bem-vindo ao Kandrive!"
+        caption="Seu espaço para guardar arquivos por anos, com organização simples desde o primeiro dia."
+        viewMode={viewMode}
+        onViewModeChange={onViewModeChange}
+      />
 
       <div className="tablet:pt-5">
         {empty ? (

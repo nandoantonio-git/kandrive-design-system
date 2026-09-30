@@ -1,0 +1,18 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as Stories from './StorageStatusSection.stories';
+
+<Meta of={Stories} />
+
+# StorageStatusSection
+
+Figma: [`organism/StorageStatusSection`](https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1742-25328)
+
+## Uso
+
+O bloco da página de Armazenamento: o card de status com a lista de arquivos logo abaixo.
+
+<Canvas of={Stories.Wide} />
+
+## Composição
+
+`molecule/StorageStatus` (chips, total, botões e barra) e `organism/StorageStatusSummary` (busca e lista), 4px entre eles. `Layout=Wide` no desktop e `Compact` no tablet; no código, a largura acompanha o contêiner. Sem arquivos, só o card aparece.
