@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite"
 import { FileRow } from "../../src/components/molecules/file-row"
 
 const meta = {
-  title: "Molecules/FileRow",
+  title: "Molecules/Arquivos/FileRow",
   component: FileRow,
   parameters: { layout: "centered", design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=3029-4009" } },
   globals: { viewport: { value: "kdMobile", isRotated: false } },

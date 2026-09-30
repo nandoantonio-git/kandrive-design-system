@@ -6,7 +6,7 @@ import { LiveArgs } from "../../.storybook/live-args"
 import { TemplateReviewModalItem } from "../../src/components/organisms/template-review-modal-item"
 
 const meta = {
-  title: "Organisms/TemplateReviewModalItem",
+  title: "Organisms/Organização/TemplateReviewModalItem",
   component: TemplateReviewModalItem,
   parameters: {
     layout: "centered",

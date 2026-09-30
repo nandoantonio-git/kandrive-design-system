@@ -9,7 +9,7 @@ import {
 } from "../../src/components/atoms/type-label"
 
 const meta = {
-  title: "Atoms/TypeLabel",
+  title: "Atoms/Rótulos e badges/TypeLabel",
   component: FileTypeLabel,
   parameters: {
     layout: "centered",

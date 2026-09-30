@@ -4,7 +4,7 @@ import { expect, fn, userEvent, within } from "storybook/test"
 import { StorageStatusCurrent } from "../../src/components/molecules/storage-status-current"
 
 const meta = {
-  title: "Molecules/StorageStatus/Current",
+  title: "Molecules/Armazenamento/StorageStatus/Current",
   component: StorageStatusCurrent,
   parameters: {
     layout: "padded",

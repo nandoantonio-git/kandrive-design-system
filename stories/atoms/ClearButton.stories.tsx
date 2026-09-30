@@ -4,7 +4,7 @@ import { expect, fn, userEvent, within } from "storybook/test"
 import { ClearButton } from "../../src/components/atoms/clear-button"
 
 const meta = {
-  title: "Atoms/IconButton/Clear",
+  title: "Atoms/Ações/IconButton/Clear",
   component: ClearButton,
   parameters: {
     layout: "centered",

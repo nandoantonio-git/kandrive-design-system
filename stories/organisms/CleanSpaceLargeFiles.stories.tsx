@@ -4,7 +4,7 @@ import { expect, fn, userEvent, within } from "storybook/test"
 import { CleanSpaceLargeFiles } from "../../src/components/organisms/clean-space-large-files"
 
 const meta = {
-  title: "Organisms/CleanSpaceLargeFiles",
+  title: "Organisms/Armazenamento/CleanSpaceLargeFiles",
   component: CleanSpaceLargeFiles,
   parameters: {
     layout: "centered",

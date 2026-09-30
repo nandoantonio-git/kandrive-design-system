@@ -6,7 +6,7 @@ import { LiveArgs } from "../../.storybook/live-args"
 import { FreeModeListItem } from "../../src/components/molecules/free-mode-list-item"
 
 const meta = {
-  title: "Molecules/OrganizeFreeModeCanvas/ListItem",
+  title: "Molecules/Organização/OrganizeFreeModeCanvas/ListItem",
   component: FreeModeListItem,
   parameters: {
     layout: "centered",

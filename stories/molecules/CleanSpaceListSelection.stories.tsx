@@ -7,7 +7,7 @@ import { useState } from "react"
 import { CleanSpaceListSelection } from "../../src/components/molecules/clean-space-list-selection"
 
 const meta = {
-  title: "Molecules/CleanSpaceListSelection",
+  title: "Molecules/Arquivos/CleanSpaceListSelection",
   component: CleanSpaceListSelection,
   parameters: {
     layout: "centered",

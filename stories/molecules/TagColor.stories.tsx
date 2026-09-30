@@ -7,7 +7,7 @@ import { useState } from "react"
 import { TagColor, type TagColorName } from "../../src/components/molecules/tag-color"
 
 const meta = {
-  title: "Molecules/TagColor",
+  title: "Molecules/Organização/TagColor",
   component: TagColor,
   parameters: {
     layout: "centered",

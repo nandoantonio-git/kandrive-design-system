@@ -6,7 +6,7 @@ import { HandPicker } from "../../src/components/molecules/hand-picker"
 import type { Hand } from "../../src/lib/preferences"
 
 const meta = {
-  title: "Molecules/HandPicker",
+  title: "Molecules/Formulários e configurações/HandPicker",
   component: HandPicker,
   parameters: { layout: "centered", design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1745-13473" } },
   args: { value: "right" },

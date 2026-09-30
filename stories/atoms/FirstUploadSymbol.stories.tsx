@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite"
 import { FirstUploadSymbol } from "../../src/components/atoms/first-upload-symbol"
 
 const meta = {
-  title: "Atoms/Symbols/FirstUploadSymbol",
+  title: "Atoms/Ícones e símbolos/Symbols/FirstUploadSymbol",
   component: FirstUploadSymbol,
   parameters: {
     layout: "centered",

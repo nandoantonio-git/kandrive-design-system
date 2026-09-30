@@ -4,7 +4,7 @@ import { expect, userEvent, within } from "storybook/test"
 import { Label } from "../../src/components/molecules/label"
 
 const meta = {
-  title: "Molecules/Label",
+  title: "Molecules/Busca e filtros/Label",
   component: Label,
   parameters: {
     layout: "centered",

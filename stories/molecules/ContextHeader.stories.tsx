@@ -6,7 +6,7 @@ import { LiveArgs } from "../../.storybook/live-args"
 import { ContextHeader } from "../../src/components/molecules/context-header"
 
 const meta = {
-  title: "Molecules/ContextHeader",
+  title: "Molecules/Navegação/ContextHeader",
   component: ContextHeader,
   parameters: {
     layout: "centered",

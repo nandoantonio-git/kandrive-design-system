@@ -4,7 +4,7 @@ import { expect, fn, userEvent, within } from "storybook/test"
 import { DeleteButton } from "../../src/components/atoms/delete-button"
 
 const meta = {
-  title: "Atoms/IconButton/Delete",
+  title: "Atoms/Ações/IconButton/Delete",
   component: DeleteButton,
   parameters: {
     layout: "centered",

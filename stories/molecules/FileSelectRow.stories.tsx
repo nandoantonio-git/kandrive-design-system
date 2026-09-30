@@ -5,7 +5,7 @@ import { useState } from "react"
 import { FileSelectRow } from "../../src/components/molecules/file-select-row"
 
 const meta = {
-  title: "Molecules/FileSelectRow",
+  title: "Molecules/Arquivos/FileSelectRow",
   component: FileSelectRow,
   parameters: { layout: "centered", design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1714-628" } },
   args: { name: "Projeto Alpha.pdf", meta: "4.2 MB", checked: false },

@@ -4,7 +4,7 @@ import { expect, userEvent, within } from "storybook/test"
 import { TagOrgTemplateName } from "../../src/components/atoms/tag-org-template-name"
 
 const meta = {
-  title: "Atoms/TagOrgTemplateName",
+  title: "Atoms/Rótulos e badges/TagOrgTemplateName",
   component: TagOrgTemplateName,
   parameters: {
     layout: "centered",

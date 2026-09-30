@@ -4,7 +4,7 @@ import { expect, fn, userEvent, within } from "storybook/test"
 import { FileArchiveCard } from "../../src/components/molecules/file-archive-card"
 
 const meta = {
-  title: "Molecules/FileArchiveCard",
+  title: "Molecules/Arquivos/FileArchiveCard",
   component: FileArchiveCard,
   parameters: {
     layout: "centered",

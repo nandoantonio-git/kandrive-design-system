@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite"
 import { FreeModeMiniMap } from "../../src/components/molecules/free-mode-mini-map"
 
 const meta = {
-  title: "Molecules/OrganizeFreeModeCanvas/MiniMap",
+  title: "Molecules/Organização/OrganizeFreeModeCanvas/MiniMap",
   component: FreeModeMiniMap,
   parameters: {
     layout: "centered",

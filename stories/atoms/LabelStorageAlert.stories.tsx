@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite"
 import { LabelStorageAlert } from "../../src/components/atoms/label-storage-alert"
 
 const meta = {
-  title: "Atoms/Label/StorageAlert",
+  title: "Atoms/Rótulos e badges/Label/StorageAlert",
   component: LabelStorageAlert,
   parameters: {
     layout: "centered",

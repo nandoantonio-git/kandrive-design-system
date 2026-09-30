@@ -4,7 +4,7 @@ import { expect, fn, userEvent, within } from "storybook/test"
 import { CloseButton } from "../../src/components/atoms/close-button"
 
 const meta = {
-  title: "Atoms/IconButton/Close",
+  title: "Atoms/Ações/IconButton/Close",
   component: CloseButton,
   parameters: {
     layout: "centered",

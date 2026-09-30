@@ -6,7 +6,7 @@ import { MobileBottomNav, type MobileDestination } from "../../src/components/or
 import { mobileFrame } from "../../.storybook/mobile-frame"
 
 const meta = {
-  title: "Organisms/MobileBottomNav",
+  title: "Organisms/Navegação/MobileBottomNav",
   component: MobileBottomNav,
   parameters: { layout: "fullscreen", design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1715-9867" } },
   globals: { viewport: { value: "kdMobile", isRotated: false } },

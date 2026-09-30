@@ -4,7 +4,7 @@ import { expect, fn, userEvent, within } from "storybook/test"
 import { VideoItem } from "../../src/components/atoms/video-item"
 
 const meta = {
-  title: "Atoms/Symbols/VideoItem",
+  title: "Atoms/Ícones e símbolos/Symbols/VideoItem",
   component: VideoItem,
   parameters: {
     layout: "centered",

@@ -4,7 +4,7 @@ import { expect, userEvent, within } from "storybook/test"
 import { MethodCard } from "../../src/components/molecules/method-card"
 
 const meta = {
-  title: "Molecules/MethodCard",
+  title: "Molecules/Organização/MethodCard",
   component: MethodCard,
   parameters: { layout: "centered", design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=3020-29527" } },
   argTypes: { value: { control: "radio", options: ["data", "projeto", "tipo"] } },

@@ -4,7 +4,7 @@ import { expect, userEvent, within } from "storybook/test"
 import { FreeModeOutputNode } from "../../src/components/molecules/free-mode-output-node"
 
 const meta = {
-  title: "Molecules/OrganizeFreeModeCanvas/OutputNode",
+  title: "Molecules/Organização/OrganizeFreeModeCanvas/OutputNode",
   component: FreeModeOutputNode,
   parameters: {
     layout: "centered",

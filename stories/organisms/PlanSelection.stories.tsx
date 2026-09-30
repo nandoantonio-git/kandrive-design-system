@@ -5,7 +5,7 @@ import { useState } from "react"
 import { PlanSelection, type PlanInterval } from "../../src/components/organisms/plan-selection"
 
 const meta = {
-  title: "Organisms/PlanSelection",
+  title: "Organisms/Armazenamento/PlanSelection",
   component: PlanSelection,
   parameters: {
     layout: "padded",

@@ -4,7 +4,7 @@ import { expect, fn, userEvent, within } from "storybook/test"
 import { PopoverNotification } from "../../src/components/molecules/popover-notification"
 
 const meta = {
-  title: "Molecules/PopoverNotification",
+  title: "Molecules/Feedback e menus/PopoverNotification",
   component: PopoverNotification,
   parameters: {
     layout: "centered",

@@ -4,7 +4,7 @@ import { expect, fn, userEvent, within } from "storybook/test"
 import { CleanSpaceDuplicated } from "../../src/components/organisms/clean-space-duplicated"
 
 const meta = {
-  title: "Organisms/CleanSpaceDuplicated",
+  title: "Organisms/Armazenamento/CleanSpaceDuplicated",
   component: CleanSpaceDuplicated,
   parameters: {
     layout: "centered",

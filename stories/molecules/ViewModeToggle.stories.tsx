@@ -5,7 +5,7 @@ import { expect, within } from "storybook/test"
 import { ViewModeToggle, type ViewMode } from "../../src/components/molecules/view-mode-toggle"
 
 const meta = {
-  title: "Molecules/ViewModeToggle",
+  title: "Molecules/Navegação/ViewModeToggle",
   component: ViewModeToggle,
   parameters: {
     layout: "centered",

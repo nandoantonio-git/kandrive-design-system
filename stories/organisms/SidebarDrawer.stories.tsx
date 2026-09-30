@@ -6,7 +6,7 @@ import { SidebarDrawer, type DrawerItem } from "../../src/components/organisms/s
 import { HamburgerButton } from "../../src/components/atoms/hamburger-button"
 
 const meta = {
-  title: "Organisms/SidebarDrawer",
+  title: "Organisms/Navegação/SidebarDrawer",
   component: SidebarDrawer,
   parameters: { layout: "fullscreen", design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1771-35845" } },
   globals: { viewport: { value: "kdMobile", isRotated: false } },

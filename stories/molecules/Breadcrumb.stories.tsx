@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite"
 import { Breadcrumb } from "../../src/components/molecules/breadcrumb"
 
 const meta = {
-  title: "Molecules/Breadcrumb",
+  title: "Molecules/Navegação/Breadcrumb",
   component: Breadcrumb,
   parameters: { layout: "centered", design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1239-13934" } },
   args: { segments: ["Home", "Configurações"] },

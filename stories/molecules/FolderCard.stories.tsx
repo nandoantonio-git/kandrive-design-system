@@ -6,7 +6,7 @@ import { LiveArgs } from "../../.storybook/live-args"
 import { FolderCard } from "../../src/components/molecules/folder-card"
 
 const meta = {
-  title: "Molecules/FolderCard",
+  title: "Molecules/Arquivos/FolderCard",
   component: FolderCard,
   parameters: {
     layout: "centered",

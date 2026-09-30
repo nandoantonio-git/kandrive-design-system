@@ -4,7 +4,7 @@ import { expect, fn, userEvent, within } from "storybook/test"
 import { ActionPill } from "../../src/components/molecules/action-pill"
 
 const meta = {
-  title: "Molecules/ActionPill",
+  title: "Molecules/Navegação/ActionPill",
   component: ActionPill,
   parameters: {
     layout: "centered",

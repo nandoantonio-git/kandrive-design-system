@@ -69,7 +69,27 @@ const preview: Preview = {
     options: {
       storySort: {
         method: 'alphabetical',
-        order: ['Introdução', 'Atoms', 'Molecules', 'Organisms', 'Templates', 'Pages', 'Tokens', ['Colors', 'Responsividade']],
+        // Atomic design (decisão de 2026-09-30): em cada nível, grupos por função; Pages na ordem da jornada,
+        // e dentro de cada página Desktop → Tablet → Mobile. O que não estiver listado fica em ordem alfabética.
+        order: [
+          'Introdução',
+          'Atoms', ['Ações', 'Formulário', 'Rótulos e badges', 'Ícones e símbolos', 'Itens de lista', 'Identidade e feedback'],
+          'Molecules', ['Navegação', 'Busca e filtros', 'Arquivos', 'Armazenamento', 'Organização', 'Formulários e configurações', 'Feedback e menus'],
+          'Organisms', ['Navegação', 'Arquivos', 'Armazenamento', 'Organização', 'Ajuda', 'Conta e diálogos'],
+          'Templates',
+          'Pages', [
+            'Login', ['Default', 'Tablet', 'Mobile'],
+            'Onboarding', ['Welcome', 'Dominant Hand', 'Theme', 'Done', 'Dominant Hand Tablet'],
+            'Home', ['Grid Mode', 'List Mode', 'Columns Mode', 'List Mode Selected', 'First Upload', 'Grid Tablet', 'List Tablet', 'Grid Mobile', 'List Mobile', 'First Upload Mobile'],
+            'Organization', ['Default', 'Template Drop Zone', 'Review', 'Review Done', 'Saved', 'Modal Closed', 'Default Tablet', 'Template Drop Zone Tablet', 'Review Tablet', 'Saved Tablet', 'Default Mobile', 'Template Drop Zone Mobile', 'Review Mobile', 'Review Done Mobile', 'Saved Mobile'],
+            'LongTermStorage', ['Intro', 'Archive Browser', 'Stored', 'Recovery Pending', 'Intro Tablet', 'Archive Browser Tablet', 'Select Files Mobile', 'Select Files Selected Mobile', 'Stored Mobile', 'Recovery Pending Mobile'],
+            'StorageStatus', ['Global', 'Quick Access', 'Long Term', 'Limit Reached', 'Manage Space', 'Global Tablet', 'Manage Space Tablet', 'Global Mobile', 'Long Term Mobile', 'Limit Reached Mobile', 'Manage Space Mobile'],
+            'Payment', ['Expanded', 'Collapsed', 'Expanded Tablet', 'Expanded Mobile', 'Collapsed Mobile'],
+            'Settings', ['Account', 'Subscription', 'Notifications', 'Appearance', 'Privacy', 'Languages', 'Delete Account', 'Account Tablet', 'Subscription Tablet', 'Account Mobile', 'Subscription Mobile', 'Appearance Mobile', 'Privacy Mobile', 'Delete Account Mobile'],
+            'Faq', ['Expanded', 'Collapsed', 'Expanded Tablet', 'Expanded Mobile', 'Collapsed Mobile'],
+          ],
+          'Tokens', ['Colors', 'Responsividade'],
+        ],
       },
     },
   },

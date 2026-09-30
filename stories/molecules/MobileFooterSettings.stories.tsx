@@ -6,7 +6,7 @@ import { MobileFooterSettings } from "../../src/components/molecules/mobile-foot
 import { mobileFrame } from "../../.storybook/mobile-frame"
 
 const meta = {
-  title: "Molecules/MobileFooterSettings",
+  title: "Molecules/Navegação/MobileFooterSettings",
   component: MobileFooterSettings,
   parameters: { layout: "fullscreen", design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1756-57824" } },
   globals: { viewport: { value: "kdMobile", isRotated: false } },

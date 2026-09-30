@@ -6,7 +6,7 @@ import { LiveArgs } from "../../.storybook/live-args"
 import { DropdownSelectLabelItem } from "../../src/components/atoms/dropdown-select-label-item"
 
 const meta = {
-  title: "Atoms/DropdownSelectLabel/Item",
+  title: "Atoms/Itens de lista/DropdownSelectLabel/Item",
   component: DropdownSelectLabelItem,
   parameters: {
     layout: "centered",

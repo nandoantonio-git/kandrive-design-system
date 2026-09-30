@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite"
 import { StorageBar, StorageBarExpanded } from "../../src/components/molecules/storage-bar"
 
 const meta = {
-  title: "Molecules/StorageBar",
+  title: "Molecules/Armazenamento/StorageBar",
   component: StorageBar,
   parameters: {
     layout: "centered",

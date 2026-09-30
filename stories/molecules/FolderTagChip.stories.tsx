@@ -6,7 +6,7 @@ import { LiveArgs } from "../../.storybook/live-args"
 import { FolderTagChip } from "../../src/components/molecules/folder-tag-chip"
 
 const meta = {
-  title: "Molecules/FolderTagChip",
+  title: "Molecules/Arquivos/FolderTagChip",
   component: FolderTagChip,
   parameters: {
     layout: "centered",

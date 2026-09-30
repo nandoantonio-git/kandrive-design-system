@@ -4,7 +4,7 @@ import { expect, fn, userEvent, within } from "storybook/test"
 import { KeepButton } from "../../src/components/atoms/keep-button"
 
 const meta = {
-  title: "Atoms/IconButton/Keep",
+  title: "Atoms/Ações/IconButton/Keep",
   component: KeepButton,
   parameters: {
     layout: "centered",

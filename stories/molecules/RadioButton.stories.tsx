@@ -5,7 +5,7 @@ import { expect, fn, userEvent, within } from "storybook/test"
 import { RadioButton } from "../../src/components/molecules/radio-button"
 
 const meta = {
-  title: "Molecules/RadioButton",
+  title: "Molecules/Formulários e configurações/RadioButton",
   component: RadioButton,
   parameters: {
     layout: "centered",

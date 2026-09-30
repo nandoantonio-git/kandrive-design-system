@@ -4,7 +4,7 @@ import { expect, userEvent, within } from "storybook/test"
 import { AccordionItem } from "../../src/components/molecules/accordion-item"
 
 const meta = {
-  title: "Molecules/AccordionItem",
+  title: "Molecules/Feedback e menus/AccordionItem",
   component: AccordionItem,
   parameters: {
     layout: "padded",

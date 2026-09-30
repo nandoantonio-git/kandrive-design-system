@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite"
 import { ThumbnailLarge } from "../../src/components/molecules/thumbnail-large"
 
 const meta = {
-  title: "Molecules/ThumbnailLarge",
+  title: "Molecules/Arquivos/ThumbnailLarge",
   component: ThumbnailLarge,
   parameters: {
     layout: "centered",

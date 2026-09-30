@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite"
 import { Tag } from "../../src/components/atoms/tag"
 
 const meta = {
-  title: "Atoms/Tag",
+  title: "Atoms/Rótulos e badges/Tag",
   component: Tag,
   parameters: {
     layout: "centered",
