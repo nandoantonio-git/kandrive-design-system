@@ -60,3 +60,8 @@ Ver [[Plano das pendências (2026-09-29)]].
   - `molecule/MenuItemFloating`: o vidro flutuante, agora base do `DropdownMenu` e do `DropNewTag`. Saiu a borda reflexiva do `DropdownMenu`, que o Figma não tem.
   - `molecule/SelectBox`: extraído das Configurações. Virou um `<select>` nativo com a mesma aparência (antes era um `div` que só mostrava o texto), com rótulo nos campos de Idioma e Formato de data.
   - `molecule/SkeletonRow`: linha de carregamento, com pulso desligado em `prefers-reduced-motion`. Ainda não há tela de carregamento no código para usá-la.
+- ✅ **Lote 2 (2026-09-30).**
+  - `atom/DisclosureHeader`: a seta de abrir e fechar (direita/baixo), preto 25% como no Figma. O `SidebarToggle` passou a usá-la no lugar do `ChevronDown` do lucide, girando 180° quando aberto, como a instância do Figma.
+  - `atom/SidebarOption`: as 7 opções com Default, Hover e Pressed. A gaveta do Mobile (`SidebarDrawer`) passou a usá-la; a altura foi de 28px para os 24px do Figma, com a área de toque ampliada. O hover passou para `Neutral/Surface/Muted`, como no Figma.
+  - `molecule/StorageStatusHeaderSelector`: a linha de chips do `StorageStatus`, agora um grupo com rótulo; espaço entre chips de 8px para os 10px do Figma.
+  - `atom/FreeModeButton`: o "+ Adicionar regra" do painel de regras, que usava o `AddButton` (outro componente). ⚠️ rótulo em 16px (Figma: 10px), pela Regra 4.

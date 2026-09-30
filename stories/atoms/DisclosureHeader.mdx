@@ -1,0 +1,24 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as DisclosureHeaderStories from './DisclosureHeader.stories';
+
+<Meta of={DisclosureHeaderStories} />
+
+# DisclosureHeader
+
+Figma: [`atom/DisclosureHeader`](https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=95-3068)
+
+## Uso
+
+A seta que indica um bloco que abre e fecha. Fica dentro do botão que controla o bloco, como o "Armazenamento" do `SidebarToggle`.
+
+<Canvas of={DisclosureHeaderStories.Collapsed} />
+<Canvas of={DisclosureHeaderStories.Expanded} />
+<Controls of={DisclosureHeaderStories.Collapsed} />
+
+## Composição
+
+Seta de 11px em negrito, preto 25% (Figma). `expanded={false}` aponta para a direita; `expanded` aponta para baixo, com transição de 200ms (sem transição com `prefers-reduced-motion`). O `SidebarToggle` usa a seta para baixo e a gira 180° quando o bloco está aberto, como no Figma.
+
+## Acessibilidade
+
+Decorativa (`aria-hidden`). O estado vai no `aria-expanded` do botão que a contém.

@@ -1,7 +1,7 @@
 import * as React from "react"
-import { ChevronDown } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { DisclosureHeader } from "@/components/atoms/disclosure-header"
 import { Icon } from "@/components/atoms/icon"
 
 export interface SidebarToggleProps extends Omit<React.ComponentProps<"button">, "onToggle"> {
@@ -63,10 +63,10 @@ function SidebarToggle({
         <Icon name="CloudQueue" aria-hidden="true" className="size-4 shrink-0 text-neutral-text-tertiary dark:text-zinc-400" />
         <span className="min-w-0 truncate">{label}</span>
       </span>
-      <ChevronDown
-        aria-hidden="true"
-        className={cn("size-4 shrink-0 text-neutral-text-tertiary dark:text-zinc-400 transition-transform", expanded && "rotate-180")}
-      />
+      {/* Figma: atom/DisclosureHeader (Expanded=true, seta para baixo), girado 180° quando o bloco está aberto. */}
+      <span className={cn("inline-flex transition-transform duration-200 ease-out motion-reduce:transition-none", expanded && "rotate-180")}>
+        <DisclosureHeader expanded />
+      </span>
     </button>
   )
 }

@@ -2,27 +2,21 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 import { HamburgerButton } from "@/components/atoms/hamburger-button"
-import KeepGlyph from "@/assets/icons/Arquivar.svg?react"
-import StorageGlyph from "@/assets/icons/MobileDrawerStorage.svg?react"
-import TagsGlyph from "@/assets/icons/MobileDrawerTags.svg?react"
-import TrashGlyph from "@/assets/icons/MobileDrawerTrash.svg?react"
-import SettingsGlyph from "@/assets/icons/Settings.svg?react"
-import HelpGlyph from "@/assets/icons/Help.svg?react"
+import { SidebarOption, type SidebarOptionName } from "@/components/atoms/sidebar-option"
 
 export type DrawerItem = "guardados" | "armazenamento" | "etiquetas" | "lixeira" | "configuracoes" | "ajuda"
 
-type Glyph = React.ComponentType<React.SVGProps<SVGSVGElement>>
 /** Ordem decidida em 2026-09-24: Guardados · Armazenamento · Etiquetas | Lixeira | Configurações · Ajuda. */
-const GROUPS: { value: DrawerItem; label: string; Glyph: Glyph }[][] = [
+const GROUPS: { value: DrawerItem; label: string; option: SidebarOptionName }[][] = [
   [
-    { value: "guardados", label: "Guardados", Glyph: KeepGlyph },
-    { value: "armazenamento", label: "Armazenamento", Glyph: StorageGlyph },
-    { value: "etiquetas", label: "Etiquetas", Glyph: TagsGlyph },
+    { value: "guardados", label: "Guardados", option: "keep" },
+    { value: "armazenamento", label: "Armazenamento", option: "storage" },
+    { value: "etiquetas", label: "Etiquetas", option: "tags" },
   ],
-  [{ value: "lixeira", label: "Lixeira", Glyph: TrashGlyph }],
+  [{ value: "lixeira", label: "Lixeira", option: "trash" }],
   [
-    { value: "configuracoes", label: "Configurações", Glyph: SettingsGlyph },
-    { value: "ajuda", label: "Ajuda", Glyph: HelpGlyph },
+    { value: "configuracoes", label: "Configurações", option: "settings" },
+    { value: "ajuda", label: "Ajuda", option: "help" },
   ],
 ]
 
@@ -90,27 +84,15 @@ function SidebarDrawer({ open, onOpenChange, active, onNavigate, className, ...p
           {GROUPS.map((group, i) => (
             <React.Fragment key={i}>
               {i > 0 ? <div role="separator" className="mx-2 my-3 border-t border-neutral-border-light" /> : null}
-              {group.map(({ value, label, Glyph }) => {
-                const current = value === active
-                return (
-                  <button
-                    key={value}
-                    type="button"
-                    aria-current={current ? "page" : undefined}
-                    onClick={() => onNavigate?.(value)}
-                    className={cn(
-                      "group touch-target flex h-7 w-full cursor-pointer items-center gap-2 rounded-md px-2 text-left text-base text-brand-secondary-dark transition-colors",
-                      "hover:bg-neutral-surface-subtle active:bg-neutral-surface-medium focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none",
-                      current && "bg-neutral-surface-subtle"
-                    )}
-                  >
-                    <span className="flex size-4 shrink-0 items-center justify-center text-effect-overlay-default transition-colors group-hover:text-brand-teal group-active:text-brand-teal-dark">
-                      <Glyph aria-hidden="true" className="max-h-4 max-w-4" />
-                    </span>
-                    {label}
-                  </button>
-                )
-              })}
+              {group.map(({ value, label, option }) => (
+                <SidebarOption
+                  key={value}
+                  option={option}
+                  label={label}
+                  current={value === active}
+                  onClick={() => onNavigate?.(value)}
+                />
+              ))}
             </React.Fragment>
           ))}
         </nav>
