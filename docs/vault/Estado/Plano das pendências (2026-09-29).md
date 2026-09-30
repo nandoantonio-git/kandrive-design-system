@@ -29,7 +29,7 @@ Decidido com o usuário (rodada de perguntas de 2026-09-29). Ordem por gravidade
 
 ## 4. Depende do usuário (baixa)
 
-- Placeholders do slide 02 do Case Study (07 e 08 preenchidos) (ver [[Plano dos slides do Case Study (2026-09-29)]]).
+- ~~Placeholders do slide 02 do Case Study~~ ✅ feito; nenhum placeholder sobrou no case (ver [[Plano dos slides do Case Study (2026-09-29)]]).
 - Telas de estado sem entrada por ligação (ver [[Teste do protótipo claro (2026-09-29)]]): decidir quais viram consequência de uma ação.
 - Posição das sobreposições (o plugin não define; abrem centralizadas): ajuste manual no Figma.
 - Teste no modo de apresentação: só o usuário consegue.
@@ -47,3 +47,4 @@ Decidido com o usuário (rodada de perguntas de 2026-09-29). Ordem por gravidade
 - ✅ **Lista flutuante** Nas variantes abertas de `molecule/DropdownSelectGroupBy` (Desktop e Mobile) e `molecule/Label`, a lista saiu do fluxo (posição absoluta) e o componente ficou com a altura do estado fechado. Abrir um menu não desloca mais nada, inclusive nas barras com campo de busca.
 - ✅ **Storybook** Vídeo da introdução trocado pelo novo `Kandrive-Motion` (8s, H.264 1920px, poster do último quadro). Favicon passou para a versão teal do `foundation/Favicon` (antes era a grafite), com `?v=2` para furar o cache do navegador.
 - ✅ **Slides 07 e 08** preenchidos (ver [[Plano dos slides do Case Study (2026-09-29)]]).
+- ✅ **Patterns** 12 fundos da marca em `docs/assets/patterns/`, com a seção `08 · Patterns` na Design Language e os fundos dos slides do case. O slide 02 foi preenchido com ícones do sistema e o Kan (ver [[Patterns]]).

@@ -1,0 +1,102 @@
+{
+  "tool": "built-in image_gen",
+  "reference": "Imagem do ChatGPT 29 de set. de 2026, 19_28_22.png",
+  "items": [
+    {
+      "name": "01-heroi-capas-e-aberturas",
+      "path": "/Users/nando_mac/.codex/generated_images/01a0e11b-01fd-7c52-b43c-27014fee4b1a/exec-fa6f3382-d90c-4763-871e-3607249283d5.png",
+      "prompt": "Recreate panel 01 HERÓI as a clean standalone landscape brand background: deep petrol teal, overlapping luminous elliptical shapes, quiet upper left; no text, no borders, no logo. Requested 3840x2160; see manifest for actual native output.",
+      "width": 1672,
+      "height": 941,
+      "file": "01-heroi-capas-e-aberturas.png"
+    },
+    {
+      "name": "02-organico-fundos-editoriais",
+      "path": "/Users/nando_mac/.codex/generated_images/01a0e11b-01fd-7c52-b43c-27014fee4b1a/exec-e47c919d-9cc7-4c65-9ab8-aed770eadd80.png",
+      "prompt": "Recreate ONLY this ONE panel from the attached Kandrive brand patterns contact sheet: 02 ORGÂNICO, the narrow light panel in TOP ROW second position. Pale ice-blue white airy background; one diagonal translucent pale cyan oval near upper-middle/right; large thin dark-teal ellipse arc sweeping in from lower left; small outlined partial oval cut off upper right. Quiet minimal organic editorial background. Output portrait 2160x3840 if supported, highest native resolution and clean smooth gradient quality. Preserve the reference's palette and composition adapted to standalone background. Full bleed rectangular artwork. Remove all text labels and reconstruct their underlying background. NO text, letters, numbers, logo, watermark, rounded corners, white border, contact sheet, mockup or multiple panels. One single finished background only.",
+      "width": 941,
+      "height": 1672,
+      "file": "02-organico-fundos-editoriais.png"
+    },
+    {
+      "name": "03-linhas-divisorias-e-secoes",
+      "path": "/Users/nando_mac/.codex/generated_images/01a0e11b-01fd-7c52-b43c-27014fee4b1a/exec-eee1720e-8b5f-41fd-804c-897fc0eb490d.png",
+      "prompt": "Recreate ONLY this ONE panel from the attached Kandrive brand patterns contact sheet: 03 LINHAS, TOP ROW third position. Very dark petrol teal background; one hairline bright cyan diagonal rising from middle left toward upper right; a huge quarter elliptical filled teal shape rising from bottom-right with white/cyan rim, a second nested thin arc. Technical precise clean section divider background. Output portrait 2160x3840 if supported, highest native resolution and clean smooth gradient quality. Preserve the reference's palette and composition adapted to standalone background. Full bleed rectangular artwork. Remove all text labels and reconstruct their underlying background. NO text, letters, numbers, logo, watermark, rounded corners, white border, contact sheet, mockup or multiple panels. One single finished background only.",
+      "width": 940,
+      "height": 1672,
+      "file": "03-linhas-divisorias-e-secoes.png"
+    },
+    {
+      "name": "04-gradiente-transicoes-e-aberturas",
+      "path": "/Users/nando_mac/.codex/generated_images/01a0e11b-01fd-7c52-b43c-27014fee4b1a/exec-f2bbc94e-68fa-4d34-9132-fd536a05d609.png",
+      "prompt": "Recreate ONLY this ONE panel from the attached Kandrive brand patterns contact sheet: 04 GRADIENTE, TOP ROW far right. Sweeping broad graceful curved teal gradient bands going from bottom left to mid-right; deep teal upper left, luminous aqua center-right, icy almost white lower right; large soft oval entering upper right. Fluid layered smooth gradients. Output portrait 2160x3840 if supported, highest native resolution and clean smooth gradient quality. Preserve the reference's palette and composition adapted to standalone background. Full bleed rectangular artwork. Remove all text labels and reconstruct their underlying background. NO text, letters, numbers, logo, watermark, rounded corners, white border, contact sheet, mockup or multiple panels. One single finished background only.",
+      "width": 941,
+      "height": 1672,
+      "file": "04-gradiente-transicoes-e-aberturas.png"
+    },
+    {
+      "name": "05-icone-em-escala-branding-e-campanhas",
+      "path": "/Users/nando_mac/.codex/generated_images/01a0e11b-01fd-7c52-b43c-27014fee4b1a/exec-86ed9323-55b7-4e02-ae36-aecd30695f18.png",
+      "prompt": "Recreate ONLY this ONE panel from the attached Kandrive brand patterns contact sheet: 05 ÍCONE EM ESCALA, MIDDLE ROW far left. Deep dark petrol background, enlarged cropped cyan-teal flat kangaroo mascot icon visible from lower right, with distinctive TWO separated long diagonal oval ears above, rounded head, two dark vertical oval eyes, curved smiling muzzle, partial angular neck/body at bottom. Match reference mascot silhouette faithfully; graphic flat embossed-looking gradients only, no realistic fur or new mascot. Open dark space on left. Output landscape 3840x2160 if supported, highest native resolution and smooth gradient quality. Preserve the reference's palette and composition adapted to standalone background. Full bleed rectangular artwork. Remove all text labels and reconstruct their underlying background. NO text, letters, numbers, wordmark, watermark, rounded corners, white border, contact sheet, mockup or multiple panels. One single finished background only.",
+      "width": 1672,
+      "height": 941,
+      "file": "05-icone-em-escala-branding-e-campanhas.png"
+    },
+    {
+      "name": "06-ovais-repetidos-fundos-e-separadores",
+      "path": "/Users/nando_mac/.codex/generated_images/01a0e11b-01fd-7c52-b43c-27014fee4b1a/exec-0467aab9-673b-4319-8c3c-7abb12e50336.png",
+      "prompt": "Recreate ONLY this ONE panel from the attached Kandrive brand patterns contact sheet: 06 OVAIS REPETIDOS, MIDDLE ROW second. Icy off-white pale cyan background with a rhythmic scattered array of large elongated translucent cyan ovals tilted consistently lower-left to upper-right, cropped at canvas edges. Soft gradients within flat ovals, substantial breathing room. Repeated motif background, no requirement of seamless tiling. Output landscape 3840x2160 if supported, highest native resolution and smooth gradient quality. Preserve the reference's palette and composition adapted to standalone background. Full bleed rectangular artwork. Remove all text labels and reconstruct their underlying background. NO text, letters, numbers, wordmark, watermark, rounded corners, white border, contact sheet, mockup or multiple panels. One single finished background only.",
+      "width": 1672,
+      "height": 941,
+      "file": "06-ovais-repetidos-fundos-e-separadores.png"
+    },
+    {
+      "name": "07-geometrico-suave-layouts-modulares",
+      "path": "/Users/nando_mac/.codex/generated_images/01a0e11b-01fd-7c52-b43c-27014fee4b1a/exec-c0268cd7-7c06-46ac-86a4-9a4733db6ee2.png",
+      "prompt": "Recreate ONLY this ONE panel from the attached Kandrive brand patterns contact sheet: 07 GEOMÉTRICO SUAVE, MIDDLE ROW third. Dark petrol teal background with fine cyan vertical and horizontal grid lines limited to right/lower region, huge thin outlined elliptical sweeping arc upper right through lower center, small partial circle lower left. Precise sparse modular composition, subtle dark teal filled shapes. Output landscape 3840x2160 if supported, highest native resolution and smooth gradient quality. Preserve the reference's palette and composition adapted to standalone background. Full bleed rectangular artwork. Remove all text labels and reconstruct their underlying background. NO text, letters, numbers, wordmark, watermark, rounded corners, white border, contact sheet, mockup or multiple panels. One single finished background only.",
+      "width": 1672,
+      "height": 941,
+      "file": "07-geometrico-suave-layouts-modulares.png"
+    },
+    {
+      "name": "08-claro-arejado-fundos-de-conteudo",
+      "path": "/Users/nando_mac/.codex/generated_images/01a0e11b-01fd-7c52-b43c-27014fee4b1a/exec-c3b92c84-9f16-493d-8b7b-04125d14abc3.png",
+      "prompt": "Recreate ONLY this ONE panel from the attached Kandrive brand patterns contact sheet: 08 CLARO E AREJADO, MIDDLE ROW far right. Nearly white cool pale blue background, extremely sparse hairline muted cyan ellipse outlines: large tilted oval sweeps from center left toward lower right, partial oval on upper-right edge and another arc bottom-left. Huge quiet negative space upper left. Very delicate light editorial background. Output landscape 3840x2160 if supported, highest native resolution and smooth gradient quality. Preserve the reference's palette and composition adapted to standalone background. Full bleed rectangular artwork. Remove all text labels and reconstruct their underlying background. NO text, letters, numbers, wordmark, watermark, rounded corners, white border, contact sheet, mockup or multiple panels. One single finished background only.",
+      "width": 1672,
+      "height": 941,
+      "file": "08-claro-arejado-fundos-de-conteudo.png"
+    },
+    {
+      "name": "09-escuro-premium-destaques-e-capas",
+      "path": "/Users/nando_mac/.codex/generated_images/01a0e11b-01fd-7c52-b43c-27014fee4b1a/exec-2eef3b56-a1d5-4669-b7ab-4ce26902efd9.png",
+      "prompt": "Recreate ONLY this ONE panel from the attached Kandrive brand patterns contact sheet: 09 ESCURO PREMIUM, BOTTOM ROW far left. Near-black charcoal/petrol background; two huge clean broad elliptical arcs growing from lower left toward right, gradient-filled dark teal and barely brighter blue-green at right with fine electric cyan rim. Dark upper half kept empty. Premium understated contrast, restrained luminosity. Output landscape 3840x2160 if supported, highest native resolution and clean smooth gradient quality. Preserve the reference's palette and composition adapted to standalone background. Full bleed rectangular artwork. Remove all text labels and reconstruct their underlying background. NO text, letters, numbers, logo, watermark, rounded corners, white border, contact sheet, mockup or multiple panels. One single finished background only.",
+      "width": 1672,
+      "height": 941,
+      "file": "09-escuro-premium-destaques-e-capas.png"
+    },
+    {
+      "name": "10-acento-chamadas-e-destaques",
+      "path": "/Users/nando_mac/.codex/generated_images/01a0e11b-01fd-7c52-b43c-27014fee4b1a/exec-791b5b71-19a8-4dd3-924a-b64f5d976f81.png",
+      "prompt": "Recreate ONLY this ONE panel from the attached Kandrive brand patterns contact sheet: 10 ACENTO, BOTTOM ROW second. Near-black plum/burgundy background with one enormous cropped magenta-red circular/elliptical form entering from lower right, its fine pink rim curves from lower-left-ish to upper right. Deep crimson lower right, bright rose upper right, subtle burgundy glow to left. Refined flat smooth gradients, single bold accent. Output landscape 3840x2160 if supported, highest native resolution and clean smooth gradient quality. Preserve the reference's palette and composition adapted to standalone background. Full bleed rectangular artwork. Remove all text labels and reconstruct their underlying background. NO text, letters, numbers, logo, watermark, rounded corners, white border, contact sheet, mockup or multiple panels. One single finished background only.",
+      "width": 1672,
+      "height": 941,
+      "file": "10-acento-chamadas-e-destaques.png"
+    },
+    {
+      "name": "11-textura-camadas-e-profundidade",
+      "path": "/Users/nando_mac/.codex/generated_images/01a0e11b-01fd-7c52-b43c-27014fee4b1a/exec-6fb8a52a-677f-4f3b-a920-51f7fd0b3f4f.png",
+      "prompt": "Recreate ONLY this ONE panel from the attached Kandrive brand patterns contact sheet: 11 TEXTURA, BOTTOM ROW third. Dark teal background with subtle overlapping elongated translucent teal ovals tilted slightly upward toward right. Large central ellipse stretching from cropped left toward mid-right, smaller oval at upper right, darker layered curved shape bottom right. Soft layered depth and delicate cyan edges, flat graphic gradient artwork. Output landscape 3840x2160 if supported, highest native resolution and clean smooth gradient quality. Preserve the reference's palette and composition adapted to standalone background. Full bleed rectangular artwork. Remove all text labels and reconstruct their underlying background. NO text, letters, numbers, logo, watermark, rounded corners, white border, contact sheet, mockup or multiple panels. One single finished background only.",
+      "width": 1672,
+      "height": 941,
+      "file": "11-textura-camadas-e-profundidade.png"
+    },
+    {
+      "name": "12-combinacao-layouts-e-campanhas",
+      "path": "/Users/nando_mac/.codex/generated_images/01a0e11b-01fd-7c52-b43c-27014fee4b1a/exec-8899d102-d279-44db-9899-c201e4558bdf.png",
+      "prompt": "Recreate ONLY this ONE panel from the attached Kandrive brand patterns contact sheet: 12 COMBINAÇÃO, BOTTOM ROW far right. Pale icy cyan white background, huge broad pale aqua elliptical sweep across lower half, fine dark teal arc entering lower left, diagonal translucent pale shapes from upper middle to right, vivid teal elongated oval cropped at upper right. Balanced mix of airy curves and filled ovals, keep upper left quiet. Output landscape 3840x2160 if supported, highest native resolution and clean smooth gradient quality. Preserve the reference's palette and composition adapted to standalone background. Full bleed rectangular artwork. Remove all text labels and reconstruct their underlying background. NO text, letters, numbers, logo, watermark, rounded corners, white border, contact sheet, mockup or multiple panels. One single finished background only.",
+      "width": 1672,
+      "height": 941,
+      "file": "12-combinacao-layouts-e-campanhas.png"
+    }
+  ]
+}
