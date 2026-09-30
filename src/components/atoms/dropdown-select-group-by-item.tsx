@@ -51,7 +51,7 @@ function DropdownSelectGroupByItem({
       {...props}
     >
       <span className="flex w-full min-w-0 items-center justify-center gap-1.5 rounded-xl py-0.5">
-        <span className="min-w-0 truncate text-[0.625rem] text-zinc-700 dark:text-zinc-300">{label}</span>
+        <span className="min-w-0 truncate text-xs text-zinc-700 dark:text-zinc-300">{label}</span>
       </span>
     </button>
   )

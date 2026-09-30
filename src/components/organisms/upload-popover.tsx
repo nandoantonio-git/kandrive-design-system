@@ -134,7 +134,7 @@ function UploadPopover({
                 className="transition-[stroke-dashoffset]"
               />
             </svg>
-            <span className="relative text-[0.5rem] font-bold leading-none text-brand-teal">{clamped}%</span>
+            <span className="relative text-xs font-bold leading-none text-brand-teal">{clamped}%</span>
           </span>
           <div className="flex flex-col">
             <span className="text-sm font-bold text-zinc-900 dark:text-zinc-100">Enviando {fileCount} arquivos</span>
@@ -182,7 +182,7 @@ function UploadPopover({
       {files.length > 0 ? (
         <div className="relative flex flex-col gap-3">
           <div className="flex flex-col gap-1.5">
-            <div className="flex items-center justify-between text-[0.625rem] font-bold tracking-wide text-neutral-text-tertiary uppercase dark:text-zinc-400">
+            <div className="flex items-center justify-between text-xs font-bold tracking-wide text-neutral-text-tertiary uppercase dark:text-zinc-400">
               <span>Em andamento</span>
               <span>{clamped}%</span>
             </div>

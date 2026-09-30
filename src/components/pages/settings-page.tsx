@@ -194,7 +194,7 @@ function SettingsPage({
                       <div key={tier} className="flex min-w-px flex-1 flex-col gap-2 rounded-lg border border-zinc-200 p-3 dark:border-zinc-700">
                         <span className="text-sm font-medium text-zinc-950 dark:text-zinc-100">{label}</span>
                         <StorageBar tier={tier} value={18} className="h-2 max-w-none" />
-                        <span className="text-[0.6875rem] text-neutral-text-tertiary dark:text-zinc-400">
+                        <span className="text-xs text-neutral-text-tertiary dark:text-zinc-400">
                           Estimativa: uso por tier ainda não disponível no backend.
                         </span>
                       </div>
@@ -219,7 +219,7 @@ function SettingsPage({
                   <div key={row.id} className="flex w-full items-start justify-between gap-4">
                     <div className="flex flex-col gap-0.5">
                       <p className="text-sm font-medium text-zinc-950 dark:text-zinc-100">{row.title}</p>
-                      <p className="text-[0.8125rem] text-neutral-text-tertiary dark:text-zinc-400">{row.description}</p>
+                      <p className="text-sm text-neutral-text-tertiary dark:text-zinc-400">{row.description}</p>
                     </div>
                     <Switch defaultChecked aria-label={row.title} className="mt-0.5 shrink-0" />
                   </div>
@@ -260,13 +260,13 @@ function SettingsPage({
                 <div className="flex w-full flex-col items-start justify-between gap-4 tablet:flex-row tablet:items-center">
                   <div className="flex flex-col gap-0.5">
                     <p className="text-sm font-medium text-zinc-950 dark:text-zinc-100">Exportar meus dados</p>
-                    <p className="text-[0.8125rem] text-neutral-text-tertiary dark:text-zinc-400">Baixe uma cópia de todos os seus dados no Kandrive.</p>
+                    <p className="text-sm text-neutral-text-tertiary dark:text-zinc-400">Baixe uma cópia de todos os seus dados no Kandrive.</p>
                   </div>
                   <Button variant="outline" className="shrink-0">
                     Exportar dados
                   </Button>
                 </div>
-                <p className="text-[0.8125rem] text-neutral-text-tertiary dark:text-zinc-400">
+                <p className="text-sm text-neutral-text-tertiary dark:text-zinc-400">
                   Consulte nossa Política de Privacidade para saber como tratamos seus dados, conforme a LGPD.
                 </p>
               </SettingsCard>
@@ -285,11 +285,11 @@ function SettingsPage({
               <SettingsCard title="Idioma e região" caption="Personalize o idioma da interface e o formato de data">
                 <div className="flex w-full gap-8">
                   <div className="flex min-w-px flex-1 flex-col gap-1.5">
-                    <label htmlFor="settings-language" className="text-[0.8125rem] text-zinc-950 dark:text-zinc-100">Idioma da interface</label>
+                    <label htmlFor="settings-language" className="text-sm text-zinc-950 dark:text-zinc-100">Idioma da interface</label>
                     <SelectBox id="settings-language" options={LANGUAGES} className="w-full" />
                   </div>
                   <div className="flex min-w-px flex-1 flex-col gap-1.5">
-                    <label htmlFor="settings-date-format" className="text-[0.8125rem] text-zinc-950 dark:text-zinc-100">Formato de data</label>
+                    <label htmlFor="settings-date-format" className="text-sm text-zinc-950 dark:text-zinc-100">Formato de data</label>
                     <SelectBox id="settings-date-format" options={DATE_FORMATS} className="w-full" />
                   </div>
                 </div>

@@ -72,7 +72,7 @@ function fileTypeKind(format: string): FileTypeKind {
  *
  * Corrigido em auditoria Regra 11, 3ª passada (US-026, 2026-08-12):
  * releitura real de `get_design_context` no nó `1421:19405` mostra a linha
- * "Formato" da grid de metadados como texto simples (`text-[13px]`, mesmo
+ * "Formato" da grid de metadados como texto simples (`text-sm`, mesmo
  * tratamento de "Proprietário"/"Criado"/"Tamanho") — **sem** badge/ponto
  * colorido. O comentário anterior desta função afirmava o oposto (`atom/
  * badge/TypeLabel` na linha "Formato"); estava invertido. `FileTypeLabel`

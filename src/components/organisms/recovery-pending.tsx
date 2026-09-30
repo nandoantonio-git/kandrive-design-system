@@ -56,7 +56,7 @@ function RecoveryPending({ fileName, eta = "até 8h", progress = 0.75, onBack, c
         <img src={kanPeeking} alt="" aria-hidden="true" className="absolute top-[42px] left-1/2 w-[112px] -translate-x-1/2" />
       </div>
       <div className="flex flex-col gap-2">
-        <p className="text-[0.625rem] leading-3 font-bold text-brand-teal-dark">{fileName}</p>
+        <p className="text-xs leading-3 font-bold text-brand-teal-dark">{fileName}</p>
         <h1 className="text-[1.5625rem] leading-[30px] font-medium text-neutral-text-primary">Recuperação pendente</h1>
         <p className="text-base leading-5 text-neutral-text-tertiary">
           Seu arquivo está sendo recuperado do armazenamento de longo prazo. Tempo estimado de espera:{" "}

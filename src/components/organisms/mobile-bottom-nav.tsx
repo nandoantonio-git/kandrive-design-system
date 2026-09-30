@@ -122,7 +122,7 @@ function MobileBottomNav({
               <span className={cn("flex h-[22px] items-end", selected ? "text-brand-teal" : "text-effect-overlay-default/50")}>
                 <Glyph aria-hidden="true" className="h-[19px] w-auto" />
               </span>
-              <span className={cn("text-[0.6875rem] leading-[17px]", selected ? "text-brand-teal" : "text-neutral-text-tertiary")}>{label}</span>
+              <span className={cn("text-xs leading-[17px]", selected ? "text-brand-teal" : "text-neutral-text-tertiary")}>{label}</span>
             </button>
           )
         })}

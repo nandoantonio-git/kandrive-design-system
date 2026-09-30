@@ -100,7 +100,7 @@ function PagePickerButton({
       data-expanded={expanded || undefined}
       className={cn("relative flex w-fit items-center gap-2", className)}
     >
-      {withLabel ? <span className="text-[0.6875rem] leading-4 text-neutral-text-tertiary">Página:</span> : null}
+      {withLabel ? <span className="text-xs leading-4 text-neutral-text-tertiary">Página:</span> : null}
       <div className="relative">
         <button
           type="button"
@@ -114,7 +114,7 @@ function PagePickerButton({
             if (!event.defaultPrevented) setExpanded(!expanded)
           }}
           className={cn(
-            "touch-target flex h-8 w-fit cursor-pointer items-center gap-2 rounded-lg border border-brand-teal-light bg-effect-overlay-subtle/10 px-3 text-[0.8125rem] font-medium text-neutral-text-secondary backdrop-blur-[15px] focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none",
+            "touch-target flex h-8 w-fit cursor-pointer items-center gap-2 rounded-lg border border-brand-teal-light bg-effect-overlay-subtle/10 px-3 text-sm font-medium text-neutral-text-secondary backdrop-blur-[15px] focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none",
             "transition-[background-color,opacity] hover:bg-effect-overlay-subtle/20 active:opacity-70 disabled:pointer-events-none disabled:opacity-50"
           )}
           {...props}

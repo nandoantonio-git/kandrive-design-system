@@ -252,7 +252,7 @@ function OrganizationPageMobile({
   const showSheet = review && sheetOpen && step !== "review-done"
   const heading = "text-[1.5625rem] leading-[30px] font-medium text-neutral-text-primary"
   const lead = "text-base leading-5 text-neutral-text-secondary"
-  const caption = "text-[0.6875rem] leading-4 text-neutral-text-tertiary"
+  const caption = "text-xs leading-4 text-neutral-text-tertiary"
 
   return (
     <AppShell

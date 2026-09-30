@@ -93,7 +93,7 @@ function ViewModeToggle({ mode: controlledMode, defaultMode = "grid", onModeChan
       {...props}
     >
       {compact ? null : (
-        <span className="px-1 text-[0.625rem] font-bold tracking-wide text-neutral-text-tertiary dark:text-zinc-400">
+        <span className="px-1 text-xs font-bold tracking-wide text-neutral-text-tertiary dark:text-zinc-400">
           VISUALIZAR
         </span>
       )}

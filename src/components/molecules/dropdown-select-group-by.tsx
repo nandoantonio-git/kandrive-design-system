@@ -150,7 +150,7 @@ function DropdownSelectGroupBy({
       )}
       {...props}
     >
-      {mobile ? null : <span className="px-1 text-[0.625rem] font-bold tracking-wide text-neutral-text-tertiary dark:text-zinc-400">AGRUPAR</span>}
+      {mobile ? null : <span className="px-1 text-xs font-bold tracking-wide text-neutral-text-tertiary dark:text-zinc-400">AGRUPAR</span>}
       <div
         className={cn(
           "flex w-full flex-col items-start gap-1 rounded-xl glass-edge glass-shadow-sm bg-effect-glass-light-45 py-2 backdrop-blur-[10px]",
@@ -165,7 +165,7 @@ function DropdownSelectGroupBy({
           onClick={() => setExpanded(!expanded)}
           className={cn(
             // Figma: o GroupBy não tem estado de hover no contêiner; o hover é a smart animation do ícone (atom/Icon/Group).
-            "group flex w-full items-center gap-2 rounded-md px-3 text-[0.625rem] text-zinc-700 transition-opacity dark:text-zinc-300",
+            "group flex w-full items-center gap-2 rounded-md px-3 text-xs text-zinc-700 transition-opacity dark:text-zinc-300",
             "active:opacity-70 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
             mobile && "touch-target"
           )}

@@ -168,7 +168,7 @@ function Label({
       aria-disabled={isDisabled || undefined}
       {...props}
     >
-      <span className="w-full px-1 text-[0.625rem] font-bold tracking-[0.012px] text-neutral-text-tertiary dark:text-zinc-400">
+      <span className="w-full px-1 text-xs font-bold tracking-[0.012px] text-neutral-text-tertiary dark:text-zinc-400">
         ETIQUETAR
       </span>
 
@@ -178,7 +178,7 @@ function Label({
             type="button"
             aria-expanded="true"
             onClick={() => setExpanded(false)}
-            className="group flex h-5 w-full items-center gap-2 rounded-md px-1 text-[0.625rem] text-zinc-700 dark:text-zinc-300 transition-[background-color,opacity] hover:bg-[#71717a33] dark:hover:bg-[#a1a1aa33] active:opacity-70 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50"
+            className="group flex h-5 w-full items-center gap-2 rounded-md px-1 text-xs text-zinc-700 dark:text-zinc-300 transition-[background-color,opacity] hover:bg-[#71717a33] dark:hover:bg-[#a1a1aa33] active:opacity-70 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50"
           >
             <Icon name="Label" className="size-3 shrink-0" />
             <span className="min-w-0 flex-1 whitespace-nowrap text-left">{value}</span>
@@ -210,7 +210,7 @@ function Label({
                   aria-label="Buscar etiqueta"
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
-                  className="h-full min-w-0 flex-1 bg-transparent text-[0.625rem] text-zinc-700 outline-none dark:text-zinc-300 [&::-webkit-search-cancel-button]:hidden"
+                  className="h-full min-w-0 flex-1 bg-transparent text-xs text-zinc-700 outline-none dark:text-zinc-300 [&::-webkit-search-cancel-button]:hidden"
                 />
               </label>
               <div className="flex w-full flex-col items-center gap-1 py-1">
@@ -240,7 +240,7 @@ function Label({
           disabled={isDisabled}
           aria-expanded="false"
           onClick={() => setExpanded(true)}
-          className="group relative flex h-[35px] w-full cursor-pointer items-center gap-2 rounded-xl glass-edge glass-shadow-sm bg-effect-glass-light-45 px-3 py-2 text-[0.625rem] text-zinc-700 dark:text-zinc-300 transition-[background-color,opacity] hover:bg-[#71717a33] dark:hover:bg-[#a1a1aa33] active:opacity-70 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 disabled:cursor-not-allowed disabled:hover:bg-transparent"
+          className="group relative flex h-[35px] w-full cursor-pointer items-center gap-2 rounded-xl glass-edge glass-shadow-sm bg-effect-glass-light-45 px-3 py-2 text-xs text-zinc-700 dark:text-zinc-300 transition-[background-color,opacity] hover:bg-[#71717a33] dark:hover:bg-[#a1a1aa33] active:opacity-70 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 disabled:cursor-not-allowed disabled:hover:bg-transparent"
         >
           <Icon name="Label" className="size-3 shrink-0" />
           <span className="min-w-0 flex-1 whitespace-nowrap text-left">{value}</span>

@@ -80,7 +80,7 @@ function StorageStatusSummary({
       <div data-slot="storage-status-summary" data-device="mobile" className={cn("flex w-full flex-col gap-3", className)} {...props}>
         {header}
         <div className="overflow-hidden rounded-xl border border-neutral-border-subtle bg-neutral-surface-elevated">
-          <div className="flex items-center justify-between border-b border-neutral-surface-subtle px-4 py-2.5 text-[0.8125rem] leading-5 text-neutral-text-primary">
+          <div className="flex items-center justify-between border-b border-neutral-surface-subtle px-4 py-2.5 text-sm leading-5 text-neutral-text-primary">
             <span>Nome</span>
             <button type="button" className="flex cursor-pointer items-center gap-1 rounded-sm font-bold transition-opacity hover:opacity-80 active:opacity-60 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50">
               <ArrowDown aria-hidden="true" className="size-3" />
@@ -93,9 +93,9 @@ function StorageStatusSummary({
                 <img src={folderSymbol} alt="" aria-hidden="true" className="h-8 w-9 shrink-0" />
                 <div className="flex min-w-0 flex-1 flex-col gap-0.5">
                   <span className="truncate text-base leading-5 text-neutral-text-secondary">{file.name}</span>
-                  <span className="truncate text-[0.6875rem] leading-4 text-neutral-text-tertiary">{file.owner ?? "Proprietário"}</span>
+                  <span className="truncate text-xs leading-4 text-neutral-text-tertiary">{file.owner ?? "Proprietário"}</span>
                 </div>
-                <span className="shrink-0 text-[0.6875rem] leading-4 text-neutral-text-tertiary">{file.size}</span>
+                <span className="shrink-0 text-xs leading-4 text-neutral-text-tertiary">{file.size}</span>
               </li>
             ))}
           </ul>

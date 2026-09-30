@@ -178,7 +178,7 @@ function FolderItem({
       {showName ? (
         <span
           className={cn(
-            "block h-3 w-full truncate text-center text-[0.625rem] leading-normal tracking-[0.012px]",
+            "block h-3 w-full truncate text-center text-xs leading-normal tracking-[0.012px]",
             isDisabled ? "text-neutral-text-tertiary dark:text-zinc-400" : "text-zinc-700 dark:text-zinc-300"
           )}
         >

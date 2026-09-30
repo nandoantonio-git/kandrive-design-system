@@ -64,7 +64,7 @@ function MobileTabBar({ active: controlledActive, defaultActive = "home", onTabC
             )}
           >
             <Glyph aria-hidden="true" className="size-5" />
-            <span className="text-[0.6875rem] leading-none">{label}</span>
+            <span className="text-xs leading-none">{label}</span>
           </button>
         )
       })}

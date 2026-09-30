@@ -37,9 +37,9 @@ function FileRow({ type = "file", name, meta, date, className, ...props }: FileR
     >
       <div className="flex min-w-0 flex-1 flex-col gap-0.5">
         <p className="truncate text-base leading-5 text-neutral-text-primary">{name}</p>
-        <p className="truncate text-[0.6875rem] leading-4 text-neutral-text-tertiary">{meta}</p>
+        <p className="truncate text-xs leading-4 text-neutral-text-tertiary">{meta}</p>
       </div>
-      {date ? <span className="shrink-0 text-[0.6875rem] leading-4 text-neutral-text-tertiary">{date}</span> : null}
+      {date ? <span className="shrink-0 text-xs leading-4 text-neutral-text-tertiary">{date}</span> : null}
     </div>
   )
 }

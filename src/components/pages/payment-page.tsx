@@ -201,10 +201,10 @@ function PaymentPage({
                       <div className="flex items-start justify-between">
                         <div>
                           <p className="text-base font-semibold text-zinc-950 dark:text-zinc-100">{plan.name}</p>
-                          <p className="text-[0.8125rem] text-neutral-text-tertiary dark:text-zinc-400">{plan.storageLabel}</p>
+                          <p className="text-sm text-neutral-text-tertiary dark:text-zinc-400">{plan.storageLabel}</p>
                         </div>
                         {plan.status ? (
-                          <span className="rounded-full bg-white/80 px-2 py-0.5 text-[0.6875rem] font-medium text-brand-secondary dark:bg-zinc-900/80">
+                          <span className="rounded-full bg-white/80 px-2 py-0.5 text-xs font-medium text-brand-secondary dark:bg-zinc-900/80">
                             {plan.status === "current" ? "Atual" : "Selecionado"}
                           </span>
                         ) : null}
@@ -213,14 +213,14 @@ function PaymentPage({
                       <p className="text-[1.375rem] font-bold text-zinc-950 dark:text-zinc-100">{plan.price}</p>
                       <ul className="flex flex-col gap-1.5">
                         {plan.features.map((feature) => (
-                          <li key={feature} className="flex items-start gap-2 text-[0.8125rem] text-zinc-700 dark:text-zinc-300">
+                          <li key={feature} className="flex items-start gap-2 text-sm text-zinc-700 dark:text-zinc-300">
                             <Check className="mt-0.5 size-3.5 shrink-0 text-brand-teal" aria-hidden="true" />
                             {feature}
                           </li>
                         ))}
                       </ul>
                       {isSelected ? (
-                        <span className="flex items-center justify-center gap-1.5 rounded-md border border-brand-teal py-1.5 text-[0.8125rem] font-medium text-brand-teal">
+                        <span className="flex items-center justify-center gap-1.5 rounded-md border border-brand-teal py-1.5 text-sm font-medium text-brand-teal">
                           <Check className="size-4" aria-hidden="true" />
                           Selecionado
                         </span>
@@ -228,7 +228,7 @@ function PaymentPage({
                         <Button
                           variant="outline"
                           onClick={() => onSelectPlan?.(plan.id)}
-                          className="h-auto justify-center rounded-md px-3 py-1.5 text-[0.8125rem]"
+                          className="h-auto justify-center rounded-md px-3 py-1.5 text-sm"
                         >
                           {plan.actionLabel}
                         </Button>
@@ -268,7 +268,7 @@ function PaymentPage({
                   </button>
                 </div>
                 <div className="rounded-md bg-zinc-100 p-3 dark:bg-zinc-800">
-                  <p className="text-[0.8125rem] text-neutral-text-tertiary dark:text-zinc-400">A partir de hoje</p>
+                  <p className="text-sm text-neutral-text-tertiary dark:text-zinc-400">A partir de hoje</p>
                   <p className="text-2xl font-bold text-zinc-950 dark:text-zinc-100">$12/mês</p>
                 </div>
                 <div className="flex flex-col gap-2 text-sm text-zinc-700 dark:text-zinc-300">
@@ -294,7 +294,7 @@ function PaymentPage({
               <SettingsField label="E-mail para recibo" type="email" placeholder="voce@email.com" className="w-full" />
               <div className="flex items-start gap-2.5 rounded-lg bg-zinc-100 p-3.5 dark:bg-zinc-800">
                 <Info className="mt-0.5 size-4 shrink-0 text-neutral-text-tertiary dark:text-zinc-400" aria-hidden="true" />
-                <p className="flex items-start gap-1.5 text-[0.8125rem] text-neutral-text-tertiary dark:text-zinc-400">
+                <p className="flex items-start gap-1.5 text-sm text-neutral-text-tertiary dark:text-zinc-400">
                   <Lock className="mt-0.5 size-3.5 shrink-0" aria-hidden="true" />
                   Os dados do cartão ficam protegidos pela Stripe. O Kandrive não guarda o número completo.
                 </p>
