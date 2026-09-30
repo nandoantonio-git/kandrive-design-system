@@ -261,3 +261,9 @@ Ver [[Auditoria final (2026-09-30)]] para o estado técnico (gate, paridade, pro
 - **M8, M9, M10:** slide 06 com miniaturas maiores regeradas das telas atuais (as antigas mostravam o Header teal e a tela `Organize/Review/Mobile` removida) e legenda de insight; slide 10 com números de valor recontados hoje (188 componentes no Figma, 139 em React, 494 testes, 179 telas, 92 cores base, 121 papéis), Graphify como nota; texto mínimo de 20px nos slides 03, 09 e 10.
 - **Estado da auditoria:** C1 a C4, A2, A3, A4, A6, A7, A8, M1, M2, M8, M9 e M10 fechados ou resolvidos; C3 fechado para a publicação, com o reteste pendente. O que sobrou está em [[To-do futuro (2026-09-30)]].
 
+### Segunda rodada final (2026-09-30)
+- **A5:** Login com erro de senha (mensagem genérica com saída, `role="alert"`, borda de erro, foco na senha), como estado do `CardLogin`, em 4 telas novas (Desktop e Mobile, claro e Dark) com fluxos próprios. "Esqueceu sua senha?" e "Crie uma agora" abrem o aviso de fora do escopo. Fluxo de recuperação de senha e cadastro seguem fora do escopo.
+- **M3:** busca do Header desativada com o modal de Guardar aberto; a busca dos modais diz "Buscar para guardar".
+- **A1:** com ponteiro de toque, área de 44x44 para todo alvo e altura mínima de 44px nos campos (CSS global); Figma com `atom/Chip` e abas do `MobileTabBar` em 44px. Medição automática: 193 alvos abaixo de 44px viraram 0. Decisão (c): ícones e caixas com área invisível, chips e abas com altura real.
+- **De fora, por escolha do usuário:** M5, M7, migração do `PushButton` e a tela `Stored/Desktop`.
+
