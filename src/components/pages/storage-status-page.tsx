@@ -11,6 +11,7 @@ import { type StorageSummaryFile } from "@/components/organisms/storage-status-s
 import { StorageStatusSection } from "@/components/organisms/storage-status-section"
 import { CleanSpaceStorage, type CleanSpaceStorageProps } from "@/components/templates/clean-space-storage"
 import { Button } from "@/components/atoms/button"
+import { PopoverNotification, type PopoverNotificationProps } from "@/components/molecules/popover-notification"
 import { useMinWidth } from "@/lib/use-min-width"
 
 export interface StorageStatusPageProps extends React.ComponentProps<"div"> {
@@ -32,6 +33,11 @@ export interface StorageStatusPageProps extends React.ComponentProps<"div"> {
   /** `Storage/ManageSpace`: o modal "Liberar espaço" (`CleanSpaceStorage`) por cima da página. */
   manageSpaceOpen?: boolean
   cleanSpaceProps?: Omit<CleanSpaceStorageProps, "className">
+  /**
+   * Aviso no canto inferior direito (desktop e tablet). Em `Storage/LongTerm/Desktop` (V0.2.1) é o retorno
+   * depois de guardar: o que mudou, quanto espaço voltou e como resgatar (auditoria UX, A4).
+   */
+  notificationProps?: PopoverNotificationProps
 }
 
 /**
@@ -71,6 +77,7 @@ function StorageStatusPage({
   limitReached = false,
   manageSpaceOpen = false,
   cleanSpaceProps,
+  notificationProps,
   className,
   ...props
 }: StorageStatusPageProps) {
@@ -112,6 +119,12 @@ function StorageStatusPage({
         <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/20 p-4 tablet:absolute tablet:p-6">
           <CleanSpaceStorage {...cleanSpaceProps} />
         </div>
+      ) : null}
+      {notificationProps ? (
+        <PopoverNotification
+          {...notificationProps}
+          className={cn("hidden tablet:flex tablet:absolute tablet:right-8 tablet:bottom-8", notificationProps.className)}
+        />
       ) : null}
     </AppShell>
   )

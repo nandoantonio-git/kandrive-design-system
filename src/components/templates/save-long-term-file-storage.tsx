@@ -112,9 +112,13 @@ function SaveLongTermFileStorage({
           </div>
           <div className="flex flex-col gap-1.5">
             <p className="text-xl font-bold text-zinc-900 dark:text-zinc-100">Por que guardar?</p>
+            {/* Auditoria UX, A4: o prazo de resgate vem primeiro e em destaque, antes de confirmar; depois, a frase
+                que liga a ação (guardar), o lugar (Guardados) e a camada (longo prazo) — A3. */}
+            <p className="text-sm font-bold text-neutral-text-primary dark:text-zinc-100">
+              Resgate por e-mail em até 8h. É só solicitar, e o espaço volta para o seu armazenamento.
+            </p>
             <p className="text-sm text-neutral-text-tertiary dark:text-zinc-400">
-              Arquivos em longo prazo ficam seguros por anos e liberam espaço ativo. Para resgatar, é só solicitar,
-              você o recebe por e-mail e o espaço volta para o seu armazenamento em até 8h.
+              Você guarda, e o arquivo vai para Guardados, no armazenamento de longo prazo, seguro por anos e fora do espaço ativo.
             </p>
           </div>
           <div className="flex flex-col gap-1">

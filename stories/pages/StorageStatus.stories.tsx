@@ -85,6 +85,19 @@ export const LongTerm: Story = {
   render: controlled("long-term"),
 }
 
+/** Depois de guardar (auditoria UX, A4): aviso com o que mudou, quanto espaço voltou e como resgatar. Figma `Storage/LongTerm/Desktop`. */
+export const LongTermAfterSave: Story = {
+  parameters: {
+    design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1745-12039" },
+  },
+  args: {
+    usedLabel: "1 TB em uso",
+    freeLabel: "1 TB livre",
+    notificationProps: { title: "Prontinho! 3 arquivos guardados e 2,6 GB liberados. Para resgatar, é só solicitar em Guardados.", timestamp: "now" },
+  },
+  render: controlled("long-term"),
+}
+
 // ─── Responsividade (2026-09-24) ─────────────────────────────────────────
 const FIG = (id: string) => ({ design: { type: "figma" as const, url: `https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=${id}` } })
 const vp = (value: "kdMobile" | "kdTablet") => ({ viewport: { value, isRotated: false } })
