@@ -14,7 +14,6 @@ const meta = {
         itemsLabel: "Pasta · 12 itens",
         severity: "duplicado",
         suggestedPath: "Financeiro / 2023 / Relatórios",
-        suggestedPathLabel: "Estrutura sugerida:",
         children: [{ name: "Q1_Report_v2.pdf", meta: "PDF · 2.4 MB" }],
       },
       {

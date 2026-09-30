@@ -20,7 +20,7 @@ Cada item de revisão mostra um ícone de pasta, um badge de severidade ("Duplic
 
 Botões `atom/Button` — "Cancelar" (`variant="outline"`) / "Continuar" (padrão, `primary`) no rodapé. "Renomear"/"Editar" são links de texto simples (sem chrome de botão); "Excluir" (linha de arquivo filho) usa `Button variant="outline"`, com o texto na cor de destrutivo (mesmo padrão usado em `organism/cleanSpaceStorage`).
 
-O rótulo da linha de caminho sugerido varia por item — o primeiro item (severidade "Duplicado") usa "Estrutura sugerida:" (Figma: "Taxonomia Sugerida:", traduzido na revisão de UX writing por ser jargão), os demais usam "Template sugerido:" (prop `suggestedPathLabel`, com esse default).
+O rótulo da linha de caminho sugerido é "Template sugerido:" em todos os itens (unificado em 2026-09-30; antes o primeiro item usava "Estrutura sugerida:", vindo de "Taxonomia Sugerida:" no Figma). A prop `suggestedPathLabel` continua existindo para casos específicos.
 
 ### Material
 

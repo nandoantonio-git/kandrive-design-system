@@ -59,7 +59,7 @@ function ArchiveBrowserModalSearch({
             ) : null}
             <span
               className={cn(
-                "shrink-0 text-[0.6875rem] leading-4 tracking-[0.2px] whitespace-nowrap text-neutral-text-tertiary dark:text-zinc-400",
+                "shrink-0 text-xs leading-4 tracking-[0.2px] whitespace-nowrap text-neutral-text-tertiary dark:text-zinc-400",
                 index === breadcrumb.length - 1 && "text-brand-teal"
               )}
             >

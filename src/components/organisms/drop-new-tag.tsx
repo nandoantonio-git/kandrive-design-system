@@ -91,7 +91,7 @@ function DropNewTag({
         value={label}
         onChange={(event) => handleLabelChange(event.target.value)}
         placeholder="Nome da etiqueta"
-          className="absolute top-px left-0 h-3 w-20 rounded-lg border-0 bg-[#ccced6] px-1 text-[0.625rem] leading-3 text-zinc-700 caret-[var(--accents-blue,#08f)] transition-colors placeholder:text-transparent hover:bg-[#c2c4cc] focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:bg-zinc-900 dark:hover:bg-zinc-800 dark:text-zinc-300"
+          className="absolute top-px left-0 h-3 w-20 rounded-lg border-0 bg-[#ccced6] px-1 text-xs leading-3 text-zinc-700 caret-[var(--accents-blue,#08f)] transition-colors placeholder:text-transparent hover:bg-[#c2c4cc] focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:bg-zinc-900 dark:hover:bg-zinc-800 dark:text-zinc-300"
       />
       </div>
       <TagColor

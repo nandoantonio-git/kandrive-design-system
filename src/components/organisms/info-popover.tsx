@@ -43,7 +43,7 @@ export type InfoPopoverProps = React.ComponentProps<"div"> &
  * 3. Tamanho de texto era `text-xs`/`text-sm` (12px/14px) — Figma confirma
  *    `Type/Body/XS` (10px) em todo o conteúdo, exceção documentada da
  *    Regra 4 (mesmo padrão já usado em outros componentes, convertido para
- *    `text-[0.625rem]`, nunca `px` fixo).
+ *    `text-xs`, nunca `px` fixo).
  * 4. A variante `storage-info` tinha 2 problemas: (a) a ordem estava
  *    invertida — Figma mostra "AL" primeiro, "AC" depois, o código tinha
  *    "AC" primeiro; (b) cada linha tinha um valor dinâmico **inventado**
@@ -78,32 +78,32 @@ function InfoPopover({ className, ...props }: InfoPopoverProps) {
         }
       />
       {isStorageInfo ? (
-        <div className="absolute left-[13px] top-[10px] flex w-[237px] flex-col gap-1 p-2 text-[0.625rem] tracking-[0.012px] text-black/20">
+        <div className="absolute left-[13px] top-[10px] flex w-[237px] flex-col gap-1 p-2 text-xs tracking-[0.012px] text-black/20">
           <p>Longo prazo</p>
           <div className="h-0 w-full border-t border-brand-secondary-light opacity-35" />
           <p>Acesso rápido</p>
         </div>
       ) : (
         <div className="absolute left-[13px] top-[8px] flex w-[237px] flex-col gap-1 p-2">
-          <p className="text-[0.625rem] font-bold tracking-[0.012px] text-black">Informações</p>
-          <div className="flex items-center justify-between text-[0.625rem] tracking-[0.012px] text-brand-secondary-light">
+          <p className="text-xs font-bold tracking-[0.012px] text-black">Informações</p>
+          <div className="flex items-center justify-between text-xs tracking-[0.012px] text-brand-secondary-light">
             <span>Criado</span>
             <span>{props.createdAt}</span>
           </div>
           <div className="h-0 w-full border-t border-brand-secondary-light opacity-35" />
-          <div className="flex items-center justify-between text-[0.625rem] tracking-[0.012px] text-brand-secondary-light">
+          <div className="flex items-center justify-between text-xs tracking-[0.012px] text-brand-secondary-light">
             <span>Modificado</span>
             <span>{props.modifiedAt}</span>
           </div>
           <div className="h-0 w-full border-t border-brand-secondary-light opacity-35" />
-          <div className="flex items-center justify-between text-[0.625rem] tracking-[0.012px] text-brand-secondary-light">
+          <div className="flex items-center justify-between text-xs tracking-[0.012px] text-brand-secondary-light">
             <span>Dimensões</span>
             <span>{props.dimensions}</span>
           </div>
           {props.tagsLabel ? (
             <div className="flex flex-col gap-1">
-              <span className="text-[0.625rem] font-bold tracking-[0.012px] text-black">Etiquetas</span>
-              <span className="text-[0.625rem] tracking-[0.012px] text-brand-secondary-light">
+              <span className="text-xs font-bold tracking-[0.012px] text-black">Etiquetas</span>
+              <span className="text-xs tracking-[0.012px] text-brand-secondary-light">
                 {props.tagsLabel}
               </span>
             </div>

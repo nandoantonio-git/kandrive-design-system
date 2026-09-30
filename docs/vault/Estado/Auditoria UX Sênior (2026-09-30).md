@@ -215,3 +215,11 @@ Ver [[Auditoria final (2026-09-30)]] para o estado técnico (gate, paridade, pro
 - **Efeito colateral do Figma:** mexer num estilo de texto deixou os textos sobrescritos das instâncias desatualizados na renderização (botões e chips voltaram a mostrar "Label"). O texto nunca se perdeu (a API continuava mostrando o valor certo); reescrever o texto de cada instância (7.600 textos) resolveu. Fica como regra para os próximos lotes: depois de editar estilos, reescrever os textos das instâncias.
 - **Reflow ajustado:** altura do painel "Por que guardar?" (quebra de linha forçada removida), chips de arquivo que quebram linha, descrição do cartão "Modo livre", rótulos das abas e da barra inferior do Mobile ("Organizar" e "Compartilhados" quebravam no meio da palavra).
 - **Falta (lotes 2 e 3):** 62 componentes seguem com textos abaixo de 12px, principalmente os modais e painéis de Organizar e Guardar, o PageToolbar, o Header e o restante.
+
+### Tipografia, lote 2 (2026-09-30)
+- **Figma:** 74 textos em componentes (TemplateReviewModal, TemplateCard, CleanSpaceStorage, SaveLongTermFileStorage, ArchiveBrowserModal, SaveOrganizationModal, PopoverNotification, MethodOrganizeButton, SearchInput) e 667 textos soltos nas telas, claras e Dark, passaram para os estilos de 12 e 14px. Textos das instâncias reescritos (7.600) para evitar o problema do "Label".
+- **Reflow ajustado:** rótulo "Template sugerido:" com largura pelo texto; legenda do Armazenamento no Mobile quebra linha em vez de sair da tela.
+- **Código:** 45 arquivos passaram de 10 e 11px para 12 (`text-xs`) e de 13 para 14 (`text-sm`). "Estrutura sugerida" unificado em "Template sugerido", como no Figma.
+- **Resultado nas telas claras:** abaixo de 12px, Desktop 0%, Tablet 0%, Mobile 0,2% (2 textos). Abaixo de 14px: 34%, 37% e 49%, quase tudo microtexto de 12px, permitido pela escala.
+- **Fica para o lote 3:** o Modo livre (nós do canvas e menu de contexto, com textos de 8 a 11px no Figma e no código) e as páginas de documentação de tipografia do Storybook, que ainda mostram a escala antiga.
+- **Achado de passagem, não corrigido:** "Liberar espaço" e "Comprar espaço" em botões com 13 a 14px nas telas de Armazenamento; a Regra 4 pede 16 para rótulo de botão.

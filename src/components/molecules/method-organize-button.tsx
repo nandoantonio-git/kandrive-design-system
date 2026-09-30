@@ -62,7 +62,7 @@ function MethodOrganizeButton({ method = "projeto", withChevron = true, expanded
     >
       <Glyph aria-hidden="true" className="h-[34px] w-9 shrink-0 text-neutral-text-secondary/60" />
       <span className="min-w-0 flex-1 truncate text-base font-medium text-neutral-text-secondary">{label}</span>
-      <span className="shrink-0 rounded-full border-[0.5px] border-brand-teal bg-effect-overlay-subtle/10 px-2.5 py-[3px] text-[0.5625rem] leading-[10px] font-bold text-brand-teal uppercase">
+      <span className="shrink-0 rounded-full border-[0.5px] border-brand-teal bg-effect-overlay-subtle/10 px-2.5 py-[3px] text-xs leading-[10px] font-bold text-brand-teal uppercase">
         {tag}
       </span>
       {withChevron ? (

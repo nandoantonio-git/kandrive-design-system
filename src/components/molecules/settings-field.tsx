@@ -22,7 +22,7 @@ function SettingsField({ label, className, ...props }: SettingsFieldProps) {
   const inputId = React.useId()
   return (
     <div className="flex min-w-px flex-1 flex-col gap-1.5">
-      <label htmlFor={inputId} className="text-[0.8125rem] font-medium text-zinc-950 dark:text-zinc-100">
+      <label htmlFor={inputId} className="text-sm font-medium text-zinc-950 dark:text-zinc-100">
         {label}
       </label>
       <input

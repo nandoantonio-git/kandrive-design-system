@@ -59,7 +59,7 @@ function DropdownSelectLabelItem({
             : "group-hover:bg-[#71717a33] group-active:bg-[#6b6b6873] dark:group-active:bg-[#a8a6a173]"
         )}
       >
-        <span className="flex w-fit shrink-0 items-center gap-1.5 rounded-xl py-0.5 text-[0.625rem] whitespace-nowrap text-zinc-700 dark:text-zinc-300">
+        <span className="flex w-fit shrink-0 items-center gap-1.5 rounded-xl py-0.5 text-xs whitespace-nowrap text-zinc-700 dark:text-zinc-300">
           {label}
         </span>
       </span>

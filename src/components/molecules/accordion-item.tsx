@@ -42,7 +42,7 @@ function AccordionItem({ question, children, chevron: Chevron = DefaultChevron, 
           aria-hidden="true"
         />
       </summary>
-      <div className="pt-2 text-[0.8125rem] leading-normal text-brand-secondary-light">{children}</div>
+      <div className="pt-2 text-sm leading-normal text-brand-secondary-light">{children}</div>
     </details>
   )
 }

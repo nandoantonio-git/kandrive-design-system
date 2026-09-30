@@ -58,7 +58,7 @@ function ThumbnailLarge({
           <div className="flex h-[23px] items-start justify-center">
             <FaviconGlyph aria-hidden="true" className={isDocument ? "h-[23px] w-[21px]" : "h-[19px] w-4"} />
           </div>
-          <span className="text-[0.625rem] tracking-[0.012px] text-zinc-700 dark:text-zinc-300">{pageLabel}</span>
+          <span className="text-xs tracking-[0.012px] text-zinc-700 dark:text-zinc-300">{pageLabel}</span>
         </div>
       </div>
       <div className="relative h-[210px] w-full bg-effect-glass-white-36">

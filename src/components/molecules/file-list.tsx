@@ -140,7 +140,7 @@ function FileListArchiveItem({ name, showName }: { name: string; showName: boole
     >
       <FolderArchiveGlyph aria-hidden="true" className="h-[31.846px] w-9 shrink-0" />
       {showName ? (
-        <span className="flex h-3 w-full items-start justify-center overflow-hidden text-[0.625rem] whitespace-nowrap text-zinc-700 dark:text-zinc-300 tracking-[0.012px]">
+        <span className="flex h-3 w-full items-start justify-center overflow-hidden text-xs whitespace-nowrap text-zinc-700 dark:text-zinc-300 tracking-[0.012px]">
           {name}
         </span>
       ) : null}

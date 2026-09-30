@@ -29,7 +29,7 @@ function SettingsCard({ title, caption, className, children, ...props }: Setting
     >
       <div className="flex flex-col gap-0.5">
         <p className="text-base font-semibold text-zinc-950 dark:text-zinc-100">{title}</p>
-        {caption ? <p className="text-[0.8125rem] text-neutral-text-tertiary dark:text-zinc-400">{caption}</p> : null}
+        {caption ? <p className="text-sm text-neutral-text-tertiary dark:text-zinc-400">{caption}</p> : null}
       </div>
       {children}
     </div>

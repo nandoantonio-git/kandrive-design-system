@@ -26,7 +26,7 @@ export interface ReviewItem {
    * regra sistêmica ligada à severidade (apenas 3 exemplos no nó) — exposto
    * como prop por item em vez de inferido, default "Template sugerido:".
    * 🧩 Texto adaptado (2026-09-28): "Taxonomia" é jargão — o default e o uso
-   * no 1º item viram "Estrutura sugerida:" (Figma: "Taxonomia Sugerida:").
+   * no 1º item viravam "Estrutura sugerida:" (Figma: "Taxonomia Sugerida:"). Desde 2026-09-30 o Figma usa "Template sugerido:" em todos os itens, e o código também.
    */
   suggestedPathLabel?: string
   onRename?: () => void

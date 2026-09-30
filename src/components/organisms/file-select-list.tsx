@@ -30,7 +30,7 @@ function FileSelectList({ files, selected, onSelectedChange, title = "Selecionar
   const titleId = React.useId()
   return (
     <section data-slot="file-select-list" aria-labelledby={titleId} className={cn("flex flex-col gap-2", className)} {...props}>
-      <h2 id={titleId} className="text-[0.6875rem] leading-4 font-bold text-neutral-text-tertiary uppercase">
+      <h2 id={titleId} className="text-xs leading-4 font-bold text-neutral-text-tertiary uppercase">
         {title}
       </h2>
       <div className="overflow-hidden rounded-xl border border-neutral-border-subtle bg-neutral-surface-card">

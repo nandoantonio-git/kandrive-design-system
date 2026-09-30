@@ -50,13 +50,13 @@ function StorageStatusCurrent({
         <span className="text-base text-zinc-950 dark:text-zinc-100">Armazenamento usado:</span>
         <span className="text-[1.5625rem] font-medium text-zinc-950 dark:text-zinc-100">{usedAmount}</span>
         <span className="text-xl text-zinc-950 dark:text-zinc-100">de {totalAmount}</span>
-        <span className="text-[0.625rem] font-bold text-neutral-text-tertiary dark:text-zinc-400">{scopeAbbr}</span>
+        <span className="text-xs font-bold text-neutral-text-tertiary dark:text-zinc-400">{scopeAbbr}</span>
       </div>
 
       <button
         type="button"
         onClick={onBuySpace}
-        className="rounded-md bg-brand-teal-action px-4 py-1 text-[0.625rem] text-brand-teal-foreground transition-[background-color,transform] hover:bg-brand-teal-action/90 motion-safe:active:scale-95 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50"
+        className="rounded-md bg-brand-teal-action px-4 py-1 text-xs text-brand-teal-foreground transition-[background-color,transform] hover:bg-brand-teal-action/90 motion-safe:active:scale-95 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50"
       >
         Comprar espaço
       </button>
@@ -74,7 +74,7 @@ function StorageStatusCurrent({
 
       <div className="flex items-center gap-1.5 py-1">
         <span aria-hidden="true" className="size-[7px] shrink-0 rounded-full bg-brand-pink-light" />
-        <span className="text-[0.625rem] text-brand-secondary-light">{clamped}%</span>
+        <span className="text-xs text-brand-secondary-light">{clamped}%</span>
       </div>
     </div>
   )

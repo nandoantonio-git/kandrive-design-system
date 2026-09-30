@@ -88,7 +88,7 @@ export interface OrganizePanelDropZoneProps extends React.ComponentProps<"div"> 
  * `text-brand-teal-foreground/80` (branco a 80%) — `get_design_context`
  * fresco confirma `var(--brand-primary-light,#c8dce3)` (mesmo token de
  * `brand-teal-light`) a 13px, não branco. Corrigido para
- * `text-brand-teal-light` + `text-[0.8125rem]`.
+ * `text-brand-teal-light` + `text-sm`.
  *
  * 🔧 Corrigido em 2026-08-13 (US-026, pass12): `get_design_context` fresco
  * reconfirmou que cada variante do component set mede 560×772 e o ícone
@@ -184,7 +184,7 @@ function OrganizePanelDropZone({
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-3xl bg-effect-glass-white-36" />
       ) : null}
       <div className="relative flex items-center justify-between gap-2">
-        <span className="rounded-md bg-zinc-600 px-3 py-1.5 text-[0.8125rem] text-brand-teal-light">{mode}</span>
+        <span className="rounded-md bg-zinc-600 px-3 py-1.5 text-sm text-brand-teal-light">{mode}</span>
         <TagOrgTemplateName
           value={templateName}
           onChange={(event) => onTemplateNameChange?.(event.target.value)}
