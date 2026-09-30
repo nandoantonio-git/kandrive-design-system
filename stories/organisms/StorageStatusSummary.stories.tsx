@@ -4,7 +4,7 @@ import { expect, fn, userEvent, within } from "storybook/test"
 import { StorageStatusSummary } from "../../src/components/organisms/storage-status-summary"
 
 const meta = {
-  title: "Organisms/StorageStatusSummary",
+  title: "Organisms/Armazenamento/StorageStatusSummary",
   component: StorageStatusSummary,
   parameters: { layout: "padded", design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1742-25489" } },
   args: {

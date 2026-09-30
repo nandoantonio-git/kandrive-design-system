@@ -152,17 +152,23 @@ function StorageStatus({
         <span className={cn("shrink-0 whitespace-nowrap text-[1.5625rem] font-medium", alert ? "text-destructive" : "text-zinc-950 dark:text-zinc-100")}>Armazenamento usado:</span>
         <span className={cn("shrink-0 whitespace-nowrap text-[1.5625rem] font-medium", alert ? "text-destructive" : "text-zinc-950 dark:text-zinc-100")}>{usedAmount}</span>
         <span className={cn("shrink-0 whitespace-nowrap text-xl", alert ? "text-destructive" : "text-zinc-950 dark:text-zinc-100")}>de {totalAmount}</span>
+        {/* Figma (2026-09-29): legenda do total. O Figma repete a mesma legenda nas abas de tier; aqui ela só
+            aparece no Total, onde é verdadeira (nas abas, o número já é do próprio tier). */}
+        {scope === "global" ? (
+          <span className="shrink-0 whitespace-nowrap text-[0.625rem] text-neutral-text-tertiary dark:text-zinc-400">(Acesso rápido+Longo prazo)</span>
+        ) : null}
       </div>
 
       <div className="flex items-center gap-2 py-2">
+        {/* Figma (2026-09-29): "Liberar espaço" em todas as abas; "Comprar espaço" só no Total. */}
+        <Button variant="outline" onClick={onManageSpace} className="h-auto px-4 py-1 text-[0.625rem]">
+          Liberar espaço
+        </Button>
         {scope === "global" ? (
-          <Button variant="outline" onClick={onManageSpace} className="h-auto px-4 py-1 text-[0.625rem]">
-            Liberar espaço
+          <Button onClick={onBuySpace} className="h-auto px-4 py-1 text-[0.625rem]">
+            Comprar espaço
           </Button>
         ) : null}
-        <Button onClick={onBuySpace} className="h-auto px-4 py-1 text-[0.625rem]">
-          Comprar espaço
-        </Button>
       </div>
 
       {alert ? (
@@ -202,7 +208,7 @@ function StorageStatus({
           aria-valuemax={100}
           className="h-1 w-full overflow-hidden rounded-full bg-zinc-500/20 dark:bg-zinc-400/20"
         >
-          <div className="h-full rounded-full bg-brand-pink-light transition-[width]" style={{ width: `${clamped}%` }} />
+          <div className="h-full rounded-full bg-brand-pink-dark transition-[width]" style={{ width: `${clamped}%` }} />
         </div>
       ) : (
         <StorageBar tier="long-term" value={clamped} className="max-w-none" />
@@ -210,11 +216,12 @@ function StorageStatus({
 
       <div className="flex items-center gap-2 py-1">
         {scope === "global"
-          ? fileTypeSegments.map((segment) => <FileTypeLabel key={segment.kind} kind={segment.kind} className="p-0" />)
+          ? fileTypeSegments.map((segment) => <FileTypeLabel key={segment.kind} kind={segment.kind} filled={false} className="p-0" />)
           : null}
         {scope !== "global" && usedLabel ? (
           <span className="flex items-center gap-1.5 text-[0.625rem] text-brand-secondary-light">
-            <span aria-hidden="true" className="size-[7px] shrink-0 rounded-full bg-brand-teal-action" />
+            {/* Ponto na cor do tier, como a barra: rosa no Acesso rápido, teal escuro no Longo prazo. */}
+            <span aria-hidden="true" className={cn("size-[7px] shrink-0 rounded-full", scope === "quick-access" ? "bg-brand-pink-dark" : "bg-brand-teal-dark-surface")} />
             {usedLabel}
           </span>
         ) : null}

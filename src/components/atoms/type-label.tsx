@@ -25,6 +25,11 @@ export interface FileTypeLabelProps
    * suficiente em contexto de card/lista comum.
    */
   overlay?: boolean
+  /**
+   * `Style=DarkFilled` (padrão, pílula cinza) × `Style=Dark` (`false`: sem fundo,
+   * só ponto e texto). No Figma, as opções do `molecule/Label` aberto usam `Style=Dark`.
+   */
+  filled?: boolean
   /** `State=Selected` (Figma-confirmado). */
   selected?: boolean
   /** Estado estático para auditoria Storybook; consumidores podem continuar usando `selected`. */
@@ -68,6 +73,7 @@ function FileTypeLabel({
   kind,
   label,
   overlay = false,
+  filled = true,
   selected = false,
   state,
   className,
@@ -84,7 +90,7 @@ function FileTypeLabel({
         "inline-flex items-center gap-1.5 py-0.5 text-[0.625rem] tracking-[0.012px]",
         overlay
           ? cn("rounded-lg px-1 text-white", isSelected && "rounded-md bg-zinc-500/20 px-1")
-          : "rounded-md bg-zinc-500/20 px-1 text-brand-secondary-light",
+          : cn("rounded-md px-1 text-brand-secondary-light", (filled || isSelected) && "bg-zinc-500/20"),
         className
       )}
       {...props}
@@ -170,7 +176,7 @@ function ScopeTypeLabel({ kind, label, active = false, state, className, ...prop
       data-active={Boolean(selectedState) || undefined}
       aria-pressed={Boolean(selectedState)}
       className={cn(
-        "inline-flex cursor-pointer items-center justify-center px-2 py-0.5 text-[0.625rem] transition-[color,background-color,opacity]",
+        "inline-flex cursor-pointer items-center justify-center px-2 py-0.5 text-[0.625rem] transition-[color,background-color,opacity] duration-150 ease-out motion-reduce:transition-none",
         "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
         "disabled:pointer-events-none disabled:opacity-50",
         selectedState

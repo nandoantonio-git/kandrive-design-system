@@ -4,7 +4,7 @@ import { expect, fn, userEvent, within } from "storybook/test"
 import { FreeModeButtons } from "../../src/components/molecules/free-mode-buttons"
 
 const meta = {
-  title: "Molecules/OrganizeFreeModeCanvas/Buttons",
+  title: "Molecules/Organização/OrganizeFreeModeCanvas/Buttons",
   component: FreeModeButtons,
   parameters: {
     layout: "centered",

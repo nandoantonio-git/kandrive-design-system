@@ -3,18 +3,20 @@ import * as CleanSpaceStorageStories from './CleanSpaceStorage.stories';
 
 <Meta of={CleanSpaceStorageStories} />
 
-# CleanSpaceStorage (Figma: `template/cleanSpaceStorage/Device=Desktop`, `1439:16908`)
+# CleanSpaceStorage
+
+Figma: [`template/cleanSpaceStorage/Device=Desktop`](https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1439-16908)
 
 ## Uso
 
-Modal "Liberar espaço" — lista arquivos grandes/duplicados pra o usuário liberar espaço. Abre a partir do botão "Liberar espaço" da página Status de armazenamento (e de Configurações). O botão "Gerir espaço" da Sidebar não abre este modal: leva à página Status de armazenamento (definido em 2026-09-29, revoga a unificação de 2026-09-28).
+Modal "Liberar espaço" — lista arquivos grandes/duplicados pra o usuário liberar espaço. Abre a partir do botão "Liberar espaço" da página Status de armazenamento (e de Configurações). O botão "Gerir espaço" da Sidebar não abre este modal: leva à página Status de armazenamento.
 
 <Canvas of={CleanSpaceStorageStories.Default} />
 <Controls of={CleanSpaceStorageStories.Default} />
 
 ## Composição
 
-Tags de tier reusam `atom/StorageTierBadge` em vez de markup duplicado — rótulos "Acesso rápido"/"Longo prazo". Botões "Excluir"/"Excluir cópias" usam `atom/Button` (`variant="outline"`, migrado de `PushButton isDestructive` em 25/09/2026) — chrome neutro/glass, só o texto na cor de destrutivo, nunca fundo vermelho. "Selecionar todos" usa o padrão (`primary`); "Desfazer seleção" fica `disabled` (estado lido/neutro).
+Tags de tier reusam `atom/StorageTierBadge` em vez de markup duplicado — rótulos "Acesso rápido"/"Longo prazo". Botões "Excluir"/"Excluir cópias" usam `atom/Button` (`variant="outline"`, migrado de `PushButton isDestructive`) — chrome neutro/glass, só o texto na cor de destrutivo, nunca fundo vermelho. "Selecionar todos" usa o padrão (`primary`); "Desfazer seleção" fica `disabled` (estado lido/neutro).
 
 ### Material
 

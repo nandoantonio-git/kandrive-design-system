@@ -55,7 +55,9 @@ function FreeModeOutputNode({
   className,
   ...props
 }: FreeModeOutputNodeProps) {
-  const isCompact = variant === "compact"
+  // O cabeçalho recolhe e expande o nó (o chevron do Figma). `variant` define o estado inicial.
+  const [isCompact, setCompact] = React.useState(variant === "compact")
+  React.useEffect(() => setCompact(variant === "compact"), [variant])
   const [previewExpanded, setPreviewExpanded] = React.useState(false)
   return (
     <div
@@ -68,7 +70,12 @@ function FreeModeOutputNode({
       )}
       {...props}
     >
-      <div className="flex w-full items-center gap-3">
+      <button
+        type="button"
+        aria-expanded={!isCompact}
+        onClick={() => setCompact((compact) => !compact)}
+        className="flex w-full cursor-pointer items-center gap-3 rounded-lg text-left focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50"
+      >
         <div className="flex size-[34px] shrink-0 items-center justify-center rounded-[10.4px] bg-[#176a78] dark:bg-[#2b8a9c]">
           <ResultadoGlyph aria-hidden="true" className="size-5" />
         </div>
@@ -76,8 +83,8 @@ function FreeModeOutputNode({
           <p className="truncate text-sm leading-5 font-semibold text-zinc-700 dark:text-zinc-300">Resultado</p>
           <p className="truncate text-[0.625rem] leading-[15px] text-brand-teal">{folderLabel}</p>
         </div>
-        <ChevronGlyph aria-hidden="true" className={cn("size-4 shrink-0", !isCompact && "rotate-180")} />
-      </div>
+        <ChevronGlyph aria-hidden="true" className={cn("size-4 shrink-0 transition-transform duration-200", !isCompact && "rotate-180")} />
+      </button>
       <div className="mt-4 flex w-full flex-col border-t border-zinc-500 dark:border-zinc-400 pt-[13px]">
         <div className="flex items-center justify-between">
           <span className="text-[0.6875rem] leading-[16.5px] text-neutral-text-tertiary dark:text-zinc-400">Arquivos incluídos</span>

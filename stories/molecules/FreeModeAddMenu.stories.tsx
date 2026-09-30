@@ -4,7 +4,7 @@ import { expect, fn, userEvent, within } from "storybook/test"
 import { FreeModeAddMenu } from "../../src/components/molecules/free-mode-add-menu"
 
 const meta = {
-  title: "Molecules/FreeModeAddMenu",
+  title: "Molecules/Organização/FreeModeAddMenu",
   component: FreeModeAddMenu,
   parameters: {
     layout: "centered",

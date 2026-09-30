@@ -4,7 +4,7 @@ import { expect, fn, userEvent, within } from "storybook/test"
 import { FileListHeader } from "../../src/components/molecules/file-list-header"
 
 const meta = {
-  title: "Molecules/FileListHeader",
+  title: "Molecules/Arquivos/FileListHeader",
   component: FileListHeader,
   parameters: {
     layout: "fullscreen",

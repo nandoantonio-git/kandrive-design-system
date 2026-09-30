@@ -9,7 +9,7 @@ import {
 } from "../../src/components/atoms/type-label"
 
 const meta = {
-  title: "Atoms/TypeLabel",
+  title: "Atoms/Rótulos e badges/TypeLabel",
   component: FileTypeLabel,
   parameters: {
     layout: "centered",
@@ -64,26 +64,21 @@ export const Overlay: Story = {
 }
 
 export const FileTypeMatrix: StoryObj = {
+  // Colunas: DarkFilled (padrão) e Dark (sem fundo) sobre superfície clara; Light e Light selecionado sobre imagem escura, onde o texto branco é legível.
   render: () => {
     const kinds = ["image", "document", "video", "other"] as const
-
+    const column = (title: string, children: React.ReactNode, dark = false) => (
+      <div className={dark ? "flex flex-col gap-2 rounded-md bg-zinc-800 p-3" : "flex flex-col gap-2 p-3"}>
+        <span className={dark ? "text-[0.625rem] font-bold text-zinc-300" : "text-[0.625rem] font-bold text-neutral-text-tertiary"}>{title}</span>
+        {children}
+      </div>
+    )
     return (
-      <div className="grid grid-cols-3 gap-5 rounded-lg bg-[var(--neutral-surface-background,#f3f3f3)] p-5">
-        <div className="flex flex-col gap-2">
-          {kinds.map((kind) => (
-            <FileTypeLabel key={`dark-${kind}`} kind={kind} />
-          ))}
-        </div>
-        <div className="flex flex-col gap-2">
-          {kinds.map((kind) => (
-            <FileTypeLabel key={`light-${kind}`} kind={kind} overlay />
-          ))}
-        </div>
-        <div className="flex flex-col gap-2">
-          {kinds.map((kind) => (
-            <FileTypeLabel key={`selected-${kind}`} kind={kind} overlay state="selected" />
-          ))}
-        </div>
+      <div className="grid grid-cols-4 gap-3 rounded-lg bg-[var(--neutral-surface-background,#f3f3f3)] p-4">
+        {column("DarkFilled", kinds.map((kind) => <FileTypeLabel key={`filled-${kind}`} kind={kind} />))}
+        {column("Dark", kinds.map((kind) => <FileTypeLabel key={`dark-${kind}`} kind={kind} filled={false} />))}
+        {column("Light", kinds.map((kind) => <FileTypeLabel key={`light-${kind}`} kind={kind} overlay />), true)}
+        {column("Light · selecionado", kinds.map((kind) => <FileTypeLabel key={`selected-${kind}`} kind={kind} overlay state="selected" />), true)}
       </div>
     )
   },

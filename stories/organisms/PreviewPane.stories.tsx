@@ -4,7 +4,7 @@ import { expect, fn, userEvent, within } from "storybook/test"
 import { PreviewPane } from "../../src/components/organisms/preview-pane"
 
 const meta = {
-  title: "Organisms/PreviewPane",
+  title: "Organisms/Arquivos/PreviewPane",
   component: PreviewPane,
   parameters: { layout: "centered", design: { type: 'figma', url: 'https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=724-3597' } },
   args: {

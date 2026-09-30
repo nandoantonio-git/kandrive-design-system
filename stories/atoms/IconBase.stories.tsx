@@ -4,7 +4,7 @@ import { FolderIcon } from "lucide-react"
 import { IconBase } from "../../src/components/atoms/icon-base"
 
 const meta = {
-  title: "Atoms/IconBase",
+  title: "Atoms/Ícones e símbolos/IconBase",
   component: IconBase,
   parameters: {
     layout: "centered",

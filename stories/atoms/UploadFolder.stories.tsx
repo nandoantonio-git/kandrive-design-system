@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite"
 import { UploadFolder } from "../../src/components/atoms/upload-folder"
 
 const meta = {
-  title: "Atoms/Symbols/UploadFolder",
+  title: "Atoms/Ícones e símbolos/Symbols/UploadFolder",
   component: UploadFolder,
   parameters: {
     layout: "centered",

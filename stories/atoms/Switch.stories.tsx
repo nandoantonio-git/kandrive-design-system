@@ -5,7 +5,7 @@ import { expect, fn, userEvent, within } from "storybook/test"
 import { Switch } from "../../src/components/atoms/switch"
 
 const meta = {
-  title: "Atoms/Switch",
+  title: "Atoms/Formulário/Switch",
   component: Switch,
   parameters: {
     layout: "centered",

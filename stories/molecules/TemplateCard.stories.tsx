@@ -8,7 +8,7 @@ import illustrationData from "../../src/assets/illustrations/template-card-data.
 import illustrationModoLivre from "../../src/assets/illustrations/template-card-modo-livre.svg"
 
 const meta = {
-  title: "Molecules/TemplateCard",
+  title: "Molecules/Organização/TemplateCard",
   component: TemplateCard,
   parameters: {
     layout: "centered",

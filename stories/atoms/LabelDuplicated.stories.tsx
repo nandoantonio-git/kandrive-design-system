@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite"
 import { LabelDuplicated } from "../../src/components/atoms/label-duplicated"
 
 const meta = {
-  title: "Atoms/Label/Duplicated",
+  title: "Atoms/Rótulos e badges/Label/Duplicated",
   component: LabelDuplicated,
   parameters: {
     layout: "centered",

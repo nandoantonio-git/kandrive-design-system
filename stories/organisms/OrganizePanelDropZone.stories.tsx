@@ -6,7 +6,7 @@ import { LiveArgs } from "../../.storybook/live-args"
 import { OrganizePanelDropZone } from "../../src/components/organisms/organize-panel-drop-zone"
 
 const meta = {
-  title: "Organisms/OrganizePanelDropZone",
+  title: "Organisms/Organização/OrganizePanelDropZone",
   component: OrganizePanelDropZone,
   parameters: { layout: "centered", design: { type: 'figma', url: 'https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=309-14839' } },
   argTypes: {

@@ -177,7 +177,7 @@ function Label({
             type="button"
             aria-expanded="true"
             onClick={() => setExpanded(false)}
-            className="flex h-5 w-full items-center gap-2 rounded-md px-1 text-[0.625rem] text-zinc-700 dark:text-zinc-300 transition-[background-color,opacity] hover:bg-[#71717a33] dark:hover:bg-[#a1a1aa33] active:opacity-70 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50"
+            className="group flex h-5 w-full items-center gap-2 rounded-md px-1 text-[0.625rem] text-zinc-700 dark:text-zinc-300 transition-[background-color,opacity] hover:bg-[#71717a33] dark:hover:bg-[#a1a1aa33] active:opacity-70 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50"
           >
             <Icon name="Label" className="size-3 shrink-0" />
             <span className="min-w-0 flex-1 whitespace-nowrap text-left">{value}</span>
@@ -223,7 +223,7 @@ function Label({
                     onClick={() => select(FILE_TYPE_LABEL[kind])}
                     className="w-full cursor-pointer rounded-md transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 active:opacity-60"
                   >
-                    <FileTypeLabel kind={kind} selected={FILE_TYPE_LABEL[kind] === value} className="w-full" />
+                    <FileTypeLabel kind={kind} filled={false} selected={FILE_TYPE_LABEL[kind] === value} className="w-full" />
                   </button>
                 ))}
                 </div>
@@ -239,7 +239,7 @@ function Label({
           disabled={isDisabled}
           aria-expanded="false"
           onClick={() => setExpanded(true)}
-          className="relative flex h-[35px] w-full cursor-pointer items-center gap-2 rounded-xl glass-edge glass-shadow-sm bg-effect-glass-light-45 px-3 py-2 text-[0.625rem] text-zinc-700 dark:text-zinc-300 transition-[background-color,opacity] hover:bg-[#71717a33] dark:hover:bg-[#a1a1aa33] active:opacity-70 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 disabled:cursor-not-allowed disabled:hover:bg-transparent"
+          className="group relative flex h-[35px] w-full cursor-pointer items-center gap-2 rounded-xl glass-edge glass-shadow-sm bg-effect-glass-light-45 px-3 py-2 text-[0.625rem] text-zinc-700 dark:text-zinc-300 transition-[background-color,opacity] hover:bg-[#71717a33] dark:hover:bg-[#a1a1aa33] active:opacity-70 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 disabled:cursor-not-allowed disabled:hover:bg-transparent"
         >
           <Icon name="Label" className="size-3 shrink-0" />
           <span className="min-w-0 flex-1 whitespace-nowrap text-left">{value}</span>

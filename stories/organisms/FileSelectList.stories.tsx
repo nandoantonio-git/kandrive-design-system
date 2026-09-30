@@ -12,7 +12,7 @@ const FILES = [
 ]
 
 const meta = {
-  title: "Organisms/FileSelectList",
+  title: "Organisms/Arquivos/FileSelectList",
   component: FileSelectList,
   parameters: { layout: "centered", design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1714-625" } },
   args: { files: FILES, selected: new Set<string>() },

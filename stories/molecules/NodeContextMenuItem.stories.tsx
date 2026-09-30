@@ -5,7 +5,7 @@ import { useState } from "react"
 import { NodeContextMenuItem } from "../../src/components/molecules/node-context-menu-item"
 
 const meta = {
-  title: "Molecules/NodeContextMenu/Item",
+  title: "Molecules/Organização/NodeContextMenu/Item",
   component: NodeContextMenuItem,
   parameters: {
     layout: "centered",

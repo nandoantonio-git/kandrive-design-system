@@ -3,14 +3,16 @@ import type { Meta, StoryObj } from "@storybook/react-vite"
 import { expect, userEvent, within } from "storybook/test"
 
 import { MobileFooterSettings } from "../../src/components/molecules/mobile-footer-settings"
+import { mobileFrame } from "../../.storybook/mobile-frame"
 
 const meta = {
-  title: "Molecules/MobileFooterSettings",
+  title: "Molecules/Navegação/MobileFooterSettings",
   component: MobileFooterSettings,
   parameters: { layout: "fullscreen", design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1756-57824" } },
   globals: { viewport: { value: "kdMobile", isRotated: false } },
   argTypes: { page: { control: "radio", options: ["settings", "payment"] }, active: { control: "text" } },
   args: { page: "settings", active: "Conta" },
+  decorators: [mobileFrame],
 } satisfies Meta<typeof MobileFooterSettings>
 
 export default meta

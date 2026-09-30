@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite"
 import { SelectState } from "../../src/components/atoms/select-state"
 
 const meta = {
-  title: "Atoms/SelectState",
+  title: "Atoms/Formulário/SelectState",
   component: SelectState,
   parameters: {
     layout: "centered",

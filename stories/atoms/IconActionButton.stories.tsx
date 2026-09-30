@@ -7,7 +7,7 @@ import DeleteButtonGlyph from "../../src/assets/icons/DeleteButtonGlyph.svg?reac
 import { IconActionButton } from "../../src/components/atoms/icon-action-button"
 
 const meta = {
-  title: "Atoms/IconButton/IconActionButton",
+  title: "Atoms/Ações/IconButton/IconActionButton",
   component: IconActionButton,
   parameters: {
     layout: "centered",

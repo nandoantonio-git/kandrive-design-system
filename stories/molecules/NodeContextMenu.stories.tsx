@@ -6,7 +6,7 @@ import { LiveArgs } from "../../.storybook/live-args"
 import { NodeContextMenu } from "../../src/components/molecules/node-context-menu"
 
 const meta = {
-  title: "Molecules/NodeContextMenu",
+  title: "Molecules/Organização/NodeContextMenu",
   component: NodeContextMenu,
   parameters: {
     layout: "centered",

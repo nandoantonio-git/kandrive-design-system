@@ -4,7 +4,7 @@ import { expect, fn, userEvent, within } from "storybook/test"
 import { FileList } from "../../src/components/molecules/file-list"
 
 const meta = {
-  title: "Molecules/FileList",
+  title: "Molecules/Arquivos/FileList",
   component: FileList,
   parameters: {
     layout: "fullscreen",

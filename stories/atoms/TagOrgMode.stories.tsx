@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite"
 import { TagOrgMode } from "../../src/components/atoms/tag-org-mode"
 
 const meta = {
-  title: "Atoms/TagOrgMode",
+  title: "Atoms/Rótulos e badges/TagOrgMode",
   component: TagOrgMode,
   parameters: {
     layout: "centered",

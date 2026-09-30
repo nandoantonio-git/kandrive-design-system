@@ -4,7 +4,7 @@ import { expect, userEvent, within } from "storybook/test"
 import { DropNewTag } from "../../src/components/organisms/drop-new-tag"
 
 const meta = {
-  title: "Organisms/DropNewTag",
+  title: "Organisms/Organização/DropNewTag",
   component: DropNewTag,
   parameters: { layout: "centered", design: { type: 'figma', url: 'https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1444-21624' } },
 } satisfies Meta<typeof DropNewTag>

@@ -3,18 +3,20 @@ import * as CleanSpaceLargeFilesStories from './CleanSpaceLargeFiles.stories';
 
 <Meta of={CleanSpaceLargeFilesStories} />
 
-# CleanSpaceLargeFiles (Figma: `organism/CleanSpaceLargeFiles`, `1554:21264`)
+# CleanSpaceLargeFiles
+
+Figma: [`organism/CleanSpaceLargeFiles`](https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1554-21264)
 
 ## Uso
 
-Seção "Arquivos grandes" de [Templates/CleanSpaceStorage](../templates/CleanSpaceStorage.mdx) — lista os arquivos que mais ocupam espaço, com ação de excluir por item. Extraída como symbol Figma próprio em 2026-08-20 (antes só existia inline dentro do modal); conteúdo idêntico ao já reconciliado em `CleanSpaceStorage`, sem divergência nova encontrada.
+Seção "Arquivos grandes" de [Templates/CleanSpaceStorage](../templates/CleanSpaceStorage.mdx) — lista os arquivos que mais ocupam espaço, com ação de excluir por item.
 
 <Canvas of={CleanSpaceLargeFilesStories.Default} />
 <Controls of={CleanSpaceLargeFilesStories.Default} />
 
 ## Composição
 
-Reusa `atom/StorageTierBadge` (rótulos "Acesso rápido"/"Longo prazo") via `molecule/CleanSpaceListSelection`, e `atom/Button` (`variant="outline"`, migrado de `PushButton isDestructive` em 25/09/2026; chrome neutro/texto vermelho) pro botão "Excluir" — nenhum markup próprio duplicado (Regra 10).
+Reusa `atom/StorageTierBadge` (rótulos "Acesso rápido"/"Longo prazo") via `molecule/CleanSpaceListSelection`, e `atom/Button` (`variant="outline"`, migrado de `PushButton isDestructive`; chrome neutro/texto vermelho) pro botão "Excluir" — nenhum markup próprio duplicado (Regra 10).
 
 ## Estados
 

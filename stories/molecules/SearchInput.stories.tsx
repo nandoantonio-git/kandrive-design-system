@@ -4,7 +4,7 @@ import { expect, fn, userEvent, within } from "storybook/test"
 import { SearchInput } from "../../src/components/molecules/search-input"
 
 const meta = {
-  title: "Molecules/SearchInput",
+  title: "Molecules/Busca e filtros/SearchInput",
   component: SearchInput,
   parameters: {
     layout: "centered",

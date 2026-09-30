@@ -6,7 +6,7 @@ import { LiveArgs } from "../../.storybook/live-args"
 import { StorageSidebar } from "../../src/components/organisms/storage-sidebar"
 
 const meta = {
-  title: "Organisms/StorageSidebar",
+  title: "Organisms/Navegação/StorageSidebar",
   component: StorageSidebar,
   parameters: { layout: "centered", design: { type: 'figma', url: 'https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=635-5608' } },
   argTypes: {

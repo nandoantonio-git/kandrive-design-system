@@ -84,7 +84,7 @@ function DropNewTag({
     >
       <div
         aria-hidden="true"
-        className="absolute top-0 left-0 h-11 w-[100px] rounded-br-md rounded-bl-md rounded-tr-md glass-edge bg-effect-glass-white-70 shadow-[0px_0px_0px_1px_rgba(0,0,0,0.05),0px_16px_32px_rgba(0,0,0,0.1)] dark:shadow-[0px_0px_0px_1px_rgba(255,255,255,0.1),0px_16px_32px_rgba(0,0,0,0.4)] backdrop-blur-md"
+        className="absolute top-0 left-0 h-11 w-[100px] rounded-md bg-effect-glass-white-70 shadow-[0px_16px_32px_rgba(0,0,0,0.1)] dark:shadow-[0px_16px_32px_rgba(0,0,0,0.4)] backdrop-blur-md"
       />
       <div className="absolute top-2.5 left-2.5 h-[25px] w-20 overflow-hidden">
       <input
@@ -93,7 +93,7 @@ function DropNewTag({
         value={label}
         onChange={(event) => handleLabelChange(event.target.value)}
         placeholder="Nome da etiqueta"
-          className="absolute top-px left-0 h-3 w-20 rounded-md border-0 bg-zinc-50 px-1 text-[0.625rem] leading-3 text-zinc-700 caret-[var(--accents-blue,#08f)] transition-colors placeholder:text-transparent hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:bg-zinc-900 dark:hover:bg-zinc-800 dark:text-zinc-300"
+          className="absolute top-px left-0 h-3 w-20 rounded-lg border-0 bg-[#ccced6] px-1 text-[0.625rem] leading-3 text-zinc-700 caret-[var(--accents-blue,#08f)] transition-colors placeholder:text-transparent hover:bg-[#c2c4cc] focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:bg-zinc-900 dark:hover:bg-zinc-800 dark:text-zinc-300"
       />
       </div>
       <TagColor

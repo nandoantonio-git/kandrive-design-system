@@ -4,7 +4,7 @@ import { expect, fn, userEvent, within } from "storybook/test"
 import { DropdownSelectGroupBy } from "../../src/components/molecules/dropdown-select-group-by"
 
 const meta = {
-  title: "Molecules/DropdownSelectGroupBy",
+  title: "Molecules/Busca e filtros/DropdownSelectGroupBy",
   component: DropdownSelectGroupBy,
   parameters: {
     layout: "centered",

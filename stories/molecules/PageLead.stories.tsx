@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite"
 import { PageLead } from "../../src/components/molecules/page-lead"
 
 const meta = {
-  title: "Molecules/PageLead",
+  title: "Molecules/Navegação/PageLead",
   component: PageLead,
   parameters: {
     layout: "centered",

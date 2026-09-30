@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite"
 import { FreeModeItemNode } from "../../src/components/molecules/free-mode-item-node"
 
 const meta = {
-  title: "Molecules/OrganizeFreeModeCanvas/ItemNode",
+  title: "Molecules/Organização/OrganizeFreeModeCanvas/ItemNode",
   component: FreeModeItemNode,
   parameters: {
     layout: "centered",

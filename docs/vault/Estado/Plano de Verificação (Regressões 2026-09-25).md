@@ -4,7 +4,7 @@ tags: [estado]
 
 # Plano de Verificação — Regressões pós-fechamento (2026-09-25)
 
-Origem: verificação humana feita pelo usuário logo após o fechamento das fases A–E ([[Plano de Fechamento]]). Encontrou animações que sumiram, interações quebradas e uma lista de 24 apontamentos pontuais por componente. Este documento organiza esses apontamentos em grupos verificáveis, define o método de checagem para cada grupo (sem validação pixel a pixel — [[No pixel validation|conferir por tokens/spec, não por diff de imagem]]) e propõe uma ordem de execução.
+Origem: verificação humana feita pelo usuário logo após o fechamento das fases A–E ([[Plano de Fechamento]]). Encontrou animações que sumiram, interações quebradas e uma lista de 24 apontamentos pontuais por componente. Este documento organiza esses apontamentos em grupos verificáveis, define o método de checagem para cada grupo (sem validação pixel a pixel — conferir por tokens/spec, não por diff de imagem) e propõe uma ordem de execução.
 
 **Achado de pré-checagem (Explore, 2026-09-25):** a alegação "os DOCS quebram a aplicação" não tem lastro técnico — nenhum `.mdx` importa algo que não existe, todos os `X.stories.tsx` referenciados existem, nenhum import morto de `push-button`. O que existe é **texto de prosa desatualizado**: vários `.mdx` (`Button.mdx`, `SaveOrganizationModal.mdx`, `TemplateReviewModal.mdx`, `Header.mdx`, `StorageSidebar.mdx`, `PreviewPane.mdx`, `tokens/unused.mdx`, `Introducao.mdx`) ainda mencionam `PushButton`/`push-button.tsx` como se existisse — confuso para quem lê, mas não quebra build. Vira o Grupo 0 abaixo.
 

@@ -6,7 +6,7 @@ import { LiveArgs } from "../../.storybook/live-args"
 import { DropListItem } from "../../src/components/molecules/drop-list-item"
 
 const meta = {
-  title: "Molecules/DropListItem",
+  title: "Molecules/Feedback e menus/DropListItem",
   component: DropListItem,
   parameters: {
     layout: "centered",

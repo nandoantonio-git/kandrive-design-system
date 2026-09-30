@@ -3,13 +3,13 @@ import * as Stories from './StorageStatusSummary.stories';
 
 <Meta of={Stories} />
 
-# StorageStatusSummary (Figma: `molecule/StorageStatusSummary`, `1742:25489`)
+# StorageStatusSummary
 
-✅ Figma-confirmado: `molecule/StorageStatusSummary` (`1742:25489`), KanDrive V0.2.1, com o eixo `Device` (Desktop · Tablet). A versão mobile vem da tela `Storage/Total/Mobile` (`1663:8852`, 🧩 frames, não uma variante). Fica em `Organisms/` no código porque compõe outras moléculas.
+Figma: [`molecule/StorageStatusSummary`](https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1742-25489)
 
 ## Uso
 
-A parte de baixo da página de Storage, logo abaixo do card `StorageStatus`: filtro do escopo ("Filtrar no Total"), botão de filtros, Agrupar e Etiquetar, e a lista de arquivos ordenada por armazenamento. Criado em 2026-09-24: o código não tinha essa parte em nenhuma largura.
+A parte de baixo da página de Storage, logo abaixo do card `StorageStatus`: filtro do escopo ("Filtrar no Total"), botão de filtros, Agrupar e Etiquetar, e a lista de arquivos ordenada por armazenamento. Criado: o código não tinha essa parte em nenhuma largura.
 
 Agrupar e Etiquetar abrem sozinhos, e as listas flutuam sobre a tabela. 🧩 O botão de filtros só alterna ligado/desligado (`aria-pressed`, ícone na cor da marca): o painel de filtros não existe no Figma, então abrir filtros de verdade é do app (`onFiltersActiveChange`).
 

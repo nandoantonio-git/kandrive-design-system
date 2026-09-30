@@ -4,11 +4,11 @@ import { expect, fn, userEvent, within } from "storybook/test"
 import { CloseButton } from "../../src/components/atoms/close-button"
 
 const meta = {
-  title: "Atoms/IconButton/Close",
+  title: "Atoms/Ações/IconButton/Close",
   component: CloseButton,
   parameters: {
     layout: "centered",
-    design: { type: 'figma', url: 'https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1421-19008' },
+    design: { type: 'figma', url: 'https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=313-22753' },
   },
   argTypes: {
     size: { control: "inline-radio", options: ["sm", "md"] },

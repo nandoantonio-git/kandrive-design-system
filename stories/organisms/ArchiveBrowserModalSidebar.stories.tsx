@@ -4,7 +4,7 @@ import { expect, fn, userEvent, within } from "storybook/test"
 import { ArchiveBrowserModalSidebar } from "../../src/components/organisms/archive-browser-modal-sidebar"
 
 const meta = {
-  title: "Organisms/ArchiveBrowserModalSidebar",
+  title: "Organisms/Arquivos/ArchiveBrowserModalSidebar",
   component: ArchiveBrowserModalSidebar,
   parameters: {
     layout: "centered",

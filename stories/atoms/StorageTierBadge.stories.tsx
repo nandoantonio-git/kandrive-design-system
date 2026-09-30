@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite"
 import { StorageTierBadge } from "../../src/components/atoms/storage-tier-badge"
 
 const meta = {
-  title: "Atoms/StorageTierBadge",
+  title: "Atoms/Rótulos e badges/StorageTierBadge",
   component: StorageTierBadge,
   parameters: {
     layout: "centered",

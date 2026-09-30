@@ -3,11 +3,11 @@ import type { Meta, StoryObj } from "@storybook/react-vite"
 import { FreeModeMiniMap } from "../../src/components/molecules/free-mode-mini-map"
 
 const meta = {
-  title: "Molecules/OrganizeFreeModeCanvas/MiniMap",
+  title: "Molecules/Organização/OrganizeFreeModeCanvas/MiniMap",
   component: FreeModeMiniMap,
   parameters: {
     layout: "centered",
-    design: { type: 'figma', url: 'https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1439-16906' },
+    design: { type: 'figma', url: 'https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1422-24802' },
   },
   decorators: [
     (Story) => (

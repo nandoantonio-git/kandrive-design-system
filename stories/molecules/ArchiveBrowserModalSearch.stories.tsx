@@ -4,7 +4,7 @@ import { expect, fn, userEvent, within } from "storybook/test"
 import { ArchiveBrowserModalSearch } from "../../src/components/molecules/archive-browser-modal-search"
 
 const meta = {
-  title: "Molecules/ArchiveBrowserModal/Search",
+  title: "Molecules/Arquivos/ArchiveBrowserModal/Search",
   component: ArchiveBrowserModalSearch,
   parameters: {
     layout: "centered",

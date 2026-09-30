@@ -4,7 +4,7 @@ import { expect, fn, userEvent, within } from "storybook/test"
 import { SaveLongTermFileStorageSelectedFiles } from "../../src/components/organisms/save-long-term-file-storage-selected-files"
 
 const meta = {
-  title: "Organisms/SaveLongTermFileStorageSelectedFiles",
+  title: "Organisms/Arquivos/SaveLongTermFileStorageSelectedFiles",
   component: SaveLongTermFileStorageSelectedFiles,
   parameters: {
     layout: "centered",

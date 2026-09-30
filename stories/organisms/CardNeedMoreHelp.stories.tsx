@@ -4,7 +4,7 @@ import { expect, fn, userEvent, within } from "storybook/test"
 import { CardNeedMoreHelp } from "../../src/components/organisms/card-need-more-help"
 
 const meta = {
-  title: "Organisms/CardNeedMoreHelp",
+  title: "Organisms/Ajuda/CardNeedMoreHelp",
   component: CardNeedMoreHelp,
   parameters: {
     layout: "padded",

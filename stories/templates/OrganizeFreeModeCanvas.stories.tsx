@@ -36,5 +36,10 @@ export const Default: Story = {
     await userEvent.click(canvas.getByRole("button", { name: "Salvar template" }))
     await expect(args.onSaveTemplate).toHaveBeenCalledOnce()
     await expect(args.onDiscard).not.toHaveBeenCalled()
+    // "Descartar mudanças" fecha o painel de regras; clicar no filtro reabre.
+    await userEvent.click(canvas.getByRole("button", { name: "Descartar mudanças" }))
+    await expect(canvas.queryByRole("button", { name: "Descartar mudanças" })).toBeNull()
+    await userEvent.click(canvas.getByRole("button", { name: "Editar regras do Filtro: Grande" }))
+    await expect(canvas.getByRole("button", { name: "Descartar mudanças" })).toBeVisible()
   },
 }

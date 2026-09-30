@@ -5,7 +5,7 @@ import { Icon, ICONS, type IconName } from "../../src/components/atoms/icon"
 const iconNames = Object.keys(ICONS) as IconName[]
 
 const meta = {
-  title: "Atoms/Icon",
+  title: "Atoms/Ícones e símbolos/Icon",
   component: Icon,
   parameters: {
     layout: "centered",

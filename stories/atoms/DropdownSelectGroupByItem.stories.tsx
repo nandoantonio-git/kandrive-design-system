@@ -6,7 +6,7 @@ import { LiveArgs } from "../../.storybook/live-args"
 import { DropdownSelectGroupByItem } from "../../src/components/atoms/dropdown-select-group-by-item"
 
 const meta = {
-  title: "Atoms/DropdownSelectGroupBy/Item",
+  title: "Atoms/Itens de lista/DropdownSelectGroupBy/Item",
   component: DropdownSelectGroupByItem,
   parameters: {
     layout: "centered",

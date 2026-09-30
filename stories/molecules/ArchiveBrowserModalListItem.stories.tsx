@@ -6,7 +6,7 @@ import { LiveArgs } from "../../.storybook/live-args"
 import { ArchiveBrowserModalListItem } from "../../src/components/molecules/archive-browser-modal-list-item"
 
 const meta = {
-  title: "Molecules/ArchiveBrowserModal/ListItem",
+  title: "Molecules/Arquivos/ArchiveBrowserModal/ListItem",
   component: ArchiveBrowserModalListItem,
   parameters: {
     layout: "centered",

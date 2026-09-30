@@ -4,7 +4,7 @@ import { expect, fn, userEvent, within } from "storybook/test"
 import { ArchiveItem } from "../../src/components/atoms/archive-item"
 
 const meta = {
-  title: "Atoms/Symbols/ArchiveItem",
+  title: "Atoms/Ícones e símbolos/Symbols/ArchiveItem",
   component: ArchiveItem,
   parameters: {
     layout: "centered",

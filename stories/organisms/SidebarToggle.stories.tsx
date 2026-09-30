@@ -6,7 +6,7 @@ import { LiveArgs } from "../../.storybook/live-args"
 import { SidebarToggle } from "../../src/components/organisms/sidebar-toggle"
 
 const meta = {
-  title: "Organisms/Sidebar/Toggle",
+  title: "Organisms/Navegação/Sidebar/Toggle",
   component: SidebarToggle,
   parameters: { layout: "centered", design: { type: 'figma', url: 'https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=624-4573' } },
   argTypes: {

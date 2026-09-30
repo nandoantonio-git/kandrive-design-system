@@ -4,7 +4,7 @@ import { expect, fn, userEvent, within } from "storybook/test"
 import { Dialog } from "../../src/components/organisms/dialog"
 
 const meta = {
-  title: "Organisms/Dialog",
+  title: "Organisms/Conta e diálogos/Dialog",
   component: Dialog,
   parameters: {
     layout: "centered",

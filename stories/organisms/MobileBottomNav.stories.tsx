@@ -3,9 +3,10 @@ import type { Meta, StoryObj } from "@storybook/react-vite"
 import { expect, fn, userEvent, within } from "storybook/test"
 
 import { MobileBottomNav, type MobileDestination } from "../../src/components/organisms/mobile-bottom-nav"
+import { mobileFrame } from "../../.storybook/mobile-frame"
 
 const meta = {
-  title: "Organisms/MobileBottomNav",
+  title: "Organisms/Navegação/MobileBottomNav",
   component: MobileBottomNav,
   parameters: { layout: "fullscreen", design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1715-9867" } },
   globals: { viewport: { value: "kdMobile", isRotated: false } },
@@ -15,7 +16,7 @@ const meta = {
     active: { control: "radio", options: ["pessoal", "compartilhados", "recentes", "favoritos"] },
   },
   args: { action: "add", hand: "right", active: "pessoal" },
-  decorators: [(Story) => <div className="flex min-h-[300px] flex-col justify-end bg-neutral-surface-background"><Story /></div>],
+  decorators: [(Story) => <div className="flex min-h-[300px] flex-col justify-end bg-neutral-surface-background"><Story /></div>, mobileFrame],
 } satisfies Meta<typeof MobileBottomNav>
 
 export default meta

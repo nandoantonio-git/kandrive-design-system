@@ -6,7 +6,7 @@ import { LiveArgs } from "../../.storybook/live-args"
 import { SidebarTagsItem } from "../../src/components/atoms/sidebar-tags-item"
 
 const meta = {
-  title: "Atoms/SidebarTagsItem",
+  title: "Atoms/Itens de lista/SidebarTagsItem",
   component: SidebarTagsItem,
   parameters: {
     layout: "centered",

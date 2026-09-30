@@ -148,6 +148,8 @@ function OrganizeFreeModeCanvas({
   ...props
 }: OrganizeFreeModeCanvasProps) {
   const [addMenuOpen, setAddMenuOpen] = React.useState(false)
+  // Painel de regras do filtro selecionado: "Descartar mudanças" e "Salvar mudanças" fecham; clicar no filtro reabre.
+  const [rulesOpen, setRulesOpen] = React.useState(true)
 
   return (
     <div
@@ -170,7 +172,13 @@ function OrganizeFreeModeCanvas({
       <FreeModeMiniMap className="absolute right-[42px] bottom-[158px]" />
 
       {/* Painel do nó selecionado: instância `molecule/NodeContextMenu` (`1422:24801`) */}
-      <NodeContextMenu className="absolute top-[49px] left-[654px] z-20" />
+      {rulesOpen ? (
+        <NodeContextMenu
+          className="absolute top-[49px] left-[654px] z-20"
+          onDiscard={() => setRulesOpen(false)}
+          onSave={() => setRulesOpen(false)}
+        />
+      ) : null}
 
       <div className="absolute top-[278px] left-8 h-[152px] w-[283px] rounded-3xl border border-zinc-500 bg-zinc-500/10">
         <span className="absolute -top-3 left-[98px] rounded-full bg-zinc-600 px-3 py-1 text-[0.625rem] font-bold text-brand-teal-light">
@@ -183,8 +191,19 @@ function OrganizeFreeModeCanvas({
         variant="filtro-size"
         label="Filtro: Grande"
         subtitle="Tamanho > 1.0 GB"
+        role="button"
+        tabIndex={0}
+        aria-label="Editar regras do Filtro: Grande"
+        aria-expanded={rulesOpen}
+        onClick={() => setRulesOpen(true)}
+        onKeyDown={(event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault()
+            setRulesOpen(true)
+          }
+        }}
         // 🧩 Inferido (Regra 9): dark:bg reaproveita a família teal-dark do token, hex sem par no Figma
-        className="absolute top-[299px] left-[333px] w-[192px] border-brand-teal bg-[#d7f2fb] dark:bg-[#123840]"
+        className="absolute top-[299px] left-[333px] w-[192px] cursor-pointer border-brand-teal bg-[#d7f2fb] focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:bg-[#123840]"
       />
       <FreeModeItemNode
         variant="filtro-type"

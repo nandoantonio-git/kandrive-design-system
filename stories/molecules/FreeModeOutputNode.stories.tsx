@@ -4,7 +4,7 @@ import { expect, userEvent, within } from "storybook/test"
 import { FreeModeOutputNode } from "../../src/components/molecules/free-mode-output-node"
 
 const meta = {
-  title: "Molecules/OrganizeFreeModeCanvas/OutputNode",
+  title: "Molecules/Organização/OrganizeFreeModeCanvas/OutputNode",
   component: FreeModeOutputNode,
   parameters: {
     layout: "centered",
@@ -33,6 +33,11 @@ export const Default: Story = {
     await expect(toggle).toHaveAttribute("aria-expanded", "false")
     await userEvent.click(toggle)
     await expect(toggle).toHaveAttribute("aria-expanded", "true")
+    // O cabeçalho "Resultado" recolhe o nó inteiro.
+    const header = within(canvasElement).getByRole("button", { name: /Resultado/ })
+    await expect(header).toHaveAttribute("aria-expanded", "true")
+    await userEvent.click(header)
+    await expect(header).toHaveAttribute("aria-expanded", "false")
   },
 }
 export const Compact: Story = { args: { variant: "compact" } }

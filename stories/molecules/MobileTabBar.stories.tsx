@@ -3,14 +3,16 @@ import type { Meta, StoryObj } from "@storybook/react-vite"
 import { expect, userEvent, within } from "storybook/test"
 
 import { MobileTabBar, type MobileTab } from "../../src/components/molecules/mobile-tab-bar"
+import { mobileFrame } from "../../.storybook/mobile-frame"
 
 const meta = {
-  title: "Molecules/MobileTabBar",
+  title: "Molecules/Navegação/MobileTabBar",
   component: MobileTabBar,
   parameters: { layout: "centered", design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=3029-3996" } },
   globals: { viewport: { value: "kdMobile", isRotated: false } },
   argTypes: { active: { control: "radio", options: ["home", "organize", "keep"] } },
   args: { active: "home" },
+  decorators: [mobileFrame],
 } satisfies Meta<typeof MobileTabBar>
 
 export default meta

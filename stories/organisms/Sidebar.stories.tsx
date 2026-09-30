@@ -5,7 +5,7 @@ import { useState } from "react"
 import { Sidebar } from "../../src/components/organisms/sidebar"
 
 const meta = {
-  title: "Organisms/Sidebar",
+  title: "Organisms/Navegação/Sidebar",
   component: Sidebar,
   parameters: { layout: "centered", design: { type: 'figma', url: 'https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=197-6187' } },
   args: {

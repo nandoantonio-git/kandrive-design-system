@@ -4,7 +4,7 @@ import { expect, fn, userEvent, within } from "storybook/test"
 import { UserProfileCard } from "../../src/components/organisms/user-profile-card"
 
 const meta = {
-  title: "Organisms/UserProfileCard",
+  title: "Organisms/Conta e diálogos/UserProfileCard",
   component: UserProfileCard,
   parameters: { layout: "padded", design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1702-22547" } },
   args: { name: "Cassandra Ribeiro", email: "cassandra@kandrive.com.br" },

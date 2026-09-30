@@ -4,7 +4,7 @@ import { expect, fn, userEvent, within } from "storybook/test"
 import { FolderItem } from "../../src/components/atoms/folder-item"
 
 const meta = {
-  title: "Atoms/Symbols/FolderItem",
+  title: "Atoms/Ícones e símbolos/Symbols/FolderItem",
   component: FolderItem,
   parameters: {
     layout: "centered",

@@ -5,7 +5,7 @@ import { Plus, Maximize, RotateCcw, Trash2 } from "lucide-react"
 import { BoxIconButton } from "../../src/components/atoms/box-icon-button"
 
 const meta = {
-  title: "Atoms/BoxIconButton",
+  title: "Atoms/Ações/BoxIconButton",
   component: BoxIconButton,
   parameters: {
     layout: "centered",

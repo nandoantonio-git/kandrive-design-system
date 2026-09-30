@@ -5,7 +5,7 @@ import { expect, userEvent, within } from "storybook/test"
 import { Checkbox } from "../../src/components/atoms/checkbox"
 
 const meta = {
-  title: "Atoms/Checkbox",
+  title: "Atoms/Formulário/Checkbox",
   component: Checkbox,
   parameters: {
     layout: "centered",

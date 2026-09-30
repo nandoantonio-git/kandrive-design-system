@@ -4,7 +4,7 @@ import { expect, fn, userEvent, within } from "storybook/test"
 import { ConfirmButton } from "../../src/components/atoms/confirm-button"
 
 const meta = {
-  title: "Atoms/IconButton/Confirm",
+  title: "Atoms/Ações/IconButton/Confirm",
   component: ConfirmButton,
   parameters: {
     layout: "centered",
