@@ -1,0 +1,6 @@
+import { Meta, Markdown } from '@storybook/addon-docs/blocks';
+import changelog from '../CHANGELOG.md?raw';
+
+<Meta title="Changelog" />
+
+<Markdown>{changelog.replace(/^# Changelog\n/, '# Changelog\n\nEsta página lê o arquivo `CHANGELOG.md` do repositório, que é a fonte do histórico.\n')}</Markdown>

@@ -73,6 +73,7 @@ const preview: Preview = {
         // e dentro de cada página Desktop → Tablet → Mobile. O que não estiver listado fica em ordem alfabética.
         order: [
           'Introdução',
+          'Changelog',
           'Atoms', ['Ações', 'Formulário', 'Rótulos e badges', 'Ícones e símbolos', 'Itens de lista', 'Identidade e feedback'],
           'Molecules', ['Navegação', 'Busca e filtros', 'Arquivos', 'Armazenamento', 'Organização', 'Formulários e configurações', 'Feedback e menus'],
           'Organisms', ['Navegação', 'Arquivos', 'Armazenamento', 'Organização', 'Ajuda', 'Conta e diálogos'],

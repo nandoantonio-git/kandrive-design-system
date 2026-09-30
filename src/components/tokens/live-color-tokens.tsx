@@ -142,47 +142,59 @@ function pathOf(token: ColorToken): [family: string, group: string, leaf: string
   return ["Base", grouped ? prefix : "Geral", bare]
 }
 
-function Swatch({ value, mode }: { value: string; mode: "light" | "dark" }) {
-  return (
-    <div
-      className={cn("flex items-center gap-2 rounded-lg p-2", mode === "light" ? "bg-white ring-1 ring-zinc-200" : "bg-[#18181b]")}
-    >
-      <span aria-hidden="true" className="size-8 shrink-0 rounded-md ring-1 ring-black/10" style={{ background: value }} />
-      <code className={cn("text-[0.6875rem] break-all", mode === "light" ? "text-zinc-700" : "text-zinc-200")}>{value}</code>
-    </div>
-  )
+type Mode = "light" | "dark"
+
+/** `#rrggbbaa` → "R0 G101 B121" (e "A 50%" quando há transparência), como os cartões do Figma. */
+function rgbLabel(value: string): { hex: string; rgb: string } {
+  const h8 = toHex8(value)
+  if (!h8) return { hex: value, rgb: "" }
+  const [r, g, b, a] = [1, 3, 5, 7].map((i) => parseInt(h8.slice(i, i + 2), 16))
+  const alpha = a < 255 ? ` A${Math.round((a / 255) * 100)}%` : ""
+  return { hex: (h8.slice(0, 7) + (a < 255 ? h8.slice(7) : "")).toUpperCase(), rgb: `R${r} G${g} B${b}${alpha}` }
 }
 
-function TokenRow({ token }: { token: ColorToken }) {
+/**
+ * Cartão de cor (2026-09-30, pedido do usuário): a cor em cima e, embaixo, o
+ * nome da variável do Figma, o hex, o RGB, o token CSS (clique copia `var()`)
+ * e o selo de comparação com o Figma. A cor é pintada sobre o fundo do modo
+ * escolhido, então as transparências aparecem como no produto.
+ */
+function ColorCard({ token, mode }: { token: ColorToken; mode: Mode }) {
   const { copied, copy } = useCopy()
+  const value = mode === "light" ? token.light : token.dark
+  const { hex, rgb } = rgbLabel(value)
   const figmaRef = token.figma ? FIGMA_COLORS[token.figma] : undefined
+  const leaf = token.figma ?? token.name.replace(/^--/, "")
   return (
-    <div className="grid grid-cols-1 items-center gap-2 border-b border-zinc-100 py-2 sm:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)_minmax(0,1fr)]">
-      <div className="flex flex-col gap-1">
+    <div className="flex flex-col overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-zinc-200">
+      <div className={cn("h-24", mode === "light" ? "bg-white" : "bg-[#18181b]")}>
+        <div className="size-full" style={{ background: value }} />
+      </div>
+      <div className="flex flex-1 flex-col gap-1 border-t border-zinc-200 p-3">
+        {/* Quebra só depois das barras, nunca no meio da palavra. */}
+        <span className="text-xs font-semibold text-zinc-900">{leaf.split("/").join("/\u200b")}</span>
+        <span className="h-px w-6 bg-zinc-300" aria-hidden="true" />
+        <code className="text-[0.6875rem] text-zinc-600">{hex}</code>
+        {rgb ? <code className="text-[0.6875rem] text-zinc-600">{rgb}</code> : null}
         {token.name ? (
-        <button
-          type="button"
-          onClick={() => copy(`var(${token.name})`)}
-          className="w-fit cursor-pointer text-left text-xs font-semibold break-all text-zinc-900 hover:text-brand-teal"
-          title="Copiar var()"
-        >
-          {copied === `var(${token.name})` ? "Copiado!" : token.name}
-        </button>
+          <button
+            type="button"
+            onClick={() => copy(`var(${token.name})`)}
+            className="w-fit cursor-pointer text-left text-[0.6875rem] break-all text-brand-teal hover:underline"
+            title="Copiar var()"
+          >
+            {copied === `var(${token.name})` ? "Copiado!" : token.name}
+          </button>
         ) : (
-          <span className="text-xs font-semibold text-zinc-900">sem token CSS</span>
+          <span className="text-[0.6875rem] text-neutral-text-tertiary">sem token CSS</span>
         )}
-        <span className="text-[0.6875rem] text-neutral-text-tertiary">{token.figma ?? "sem variável no Figma"}</span>
-        <span className={cn("w-fit rounded-full px-1.5 py-0.5 text-[0.625rem] font-medium", STATUS[token.status].className)}>
+        <span className={cn("mt-auto w-fit rounded-full px-1.5 py-0.5 text-[0.625rem] font-medium whitespace-nowrap", STATUS[token.status].className)}>
           {STATUS[token.status].label}
         </span>
         {token.status === "diverge" && figmaRef ? (
-          <span className="text-[0.625rem] text-red-800">
-            Figma: {figmaRef.light} / {figmaRef.dark}
-          </span>
+          <span className="text-[0.625rem] text-red-800">Figma: {mode === "light" ? figmaRef.light : figmaRef.dark}</span>
         ) : null}
       </div>
-      <Swatch value={token.light} mode="light" />
-      <Swatch value={token.dark} mode="dark" />
     </div>
   )
 }
@@ -200,15 +212,16 @@ function useAllColors(): ColorToken[] {
 }
 
 /**
- * Tabela única de cor: tokens do código e variáveis que só existem no Figma,
- * agrupados pela hierarquia do nome no Figma (família › grupo), com Light e
- * Dark lado a lado. Cada família é um bloco recolhível.
+ * Paleta única de cor: tokens do código e variáveis que só existem no Figma,
+ * agrupados pela hierarquia do nome no Figma (família › grupo), em cartões,
+ * com uma chave Light/Dark (2026-09-30). Cada família é um bloco recolhível.
  *
  * Consolidado em 2026-09-28 (pedido do usuário): antes eram duas áreas
  * separadas, "Tokens do código" e "Variáveis do Figma sem token CSS".
  */
 function ColorTokens() {
   const all = useAllColors()
+  const [mode, setMode] = React.useState<Mode>("light")
   if (!all.length) return <p>Carregando tokens…</p>
   const count = (status: Status) => all.filter((t) => t.status === status).length
 
@@ -222,12 +235,30 @@ function ColorTokens() {
   const order = [...FAMILY_ORDER, ...[...families.keys()].filter((f) => !FAMILY_ORDER.includes(f) && f !== "Base"), "Base"]
 
   return (
-    <div className="flex flex-col gap-4">
+    // `sb-unstyled`: sem a tipografia das docs, que aumentava os selos e os textos dos cartões.
+    <div className="sb-unstyled flex flex-col gap-4">
       <p className="text-sm text-zinc-700">
         <strong>{all.length}</strong> cores · <strong>{count("match")}</strong> iguais ao Figma nos dois modos ·{" "}
         <strong>{count("diverge")}</strong> divergentes · <strong>{count("code-only")}</strong> só no código ·{" "}
         <strong>{count("figma-only")}</strong> só no Figma (nas telas, em geral aparecem como `zinc-*` ou valor literal).
       </p>
+      <div role="radiogroup" aria-label="Modo" className="flex w-fit gap-1 rounded-full bg-zinc-100 p-1">
+        {(["light", "dark"] as const).map((m) => (
+          <button
+            key={m}
+            type="button"
+            role="radio"
+            aria-checked={mode === m}
+            onClick={() => setMode(m)}
+            className={cn(
+              "cursor-pointer rounded-full px-4 py-1 text-sm font-medium transition-colors",
+              mode === m ? "bg-white text-zinc-900 shadow-sm" : "text-zinc-600 hover:text-zinc-900"
+            )}
+          >
+            {m === "light" ? "Light" : "Dark"}
+          </button>
+        ))}
+      </div>
       {order.map((family) => {
         const groups = families.get(family)
         if (!groups) return null
@@ -241,19 +272,16 @@ function ColorTokens() {
               </span>
             </summary>
             {[...groups.entries()].map(([group, rows]) => (
-              <section key={group} className="mt-3 flex flex-col">
+              <section key={group} className="mt-3 mb-2 flex flex-col">
                 <h4 className="mb-1 text-sm font-semibold text-zinc-700">
                   {family === "Base" ? group : `${family}/${group}`}{" "}
                   <span className="font-normal text-neutral-text-tertiary">({rows.length})</span>
                 </h4>
-                <div className="hidden grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)_minmax(0,1fr)] gap-2 pb-1 text-[0.6875rem] font-medium tracking-wide text-neutral-text-tertiary uppercase sm:grid">
-                  <span>Figma · Token CSS</span>
-                  <span>Light</span>
-                  <span>Dark</span>
+                <div className="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-3">
+                  {rows.map((t) => (
+                    <ColorCard key={t.name || t.figma} token={t} mode={mode} />
+                  ))}
                 </div>
-                {rows.map((t) => (
-                  <TokenRow key={t.name || t.figma} token={t} />
-                ))}
               </section>
             ))}
           </details>
