@@ -42,6 +42,8 @@ export interface HomePageProps extends React.ComponentProps<"div"> {
   onListSelectionClear?: () => void
   /** Camada por cima da Home (ex. o modal de Guardar no longo prazo). Usada por `LongTermStoragePage`. */
   overlay?: React.ReactNode
+  /** Desativa a busca do Header enquanto um modal com busca própria está aberto (auditoria UX, M3). */
+  searchDisabled?: boolean
 }
 
 /**
@@ -98,6 +100,7 @@ function HomePage({
   listSelectedCount,
   onListSelectionClear,
   overlay,
+  searchDisabled,
   className,
   ...props
 }: HomePageProps) {
@@ -106,7 +109,7 @@ function HomePage({
     <AppShell
       data-slot="home-page"
       className={cn("bg-zinc-200 dark:bg-zinc-900", className)}
-      headerProps={{ page: "navbar" }}
+      headerProps={{ page: "navbar", ...(searchDisabled ? { searchProps: { disabled: true } } : {}) }}
       // Desktop (Figma 1440, `Grid/Desktop`): a Sidebar tem 212px em todas as vistas, inclusive Colunas (2026-09-30).
       sidebar={<Sidebar {...sidebarProps} />}
       mobileTabBar={{ active: "home" }}
