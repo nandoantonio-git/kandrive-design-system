@@ -232,3 +232,8 @@ Ver [[Auditoria final (2026-09-30)]] para o estado técnico (gate, paridade, pro
 - **Storybook:** `Tokens/Typography` documenta a escala de 3 degraus, e a tabela de estilos mostra os novos.
 - **De passagem:** "Acesso rápidp" corrigido em 15 textos.
 - **Resultado:** texto abaixo de 12px nas telas claras, de 30% para praticamente 0%; nenhuma fonte fora da marca nas telas. **C1 e A7 fechados.**
+
+### C4, escopo (2026-09-30)
+- **Case Study:** slide novo `07 / Escopo` ("O que entrou e o que ficou de fora"), com dois cartões: o que entrou no case e o que ficou de fora por enquanto (Compartilhados, Recentes, Favoritos e Lixeira; compartilhar, permissões e versões; status de backup por projeto; cadastro e recuperação de senha; busca com resultados reais). Navegação e Entrega viraram 08 e 09.
+- **Protótipo:** sobreposição `Overlay/Fora do escopo` (Desktop e Mobile), com o `organism/Dialog` informativo e o botão "Entendi" fechando. Compartilhados, Recentes, Favoritos e Lixeira da barra lateral (Desktop e Tablet), da barra inferior e da gaveta do Mobile abrem o aviso: 245 ligações nas telas claras. O avaliador não cai mais num clique morto.
+- O `organism/Dialog` não tem variante Info para Mobile; o aviso do Mobile usa a variante Desktop com 342px. Criar a variante fica como M-item. **C4 fechado.**

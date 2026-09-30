@@ -20,6 +20,7 @@ Arquivo do Figma KanDrive V0.2.1, a partir de 2026-09-23.
 - Ícone Organizar animado no Header, com o desenho do `atom/IconButton`.
 - Figma: fluxos em pares Desktop e Mobile (Entrar, Início, Organizar, Guardar, Gerir espaço, Limite, Pagamento, Configurações, Ajuda); a gaveta do Mobile leva às Configurações e à Ajuda.
 - Changelog.
+- Case Study: slide `07 / Escopo`, com o que entrou no case e o que ficou de fora. Protótipo: Compartilhados, Recentes, Favoritos e Lixeira abrem o aviso "Fora do escopo deste case" (`organism/Dialog` informativo) em vez de não fazer nada.
 
 #### Alterado
 
