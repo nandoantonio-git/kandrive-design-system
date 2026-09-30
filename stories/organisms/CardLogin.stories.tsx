@@ -40,3 +40,29 @@ export const Mobile: Story = {
   globals: { viewport: { value: "kdMobile", isRotated: false } },
   decorators: [(Story) => <div className="bg-brand-teal-action p-6"><Story /></div>],
 }
+
+/**
+ * Erro de envio (auditoria UX, A5): a mensagem genérica não diz qual campo errou, mas traz a saída
+ * ("Esqueci a senha"). Campo com borda de erro, ícone de alerta e `role="alert"`; o foco vai para a senha.
+ */
+export const ErrorState: Story = {
+  args: {
+    error: "E-mail ou senha incorretos. Confira os dados e tente de novo, ou use \"Esqueceu sua senha?\".",
+    onForgotPassword: fn(),
+  },
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(canvas.getByRole("alert")).toHaveTextContent("E-mail ou senha incorretos")
+    const password = canvas.getByLabelText("Senha")
+    await expect(password).toHaveAttribute("aria-invalid", "true")
+    await expect(password).toHaveFocus()
+    await userEvent.click(canvas.getByRole("button", { name: "Esqueceu sua senha?" }))
+    await expect(args.onForgotPassword).toHaveBeenCalledOnce()
+  },
+}
+
+export const ErrorStateMobile: Story = {
+  args: { device: "mobile", error: "E-mail ou senha incorretos. Confira os dados e tente de novo, ou use \"Esqueceu sua senha?\"." },
+  globals: { viewport: { value: "kdMobile", isRotated: false } },
+  decorators: [(Story) => <div className="bg-brand-teal-action p-6"><Story /></div>],
+}

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Mail, Lock, Eye, EyeOff } from "lucide-react"
+import { Mail, Lock, Eye, EyeOff, CircleAlert } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/atoms/button"
@@ -9,6 +9,12 @@ export interface CardLoginProps extends Omit<React.ComponentProps<"div">, "onSub
   onForgotPassword?: () => void
   onGoogleLogin?: () => void
   onAppleLogin?: () => void
+  /**
+   * Mensagem de erro do envio (ex.: "E-mail ou senha incorretos. ..."). Quando presente, o campo de senha fica
+   * `aria-invalid`, ganha borda de erro, a mensagem aparece com ícone em `role="alert"` (a cor não é o único
+   * sinal) e o foco vai para a senha. Auditoria UX, A5.
+   */
+  error?: string
   /**
    * Figma `Device`. `mobile` (`organism/CardLogin Device=Mobile`, tela `Auth/Login/Mobile`):
    * formulário direto sobre o fundo teal, sem card; texto branco, campos em vidro fosco
@@ -44,6 +50,7 @@ function CardLogin({
   onForgotPassword,
   onGoogleLogin,
   onAppleLogin,
+  error,
   device = "desktop",
   className,
   ...props
@@ -61,6 +68,12 @@ function CardLogin({
   const [email, setEmail] = React.useState("")
   const [password, setPassword] = React.useState("")
   const [showPassword, setShowPassword] = React.useState(false)
+  const passwordRef = React.useRef<HTMLInputElement>(null)
+  React.useEffect(() => {
+    if (error) passwordRef.current?.focus()
+  }, [error])
+  // Borda de erro: vermelho no claro; sobre o teal do mobile, borda branca grossa (vermelho não tem contraste ali).
+  const errorBorder = m ? "border-2 border-white" : "border-destructive"
 
   return (
     <div
@@ -125,12 +138,15 @@ function CardLogin({
             <Lock aria-hidden="true" className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-zinc-400 dark:text-zinc-500" />
             <input
               id="card-login-password"
+              ref={passwordRef}
+              aria-invalid={error ? true : undefined}
+              aria-describedby={error ? "card-login-error" : undefined}
               type={showPassword ? "text" : "password"}
               autoComplete="current-password"
               placeholder="••••••••"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
-              className={cn("w-full rounded-lg border py-3.5 pr-10 pl-10 text-base transition-colors hover:border-zinc-600 focus-visible:border-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:hover:border-white/60", input)}
+              className={cn("w-full rounded-lg border py-3.5 pr-10 pl-10 text-base transition-colors hover:border-zinc-600 focus-visible:border-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:hover:border-white/60", input, error && errorBorder)}
             />
             <button
               type="button"
@@ -141,6 +157,16 @@ function CardLogin({
               {showPassword ? <EyeOff aria-hidden="true" className="size-4" /> : <Eye aria-hidden="true" className="size-4" />}
             </button>
           </div>
+          {error ? (
+            <p
+              id="card-login-error"
+              role="alert"
+              className={cn("mt-1 flex items-start gap-2 text-sm font-medium", m ? "text-white" : "text-destructive")}
+            >
+              <CircleAlert aria-hidden="true" className="mt-0.5 size-4 shrink-0" />
+              {error}
+            </p>
+          ) : null}
         </div>
 
         <Button
