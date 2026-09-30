@@ -84,6 +84,8 @@
     --color-storage-fast-access-surface: var(--storage-fast-access-surface);
     --color-storage-long-term-surface: var(--storage-long-term-surface);
     --color-brand-feedback-success-surface: var(--brand-feedback-success-surface);
+    --color-brand-feedback-success-text: var(--brand-feedback-success-text);
+    --color-ui-input-border: var(--ui-input-border);
     --color-brand-feedback-warning-surface: var(--brand-feedback-warning-surface);
     --color-brand-feedback-warning-surface-alt: var(--brand-feedback-warning-surface-alt);
     --color-brand-secondary-foreground: var(--brand-secondary-foreground);
@@ -270,7 +272,7 @@
     /* Figma-confirmado (Figma V0.2.1, coleção Core): usados pelos componentes mobile (R2 de responsividade, 2026-09-24). */
     /* Regra 3 (2026-09-25): escurecido de #71717a pra passar 4.5:1. */
     --neutral-text-tertiary: #59595f;
-    --neutral-text-placeholder: #bfc7d2;
+    --neutral-text-placeholder: #68686e;
     --neutral-surface-elevated: #ffffff;
     --neutral-surface-background-alt: #f3f3f3;
     --effect-overlay-default: #00000080;
@@ -289,6 +291,8 @@
     --storage-fast-access-surface: #b5254a;
     --storage-long-term-surface: #1a5e6e;
     --brand-feedback-success-surface: #009966;
+    --brand-feedback-success-text: #047857;
+    --ui-input-border: #8a8a93;
     --brand-feedback-warning-surface: #fff8e6;
     --brand-feedback-warning-surface-alt: #fff8e6;
     --brand-secondary-foreground: #ffffff;
@@ -299,19 +303,19 @@
     --neutral-surface-constant-light: #f3f3f3;
     --neutral-text-constant-dark: #3f3f46;
     --neutral-text-vibrant-primary: #1a1a1a;
-    --neutral-text-vibrant-secondary: #707070;
-    --neutral-text-vibrant-tertiary: #bbbbbb;
+    --neutral-text-vibrant-secondary: #565652;
+    --neutral-text-vibrant-tertiary: #68686e;
     /* 🧩 Inferidos — Figma V0.2.1 Fase 6b (nome = variável Core em kebab-case, Regra 2). */
     --neutral-text-slate: #3e484c;
     --neutral-text-slate-600: #475569;
-    --neutral-text-muted: #71717a;
+    --neutral-text-muted: #68686e;
     --neutral-text-graphite: #1a1a1a;
     --neutral-text-ink-85: #000000d9;
     --neutral-icon-default: #31302d;
     --neutral-border-cool: #bec8cc;
     --neutral-border-medium: #d4d4d4;
     --neutral-border-zinc: #e2e2e5;
-    --neutral-slate-400: #94a3b8;
+    --neutral-slate-400: #5a687b;
     --neutral-surface-gray: #d4d4d4;
     --neutral-surface-steel: #6e797d;
     --brand-primary-ink: #001f27;
@@ -456,6 +460,8 @@
     --storage-fast-access-surface: #b5254a;
     --storage-long-term-surface: #007e96;
     --brand-feedback-success-surface: #047857;
+    --brand-feedback-success-text: #34d399;
+    --ui-input-border: #ffffff59;
     --brand-feedback-warning-surface: #3b2f12;
     --brand-feedback-warning-surface-alt: #3b2f12;
     --brand-secondary-foreground: #1a1714;
@@ -478,7 +484,7 @@
     --neutral-border-cool: #48535a;
     --neutral-border-medium: #404040;
     --neutral-border-zinc: #3f3f46;
-    --neutral-slate-400: #64748b;
+    --neutral-slate-400: #94a3b8;
     --neutral-surface-gray: #3a3a3a;
     --neutral-surface-steel: #9aa5a9;
     --brand-primary-ink: #c8dce3;

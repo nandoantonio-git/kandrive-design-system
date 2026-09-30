@@ -76,7 +76,7 @@ function ArchiveBrowserModalSidebar({
                 onClick={() => selectPage(page)}
                 className={cn(
                   "flex w-full items-center gap-1.5 rounded-md px-2 py-1 text-base font-medium text-zinc-800 transition-[color,background-color,opacity] focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 hover:bg-zinc-100 active:bg-zinc-200 dark:text-zinc-100 dark:hover:bg-zinc-800 dark:active:bg-zinc-700",
-                  isActive ? "bg-zinc-100 dark:bg-zinc-800" : "opacity-50 hover:opacity-100"
+                  isActive ? "bg-zinc-100 dark:bg-zinc-800" : "text-neutral-text-vibrant-tertiary hover:text-zinc-900 dark:hover:text-zinc-100"
                 )}
               >
                 <ItemIcon aria-hidden="true" className={cn("size-4", isActive && "text-brand-teal")} />

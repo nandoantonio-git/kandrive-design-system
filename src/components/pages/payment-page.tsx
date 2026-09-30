@@ -264,7 +264,7 @@ function PaymentPage({
                       billingCycle === "annual" ? "bg-brand-teal-action text-brand-teal-foreground hover:bg-brand-teal-action/90" : "text-neutral-text-tertiary hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
                     )}
                   >
-                    Anual <span className="text-xs opacity-80">· economize 17%</span>
+                    Anual <span className="text-xs">· economize 17%</span>
                   </button>
                 </div>
                 <div className="rounded-md bg-zinc-100 p-3 dark:bg-zinc-800">

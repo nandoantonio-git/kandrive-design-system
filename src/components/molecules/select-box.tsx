@@ -29,7 +29,7 @@ function SelectBox({ options, value, defaultValue, onValueChange, className, ...
           if (value === undefined) setInternal(event.target.value)
           onValueChange?.(event.target.value)
         }}
-        className="h-full w-full cursor-pointer appearance-none rounded-md border border-[#d4d4d4] bg-effect-glass-white-70 pr-8 pl-3 text-sm text-neutral-text-primary focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:border-[#52525b] dark:text-zinc-100"
+        className="h-full w-full cursor-pointer appearance-none rounded-md border border-ui-input-border bg-effect-glass-white-70 pr-8 pl-3 text-sm text-neutral-text-primary focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:border-[#52525b] dark:text-zinc-100"
         {...props}
       >
         {options.map((option) => (

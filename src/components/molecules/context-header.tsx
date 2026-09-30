@@ -6,7 +6,7 @@ import ClearGlyph from "@/assets/icons/ClearButtonGlyph.svg?react"
 import DeleteGlyph from "@/assets/icons/DeleteButtonGlyph.svg?react"
 
 export interface ContextHeaderProps extends React.ComponentProps<"div"> {
-  /** `"X itens selecionado"` no Figma — literal, com placeholder textual (não interpolado). */
+  /** `"X itens selecionados"` no Figma — literal, com placeholder textual (não interpolado). */
   itemsSelected?: string
   /** Eixo `state` Figma-confirmado. */
   state?: "expanded" | "collapsed"
@@ -69,7 +69,7 @@ export interface ContextHeaderProps extends React.ComponentProps<"div"> {
  * com `atom/DeleteButton`, então o reenquadramento é só aqui, via `viewBox`.
  */
 function ContextHeader({
-  itemsSelected = "X itens selecionado",
+  itemsSelected = "X itens selecionados",
   state = "expanded",
   onClear,
   onShare,

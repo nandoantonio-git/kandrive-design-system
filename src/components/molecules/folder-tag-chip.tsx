@@ -86,7 +86,7 @@ function FolderTagChip({
       role={interactive ? "button" : undefined}
       tabIndex={interactive && !disabled ? 0 : undefined}
       aria-pressed={interactive ? !!selected : undefined}
-      aria-disabled={interactive && disabled ? true : undefined}
+      aria-disabled={disabled ? true : undefined}
       onClick={disabled ? undefined : onClick}
       onKeyDown={(event) => {
         onKeyDown?.(event)

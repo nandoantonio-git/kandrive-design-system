@@ -165,6 +165,7 @@ function Label({
         isDisabled && "pointer-events-none opacity-[0.32]",
         className
       )}
+      aria-disabled={isDisabled || undefined}
       {...props}
     >
       <span className="w-full px-1 text-[0.625rem] font-bold tracking-[0.012px] text-neutral-text-tertiary dark:text-zinc-400">

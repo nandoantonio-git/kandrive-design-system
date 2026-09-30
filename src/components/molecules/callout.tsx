@@ -43,7 +43,7 @@ function Callout({ variant = "warning", className, children, ...props }: Callout
       <p
         className={cn(
           "min-w-px flex-1 text-[0.8125rem] tracking-[0.0156px]",
-          isInfo ? "text-brand-teal-dark" : "text-[var(--color-feedback-warning,#c38418)] dark:text-[#fbbf24]"
+          isInfo ? "text-brand-teal-dark" : "text-brand-feedback-warning-text"
         )}
       >
         {children}

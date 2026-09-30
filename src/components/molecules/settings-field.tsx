@@ -28,8 +28,8 @@ function SettingsField({ label, className, ...props }: SettingsFieldProps) {
       <input
         id={inputId}
         className={cn(
-          "h-9 w-full rounded-md border border-[#d4d4d4] dark:border-[#52525b] bg-effect-glass-white-70 px-3 text-sm text-zinc-950 dark:text-zinc-100",
-          "transition-colors hover:border-zinc-400 dark:hover:border-zinc-500",
+          "h-9 w-full rounded-md border border-ui-input-border bg-effect-glass-white-70 px-3 text-sm text-zinc-950 dark:text-zinc-100",
+          "transition-colors hover:border-zinc-600 dark:hover:border-white/60",
           "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
           "disabled:pointer-events-none disabled:opacity-50",
           className

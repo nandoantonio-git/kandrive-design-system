@@ -3,6 +3,9 @@ import { create } from 'storybook/theming/create'
 import { withThemeByClassName } from '@storybook/addon-themes'
 
 import '../src/index.css'
+
+// O conteúdo é pt-BR; sem isso o leitor de tela lê o texto com a pronúncia do inglês.
+if (typeof document !== 'undefined') document.documentElement.lang = 'pt-BR'
 import { PreferencesProvider } from '../src/lib/preferences'
 
 // Mesmo tema de `.storybook/manager.ts`, aplicado aos blocos de docs
@@ -56,7 +59,7 @@ const preview: Preview = {
       // NodeContextMenu, ArchiveBrowserModalSidebar, o catálogo do Icon) e
       // cores semânticas de badge (âmbar "Duplicado", rosa "Urgente", azul de
       // foco do CardLogin). Fica `reviewOnFail` até uma decisão sobre elas.
-      config: { rules: [{ id: 'color-contrast', reviewOnFail: true }] },
+      // Contraste volta a quebrar o teste (2026-09-30, auditoria UX): antes era só aviso (`reviewOnFail`).
     },
 
     // Sem isso, o Storybook ordena as categorias de topo alfabeticamente

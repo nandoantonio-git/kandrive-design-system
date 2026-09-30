@@ -188,3 +188,23 @@ Nota por dimensão (0 a 5, onde 3 é "aceitável para entrega" e 4 é "nível de
 12. A8: `lang="pt-BR"` e teste de movimento reduzido.
 
 Ver [[Auditoria final (2026-09-30)]] para o estado técnico (gate, paridade, protótipo) e [[Conflitos Abertos]] para o que já estava registrado.
+
+## Andamento
+
+### Lote rápido (2026-09-30)
+- ✅ **C2, contraste:**
+  - Gate: `color-contrast` do axe quebra o teste. Apareceram 36 falhas reais, todas corrigidas (rótulos do catálogo de ícones, itens do menu de contexto, texto de aviso, chips rosa, links sobre fundo teal, campos do login, `aria-disabled` nos estados desativados, histórias sobre fundo errado). 492 de 492 passam.
+  - Tokens de texto: `Text/Placeholder`, `Text/Muted`, `Text/OnGlass/Secondary`, `Text/OnGlass/Tertiary` e `Text/Cool/Tertiary` (Light) e `Text/Cool/Tertiary` (Dark) a 4,5:1 ou mais nas três superfícies (`Zinc/575`, `Stone/650`, `Slate/600` e `Slate/350`).
+  - Bordas: `Border/Input` a 3:1 (Light `Zinc/450`, Dark branco a 35%), aplicado nos campos das Configurações, no seletor de idioma e no login.
+  - Sucesso e aviso: papel novo `Feedback/Success/Text`, e os textos de aviso usam `Feedback/Warning/Text`.
+  - Barra lateral: os itens inativos deixam de usar `opacity-50` (Figma usava 1,73:1 em 330 textos) e passam a usar `Text/OnGlass/Tertiary`.
+  - Header: `ActionPill` sem `opacity-50`.
+- ✅ **A8, idioma:** `lang="pt-BR"` no `index.html` e no Storybook.
+- ✅ **A3, erros de texto (5 de 5):** "Search", "Continuar...", "Taxonomia/Template Sugerido", "Corrente" e "1 selecionado" com três chips. De quebra: "15.35 MB" para "15,35 MB" e "X itens selecionado" para "selecionados".
+- ✅ **Higiene (M4, parcial):** 88 ligações a variáveis apagadas (o rosa da marca) religadas; 86 textos com cor solta ligados a token (`Text/Muted`, `Text/Placeholder`, `Brand/Primary/Default`).
+- Ainda aberto do C2: contraste medido no Figma por camada mostra cerca de 12% de falhas em telas claras, mas o levantamento superestima (botões com fundo em camada irmã aparecem como falha). Vale refazer depois da tipografia, já com o fundo real de cada botão.
+
+### Análise prévia da tipografia (C1 e A7), sem alterar nada
+- 62 dos 188 componentes têm texto abaixo de 12px: 924 de 2.106 textos de componentes (44%), e 1.362 (65%) abaixo de 14px.
+- Maiores concentrações: `Sidebar` (78), `OrganizePanelDropZone` (59), `StorageStatus` (49), `PreviewPane` (46), `FileItem` (36), `TypeLabel` (34), `TemplateCard` (34), `NodeContextMenu` (31, com texto de 9px), `SaveOrganizationModal` (31) e as cinco telas-modal da onda de Organização e Guardar.
+- Como o texto está dentro de componentes, o ajuste é nos componentes, não nas telas, e se espalha para todas as telas que os usam.

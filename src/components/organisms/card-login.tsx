@@ -51,7 +51,7 @@ function CardLogin({
   const m = device === "mobile"
   const input = m
     ? "border-neutral-border-cool bg-effect-glass-frost-80/80 text-neutral-text-primary placeholder:text-neutral-text-tertiary"
-    : "border-zinc-300 bg-zinc-50/80 text-zinc-900 placeholder:text-zinc-400 dark:border-zinc-700 dark:bg-zinc-900/80 dark:text-zinc-100 dark:placeholder:text-zinc-500"
+    : "border-ui-input-border bg-zinc-50/80 text-zinc-900 placeholder:text-neutral-text-placeholder dark:bg-zinc-900/80 dark:text-zinc-100"
   const label = m ? "text-white" : "text-zinc-600 dark:text-zinc-300"
   // Sobre o fundo teal do mobile, o anel teal some — lá vai o branco (padrão do projeto pra fundo teal/escuro).
   const ring = cn("focus-visible:outline-none focus-visible:ring-3", m ? "focus-visible:ring-white/60" : "focus-visible:ring-brand-teal-action/50")
@@ -103,7 +103,7 @@ function CardLogin({
               placeholder="seu@email.com"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              className={cn("w-full rounded-lg border py-3.5 pr-3 pl-10 text-base transition-colors hover:border-zinc-400 focus-visible:border-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:hover:border-zinc-500", input)}
+              className={cn("w-full rounded-lg border py-3.5 pr-3 pl-10 text-base transition-colors hover:border-zinc-600 focus-visible:border-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:hover:border-white/60", input)}
             />
           </div>
         </div>
@@ -116,7 +116,7 @@ function CardLogin({
             <button
               type="button"
               onClick={onForgotPassword}
-              className={cn("rounded-sm text-xs font-medium transition-opacity hover:underline active:opacity-70", ring, m ? "text-brand-primary-focus" : "text-brand-teal")}
+              className={cn("rounded-sm text-xs font-medium transition-opacity hover:underline active:opacity-70", ring, m ? "text-white underline" : "text-brand-teal")}
             >
               Esqueceu sua senha?
             </button>
@@ -130,7 +130,7 @@ function CardLogin({
               placeholder="••••••••"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
-              className={cn("w-full rounded-lg border py-3.5 pr-10 pl-10 text-base transition-colors hover:border-zinc-400 focus-visible:border-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:hover:border-zinc-500", input)}
+              className={cn("w-full rounded-lg border py-3.5 pr-10 pl-10 text-base transition-colors hover:border-zinc-600 focus-visible:border-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:hover:border-white/60", input)}
             />
             <button
               type="button"

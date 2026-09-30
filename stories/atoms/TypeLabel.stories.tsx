@@ -56,7 +56,7 @@ export const Overlay: Story = {
   args: { kind: "image", overlay: true },
   decorators: [
     (Story) => (
-      <div className="rounded-lg bg-[var(--neutral-surface-background,#f3f3f3)] p-6">
+      <div className="rounded-lg bg-zinc-800 p-6">
         <Story />
       </div>
     ),

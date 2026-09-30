@@ -46,7 +46,7 @@ export interface TemplateReviewModalItemProps extends Omit<React.ComponentProps<
 }
 
 const SEVERITY_META: Record<ReviewSeverity, { label: string; icon: typeof AlertTriangle; className: string }> = {
-  duplicado: { label: "Duplicado", icon: AlertTriangle, className: "bg-[var(--color-feedback-warning-subtle,#f59e0b33)] text-[var(--color-feedback-warning,#c38418)] dark:bg-[#f59e0b4d] dark:text-[#fbbf24]" },
+  duplicado: { label: "Duplicado", icon: AlertTriangle, className: "bg-[var(--color-feedback-warning-subtle,#f59e0b33)] text-brand-feedback-warning-text dark:bg-[#f59e0b4d]" },
   incongruente: { label: "Fora do padrão", icon: AlertCircle, className: "bg-zinc-200 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300" },
   ok: { label: "OK", icon: CheckCircle2, className: "bg-zinc-200 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300" },
 }

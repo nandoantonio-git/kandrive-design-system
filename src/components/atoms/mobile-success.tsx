@@ -58,7 +58,7 @@ function MobileSuccess({ message = "organized", fileName, title, description, cl
               <br />
               estão organizados
             </p>
-            {fileName ? <p className="text-[0.625rem] leading-3 font-bold text-[#c8dce3]">✓ {fileName}</p> : null}
+            {fileName ? <p className="text-[0.625rem] leading-3 font-bold text-white">✓ {fileName}</p> : null}
           </>
         ) : (
           <p className="text-xl leading-[29px] font-bold text-white">

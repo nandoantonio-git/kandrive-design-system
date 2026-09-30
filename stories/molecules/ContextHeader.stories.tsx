@@ -16,7 +16,7 @@ const meta = {
     state: { control: "select", options: ["expanded", "collapsed"] },
   },
   args: {
-    itemsSelected: "X itens selecionado",
+    itemsSelected: "X itens selecionados",
     state: "expanded",
   },
   decorators: [

@@ -139,6 +139,7 @@ function DropdownSelectGroupBy({
       ref={rootRef}
       data-slot="dropdown-select-group-by"
       data-disabled={disabled || undefined}
+      aria-disabled={disabled || undefined}
       data-expanded={expanded || undefined}
       className={cn(
         "relative flex flex-col items-start gap-1",
