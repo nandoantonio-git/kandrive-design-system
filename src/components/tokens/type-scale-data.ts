@@ -3,8 +3,8 @@ import type { TypeScaleEntry } from "@/components/tokens/type-specimen"
 /**
  * Dados da escala tipográfica — espelham a tabela Figma-confirmada de
  * `Tokens/Typography` (ver `docs/audits/tokens/Typography.md` pro
- * histórico de reconciliação). Nenhum valor novo aqui, só estruturado
- * pra alimentar `TypeScale`/`TypeSpecimen`.
+ * histórico de reconciliação). Atualizado em 2026-09-30 para a escala de
+ * 3 degraus (16/14/12, Regra 4 revisada) e os estilos novos do Figma.
  */
 export const TYPE_SCALE: TypeScaleEntry[] = [
   { token: "Type/Display", weightLabel: "Regular 400", fontWeight: 400, sizePx: 50, sizeRem: "3.125rem", lineHeight: "100%", tracking: "0", cssSnippet: "text-[3.125rem]" },
@@ -15,11 +15,16 @@ export const TYPE_SCALE: TypeScaleEntry[] = [
   { token: "Type/Heading/SM", weightLabel: "SemiBold 600", fontWeight: 600, sizePx: 16, sizeRem: "1rem", lineHeight: "22px", tracking: "-0.1", cssSnippet: "text-base font-semibold leading-[22px] tracking-[-0.00625em]" },
   { token: "Type/Body/LG", weightLabel: "Bold 700", fontWeight: 700, sizePx: 20, sizeRem: "1.25rem", lineHeight: "100%", tracking: "0.12", cssSnippet: "text-xl font-bold tracking-[0.0075em]" },
   { token: "Type/Body/MD", weightLabel: "Regular 400", fontWeight: 400, sizePx: 16, sizeRem: "1rem", lineHeight: "100%", tracking: "0.12", cssSnippet: "text-base tracking-[0.0075em]" },
+  { token: "Type/Body/MD/Medium", weightLabel: "Medium 500", fontWeight: 500, sizePx: 16, sizeRem: "1rem", lineHeight: "100%", tracking: "0", cssSnippet: "text-base font-medium" },
+  { token: "Type/Body/MD/Bold", weightLabel: "Bold 700", fontWeight: 700, sizePx: 16, sizeRem: "1rem", lineHeight: "100%", tracking: "0", cssSnippet: "text-base font-bold" },
   { token: "Type/Label/SM", weightLabel: "Medium 500", fontWeight: 500, sizePx: 16, sizeRem: "1rem", lineHeight: "16px", tracking: "0.1", cssSnippet: "text-base font-medium leading-4 tracking-[0.00625em]" },
   { token: "Type/Button/MD", weightLabel: "Medium 500", fontWeight: 500, sizePx: 16, sizeRem: "1rem", lineHeight: "20px", tracking: "0.1", cssSnippet: "text-base font-medium leading-5 tracking-[0.00625em]" },
-  { token: "Type/Body/SM", weightLabel: "Regular 400", fontWeight: 400, sizePx: 13, sizeRem: "0.8125rem", lineHeight: "100%", tracking: "0.12", cssSnippet: "text-[0.8125rem] tracking-[0.0075em]" },
-  { token: "Type/Caption/SM", weightLabel: "Regular 400", fontWeight: 400, sizePx: 11, sizeRem: "0.6875rem", lineHeight: "16px", tracking: "0.2", cssSnippet: "text-[0.6875rem] leading-4 tracking-[0.0125em]" },
-  { token: "Type/Body/XS", weightLabel: "Regular 400", fontWeight: 400, sizePx: 10, sizeRem: "0.625rem", lineHeight: "100%", tracking: "0.12", cssSnippet: "text-[0.625rem] tracking-[0.0075em]" },
-  { token: "Type/Body/XS/Bold", weightLabel: "Bold 700", fontWeight: 700, sizePx: 10, sizeRem: "0.625rem", lineHeight: "100%", tracking: "0.12", cssSnippet: "text-[0.625rem] font-bold tracking-[0.0075em]" },
-  { token: "Type/Tag", weightLabel: "Regular 400", fontWeight: 400, sizePx: 11, sizeRem: "0.6875rem", lineHeight: "100%", tracking: "0.12", cssSnippet: "text-[0.6875rem] tracking-[0.0075em]" },
+  { token: "Type/Body/SM", weightLabel: "Regular 400", fontWeight: 400, sizePx: 14, sizeRem: "0.875rem", lineHeight: "100%", tracking: "0.12", cssSnippet: "text-sm tracking-[0.0075em]" },
+  { token: "Type/Body/SM/Medium", weightLabel: "Medium 500", fontWeight: 500, sizePx: 14, sizeRem: "0.875rem", lineHeight: "100%", tracking: "0", cssSnippet: "text-sm font-medium" },
+  { token: "Type/Body/SM/Bold", weightLabel: "Bold 700", fontWeight: 700, sizePx: 14, sizeRem: "0.875rem", lineHeight: "100%", tracking: "0", cssSnippet: "text-sm font-bold" },
+  { token: "Type/Caption/SM", weightLabel: "Regular 400", fontWeight: 400, sizePx: 12, sizeRem: "0.75rem", lineHeight: "16px", tracking: "0.2", cssSnippet: "text-xs leading-4 tracking-[0.0125em]" },
+  { token: "Type/Body/XS", weightLabel: "Regular 400", fontWeight: 400, sizePx: 12, sizeRem: "0.75rem", lineHeight: "100%", tracking: "0.12", cssSnippet: "text-xs tracking-[0.0075em]" },
+  { token: "Type/Body/XS/Medium", weightLabel: "Medium 500", fontWeight: 500, sizePx: 12, sizeRem: "0.75rem", lineHeight: "100%", tracking: "0", cssSnippet: "text-xs font-medium" },
+  { token: "Type/Body/XS/Bold", weightLabel: "Bold 700", fontWeight: 700, sizePx: 12, sizeRem: "0.75rem", lineHeight: "100%", tracking: "0.12", cssSnippet: "text-xs font-bold tracking-[0.0075em]" },
+  { token: "Type/Tag", weightLabel: "Regular 400", fontWeight: 400, sizePx: 12, sizeRem: "0.75rem", lineHeight: "100%", tracking: "0.12", cssSnippet: "text-xs tracking-[0.0075em]" },
 ]

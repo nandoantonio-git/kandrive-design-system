@@ -143,7 +143,8 @@ function DropdownSelectGroupBy({
       data-expanded={expanded || undefined}
       className={cn(
         "relative flex flex-col items-start gap-1",
-        mobile ? "w-fit min-w-[105px]" : "w-[105px]",
+        // w-fit desde 2026-09-30: com 12px (escala nova) "Agrupar" não cabia em 105px e virava "Agru...".
+        "w-fit min-w-[105px]",
         mobile ? "h-[35px]" : "h-[54px]",
         "data-[disabled]:pointer-events-none data-[disabled]:opacity-[0.32]",
         className

@@ -152,7 +152,7 @@ function NodeContextMenuItem({
             onValueChange?.(event.target.value)
           }}
           className={cn(
-            "h-6 w-full rounded-[var(--radius-md)] border px-2 text-center text-[0.6875rem] leading-4 outline-none transition-[color,background-color,border-color] placeholder:text-zinc-600 dark:placeholder:text-zinc-400",
+            "h-6 w-full rounded-[var(--radius-md)] border px-2 text-center text-xs leading-4 outline-none transition-[color,background-color,border-color] placeholder:text-zinc-600 dark:placeholder:text-zinc-400",
             "focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
             surfaceClassName,
             error ? "border-destructive shadow-[0_0_0_2px_rgba(188,52,38,0.35)]" : filled ? "border-zinc-700" : "border-zinc-500",
@@ -167,7 +167,7 @@ function NodeContextMenuItem({
         disabled={disabled}
         onClick={() => hasChevron && setExpanded(!expanded)}
         className={cn(
-          "flex h-6 w-full items-center justify-center gap-1 whitespace-nowrap rounded-[var(--radius-md)] border px-2 text-[0.6875rem] leading-4 transition-[color,background-color,border-color,filter]",
+          "flex h-6 w-full items-center justify-center gap-1 whitespace-nowrap rounded-[var(--radius-md)] border px-2 text-xs leading-4 transition-[color,background-color,border-color,filter]",
           "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
           surfaceClassName,
           expanded && hasChevron && "border-zinc-500 bg-zinc-600 text-zinc-300",
@@ -199,7 +199,7 @@ function NodeContextMenuItem({
                 aria-current={option === selectedOption || option === value}
                 onClick={() => selectValue(option)}
                 className={cn(
-                  "block h-[22px] w-full px-3 text-left text-[0.8125rem] leading-none whitespace-nowrap text-zinc-300 transition-[background-color,opacity] hover:bg-black/14 active:opacity-70",
+                  "block h-[22px] w-full px-3 text-left text-sm leading-none whitespace-nowrap text-zinc-300 transition-[background-color,opacity] hover:bg-black/14 active:opacity-70",
                   "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:ring-inset",
                   (option === selectedOption || option === value) && "bg-black/14"
                 )}

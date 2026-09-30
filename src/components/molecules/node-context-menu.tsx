@@ -156,7 +156,7 @@ function NodeContextMenu({
       aria-pressed={logicalOperator === operator}
       onClick={() => setOperator(operator)}
       className={cn(
-        "rounded-sm px-3 py-1 text-[0.5625rem] font-bold transition-[color,background-color,opacity] active:opacity-70",
+        "rounded-sm px-3 py-1 text-xs font-bold transition-[color,background-color,opacity] active:opacity-70",
         "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-white/60",
         logicalOperator === operator ? "bg-brand-teal-action text-brand-teal-foreground" : "text-zinc-400 hover:text-zinc-200"
       )}
@@ -223,7 +223,7 @@ function NodeContextMenu({
             />
           </div>
           {isError ? (
-            <p role="alert" className="flex items-center gap-1 text-[0.6875rem] text-destructive">
+            <p role="alert" className="flex items-center gap-1 text-xs text-destructive">
               <Info aria-hidden="true" className="size-3 shrink-0" />
               Preencha todas as informações antes de adicionar a nova regra
             </p>
