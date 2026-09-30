@@ -249,3 +249,8 @@ Ver [[Auditoria final (2026-09-30)]] para o estado técnico (gate, paridade, pro
 - **A2, hierarquia de ação:** Adicionar é o único primário do Header e da barra lateral em uso normal. Organizar e Guardar em contorno (`atom/PushButton` BorderedNeutral no Figma, `variant="outline"` no código). "Comprar espaço" da barra lateral só a partir de 80% de uso; o botão do aviso de limite e o da aba Total do Status continuam. `ContextHeader` com Organizar e Guardar no lugar de Compartilhar (fora do escopo, slide 07).
 - **Dado de exemplo:** "20 TB de 2 GB usados" corrigido para "1 TB de 2 TB usados" em 61 telas.
 
+### A4 (2026-09-30)
+- Painel "Por que guardar?" (Desktop e Tablet, claro e Dark, e o componente): linha em negrito com o prazo de resgate (e-mail em até 8h) antes do botão Concluir, e abaixo a frase de ligação do A3 ("Você guarda, e o arquivo vai para Guardados, no armazenamento de longo prazo...").
+- Notificação depois de concluir em `Storage/LongTerm/Desktop` (claro e Dark): "Prontinho! 3 arquivos guardados e 2,6 GB liberados. Para resgatar, é só solicitar em Guardados." Sem tela nova e sem componente novo: instância do `PopoverNotification`. A tela completa `LongTermStorage/Stored/Desktop` ficou como to-do futuro.
+- Header: as 20 instâncias nas telas que ainda tinham o estilo antigo (teal cheio) passaram a contorno.
+
