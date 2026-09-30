@@ -44,14 +44,14 @@ export interface MethodCardProps extends Omit<React.ComponentProps<"div">, "onCh
  * para o código. Na tela de Organização (mobile), é a lista que o
  * `MethodOrganizeButton` abre.
  *
- * - Card: 323px, `Neutral/Surface/Card`, borda 1px `Neutral/Border/Subtle`,
+ * - Card: 323px, `Surface/Card`, borda 1px `Border/Subtle`,
  *   raio 12, sombra `0 4px 20px` a 12%.
  * - Linha: 78px, padding 12/16, gap 12. A 1ª e a 2ª têm divisória
- *   `Neutral/Border/Subtle`. Linha marcada: `Effect/Overlay/Light` a 60%.
+ *   `Border/Subtle`. Linha marcada: `Effect/Overlay/Light` a 60%.
  * - Ícone: caixa de 40px. Reusa os glifos do `MethodOrganizeButton` (mesmos
  *   desenhos), em `currentColor` para acompanhar o Dark.
- * - Texto: título 16px Bold `Neutral/Text/Secondary`; descrição 12px
- *   `Neutral/Text/Tertiary`. ⚠️ No Figma: 15px e 11px. Título sobe pro piso
+ * - Texto: título 16px Bold `Text/Secondary`; descrição 12px
+ *   `Text/Tertiary`. ⚠️ No Figma: 15px e 11px. Título sobe pro piso
  *   da Regra 4; a descrição fica como microtexto complementar, igual ao
  *   `TemplateCard`, que exibe o mesmo texto (decisão de 2026-09-26).
  * - Rádio: 16px. Desmarcado: anel 1.5px `Brand/Primary/Light`. Marcado:

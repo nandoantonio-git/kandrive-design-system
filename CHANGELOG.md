@@ -4,9 +4,7 @@ Histórico de mudanças do KanDrive Design System: código, Storybook, Figma e v
 
 ## Não lançado
 
-### Alterado
-
-- Figma: taxonomia das variáveis em três coleções (`Primitives`, `Color`, `Dimension`), em aprovação. Ver o plano da taxonomia no vault.
+Nada por enquanto.
 
 ## V0.2.1
 
@@ -30,6 +28,8 @@ Arquivo do Figma KanDrive V0.2.1, a partir de 2026-09-23.
 - StorageStatus, Colunas, PageLead, MiniMap, DropNewTag, InfoPopover e TypeLabel alinhados ao Figma.
 - Componentes só de mobile aparecem numa moldura de 390px nas docs.
 - Figma: variantes Tablet do Header renomeadas pelo uso; `FaqQuickLinks` virou variante do `MobileFooterSettings`.
+- Figma: variáveis em três coleções. `Primitives` (89 cores de base), `Color` (120 papéis por nome de papel: `Text/*`, `Surface/*`, `Border/*`, `Feedback/*`…, apontando para as cores de base) e `Dimension` (raio e espaçamento pelo valor em px). Valores praticamente iguais foram juntados (19 junções), e o código acompanhou.
+- Página de Cores em cartões (cor, nome, hex, RGB, cor de base e token CSS), com chave Light/Dark.
 
 #### Corrigido
 
@@ -43,6 +43,7 @@ Arquivo do Figma KanDrive V0.2.1, a partir de 2026-09-23.
 - `FaqTopicChips`, substituído pelo `MobileFooterSettings` Page=FAQ.
 - Página `Tokens/Unused`.
 - Figma: fluxos de Tablet e do Escuro; tela `Organize/Review/Mobile`; variante `HomeAlt` do Header; coleção `Storage`.
+- Figma: 66 estilos de cor que repetiam variáveis (ficam os 3 gradientes) e as medidas antigas (`Spacing/XS`, `Radius/Pill`…).
 
 ### 2026-09-29
 

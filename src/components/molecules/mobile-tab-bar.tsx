@@ -27,7 +27,7 @@ export interface MobileTabBarProps extends Omit<React.ComponentProps<"nav">, "on
  * Guardar. No desktop, essas ações ficam no Header (decisão de 2026-09-24).
  *
  * - Aba ativa: fundo `Effect/Overlay/Light` a 60% e cor `Brand/Primary/Default`.
- * - Abas inativas: `Neutral/Text/Tertiary`.
+ * - Abas inativas: `Text/Tertiary`.
  * - O vidro segue a receita de Liquid Glass da Regra 10.
  * - ⚠️ No Figma, os rótulos têm 10px. Aqui têm 11px, o piso de microtexto da Regra 4.
  * - 🧩 Regra 8: hover, pressed e foco não desenhados no Figma.

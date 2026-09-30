@@ -14,7 +14,7 @@ export interface FooterProps extends React.ComponentProps<"footer"> {
 
 /**
  * organism/Footer (`1431:17284`): o rodapé das telas de tablet e desktop. "©2026 Kandrive" em 16px
- * `Neutral/Text/Ink` e o `molecule/SelectBox` de idioma, 37px entre eles, 15px acima e abaixo.
+ * `Text/Ink` e o `molecule/SelectBox` de idioma, 37px entre eles, 15px acima e abaixo.
  * No mobile, a base da tela é dos chips (`MobileFooterSettings`) ou da barra de navegação.
  *
  * 🧩 O Figma escreve "KanDrive"; aqui fica "Kandrive", a grafia do logo e do resto da interface.

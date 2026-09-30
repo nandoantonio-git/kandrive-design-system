@@ -18,7 +18,7 @@ export interface MobileSuccessProps extends React.ComponentProps<"div"> {
    * KanDrive" e "Tudo pronto!", com a mesma ilustração.
    */
   title?: string
-  /** Texto abaixo do título, 16px `Neutral/Text/OnDark` (usado no onboarding). */
+  /** Texto abaixo do título, 16px `Text/OnDark` (usado no onboarding). */
   description?: string
 }
 
@@ -28,7 +28,7 @@ export interface MobileSuccessProps extends React.ComponentProps<"div"> {
  * o Kan, o canguru, comemorando ao lado da caixa, com o texto abaixo.
  *
  * - Ilustração: 214×213, branca, exportada do Figma.
- * - Título: 20px Bold, `Neutral/Text/OnDark`. Linha do arquivo: 10px Bold,
+ * - Título: 20px Bold, `Text/OnDark`. Linha do arquivo: 10px Bold,
  *   `Brand/Primary/Light`, dentro da exceção de microtexto da Regra 4.
  * - Fixo na paleta Light: as telas de feedback positivo são iguais no Light e
  *   no Dark (decisão de design de 2026-09-23). Por isso as cores são

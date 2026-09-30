@@ -17,7 +17,7 @@ export interface StorageBarProps extends Omit<React.ComponentProps<"div">, "chil
  *
  * Cor corrigida em 2026-08-10: releitura do Figma (nó `1421:17907`, o único
  * `style` confirmado no component set é `Expanded`) mostra os mesmos tokens
- * de marca usados em `StorageBarExpanded` — rosa (`Brand/Theme/Pink`) para
+ * de marca usados em `StorageBarExpanded` — rosa (`Brand/Accent`) para
  * "Acesso rápido", teal (`brand-primary`) para "Longo prazo". Corrigido pra
  * consistência entre as duas variantes (antes usava teal pros dois tiers).
  *
@@ -94,7 +94,7 @@ const TIER_SHADES: Record<StorageTier, readonly [string, string]> = {
 /**
  * `Style=Expanded` de `molecule/StorageBar` — Figma-confirmado
  * (`get_design_context`, nó `1421:17907`): 4 segmentos coloridos lado a
- * lado, `Brand/Theme/Pink/Dark`+`/Light` para os segmentos de "Acesso
+ * lado, `Brand/Accent/Dark`+`/Light` para os segmentos de "Acesso
  * rápido" (decisão humana 2026-08-10, Regra 3 atualizada — rosa deixa de
  * ser "só branding") e `--brand-primary-default`/`--brand-primary-dark`
  * (teal) para os de "Longo prazo".

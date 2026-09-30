@@ -17,10 +17,10 @@ export interface FileSelectRowProps extends Omit<React.ComponentProps<"div">, "o
  * (`Organize/ChooseMethod/Mobile`, frames `file-row-*`). 🧩 No Figma é um frame
  * solto, não um componente: extraído aqui porque se repete 6 vezes.
  *
- * - 60px de altura, padding 10/16, divisória inferior `Neutral/Border/Subtle`.
+ * - 60px de altura, padding 10/16, divisória inferior `Border/Subtle`.
  * - Símbolo de pasta de 36×32, opaco e igual no Light e no Dark.
  * - Nome em 16px, a Regra 4 para texto de leitura. ⚠️ No Figma, o nome tem 14px.
- * - Tamanho em 11px, `Neutral/Text/Tertiary`, dentro da exceção de microtexto.
+ * - Tamanho em 11px, `Text/Tertiary`, dentro da exceção de microtexto.
  * - `atom/Checkbox` MD. Tocar em qualquer ponto da linha também marca.
  *   No teclado, o foco vai direto no checkbox (a linha não vira botão, para
  *   não aninhar dois controles).

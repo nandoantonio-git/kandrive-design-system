@@ -12,7 +12,7 @@ export interface SelectBoxProps extends Omit<React.ComponentProps<"select">, "va
 
 /**
  * molecule/SelectBox (`3029:3847`): caixa de escolha de 280×36, raio 6, `Effect/Glass/White/70`,
- * borda `Neutral/Border/Medium`, texto 14px `Neutral/Text/Primary` e seta `Neutral/Text/Tertiary`.
+ * borda `Border/Medium`, texto 14px `Text/Primary` e seta `Text/Tertiary`.
  *
  * 🧩 Regra 8: o Figma desenha só a caixa fechada. Aqui ela é um `<select>` nativo com a mesma
  * aparência, para abrir, escolher e funcionar por teclado e leitor de tela sem inventar uma lista.

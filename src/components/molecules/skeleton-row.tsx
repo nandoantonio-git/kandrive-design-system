@@ -6,8 +6,8 @@ export type SkeletonRowProps = React.ComponentProps<"div">
 
 /**
  * molecule/SkeletonRow (`3028:3722`): a linha de arquivo enquanto a lista carrega
- * (Figma `Home/ListLoading/Mobile`). 358×56, raio 16, `Neutral/Surface/Background/Alt` com borda
- * `Neutral/Border/Subtle`; miniatura 36×32, duas linhas de texto (165×14 e 60×10) e o tamanho à direita (40×12).
+ * (Figma `Home/ListLoading/Mobile`). 358×56, raio 16, `Surface/Background/Alt` com borda
+ * `Border/Subtle`; miniatura 36×32, duas linhas de texto (165×14 e 60×10) e o tamanho à direita (40×12).
  *
  * Decorativa: quem mostra a lista marca o contêiner com `aria-busy` e anuncia o carregamento.
  * 🧩 Regra 8: o pulso de carregamento não está no Figma; some com `prefers-reduced-motion`.

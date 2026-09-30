@@ -32,10 +32,10 @@ export interface MethodOrganizeButtonProps extends React.ComponentProps<"button"
  *
  * - Caixa: 56px de altura, raio 12, fundo `Effect/Overlay/Subtle` a 10% com
  *   blur, borda de 0.5px em `Brand/Primary/Default`.
- * - Rótulo: 16px Medium, `Neutral/Text/Secondary`. Tag: 9px Bold em
+ * - Rótulo: 16px Medium, `Text/Secondary`. Tag: 9px Bold em
  *   maiúsculas, `Brand/Primary/Default`, com a mesma caixa em pílula.
  * - 🧩 Ícone: no Figma é um gradiente cinza a 60%. Aqui usa `currentColor`
- *   (`Neutral/Text/Secondary` a 60%) para acompanhar o Dark.
+ *   (`Text/Secondary` a 60%) para acompanhar o Dark.
  * - A lista aberta é o `molecule/MethodCard` (`3020:29527`), implementado em
  *   2026-09-26. Até então a tela empilhava outros `MethodOrganizeButton` sem
  *   chevron como opções, porque se achava que o Figma não desenhava o estado

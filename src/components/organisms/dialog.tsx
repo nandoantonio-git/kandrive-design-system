@@ -43,9 +43,9 @@ const DEFAULT_TEXT: Record<DialogType, { title: string; description: string; con
  * sobreposições do protótipo da 📐Pages e foi integrado à ✨Design System
  * em 2026-09-29.
  *
- * Painel: `Neutral/Surface/Card`, raio 20, padding 28, espaço 16, sombra
- * 0 12 32 preto 18%. Título em `Neutral/Text/Primary` (28px no destrutivo,
- * 26px no info, Figma literal), descrição 16px em `Neutral/Text/Secondary`,
+ * Painel: `Surface/Card`, raio 20, padding 28, espaço 16, sombra
+ * 0 12 32 preto 18%. Título em `Text/Primary` (28px no destrutivo,
+ * 26px no info, Figma literal), descrição 16px em `Text/Secondary`,
  * ações alinhadas à direita com 12px entre elas (`atom/Button` Outline +
  * Destructive, ou Primary sozinho).
  *

@@ -120,13 +120,13 @@ function StorageStatusPage({
 /**
  * `Storage/LimitReached/Mobile` (`1727:23116`, V0.2.1): tela própria do mobile,
  * sem título nem card. 🔧 Criada em 2026-09-24.
- * - Valor usado: 36px Bold `Brand/Feedback/Danger/Default` + "usados de X" 16px
- *   `Neutral/Text/Tertiary`. Barra de 8px: trilho `Neutral/Surface/Muted`,
- *   cheia em `Brand/Feedback/Danger/Surface`.
+ * - Valor usado: 36px Bold `Feedback/Danger/Default` + "usados de X" 16px
+ *   `Text/Tertiary`. Barra de 8px: trilho `Surface/Muted`,
+ *   cheia em `Feedback/Danger/Surface`.
  * - Título 25px Medium; texto em 16px (Regra 4; ⚠️ no Figma, 13px).
  * - Ações: `atom/Button` Primary LG Pill "Comprar espaço" e "Liberar espaço".
- *   🧩 No Figma, "Liberar espaço" é um frame (fundo `Neutral/Surface/Card`,
- *   borda `Neutral/Border/Light`); aqui é o `Button` Outline com essas cores.
+ *   🧩 No Figma, "Liberar espaço" é um frame (fundo `Surface/Card`,
+ *   borda `Border/Light`); aqui é o `Button` Outline com essas cores.
  */
 function StorageLimitReachedMobile({
   usedAmount,

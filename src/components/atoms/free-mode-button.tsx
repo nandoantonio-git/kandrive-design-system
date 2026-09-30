@@ -9,9 +9,9 @@ export interface FreeModeButtonProps extends React.ComponentProps<"button"> {
 
 /**
  * atom/FreeModeButton (`1384:16745`): o botão de ação do painel de regras do modo livre
- * ("+ Adicionar regra"). 32px, raio 6, borda 0.5 `Neutral/Border/Default`, 16px de padding lateral,
+ * ("+ Adicionar regra"). 32px, raio 6, borda 0.5 `Border/Default`, 16px de padding lateral,
  * 8px entre o "+" e o rótulo. Default: fundo `Effect/Glass/White/05`, rótulo `Brand/Primary/Mid`.
- * Pressed: fundo `Brand/Primary/Action`, rótulo branco. Disabled: rótulo `Neutral/Text/Disabled` a 50%.
+ * Pressed: fundo `Brand/Primary/Action`, rótulo branco. Disabled: rótulo `Text/Disabled` a 50%.
  *
  * ⚠️ O Figma usa rótulo de 10px; aqui é 16px, pelo piso de legibilidade da Regra 4.
  */

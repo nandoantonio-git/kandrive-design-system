@@ -12,7 +12,7 @@ export interface ChipProps extends React.ComponentProps<"button"> {
  * `Selected` (false · true), no material Solid. É o chip canônico da barra
  * de Settings mobile (`MobileFooterSettings`, decisão de 2026-09-24).
  *
- * - Desmarcado: `Neutral/Surface/Background/Alt` e texto `Neutral/Text/Secondary`.
+ * - Desmarcado: `Surface/Background/Alt` e texto `Text/Secondary`.
  * - Marcado: `Brand/Primary/Action` e texto `Brand/Primary/Foreground`.
  *
  * Texto de 12px: é microtexto de rótulo de navegação, dentro da exceção da

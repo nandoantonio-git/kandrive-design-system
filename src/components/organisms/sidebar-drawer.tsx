@@ -37,9 +37,9 @@ export interface SidebarDrawerProps extends Omit<React.ComponentProps<"div">, "o
  *   `Brand/Secondary/Dark`.
  * - Cor do ícone por estado: Default `Effect/Overlay/Default`, Hover
  *   `Brand/Primary/Default`, Pressed `Brand/Primary/Dark` com fundo
- *   `Neutral/Surface/Medium`.
+ *   `Surface/Medium`.
  * - 🧩 O fundo do hover e o destaque do item atual (`aria-current`) usam
- *   `Neutral/Surface/Subtle`. O Figma não tem um estado "atual" para a gaveta.
+ *   `Surface/Subtle`. O Figma não tem um estado "atual" para a gaveta.
  * - Fundo escurecido: `Effect/Overlay/Default` no valor Light (preto a 50%)
  *   nos dois modos, como na tela do Figma.
  * - Painel: vidro (Regra 10) de 240px e altura total. Fecha pelo ☰, pelo Esc
