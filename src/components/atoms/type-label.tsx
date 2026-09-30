@@ -176,7 +176,7 @@ function ScopeTypeLabel({ kind, label, active = false, state, className, ...prop
       data-active={Boolean(selectedState) || undefined}
       aria-pressed={Boolean(selectedState)}
       className={cn(
-        "inline-flex cursor-pointer items-center justify-center px-2 py-0.5 text-[0.625rem] transition-[color,background-color,opacity]",
+        "inline-flex cursor-pointer items-center justify-center px-2 py-0.5 text-[0.625rem] transition-[color,background-color,opacity] duration-150 ease-out motion-reduce:transition-none",
         "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
         "disabled:pointer-events-none disabled:opacity-50",
         selectedState

@@ -45,7 +45,7 @@ Os dois rotulam o mesmo par semântico (Acesso Rápido/Longo Prazo), mas em esco
 | Pressed 🧩 | Inativo: `active:opacity-70` (Regra 8) |
 | Foco 🧩 | Anel `ring-3 brand-teal-action/50`, só pelo teclado (Regra 8) |
 | Disabled 🧩 | 50% de opacidade, sem ponteiro (Regra 8) |
-| Transição | `transition-[color,background-color,opacity]` |
+| Transição | 150ms, ease-out, como a smart animation do Figma nos estados de hover e toque (`transition-[color,background-color,opacity] duration-150 ease-out`); sem transição com `prefers-reduced-motion` |
 | Ativo | `aria-pressed` |
 
 <Canvas of={TypeLabelStories.ScopeMatrix} />

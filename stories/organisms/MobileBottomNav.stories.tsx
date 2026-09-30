@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite"
 import { expect, fn, userEvent, within } from "storybook/test"
 
 import { MobileBottomNav, type MobileDestination } from "../../src/components/organisms/mobile-bottom-nav"
+import { mobileFrame } from "../../.storybook/mobile-frame"
 
 const meta = {
   title: "Organisms/MobileBottomNav",
@@ -15,7 +16,7 @@ const meta = {
     active: { control: "radio", options: ["pessoal", "compartilhados", "recentes", "favoritos"] },
   },
   args: { action: "add", hand: "right", active: "pessoal" },
-  decorators: [(Story) => <div className="flex min-h-[300px] flex-col justify-end bg-neutral-surface-background"><Story /></div>],
+  decorators: [(Story) => <div className="flex min-h-[300px] flex-col justify-end bg-neutral-surface-background"><Story /></div>, mobileFrame],
 } satisfies Meta<typeof MobileBottomNav>
 
 export default meta

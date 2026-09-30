@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite"
 import { expect, userEvent, within } from "storybook/test"
 
 import { MobileFooterSettings } from "../../src/components/molecules/mobile-footer-settings"
+import { mobileFrame } from "../../.storybook/mobile-frame"
 
 const meta = {
   title: "Molecules/MobileFooterSettings",
@@ -11,6 +12,7 @@ const meta = {
   globals: { viewport: { value: "kdMobile", isRotated: false } },
   argTypes: { page: { control: "radio", options: ["settings", "payment"] }, active: { control: "text" } },
   args: { page: "settings", active: "Conta" },
+  decorators: [mobileFrame],
 } satisfies Meta<typeof MobileFooterSettings>
 
 export default meta

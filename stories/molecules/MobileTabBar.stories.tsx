@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite"
 import { expect, userEvent, within } from "storybook/test"
 
 import { MobileTabBar, type MobileTab } from "../../src/components/molecules/mobile-tab-bar"
+import { mobileFrame } from "../../.storybook/mobile-frame"
 
 const meta = {
   title: "Molecules/MobileTabBar",
@@ -11,6 +12,7 @@ const meta = {
   globals: { viewport: { value: "kdMobile", isRotated: false } },
   argTypes: { active: { control: "radio", options: ["home", "organize", "keep"] } },
   args: { active: "home" },
+  decorators: [mobileFrame],
 } satisfies Meta<typeof MobileTabBar>
 
 export default meta
