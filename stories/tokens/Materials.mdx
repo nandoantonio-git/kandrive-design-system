@@ -80,7 +80,7 @@ deliberada (decisão humana), não uma conversão Figma-confirmada. Tint fixo
 | `var(--effect-overlay-subtle)` | `#bfc7d21a` | Overlay muito sutil, tom azulado |
 | `var(--effect-overlay-secondary)` | `#6b6b6873` | Overlay secundário |
 
-## Borda reflexiva (revisado em 2026-08-20)
+## Borda reflexiva
 
 | Token Figma | Valor | Papel |
 | --- | --- | --- |
@@ -88,14 +88,9 @@ deliberada (decisão humana), não uma conversão Figma-confirmada. Tint fixo
 | `Liquid Glass/Light Angle` | `-45` | Ângulo da luz simulada — motivo da borda ser um gradiente, não uma cor uniforme |
 | `Subcomponent Fill` | `#aaaaaa` | Fill do subcomponente de demonstração — não é o fill do vidro em si (esse já vem de `effect-glass-*` acima) |
 
-Achado em 2026-08-09 (US-005), tratado então como "provável placeholder do
-symbol de demonstração" (ver histórico) — revisto em 2026-08-19 pra "borda
-real do material", aplicada como `border border-[#00000066]` (cor única,
-uniforme). **Achado do usuário em 2026-08-20**: uma cor uniforme não é o
-que `Liquid Glass/Light Angle: -45` descreve — é um **highlight
-direcional** (canto iluminado × canto sem luz), não uma borda plana.
+A borda do vidro é um **highlight direcional** (canto iluminado × canto sem luz), como descreve `Liquid Glass/Light Angle: -45`, e não uma cor uniforme.
 
-Substituído pelo utilitário compartilhado `.glass-edge` (`index.css`):
+Ela vem do utilitário compartilhado `.glass-edge` (`index.css`):
 gradiente linear a 135° (equivalente CSS do ângulo -45 do Figma), branco
 sutil (`rgba(255,255,255,.55)`) no canto iluminado → `#00000066`
 (Figma-confirmado) no canto sem luz. Implementado via pseudo-elemento em
@@ -106,7 +101,7 @@ iluminado é decisão humana, não Figma-confirmada** — o Figma só expõe o
 valor único `#00000066`; o ângulo/existência do highlight é confirmado,
 a cor específica do lado claro não.
 
-## Sombra do material (adicionado em 2026-08-20)
+## Sombra do material
 
 `Effect/Shadow/SM` (`drop-shadow(#09090B14 0px 2px 16px)`, tabela acima) é
 a elevação padrão de qualquer superfície Liquid Glass — utilitário
@@ -160,54 +155,3 @@ uma linha como:
 
 Nunca copiar os valores desta tabela para dentro do componente sem apontar
 de volta para esta página (Regra 10).
-
-## Propagação da borda (2026-08-19, revisada em 2026-08-20)
-
-`border border-[#00000066]` foi aplicada em 2026-08-19 em todo componente
-que já usava algum token `effect-glass-*`/`backdrop-blur` e ainda não
-tinha borda própria — `Label`, `ContextHeader`, `PopoverNotification`,
-`ViewModeToggle`, `DropdownSelectGroupBy`, `Notification`, `ActionPill`,
-`SearchInput`, `NodeContextMenu`, `ArchiveBrowserModalSearch`,
-`SaveOrganizationModal`, `ArchiveBrowserModal`, `CardNeedMoreHelp`,
-`CardLogin`, `DropNewTag`, `DropdownMenu`, `FaqInfoCard`,
-`FaqInfoCardCollapsed`, `OrganizePanelDropZone`, `TemplateReviewModal`,
-`OrganizeFreeModeCanvas`, `SaveLongTermFileStorage`, `ImageItem`.
-Componentes que já tinham borda própria (`border-zinc-200`,
-`border-brand-teal/20` etc. — `PreviewPane`, `CleanSpaceStorage`,
-`UploadPopover`, `Sidebar`, `PlanSelection`, `ThumbnailLarge`) não foram
-alterados — já resolviam o problema visual, só com cor diferente; não
-reclassificados retroativamente como Figma-confirmado sem verificação
-nó-a-nó.
-
-**Revisão de 2026-08-20**: todos os componentes acima trocaram
-`border border-[#00000066]` por `.glass-edge` (borda reflexiva). Os que
-ainda não tinham sombra própria de contexto também ganharam
-`.glass-shadow-sm` — ver `docs/audits/tokens/Materials.md` pra lista
-exata de quem recebeu sombra nova vs. quem já tinha a própria.
-
-## Verificação nó-a-nó dos 6 componentes deixados de fora (2026-08-21)
-
-Achado do usuário: alguns elementos "perderam padding e ficaram com uma
-borda cinza". Investigação confirmou que a lista de 6 componentes acima
-("já tinham borda própria... não foram alterados... não reclassificados
-retroativamente como Figma-confirmado sem verificação nó-a-nó") nunca
-tinha, de fato, recebido essa verificação — feita agora via
-`get_design_context` fresco:
-
-| Componente | Resultado |
-| --- | --- |
-| `CleanSpaceStorage` | ✅ **Confirmado correto** — Figma usa `border` sólida `#e4e4e7` (zinc-200 exato), não `.glass-edge`. Não alterado. |
-| `PlanSelection` | ✅ **Confirmado correto** — Figma usa `border` sólida `#e5e5e5` (≈zinc-200). Não alterado. |
-| `ThumbnailLarge` | ✅ **Confirmado correto** — Figma usa `border-brand-primary-light` (teal claro), já implementado assim. Não alterado. |
-| `PreviewPane` | ⚠️ **Divergência encontrada, não corrigida** — Figma não tem borda nenhuma na raiz; implementação tem `border-brand-teal/20`. Registrado em `docs/conflicts.md`. |
-| `UploadPopover` | 🔧 **Corrigido** — Figma diferencia por estado: idle tem borda plana + sombra leve, "Toast" (upload ativo) não tem borda nenhuma, só sombra pronunciada. Implementação tinha borda fixa nos 2 estados; corrigida pra condicional. |
-| `Sidebar` | Não revisado nesta passada (fora do escopo desta sessão). |
-
-Mais 3 componentes novos de 2026-08-20 (extraídos de symbols Figma sem
-verificação de estilo, só `get_metadata`) também corrigidos na mesma
-passada: `ArchiveBrowserModalSidebar` (sem borda, fill `-36` não `-70`,
-`rounded-xl` não `2xl`), `SaveLongTermFileStorageSelectedFiles` (sem
-borda, padding `px-1.5 py-3` não `p-3` uniforme — causa real do "perdeu
-padding"), `TemplateReviewModalItem` (borda quase invisível
-`rgba(107,107,104,0.05)`, não `border-zinc-100`; fill `-50` não `-70/50`).
-Detalhe completo em `docs/checkpoints.md`.

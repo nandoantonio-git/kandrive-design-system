@@ -3,7 +3,9 @@ import * as LabelStories from './Label.stories';
 
 <Meta of={LabelStories} />
 
-# Label (Figma: `molecule/Label`, `302:12809`)
+# Label
+
+Figma: [`molecule/Label`](https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=302-12809)
 
 ## Uso
 
@@ -27,11 +29,7 @@ chevron. Quando expandida, tem 2 modos (prop `labels`):
 
 ### Histórico
 
-**Consolidado com `DropdownSelectLabel` (2026-08-18).** `molecule/Label` (citado então como `1421:18687`) e `molecule/DropdownSelect/Label`
-(`1439:19650`) eram estruturalmente quase idênticos no Figma (mesma
-legenda, mesma pílula, mesmo item de rodapé) e viviam como 2 componentes
-de código separados — achado de duplicação registrado desde 2026-08-11
-(`docs/conflicts.md`). Consolidados numa API só: `dropdown-select-label.tsx`
+Consolidados numa API só: `dropdown-select-label.tsx`
 foi removido (sem consumidor real além da própria story) e absorvido aqui
 via a prop `labels`. Pequena divergência assumida conscientemente: o
 chevron caret (`LabelChevronGlyph`) deste node passou a ser usado nos 2

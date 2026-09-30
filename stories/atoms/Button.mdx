@@ -3,13 +3,13 @@ import * as ButtonStories from './Button.stories';
 
 <Meta of={ButtonStories} />
 
-# Button (Figma: `atom/Button`, `3028:3700`)
+# Button
 
-✅ Figma-confirmado: `atom/Button` (`3028:3700`), KanDrive V0.2.1.
+Figma: [`atom/Button`](https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=3028-3700)
 
 ## Uso
 
-É o **botão de texto das ações do produto**, como "Salvar alterações", "Guardar arquivos" e "Entrar". Desde que a Regra 1 foi revogada em 23/09/2026, há dois botões, cada um com um papel — o antigo terceiro papel (`atom/PushButton`, diálogos e toolbars no estilo macOS) foi migrado para `atom/Button` e removido em 25/09/2026 (fase E do fechamento):
+É o **botão de texto das ações do produto**, como "Salvar alterações", "Guardar arquivos" e "Entrar". Há dois botões, cada um com um papel:
 
 | Componente | Quando usar |
 | --- | --- |
@@ -35,11 +35,11 @@ import * as ButtonStories from './Button.stories';
 
 ### Dark mode
 
-Os fundos usam tokens de **superfície**, que mantêm o tom no Dark, então o texto branco passa no WCAG nos dois modos. Na revisão de 24/09/2026, o Destructive do Figma passou de `Danger/Default` (que fica #f07a6a no Dark, com 2,5:1) para `Danger/Surface`.
+Os fundos usam tokens de **superfície**, que mantêm o tom no Dark, então o texto branco passa no WCAG nos dois modos. Na revisão, o Destructive do Figma passou de `Danger/Default` (que fica #f07a6a no Dark, com 2,5:1) para `Danger/Surface`.
 
 ### Tipografia
 
-✅ **Resolvido em 24/09/2026:** o Figma passou os rótulos para 16px (junto com o arredondamento das alturas/raios para cima — MD 36px, Glass 36px, LG Rounded 46px, LG Pill 44px), então a Regra 4 fica sem exceção. Não há mais divergência entre Figma e código nesse ponto.
+✅ **Resolvido:** o Figma passou os rótulos para 16px (junto com o arredondamento das alturas/raios para cima — MD 36px, Glass 36px, LG Rounded 46px, LG Pill 44px), então a Regra 4 fica sem exceção. Não há mais divergência entre Figma e código nesse ponto.
 
 ## Estados
 

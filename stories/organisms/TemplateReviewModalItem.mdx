@@ -3,18 +3,20 @@ import * as TemplateReviewModalItemStories from './TemplateReviewModalItem.stori
 
 <Meta of={TemplateReviewModalItemStories} />
 
-# TemplateReviewModalItem (Figma: `organism/TemplateReviewModalItem`, `1554:21151`)
+# TemplateReviewModalItem
+
+Figma: [`organism/TemplateReviewModalItem`](https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1554-21151)
 
 ## Uso
 
-Linha da árvore de revisão de [Templates/TemplateReviewModal](../templates/TemplateReviewModal.mdx) — um item por pasta/grupo revisado, com badge de severidade (Duplicado/Fora do padrão/OK, Figma: "Incongruente") e ações "Renomear"/"Editar"/"Excluir". Extraída como symbol Figma próprio em 2026-08-20 (antes só existia inline dentro do modal, via `.map()`); conteúdo idêntico ao já reconciliado em `TemplateReviewModal`, sem divergência nova encontrada.
+Linha da árvore de revisão de [Templates/TemplateReviewModal](../templates/TemplateReviewModal.mdx) — um item por pasta/grupo revisado, com badge de severidade (Duplicado/Fora do padrão/OK, Figma: "Incongruente") e ações "Renomear"/"Editar"/"Excluir".
 
 <Canvas of={TemplateReviewModalItemStories.Collapsed} />
 <Controls of={TemplateReviewModalItemStories.Collapsed} />
 
 ## Composição
 
-Botão "Excluir" (linha filha) usa `atom/Button` (`variant="outline"`, migrado de `PushButton isDestructive` em 25/09/2026) — chrome neutro, só o texto na cor de destrutivo.
+Botão "Excluir" (linha filha) usa `atom/Button` (`variant="outline"`, migrado de `PushButton isDestructive`) — chrome neutro, só o texto na cor de destrutivo.
 
 ## Estados
 

@@ -3,7 +3,9 @@ import * as ArchiveBrowserModalStories from './ArchiveBrowserModal.stories';
 
 <Meta of={ArchiveBrowserModalStories} />
 
-# ArchiveBrowserModal (Figma: `template/ArchiveBrowserModal/Device=Desktop`, `1439:16909`)
+# ArchiveBrowserModal
+
+Figma: [`template/ArchiveBrowserModal/Device=Desktop`](https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1439-16909)
 
 ## Uso
 
@@ -16,7 +18,7 @@ Modal pra selecionar arquivos que serão guardados em longo prazo (fluxo "Guarda
 
 - `molecule/ArchiveBrowserModal/Search` — busca + breadcrumb + painel de arquivos
 - `molecule/ArchiveBrowserModal/ListItem` — composto dentro do Search
-- `atom/Button` (`variant="outline"`/padrão) — "Cancelar" / "Adicionar N arquivos" (migrado de `PushButton` em 25/09/2026)
+- `atom/Button` (`variant="outline"`/padrão) — "Cancelar" / "Adicionar N arquivos" (migrado de `PushButton`)
 
 A mini-navegação lateral reusa só os 4 primeiros rótulos de `organism/Sidebar` (Pessoal/Compartilhados/Recentes/Favoritos), sem o painel de armazenamento — uma versão reduzida específica deste modal, não a Sidebar completa.
 

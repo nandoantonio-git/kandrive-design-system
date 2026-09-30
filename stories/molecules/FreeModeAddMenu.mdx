@@ -3,11 +3,13 @@ import * as FreeModeAddMenuStories from './FreeModeAddMenu.stories';
 
 <Meta of={FreeModeAddMenuStories} />
 
-# FreeModeAddMenu (Figma: `molecule/FreeModeAddMenu`, `1394:16574`)
+# FreeModeAddMenu
+
+Figma: [`molecule/FreeModeAddMenu`](https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1394-16574)
 
 ## Uso
 
-Dropup list com as opções de nó disponíveis pra adicionar no canvas Modo Livre (descrição Figma verbatim: *"dropup list com opções de nodos disponíveis de adição na aba de modo livre de template"*). Aberto pelo botão "Adicionar nodo" de [Templates/OrganizeFreeModeCanvas](../templates/OrganizeFreeModeCanvas.mdx). Extraído como symbol Figma próprio em 2026-08-20 (antes só existia inline dentro do template; citado antes como `molecule/Menuitem/freemodeOrganization`).
+Dropup list com as opções de nó disponíveis pra adicionar no canvas Modo Livre (descrição Figma verbatim: *"dropup list com opções de nodos disponíveis de adição na aba de modo livre de template"*). Aberto pelo botão "Adicionar nodo" de [Templates/OrganizeFreeModeCanvas](../templates/OrganizeFreeModeCanvas.mdx). Extraído como symbol Figma próprio (antes só existia inline dentro do template; citado antes como `molecule/Menuitem/freemodeOrganization`).
 
 <Canvas of={FreeModeAddMenuStories.Default} />
 <Controls of={FreeModeAddMenuStories.Default} />
@@ -18,7 +20,7 @@ Dropup list com as opções de nó disponíveis pra adicionar no canvas Modo Liv
 
 ### Histórico
 
-**🔧 Corrigido em 2026-08-23.** Releitura completa (não mais screenshot isolado) confirmou regressão real: painel `228px` em Liquid Glass claro (`bg-effect-glass-white-50` + `.glass-edge`/`.glass-shadow-sm`, Regra 10), não o fundo sólido `zinc-900`/`zinc-700` que estava implementado (herdado de antes do symbol Figma próprio, 2026-08-20). `FreeModeListItem` já usava `text-zinc-700`, correto pro fundo claro — só o container precisava de correção.
+`FreeModeListItem` já usava `text-zinc-700`, correto pro fundo claro — só o container precisava de correção.
 
 ## Estados
 
