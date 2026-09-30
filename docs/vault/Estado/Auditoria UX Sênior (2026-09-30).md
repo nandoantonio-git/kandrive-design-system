@@ -267,3 +267,9 @@ Ver [[Auditoria final (2026-09-30)]] para o estado técnico (gate, paridade, pro
 - **A1:** com ponteiro de toque, área de 44x44 para todo alvo e altura mínima de 44px nos campos (CSS global); Figma com `atom/Chip` e abas do `MobileTabBar` em 44px. Medição automática: 193 alvos abaixo de 44px viraram 0. Decisão (c): ícones e caixas com área invisível, chips e abas com altura real.
 - **De fora, por escolha do usuário:** M5, M7, migração do `PushButton` e a tela `Stored/Desktop`.
 
+### Terceira rodada (2026-09-30): estados do Desktop
+- 10 telas novas no Figma (claro e Dark): `Home/GridLoading`, `Home/ListLoading`, `Home/NetworkError`, `LongTermStorage/RecoveryPending` e `LongTermStorage/Stored` no Desktop; mais `Auth/LoginError/Tablet` e `Organize/ReviewFileRemoved/Desktop`. Blocos reaproveitados do Mobile (ilustração, texto, botão, aviso), `molecule/SkeletonRow` e `atom/Button`; o resumo de `Stored/Desktop` usa só variáveis e atoms.
+- Protótipo: Concluir leva a `Stored/Desktop`; "Ver armazenamento" e "Voltar ao início" saem dela; as telas de carregamento avançam sozinhas; novos pontos de partida K, L, E e D para o Desktop.
+- Código: `HomePage` `status` e `onRetry`; `LongTermStoragePage` `storedSummary`; `TemplateReviewModalItem` com desfazer. 501 testes.
+- **Ainda de pé:** M5 (decisão: não podar, só documentar), M7 (`IconButton`) e a migração do `PushButton`, em lotes curtos com o usuário acompanhando.
+

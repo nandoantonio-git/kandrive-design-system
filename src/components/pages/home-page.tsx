@@ -17,6 +17,9 @@ import { FileListContainer, type FileListContainerRow } from "@/components/organ
 import { PreviewPane, type PreviewPaneFile, type PreviewPaneProps } from "@/components/organisms/preview-pane"
 import { ContextHeader } from "@/components/molecules/context-header"
 import { Icon } from "@/components/atoms/icon"
+import { Button } from "@/components/atoms/button"
+import { SkeletonRow } from "@/components/molecules/skeleton-row"
+import kanIllustration from "@/assets/illustrations/login-mobile-kan.svg"
 
 export interface HomePageGridItem {
   name: string
@@ -42,6 +45,12 @@ export interface HomePageProps extends React.ComponentProps<"div"> {
   onListSelectionClear?: () => void
   /** Camada por cima da Home (ex. o modal de Guardar no longo prazo). Usada por `LongTermStoragePage`. */
   overlay?: React.ReactNode
+  /**
+   * Estado dos dados (auditoria UX, A5): `loading` mostra esqueletos (`Home/GridLoading` e `Home/ListLoading`, Desktop e
+   * Mobile) e `error` a tela de falha de rede (`Home/NetworkError`) com "Tentar novamente".
+   */
+  status?: "ready" | "loading" | "error"
+  onRetry?: () => void
   /** Desativa a busca do Header enquanto um modal com busca própria está aberto (auditoria UX, M3). */
   searchDisabled?: boolean
 }
@@ -101,10 +110,15 @@ function HomePage({
   onListSelectionClear,
   overlay,
   searchDisabled,
+  status = "ready",
+  onRetry,
   className,
   ...props
 }: HomePageProps) {
-  const empty = viewMode === "grid" && gridItems.length === 0
+  const loading = status === "loading"
+  const failed = status === "error"
+  const ready = !loading && !failed
+  const empty = ready && viewMode === "grid" && gridItems.length === 0
   return (
     <AppShell
       data-slot="home-page"
@@ -126,7 +140,48 @@ function HomePage({
         onViewModeChange={onViewModeChange}
       />
 
-      <div className="tablet:pt-5">
+      <div className="tablet:pt-5" aria-busy={loading || undefined}>
+        {loading ? (
+          <div role="status" aria-label="Carregando seus arquivos">
+            {viewMode === "list" || viewMode === "columns" ? (
+              <div className="flex flex-col gap-2">
+                {Array.from({ length: 6 }, (_, index) => (
+                  <SkeletonRow key={index} className="max-w-none" />
+                ))}
+              </div>
+            ) : (
+              <div className="flex flex-col gap-2.5 tablet:flex-row tablet:flex-wrap tablet:gap-8">
+                {Array.from({ length: 8 }, (_, index) => (
+                  <div key={index} aria-hidden="true" className="flex flex-col gap-3 tablet:w-[132px]">
+                    <span className="h-44 rounded-xl bg-[#eaeaea] dark:bg-zinc-700 motion-safe:animate-pulse tablet:h-[104px]" />
+                    <span className="hidden h-3 w-[88px] rounded-md bg-[#eaeaea] dark:bg-zinc-700 tablet:block" />
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        ) : null}
+
+        {failed ? (
+          <div role="alert" className="flex flex-col items-center gap-6 py-12 text-center tablet:py-24">
+            <span className="flex h-[158px] w-[178px] items-center justify-center rounded-[40px] bg-brand-teal-action">
+              <img src={kanIllustration} alt="" className="h-28" />
+            </span>
+            <div className="flex max-w-[440px] flex-col gap-2">
+              <h2 className="text-2xl font-medium text-destructive">Não foi possível carregar seus arquivos</h2>
+              <p className="text-base text-neutral-text-secondary">
+                Ocorreu um erro de conexão com os servidores do Kandrive. Verifique sua internet e tente novamente.
+              </p>
+            </div>
+            <Button size="lg" shape="pill" onClick={onRetry} className="w-full max-w-[342px]">
+              Tentar novamente
+            </Button>
+            <p className="max-w-[320px] rounded-lg bg-brand-teal-action/10 px-3 py-2 text-sm text-neutral-text-secondary">
+              Seus arquivos salvos offline continuam acessíveis no menu principal.
+            </p>
+          </div>
+        ) : null}
+
         {empty ? (
           // page/FristUpload (`1439:19658`) — estado vazio Figma-confirmado do
           // próprio modo grid, derivado de `gridItems.length === 0`.
@@ -141,7 +196,7 @@ function HomePage({
           </div>
         ) : null}
 
-        {!empty && viewMode === "grid" ? (
+        {ready && !empty && viewMode === "grid" ? (
           <>
             <div className="hidden flex-wrap gap-8 tablet:flex">
               {gridItems.map((item) =>
@@ -161,7 +216,7 @@ function HomePage({
           </>
         ) : null}
 
-        {viewMode === "list" || viewMode === "columns" ? (
+        {ready && (viewMode === "list" || viewMode === "columns") ? (
           <>
             {viewMode === "list" ? (
               <div className="hidden flex-col tablet:flex">

@@ -80,3 +80,16 @@ export const Ok: Story = {
     },
   },
 }
+
+/** Excluir não some de vez (auditoria UX, A5): a linha vira "removido da organização" com "Desfazer". */
+export const DeleteWithUndo: Story = {
+  args: { isExpanded: true },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole("button", { name: "Excluir" }))
+    await expect(canvas.getByRole("status")).toHaveTextContent("Q1_Report_v2.pdf removido da organização.")
+    await userEvent.click(canvas.getByRole("button", { name: "Desfazer" }))
+    await expect(canvas.getByText("Q1_Report_v2.pdf")).toBeVisible()
+    await expect(canvas.getByRole("button", { name: "Excluir" })).toBeVisible()
+  },
+}

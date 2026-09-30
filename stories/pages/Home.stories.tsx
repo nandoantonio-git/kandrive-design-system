@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
-import { expect, userEvent, within } from "storybook/test"
+import { expect, fn, userEvent, within } from "storybook/test"
 import { useState } from "react"
 
 import { HomePage, type HomePageProps } from "../../src/components/pages/home-page"
@@ -169,3 +169,36 @@ export const ListMobile: Story = { ...ListMode, parameters: FIG("1712-22251"), g
 
 /** Mobile · 390, estado vazio. Figma `Home/FirstUpload/Mobile`. */
 export const FirstUploadMobile: Story = { ...FirstUpload, parameters: FIG("1727-22365"), globals: vp("kdMobile") }
+
+/** Carregando (auditoria UX, A5): esqueletos no lugar dos arquivos. Figma `Home/GridLoading/Desktop` e `/Mobile`. */
+export const GridLoading: Story = {
+  parameters: {
+    design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=3446-50193" },
+  },
+  args: { viewMode: "grid", status: "loading" },
+  play: async ({ canvasElement }) => {
+    await expect(within(canvasElement).getByRole("status", { name: "Carregando seus arquivos" })).toBeVisible()
+  },
+}
+
+/** Carregando em lista: linhas de `molecule/SkeletonRow`. Figma `Home/ListLoading/Desktop`. */
+export const ListLoading: Story = {
+  parameters: {
+    design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=3446-50453" },
+  },
+  args: { viewMode: "list", status: "loading" },
+}
+
+/** Falha de rede: mensagem, "Tentar novamente" e o aviso de que o offline segue acessível. Figma `Home/NetworkError/Desktop`. */
+export const NetworkError: Story = {
+  parameters: {
+    design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=3446-30244" },
+  },
+  args: { viewMode: "grid", status: "error", onRetry: fn() },
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(canvas.getByRole("alert")).toHaveTextContent("Não foi possível carregar seus arquivos")
+    await userEvent.click(canvas.getByRole("button", { name: "Tentar novamente" }))
+    await expect(args.onRetry).toHaveBeenCalledOnce()
+  },
+}
