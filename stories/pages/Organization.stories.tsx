@@ -169,6 +169,19 @@ export const SavedMobile: Story = { ...Saved, parameters: FIG("1770-35665"), glo
 /** Tablet · 720: revisão por cima do painel de arrastar. Figma `Organize/Review/Tablet`. */
 export const ReviewTablet: Story = { ...Review, parameters: FIG("1754-52474"), globals: vp("kdTablet") }
 /** Mobile · 390: título, cards de revisão e o aviso; BottomNav Confirmar + ✕. Figma `Organize/Review/Mobile`. */
-export const ReviewMobile: Story = { ...Review, parameters: FIG("1731-25190"), globals: vp("kdMobile") }
+export const ReviewMobile: Story = {
+  ...Review,
+  parameters: FIG("3358-50681"),
+  globals: vp("kdMobile"),
+  // A revisão abre como folha de baixo por cima da seleção; o ✕ fecha e a seleção continua ali.
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const sheet = await canvas.findByRole("dialog", { name: "Revisar organização" })
+    await expect(sheet).toBeVisible()
+    await userEvent.click(canvas.getByRole("button", { name: "Fechar revisão" }))
+    await expect(canvas.queryByRole("dialog", { name: "Revisar organização" })).toBeNull()
+    await expect(canvas.getByRole("heading", { name: "Organização" })).toBeVisible()
+  },
+}
 /** Mobile · 390: `MobileSuccess` em tela cheia. Figma `Organize/ReviewDone/Mobile`. */
 export const ReviewDoneMobile: Story = { ...ReviewDone, parameters: FIG("1757-57986"), globals: vp("kdMobile") }

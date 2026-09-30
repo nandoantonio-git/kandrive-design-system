@@ -257,6 +257,11 @@ function OrganizationPageMobile({
 
   const saved = step === "saved"
   const review = step === "template-drop-zone" || step === "review" || step === "review-done"
+  // Mobile (decisão de 2026-09-30): a revisão abre como folha de baixo por cima da seleção, como no protótipo
+  // (Organize/ReviewSheet/Mobile). O ✕ e o toque na área escurecida fecham a folha e devolvem a seleção intacta.
+  const [sheetOpen, setSheetOpen] = React.useState(true)
+  React.useEffect(() => setSheetOpen(true), [step])
+  const showSheet = review && sheetOpen && step !== "review-done"
   const heading = "text-[1.5625rem] leading-[30px] font-medium text-neutral-text-primary"
   const lead = "text-base leading-5 text-neutral-text-secondary"
   const caption = "text-[0.6875rem] leading-4 text-neutral-text-tertiary"
@@ -268,7 +273,11 @@ function OrganizationPageMobile({
       className={cn("bg-zinc-200 dark:bg-zinc-900", className)}
       headerProps={{ page: "navbar" }}
       mobileTabBar={{ active: saved ? "home" : "organize" }}
-      mobileBottomNav={saved ? { action: "add", active: "pessoal" } : { action: "confirm", active: "pessoal" }}
+      mobileBottomNav={
+        saved
+          ? { action: "add", active: "pessoal" }
+          : { action: "confirm", active: "pessoal", onCancel: showSheet ? () => setSheetOpen(false) : undefined }
+      }
       drawer={step === "review-done" ? false : undefined}
       {...props}
     >
@@ -279,18 +288,6 @@ function OrganizationPageMobile({
             <ViewModeToggle size="compact" mode={viewMode === "columns" ? "list" : viewMode} onModeChange={onViewModeChange} />
           </div>
           <FolderCard device="mobile" label={savedGroup?.label} rows={savedGroup?.rows} className="pr-0" />
-        </>
-      ) : review ? (
-        <>
-          <div className="flex flex-col gap-2">
-            <h1 className={heading}>Revisar organização</h1>
-            <p className={lead}>Revise o template sugerido antes de aplicar as mudanças.</p>
-          </div>
-          <TemplateReviewModal device="mobile" items={reviewItems} />
-          <p className={cn("flex items-center gap-2", caption)}>
-            <Info aria-hidden="true" className="size-3.5 shrink-0" />
-            Garanta que sua estrutura de arquivos seja clara e sem duplicidades.
-          </p>
         </>
       ) : (
         <>
@@ -321,6 +318,28 @@ function OrganizationPageMobile({
           <FileSelectList files={mobileFiles} selected={selected} onSelectedChange={toggle} />
         </>
       )}
+      {showSheet ? (
+        <div data-slot="organize-review-sheet" className="fixed inset-0 z-30 tablet:hidden">
+          <button type="button" aria-label="Fechar revisão" onClick={() => setSheetOpen(false)} className="absolute inset-0 bg-black/40" />
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="organize-review-title"
+            className="absolute inset-x-0 top-16 bottom-0 flex flex-col gap-3 overflow-y-auto rounded-t-[28px] bg-neutral-surface-background px-3 pt-3 pb-44 shadow-[0_-8px_24px_rgba(0,0,0,0.18)]"
+          >
+            <span aria-hidden="true" className="mx-auto h-[5px] w-10 shrink-0 rounded-full bg-zinc-300 dark:bg-zinc-600" />
+            <div className="flex flex-col gap-2">
+              <h1 id="organize-review-title" className={heading}>Revisar organização</h1>
+              <p className={lead}>Revise o template sugerido antes de aplicar as mudanças.</p>
+            </div>
+            <TemplateReviewModal device="mobile" items={reviewItems} />
+            <p className={cn("flex items-center gap-2", caption)}>
+              <Info aria-hidden="true" className="size-3.5 shrink-0" />
+              Garanta que sua estrutura de arquivos seja clara e sem duplicidades.
+            </p>
+          </div>
+        </div>
+      ) : null}
       {step === "review-done" ? <OrganizedFeedback fileName={organizedFileName} /> : null}
     </AppShell>
   )
