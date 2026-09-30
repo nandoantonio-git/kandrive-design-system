@@ -11,7 +11,8 @@ export interface ContextHeaderProps extends React.ComponentProps<"div"> {
   /** Eixo `state` Figma-confirmado. */
   state?: "expanded" | "collapsed"
   onClear?: () => void
-  onShare?: () => void
+  onOrganize?: () => void
+  onSave?: () => void
   onDownload?: () => void
   onMove?: () => void
   onDelete?: () => void
@@ -29,8 +30,10 @@ export interface ContextHeaderProps extends React.ComponentProps<"div"> {
  * molecule/context-header (`790:7618`, Figma-confirmado) — "header de
  * contexto para dar feedback de quantos itens estão sendo selecionados".
  * Botão limpar seleção (glifo `clear`) + contador + divisor + ações
- * (`atom/Icon/ShareFile`, baixar, `atom/Icon/FileMoveRight`,
- * `atom/DeleteButton`, `atom/Icon/Settings2`).
+ * (organizar, guardar, baixar, `atom/Icon/FileMoveRight`,
+ * `atom/DeleteButton`, `atom/Icon/Settings2`). Desde 2026-09-30 (auditoria UX, A2) Organizar e
+ * Guardar ocupam o lugar do Compartilhar, que está fora do escopo do case: as ações do case ficam
+ * junto da seleção (decisão 3 da pesquisa).
  *
  * `state="collapsed"` (Figma-confirmado) zera altura/opacidade do
  * container inteiro — 🧩 inferido como estado de saída/recolhimento
@@ -72,7 +75,8 @@ function ContextHeader({
   itemsSelected = "X itens selecionados",
   state = "expanded",
   onClear,
-  onShare,
+  onOrganize,
+  onSave,
   onDownload,
   onMove,
   onDelete,
@@ -118,7 +122,7 @@ function ContextHeader({
       data-slot="context-header"
       data-state={state}
       className={cn(
-        "relative flex w-[403px] flex-col items-start overflow-clip rounded-3xl drop-shadow-[0px_2px_16px_rgba(9,9,11,0.08)] transition-[height,opacity] duration-200",
+        "relative flex w-[427px] flex-col items-start overflow-clip rounded-3xl drop-shadow-[0px_2px_16px_rgba(9,9,11,0.08)] transition-[height,opacity] duration-200",
         isCollapsed ? "h-0 opacity-0" : "h-[52px] opacity-100",
         className
       )}
@@ -145,11 +149,19 @@ function ContextHeader({
               <div className="flex shrink-0 items-center gap-2">
                 <button
                   type="button"
-                  aria-label="Compartilhar"
-                  onClick={onShare}
+                  aria-label="Organizar"
+                  onClick={onOrganize}
                   className="inline-flex items-center justify-center py-1.5 text-zinc-800 transition-[color,opacity] dark:text-zinc-100 hover:text-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 active:opacity-60"
                 >
-                  <Icon name="ShareFile" className="size-4" />
+                  <Icon name="Organize" className="size-4" />
+                </button>
+                <button
+                  type="button"
+                  aria-label="Guardar"
+                  onClick={onSave}
+                  className="inline-flex items-center justify-center py-1.5 text-zinc-800 transition-[color,opacity] dark:text-zinc-100 hover:text-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 active:opacity-60"
+                >
+                  <Icon name="Keep" className="size-4" />
                 </button>
                 <button
                   type="button"

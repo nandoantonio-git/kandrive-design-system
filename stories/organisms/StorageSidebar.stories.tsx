@@ -29,7 +29,6 @@ type Story = StoryObj<typeof meta>
 
 /** Vivo — clique no cabeçalho pra expandir/recolher (`expanded`; os Controls acompanham). */
 export const Default: Story = {
-  args: { onBuySpace: fn() },
   render: function Render(args) {
     const [, updateArgs] = useArgs()
     return (
@@ -38,15 +37,24 @@ export const Default: Story = {
       </LiveArgs>
     )
   },
-  // "Comprar espaço" chama `onBuySpace`; clicar no cabeçalho recolhe o painel e esconde os botões.
+  // Com 66% e 50% de uso, "Comprar espaço" não aparece; clicar no cabeçalho recolhe o painel.
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(canvas.queryByRole("button", { name: "Comprar espaço" })).toBeNull()
+    const toggle = canvas.getByRole("button", { name: "Armazenamento" })
+    await userEvent.click(toggle)
+    await expect(toggle).toHaveAttribute("aria-expanded", "false")
+    await expect(canvas.queryByRole("button", { name: "Gerir espaço" })).toBeNull()
+  },
+}
+
+/** Uso a partir de 80% (`buySpaceFrom`): aparece "Comprar espaço", que chama `onBuySpace`. */
+export const NearLimit: Story = {
+  args: { quickAccessValue: 92, quickAccessLabel: "28 GB de 30 GB usados", onBuySpace: fn() },
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement)
     await userEvent.click(canvas.getByRole("button", { name: "Comprar espaço" }))
     await expect(args.onBuySpace).toHaveBeenCalledOnce()
-    const toggle = canvas.getByRole("button", { name: "Armazenamento" })
-    await userEvent.click(toggle)
-    await expect(toggle).toHaveAttribute("aria-expanded", "false")
-    await expect(canvas.queryByRole("button", { name: "Comprar espaço" })).toBeNull()
   },
 }
 

@@ -84,6 +84,7 @@ export interface HeaderProps extends React.ComponentProps<"header"> {
  *
  * 🧩 Regra 8: hover/pressed do avatar (mobile) não desenhados no Figma.
  */
+/** Um primário por tela (auditoria UX, A2): Adicionar é o primário; Organizar e Guardar ficam em contorno. */
 const HEADER_ACTION = "group h-10 gap-2 px-3 desktop:px-4"
 
 function Header({
@@ -135,12 +136,12 @@ function Header({
           {/* Tablet: só o ícone (Figma Header Device=Tablet); o rótulo aparece a partir de `desktop:`.
               Figma (2026-09-29): 40px de altura, 16px de padding lateral, 8px entre ícone e rótulo, 24px entre os botões.
               `group` faz o ícone animar junto com o hover e o foco do botão (smart animation do Figma, ver animated-icons.tsx). */}
-          <Button onClick={onOrganize} aria-label="Organizar" className={HEADER_ACTION}>
+          <Button variant="outline" onClick={onOrganize} aria-label="Organizar" className={HEADER_ACTION}>
             {/* Figma: instância de atom/IconButton Icon=Organize (sem a seta do atom/Icon/Organize), 18px. */}
             <OrganizeIcon className="size-[18px]" aria-hidden="true" />
             <span className="hidden desktop:inline">Organizar</span>
           </Button>
-          <Button onClick={onSave} aria-label="Guardar" className={HEADER_ACTION}>
+          <Button variant="outline" onClick={onSave} aria-label="Guardar" className={HEADER_ACTION}>
             <ICONS.Keep className="size-4" aria-hidden="true" />
             <span className="hidden desktop:inline">Guardar</span>
           </Button>

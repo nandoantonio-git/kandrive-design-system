@@ -25,6 +25,11 @@ export interface StorageSidebarProps extends React.ComponentProps<"div"> {
   manageSpaceLabel?: string
   onManageSpace?: () => void
   onBuySpace?: () => void
+  /**
+   * "Comprar espaço" só aparece quando o uso de algum dos dois níveis chega a este percentual (auditoria UX, A2:
+   * uma oferta de venda permanente em toda tela competia com as ações da pessoa). Default 80.
+   */
+  buySpaceFrom?: number
 }
 
 /**
@@ -48,9 +53,11 @@ function StorageSidebar({
   manageSpaceLabel = "Gerir espaço",
   onManageSpace,
   onBuySpace,
+  buySpaceFrom = 80,
   className,
   ...props
 }: StorageSidebarProps) {
+  const showBuySpace = Math.max(quickAccessValue, longTermValue) >= buySpaceFrom
   return (
     <div data-slot="storage-sidebar" className={cn("flex w-full flex-col gap-3", className)} {...props}>
       <SidebarToggle expanded={expanded} onToggle={onToggle} />
@@ -79,9 +86,11 @@ function StorageSidebar({
             <Button variant="outline" className={STACKED} onClick={onManageSpace}>
               {manageSpaceLabel}
             </Button>
-            <Button className={STACKED} onClick={onBuySpace}>
-              Comprar espaço
-            </Button>
+            {showBuySpace ? (
+              <Button className={STACKED} onClick={onBuySpace}>
+                Comprar espaço
+              </Button>
+            ) : null}
           </div>
         </>
       ) : null}
