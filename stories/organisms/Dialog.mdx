@@ -1,0 +1,53 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as DialogStories from './Dialog.stories';
+
+<Meta of={DialogStories} />
+
+# Dialog (Figma: `organism/Dialog`, `3334:37789`)
+
+## Uso
+
+Diálogo modal com duas finalidades:
+
+- **`destructive`**: confirma uma ação que não pode ser desfeita, como excluir a conta. Tem Cancelar e a ação destrutiva.
+- **`info`**: um aviso com uma ação só, como o "Falar com o suporte" enquanto o canal não existe (mock).
+
+É só o painel, como no Figma. A tela escurecida por trás e a posição ficam com quem abre o diálogo.
+
+<Canvas of={DialogStories.Destructive} />
+<Controls of={DialogStories.Destructive} />
+
+<Canvas of={DialogStories.DestructiveMobile} />
+<Canvas of={DialogStories.Info} />
+<Canvas of={DialogStories.CustomText} />
+
+## Composição
+
+| Parte | Figma | Código |
+| --- | --- | --- |
+| Painel | `Neutral/Surface/Card`, raio 20, padding 28, espaço 16, sombra 0 12 32 (preto 18%) | `bg-neutral-surface-card rounded-[20px] p-7 gap-4` |
+| Largura | 480 (Desktop), 342 (Mobile), 440 (Info) | prop `device` e `type` |
+| Título | 28px bold (destrutivo), 26px bold (info), `Neutral/Text/Primary` | `h2` |
+| Descrição | 16px, `Neutral/Text/Secondary` | `p` |
+| Ações | à direita, 12px entre elas: `atom/Button` Outline + Destructive, ou Primary | `Button` |
+
+Os textos padrão são os do Figma. Título, descrição e rótulos podem ser trocados por props.
+
+## Estados e acessibilidade
+
+| Estado | Tratamento |
+| --- | --- |
+| Papel | 🧩 `alertdialog` no destrutivo, `dialog` no info, com título e descrição ligados por `aria-labelledby` e `aria-describedby` |
+| Foco inicial | 🧩 no Cancelar (a opção segura) ou na ação única |
+| Esc | 🧩 Cancelar no destrutivo; fecha (`onConfirm`) no info |
+| Botões | hover, pressed e foco herdados do `atom/Button` |
+
+🧩 = Regra 8: comportamento não desenhado no Figma.
+
+## Origem
+
+Nasceu das sobreposições do protótipo da 📐Pages (`Overlay/Excluir conta/*` e `Overlay/Falar com o suporte (mock)`) e foi integrado à ✨Design System em 2026-09-29. As sobreposições agora usam instâncias deste componente.
+
+## Terminologia
+
+Nenhum termo proibido no texto visível. Sem travessão (Regra 12).
