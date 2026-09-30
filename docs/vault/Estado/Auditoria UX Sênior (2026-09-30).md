@@ -273,3 +273,7 @@ Ver [[Auditoria final (2026-09-30)]] para o estado técnico (gate, paridade, pro
 - Código: `HomePage` `status` e `onRetry`; `LongTermStoragePage` `storedSummary`; `TemplateReviewModalItem` com desfazer. 501 testes.
 - **Ainda de pé:** M5 (decisão: não podar, só documentar), M7 (`IconButton`) e a migração do `PushButton`, em lotes curtos com o usuário acompanhando.
 
+### M7 e PushButton: decisão de não refatorar (2026-09-30)
+- Levantamento antes de mexer: a matriz do `atom/IconButton` tem 66 combinações irregulares de 7 ícones, 4 estilos e 4 estados; só `Keep` e `Organize` existem como componente de ícone; a cor muda por estilo e estado com papéis diferentes, dentro dos vetores. Trocar por instância exigiria 5 ícones novos e um modo de variável para a cor, com risco sobre 670 instâncias.
+- Decisão do usuário: não refatorar. Feito o barato: matriz documentada na descrição do componente e 4 cores ligadas a variável. `atom/PushButton` segue obsoleto e documentado.
+
