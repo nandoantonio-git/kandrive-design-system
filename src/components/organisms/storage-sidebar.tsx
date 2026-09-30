@@ -35,6 +35,9 @@ export interface StorageSidebarProps extends React.ComponentProps<"div"> {
  * (`variant="neutral"` para o botão de espaço, `variant="primary"` para
  * "Comprar Espaço") + `organism/sidebar-toggle`.
  */
+/** Botões empilhados na largura toda; o rótulo quebra linha quando o painel é estreito (Tablet). */
+const STACKED = "h-auto min-h-9 w-full whitespace-normal text-center"
+
 function StorageSidebar({
   expanded = true,
   onToggle,
@@ -69,12 +72,14 @@ function StorageSidebar({
               <span className="text-xs text-zinc-700 dark:text-zinc-300">{longTermLabel}</span>
             </div>
           </div>
-          {/* Em painel estreito (Sidebar do tablet, 150px) os botões empilham, como no Figma Device=Tablet. */}
-          <div className="flex flex-wrap items-center gap-3 px-2">
-            <Button variant="outline" className="h-8 min-w-fit flex-1 basis-24 px-3 text-xs whitespace-nowrap" onClick={onManageSpace}>
+          {/* Regra 4 (2026-09-30): rótulo de botão com 16px, então os dois empilham na largura toda,
+              no Tablet (150px) e no Desktop (212px). O Figma usa `atom/Button` Outline e Primary, MD.
+              No Tablet, "Comprar espaço" não cabe numa linha: o rótulo quebra em vez de vazar. */}
+          <div className="flex flex-col gap-2 px-2">
+            <Button variant="outline" className={STACKED} onClick={onManageSpace}>
               {manageSpaceLabel}
             </Button>
-            <Button className="h-8 min-w-fit flex-1 basis-24 px-3 text-xs whitespace-nowrap" onClick={onBuySpace}>
+            <Button className={STACKED} onClick={onBuySpace}>
               Comprar espaço
             </Button>
           </div>
