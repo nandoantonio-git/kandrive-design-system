@@ -2,10 +2,7 @@ import * as React from "react"
 import { ArrowDown } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { Icon } from "@/components/atoms/icon"
-import { SearchInput } from "@/components/molecules/search-input"
-import { DropdownSelectGroupBy } from "@/components/molecules/dropdown-select-group-by"
-import { Label } from "@/components/molecules/label"
+import { SearchHeader } from "@/components/molecules/search-header"
 import { FileListHeader } from "@/components/molecules/file-list-header"
 import { FileList } from "@/components/molecules/file-list"
 import folderSymbol from "@/assets/illustrations/organize-file-folder.svg"
@@ -68,41 +65,20 @@ function StorageStatusSummary({
   ...props
 }: StorageStatusSummaryProps) {
   const mobile = device === "mobile"
-  const [internalFiltersActive, setInternalFiltersActive] = React.useState(defaultFiltersActive)
-  const filtersActive = controlledFiltersActive ?? internalFiltersActive
-  const toggleFilters = () => {
-    if (controlledFiltersActive === undefined) setInternalFiltersActive(!filtersActive)
-    onFiltersActiveChange?.(!filtersActive)
-  }
-  const filter = (
-    <div className={cn("flex items-center gap-3", mobile ? "w-full" : "min-w-[280px] max-w-[600px] flex-1")}>
-      <SearchInput placeholder={`Filtrar no ${scopeLabel}`} aria-label={`Filtrar no ${scopeLabel}`} className="min-w-0 max-w-none flex-1" />
-      <button
-        type="button"
-        aria-label="Filtros"
-        aria-pressed={filtersActive}
-        onClick={toggleFilters}
-        className={cn(
-          "touch-target flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-md transition-colors hover:bg-neutral-surface-subtle active:bg-neutral-surface-medium focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 focus-visible:outline-none",
-          filtersActive ? "bg-neutral-surface-subtle text-brand-teal" : "text-neutral-text-primary"
-        )}
-      >
-        <Icon name="Filter" className={mobile ? "size-4" : "size-6"} />
-      </button>
-    </div>
-  )
-  const toolbar = (
-    <div className="flex items-start gap-4">
-      <DropdownSelectGroupBy />
-      <Label />
-    </div>
+  const header = (
+    <SearchHeader
+      device={device}
+      placeholder={`Filtrar no ${scopeLabel}`}
+      filtersActive={controlledFiltersActive}
+      defaultFiltersActive={defaultFiltersActive}
+      onFiltersActiveChange={onFiltersActiveChange}
+    />
   )
 
   if (mobile) {
     return (
       <div data-slot="storage-status-summary" data-device="mobile" className={cn("flex w-full flex-col gap-3", className)} {...props}>
-        {filter}
-        {toolbar}
+        {header}
         <div className="overflow-hidden rounded-xl border border-neutral-border-subtle bg-neutral-surface-elevated">
           <div className="flex items-center justify-between border-b border-neutral-surface-subtle px-4 py-2.5 text-[0.8125rem] leading-5 text-neutral-text-primary">
             <span>Nome</span>
@@ -130,10 +106,7 @@ function StorageStatusSummary({
 
   return (
     <div data-slot="storage-status-summary" data-device="desktop" className={cn("flex w-full flex-col gap-3 py-4", className)} {...props}>
-      <div className="flex flex-wrap items-end justify-between gap-4">
-        {filter}
-        {toolbar}
-      </div>
+      {header}
       <FileListHeader format="home" className="max-w-none" />
       <div className="flex flex-col gap-2.5">
         {files.map((file) => (

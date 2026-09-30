@@ -1,0 +1,21 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as FooterStories from './Footer.stories';
+
+<Meta of={FooterStories} />
+
+# Footer
+
+Figma: [`organism/Footer`](https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1431-17284)
+
+## Uso
+
+O rodapé das telas de tablet e desktop, com o copyright e o seletor de idioma. Como no Figma, aparece em Configurações e FAQ (tablet e desktop) e nas telas Tablet de Home, Organizar, Armazenamento e Pagamento. No mobile, a base da tela é dos chips ou da barra de navegação.
+
+<Canvas of={FooterStories.Full} />
+<Controls of={FooterStories.Full} />
+
+## Composição
+
+"©2026 Kandrive" em 16px e o `SelectBox` de idioma, 37px entre eles e 15px acima e abaixo. `layout="minimal"` esconde o seletor e centraliza o texto; nenhuma tela usa essa variante hoje.
+
+🧩 O Figma escreve "KanDrive"; aqui fica "Kandrive", a grafia do logo e do resto da interface.

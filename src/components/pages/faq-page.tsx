@@ -1,6 +1,7 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import { Footer } from "@/components/organisms/footer"
 import { AppShell } from "@/components/templates/app-shell"
 import { Sidebar, type SidebarProps } from "@/components/organisms/sidebar"
 import { Breadcrumb } from "@/components/molecules/breadcrumb"
@@ -69,6 +70,8 @@ function FaqPage({ variant = "expanded", sidebarProps, onContactSupport, classNa
       sidebar={<Sidebar {...sidebarProps} />}
       // Mobile: sem barra inferior (decisão de 2026-09-24). Os links rápidos para os
       // tópicos ficam numa faixa de chips abaixo do título (F6, Figma V0.2.1).
+      // Figma organism/Footer (tablet e desktop).
+      footer={<Footer />}
       {...props}
     >
       <div className="flex w-full flex-col items-center gap-2 tablet:pb-5">

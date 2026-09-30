@@ -42,7 +42,7 @@ Escopo combinado com o usuário: gate automático, paridade Figma × código, va
 
 ## O que continua com o usuário
 
-- Decidir quais componentes do Figma sem página no Storybook ganham uma (lista acima).
+- ~~Decidir quais componentes do Figma sem página no Storybook ganham uma~~ ✅ decidido e feito: 12 extraídos em 3 lotes, 4 sem uso só registrados (ver [[Plano dos 16 componentes sem página (2026-09-30)]]).
 - Conferir os nomes das variantes Tablet do `organism/Header`.
 - Telas de estado sem entrada por ligação, posição das sobreposições e teste no modo de apresentação.
 - Contraste por opacidade (ver [[Conflitos Abertos]]).
@@ -62,3 +62,9 @@ Ver [[Plano das pendências (2026-09-29)]].
 - Ligações que faltavam: o "+" da barra de baixo do Mobile abre o menu Adicionar em 13 telas, acima do FAB e do lado da mão escolhida (o menu passou a ter posição manual, então cada ligação leva a posição relativa); o ✕ volta à Home em 5 telas de seleção; a aba Pessoal leva à Home Mobile em 17 telas; Etiquetar abre em 32 telas e fecha pelo próprio componente; os checkboxes marcam e desmarcam (interação no componente, herdada por todas as instâncias); a busca da área de soltar preenchida leva aos resultados.
 - Resultado: 735 navegações, nenhum destino inexistente, 83 de 96 telas claras alcançáveis pelos fluxos (eram 78). As 13 restantes são variações de estado.
 - Sem ação: os 8 botões de salvar das Configurações (não há tela de destino) e o breadcrumb "Home" na própria Home.
+
+## Fechamento (2026-09-30)
+
+- 140 componentes, 491 histórias, gate completo passando (`tsc -b`, `oxlint`, `build-storybook`, testes com axe).
+- Todos os componentes do Figma que aparecem em alguma tela têm página no Storybook, exceto os `SearchBar*` (decisão registrada: fora da marca) e o `atom/PushButton` (obsoleto, migrado para `atom/Button`).
+- Continuam com o usuário: telas de estado sem entrada por ligação, posição manual das sobreposições que abrem no centro, teste no modo de apresentação e o contraste por opacidade.

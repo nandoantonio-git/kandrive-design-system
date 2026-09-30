@@ -2,12 +2,12 @@ import * as React from "react"
 import { Info } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { PageToolbar } from "@/components/organisms/page-toolbar"
+import { Footer } from "@/components/organisms/footer"
 import { AppShell } from "@/components/templates/app-shell"
 import { Sidebar, type SidebarProps } from "@/components/organisms/sidebar"
 import { Breadcrumb } from "@/components/molecules/breadcrumb"
-import { PageLead } from "@/components/molecules/page-lead"
 import { DropdownSelectGroupBy } from "@/components/molecules/dropdown-select-group-by"
-import { Label } from "@/components/molecules/label"
 import { ViewModeToggle, type ViewMode } from "@/components/molecules/view-mode-toggle"
 import { FileArchiveCard } from "@/components/molecules/file-archive-card"
 import { ImageItem } from "@/components/atoms/image-item"
@@ -136,19 +136,6 @@ function OrganizationPage({
       />
     )
   }
-  const toolbar = (
-    <>
-      <div className="hidden shrink-0 items-center gap-4 tablet:flex">
-        <DropdownSelectGroupBy />
-        <Label />
-        <ViewModeToggle mode={viewMode} onModeChange={onViewModeChange} />
-      </div>
-      <div className="flex w-full items-center justify-between gap-2.5 tablet:hidden">
-        <DropdownSelectGroupBy device="mobile" />
-        <ViewModeToggle size="compact" mode={viewMode === "columns" ? "list" : viewMode} onModeChange={onViewModeChange} />
-      </div>
-    </>
-  )
   const grid = (
     <div className="flex flex-1 flex-wrap gap-6 tablet:gap-8">
       {gridItems.map((item) =>
@@ -170,15 +157,14 @@ function OrganizationPage({
       // "salvo" volta ao modo de arquivos (TabBar + Adicionar), como em Organize/Saved/Mobile.
       mobileTabBar={task ? undefined : { active: "organize" }}
       mobileBottomNav={task ? { action: "confirm", active: "pessoal" } : { action: "add", active: "pessoal" }}
+      // Figma: organism/Footer só nas telas Tablet de Organizar.
+      footer={<Footer className="desktop:hidden" />}
       {...props}
     >
       {step === "template-drop-zone" || step === "review" || step === "review-done" ? (
         <>
           <Breadcrumb segments={["Home", "Templates de organização"]} className="hidden w-full tablet:flex" />
-          <div className="flex flex-col items-start justify-between gap-4 desktop:flex-row">
-            <PageLead title="Organização" caption="Organize seus arquivos em templates" className="flex-1" />
-            {toolbar}
-          </div>
+          <PageToolbar title="Organização" caption="Organize seus arquivos em templates" viewMode={viewMode} onViewModeChange={onViewModeChange} />
           {/* Mobile e tablet: o painel de arrastar vai para baixo da grade. */}
           <div className="flex flex-col items-start gap-6 desktop:flex-row desktop:gap-8">
             {grid}
@@ -187,10 +173,12 @@ function OrganizationPage({
         </>
       ) : (
         <>
-          <div className="flex flex-col items-start justify-between gap-4 desktop:flex-row">
-            <h1 className="hidden flex-1 text-[2.5rem] leading-none font-bold text-black tablet:block dark:text-zinc-100">Bem-vindo ao Kandrive!</h1>
-            {toolbar}
-          </div>
+          <PageToolbar
+            title="Bem-vindo ao Kandrive!"
+            caption="Seu espaço para guardar arquivos por anos, com organização simples desde o primeiro dia."
+            viewMode={viewMode}
+            onViewModeChange={onViewModeChange}
+          />
           {step === "saved" ? <FolderCard {...folderCardProps} /> : grid}
         </>
       )}

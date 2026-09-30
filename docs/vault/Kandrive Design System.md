@@ -58,17 +58,30 @@ Ver [[Camadas Atômicas]] pro catálogo completo (84 componentes). Notas própri
 
 ## Estado do projeto
 
+**Atual (2026-09-30):**
+
+- [[Auditoria final (2026-09-30)]]: gate, paridade Figma × código, Storybook, vault e protótipo, com o que ficou para o usuário
+- [[Plano dos 16 componentes sem página (2026-09-30)]]: os 12 componentes extraídos em 3 lotes e os 4 sem uso
+- [[Plano das pendências (2026-09-29)]]: o que foi decidido e feito na revisão final
+- [[Histórico das docs do Storybook (até 2026-09-30)]]: o histórico de auditoria que saiu das páginas do Storybook
+- [[Teste do protótipo claro (2026-09-29)]] e [[Mapa de interações (2026-09-29)]]: o protótipo navegável da 📐Pages
+- [[Patterns]]: os 12 fundos da marca
+- Páginas do Storybook: uma nota por página em `Páginas/` (a aba Docs das páginas saiu do Storybook)
+
+**Histórico:**
+
 - [[Backlog (User Stories)]] — 26/26 user stories concluídas
 - [[Conflitos Abertos]] — achados Figma pendentes de decisão humana
 - [[Sessão 2026-08-15]] — log da sessão que fechou US-026, branding, cores e 18 ajustes finos
 - [[Glossário]] — terminologia aprovada/proibida
 
-## Números atuais
+## Números atuais (2026-09-30)
 
 | Métrica | Valor |
 | --- | --- |
-| User stories concluídas | 26 / 26 |
-| Componentes no catálogo | 84 (29 atoms, 32 molecules, 23 organisms — `cells` extinta em 2026-08-20, ver [[Camadas Atômicas]]) |
-| Estados/variantes renderizáveis | 276+ |
-| Conflitos registrados (histórico) | 39 linhas, maioria resolvida — ver [[Conflitos Abertos]] |
-| Gate de validação | `tsc --noEmit` + `build-storybook` |
+| Componentes no catálogo | 140 (40 atoms, 51 molecules, 33 organisms, 7 templates, 9 pages) |
+| Histórias no Storybook | 491, todas com o axe; as interativas têm teste de interação |
+| Organização do Storybook | atomic design com grupos por função em cada nível (ex.: `Atoms/Ações`, `Molecules/Armazenamento`); Pages na ordem da jornada |
+| Regras | 12 (a 12 é "sem travessão" no texto que o usuário lê) |
+| Gate de validação | `tsc -b` + `oxlint` + `build-storybook` + `vitest --project=storybook` |
+| Publicação | branch `main`, pelo Vercel |

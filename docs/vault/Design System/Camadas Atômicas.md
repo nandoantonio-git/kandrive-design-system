@@ -4,6 +4,18 @@ tags: [design-system, moc]
 
 # Camadas Atômicas
 
+> [!info] Estado em 2026-09-30
+> O catálogo tem **140 componentes**: 40 atoms, 51 molecules, 33 organisms, 7 templates e 9 pages. No Storybook, cada nível é agrupado por função (decisão do usuário em 2026-09-30):
+> - **Atoms:** Ações · Formulário · Rótulos e badges · Ícones e símbolos · Itens de lista · Identidade e feedback
+> - **Molecules:** Navegação · Busca e filtros · Arquivos · Armazenamento · Organização · Formulários e configurações · Feedback e menus
+> - **Organisms:** Navegação · Arquivos · Armazenamento · Organização · Ajuda · Conta e diálogos
+> - **Templates:** sem grupos (7)
+> - **Pages:** na ordem da jornada (Login → Onboarding → Home → Organization → LongTermStorage → StorageStatus → Payment → Settings → Faq), e dentro de cada página Desktop → Tablet → Mobile
+>
+> Novos em 2026-09-30: `organism/Dialog` e os 12 do [[Plano dos 16 componentes sem página (2026-09-30)]] (`FileTypeIcon`, `MenuItemFloating`, `SelectBox`, `SkeletonRow`, `DisclosureHeader`, `SidebarOption`, `StorageStatusHeaderSelector`, `FreeModeButton`, `Footer`, `StorageStatusSection`, `PageToolbar`, `SearchHeader`).
+>
+> O texto abaixo é o histórico de como as camadas chegaram até aqui; os números dele são da época.
+
 O catálogo tem **93 componentes** em 5 camadas, espelhando a hierarquia real do arquivo Figma. Até 2026-08-19 eram só 3 (atoms/molecules/organisms, "não uma taxonomia atômica pura de livro-texto, que também teria templates/pages") — em 2026-08-20 o usuário introduziu `template/` e `page/` reais no Figma fonte (ver notas abaixo), fechando a lacuna por completo. `pages` começou com 4 das 23 telas do node "Pages" (`1439:25740`) — as outras 19 ficam pra reconciliação futura, priorizadas junto com o usuário (ver [[Sessão 2026-08-20]]).
 
 ```mermaid

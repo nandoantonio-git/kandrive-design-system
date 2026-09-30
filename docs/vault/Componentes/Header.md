@@ -24,3 +24,9 @@ tags: [componente, organism]
 
 - [[PushButton]]
 - [[Regra 5 - Terminologia]]
+
+## Atualização (2026-09-30)
+
+- O logo é um link para o início (`homeHref`, `onLogoClick`), com rótulo "Kandrive, ir para o início".
+- Organizar e Guardar: 40px de altura, 8px entre ícone e rótulo, 24px entre os botões (Figma). Os ícones Guardar e Etiquetar animam no hover do botão, com o estado Hover que o Figma define.
+- No Figma, as variantes Tablet tinham os nomes trocados; foi corrigido: `Page=Home, Device=Tablet` tem os botões, `Page=Settings, Device=Tablet` não. A variante `HomeAlt`, sem uso, foi apagada.

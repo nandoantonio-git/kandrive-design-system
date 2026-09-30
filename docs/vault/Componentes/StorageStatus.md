@@ -25,3 +25,10 @@ Legenda de 2 itens abaixo da barra ("XX em uso" + "XX Livre") que a implementaç
 
 - [[Sidebar]]
 - [[Regra 3 - Cores da Marca]]
+
+## Atualização (2026-09-30)
+
+- "Liberar espaço" aparece em todas as abas; "Comprar espaço" só no Total (Figma).
+- O total ganhou a legenda "(Acesso rápido+Longo prazo)", só na aba Total (o Figma a repete nas abas de tier, onde ela não é verdadeira).
+- Barra e ponto do Acesso rápido em `brand-pink-dark`; legenda por tipo sem pílula (`TypeLabel` `Style=Dark`).
+- A linha de chips virou `molecule/StorageStatusHeaderSelector`, e o card com a lista virou `organism/StorageStatusSection` na página de Armazenamento.
