@@ -154,7 +154,7 @@ function FreeModeItemNode({
           <AutoArchiveGlyph aria-hidden="true" className="size-[34px] shrink-0" />
           <div className="flex flex-col">
             <p className="text-sm leading-5 font-semibold whitespace-nowrap text-zinc-700 dark:text-zinc-300">Guardar automaticamente</p>
-            <span className="mt-[3px] w-fit rounded-[4px] bg-brand-teal-action px-1.5 py-px text-[0.5rem] leading-3 font-bold text-brand-teal-light">
+            <span className="mt-[3px] w-fit rounded-[4px] bg-brand-teal-action px-1.5 py-px text-[0.5rem] leading-3 font-bold text-white">
               ATIVO
             </span>
           </div>

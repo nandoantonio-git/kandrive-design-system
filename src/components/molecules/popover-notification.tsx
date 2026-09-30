@@ -98,7 +98,7 @@ function PopoverNotification({
           <div aria-hidden="true" className="absolute inset-0 rounded-xl glass-edge glass-shadow-sm bg-effect-glass-white-36" />
           <div className="relative flex h-5 w-full items-center justify-between gap-2 overflow-clip px-px">
             {/* Horário alinhado ao início (pedido do usuário, 2026-09-29); o fechar fica na ponta direita. */}
-            <span className="text-[0.6875rem] leading-[14px] whitespace-nowrap text-zinc-300 dark:text-zinc-400">{timestamp}</span>
+            <span className="text-[0.6875rem] leading-[14px] whitespace-nowrap text-neutral-text-tertiary dark:text-zinc-400">{timestamp}</span>
             <CloseButton onClick={onClose} />
           </div>
           <div className="relative flex w-full items-start justify-between gap-2">

@@ -129,7 +129,7 @@ function NodeContextMenuItem({
   const visualKind = kind ?? inferKind(label, hasChevron)
   const filled = value !== undefined && value !== ""
   const widthClassName = WIDTH_BY_KIND[visualKind]
-  const surfaceClassName = filled || visualKind === "date" ? "bg-zinc-800 text-zinc-200" : "bg-zinc-500/20 text-zinc-400"
+  const surfaceClassName = filled || visualKind === "date" ? "bg-zinc-800 text-zinc-200" : "bg-zinc-500/20 text-zinc-700 dark:text-zinc-300"
   return (
     <div
       ref={rootRef}
@@ -152,7 +152,7 @@ function NodeContextMenuItem({
             onValueChange?.(event.target.value)
           }}
           className={cn(
-            "h-6 w-full rounded-[var(--radius-md)] border px-2 text-center text-[0.6875rem] leading-4 outline-none transition-[color,background-color,border-color] placeholder:text-zinc-400",
+            "h-6 w-full rounded-[var(--radius-md)] border px-2 text-center text-[0.6875rem] leading-4 outline-none transition-[color,background-color,border-color] placeholder:text-zinc-600 dark:placeholder:text-zinc-400",
             "focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
             surfaceClassName,
             error ? "border-destructive shadow-[0_0_0_2px_rgba(188,52,38,0.35)]" : filled ? "border-zinc-700" : "border-zinc-500",

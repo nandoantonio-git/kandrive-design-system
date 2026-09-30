@@ -72,7 +72,7 @@ function LoginPage({ cardProps, onCreateAccount, className, ...props }: LoginPag
         <CardLogin {...cardProps} device={tablet ? "desktop" : "mobile"} />
         <a href="#criar-conta" onClick={onCreateAccount} className="rounded-sm text-sm text-white transition-opacity hover:underline active:opacity-70 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-white/60 tablet:text-zinc-600 tablet:focus-visible:ring-brand-teal-action/50 tablet:dark:text-zinc-300">
           Ainda não tem conta?{" "}
-          <span className="font-medium text-brand-primary-focus tablet:text-brand-teal">Crie uma agora</span>
+          <span className="font-medium text-white underline tablet:text-brand-teal tablet:no-underline">Crie uma agora</span>
         </a>
       </div>
     </div>

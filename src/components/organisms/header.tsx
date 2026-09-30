@@ -57,7 +57,7 @@ export interface HeaderProps extends React.ComponentProps<"header"> {
  * real, uniformemente nas 3 variantes `page` (Navbar/settings/storage) —
  * confirmado via `get_design_context` no nó `1421:19918`. A implementação
  * renderizava a pílula 100% opaca (achado novo, não presente na auditoria
- * anterior). Corrigido com `className="opacity-50"` (só o efeito visual —
+ * anterior). Revertido em 2026-09-30: o Figma atual mostra a pílula a 100% no Default (50% só na variante Disabled), e 50% deixava Ajuda e Configurações abaixo de 3:1. Antes: corrigido com `className="opacity-50"` (só o efeito visual —
  * não usa a prop `disabled` do átomo, que também zera `pointer-events`; o
  * Figma é um frame estático e não confirma comportamento de clique).
  *
@@ -147,7 +147,7 @@ function Header({
         </div>
       ) : null}
       <ActionPill
-        className="ml-auto hidden shrink-0 opacity-50 tablet:flex"
+        className="ml-auto hidden shrink-0 tablet:flex"
         actions={[
           { name: "Help", label: "Ajuda" },
           { name: "Settings", label: "Configurações" },

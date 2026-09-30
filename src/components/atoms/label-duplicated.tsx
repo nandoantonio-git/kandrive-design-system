@@ -25,7 +25,7 @@ function LabelDuplicated({ label = "Duplicado", className, ...props }: LabelDupl
     <span
       data-slot="label-duplicated"
       className={cn(
-        "inline-flex items-end gap-1 rounded-full bg-amber-500/20 py-1 pr-3 pl-4 text-[#c38418]",
+        "inline-flex items-end gap-1 rounded-full bg-amber-500/20 py-1 pr-3 pl-4 text-brand-feedback-warning-text",
         className
       )}
       {...props}

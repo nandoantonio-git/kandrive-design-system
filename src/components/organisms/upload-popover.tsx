@@ -182,7 +182,7 @@ function UploadPopover({
       {files.length > 0 ? (
         <div className="relative flex flex-col gap-3">
           <div className="flex flex-col gap-1.5">
-            <div className="flex items-center justify-between text-[0.625rem] font-bold tracking-wide text-zinc-400 uppercase dark:text-zinc-500">
+            <div className="flex items-center justify-between text-[0.625rem] font-bold tracking-wide text-neutral-text-tertiary uppercase dark:text-zinc-400">
               <span>Em andamento</span>
               <span>{clamped}%</span>
             </div>
@@ -193,7 +193,7 @@ function UploadPopover({
           <ul className="flex flex-col gap-1 border-t border-zinc-200 pt-2 dark:border-zinc-700">
             {files.map((file) => (
               <li key={file.name} className="flex items-center gap-2 text-xs text-zinc-600 dark:text-zinc-300">
-                <FileIcon aria-hidden="true" className="size-2.5 shrink-0 text-zinc-400 dark:text-zinc-500" />
+                <FileIcon aria-hidden="true" className="size-2.5 shrink-0 text-neutral-text-tertiary dark:text-zinc-400" />
                 <span className="flex-1 truncate">{file.name}</span>
                 {file.done ? (
                   <CheckCircle2 aria-hidden="true" className="size-2.5 shrink-0 text-brand-teal" />

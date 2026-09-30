@@ -16,7 +16,7 @@ const VARIANT_STYLES: Record<TagVariant, string> = {
   "primary-dark": "bg-brand-teal-dark-surface text-white",
   // cor/categoria/acesso-rápido (Regra 3) — mesmo par claro/escuro do rosa
   // já usado em molecule/StorageBar para a categoria "Acesso rápido".
-  secondary: "bg-brand-pink-light text-white",
+  secondary: "bg-brand-pink-dark text-white",
   // neutral-surface-subtle (#eaeaea) — sem token semântico definido (Regra
   // 3, tema neutro suspenso); literal como em atom/firstUploadSymbol.
   "file-name": "bg-[#eaeaea] text-zinc-700 dark:bg-[#27272a] dark:text-zinc-300",

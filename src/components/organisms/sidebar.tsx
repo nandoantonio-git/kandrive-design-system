@@ -342,8 +342,8 @@ function Sidebar({
               onClick={() => onNavigate?.(page)}
               className={cn(
                 "flex w-full items-center gap-1.5 rounded-md px-2 py-1 text-base font-medium text-zinc-900 dark:text-zinc-100",
-                "transition-[opacity,background-color] hover:bg-zinc-100 hover:opacity-100 active:bg-zinc-200 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:hover:bg-zinc-800 dark:active:bg-zinc-700",
-                activePage === page ? "bg-zinc-100 dark:bg-zinc-800" : "opacity-50"
+                "transition-[color,background-color] hover:bg-zinc-100 active:bg-zinc-200 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:hover:bg-zinc-800 dark:active:bg-zinc-700",
+                activePage === page ? "bg-zinc-100 dark:bg-zinc-800" : "text-neutral-text-vibrant-tertiary hover:text-zinc-900 dark:hover:text-zinc-100"
               )}
             >
               <ItemIcon aria-hidden="true" className="size-4 shrink-0" />

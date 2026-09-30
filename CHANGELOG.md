@@ -40,6 +40,10 @@ Arquivo do Figma KanDrive V0.2.1, a partir de 2026-09-23.
 - Figma: hover das Colunas no Tablet trocava para a linha de 560px do Desktop.
 - Figma: a coleção `Storage` pintava textos comuns; `Storage/FastAccess` apontava para uma variável apagada.
 - Token `--color-neutral-surface-background` que faltava no tema.
+- Contraste (auditoria UX): o axe volta a quebrar o teste por contraste (antes era só aviso), e as falhas que apareceram foram corrigidas. Tokens de texto `Placeholder`, `Muted`, `Cool/Tertiary` e `OnGlass/*` no Light e `Cool/Tertiary` no Dark passam de 4,5:1 (duas cores de base novas, `Zinc/575` e `Slate/600`); contorno dos campos de formulário a 3:1 (`Border/Input`, novo valor nos dois modos, também no código); avisos em texto usam `Feedback/Warning/Text`, e o verde de sucesso em texto ganhou o papel `Feedback/Success/Text`.
+- Itens inativos da barra lateral deixam de usar `opacity-50` e passam a usar cor de texto com contraste (Sidebar e Navegador de arquivos); pílula de Ajuda, Configurações e Conta do Header a 100%, como no Figma atual.
+- Texto das telas: "Search" no modal de Longo prazo virou "Buscar arquivos, pastas ou templates"; "Continuar..." virou "Continuar"; "Taxonomia Sugerida" e "Template Sugerido" viraram "Template sugerido"; "Corrente" virou "Acesso rápido"; "X itens selecionado" virou "X itens selecionados"; "15.35 MB" virou "15,35 MB"; o modal de Longo prazo agora diz "3 selecionados" como os três chips.
+- Figma: 88 ligações a variáveis apagadas (rosa da marca) religadas ao `Brand/Accent`; `lang` do Storybook e do `index.html` passou de `en` para `pt-BR`.
 - Figma: telas Desktop fora do grid. A barra lateral estava na variante Tablet (150px); agora todas as 58 telas Desktop (claro e Dark) usam o estilo `Grid/Desktop` (12 colunas, margem 24, gutter 24), com a barra nas colunas 1 e 2 e o conteúdo nas colunas 3 a 12.
 
 #### Removido

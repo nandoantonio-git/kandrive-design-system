@@ -47,6 +47,7 @@ function ActionPill({ actions, disabled, className, ...props }: ActionPillProps)
     <div
       data-slot="action-pill"
       data-disabled={disabled || undefined}
+      aria-disabled={disabled || undefined}
       className={cn(
         "relative flex w-[104px] items-center justify-center gap-1.5 rounded-full bg-effect-glass-white-70 py-1 shadow-md backdrop-blur-md",
         "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",

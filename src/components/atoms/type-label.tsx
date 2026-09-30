@@ -113,8 +113,8 @@ export interface ScopeTypeLabelProps
 
 const SCOPE_SELECTED_CLASSES: Record<ScopeKind, Record<Extract<TypeLabelState, "selected" | "selected-hover" | "selected-pressed">, string>> = {
   "quick-access": {
-    selected: "bg-brand-pink-light text-white",
-    "selected-hover": "bg-brand-pink-dark text-white",
+    selected: "bg-brand-pink-dark text-white",
+    "selected-hover": "bg-[color-mix(in_srgb,var(--brand-pink-dark),black_20%)] text-white",
     "selected-pressed": "bg-[color-mix(in_srgb,var(--brand-pink-dark),black_45%)] text-white",
   },
   "long-term": {
