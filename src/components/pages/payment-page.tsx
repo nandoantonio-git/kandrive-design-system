@@ -147,7 +147,8 @@ function PaymentPage({
       mobileFooterSettings={{ page: "payment", active: "Plano" }}
       {...props}
     >
-      <div className="flex w-full flex-col items-end gap-5 tablet:py-2">
+      {/* Desktop (Figma 1440, `Grid/Desktop`): sem Sidebar, o conteúdo começa na coluna 3 (236px = 2 colunas + gutter) e os planos ocupam 8 colunas (920px). */}
+      <div className="flex w-full flex-col items-end gap-5 tablet:py-2 desktop:pl-[236px]">
         <div className="flex w-full flex-col items-center gap-2 tablet:pb-5">
           <Breadcrumb segments={["Home", "Planos Kandrive"]} className="hidden w-full tablet:flex" />
           <PageLead
@@ -157,7 +158,7 @@ function PaymentPage({
           />
         </div>
 
-        <div className="flex w-full flex-col gap-6 rounded-xl border border-zinc-200 bg-effect-glass-white-50 dark:border-zinc-700">
+        <div className="flex w-full flex-col gap-6 rounded-xl border border-zinc-200 bg-effect-glass-white-50 desktop:max-w-[920px] desktop:self-start dark:border-zinc-700">
           <p className="px-5 pt-6 text-2xl font-bold text-zinc-950 dark:text-zinc-100">Confirmar assinatura do Kandrive Pro</p>
 
           <div className="flex flex-col divide-y divide-zinc-200 border-t border-zinc-200 dark:divide-zinc-700 dark:border-zinc-700">

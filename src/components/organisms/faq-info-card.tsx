@@ -96,7 +96,7 @@ function FaqInfoCard({
       data-slot="faq-info-card"
       data-topic={resolvedTopicKey}
       className={cn(
-        "relative flex w-full max-w-[927px] flex-col gap-6 rounded-3xl glass-edge glass-shadow-sm bg-effect-glass-white-50 py-6",
+        "relative flex w-full max-w-[920px] flex-col gap-6 rounded-3xl glass-edge glass-shadow-sm bg-effect-glass-white-50 py-6",
         className
       )}
       {...props}

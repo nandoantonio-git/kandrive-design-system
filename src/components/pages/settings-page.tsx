@@ -147,7 +147,7 @@ function SettingsPage({
             pages="setting"
             activeSection={activeSection}
             onNavigateSection={onNavigateSection}
-            className="hidden shrink-0 tablet:flex tablet:w-[152px] desktop:w-[223px]"
+            className="hidden shrink-0 tablet:flex tablet:w-[152px] desktop:w-[212px]"
           />
 
           <div className="flex min-w-0 flex-1 flex-col gap-6">

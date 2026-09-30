@@ -74,7 +74,7 @@ function FaqPage({ variant = "expanded", onContactSupport, className, ...props }
         <PageLead title="Perguntas frequentes" caption="Consulte suas principais dúvidas" className="w-full" />
       </div>
       <div className="flex w-full items-start gap-8">
-        <div className="flex w-full min-w-0 flex-1 flex-col gap-6 desktop:max-w-[927px]">
+        <div className="flex w-full min-w-0 flex-1 flex-col gap-6 desktop:max-w-[920px]">
           <SearchInput className="w-full max-w-none" />
           {TOPIC_ORDER.map((topic) =>
             <div key={topic} id={`faq-${topic}`} className="scroll-mt-4">

@@ -35,6 +35,9 @@ export interface AppShellProps extends React.ComponentProps<"div"> {
  *
  * - O conteúdo é fluido.
  * - A Sidebar mantém a largura do Figma.
+ * - Desktop (Figma 1440px, estilo `Grid/Desktop`, 2026-09-30): 12 colunas,
+ *   margem 24 e gutter 24. A Sidebar ocupa as colunas 1 e 2 (212px) e o
+ *   conteúdo as colunas 3 a 12 (1156px), com 24px entre eles.
  * - Acima de 1440px, o layout fica centralizado (`--container-page`).
  */
 function AppShell({
@@ -55,7 +58,7 @@ function AppShell({
     <div data-slot="app-shell" className={cn("relative flex min-h-dvh flex-col bg-neutral-surface-background", className)} {...props}>
       <Header {...headerProps} onMenuClick={drawer === false ? undefined : () => setDrawerOpen(true)} />
 
-      <div className="mx-auto flex w-full max-w-(--container-page) flex-1 gap-6 desktop:gap-12 px-4 pt-4 tablet:px-6 tablet:pt-6 desktop:px-12">
+      <div className="mx-auto flex w-full max-w-(--container-page) flex-1 gap-6 px-4 pt-4 tablet:px-6 tablet:pt-6">
         {sidebar ? <aside aria-label="Barra lateral" className="hidden shrink-0 tablet:block">{sidebar}</aside> : null}
         <main className="flex min-w-0 flex-1 flex-col gap-4">
           {mobileTabBar ? (
@@ -67,7 +70,7 @@ function AppShell({
         </main>
       </div>
 
-      {footer ? <div className="mx-auto hidden w-full max-w-(--container-page) px-6 tablet:block desktop:px-12">{footer}</div> : null}
+      {footer ? <div className="mx-auto hidden w-full max-w-(--container-page) px-6 tablet:block">{footer}</div> : null}
 
       {mobileBottomNav ? (
         <div className="pointer-events-none sticky bottom-0 z-40 tablet:hidden [&>*]:pointer-events-auto">
