@@ -40,7 +40,7 @@ function BoxIconButton({
       aria-label={label}
       disabled={disabled}
       className={cn(
-        "inline-flex size-10 shrink-0 items-center justify-center rounded-[10.4px] border border-effect-glass-white-05 bg-brand-secondary-light text-white transition-[color,background-color,transform]",
+        "inline-flex size-10 shrink-0 items-center justify-center rounded-[10.4px] border border-effect-glass-white-05 bg-brand-secondary-light text-white transition-[color,background-color,transform] motion-reduce:transition-none",
         "motion-safe:active:scale-95",
         "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50",
         "disabled:pointer-events-none disabled:opacity-40",

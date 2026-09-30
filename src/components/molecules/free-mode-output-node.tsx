@@ -83,7 +83,7 @@ function FreeModeOutputNode({
           <p className="truncate text-sm leading-5 font-semibold text-zinc-700 dark:text-zinc-300">Resultado</p>
           <p className="truncate text-xs leading-[15px] text-brand-teal">{folderLabel}</p>
         </div>
-        <ChevronGlyph aria-hidden="true" className={cn("size-4 shrink-0 transition-transform duration-200", !isCompact && "rotate-180")} />
+        <ChevronGlyph aria-hidden="true" className={cn("size-4 shrink-0 transition-transform motion-reduce:transition-none duration-200", !isCompact && "rotate-180")} />
       </button>
       <div className="mt-4 flex w-full flex-col border-t border-zinc-500 dark:border-zinc-400 pt-[13px]">
         <div className="flex items-center justify-between">
@@ -113,7 +113,7 @@ function FreeModeOutputNode({
             <span className="text-xs leading-[16.5px] font-semibold text-zinc-700 dark:text-zinc-300">Prévia de arquivos</span>
             <PreviewChevronGlyph
               aria-hidden="true"
-              className={cn("size-3 shrink-0 transition-transform", previewExpanded && "rotate-180")}
+              className={cn("size-3 shrink-0 transition-transform motion-reduce:transition-none", previewExpanded && "rotate-180")}
             />
           </button>
           <ul className="mt-2 flex w-full flex-col gap-1">

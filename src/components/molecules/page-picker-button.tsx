@@ -123,7 +123,7 @@ function PagePickerButton({
           {page}
           <ChevronDown
             aria-hidden="true"
-            className={cn("size-3 text-neutral-text-tertiary transition-transform", expanded && "rotate-180")}
+            className={cn("size-3 text-neutral-text-tertiary transition-transform motion-reduce:transition-none", expanded && "rotate-180")}
           />
         </button>
         {expanded ? (
