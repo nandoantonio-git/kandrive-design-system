@@ -54,27 +54,49 @@ o armazenamento envolve risco jurídico, não só conveniência.
 
 ## Teste de usabilidade — resultados
 
-4 participantes, 3 tarefas, tempo medido contra uma expectativa prévia:
+Teste moderado com 4 participantes e 3 tarefas, num protótipo de média
+fidelidade. Com uma amostra desse tamanho, o resultado é qualitativo: ele
+mostra onde as pessoas travaram e por quê, não quanto a interface é mais
+lenta que um padrão.
 
-| Tarefa | Tempo médio | Esperado | Desvio |
-| --- | --- | --- | --- |
-| Organizar acervo | 6min53s | 5min | **+38%** |
-| Consultar Status do Armazenamento | 2min03s | 1min30s | **+37%** |
-| Arquivar para longo prazo + validar no status | 2min50s | 2min | **+42%** |
+| Tarefa | O que aconteceu | Quantos |
+| --- | --- | --- |
+| Organizar acervo | Dificuldade ou fricção; tentaram criar pasta e mover arquivos antes de achar a função de organizar | 4 de 4 |
+| Consultar o status do armazenamento | Poucos erros formais, mas o rótulo "Global" não dizia que era a soma de acesso rápido e longo prazo | Não registrado por participante |
+| Guardar no longo prazo e conferir no status | Entenderam o benefício, mas ficaram inseguros sobre o resultado: o que foi movido, para onde e como recuperar | 2 casos descritos: um não achou a ação com facilidade, outro só achou explorando a interface |
 
-**Organizar acervo** — dificuldade/fricção em 4 de 4 participantes; o
-modelo mental de pastas ainda é mais forte que a função de organização
-assistida, que precisa ficar mais evidente.
+**Tempos, como apoio.** Todas as tarefas levaram mais do que o esperado:
+Organizar 6min53s (esperado 5min), Status 2min03s (esperado 1min30s) e
+Guardar 2min50s (esperado 2min). O "esperado" é uma expectativa definida
+pela equipe antes do teste, não uma referência externa nem uma medida de
+especialista. Por isso os tempos servem para apontar onde houve atrito, e
+não como percentual de desempenho.
 
-**Status do armazenamento** — poucos erros formais, mas o rótulo "Global"
-não comunicava bem a soma entre acesso rápido e longo prazo.
+**Organizar acervo.** O modelo mental de pastas ainda é mais forte que a
+organização assistida, que precisa ficar mais evidente.
 
-**Arquivar para longo prazo** — os participantes entenderam o benefício
-(economizar espaço, recuperar depois), mas ficaram inseguros sobre o
-resultado da ação: quais arquivos foram movidos, pra onde, e como
-recuperar. Um dos participantes associou "guardar" a proteção mas teve
-dificuldade de leitura/encontrabilidade da ação; outro só encontrou o
-caminho depois de explorar a interface.
+**Status do armazenamento.** O problema era de rótulo, não de fluxo:
+"Global" não comunicava a soma dos dois tipos de armazenamento.
+
+**Guardar no longo prazo.** A proposta foi compreendida; a insegurança
+veio da falta de retorno depois da ação.
+
+### O que ainda não foi validado
+
+- **As decisões de design não foram retestadas.** As 7 decisões abaixo
+  respondem ao que o teste mostrou, mas nenhuma passou por um segundo
+  teste. O case mostra a causa e a resposta, não o efeito.
+- **Sucesso por tarefa e erros por participante** não foram registrados
+  de forma sistemática; o que existe é a observação da moderação.
+- **Personas Mariana e Rafael.** Os participantes não foram recrutados
+  por perfil, e as necessidades específicas delas (status de backup por
+  projeto, sigilo, permissões e versões) ficaram fora do protótipo. Ver o
+  escopo no slide 07 do Case Study.
+- **Tablet e tema escuro** existem no design system, mas não foram
+  testados com pessoas.
+- **Próximo passo:** um reteste curto, com 3 a 5 pessoas, as mesmas 3
+  tarefas e o protótipo atual, registrando sucesso, erros e tempo para
+  comparar antes e depois.
 
 ## Principais problemas encontrados
 
