@@ -208,7 +208,7 @@ function Sidebar({
         )}
         {...props}
       >
-        <p className="text-[0.625rem] font-bold leading-4 text-neutral-text-secondary">Nesta página</p>
+        <p className="text-xs font-bold leading-4 text-neutral-text-secondary">Nesta página</p>
         {FAQ_NAV_ITEMS.map((label, index) => (
           <button
             key={label}
@@ -287,7 +287,7 @@ function Sidebar({
         {...props}
       >
         <img src={kandriveMark} alt="Kandrive" className="h-[18.664px] w-[14.99px] shrink-0" />
-        <span className="flex items-center gap-1.5 rounded-md bg-zinc-100 px-2.5 py-1 text-[0.625rem] whitespace-nowrap text-brand-secondary-dark dark:bg-zinc-800">
+        <span className="flex items-center gap-1.5 rounded-md bg-zinc-100 px-2.5 py-1 text-xs whitespace-nowrap text-brand-secondary-dark dark:bg-zinc-800">
           <Icon name="Folder" aria-hidden="true" className="size-3.5 text-brand-teal" />
           {activePage}
         </span>

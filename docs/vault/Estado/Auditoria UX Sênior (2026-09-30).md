@@ -208,3 +208,10 @@ Ver [[Auditoria final (2026-09-30)]] para o estado técnico (gate, paridade, pro
 - 62 dos 188 componentes têm texto abaixo de 12px: 924 de 2.106 textos de componentes (44%), e 1.362 (65%) abaixo de 14px.
 - Maiores concentrações: `Sidebar` (78), `OrganizePanelDropZone` (59), `StorageStatus` (49), `PreviewPane` (46), `FileItem` (36), `TypeLabel` (34), `TemplateCard` (34), `NodeContextMenu` (31, com texto de 9px), `SaveOrganizationModal` (31) e as cinco telas-modal da onda de Organização e Guardar.
 - Como o texto está dentro de componentes, o ajuste é nos componentes, não nas telas, e se espalha para todas as telas que os usam.
+
+### Tipografia, lote 1 (2026-09-30)
+- **Escala:** 16 (corpo, botão, link), 14 (apoio), 12 (microtexto, piso). Regra 4 revisada. Estilos do Figma: `Body/XS` e `XS/Bold`, `Tag` e `Caption/SM` passam a 12px; `Body/SM` a 14px; novos `XS/Medium`, `SM/Medium`, `SM/Bold`, `MD/Medium` e `MD/Bold`.
+- **Aplicado em:** Sidebar, SidebarOption, StorageSidebar, SidebarToggle, StorageStatus, StorageStatusHeaderSelector, TypeLabel, Tag e FolderTagChip (Figma e código). Glifos de ícone ficaram fora da escala.
+- **Efeito colateral do Figma:** mexer num estilo de texto deixou os textos sobrescritos das instâncias desatualizados na renderização (botões e chips voltaram a mostrar "Label"). O texto nunca se perdeu (a API continuava mostrando o valor certo); reescrever o texto de cada instância (7.600 textos) resolveu. Fica como regra para os próximos lotes: depois de editar estilos, reescrever os textos das instâncias.
+- **Reflow ajustado:** altura do painel "Por que guardar?" (quebra de linha forçada removida), chips de arquivo que quebram linha, descrição do cartão "Modo livre", rótulos das abas e da barra inferior do Mobile ("Organizar" e "Compartilhados" quebravam no meio da palavra).
+- **Falta (lotes 2 e 3):** 62 componentes seguem com textos abaixo de 12px, principalmente os modais e painéis de Organizar e Guardar, o PageToolbar, o Header e o restante.
