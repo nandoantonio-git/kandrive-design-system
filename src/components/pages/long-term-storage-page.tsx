@@ -14,6 +14,8 @@ import { PagePickerButton } from "@/components/molecules/page-picker-button"
 import { FileSelectList, type FileSelectListFile } from "@/components/organisms/file-select-list"
 import { RecoveryPending } from "@/components/organisms/recovery-pending"
 import { MobileSuccess } from "@/components/atoms/mobile-success"
+import { Button } from "@/components/atoms/button"
+import { Check } from "lucide-react"
 
 export type LongTermStorageStep = "intro" | "archive-browser" | "stored" | "recovery-pending"
 
@@ -29,6 +31,10 @@ export interface LongTermStoragePageProps extends Omit<React.ComponentProps<"div
   defaultSelected?: string[]
   /** `recovery-pending`: o arquivo que está voltando do longo prazo. */
   recoveryFileName?: string
+  /** `stored` no desktop e tablet: o que foi movido e quanto espaço voltou (`LongTermStorage/Stored/Desktop`). */
+  storedSummary?: { files: string[]; freedLabel: string }
+  onViewStorage?: () => void
+  onBackHome?: () => void
 }
 
 /**
@@ -62,6 +68,9 @@ function LongTermStoragePage({
   mobileFiles = [],
   defaultSelected = [],
   recoveryFileName = "",
+  storedSummary = { files: ["Relatorio-Q1.pdf", "Backup-Financeiro.zip", "Fotos-Evento.zip"], freedLabel: "2,6 GB" },
+  onViewStorage,
+  onBackHome,
   className,
   ...props
 }: LongTermStoragePageProps) {
@@ -75,6 +84,55 @@ function LongTermStoragePage({
       else next.delete(name)
       return next
     })
+
+  // Desktop e tablet (auditoria UX, A5): o resultado de guardar diz o que foi movido, para onde foi, quanto
+  // espaço voltou e como resgatar, os quatro pontos da decisão 4 do case. No mobile segue a tela cheia.
+  if (step === "stored" && tablet) {
+    return (
+      <AppShell
+        data-slot="long-term-storage-page"
+        className={cn("bg-zinc-200 dark:bg-zinc-900", className)}
+        headerProps={{ page: "navbar" }}
+        sidebar={<Sidebar {...homeProps.sidebarProps} />}
+        {...props}
+      >
+        <div className="flex flex-1 items-center justify-center py-8">
+          <section
+            role="status"
+            aria-labelledby="stored-title"
+            className="flex w-full max-w-[600px] flex-col items-center gap-5 rounded-[20px] border border-neutral-border-light bg-neutral-surface-card px-10 py-9 text-center"
+          >
+            <span className="flex size-14 items-center justify-center rounded-full bg-brand-teal-action text-brand-teal-foreground">
+              <Check aria-hidden="true" strokeWidth={3} className="size-7" />
+            </span>
+            <h1 id="stored-title" className="text-3xl font-semibold text-neutral-text-primary">
+              Prontinho! Seus arquivos estão guardados
+            </h1>
+            <p className="text-xl font-medium text-neutral-text-secondary">
+              {storedSummary.files.length} arquivos movidos · {storedSummary.freedLabel} liberados
+            </p>
+            <ul className="flex flex-wrap justify-center gap-2" aria-label="Arquivos guardados">
+              {storedSummary.files.map((file) => (
+                <li key={file} className="rounded-lg bg-zinc-100 px-3 py-1.5 text-sm text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
+                  {file}
+                </li>
+              ))}
+            </ul>
+            <p className="text-base font-medium text-neutral-text-primary">Destino: Guardados, no armazenamento de longo prazo</p>
+            <p className="text-base text-neutral-text-tertiary">
+              Para resgatar, abra Guardados, clique com o botão direito no arquivo e escolha Resgatar. O arquivo chega por e-mail em até 8h.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3">
+              <Button onClick={onViewStorage}>Ver armazenamento</Button>
+              <Button variant="outline" onClick={onBackHome}>
+                Voltar ao início
+              </Button>
+            </div>
+          </section>
+        </div>
+      </AppShell>
+    )
+  }
 
   if (step === "stored") {
     return (

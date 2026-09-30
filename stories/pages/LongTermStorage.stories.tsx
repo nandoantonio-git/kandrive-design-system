@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
 
-import { expect, userEvent, within } from "storybook/test"
+import { expect, fn, userEvent, within } from "storybook/test"
 
 import { LongTermStoragePage } from "../../src/components/pages/long-term-storage-page"
 
@@ -64,8 +64,20 @@ type Story = StoryObj<typeof meta>
 export const Intro: Story = {}
 /** Home com o modal "Adicionar arquivos". Figma `LongTermStorage/ArchiveBrowser/Desktop`. */
 export const ArchiveBrowser: Story = { args: { step: "archive-browser" }, parameters: FIG("1755-55661") }
-/** Feedback de tela cheia, igual no Light e no Dark. Figma `LongTermStorage/Stored/Mobile`. */
-export const Stored: Story = { args: { step: "stored" }, parameters: FIG("1765-61536") }
+/**
+ * Resultado de guardar no desktop e tablet (auditoria UX, A5): o que foi movido, o destino, o espaço que voltou e
+ * como resgatar. Figma `LongTermStorage/Stored/Desktop`.
+ */
+export const Stored: Story = {
+  args: { step: "stored", onViewStorage: fn(), onBackHome: fn() },
+  parameters: FIG("3446-51376"),
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(canvas.getByRole("status")).toHaveTextContent("Prontinho! Seus arquivos estão guardados")
+    await userEvent.click(canvas.getByRole("button", { name: "Ver armazenamento" }))
+    await expect(args.onViewStorage).toHaveBeenCalledOnce()
+  },
+}
 /** Estado: o arquivo está voltando do longo prazo. Figma `LongTermStorage/RecoveryPending/Mobile`. */
 export const RecoveryPending: Story = { args: { step: "recovery-pending" }, parameters: FIG("1765-61487") }
 
@@ -97,7 +109,7 @@ export const SelectFilesSelectedMobile: Story = {
   parameters: FIG("1729-25014"),
   globals: vp("kdMobile"),
 }
-/** Mobile · 390. Figma `LongTermStorage/Stored/Mobile`. */
-export const StoredMobile: Story = { ...Stored, globals: vp("kdMobile") }
+/** Mobile · 390: feedback de tela cheia, igual no Light e no Dark. Figma `LongTermStorage/Stored/Mobile`. */
+export const StoredMobile: Story = { args: { step: "stored" }, parameters: FIG("1765-61536"), globals: vp("kdMobile") }
 /** Mobile · 390: sem TabBar, BottomNav Adicionar. Figma `LongTermStorage/RecoveryPending/Mobile`. */
 export const RecoveryPendingMobile: Story = { ...RecoveryPending, globals: vp("kdMobile") }

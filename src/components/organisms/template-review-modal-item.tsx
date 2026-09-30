@@ -10,6 +10,8 @@ export interface ReviewChildFile {
   name: string
   meta: string
   onDelete?: () => void
+  /** Chamado quando a pessoa toca em "Desfazer" logo depois de excluir (auditoria UX, A5). */
+  onUndoDelete?: () => void
 }
 
 export interface ReviewItem {
@@ -100,6 +102,15 @@ function TemplateReviewModalItem({ item, isExpanded, onToggleExpand, device = "d
   const meta = SEVERITY_META[item.severity]
   const SeverityIcon = meta.icon
   const hasChildren = !!item.children?.length
+  // Excluir não some de vez: a linha vira um aviso com "Desfazer" (auditoria UX, A5).
+  const [removed, setRemoved] = React.useState<ReadonlySet<string>>(() => new Set())
+  const setRemovedName = (name: string, value: boolean) =>
+    setRemoved((previous) => {
+      const next = new Set(previous)
+      if (value) next.add(name)
+      else next.delete(name)
+      return next
+    })
   const pathSegments = item.suggestedPath.split(" / ")
   return (
     <div
@@ -168,25 +179,46 @@ function TemplateReviewModalItem({ item, isExpanded, onToggleExpand, device = "d
       </div>
       {hasChildren && isExpanded ? (
         <ul className={cn("flex flex-col gap-1", mobile ? "border-t border-neutral-border-subtle pt-2 pl-6" : "pl-8")}>
-          {item.children!.map((child) => (
-            <li key={child.name} className="flex items-center justify-between py-1">
-              <div className="flex items-center gap-2">
-                <File aria-hidden="true" className="size-4 shrink-0 text-zinc-400 dark:text-zinc-500" />
-                <div className="flex min-w-0 flex-col">
-                  <span className={cn("truncate", mobile ? "text-base text-neutral-text-primary" : "text-sm text-zinc-900 dark:text-zinc-100")}>{child.name}</span>
-                  <span className="text-xs text-zinc-600 dark:text-zinc-300">{child.meta}</span>
+          {item.children!.map((child) =>
+            removed.has(child.name) ? (
+              <li key={child.name} className="flex items-center justify-between gap-3 py-1.5" role="status">
+                <span className={cn("min-w-0 truncate", mobile ? "text-base" : "text-sm", "text-neutral-text-secondary")}>
+                  {child.name} removido da organização.
+                </span>
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setRemovedName(child.name, false)
+                    child.onUndoDelete?.()
+                  }}
+                  className="h-8 shrink-0 rounded-md border-none bg-effect-glass-white-70 px-3 text-xs text-brand-teal"
+                >
+                  Desfazer
+                </Button>
+              </li>
+            ) : (
+              <li key={child.name} className="flex items-center justify-between py-1">
+                <div className="flex items-center gap-2">
+                  <File aria-hidden="true" className="size-4 shrink-0 text-zinc-400 dark:text-zinc-500" />
+                  <div className="flex min-w-0 flex-col">
+                    <span className={cn("truncate", mobile ? "text-base text-neutral-text-primary" : "text-sm text-zinc-900 dark:text-zinc-100")}>{child.name}</span>
+                    <span className="text-xs text-zinc-600 dark:text-zinc-300">{child.meta}</span>
+                  </div>
                 </div>
-              </div>
-              <Button
-                variant="outline"
-                onClick={child.onDelete}
-                className="h-8 gap-2 rounded-md border-none text-destructive hover:text-destructive/80 bg-effect-glass-white-70 px-3 text-xs"
-              >
-                <Trash2 className="size-4" aria-hidden="true" />
-                Excluir
-              </Button>
-            </li>
-          ))}
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setRemovedName(child.name, true)
+                    child.onDelete?.()
+                  }}
+                  className="h-8 gap-2 rounded-md border-none text-destructive hover:text-destructive/80 bg-effect-glass-white-70 px-3 text-xs"
+                >
+                  <Trash2 className="size-4" aria-hidden="true" />
+                  Excluir
+                </Button>
+              </li>
+            )
+          )}
         </ul>
       ) : null}
     </div>
