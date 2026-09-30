@@ -1,6 +1,6 @@
 # Kandrive Design System
 
-**[Storybook ao vivo →](https://kandrive-design-system.vercel.app)** · [Case study de pesquisa UX](docs/CASE-STUDY.md) · [Fonte da pesquisa (nexus)](https://github.com/thomasreichmann/nexus)
+**[Storybook ao vivo →](https://kandrive-design-system.vercel.app)** · [Figma (slides, telas e protótipo)](https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1) · [Case study de pesquisa UX](docs/CASE-STUDY.md) · [Fonte da pesquisa (nexus)](https://github.com/thomasreichmann/nexus)
 
 Design system em Storybook pro **Kandrive** — um SaaS conceitual de
 armazenamento massivo e de longo prazo (cold storage sobre AWS S3
@@ -15,14 +15,14 @@ Storybook 10 (CSF3 + MDX).
 
 ## O que tem aqui
 
-~93 componentes organizados por camada atômica (atoms → molecules →
+139 componentes organizados por camada atômica (atoms → molecules →
 organisms → templates → pages), cada um com:
 
 - Estados reais e interativos (hover/press/seleção via mouse e teclado —
   não só uma prop `state` congelada pra documentação)
 - Doc `.mdx` própria citando o node Figma de origem e o nível de confiança
   de cada decisão (Figma-confirmado vs. inferido — ver `Regra 9` abaixo)
-- Página de tokens (`Tokens/Colors`, `Typography`, `Spacing`, `Materials`)
+- Página de tokens (`Tokens/Colors`, `Typography`, `Spacing`, `Materials`, `Marca` e `Responsividade`)
   com especime visual real e valor copiável ao clicar, não só uma tabela
 
 | | | |
@@ -106,7 +106,11 @@ npm run storybook       # Storybook em http://localhost:6006
 ## Verificação
 
 ```bash
-npx tsc --noEmit         # typecheck
+npx tsc -b               # typecheck
+npx oxlint               # lint
+npm test                 # 501 testes das histórias no navegador, com axe (contraste é erro)
+npm run check:motion     # todo movimento respeita prefers-reduced-motion
+npm run check:touch      # alvos de toque de 44px no Mobile (gera o Storybook estático e mede)
 npm run build-storybook  # build estático (storybook-static/)
 ```
 
@@ -148,5 +152,5 @@ O `vercel.json` já aponta o build para o Storybook estático:
 }
 ```
 
-Basta importar este diretório (`design-system/`) como root do projeto na
+Basta importar este repositório como root do projeto na
 Vercel — nenhuma configuração adicional é necessária.

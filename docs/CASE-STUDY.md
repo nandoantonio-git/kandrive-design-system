@@ -138,7 +138,7 @@ aviso depois de guardar. Nenhuma delas foi retestada com pessoas.
 Essas decisões viraram requisitos de conteúdo/terminologia diretamente
 verificáveis nos componentes deste design system — ver `Regra 5 —
 Terminologia` no histórico de auditoria e as páginas `Tokens/Colors` e
-`Organisms/StorageStatus`/`PlanSelection` no Storybook.
+`Molecules/Armazenamento/StorageStatus` e `Organisms/Armazenamento/PlanSelection` no Storybook.
 
 ## Síntese
 
