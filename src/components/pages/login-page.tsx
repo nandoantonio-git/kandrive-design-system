@@ -56,7 +56,7 @@ function LoginPage({ cardProps, onCreateAccount, className, ...props }: LoginPag
       )}
       {...props}
     >
-      {/* Mobile: manchas desfocadas do Figma (Brand/Primary/Focus e Brand/Primary/Dark/Surface) */}
+      {/* Mobile: manchas desfocadas do Figma (Focus/Ring e Brand/Primary/Dark/Surface) */}
       <div aria-hidden="true" className="absolute -top-80 -left-84 size-[622px] rounded-full bg-brand-primary-focus opacity-40 blur-[159px] tablet:hidden" />
       <div aria-hidden="true" className="absolute top-[586px] left-16 h-[584px] w-[524px] rounded-full bg-brand-teal-dark-surface blur-[107px] tablet:hidden" />
       {/* Tablet e desktop */}

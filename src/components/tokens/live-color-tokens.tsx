@@ -119,13 +119,18 @@ const STATUS: Record<Status, { label: string; className: string }> = {
 }
 
 /** Ordem das famílias (1º nível do nome no Figma). */
-const FAMILY_ORDER = ["Brand", "Storage", "Neutral", "UI", "Effect"]
+const FAMILY_ORDER = ["Brand", "Feedback", "Storage", "Text", "Surface", "Border", "Icon", "Focus", "Effect", "Logo"]
 const FAMILY_TITLE: Record<string, string> = {
   Brand: "Marca",
+  Feedback: "Feedback",
   Storage: "Armazenamento",
-  Neutral: "Neutros",
-  UI: "Interface",
+  Text: "Texto",
+  Surface: "Superfícies",
+  Border: "Bordas",
+  Icon: "Ícones",
+  Focus: "Foco",
   Effect: "Efeitos (Liquid Glass e overlays)",
+  Logo: "Logo",
   Base: "Base shadcn/ui (fora do Figma)",
 }
 
@@ -133,7 +138,8 @@ const FAMILY_TITLE: Record<string, string> = {
 function pathOf(token: ColorToken): [family: string, group: string, leaf: string] {
   if (token.figma) {
     const [family, group, ...rest] = token.figma.split("/")
-    return [family, group ?? "Geral", rest.join("/")]
+    // Papéis de dois níveis (`Text/Primary`, `Focus/Ring`) ficam no grupo "Geral" da família.
+    return rest.length ? [family, group, rest.join("/")] : [family, "Geral", group ?? ""]
   }
   // Tokens só do código: agrupados pelo prefixo do nome CSS (`--sidebar-*`, `--chart-*`…).
   const bare = token.name.replace(/^--/, "")
@@ -164,6 +170,8 @@ function ColorCard({ token, mode }: { token: ColorToken; mode: Mode }) {
   const value = mode === "light" ? token.light : token.dark
   const { hex, rgb } = rgbLabel(value)
   const figmaRef = token.figma ? FIGMA_COLORS[token.figma] : undefined
+  // Cor de base na coleção `Primitives` do Figma (reestruturação de 2026-09-30).
+  const base = figmaRef ? (mode === "light" ? figmaRef.lightBase : figmaRef.darkBase) : undefined
   const leaf = token.figma ?? token.name.replace(/^--/, "")
   return (
     <div className="flex flex-col overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-zinc-200">
@@ -175,6 +183,7 @@ function ColorCard({ token, mode }: { token: ColorToken; mode: Mode }) {
         <span className="text-xs font-semibold text-zinc-900">{leaf.split("/").join("/\u200b")}</span>
         <span className="h-px w-6 bg-zinc-300" aria-hidden="true" />
         <code className="text-[0.6875rem] text-zinc-600">{hex}</code>
+        {base ? <span className="text-[0.6875rem] text-zinc-500">Base: {base}</span> : null}
         {rgb ? <code className="text-[0.6875rem] text-zinc-600">{rgb}</code> : null}
         {token.name ? (
           <button
@@ -274,7 +283,7 @@ function ColorTokens() {
             {[...groups.entries()].map(([group, rows]) => (
               <section key={group} className="mt-3 mb-2 flex flex-col">
                 <h4 className="mb-1 text-sm font-semibold text-zinc-700">
-                  {family === "Base" ? group : `${family}/${group}`}{" "}
+                  {family === "Base" ? group : group === "Geral" ? `${family}/` : `${family}/${group}`}{" "}
                   <span className="font-normal text-neutral-text-tertiary">({rows.length})</span>
                 </h4>
                 <div className="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-3">

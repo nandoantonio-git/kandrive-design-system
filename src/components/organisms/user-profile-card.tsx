@@ -17,9 +17,9 @@ export interface UserProfileCardProps extends React.ComponentProps<"section"> {
  * `UserBlock` em `Settings/Account` Mobile, Tablet e Desktop; F10, aprovado em
  * 2026-09-24). Tocar no avatar do Header abre esta tela.
  *
- * - Card `Neutral/Surface/Card` com borda `Neutral/Border/Subtle`, raio 12.
- * - `Avatar` de 56px, nome 18px SemiBold `Neutral/Text/Primary`, e-mail 14px
- *   `Neutral/Text/Secondary`.
+ * - Card `Surface/Card` com borda `Border/Subtle`, raio 12.
+ * - `Avatar` de 56px, nome 18px SemiBold `Text/Primary`, e-mail 14px
+ *   `Text/Secondary`.
  * - Ações: `Button` Outline MD "Editar perfil" e "Trocar conta". No mobile e no
  *   tablet ficam abaixo da identidade; no desktop, à direita.
  */

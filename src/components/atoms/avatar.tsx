@@ -13,7 +13,7 @@ export interface AvatarProps extends React.ComponentProps<"span"> {
 
 /**
  * `atom/Avatar`: Figma-confirmado no KanDrive V0.2.1 (`3028:3715`). Círculo com
- * borda `Brand/Primary/Dark` e fundo `Neutral/Surface/Gray`. 🧩 As iniciais
+ * borda `Brand/Primary/Dark` e fundo `Surface/Placeholder`. 🧩 As iniciais
  * sem foto são extensão de engenharia: o Figma só desenha o círculo vazio.
  */
 function Avatar({ src, name, size = 36, className, style, ...props }: AvatarProps) {

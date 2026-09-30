@@ -202,7 +202,7 @@ function ImageItem({
     >
       <div className="relative h-[41px] w-[35.14px] shrink-0">
         <img alt="" aria-hidden="true" className="absolute inset-0 size-full" src={IMAGE[state]} />
-        {/* Vidro do símbolo fixo no valor Light (Effect/Glass/Fill/Light, #fafafa a 60%): o símbolo fica igual no Light e no Dark (pedido do usuário, 2026-09-24). */}
+        {/* Vidro do símbolo fixo no valor Light (Effect/Glass/Surface/Light, #fafafa a 60%): o símbolo fica igual no Light e no Dark (pedido do usuário, 2026-09-24). */}
         <div
           aria-hidden="true"
           className="absolute top-[2px] left-[2.07px] h-7 w-[31px] rounded glass-edge bg-[rgba(250,250,250,0.6)]"

@@ -20,7 +20,7 @@ export interface FileRowProps extends React.ComponentProps<"div"> {
  * - Pasta: fundo `Effect/Overlay/Subtle` a 10% e borda `Brand/Primary/Light`.
  *   Arquivo: sem fundo.
  * - Nome em 16px, a Regra 4 para texto de leitura. ⚠️ No Figma, o nome tem 13px.
- * - Metadados e data em 11px (`Neutral/Text/Tertiary`), dentro da exceção de
+ * - Metadados e data em 11px (`Text/Tertiary`), dentro da exceção de
  *   microtexto da Regra 4.
  */
 function FileRow({ type = "file", name, meta, date, className, ...props }: FileRowProps) {

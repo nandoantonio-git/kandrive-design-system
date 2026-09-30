@@ -48,13 +48,13 @@ export interface MobileBottomNavProps extends React.ComponentProps<"div"> {
  *   fica no lado do FAB, e a variante None tem a barra reta.
  * - Ícone ativo: `Brand/Primary/Default`. Ícones inativos:
  *   `Effect/Overlay/Default` a 50%.
- * - Rótulos: 11px. Inativos em `Neutral/Text/Tertiary`; o do destino atual
+ * - Rótulos: 11px. Inativos em `Text/Tertiary`; o do destino atual
  *   em `Brand/Primary/Default`, como o ícone. Corrigido no Figma e no código em
- *   2026-09-24 (F9): antes, todos usavam `Neutral/Text/Placeholder`, abaixo do
+ *   2026-09-24 (F9): antes, todos usavam `Text/Placeholder`, abaixo do
  *   WCAG AA no Light.
  * - Ícones: glifos SF exportados do Figma como SVG em contorno.
  * - FAB: 62px, `Brand/Primary/Action`, glifo branco.
- * - ✕ de cancelar: 44px, `Neutral/Surface/Constant/Light`, glifo `destructive`.
+ * - ✕ de cancelar: 44px, `Surface/Fixed/Light`, glifo `destructive`.
  *
  * **Corrigido em 2026-09-25**: os 4 botões de destino não tinham
  * `transition-colors` (confirmado via `git log`: nunca tiveram, não é

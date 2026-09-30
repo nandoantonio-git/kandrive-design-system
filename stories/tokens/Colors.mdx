@@ -5,7 +5,7 @@ import { ColorTokens } from '../../src/components/tokens/live-color-tokens';
 
 # Cores
 
-Todos os tokens de cor do código, em cartões: a cor em cima e, embaixo, o nome da variável do Figma, o hex, o RGB e o token CSS. A chave **Light / Dark** troca o modo mostrado. Os valores são lidos **ao vivo** de `src/index.css` (regras `:root` e `.dark`), então esta página nunca fica desatualizada em relação ao que os componentes renderizam. Cada token é comparado com a variável correspondente do Figma **KanDrive V0.2.1** (coleção Core, quadro *Foundation/Color Modes*).
+Todos os tokens de cor do código, em cartões: a cor em cima e, embaixo, o nome da variável do Figma, o hex, o RGB e o token CSS. A chave **Light / Dark** troca o modo mostrado. Os valores são lidos **ao vivo** de `src/index.css` (regras `:root` e `.dark`), então esta página nunca fica desatualizada em relação ao que os componentes renderizam. Cada token é comparado com a variável correspondente do Figma **KanDrive V0.2.1** (coleção `Color`, cujos papéis apontam para as cores de base da coleção `Primitives`). O cartão mostra também a cor de base de cada modo, como `Teal/725` ou `Teal/775 · 40%`.
 
 ## Legenda
 
@@ -33,7 +33,7 @@ Para usar em um componente, clique no nome do token para copiar `var(--…)`. Pe
 
 ## Paleta
 
-Uma paleta só, agrupada pela hierarquia do nome no Figma: família (Marca, Armazenamento, Neutros, Interface, Efeitos) › grupo (`Brand/Primary`, `Neutral/Text`…). Cada família recolhe clicando no título. Tokens sem variável no Figma ficam no fim, em *Base shadcn/ui*, e variáveis sem token CSS aparecem no próprio grupo, marcadas 🎨.
+Uma paleta só, agrupada pela hierarquia do nome no Figma: família (Marca, Feedback, Armazenamento, Texto, Superfícies, Bordas, Ícones, Foco, Efeitos, Logo) › grupo (`Brand/Primary`, `Surface/Fixed`…). Cada família recolhe clicando no título. Tokens sem variável no Figma ficam no fim, em *Base shadcn/ui*, e variáveis sem token CSS aparecem no próprio grupo, marcadas 🎨.
 
 <ColorTokens />
 

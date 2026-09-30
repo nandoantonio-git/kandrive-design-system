@@ -42,7 +42,7 @@ export type FreeModeMiniMapProps = React.ComponentProps<"div">
  * nós do canvas (Regra 9: nunca apresentar como funcionalidade real).
  */
 function FreeModeMiniMap({ className, ...props }: FreeModeMiniMapProps) {
-  // Figma `Mini-Map` (`1422:24802`), 192×128: cartão `Neutral/Surface/Card` com borda `Neutral/Border/Subtle`,
+  // Figma `Mini-Map` (`1422:24802`), 192×128: cartão `Surface/Card` com borda `Border/Subtle`,
   // raio 12 e 60% de opacidade. Posições absolutas iguais às do nó (2026-09-29). A linha de rótulos que o
   // Figma tem em y=127 fica fora da área e é cortada, então não aparece.
   return (

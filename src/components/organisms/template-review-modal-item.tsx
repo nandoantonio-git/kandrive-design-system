@@ -39,7 +39,7 @@ export interface TemplateReviewModalItemProps extends Omit<React.ComponentProps<
   isExpanded: boolean
   onToggleExpand: () => void
   /**
-   * Figma `Device` do `TemplateReviewModal`. Mobile: card `Neutral/Surface/Elevated`,
+   * Figma `Device` do `TemplateReviewModal`. Mobile: card `Surface/Elevated`,
    * nome e selo na 1ª linha, Renomear/Editar abaixo do selo, caminho quebrando linha.
    */
   device?: "desktop" | "mobile"

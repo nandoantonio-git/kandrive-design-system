@@ -22,8 +22,8 @@ export interface FileSelectListProps extends Omit<React.ComponentProps<"section"
  * (`Organize/ChooseMethod/Mobile` e `LongTermStorage/SelectFiles/Mobile`).
  * 🧩 No Figma é um frame (`file-list-section`), não um componente.
  *
- * - Título: 11px Bold em maiúsculas, `Neutral/Text/Tertiary`.
- * - Lista: card `Neutral/Surface/Card`, borda `Neutral/Border/Subtle`, raio 12,
+ * - Título: 11px Bold em maiúsculas, `Text/Tertiary`.
+ * - Lista: card `Surface/Card`, borda `Border/Subtle`, raio 12,
  *   com linhas `FileSelectRow`.
  */
 function FileSelectList({ files, selected, onSelectedChange, title = "Selecionar arquivos", className, ...props }: FileSelectListProps) {

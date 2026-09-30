@@ -205,7 +205,7 @@ function ArchiveItem({
     >
       <div className="relative h-[41px] w-[36.68px] shrink-0">
         <img alt="" aria-hidden="true" className="absolute inset-0 size-full" src={BASE_IMAGE[state]} />
-        {/* Vidro do símbolo fixo no valor Light (Effect/Glass/Fill/Light, #fafafa a 60%): o símbolo fica igual no Light e no Dark (pedido do usuário, 2026-09-24). */}
+        {/* Vidro do símbolo fixo no valor Light (Effect/Glass/Surface/Light, #fafafa a 60%): o símbolo fica igual no Light e no Dark (pedido do usuário, 2026-09-24). */}
         <div
           aria-hidden="true"
           className="absolute top-[6px] left-[5.34px] h-[3px] w-[26px] rounded-[6px] bg-[rgba(250,250,250,0.6)]"

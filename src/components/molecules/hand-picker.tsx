@@ -23,9 +23,9 @@ export interface HandPickerProps extends Omit<React.ComponentProps<"div">, "onCh
  *
  * - Opção: raio 12, padding 12. Selecionada: borda de 1.5px `Brand/Primary/Default`
  *   e fundo `Brand/Primary/Disabled` (teal claro no Light, teal escuro no Dark).
- *   Não selecionada: borda `Neutral/Border/Subtle`.
- * - Celular: 36×60, raio 8, contorno `Neutral/Text/Tertiary`; barra de base
- *   `Neutral/Border/Subtle`; FAB de 10px em `Brand/Primary/Default`.
+ *   Não selecionada: borda `Border/Subtle`.
+ * - Celular: 36×60, raio 8, contorno `Text/Tertiary`; barra de base
+ *   `Border/Subtle`; FAB de 10px em `Brand/Primary/Default`.
  * - É um `radiogroup`: setas trocam a opção, e o rótulo tem 16px (Regra 4).
  * - 🧩 Regra 8: pressed não desenhado no Figma.
  */

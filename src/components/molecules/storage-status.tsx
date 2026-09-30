@@ -29,8 +29,8 @@ export interface StorageStatusProps extends React.ComponentProps<"div"> {
   onBuySpace?: () => void
   /**
    * Figma `Tier=Alert` (`1765:62468`, V0.2.1), usado em `Storage/LimitReached`:
-   * o valor usado em `Brand/Feedback/Danger/Default`, o aviso de limite abaixo
-   * dos botões e a barra cheia em `Brand/Feedback/Danger/Surface`. Só no
+   * o valor usado em `Feedback/Danger/Default`, o aviso de limite abaixo
+   * dos botões e a barra cheia em `Feedback/Danger/Surface`. Só no
    * escopo global. ⚠️ No componente do Figma, o aviso usa `Danger/Subtle`
    * (35%, ilegível); a tela usa o vermelho cheio, que é o que o código segue.
    */

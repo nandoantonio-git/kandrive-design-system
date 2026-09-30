@@ -32,8 +32,8 @@ export interface PagePickerButtonProps extends Omit<React.ComponentProps<"button
  * (`page-button`), não um componente: extraído aqui porque se repete.
  *
  * - Botão: 32px, raio 8, fundo `Effect/Overlay/Subtle` a 10% com blur, borda
- *   `Brand/Primary/Light`, texto 13px Medium `Neutral/Text/Secondary`.
- * - Ícone e chevron: `Neutral/Text/Tertiary`. Rótulo: 11px `Neutral/Text/Tertiary`.
+ *   `Brand/Primary/Light`, texto 13px Medium `Text/Secondary`.
+ * - Ícone e chevron: `Text/Tertiary`. Rótulo: 11px `Text/Tertiary`.
  * - 🧩 Regra 8: hover, pressed e disabled não desenhados no Figma.
  *
  * **Lista de páginas (2026-09-28, decisão do usuário)**: o chevron prometia

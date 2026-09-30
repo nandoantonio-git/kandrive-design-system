@@ -20,7 +20,7 @@ export interface RecoveryPendingProps extends React.ComponentProps<"div"> {
  * 🧩 No Figma é o conteúdo de uma tela, não um componente: extraído para ter
  * story própria. É um estado, então vale em todas as larguras.
  *
- * - Ilustração: círculo de 160px `Neutral/Surface/Background/Alt` com borda
+ * - Ilustração: círculo de 160px `Surface/Background/Alt` com borda
  *   `Brand/Primary/Light` e sombra de 10px a 10%, anel `Brand/Primary/Default`
  *   (raio interno de 82%) e o Kan espiando da bolsa.
  * - 🧩 O Kan foi redesenhado em SVG a partir dos traços do `atom/MobileSuccess`:
@@ -28,7 +28,7 @@ export interface RecoveryPendingProps extends React.ComponentProps<"div"> {
  * - Nome do arquivo: 10px Bold `Brand/Primary/Dark` (microtexto), que fica
  *   teal claro no Dark. Corrigido em 2026-09-24 (F14): antes usava
  *   `Brand/Primary/Mid`, que é a cor do logo e não muda no Dark. Título: 25px
- *   Medium `Neutral/Text/Primary`.
+ *   Medium `Text/Primary`.
  * - Texto e aviso em 16px (Regra 4). ⚠️ No Figma têm 13px e 11px.
  * - Aviso: fundo `Brand/Primary/Disabled`, texto `Brand/Primary/Dark`, raio 8.
  * - Ação: `atom/Button` Secondary LG Pill em largura total.

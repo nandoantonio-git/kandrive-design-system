@@ -35,8 +35,8 @@ export interface SidebarOptionProps extends React.ComponentProps<"button"> {
 /**
  * atom/SidebarOption (`1643:23462`): uma opção do menu da gaveta do Mobile.
  * 7 opções × Default/Hover/Pressed. 24px de altura, raio 8, padding 4/10/4/8, 6px entre ícone e rótulo;
- * rótulo 16px Medium `Brand/Secondary/Dark`, detalhe 11px `Neutral/Text/Tertiary`.
- * Hover `Neutral/Surface/Muted` (zinc 500 a 20%), Pressed `Neutral/Surface/Medium`, com a mesma
+ * rótulo 16px Medium `Brand/Secondary/Dark`, detalhe 11px `Text/Tertiary`.
+ * Hover `Surface/Muted` (zinc 500 a 20%), Pressed `Surface/Medium`, com a mesma
  * smart animation do Figma (troca de variante ao passar e ao pressionar).
  *
  * 🧩 Regra 8: o ícone fica teal no hover e o anel de foco é o padrão; área de toque ampliada (`touch-target`).

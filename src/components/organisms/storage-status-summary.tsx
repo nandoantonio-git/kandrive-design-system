@@ -42,11 +42,11 @@ export interface StorageStatusSummaryProps extends React.ComponentProps<"div"> {
  *   `FileListHeader format="home"` e `FileList format="list"`, como no Figma.
  * - Mobile (`Storage/Total/Mobile`, `1663:8852`): 🧩 no Figma são frames, não
  *   uma variante. O filtro fica sozinho na 1ª linha, Agrupar e Etiquetar na 2ª,
- *   e a lista vira uma tabela em card `Neutral/Surface/Elevated`, com raio 12:
+ *   e a lista vira uma tabela em card `Surface/Elevated`, com raio 12:
  *   cabeçalho "Nome" | "↓ Armazenamento" e linhas com o símbolo de pasta,
  *   nome, proprietário e tamanho.
  * - Nome em 16px (Regra 4). ⚠️ No Figma mobile, 13px. Proprietário e tamanho
- *   em 11px, `Neutral/Text/Tertiary` (microtexto; no Figma, 10 e 11px).
+ *   em 11px, `Text/Tertiary` (microtexto; no Figma, 10 e 11px).
  * - 🧩 Regra 8: pressed do botão de filtros e hover/pressed/foco do
  *   "Armazenamento" (mobile) não desenhados no Figma.
  * - 🧩 "Filtros" (2026-09-28, decisão do usuário): o painel de filtros não
