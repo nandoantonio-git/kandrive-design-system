@@ -50,7 +50,7 @@ const HOVER_BACKGROUND: Partial<Record<TagVariant, React.CSSProperties>> = {
  * amostra de paleta em `atom/TagColor`/seletores de cor).
  *
  * Tipografia: `Type/Tag` do Figma é 8px (`get_design_context`,
- * `text-[8px]`, 2026-08-12 US-026), abaixo do piso de ~11px que a Regra 4
+ * `text-xs`, 2026-08-12 US-026), abaixo do piso de ~11px que a Regra 4
  * exige mesmo para microtexto decorativo. Reconciliado nesta auditoria para
  * `0.6875rem` (11px) — mesma correção já registrada em `docs/conflicts.md`
  * ("Type/Tag corrigido de 8px para 11px") que havia regredido para 8px no
@@ -78,7 +78,7 @@ function Tag({
       data-variant={variant}
       data-state={state}
       className={cn(
-        "inline-flex items-center gap-2 rounded-md px-2 py-1 text-[0.6875rem] leading-none tracking-[0.006px] whitespace-nowrap transition-colors",
+        "inline-flex items-center gap-2 rounded-md px-2 py-1 text-xs leading-none tracking-[0.006px] whitespace-nowrap transition-colors",
         VARIANT_STYLES[variant],
         isHover && variant === "secondary" && "bg-brand-pink-dark",
         state === "default" && variant === "primary" && "hover:bg-brand-teal-dark-surface",

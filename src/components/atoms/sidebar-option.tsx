@@ -61,7 +61,7 @@ function SidebarOption({ option, label, detail, current = false, className, ...p
         <Glyph aria-hidden="true" className="max-h-4 max-w-4" />
       </span>
       <span className="min-w-0 flex-1 truncate">{label ?? defaultLabel}</span>
-      {detail ? <span className="shrink-0 text-[0.6875rem] font-medium text-neutral-text-tertiary dark:text-zinc-400">{detail}</span> : null}
+      {detail ? <span className="shrink-0 text-xs font-medium text-neutral-text-tertiary dark:text-zinc-400">{detail}</span> : null}
     </button>
   )
 }
