@@ -22,6 +22,7 @@ Arquivo do Figma KanDrive V0.2.1, a partir de 2026-09-23.
 - Changelog.
 - Case Study: slide `07 / Escopo`, com o que entrou no case e o que ficou de fora. Protótipo: Compartilhados, Recentes, Favoritos e Lixeira abrem o aviso "Fora do escopo deste case" (`organism/Dialog` informativo) em vez de não fazer nada.
 - Case Study: resultado do teste de usabilidade como leitura qualitativa (no documento e no slide 03), tempos como apoio com o critério do "esperado" explicado, e a seção "O que ainda não foi validado".
+- Vocabulário (auditoria UX, A3): mapa ação, lugar e camada na Regra 5 e no Glossário. **Guardar** é a ação, **Guardados** é o lugar e **Longo prazo** é só a camada do Status. Grafia "Longo prazo" e "Acesso rápido" padronizada no Figma (22 textos) e no crumb do Status de armazenamento; "Guardados (Longo prazo e arquivos frios)" nas Configurações virou "Guardados".
 
 #### Alterado
 

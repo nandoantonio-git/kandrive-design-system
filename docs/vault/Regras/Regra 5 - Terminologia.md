@@ -30,6 +30,20 @@ Configurações de Plano **não** tem gatilho pro mesmo modal — ver seção de
 
 "Limpar Espaço" (título antigo do node no Figma) está proibido — já foi corrigido no Figma pelo usuário em 2026-08-10.
 
+## Mapa de vocabulário: ação, lugar e camada
+
+Três palavras da mesma família, cada uma com um papel só (decisão de 2026-09-30, auditoria UX A3):
+
+| Papel | Termo | Onde aparece | Como escrever |
+| --- | --- | --- | --- |
+| Ação | **Guardar** | botão do Header, modal de Guardar, `ContextHeader` | verbo; "Guardar no longo prazo" quando precisa dizer o destino |
+| Lugar | **Guardados** | Sidebar, gaveta do Mobile, menu Resgatar, FAQ | substantivo; nome próprio do lugar onde a pessoa abre os arquivos |
+| Camada | **Longo prazo** | só no Status de armazenamento (Total, Acesso rápido, Longo prazo) e nas frases que explicam o uso | sempre "longo prazo", em minúscula no meio da frase |
+
+- Frase de ligação, para a ajuda e o modal: "Você guarda, e o arquivo vai para Guardados, no armazenamento de longo prazo."
+- "Longo prazo" nunca nomeia um lugar nem um botão. Quem precisa abrir os arquivos vai a **Guardados**.
+- Grafia: "Acesso rápido" e "Longo prazo" (só a primeira letra maiúscula). "Longo Prazo" e "Acesso Rápido" não existem mais no Figma nem na interface.
+
 ## "Guardar" × "Arquivar" — nunca intercambiáveis
 
 Os dois estão na mesma lista aprovada mas **não são sinônimos**:

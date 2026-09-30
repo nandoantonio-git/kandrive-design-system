@@ -75,7 +75,7 @@ function StorageStatusPage({
   ...props
 }: StorageStatusPageProps) {
   const tablet = useMinWidth("tablet")
-  const scopeLabel = scope === "global" ? "Total" : scope === "quick-access" ? "Acesso Rápido" : "Longo Prazo"
+  const scopeLabel = scope === "global" ? "Total" : scope === "quick-access" ? "Acesso rápido" : "Longo prazo"
   if (limitReached && !tablet) {
     return (
       <AppShell
