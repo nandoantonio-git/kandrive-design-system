@@ -1,0 +1,22 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as Stories from './StorageStatusHeaderSelector.stories';
+
+<Meta of={Stories} />
+
+# StorageStatusHeaderSelector
+
+Figma: [`molecule/StorageStatusHeaderSelector`](https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=890-9869)
+
+## Uso
+
+A linha de chips que troca o painel do `StorageStatus`: Total, Acesso rápido e Longo prazo.
+
+<Canvas of={Stories.Default} />
+
+## Composição
+
+Três `atom/TypeLabel` de tier (`TierGlobal`, `TierCurrent`, `TierLongTerm`), 10px entre eles e 12px acima e abaixo. O ativo usa `State=Selected`, na cor do tier.
+
+## Acessibilidade
+
+Grupo com rótulo "Escopo do armazenamento"; cada chip é um botão com `aria-pressed`.

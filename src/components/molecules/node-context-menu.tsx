@@ -3,7 +3,7 @@ import { X, Info } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/atoms/button"
-import { AddButton } from "@/components/atoms/add-button"
+import { FreeModeButton } from "@/components/atoms/free-mode-button"
 import { NodeContextMenuItem } from "@/components/molecules/node-context-menu-item"
 import NodeContextMenuFilter from "@/assets/icons/NodeContextMenuFilter.svg?react"
 
@@ -230,7 +230,7 @@ function NodeContextMenu({
           ) : null}
         </div>
 
-        <AddButton label="Adicionar regra" onClick={addRule} className="w-full" />
+        <FreeModeButton label="Adicionar regra" onClick={addRule} className="w-full" />
 
         <div className="flex items-center justify-end gap-4 border-t border-zinc-300 dark:border-zinc-700 py-3">
           <Button variant="outline" className="h-8 px-4 text-xs" onClick={discard}>

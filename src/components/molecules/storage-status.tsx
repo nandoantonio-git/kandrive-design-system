@@ -3,7 +3,8 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/atoms/button"
 import { StorageBar, StorageBarExpanded } from "@/components/molecules/storage-bar"
-import { FileTypeLabel, ScopeTypeLabel } from "@/components/atoms/type-label"
+import { FileTypeLabel } from "@/components/atoms/type-label"
+import { StorageStatusHeaderSelector } from "@/components/molecules/storage-status-header-selector"
 
 export type StorageScope = "global" | "quick-access" | "long-term"
 
@@ -127,26 +128,7 @@ function StorageStatus({
       )}
       {...props}
     >
-      <div className="flex items-center gap-2 py-3">
-        <ScopeTypeLabel
-          kind="global"
-          label={SCOPE_LABEL.global}
-          active={scope === "global"}
-          onClick={() => onScopeChange?.("global")}
-        />
-        <ScopeTypeLabel
-          kind="quick-access"
-          label={SCOPE_LABEL["quick-access"]}
-          active={scope === "quick-access"}
-          onClick={() => onScopeChange?.("quick-access")}
-        />
-        <ScopeTypeLabel
-          kind="long-term"
-          label={SCOPE_LABEL["long-term"]}
-          active={scope === "long-term"}
-          onClick={() => onScopeChange?.("long-term")}
-        />
-      </div>
+      <StorageStatusHeaderSelector scope={scope} onScopeChange={onScopeChange} />
 
       <div className="flex flex-wrap items-baseline gap-x-2 pr-2 desktop:items-center">
         <span className={cn("shrink-0 whitespace-nowrap text-[1.5625rem] font-medium", alert ? "text-destructive" : "text-zinc-950 dark:text-zinc-100")}>Armazenamento usado:</span>

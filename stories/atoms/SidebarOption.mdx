@@ -1,0 +1,31 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as SidebarOptionStories from './SidebarOption.stories';
+
+<Meta of={SidebarOptionStories} />
+
+# SidebarOption
+
+Figma: [`atom/SidebarOption`](https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1643-23462)
+
+## Uso
+
+Uma opção do menu da gaveta do Mobile (`SidebarDrawer`): Guardados, Compartilhados, Armazenamento, Lixeira, Etiquetas, Configurações e Ajuda.
+
+<Canvas of={SidebarOptionStories.AllOptions} />
+<Controls of={SidebarOptionStories.Default} />
+
+## Composição
+
+24px de altura, raio 8, ícone de 16px, 6px entre ícone e rótulo; rótulo 16px Medium `Brand/Secondary/Dark` e detalhe opcional (uma contagem) em 11px `Neutral/Text/Tertiary`.
+
+## Estados
+
+| Estado | Tratamento |
+| --- | --- |
+| Hover | fundo `Neutral/Surface/Muted` (Figma) e ícone teal 🧩 |
+| Pressed | fundo `Neutral/Surface/Medium` (Figma) |
+| Atual | `aria-current="page"` e o fundo de hover |
+| Foco | 🧩 anel `ring-3 brand-teal-action/50` |
+| Toque | 🧩 área ampliada (`touch-target`) |
+
+🧩 = Regra 8: não desenhado no Figma.
