@@ -55,3 +55,10 @@ Ver [[Plano das pendências (2026-09-29)]].
 - **Revisar organização no Mobile:** virou folha de baixo por cima da seleção (decisão do usuário), no Figma (`Organize/ReviewSheet/Mobile`, aberta como sobreposição, com faixa escurecida que fecha e o ✕ que fecha; o ✓ segue para "Revisão concluída") e no código (`pages/organization-page.tsx`, com teste). O fluxo R agora começa na tela de Organização. A tela antiga `Organize/Review/Mobile` ficou no arquivo como referência, fora dos fluxos.
 - **Token que faltava:** `--color-neutral-surface-background` não estava no tema do Tailwind, então a classe `bg-neutral-surface-background` não gerava nada (AppShell, Onboarding, molduras de mobile). Registrado.
 - **16 componentes:** plano em [[Plano dos 16 componentes sem página (2026-09-30)]].
+
+## Jornadas revisadas (2026-09-30, segunda rodada)
+
+- `Organize/Review/Mobile` foi apagada a pedido do usuário; a folha `Organize/ReviewSheet/Mobile` ocupa o lugar dela.
+- Ligações que faltavam: o "+" da barra de baixo do Mobile abre o menu Adicionar em 13 telas, acima do FAB e do lado da mão escolhida (o menu passou a ter posição manual, então cada ligação leva a posição relativa); o ✕ volta à Home em 5 telas de seleção; a aba Pessoal leva à Home Mobile em 17 telas; Etiquetar abre em 32 telas e fecha pelo próprio componente; os checkboxes marcam e desmarcam (interação no componente, herdada por todas as instâncias); a busca da área de soltar preenchida leva aos resultados.
+- Resultado: 735 navegações, nenhum destino inexistente, 83 de 96 telas claras alcançáveis pelos fluxos (eram 78). As 13 restantes são variações de estado.
+- Sem ação: os 8 botões de salvar das Configurações (não há tela de destino) e o breadcrumb "Home" na própria Home.

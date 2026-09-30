@@ -3,7 +3,7 @@ import { Checkbox } from "@/components/atoms/checkbox"
 
 import { cn } from "@/lib/utils"
 import { StorageTierBadge, type StorageTier } from "@/components/atoms/storage-tier-badge"
-import FileGlyph from "@/assets/icons/CleanSpaceFileGlyph.svg?react"
+import { FileTypeIcon } from "@/components/atoms/file-type-icon"
 
 export interface CleanSpaceListSelectionProps
   extends Omit<React.ComponentProps<"div">, "onSelect"> {
@@ -95,7 +95,7 @@ function CleanSpaceListSelection({
         aria-label={`Selecionar ${name}`}
       />
       <span className="flex size-8 shrink-0 items-center justify-center rounded-[10.4px]">
-        <FileGlyph aria-hidden="true" className="h-[23px] w-[21px]" />
+        <FileTypeIcon type="file" className="h-[23px] w-[21px]" />
       </span>
       <div className="min-w-0 flex-1">
         <p className="truncate text-base tracking-[0.0192px] text-zinc-950 dark:text-zinc-100">{name}</p>

@@ -1,0 +1,24 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as MenuItemFloatingStories from './MenuItemFloating.stories';
+
+<Meta of={MenuItemFloatingStories} />
+
+# MenuItemFloating
+
+Figma: [`molecule/MenuItemFloating`](https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1363-16485)
+
+## Uso
+
+O painel de vidro que flutua abaixo de um botão. É a base do `DropdownMenu` (menus "Adicionar", "Guardados" e opções de template) e do `DropNewTag`. Use-o para qualquer menu ou painel flutuante novo, em vez de repetir o vidro.
+
+<Canvas of={MenuItemFloatingStories.Default} />
+
+## Composição
+
+| Parte | Figma | Código |
+| --- | --- | --- |
+| Fundo | `Effect/Glass/White/70` sobre `Effect/Glass/Surface/Light` 60% | `bg-effect-glass-white-70` + `backdrop-blur-md` |
+| Forma | raio 6, sem traço de borda | `rounded-md` |
+| Sombra | sombra larga (32px) | `shadow-[0_16px_32px_rgba(0,0,0,0.1)]` |
+
+O conteúdo e o papel (`role="menu"`, `listbox` etc.) são de quem usa.

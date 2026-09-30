@@ -1,0 +1,30 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as FileTypeIconStories from './FileTypeIcon.stories';
+
+<Meta of={FileTypeIconStories} />
+
+# FileTypeIcon
+
+Figma: [`atom/FileTypeIcon`](https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1444-21914)
+
+## Uso
+
+O glifo do tipo de arquivo (arquivo, pasta, imagem, vídeo), com o gradiente teal da marca. Aparece nas listas do "Liberar espaço" (arquivos grandes e duplicados). Para itens de arquivo com estados (selecionado, hover), use os `Symbols` (`ImageItem`, `VideoItem`, `FolderItem`).
+
+<Canvas of={FileTypeIconStories.AllTypes} />
+<Controls of={FileTypeIconStories.Default} />
+
+## Composição
+
+| Tipo | Figma | Tamanho |
+| --- | --- | --- |
+| `file` | `Type=File, Layout=Thumbnail` | 21×27 |
+| `folder` | `Type=Folder, Layout=Thumbnail` | 16×18 |
+| `image` | `Type=Image, Layout=Default` | 24×23 |
+| `video` | `Type=Video, Layout=Default` | 31×26 |
+
+É imagem (`<img>`), não SVG embutido, para que os gradientes de vários ícones na mesma tela não colidam.
+
+## Acessibilidade
+
+Decorativo por padrão (`alt=""`), porque o nome do arquivo e o tipo já aparecem ao lado. Passe `alt` quando o ícone for a única indicação do tipo.

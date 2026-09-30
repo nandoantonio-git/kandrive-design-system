@@ -1,0 +1,9 @@
+<svg width="21" height="27" viewBox="0 0 21 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.5 7.08108C2.5 5.37945 3.34276 4 4.38235 4H16.6176C17.6572 4 18.5 5.37945 18.5 7.08108V19.9189C18.5 21.6206 17.6572 23 16.6176 23H4.38235C3.34276 23 2.5 21.6206 2.5 19.9189V7.08108Z" fill="url(#fti_file_0)"/>
+<rect x="4.52637" y="7" width="12" height="1" rx="0.5" fill="#FAFAFA" fill-opacity="0.36"/>
+<rect x="4.52637" y="10" width="12" height="1" rx="0.5" fill="#FAFAFA" fill-opacity="0.36"/>
+<rect x="4.52637" y="13" width="8" height="1" rx="0.5" fill="#FAFAFA" fill-opacity="0.36"/>
+<defs>
+<linearGradient id="fti_file_0" x1="10.5" y1="4" x2="26.5133" y2="23.4703" gradientUnits="userSpaceOnUse"><stop stop-color="#007E96"/><stop offset="1" stop-color="#1A5E6E"/></linearGradient>
+</defs>
+</svg>
