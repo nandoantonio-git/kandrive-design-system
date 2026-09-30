@@ -41,7 +41,12 @@ Página `🎞️ Case Study · KanDrive` (`3214:2`), 8 slides 1920×1080. Pedido
 - **08 Interface + documentação:** captura da Docs do `Header` (canvas, props, `homeHref`).
 - **08 Graphify:** grafo atualizado em 29/09/2026 (3.034 nós, 3.308 ligações), com a data no recorte.
 
-Falta só o **02** (ilustrações e fotos que dependem do usuário).
+## Slide 02 e fundos (2026-09-29, fim do dia)
+
+- **02:** os três placeholders viraram cards com ícones do próprio sistema, em teal `Brand/Primary`, sobre o pattern 08: `CloudQueue`, `CloudSync` e `FolderShared` em "Muitas nuvens e pastas" (o título era "Muitas nuvens e HDs", mas o sistema não tem ícone de HD); `Folder`, `FolderCopy`, `FileMoveRight` e `FileRename` em "Organização manual"; e o rosto `icon-feedback-negative-sad` do Kan em "Medo de perder arquivos".
+- **Fundos:** capa com o pattern 01 · Herói, slides 02 a 07 com o 08 · Claro e arejado, e o 08 / Entrega com o 11 · Textura (ver [[Patterns]]).
+
+Nenhum placeholder sobrou no case.
 
 ## O que ainda não temos (placeholders que ficaram) e como preencher
 

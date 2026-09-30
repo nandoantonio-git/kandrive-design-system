@@ -69,3 +69,8 @@ Sequência sugerida: 1 → 3 → 4 (o essencial e sem risco), depois 2, 5, 7. O 
 3. Posso reorganizar a mesa (mover as peças para dentro de seções nomeadas, sem alterá-las)? É o que dá a ordem de leitura.
 
 Ver também: [[Fechamento da entrega (2026-09-28)]], [[Tom de Voz e Personalidade da Marca]].
+
+## Atualização (2026-09-29, fim do dia)
+
+- Nova seção **`08 · Patterns`** com os 12 fundos da marca, cada um com nome e orientação de uso. O 05 aparece com o aviso de que o Kan dele não é o símbolo oficial (ver [[Patterns]]).
+- O slide de introdução (`3287:76`) não existe mais na página; parece ter sido removido pelo usuário. Por isso a troca de fundo dele pelo 09 · Escuro premium não foi feita.
