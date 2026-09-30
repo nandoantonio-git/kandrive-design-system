@@ -78,13 +78,13 @@ function InfoPopover({ className, ...props }: InfoPopoverProps) {
         }
       />
       {isStorageInfo ? (
-        <div className="absolute left-[13px] top-[10px] flex w-[228px] flex-col gap-1 p-2 text-[0.625rem] tracking-[0.012px] text-black/20">
+        <div className="absolute left-[13px] top-[10px] flex w-[237px] flex-col gap-1 p-2 text-[0.625rem] tracking-[0.012px] text-black/20">
           <p>Longo prazo</p>
           <div className="h-0 w-full border-t border-brand-secondary-light opacity-35" />
           <p>Acesso rápido</p>
         </div>
       ) : (
-        <div className="absolute left-[13px] top-[8px] flex w-[198px] flex-col gap-1 p-2">
+        <div className="absolute left-[13px] top-[8px] flex w-[237px] flex-col gap-1 p-2">
           <p className="text-[0.625rem] font-bold tracking-[0.012px] text-black">Informações</p>
           <div className="flex items-center justify-between text-[0.625rem] tracking-[0.012px] text-brand-secondary-light">
             <span>Criado</span>

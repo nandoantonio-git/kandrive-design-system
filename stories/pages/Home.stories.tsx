@@ -128,6 +128,7 @@ export const ColumnsMode: Story = {
   args: {
     viewMode: "columns",
     columnsRows: [{ name: "Arquivo 1" }, { name: "Arquivo 2" }, { name: "Arquivo 3" }],
+    previewTags: ["Recentes", { label: "Urgente", danger: true }],
     previewFile: {
       name: "Arquivo 1",
       owner: "Cassandra Weber",

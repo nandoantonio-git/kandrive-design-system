@@ -111,7 +111,7 @@ function TemplateReviewModalItem({ item, isExpanded, onToggleExpand, device = "d
       )}
       {...props}
     >
-      <div className={cn("flex items-start justify-between", mobile && "grid grid-cols-[minmax(0,1fr)_auto] gap-x-2 gap-y-1")}>
+      <div className={cn("flex items-start justify-between gap-4", mobile && "grid grid-cols-[minmax(0,1fr)_auto] gap-x-2 gap-y-1")}>
         <div className={cn("flex items-center gap-2", mobile && "row-span-2 min-w-0 self-start")}>
           <button
             type="button"

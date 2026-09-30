@@ -223,7 +223,7 @@ function Label({
                     onClick={() => select(FILE_TYPE_LABEL[kind])}
                     className="w-full cursor-pointer rounded-md transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 active:opacity-60"
                   >
-                    <FileTypeLabel kind={kind} selected={FILE_TYPE_LABEL[kind] === value} className="w-full" />
+                    <FileTypeLabel kind={kind} filled={false} selected={FILE_TYPE_LABEL[kind] === value} className="w-full" />
                   </button>
                 ))}
                 </div>

@@ -12,6 +12,8 @@ const meta = {
     layout: "centered",
     design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1554-21151" },
   },
+  // Largura do Figma (720px): no modal o item ocupa a linha inteira; sem isso a história encolhe e o título encosta no selo.
+  decorators: [(Story) => <div className="w-[720px] max-w-full"><Story /></div>],
   args: {
     isExpanded: false,
     onToggleExpand: () => {},

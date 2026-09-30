@@ -15,7 +15,7 @@ import { ImageItem } from "@/components/atoms/image-item"
 import { FileListHeader } from "@/components/molecules/file-list-header"
 import { FileList, type FileListProps } from "@/components/molecules/file-list"
 import { FileListContainer, type FileListContainerRow } from "@/components/organisms/file-list-container"
-import { PreviewPane, type PreviewPaneFile } from "@/components/organisms/preview-pane"
+import { PreviewPane, type PreviewPaneFile, type PreviewPaneProps } from "@/components/organisms/preview-pane"
 import { ContextHeader } from "@/components/molecules/context-header"
 import { Icon } from "@/components/atoms/icon"
 
@@ -35,6 +35,8 @@ export interface HomePageProps extends React.ComponentProps<"div"> {
   gridItems?: HomePageGridItem[]
   listRows?: HomePageListRow[]
   columnsRows?: FileListContainerRow[]
+  /** Etiquetas do arquivo aberto no painel de detalhes (modo Colunas). */
+  previewTags?: PreviewPaneProps["tags"]
   previewFile?: PreviewPaneFile
   /** `viewMode="list"` com uma seleção ativa (`page/Home/ListMode/Selected`, `1439:19810`) — troca o header de toolbar por `ContextHeader` e marca as linhas como selecionadas. */
   listSelectedCount?: number
@@ -92,6 +94,7 @@ function HomePage({
   gridItems = [],
   listRows = [],
   columnsRows = [],
+  previewTags,
   previewFile,
   listSelectedCount,
   onListSelectionClear,
@@ -107,7 +110,8 @@ function HomePage({
       data-slot="home-page"
       className={cn("bg-zinc-200 dark:bg-zinc-900", className)}
       headerProps={{ page: "navbar" }}
-      sidebar={<Sidebar {...sidebarProps} />}
+      // Colunas (Figma `Home/ColumnsDetails/Desktop`): a barra lateral usa o tamanho Tablet (150px) também no desktop, para abrir espaço às duas colunas.
+      sidebar={<Sidebar {...sidebarProps} className={cn(viewMode === "columns" && "desktop:w-[150px] desktop:px-2", sidebarProps?.className)} />}
       mobileTabBar={{ active: "home" }}
       mobileBottomNav={{ action: "add", active: "pessoal" }}
       {...props}
@@ -186,9 +190,12 @@ function HomePage({
                 ))}
               </div>
             ) : (
-              <div className="hidden items-start gap-6 tablet:flex">
-                <FileListContainer rows={columnsRows} className="flex-1" />
-                {previewFile ? <PreviewPane file={previewFile} className="w-96 shrink-0" /> : null}
+              // Figma (1162×830, raio 12, borda 1): duas colunas iguais; a lista ocupa a altura toda e o painel de detalhes fica centralizado no topo da segunda.
+              <div className="hidden min-h-[830px] grid-cols-2 overflow-hidden rounded-xl border border-[var(--neutral-border-default,#707070)] tablet:grid">
+                <FileListContainer rows={columnsRows} className="h-full w-full" />
+                <div className="flex items-start justify-center px-6 pt-6">
+                  {previewFile ? <PreviewPane file={previewFile} tags={previewTags} className="w-96 shrink-0" /> : null}
+                </div>
               </div>
             )}
             {/* Mobile: linhas FileRow (Figma molecule/FileRow Device=Mobile). Colunas cai para Lista. */}

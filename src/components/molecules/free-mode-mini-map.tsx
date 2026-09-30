@@ -42,34 +42,30 @@ export type FreeModeMiniMapProps = React.ComponentProps<"div">
  * nós do canvas (Regra 9: nunca apresentar como funcionalidade real).
  */
 function FreeModeMiniMap({ className, ...props }: FreeModeMiniMapProps) {
+  // Figma `Mini-Map` (`1422:24802`), 192×128: cartão `Neutral/Surface/Card` com borda `Neutral/Border/Subtle`,
+  // raio 12 e 60% de opacidade. Posições absolutas iguais às do nó (2026-09-29). A linha de rótulos que o
+  // Figma tem em y=127 fica fora da área e é cortada, então não aparece.
   return (
     <div
       aria-hidden="true"
       data-slot="free-mode-mini-map"
       className={cn(
-        "relative h-32 w-48 overflow-hidden rounded-xl border border-[#ececf0] bg-[rgba(107,107,104,0.18)] opacity-60",
-        "dark:border-[rgba(255,255,255,0.14)] dark:bg-[rgba(255,255,255,0.08)]",
+        "relative h-32 w-48 overflow-hidden rounded-xl border border-[#ececf0] bg-neutral-surface-card opacity-60",
+        "dark:border-[rgba(255,255,255,0.14)]",
         className
       )}
       {...props}
     >
-      {/* Viewport indicator — retângulo maior, ghost */}
-      <div className="absolute top-[21px] right-[21px] bottom-[14px] left-[30px] rounded-[6px] border border-[#3a3a3a] bg-[rgba(107,107,104,0.45)] dark:border-[rgba(255,255,255,0.4)] dark:bg-[rgba(255,255,255,0.16)]">
-        {/* Mini visual representations — retângulo menor, borda teal */}
-        <div className="absolute top-[13px] left-[19px] h-9 w-10 rounded-[4px] border border-brand-teal bg-[rgba(58,58,58,0.9)] dark:bg-[rgba(0,0,0,0.6)]" />
-        {/* Overlay claro */}
-        <div className="absolute top-[9px] left-[64px] h-[18px] w-[17px] rounded-[4px] bg-[rgba(234,234,234,0.6)] dark:bg-[rgba(255,255,255,0.35)]" />
-      </div>
-      {/* 4 nós fora do viewport, soltos */}
-      <span className="absolute top-9 left-[97px] h-[18px] w-[17px] rounded-[4px] bg-[#3f3f46] dark:bg-[rgba(255,255,255,0.55)]" />
+      {/* Viewport indicator */}
+      <div className="absolute top-[21px] left-[31px] h-[92px] w-[140px] rounded-[6px] border border-[#3a3a3a] bg-[rgba(107,107,104,0.45)] dark:border-[rgba(255,255,255,0.4)] dark:bg-[rgba(255,255,255,0.16)]" />
+      {/* Nó selecionado (borda teal) com o overlay claro dentro */}
+      <div className="absolute top-[34px] left-[50px] h-[35px] w-[38px] rounded-[4px] border border-brand-teal bg-[rgba(58,58,58,0.9)] dark:bg-[rgba(0,0,0,0.6)]" />
+      <span className="absolute top-[43px] left-[55px] h-[18px] w-[17px] rounded-[4px] bg-[rgba(234,234,234,0.6)] dark:bg-[rgba(255,255,255,0.35)]" />
+      {/* Os outros 4 nós */}
+      <span className="absolute top-[36px] left-[97px] h-[18px] w-[17px] rounded-[4px] bg-[#3f3f46] dark:bg-[rgba(255,255,255,0.55)]" />
       <span className="absolute top-[62px] left-[97px] h-[18px] w-[17px] rounded-[4px] bg-[#3f3f46] dark:bg-[rgba(255,255,255,0.55)]" />
-      <span className="absolute top-11 left-[123px] h-[18px] w-[17px] rounded-[4px] bg-[#3f3f46] dark:bg-[rgba(255,255,255,0.55)]" />
-      <span className="absolute top-11 left-[147px] h-[18px] w-[17px] rounded-[4px] bg-[#3f3f46] dark:bg-[rgba(255,255,255,0.55)]" />
-      {/* Linha inferior — 2 blocos placeholder, sem preenchimento confirmado no node */}
-      <div className="absolute inset-x-2 bottom-1 flex items-center justify-between">
-        <span className="h-[13.5px] w-[49px] rounded-sm bg-[rgba(107,107,104,0.25)] dark:bg-[rgba(255,255,255,0.12)]" />
-        <span className="h-[13.5px] w-6 rounded-sm bg-[rgba(107,107,104,0.25)] dark:bg-[rgba(255,255,255,0.12)]" />
-      </div>
+      <span className="absolute top-[46px] left-[123px] h-[18px] w-[17px] rounded-[4px] bg-[#3f3f46] dark:bg-[rgba(255,255,255,0.55)]" />
+      <span className="absolute top-[46px] left-[146px] h-[18px] w-[17px] rounded-[4px] bg-[#3f3f46] dark:bg-[rgba(255,255,255,0.55)]" />
     </div>
   )
 }
