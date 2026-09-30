@@ -181,7 +181,7 @@ Nota por dimensão (0 a 5, onde 3 é "aceitável para entrega" e 4 é "nível de
 7. A4 + A5: tela Desktop de "guardado", Login com erro e esqueci a senha, estados Desktop.
 8. A1: 44px no Mobile e teste de área de toque.
 9. A6: slide de personas ligadas a decisões.
-10. Reteste curto com 3 a 5 pessoas.
+10. Reteste curto com 3 a 5 pessoas (to-do futuro, fora desta rodada).
 
 **Onda 3: higiene e escala**
 11. M4/M7: nomear camadas, ligar hex soltos, modelar ícone como troca de instância, remover `PushButton` obsoleto.
@@ -242,4 +242,4 @@ Ver [[Auditoria final (2026-09-30)]] para o estado técnico (gate, paridade, pro
 - **CASE-STUDY.md:** o resultado virou leitura qualitativa (o que aconteceu em cada tarefa e em quantos participantes), com os tempos como apoio e o "esperado" explicado como expectativa da equipe antes do teste, não referência externa. Seção nova "O que ainda não foi validado": sem reteste, sucesso e erros por participante não registrados, Mariana e Rafael fora do recrutamento, Tablet e Dark sem teste.
 - **Slide 03:** o cartão do teste troca "+37% a +42% de tempo" por "4 de 4 travaram em Organizar" e "leitura qualitativa"; linha nova "Ainda não validado" com o próximo passo.
 - **Não inventado:** sucesso por tarefa e erros por participante não existem nos dados do artigo; ficaram declarados como lacuna em vez de estimados.
-- **Continua aberto:** o reteste (3 a 5 pessoas, as mesmas 3 tarefas, protótipo atual). Só ele fecha o C3 de vez.
+- **To-do futuro (decidido em 2026-09-30):** o reteste (3 a 5 pessoas, as mesmas 3 tarefas, protótipo atual) sai desta rodada de ajustes e fica para depois. O C3 conta como fechado para a publicação; o reteste é o que o fecha de vez.
