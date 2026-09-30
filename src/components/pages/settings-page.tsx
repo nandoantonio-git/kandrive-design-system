@@ -17,22 +17,13 @@ import { Button } from "@/components/atoms/button"
 import { PlanSelection, type PlanInterval } from "@/components/organisms/plan-selection"
 import { StorageBar } from "@/components/molecules/storage-bar"
 import { Dialog } from "@/components/organisms/dialog"
+import { SelectBox } from "@/components/molecules/select-box"
+
+const LANGUAGES = ["Português (Brasil)", "English (US)", "Español"] as const
+const DATE_FORMATS = ["DD/MM/AAAA", "MM/DD/AAAA", "AAAA-MM-DD"] as const
 
 export type { SettingsSection }
 
-function SelectBox({ value, className }: { value: string; className?: string }) {
-  return (
-    <div
-      className={cn(
-        "flex h-9 w-[280px] items-center justify-between rounded-md border border-[#d4d4d4] bg-effect-glass-white-70 px-3 text-sm dark:border-[#52525b]",
-        className
-      )}
-    >
-      <span className="text-zinc-950 dark:text-zinc-100">{value}</span>
-      <span className="text-neutral-text-tertiary dark:text-zinc-400">⌄</span>
-    </div>
-  )
-}
 
 interface NotificationRow {
   id: string
@@ -131,7 +122,7 @@ function SettingsPage({
         // Figma organism/Footer (tablet e desktop). No mobile, os chips ocupam a base.
         <div className="flex w-full items-center gap-9 py-4 text-base text-black dark:text-zinc-100">
           <span>©2026 Kandrive</span>
-          <SelectBox value="Português (Brasil)" />
+          <SelectBox options={LANGUAGES} aria-label="Idioma" />
         </div>
       }
       mobileFooterSettings={{
@@ -298,12 +289,12 @@ function SettingsPage({
               <SettingsCard title="Idioma e região" caption="Personalize o idioma da interface e o formato de data">
                 <div className="flex w-full gap-8">
                   <div className="flex min-w-px flex-1 flex-col gap-1.5">
-                    <span className="text-[0.8125rem] text-zinc-950 dark:text-zinc-100">Idioma da interface</span>
-                    <SelectBox value="Português (Brasil)" className="w-full" />
+                    <label htmlFor="settings-language" className="text-[0.8125rem] text-zinc-950 dark:text-zinc-100">Idioma da interface</label>
+                    <SelectBox id="settings-language" options={LANGUAGES} className="w-full" />
                   </div>
                   <div className="flex min-w-px flex-1 flex-col gap-1.5">
-                    <span className="text-[0.8125rem] text-zinc-950 dark:text-zinc-100">Formato de data</span>
-                    <SelectBox value="DD/MM/AAAA" className="w-full" />
+                    <label htmlFor="settings-date-format" className="text-[0.8125rem] text-zinc-950 dark:text-zinc-100">Formato de data</label>
+                    <SelectBox id="settings-date-format" options={DATE_FORMATS} className="w-full" />
                   </div>
                 </div>
                 <Button>

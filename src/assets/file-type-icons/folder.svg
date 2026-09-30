@@ -1,0 +1,10 @@
+<svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.52941 2C8.1591 2 8.71618 2.31732 9.0579 2.8042H13.6471C14.6867 2.8042 15.5294 3.66832 15.5294 4.73427V8.27274C15.5294 9.3387 14.6867 10.2028 13.6471 10.2028H8C7.37031 10.2028 6.81323 9.8855 6.47151 9.39862H1.88235C0.842758 9.39862 0 8.5345 0 7.46855V3.93008C0 2.86412 0.842758 2 1.88235 2H7.52941Z" fill="url(#fti_folder_0)"/>
+<path d="M0.784485 5.21621C0.784485 4.15026 1.62724 3.28613 2.66684 3.28613H13.3335C14.3731 3.28613 15.2159 4.15026 15.2159 5.21621V13.2582C15.2159 14.3241 14.3731 15.1883 13.3335 15.1883H2.66684C1.62724 15.1883 0.784485 14.3241 0.784485 13.2582V5.21621Z" fill="url(#fti_folder_1)" fill-opacity="0.5"/>
+<path d="M6.10352e-05 6.18203C6.10352e-05 5.11608 0.842819 4.25195 1.88241 4.25195H14.1177C15.1573 4.25195 16.0001 5.11608 16.0001 6.18203V14.224C16.0001 15.29 15.1573 16.1541 14.1177 16.1541H1.88241C0.842819 16.1541 6.10352e-05 15.29 6.10352e-05 14.224V6.18203Z" fill="url(#fti_folder_2)"/>
+<defs>
+<linearGradient id="fti_folder_0" x1="10.8235" y1="2.8042" x2="10.8235" y2="6.02099" gradientUnits="userSpaceOnUse"><stop stop-color="#097489"/><stop offset="1" stop-color="#1A5E6E"/></linearGradient>
+<linearGradient id="fti_folder_1" x1="8.00017" y1="3.60781" x2="8.00017" y2="4.81411" gradientUnits="userSpaceOnUse"><stop stop-color="white"/><stop offset="1" stop-color="#6E797D"/></linearGradient>
+<linearGradient id="fti_folder_2" x1="8.00006" y1="4.25195" x2="16.3247" y2="20.4099" gradientUnits="userSpaceOnUse"><stop stop-color="#007E96"/><stop offset="1" stop-color="#1A5E6E"/></linearGradient>
+</defs>
+</svg>

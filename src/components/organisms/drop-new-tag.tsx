@@ -1,6 +1,7 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import { MenuItemFloating } from "@/components/molecules/menu-item-floating"
 import { TagColor, type TagColorName } from "@/components/molecules/tag-color"
 
 export type { TagColorName }
@@ -82,10 +83,7 @@ function DropNewTag({
       )}
       {...props}
     >
-      <div
-        aria-hidden="true"
-        className="absolute top-0 left-0 h-11 w-[100px] rounded-md bg-effect-glass-white-70 shadow-[0px_16px_32px_rgba(0,0,0,0.1)] dark:shadow-[0px_16px_32px_rgba(0,0,0,0.4)] backdrop-blur-md"
-      />
+      <MenuItemFloating aria-hidden="true" className="absolute top-0 left-0 h-11 w-[100px]" />
       <div className="absolute top-2.5 left-2.5 h-[25px] w-20 overflow-hidden">
       <input
         type="text"

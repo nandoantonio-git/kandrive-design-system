@@ -21,7 +21,7 @@ Não aparecem em nenhuma tela nem dentro de outro componente do Figma. Entram no
 
 | Componente | Nó | Onde está hoje | O que fazer |
 |---|---|---|---|
-| `atom/FileTypeIcon` (File, Folder, Image, Video) | `1444:21914` | `Atoms/Symbols/ImageItem`, `VideoItem`, `FolderItem`, e dentro do modal "Liberar espaço" | Criar o átomo com os 4 tipos. Os `Symbols` passam a ser casos dele, e a página antiga aponta para a nova |
+| `atom/FileTypeIcon` (File, Folder, Image, Video) | `1444:21914` | Glifo das listas do modal "Liberar espaço" | Criar o átomo com os 4 tipos e usá-lo na lista. Correção do plano: os `Symbols` (`ImageItem`, `VideoItem`, `FolderItem`) são itens com estados, não este glifo; ficam como estão |
 | `molecule/MenuItemFloating` | `1363:16485` | O vidro de `organism/DropdownMenu` e `organism/DropNewTag`, escrito em cada um | Criar o contêiner de vidro flutuante e usá-lo nos dois |
 | `molecule/SelectBox` | `3029:3847` | Escrito dentro de `pages/settings-page.tsx` (Idioma) | Extrair para `molecules/select-box.tsx`, com página e teste de teclado |
 | `molecule/SkeletonRow` | `3028:3722` | Tela `Home/ListLoading/Mobile` (só no Figma) | Criar a linha de carregamento, com `prefers-reduced-motion` |
@@ -52,3 +52,11 @@ Não aparecem em nenhuma tela nem dentro de outro componente do Figma. Entram no
 - Nota no vault quando houver divergência com o Figma.
 
 Ver [[Plano das pendências (2026-09-29)]].
+
+## Andamento
+
+- ✅ **Lote 1 (2026-09-30).**
+  - `atom/FileTypeIcon`: átomo com os 4 SVGs do Figma, usado como imagem para os gradientes não colidirem. Entrou na lista do "Liberar espaço" no lugar do glifo antigo (`CleanSpaceFileGlyph.svg`, removido). No vídeo, duas camadas de brilho duplicadas (1% a 5% de opacidade) ficaram de fora.
+  - `molecule/MenuItemFloating`: o vidro flutuante, agora base do `DropdownMenu` e do `DropNewTag`. Saiu a borda reflexiva do `DropdownMenu`, que o Figma não tem.
+  - `molecule/SelectBox`: extraído das Configurações. Virou um `<select>` nativo com a mesma aparência (antes era um `div` que só mostrava o texto), com rótulo nos campos de Idioma e Formato de data.
+  - `molecule/SkeletonRow`: linha de carregamento, com pulso desligado em `prefers-reduced-motion`. Ainda não há tela de carregamento no código para usá-la.

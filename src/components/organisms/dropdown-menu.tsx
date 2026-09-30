@@ -2,6 +2,7 @@ import * as React from "react"
 import { FolderPlus, Upload, FolderUp, FilePen, XCircle, Trash2, ArchiveRestore, type LucideIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { MenuItemFloating } from "@/components/molecules/menu-item-floating"
 
 export type DropdownMenuVariant = "sidebar" | "template-options" | "guardados"
 
@@ -65,14 +66,10 @@ export interface DropdownMenuProps extends React.ComponentProps<"div"> {
 function DropdownMenu({ variant = "sidebar", onItemSelect, className, ...props }: DropdownMenuProps) {
   const items = variant === "sidebar" ? SIDEBAR_ITEMS : variant === "guardados" ? GUARDADOS_ITEMS : TEMPLATE_OPTIONS_ITEMS
   return (
-    <div
+    <MenuItemFloating
       data-slot="dropdown-menu"
       role="menu"
-      className={cn(
-        "flex flex-col overflow-hidden rounded-md glass-edge bg-effect-glass-white-70 py-1 shadow-lg backdrop-blur-md",
-        variant === "template-options" ? "w-[217px]" : "w-[191px]",
-        className
-      )}
+      className={cn("py-1", variant === "template-options" ? "w-[217px]" : "w-[191px]", className)}
       {...props}
     >
       {items.map((item, index) => (
@@ -93,7 +90,7 @@ function DropdownMenu({ variant = "sidebar", onItemSelect, className, ...props }
           </button>
         </React.Fragment>
       ))}
-    </div>
+    </MenuItemFloating>
   )
 }
 

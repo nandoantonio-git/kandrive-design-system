@@ -1,0 +1,27 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import * as SkeletonRowStories from './SkeletonRow.stories';
+
+<Meta of={SkeletonRowStories} />
+
+# SkeletonRow
+
+Figma: [`molecule/SkeletonRow`](https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=3028-3722)
+
+## Uso
+
+A linha de arquivo enquanto a lista carrega (Figma `Home/ListLoading/Mobile`). Mostre algumas seguidas no lugar da lista.
+
+<Canvas of={SkeletonRowStories.LoadingList} />
+
+## Composição
+
+358×56, raio 16, `Neutral/Surface/Background/Alt` com borda `Neutral/Border/Subtle`: miniatura 36×32, duas linhas de texto (165×14 e 60×10) e o tamanho à direita (40×12).
+
+## Estados e acessibilidade
+
+| Estado | Tratamento |
+| --- | --- |
+| Pulso | 🧩 `animate-pulse`, desligado com `prefers-reduced-motion` |
+| Leitor de tela | as linhas são `aria-hidden`; o contêiner da lista usa `role="status"` e `aria-busy` |
+
+🧩 = Regra 8: o pulso não está desenhado no Figma.

@@ -1,0 +1,29 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as SelectBoxStories from './SelectBox.stories';
+
+<Meta of={SelectBoxStories} />
+
+# SelectBox
+
+Figma: [`molecule/SelectBox`](https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=3029-3847)
+
+## Uso
+
+Caixa de escolha de uma opção numa lista curta: idioma e formato de data nas Configurações, e o idioma do rodapé.
+
+<Canvas of={SelectBoxStories.Default} />
+<Controls of={SelectBoxStories.Default} />
+
+## Composição
+
+280×36, raio 6, `Effect/Glass/White/70`, borda `Neutral/Border/Medium`, texto 14px `Neutral/Text/Primary` e a seta em `Neutral/Text/Tertiary`.
+
+## Estados e acessibilidade
+
+| Estado | Tratamento |
+| --- | --- |
+| Aberto | 🧩 a lista nativa do sistema (o Figma desenha só a caixa fechada) |
+| Foco | 🧩 anel `ring-3 brand-teal-action/50` |
+| Teclado e leitor de tela | 🧩 `<select>` nativo, com rótulo por `<label>` ou `aria-label` |
+
+🧩 = Regra 8: comportamento não desenhado no Figma.

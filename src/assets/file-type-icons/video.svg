@@ -1,0 +1,11 @@
+<svg width="31" height="26" viewBox="5 0 31 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M20.9755 7C22.3798 7 23.5182 8.07452 23.5182 9.4V16.6C23.5182 17.9255 22.3798 19 20.9755 19H13.3474C11.9431 19 10.8047 17.9255 10.8047 16.6V9.4C10.8047 8.07452 11.9431 7 13.3474 7H20.9755Z" fill="url(#fti_video_0)"/>
+<path d="M24.8282 9.47934C25.7065 8.99194 26.8043 9.60048 26.8047 10.5751V14.9633C26.8043 15.938 25.7065 16.5465 24.8282 16.0591L20.8753 13.8663C19.9968 13.3788 19.9968 12.1597 20.8753 11.6722L24.8282 9.47934Z" fill="url(#fti_video_1)" fill-opacity="0.8"/>
+<path d="M24.8282 9.47934C25.7065 8.99194 26.8043 9.60048 26.8047 10.5751V14.9633C26.8043 15.938 25.7065 16.5465 24.8282 16.0591L20.8753 13.8663C19.9968 13.3788 19.9968 12.1597 20.8753 11.6722L24.8282 9.47934Z" fill="white" fill-opacity="0.05"/>
+<path d="M24.7047 9.19834C25.6379 8.63514 26.8043 9.33833 26.8047 10.4646V15.5354C26.8043 16.6617 25.6379 17.3649 24.7047 16.8017L20.5047 14.2677C19.5714 13.7044 19.5714 12.2956 20.5047 11.7323L24.7047 9.19834Z" fill="url(#fti_video_2)" fill-opacity="0.44"/>
+<defs>
+<linearGradient id="fti_video_0" x1="18.8047" y1="7" x2="27.2376" y2="23.2346" gradientUnits="userSpaceOnUse"><stop offset="0.0913462" stop-color="#007E96"/><stop offset="0.581731" stop-color="#1A5E6E"/></linearGradient>
+<linearGradient id="fti_video_1" x1="23.5106" y1="9.30769" x2="29.1691" y2="17.0827" gradientUnits="userSpaceOnUse"><stop stop-color="#007E96"/><stop offset="1" stop-color="#1A5E6E"/></linearGradient>
+<linearGradient id="fti_video_2" x1="23.3047" y1="9" x2="29.9927" y2="17.4496" gradientUnits="userSpaceOnUse"><stop stop-color="#007E96"/><stop offset="1" stop-color="#1A5E6E"/></linearGradient>
+</defs>
+</svg>
