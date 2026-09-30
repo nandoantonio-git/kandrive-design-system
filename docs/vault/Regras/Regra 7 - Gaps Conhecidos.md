@@ -18,6 +18,6 @@ Diferente das Regras 1–6/9–11 (decisões travadas), a Regra 7 é uma **lista
 ## Ver também
 
 - [[Regra 9 - Figma-confirmado vs Inferido]]
-- [[FolderTagChip]]
+- `FolderTagChip`
 - [[SearchInput]]
 - [[Conflitos Abertos]]

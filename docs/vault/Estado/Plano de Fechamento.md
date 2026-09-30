@@ -41,7 +41,7 @@ Decidido com o Nando em sessão de perguntas (grill), Q1–Q16. Ordem: A → B �
 
 - [x] Gate: cada story renderiza sem erro e passa no axe (`npm test`, Vitest + addon-vitest no Chrome do sistema). Corrigidos: nome das barras de progresso, `aria-valuenow=NaN`, landmarks sem rótulo, Switch sem nome, ordem de títulos do PreviewPane. Exceção explícita (Q17): o contraste de cor fica como "precisa de revisão" (`reviewOnFail`) até o lote de paleta.
 - [x] Testes de interação (play functions): Checkbox, HandPicker, MethodOrganizeButton, FileSelectList, SidebarDrawer e o fluxo de seleção do Long-term (SelectFilesMobile).
-- Sem regressão visual por captura ([[feedback: sem validação pixel a pixel]]).
+- Sem regressão visual por captura (regra "sem validação pixel a pixel" (memória do assistente)).
 
 ## Fase E: fechamento dos conflitos (Q12–Q15)
 
