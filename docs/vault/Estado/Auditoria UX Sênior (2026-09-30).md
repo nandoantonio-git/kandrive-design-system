@@ -236,6 +236,7 @@ Ver [[Auditoria final (2026-09-30)]] para o estado técnico (gate, paridade, pro
 ### C4, escopo (2026-09-30)
 - **Case Study:** slide novo `07 / Escopo` ("O que entrou e o que ficou de fora"), com dois cartões: o que entrou no case e o que ficou de fora por enquanto (Compartilhados, Recentes, Favoritos e Lixeira; compartilhar, permissões e versões; status de backup por projeto; cadastro e recuperação de senha; busca com resultados reais). Navegação e Entrega viraram 08 e 09.
 - **Protótipo:** sobreposição `Overlay/Fora do escopo` (Desktop e Mobile), com o `organism/Dialog` informativo e o botão "Entendi" fechando. Compartilhados, Recentes, Favoritos e Lixeira da barra lateral (Desktop e Tablet), da barra inferior e da gaveta do Mobile abrem o aviso: 245 ligações nas telas claras. O avaliador não cai mais num clique morto.
+- **Ajuste posterior (2026-09-30):** por decisão do usuário, Compartilhados, Recentes, Favoritos e Lixeira são adaptações do layout de Home com outro título, não features fora do escopo. O slide 07 os lista em "Entrou neste case" como variações da Home, e a barra lateral abre o aviso `Overlay/Mesma Home/{Desktop,Mobile}` (título "Mesma Home, outro título"). O aviso "Fora do escopo deste case" ficou só para recuperar senha e cadastro. Sem telas novas.
 - O `organism/Dialog` não tem variante Info para Mobile; o aviso do Mobile usa a variante Desktop com 342px. Criar a variante fica como M-item. **C4 fechado.**
 
 ### C3, resultado do teste (2026-09-30), parcial

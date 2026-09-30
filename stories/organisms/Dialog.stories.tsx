@@ -38,7 +38,7 @@ export const DestructiveMobile: Story = {
   globals: { viewport: { value: "kdMobile", isRotated: false } },
 }
 
-/** Mesmo aviso em 342px; usado no "Fora do escopo deste case" do protótipo Mobile. */
+/** Mesmo aviso em 342px; usado no "Fora do escopo deste case" e no "Mesma Home, outro título" do protótipo Mobile. */
 export const InfoMobile: Story = {
   args: { type: "info", device: "mobile" },
   globals: { viewport: { value: "kdMobile", isRotated: false } },

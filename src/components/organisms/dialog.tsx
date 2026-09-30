@@ -39,7 +39,7 @@ const DEFAULT_TEXT: Record<DialogType, { title: string; description: string; con
 /**
  * organism/Dialog (`3334:37789`) — Figma-confirmado, 4 variantes:
  * `Type=Destructive, Device=Desktop|Mobile` (Excluir conta) e
- * `Type=Info, Device=Desktop|Mobile` (Falar com o suporte, mock; Fora do escopo deste case). Nasceu das
+ * `Type=Info, Device=Desktop|Mobile` (Falar com o suporte, mock; Fora do escopo deste case; Mesma Home, outro título). Nasceu das
  * sobreposições do protótipo da 📐Pages e foi integrado à ✨Design System
  * em 2026-09-29.
  *
