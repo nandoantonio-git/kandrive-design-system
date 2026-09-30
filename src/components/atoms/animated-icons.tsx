@@ -16,10 +16,15 @@ import { cn } from "@/lib/utils"
  * `prefers-reduced-motion`, troca de estado sem transição.
  */
 const MOTION = "transition-[transform,opacity,d] duration-300 ease-in-out motion-reduce:transition-none"
+/** Guardar e Organizar: o `atom/IconButton` (`174:384`, Style=OnDark) define smart animate, 300ms, ease-out. */
+const MOTION_OUT = "transition-[transform,opacity] duration-300 ease-out motion-reduce:transition-none"
 
 type IconSvgProps = React.SVGProps<SVGSVGElement>
 
-/** atom/Icon/Keep (`3343:9833`): no hover, a seta desce e é guardada no fundo do pote. */
+/**
+ * atom/Icon/Keep (`3343:9833`): no hover, a seta desce e é guardada no fundo do pote.
+ * Transição do `atom/IconButton` Icon=Keep (Default → Hover): 300ms, ease-out.
+ */
 function KeepIcon({ className, ...props }: IconSvgProps) {
   return (
     <svg viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg" className={cn("group/icon", className)} {...props}>
@@ -32,7 +37,7 @@ function KeepIcon({ className, ...props }: IconSvgProps) {
         d="M11.6503 12.17V8.45395C11.6503 8.2186 11.4497 8.02734 11.2028 8.02734H9.79728C9.54981 8.02734 9.34973 8.21805 9.34973 8.45395V12.17L7.80864 10.8488C7.63833 10.7028 7.37983 10.7028 7.20952 10.8488L6.26811 11.6557C6.07079 11.8249 6.07079 12.1204 6.26811 12.2896L10.2002 15.6611C10.3705 15.8072 10.629 15.8072 10.7993 15.6611L14.7314 12.2896C14.9293 12.1204 14.9293 11.8249 14.7314 11.6557L13.79 10.8488C13.6197 10.7028 13.3612 10.7028 13.1909 10.8488L11.6498 12.17H11.6503Z"
         fill="currentColor"
         className={cn(
-          MOTION,
+          MOTION_OUT,
           "origin-bottom [transform-box:fill-box]",
           "[.group:hover_&]:[transform:translateY(4.92px)_scaleY(0.143)] [.group:focus-visible_&]:[transform:translateY(4.92px)_scaleY(0.143)] group-hover/icon:[transform:translateY(4.92px)_scaleY(0.143)]"
         )}
@@ -132,4 +137,29 @@ function GroupIcon({ className, ...props }: IconSvgProps) {
   )
 }
 
-export { KeepIcon, LabelIcon, HomeIcon, GroupIcon }
+const HOVER_DIM = "[.group:hover_&]:opacity-70 [.group:focus-visible_&]:opacity-70 group-hover/icon:opacity-70"
+
+/**
+ * atom/IconButton Icon=Organize, Style=OnDark (`1614:22942` → `1614:22982`), o ícone
+ * do botão Organizar do Header. No hover, o quadro cresce, o quadrado cheio sobe para
+ * dentro dele e os dois ficam a 70% de opacidade. Smart animate, 300ms, ease-out.
+ */
+function OrganizeIcon({ className, ...props }: IconSvgProps) {
+  const part = cn(MOTION_OUT, "origin-top-left [transform-box:fill-box]", HOVER_DIM)
+  return (
+    <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className={cn("group/icon", className)} {...props}>
+      <path
+        d="M14.9669 2C15.8473 2 16.5441 2.74784 16.5441 3.64756V7.50942C16.5441 7.9289 16.2025 8.2688 15.7809 8.2688C15.3592 8.2688 15.0176 7.9289 15.0176 7.50942V3.64756C15.0176 3.60872 14.9921 3.58796 14.9751 3.58412L14.9608 3.58296H3.58531L3.56869 3.58412C3.5513 3.58835 3.52618 3.60988 3.52618 3.64756V14.9732C3.52618 15.0105 3.5513 15.0301 3.56869 15.0344L3.58531 15.0367H7.52734C7.94898 15.0367 8.29062 15.3766 8.29062 15.796V15.8606C8.29062 16.2801 7.94898 16.62 7.52734 16.62H3.57836C2.69797 16.62 2.00039 15.8733 2 14.9736V3.64794C2 2.74784 2.69797 2.00038 3.57836 2.00038H14.9669V2Z"
+        fill="currentColor"
+        className={cn(part, GROUP_HOVER("scale(1.1,1.094)"))}
+      />
+      <path
+        d="M16.8568 9.96094C17.5057 9.96094 18 10.5027 18 11.1298V16.8303C18 17.4578 17.5057 18.0003 16.8568 18.0003H11.0624C10.4135 18.0003 9.91919 17.4578 9.91919 16.8303V11.1298C9.91919 10.5023 10.4139 9.96094 11.0624 9.96094H16.8568Z"
+        fill="currentColor"
+        className={cn(part, GROUP_HOVER("translate(-3.35px,-3.41px)_scale(0.817)"))}
+      />
+    </svg>
+  )
+}
+
+export { KeepIcon, LabelIcon, HomeIcon, GroupIcon, OrganizeIcon }

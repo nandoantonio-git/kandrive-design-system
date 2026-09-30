@@ -10,7 +10,7 @@ const meta = {
   component: MobileFooterSettings,
   parameters: { layout: "fullscreen", design: { type: "figma", url: "https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=1756-57824" } },
   globals: { viewport: { value: "kdMobile", isRotated: false } },
-  argTypes: { page: { control: "radio", options: ["settings", "payment"] }, active: { control: "text" } },
+  argTypes: { page: { control: "radio", options: ["settings", "payment", "faq"] }, active: { control: "text" } },
   args: { page: "settings", active: "Conta" },
   decorators: [mobileFrame],
 } satisfies Meta<typeof MobileFooterSettings>
@@ -22,6 +22,8 @@ export const Settings: Story = {}
 /** O chip ativo fica fora da tela: a faixa rola até ele. */
 export const SettingsPrivacy: Story = { args: { active: "Privacidade" } }
 export const Payment: Story = { args: { page: "payment", active: "Plano" } }
+/** Page=FAQ: os tópicos da página de Perguntas frequentes. */
+export const Faq: Story = { args: { page: "faq", active: "Primeiros passos" } }
 
 export const Interactive: Story = {
   render: function Render(args) {

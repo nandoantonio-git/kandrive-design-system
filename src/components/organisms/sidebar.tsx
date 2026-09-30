@@ -56,8 +56,8 @@ const SETTINGS_NAV_ITEMS: { section: SettingsSection; label: string }[] = [
 ]
 
 export interface SidebarProps extends React.ComponentProps<"nav"> {
-  /** `Pages` — `"default"` (navegação de arquivos, default) ou `"setting"` (nav de Configurações). Figma-confirmado como eixo do mesmo component set (`organism/Sidebar`, Regra 1/10), não 2 componentes. */
-  pages?: "default" | "setting"
+  /** `Pages` — `"default"` (navegação de arquivos, default) ou `"setting"` (nav de Configurações). Figma-confirmado como eixo do mesmo component set (`organism/Sidebar`, Regra 1/10), não 2 componentes. `"faq"` é a variante `Page=FAQ` (`1267:16661`), com os tópicos da página ("Nesta página"). */
+  pages?: "default" | "setting" | "faq"
   activePage?: SidebarPage
   onNavigate?: (page: SidebarPage) => void
   tags?: string[]
@@ -74,7 +74,13 @@ export interface SidebarProps extends React.ComponentProps<"nav"> {
   /** Só `pages="setting"`. */
   activeSection?: SettingsSection
   onNavigateSection?: (section: SettingsSection) => void
+  /** Só `pages="faq"`: o tópico marcado, pelo índice em `FAQ_NAV_ITEMS`. */
+  activeFaqTopic?: number
+  onNavigateFaqTopic?: (index: number) => void
 }
+
+/** Tópicos da variante `organism/Sidebar` Page=FAQ (`1267:16661`), na ordem das seções da página. */
+const FAQ_NAV_ITEMS = ["Primeiros Passos", "Guardar no longo prazo", "Organização", "Etiquetas", "Itens duplicados", "Armazenamento", "Problemas comuns"] as const
 
 /**
  * organism/Sidebar (`197:6187`) — Figma-confirmado: "sidebar contextual...
@@ -172,6 +178,8 @@ function Sidebar({
   onAdd,
   activeSection = "conta",
   onNavigateSection,
+  activeFaqTopic = 0,
+  onNavigateFaqTopic,
   className,
   ...props
 }: SidebarProps) {
@@ -183,6 +191,41 @@ function Sidebar({
     if (collapsed === undefined) setInternalCollapsed(next)
     onCollapsedChange?.(next)
     onCollapse?.()
+  }
+
+  if (pages === "faq") {
+    // Figma `organism/Sidebar` Page=FAQ (`1267:16661`): vidro branco 50%, raio 24, 212px (Desktop) e
+    // 140px (Tablet), rótulo "Nesta página" (10px bold) e os 7 tópicos (16px medium). Tocar num tópico
+    // rola a página até ele (no protótipo, Scroll to).
+    return (
+      <nav
+        data-slot="sidebar"
+        data-pages="faq"
+        aria-label="Nesta página"
+        className={cn(
+          "flex w-[140px] flex-col gap-1 rounded-3xl bg-effect-glass-white-50 px-3 pt-4 pb-6 backdrop-blur-md desktop:w-[212px]",
+          className
+        )}
+        {...props}
+      >
+        <p className="text-[0.625rem] font-bold leading-4 text-neutral-text-secondary">Nesta página</p>
+        {FAQ_NAV_ITEMS.map((label, index) => (
+          <button
+            key={label}
+            type="button"
+            aria-current={activeFaqTopic === index ? "location" : undefined}
+            onClick={() => onNavigateFaqTopic?.(index)}
+            className={cn(
+              "truncate rounded-lg px-1 py-1.5 text-left text-base leading-4 font-medium transition-colors",
+              "hover:bg-zinc-100 active:bg-zinc-200 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 dark:hover:bg-zinc-800 dark:active:bg-zinc-700",
+              activeFaqTopic === index ? "bg-zinc-100 text-zinc-950 dark:bg-zinc-800 dark:text-zinc-100" : "text-neutral-text-secondary"
+            )}
+          >
+            {label}
+          </button>
+        ))}
+      </nav>
+    )
   }
 
   if (pages === "setting") {
