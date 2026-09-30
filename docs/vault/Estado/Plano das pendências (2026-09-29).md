@@ -34,7 +34,7 @@ Decidido com o usuário (rodada de perguntas de 2026-09-29). Ordem por gravidade
 - Posição das sobreposições (o plugin não define; abrem centralizadas): ajuste manual no Figma.
 - Teste no modo de apresentação: só o usuário consegue.
 - Contraste por opacidade e cores de badge (ver [[Conflitos Abertos]]).
-- Corrigir no artigo o trecho "Liberar Espaço → Ver duplicados", que ficou desatualizado.
+- ~~Corrigir no artigo o trecho "Liberar Espaço → Ver duplicados"~~ ✅ o termo final é "Liberar espaço" (confirmado pelo usuário).
 - ~~Lista aberta do Agrupar e do Etiquetar flutuando por cima do conteúdo no Figma (melhoria de 1.1).~~ ✅ feito
 
 ## Andamento
@@ -48,3 +48,7 @@ Decidido com o usuário (rodada de perguntas de 2026-09-29). Ordem por gravidade
 - ✅ **Storybook** Vídeo da introdução trocado pelo novo `Kandrive-Motion` (8s, H.264 1920px, poster do último quadro). Favicon passou para a versão teal do `foundation/Favicon` (antes era a grafite), com `?v=2` para furar o cache do navegador.
 - ✅ **Slides 07 e 08** preenchidos (ver [[Plano dos slides do Case Study (2026-09-29)]]).
 - ✅ **Patterns** 12 fundos da marca em `docs/assets/patterns/`, com a seção `08 · Patterns` na Design Language e os fundos dos slides do case. O slide 02 foi preenchido com ícones do sistema e o Kan (ver [[Patterns]]).
+- ✅ **Slide 04** Ganhou a amostra rosa "Destaque" (`Brand/Theme/Pink/Dark`), ficando com 4 amostras de 180px. O recorte de Liquid Glass, que era uma imagem antiga, virou instâncias vivas de `foundation/LiquidGlassLarge`, `Medium` e `Small` (claro e escuro) sobre o pattern 01.
+- ✅ **Slide 08** Os dois quadros foram redimensionados pelo usuário (832×363 e 832×395) e as capturas foram recortadas de novo nessas proporções. A legenda do Graphify foi para o canto inferior esquerdo.
+- ✅ **Fluxos do protótipo** Os 4 sem nome ganharam nome: G · Mobile: Primeiro acesso, Q · Mobile: Configurações, R · Mobile: Revisar organização e Z · Escuro: Mobile, revisar organização. O escuro foi mantido, no fim da lista. Todos os nomes trocaram "—" por "·" e a lista ficou em ordem alfabética (19 fluxos).
+- **Blocos de cor (resposta):** o bloco final, com hierarquia e agrupamento, é `Foundation/Palette` (`1427:16958`): família › grupo › token, amostras ligadas às variáveis, a mesma ordem da página Tokens/Cores do Storybook. `Foundation/Color Modes` (`3099:9583`) é a tabela de revisão de 2026-09-24, com cada variável no claro e no escuro e notas de auditoria em inglês. Ela serve de registro e complementa a paleta com os valores escuros; não é a vitrine. Na paleta, o rótulo "Effect/Glass/Surgace" foi corrigido para "Surface".

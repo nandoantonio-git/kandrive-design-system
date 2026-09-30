@@ -15,7 +15,7 @@ Terminologia do domínio Kandrive — ver [[Regra 5 - Terminologia]] pra regra c
 | Guardar | Ação **específica** de mover arquivos pro longo prazo. Ex.: "Guardar é a ação de mover um arquivo do acesso rápido para o longo prazo." (FAQ real, `faq-info-card-collapsed.tsx`) |
 | Arquivar | Pattern **geral** de organização/agrupamento de arquivos — processo mais amplo, do qual "Guardar" é uma ação específica. **Nunca sinônimo de "Guardar"** — ver [[Regra 5 - Terminologia]] |
 | Pronto para guardar | Status de arquivo elegível pra arquivamento |
-| Ver duplicados | Ação de detecção de duplicados |
+| ~~Ver duplicados~~ | Substituído por **Liberar espaço** (decisão final de 2026-09-29): o modal reúne "Arquivos duplicados" e "Arquivos grandes" |
 | Gerir espaço | Termo aprovado **só na [[Sidebar]]** — leva à página Status de armazenamento (2026-09-29) |
 | Liberar espaço | Termo aprovado **só em Armazenamento** (`molecule/StorageStatus`, `scope="global"`) — Configurações de Plano **não** tem gatilho pro mesmo modal, ver [[Regra 5 - Terminologia]] |
 | Comprar espaço | Botão de upgrade de plano (leva ao Pagamento), `organism/storage-sidebar` (Figma-confirmado, node `1421:19167`) |
