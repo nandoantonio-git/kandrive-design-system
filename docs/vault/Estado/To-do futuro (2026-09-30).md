@@ -9,8 +9,8 @@ O que ficou de fora da rodada final da auditoria UX ([[Auditoria UX Sênior (202
 - **A5, o que sobra:** o fluxo de recuperação de senha e o cadastro (hoje abrem o aviso de fora do escopo).
 
 ## Sistema
-- **M7, `atom/IconButton` com 66 variantes:** o ícone deveria ser uma propriedade de troca de instância.
-- **Migrar o `atom/PushButton`:** 214 instâncias dentro de Header, `OrganizePanelDropZone`, `PreviewPane`, modais e Sidebar ainda o usam. Ele já está marcado como obsoleto na descrição.
+- **M7, `atom/IconButton` com 66 variantes:** decidido não refatorar (2026-09-30). Só 2 dos 7 ícones existem como componente, a cor muda por estilo e estado dentro dos vetores e a matriz é irregular; trocar por instância pediria 5 ícones novos e um modo de variável para a cor, com risco sobre 670 instâncias. A matriz está documentada na descrição do componente. Só se refaz com o usuário acompanhando.
+- **Migrar o `atom/PushButton`:** decidido deixar documentado como obsoleto (2026-09-30). 299 instâncias nas telas e 214 dentro de componentes ainda o usam, e o `atom/Button` não tem espaço para ícone. Só se migra depois de o `Button` ganhar o slot de ícone, com o usuário acompanhando.
 - **M4, higiene das camadas:** 34% dos nós com nome genérico (`Frame 58`, `Group 12`), quase todos dentro de instâncias. Em 2026-09-30 os hex soltos mais comuns foram ligados (125 cores); sobram 464 preenchimentos soltos de 16.952 (cores de vidro e sombra, em sua maioria).
 - **Medição de contraste por camada no Figma:** refazer com o fundo real de cada botão.
 
