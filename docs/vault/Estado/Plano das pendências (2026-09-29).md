@@ -29,13 +29,13 @@ Decidido com o usuário (rodada de perguntas de 2026-09-29). Ordem por gravidade
 
 ## 4. Depende do usuário (baixa)
 
-- Placeholders dos slides 02, 07 e 08 do Case Study (ver [[Plano dos slides do Case Study (2026-09-29)]]).
+- Placeholders do slide 02 do Case Study (07 e 08 preenchidos) (ver [[Plano dos slides do Case Study (2026-09-29)]]).
 - Telas de estado sem entrada por ligação (ver [[Teste do protótipo claro (2026-09-29)]]): decidir quais viram consequência de uma ação.
 - Posição das sobreposições (o plugin não define; abrem centralizadas): ajuste manual no Figma.
 - Teste no modo de apresentação: só o usuário consegue.
 - Contraste por opacidade e cores de badge (ver [[Conflitos Abertos]]).
 - Corrigir no artigo o trecho "Liberar Espaço → Ver duplicados", que ficou desatualizado.
-- Lista aberta do Agrupar e do Etiquetar flutuando por cima do conteúdo no Figma (melhoria de 1.1).
+- ~~Lista aberta do Agrupar e do Etiquetar flutuando por cima do conteúdo no Figma (melhoria de 1.1).~~ ✅ feito
 
 ## Andamento
 
@@ -44,3 +44,6 @@ Decidido com o usuário (rodada de perguntas de 2026-09-29). Ordem por gravidade
 - ✅ **1.3** As 9 MDX de `stories/pages/` saíram. O texto de cada uma virou nota em `docs/vault/Páginas/` com a lista das histórias. No Storybook, cada página agora tem só as histórias em tela cheia.
 - ✅ **2.1 / 2.2** Ver [[Regra 12 - Sem Travessão]].
 - ✅ **3.1** Código: `Header` com o logo como link (`homeHref`, `onLogoClick`), com teste na história `Navbar`. Figma: 51 logos nas telas claras de Desktop e Tablet ligados à `Home/Grid` do mesmo aparelho, com transição Dissolve de 200ms. O header do Mobile não tem logo (tem o ☰), no Figma e no código.
+- ✅ **Lista flutuante** Nas variantes abertas de `molecule/DropdownSelectGroupBy` (Desktop e Mobile) e `molecule/Label`, a lista saiu do fluxo (posição absoluta) e o componente ficou com a altura do estado fechado. Abrir um menu não desloca mais nada, inclusive nas barras com campo de busca.
+- ✅ **Storybook** Vídeo da introdução trocado pelo novo `Kandrive-Motion` (8s, H.264 1920px, poster do último quadro). Favicon passou para a versão teal do `foundation/Favicon` (antes era a grafite), com `?v=2` para furar o cache do navegador.
+- ✅ **Slides 07 e 08** preenchidos (ver [[Plano dos slides do Case Study (2026-09-29)]]).
