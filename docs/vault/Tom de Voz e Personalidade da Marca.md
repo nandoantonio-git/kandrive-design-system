@@ -4,6 +4,8 @@ tags: [referência]
 
 # Tom de Voz e Personalidade da Marca
 
+> **Atualizado em 2026-09-30**: incorporado o entregável "Módulo 11 Entrega V1" (atributos, arquétipo e posicionamento), agora também no Figma, seção `07 · Voz e tom`. Ver "Atributos" abaixo.
+>
 > **Atualizado em 2026-09-28**: mesclado com a definição "Tom de voz e terminologia — Kandrive" que o usuário entregou diretamente nesta sessão, que **tem mais peso** que as fontes anteriores quando as duas divergem (decisão do usuário). Origem anterior: projeto Claude "Kandrive" (`brand-persona-tom-de-voz-kandrive.md`, `teoria-comunicacao-ux-writing.md`, `revisao-copy-4-telas-kandrive.md`, `desafio1-atributos-arquetipo-posicionamento-kandrive.md`) — **não** vem de AGENTS.md nem do Figma, por isso não tem tag `regra, travada` como as Regras 1–11. Ver [[Glossário]] pra terminologia; esta nota é o complemento de registro/tom.
 
 ## Personagem — Kan
@@ -25,6 +27,22 @@ Roda de Mark & Pearson: **Inocente**, quadrante "Busca Espiritual", motivação 
 **Traços primários:** acolhedor, confiável, entusiasmado, direto.
 **Traços secundários:** encorajador, leve, competente.
 **Nunca é:** debochado, irônico, sarcástico, frio, burocrático.
+
+## Atributos (Módulo 11, 2026-09-30)
+
+| 5 que representam a marca | 5 que não representam |
+|---|---|
+| **Acolhedor**: recebe o usuário sem julgar o que ele guarda (fotos, trabalho, documentos) | **Debochado**: nunca faz piada às custas do que o usuário guarda |
+| **Confiável**: a promessa de guardar por anos só funciona se o arquivo estiver lá | **Irônico**: introduz ambiguidade de tom, incompatível com o registro respeitoso |
+| **Entusiasmado**: comemora conquistas reais, no registro do benchmark Duolingo | **Sarcástico**: oposto direto de acolhedor |
+| **Direto**: sem rodeio nem jargão, "sem precisar entender de nuvem" | **Frio**: soaria como SaaS genérico, o ponto fraco da copy antiga |
+| **Leve**: humor moderado nos micro-momentos, sem pesar a experiência | **Burocrático**: oposto de direto e da promessa de esconder a complexidade técnica |
+
+**Arquétipo Inocente:** quadrante "Busca Espiritual", motivação "Segurança". A marca acredita que fazer a coisa certa basta para merecer confiança (guardar direito, ser transparente sobre o prazo de resgate, comunicar sem rodeio). O maior medo não é ser chata, é errar com o que lhe foi confiado.
+
+**Carta Idealista (Bakka):** tema "Tranquilidade, Confiança, Verdade", a tríade mais próxima da declaração de benefícios. Sub-arquétipos quase 1 para 1 com o Kan: Crente (fé em fazer a coisa certa), Iniciante (simplicidade de quem não precisa entender de nuvem), Otimista (o Entusiasmado no registro Duolingo), Perfeccionista (zero tolerância a perder um arquivo).
+
+**Posicionamento:** lembrada como "a marca que guarda o que você não pode perder". Mensagem: "Democratizar o direito de guardar para sempre." Benefício: "Te ajudar a guardar o que importa, com tranquilidade."
 
 ## 4 dimensões do tom de voz
 
@@ -100,4 +118,4 @@ A varredura completa do código contra esta definição, com os textos alterados
 - [[Conflitos Abertos]]
 - [[Kandrive Design System]]
 
-> 🎨 O resumo visual desta nota está na página Design Language do Figma, seção `07 · Voz e tom` (2026-09-29).
+> 🎨 O resumo visual desta nota está na página Design Language do Figma, seção `07 · Voz e tom` (2026-09-29), atualizado em 2026-09-30 com atributos, arquétipo e posicionamento.
