@@ -37,6 +37,7 @@ Arquivo do Figma KanDrive V0.2.1, a partir de 2026-09-23.
 - Figma: hover das Colunas no Tablet trocava para a linha de 560px do Desktop.
 - Figma: a coleção `Storage` pintava textos comuns; `Storage/FastAccess` apontava para uma variável apagada.
 - Token `--color-neutral-surface-background` que faltava no tema.
+- Figma: telas Desktop fora do grid. A barra lateral estava na variante Tablet (150px); agora todas as 58 telas Desktop (claro e Dark) usam o estilo `Grid/Desktop` (12 colunas, margem 24, gutter 24), com a barra nas colunas 1 e 2 e o conteúdo nas colunas 3 a 12.
 
 #### Removido
 

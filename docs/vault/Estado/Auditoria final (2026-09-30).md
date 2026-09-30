@@ -73,6 +73,13 @@ Ver [[Plano das pendências (2026-09-29)]].
 - **Hover das Colunas no Tablet:** a linha (`molecule/FileList` CompactColumn e Compact, Device=Tablet) não tinha Hover e trocava para a variante Desktop de 560px, que quebrava a coluna. Foram criadas as duas variantes de Hover no tamanho do Tablet. A linha pressionada do Desktop voltava para a variante `Storage` e agora volta para a normal.
 - **Animação do Organizar e do Guardar:** mora no `atom/IconButton` (`174:384`), Style=OnDark, Default → Hover, smart animate, 300ms, ease-out, e o Header já usa essas variantes. No código, o Guardar passou para ease-out e o Organizar ganhou o `OrganizeIcon` animado, com o desenho do `IconButton` (sem a seta do `atom/Icon/Organize`): o quadro cresce, o quadrado sobe para dentro dele e os dois ficam a 70%. No protótipo, a animação só dispara com o ponteiro sobre o ícone, porque o hover do botão troca a variante do `PushButton` por cima.
 
+## Grid Desktop (2026-09-30)
+
+- Causa: nas telas de arquivos (Home, Organizar, Longo prazo, Armazenamento), a `organism/Sidebar` estava instanciada na variante Tablet (150px), e cada tela compensava de um jeito (conteúdo em 198, 258 ou 324; margens de 22 a 48).
+- Grid acordado: estilo `Grid/Desktop`, 12 colunas, margem 24, gutter 24 (colunas de 94px). Barra lateral nas colunas 1 e 2 (24→236, 212px), conteúdo nas colunas 3 a 12 (260→1416). No FAQ, a coluna "Atalhos" ocupa as colunas 11 e 12; no Pagamento, os planos ocupam 8 colunas (260→1180).
+- Aplicado nas 58 telas Desktop (claro e Dark): barra na variante Desktop, contêiner e conteúdo nas colunas, Configurações e FAQ de margem 48 para 24, Header de volta a x=0 no Armazenamento/Longo prazo, conteúdo que passava da tela recortado ou a tela passou a acompanhar a altura, `ViewModeToggle` na largura do conteúdo, `PageLead` encostado na coluna 3, ilustração da `Home/FirstUpload` centrada na área de conteúdo e 5 modais vazios (altura 0) apagados no Armazenamento. Conferido por medição (todas as bordas nas colunas) e por captura.
+- Pendente no código: o `AppShell` usa margem de 48 e 48 entre a barra e o conteúdo no Desktop, e a barra de arquivos tem 288px (150px na vista Colunas). O Figma agora é 24/24 com barra de 212px.
+
 ## Fechamento (2026-09-30)
 
 - 140 componentes, 491 histórias, gate completo passando (`tsc -b`, `oxlint`, `build-storybook`, testes com axe).
