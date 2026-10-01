@@ -28,11 +28,11 @@ import { Button } from "@/components/atoms/button"
   componentes, usar tokens e tema escuro, e as regras de terminologia e tom de voz.
 - **Agentes de IA:** [AGENTS.md](AGENTS.md) resume as regras em uma página, diz onde procurar (índice, Storybook, MCP) e
   o que verificar antes de dizer que terminou.
-- **Catálogo:** [docs/COMPONENTS.md](docs/COMPONENTS.md) lista os 139 componentes com arquivo e página Docs.
+- **Catálogo:** [docs/COMPONENTS.md](docs/COMPONENTS.md) lista os 141 componentes com arquivo e página Docs.
 
 ## O que tem aqui
 
-139 componentes organizados por camada atômica (atoms → molecules →
+141 componentes organizados por camada atômica (atoms → molecules →
 organisms → templates → pages), cada um com:
 
 - Estados reais e interativos (hover/press/seleção via mouse e teclado —
@@ -125,7 +125,7 @@ npm run storybook       # Storybook em http://localhost:6006
 ```bash
 npx tsc -b               # typecheck
 npx oxlint               # lint
-npm test                 # 501 testes das histórias no navegador, com axe (contraste é erro)
+npm test                 # 510 testes das histórias no navegador, com axe (contraste é erro)
 npm run check:motion     # todo movimento respeita prefers-reduced-motion
 npm run check:touch      # alvos de toque de 44px no Mobile (gera o Storybook estático e mede)
 npm run check:docs       # Docs com conteúdo que vaza da coluna em 1440px (gera o Storybook estático e mede)

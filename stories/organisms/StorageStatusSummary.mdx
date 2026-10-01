@@ -11,7 +11,7 @@ Figma: [`molecule/StorageStatusSummary`](https://www.figma.com/design/2g7udqxWbG
 
 A parte de baixo da página de Storage, logo abaixo do card `StorageStatus`: filtro do escopo ("Filtrar no Total"), botão de filtros, Agrupar e Etiquetar, e a lista de arquivos ordenada por armazenamento. Criado: o código não tinha essa parte em nenhuma largura.
 
-Agrupar e Etiquetar abrem sozinhos, e as listas flutuam sobre a tabela. 🧩 O botão de filtros só alterna ligado/desligado (`aria-pressed`, ícone na cor da marca): o painel de filtros não existe no Figma, então abrir filtros de verdade é do app (`onFiltersActiveChange`).
+Agrupar e Etiquetar abrem sozinhos, e as listas flutuam sobre a tabela. O funil abre o [`FilterMenu`](?path=/docs/organisms-arquivos-filtermenu--docs) (Tipo, Tamanho e Data) e mostra a bolinha com a contagem. O componente guarda a seleção e avisa em `onFilterValueChange` e `onFiltersActiveChange`; aplicar o filtro à lista é do app (`applyFilters`).
 
 <Canvas of={Stories.Desktop} />
 <Controls of={Stories.Desktop} />
@@ -28,7 +28,7 @@ Agrupar e Etiquetar abrem sozinhos, e as listas flutuam sobre a tabela. 🧩 O b
 | Estado | Tratamento |
 | --- | --- |
 | Hover / Foco (botão de filtros, Agrupar, Etiquetar) | herdados dos sub-componentes |
-| Pressed (botão de filtros) | 🧩 com transição |
+| Filtro (funil) | Abre o `FilterMenu`; com opções marcadas, bolinha com a contagem |
 | Hover / Pressed / Foco ("Armazenamento", mobile) | 🧩 |
 
 🧩 = Regra 8: pressed do botão de filtros e hover/pressed/foco do "Armazenamento" (mobile) não desenhados no Figma.

@@ -2,6 +2,7 @@ import * as React from "react"
 import { ArrowDown } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import type { FilterValue } from "@/components/organisms/filter-menu"
 import { SearchHeader } from "@/components/molecules/search-header"
 import { FileListHeader } from "@/components/molecules/file-list-header"
 import { FileList } from "@/components/molecules/file-list"
@@ -24,9 +25,11 @@ export interface StorageStatusSummaryProps extends React.ComponentProps<"div"> {
    * `FileListHeader` + `FileList`. Mobile: tabela em card, com linhas de 61px.
    */
   device?: "desktop" | "mobile"
-  /** Botão de filtros ligado — controlado; quando omitido, o botão alterna sozinho. */
-  filtersActive?: boolean
-  defaultFiltersActive?: boolean
+  /** Seleção do menu de filtro (`FilterMenu`). Controlada; quando omitida, o componente guarda a seleção. */
+  filterValue?: FilterValue
+  defaultFilterValue?: FilterValue
+  onFilterValueChange?: (value: FilterValue) => void
+  /** Avisa quando passa a haver (ou deixa de haver) algum filtro marcado. */
   onFiltersActiveChange?: (active: boolean) => void
 }
 
@@ -49,17 +52,17 @@ export interface StorageStatusSummaryProps extends React.ComponentProps<"div"> {
  *   em 11px, `Text/Tertiary` (microtexto; no Figma, 10 e 11px).
  * - 🧩 Regra 8: pressed do botão de filtros e hover/pressed/foco do
  *   "Armazenamento" (mobile) não desenhados no Figma.
- * - 🧩 "Filtros" (2026-09-28, decisão do usuário): o painel de filtros não
- *   existe no Figma, então o botão só alterna ligado/desligado
- *   (`aria-pressed`, ícone na cor da marca) e avisa em `onFiltersActiveChange`.
- *   Abrir filtros de verdade é do app.
+ * - Filtro (2026-10-01): o funil abre o `FilterMenu` (Tipo, Tamanho e Data). O componente guarda a seleção,
+ *   mostra a bolinha com a contagem e avisa em `onFilterValueChange`; aplicar o filtro à lista é do app
+ *   (`applyFilters` em `filter-menu.tsx` faz isso para quem tiver tipo, tamanho e data).
  */
 function StorageStatusSummary({
   files,
   scopeLabel = "Total",
   device = "desktop",
-  filtersActive: controlledFiltersActive,
-  defaultFiltersActive = false,
+  filterValue,
+  defaultFilterValue,
+  onFilterValueChange,
   onFiltersActiveChange,
   className,
   ...props
@@ -69,8 +72,9 @@ function StorageStatusSummary({
     <SearchHeader
       device={device}
       placeholder={`Filtrar no ${scopeLabel}`}
-      filtersActive={controlledFiltersActive}
-      defaultFiltersActive={defaultFiltersActive}
+      filterValue={filterValue}
+      defaultFilterValue={defaultFilterValue}
+      onFilterValueChange={onFilterValueChange}
       onFiltersActiveChange={onFiltersActiveChange}
     />
   )

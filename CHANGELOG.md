@@ -4,7 +4,16 @@ Histórico de mudanças do KanDrive Design System: código, Storybook, Figma e v
 
 ## Não lançado
 
-Nada por enquanto.
+### 2026-10-01
+
+#### Adicionado
+
+- Menu de filtro (a pedido do usuário). `organism/FilterMenu`: três grupos aplicados na hora, **Tipo** (várias: Imagens, Documentos, Vídeos, Outros), **Tamanho** (uma: Qualquer tamanho, Menos de 100 MB, De 100 MB a 1 GB, Mais de 1 GB) e **Data** (uma: Qualquer data, Últimos 7 dias, Últimos 30 dias, Este ano), com "Limpar filtros" no rodapé. Balão de 280px no Desktop (linhas de 28px); folha de baixo no Tablet (420px) e no Mobile (390px), com linhas de 44px. `molecule/FilterButton`: o funil, com a bolinha da contagem de opções marcadas e nome acessível "Filtrar, N ativos". Helpers `applyFilters` e `countActiveFilters` (1 GB = 1024 MB; "Este ano" é o ano civil), que filtram uma lista de verdade na história `ComLista`. No Figma: `organism/FilterMenu` (6 variantes: Desktop, Tablet e Mobile, sem filtro e com 4 marcados) e `molecule/FilterButton`; sobreposições `Overlay/Filtrar/*` (Desktop, Limite atingido, navegador de arquivos, Tablet e Mobile, no claro e no Dark) ligadas ao funil das telas de Armazenamento e do navegador de arquivos; no protótipo, clicar numa opção marca o estado com filtros e a bolinha aparece no funil (variável `filtrosAtivos`, nova coleção `Protótipo`, só de interação); "Limpar filtros" desfaz. O funil das telas virou instância do `FilterButton` (mesmo visual). No Mobile, uma área de toque invisível de 44px cobre o funil de 11px. Páginas Docs, 9 histórias novas e o índice de componentes (141 componentes em React, 510 testes).
+
+#### Alterado
+
+- `SearchHeader` e `StorageStatusSummary`: o funil deixa de só alternar ligado e desligado e passa a abrir o `FilterMenu`. As props `filtersActive` e `defaultFiltersActive` saíram; entram `filterValue`, `defaultFilterValue` e `onFilterValueChange`, e `onFiltersActiveChange` continua, avisando quando passa a haver ou deixa de haver filtro. O nome acessível do botão mudou de "Filtros" para "Filtrar".
+- Docs e números: 141 componentes e 510 testes no README, no `AGENTS.md` e no `USAGE.md`.
 
 ## V0.2.1
 

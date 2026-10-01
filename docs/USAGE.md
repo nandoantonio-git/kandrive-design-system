@@ -7,7 +7,7 @@ Se você é um agente de IA, comece pelo [AGENTS.md](../AGENTS.md): ele resume a
 
 ## O que é, e o que não é
 
-- **É** um catálogo de **139 componentes React** (atoms, molecules, organisms, templates e pages) fiéis ao Figma
+- **É** um catálogo de **141 componentes React** (atoms, molecules, organisms, templates e pages) fiéis ao Figma
   [KanDrive V0.2.1](https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1), com tokens de cor,
   tipografia e vidro (Liquid Glass), tema claro e escuro e três larguras (Mobile, Tablet e Desktop).
 - **Não é** um pacote publicado no npm. O modelo é o do shadcn/ui: você **copia** os arquivos para o seu projeto

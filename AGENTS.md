@@ -5,7 +5,7 @@ neste repositório. O guia completo para pessoas é o [docs/USAGE.md](docs/USAGE
 
 ## O que é
 
-Catálogo de **139 componentes React 19 + Tailwind v4 + TypeScript**, fiéis ao Figma **KanDrive V0.2.1**
+Catálogo de **141 componentes React 19 + Tailwind v4 + TypeScript**, fiéis ao Figma **KanDrive V0.2.1**
 (`2g7udqxWbGA8F9Or7PGNg3`), documentados no Storybook 10. Não é pacote npm: os componentes são copiados ou importados
 por caminho, no estilo shadcn/ui. Alias `@/` aponta para `src/`.
 
@@ -70,7 +70,7 @@ pagamento e jurídico. A mensagem de sucesso abre com "Prontinho!". O mascote é
 ```bash
 npx tsc -b                # tipos
 npx oxlint                # lint, 0 erros
-npm test                  # histórias no navegador, com axe (501 testes)
+npm test                  # histórias no navegador, com axe (510 testes)
 npm run check:motion      # prefers-reduced-motion
 npm run check:touch       # alvos de 44px (gera o Storybook estático)
 npm run check:docs        # Docs sem conteúdo vazando da coluna

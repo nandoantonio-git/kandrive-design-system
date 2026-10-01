@@ -14,14 +14,18 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  // O botão de filtros alterna.
+  // O funil abre o menu de filtro; marcar uma opção mostra a bolinha; Esc fecha.
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
     await expect(canvas.getByRole("searchbox", { name: "Filtrar no Total" })).toBeVisible()
-    const filters = canvas.getByRole("button", { name: "Filtros" })
-    await expect(filters).toHaveAttribute("aria-pressed", "false")
+    const filters = canvas.getByRole("button", { name: "Filtrar" })
+    await expect(filters).toHaveAttribute("aria-expanded", "false")
     await userEvent.click(filters)
-    await expect(filters).toHaveAttribute("aria-pressed", "true")
+    await expect(filters).toHaveAttribute("aria-expanded", "true")
+    await userEvent.click(canvas.getByRole("checkbox", { name: "Imagens" }))
+    await expect(canvas.getByRole("button", { name: "Filtrar, 1 ativo" })).toBeVisible()
+    await userEvent.keyboard("{Escape}")
+    await expect(canvas.queryByRole("dialog", { name: "Filtrar" })).toBeNull()
   },
 }
 export const Mobile: Story = { args: { device: "mobile" }, decorators: [(Story) => <div className="w-[358px]"><Story /></div>] }

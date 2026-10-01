@@ -1,0 +1,41 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as Stories from './FilterButton.stories';
+
+<Meta of={Stories} />
+
+# FilterButton
+
+Figma: [`molecule/FilterButton`](https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=3500-39738)
+
+🧩 Componente novo (2026-10-01). Antes, o funil era o ícone `atom/Icon/Filter` solto, e só alternava ligado e desligado.
+
+## Uso
+
+O funil que abre o [`FilterMenu`](?path=/docs/organisms-arquivos-filtermenu--docs). Com opções marcadas, mostra uma bolinha com a quantidade.
+
+<Canvas of={Stories.Default} />
+<Controls of={Stories.Default} />
+
+## Estados
+
+| Estado | Tratamento |
+| --- | --- |
+| `State=Default` | Funil sem bolinha. Nome acessível: "Filtrar" |
+| `State=Active` | Bolinha `Brand/Primary/Action` com o número (12px Bold). Nome acessível: "Filtrar, N ativos" (singular com 1) |
+| Hover, pressionado | 🧩 Fundo `Neutral/Surface/Subtle` |
+| Foco | Anel de 3px `Brand/Primary/Action` a 50%, só pelo teclado |
+
+<Canvas of={Stories.Active} />
+<Canvas of={Stories.UmAtivo} />
+
+A bolinha é decorativa (`aria-hidden`): o número já está no nome do botão. Área de toque de 44px no toque.
+
+## Mobile
+
+`compact` usa o funil menor, dentro do campo de busca do Mobile.
+
+<Canvas of={Stories.Compact} />
+
+## Terminologia
+
+"Filtrar". Nenhum termo proibido (Regra 5).

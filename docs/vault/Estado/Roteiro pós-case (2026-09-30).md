@@ -74,6 +74,10 @@ Dívida de sistema, pouco visível para quem avalia. Vem por último para não c
 
 Feito quando: nenhuma instância usa o `PushButton` e a matriz do `IconButton` virou propriedades.
 
+## Etapa 5 (nova): sobreposições do protótipo
+
+Hoje as sobreposições (`Fora do escopo`, `Mesma Home`, `Filtrar`, senha) seguem estratégias diferentes: algumas só no claro, outras com versão Dark. Unificar em um padrão só (quadro do tamanho da tela, fundo que fecha ao clicar, modo Dark forçado nas cópias) e ligar claro e escuro de uma vez. Origem: [[Menu de filtro (2026-10-01)]].
+
 ## Fora do roteiro (decisões já tomadas)
 
 - Remover tokens pouco usados: mantidos ([[Tokens pouco usados (2026-09-30)]]).

@@ -31,7 +31,7 @@ rows.sort((a, b) => LAYERS.indexOf(a.lay) - LAYERS.indexOf(b.lay) || a.group.loc
 let out = `# Índice dos componentes
 
 Gerado por \`npm run docs:components\` a partir das histórias do Storybook. **${rows.length} componentes**.
-\`src/components/atoms/animated-icons.tsx\` é o módulo dos ícones animados (Organizar, Guardar, Etiquetar e Home) e não tem página própria; é por isso que o README conta 139 arquivos e este índice, 138.\nPara saber como usar um componente, abra a página Docs dele: ela traz o link do Figma, o uso, as props, os estados e a terminologia.
+\`src/components/atoms/animated-icons.tsx\` é o módulo dos ícones animados (Organizar, Guardar, Etiquetar e Home) e não tem página própria; é por isso que o README conta 141 arquivos e este índice, 140.\nPara saber como usar um componente, abra a página Docs dele: ela traz o link do Figma, o uso, as props, os estados e a terminologia.
 Como importar: \`import { Nome } from "@/components/<camada>/<arquivo>"\`. Veja [USAGE.md](USAGE.md).
 
 `

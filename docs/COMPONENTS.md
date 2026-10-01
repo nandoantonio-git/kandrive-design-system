@@ -1,7 +1,7 @@
 # Índice dos componentes
 
-Gerado por `npm run docs:components` a partir das histórias do Storybook. **138 componentes**.
-`src/components/atoms/animated-icons.tsx` é o módulo dos ícones animados (Organizar, Guardar, Etiquetar e Home) e não tem página própria; é por isso que o README conta 139 arquivos e este índice, 138.
+Gerado por `npm run docs:components` a partir das histórias do Storybook. **140 componentes**.
+`src/components/atoms/animated-icons.tsx` é o módulo dos ícones animados (Organizar, Guardar, Etiquetar e Home) e não tem página própria; é por isso que o README conta 141 arquivos e este índice, 140.
 Para saber como usar um componente, abra a página Docs dele: ela traz o link do Figma, o uso, as props, os estados e a terminologia.
 Como importar: `import { Nome } from "@/components/<camada>/<arquivo>"`. Veja [USAGE.md](USAGE.md).
 
@@ -49,7 +49,7 @@ Como importar: `import { Nome } from "@/components/<camada>/<arquivo>"`. Veja [U
 | Rótulos e badges / Label | `Duplicated` | `src/components/atoms/label-duplicated.tsx` | [Docs](https://kandrive-design-system.vercel.app/?path=/docs/atoms-r%C3%B3tulos-e-badges-label-duplicated--docs) |
 | Rótulos e badges / Label | `StorageAlert` | `src/components/atoms/label-storage-alert.tsx` | [Docs](https://kandrive-design-system.vercel.app/?path=/docs/atoms-r%C3%B3tulos-e-badges-label-storagealert--docs) |
 
-## Molecules (50)
+## Molecules (51)
 
 | Grupo | Componente | Arquivo | Docs |
 |---|---|---|---|
@@ -70,6 +70,7 @@ Como importar: `import { Nome } from "@/components/<camada>/<arquivo>"`. Veja [U
 | Arquivos / ArchiveBrowserModal | `ListItem` | `src/components/molecules/archive-browser-modal-list-item.tsx` | [Docs](https://kandrive-design-system.vercel.app/?path=/docs/molecules-arquivos-archivebrowsermodal-listitem--docs) |
 | Arquivos / ArchiveBrowserModal | `Search` | `src/components/molecules/archive-browser-modal-search.tsx` | [Docs](https://kandrive-design-system.vercel.app/?path=/docs/molecules-arquivos-archivebrowsermodal-search--docs) |
 | Busca e filtros | `DropdownSelectGroupBy` | `src/components/molecules/dropdown-select-group-by.tsx` | [Docs](https://kandrive-design-system.vercel.app/?path=/docs/molecules-busca-e-filtros-dropdownselectgroupby--docs) |
+| Busca e filtros | `FilterButton` | `src/components/molecules/filter-button.tsx` | [Docs](https://kandrive-design-system.vercel.app/?path=/docs/molecules-busca-e-filtros-filterbutton--docs) |
 | Busca e filtros | `Label` | `src/components/molecules/label.tsx` | [Docs](https://kandrive-design-system.vercel.app/?path=/docs/molecules-busca-e-filtros-label--docs) |
 | Busca e filtros | `SearchHeader` | `src/components/molecules/search-header.tsx` | [Docs](https://kandrive-design-system.vercel.app/?path=/docs/molecules-busca-e-filtros-searchheader--docs) |
 | Busca e filtros | `SearchInput` | `src/components/molecules/search-input.tsx` | [Docs](https://kandrive-design-system.vercel.app/?path=/docs/molecules-busca-e-filtros-searchinput--docs) |
@@ -104,7 +105,7 @@ Como importar: `import { Nome } from "@/components/<camada>/<arquivo>"`. Veja [U
 | Organização / OrganizeFreeModeCanvas | `MiniMap` | `src/components/molecules/free-mode-mini-map.tsx` | [Docs](https://kandrive-design-system.vercel.app/?path=/docs/molecules-organiza%C3%A7%C3%A3o-organizefreemodecanvas-minimap--docs) |
 | Organização / OrganizeFreeModeCanvas | `OutputNode` | `src/components/molecules/free-mode-output-node.tsx` | [Docs](https://kandrive-design-system.vercel.app/?path=/docs/molecules-organiza%C3%A7%C3%A3o-organizefreemodecanvas-outputnode--docs) |
 
-## Organisms (33)
+## Organisms (34)
 
 | Grupo | Componente | Arquivo | Docs |
 |---|---|---|---|
@@ -121,6 +122,7 @@ Como importar: `import { Nome } from "@/components/<camada>/<arquivo>"`. Veja [U
 | Arquivos | `ArchiveBrowserModalSidebar` | `src/components/organisms/archive-browser-modal-sidebar.tsx` | [Docs](https://kandrive-design-system.vercel.app/?path=/docs/organisms-arquivos-archivebrowsermodalsidebar--docs) |
 | Arquivos | `FileListContainer` | `src/components/organisms/file-list-container.tsx` | [Docs](https://kandrive-design-system.vercel.app/?path=/docs/organisms-arquivos-filelistcontainer--docs) |
 | Arquivos | `FileSelectList` | `src/components/organisms/file-select-list.tsx` | [Docs](https://kandrive-design-system.vercel.app/?path=/docs/organisms-arquivos-fileselectlist--docs) |
+| Arquivos | `FilterMenu` | `src/components/organisms/filter-menu.tsx` | [Docs](https://kandrive-design-system.vercel.app/?path=/docs/organisms-arquivos-filtermenu--docs) |
 | Arquivos | `InfoPopover` | `src/components/organisms/info-popover.tsx` | [Docs](https://kandrive-design-system.vercel.app/?path=/docs/organisms-arquivos-infopopover--docs) |
 | Arquivos | `PreviewPane` | `src/components/organisms/preview-pane.tsx` | [Docs](https://kandrive-design-system.vercel.app/?path=/docs/organisms-arquivos-previewpane--docs) |
 | Arquivos | `RecoveryPending` | `src/components/organisms/recovery-pending.tsx` | [Docs](https://kandrive-design-system.vercel.app/?path=/docs/organisms-arquivos-recoverypending--docs) |

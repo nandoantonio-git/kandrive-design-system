@@ -20,15 +20,16 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-/** Desktop e tablet (Figma `Device=Desktop` · `Tablet`). Filtros alterna, Agrupar e Etiquetar abrem sozinhos. */
+/** Desktop e tablet (Figma `Device=Desktop` · `Tablet`). O funil abre o menu de filtro; Agrupar e Etiquetar abrem sozinhos. */
 export const Desktop: Story = {
   args: { onFiltersActiveChange: fn() },
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement)
-    const filters = canvas.getByRole("button", { name: "Filtros" })
-    await userEvent.click(filters)
-    await expect(filters).toHaveAttribute("aria-pressed", "true")
+    await userEvent.click(canvas.getByRole("button", { name: "Filtrar" }))
+    await userEvent.click(canvas.getByRole("checkbox", { name: "Vídeos" }))
     await expect(args.onFiltersActiveChange).toHaveBeenCalledWith(true)
+    await expect(canvas.getByRole("button", { name: "Filtrar, 1 ativo" })).toBeVisible()
+    await userEvent.keyboard("{Escape}")
     const group = canvas.getByRole("button", { name: "Agrupar" })
     await userEvent.click(group)
     await expect(group).toHaveAttribute("aria-expanded", "true")
