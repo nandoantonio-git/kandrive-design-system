@@ -20,6 +20,12 @@ Deixa o case apresentável hoje. Origem: [[Revisão final (2026-09-30)]].
 4. **Storybook publicado:** passada visual (primeira página, links, claro e Dark).
 5. **Voz e tom:** confirmar a frase "como a marca quer ser lembrada", que veio truncada no PDF do Módulo 11 (hoje: "a marca que guarda o que você não pode perder").
 
+**Andamento (2026-09-30):**
+- Item 2: a captura do Header no slide 10 mostrava Organizar e Guardar em teal; com a [[Regra 13 - Header]] o Header voltou a ser assim e a imagem voltou a bater com o Figma. Não foi trocada (imagem do usuário). Basta conferir.
+- Item 3: feito. `hero-storybook.png` (agora a página Introdução) e as grades de CardLogin, Sidebar e ArchiveBrowserModal foram regeneradas a partir do site publicado. `fidelity-*.png` e o GIF são registros históricos de comparação e ficaram como estão.
+- Item 4: feito. O site publicado abre na Introdução, o índice tem 638 entradas e o Header no ar já mostra os botões em teal.
+- Itens 1 e 5: esperam você (arquivos dos mockups da capa e a frase de "como a marca quer ser lembrada").
+
 Feito quando: a capa tem os mockups, as capturas conferem com o site e a passada visual não acha defeito.
 
 ## Etapa 1: reteste
