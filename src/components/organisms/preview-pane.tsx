@@ -113,7 +113,7 @@ function PreviewPane({ file, tags = [], onClose, onSave, onShare, className, ...
   return (
     <aside
       data-slot="preview-pane"
-      className={cn("flex w-96 flex-col gap-4 rounded-[20px] bg-effect-glass-white-70 p-4", className)}
+      className={cn("flex w-96 flex-col gap-4 rounded-[20px] glass-edge glass-shadow-sm bg-effect-glass-white-70 p-4 backdrop-blur-md", className)}
       {...props}
     >
       <div className="flex items-center justify-between border-b border-brand-teal/20 pb-4">

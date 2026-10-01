@@ -29,6 +29,8 @@ export interface MobileTabBarProps extends Omit<React.ComponentProps<"nav">, "on
  * - Aba ativa: fundo `Effect/Overlay/Light` a 60% e cor `Brand/Primary/Default`.
  * - Abas inativas: `Text/Tertiary`.
  * - O vidro segue a receita de Liquid Glass da Regra 10.
+ * - Largura fixa de 270px e abas centralizadas, como no Figma (as 3 variantes `Active=` têm 270×50, gap 27, sem padding
+ *   lateral). Antes a barra esticava na largura do pai (achado do usuário em 2026-09-30).
  * - ⚠️ No Figma, os rótulos têm 10px. Aqui têm 11px, o piso de microtexto da Regra 4.
  * - 🧩 Regra 8: hover, pressed e foco não desenhados no Figma.
  */
@@ -44,7 +46,7 @@ function MobileTabBar({ active: controlledActive, defaultActive = "home", onTabC
       data-slot="mobile-tab-bar"
       aria-label="Ações principais"
       className={cn(
-        "glass-edge glass-shadow-sm relative inline-flex h-[50px] items-center gap-[27px] rounded-full bg-effect-glass-white-50 px-2 backdrop-blur-md",
+        "glass-edge glass-shadow-sm relative inline-flex h-[50px] w-[270px] max-w-full items-center justify-center gap-[27px] rounded-full bg-effect-glass-white-50 backdrop-blur-md",
         className
       )}
       {...props}

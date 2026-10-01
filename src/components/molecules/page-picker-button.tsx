@@ -131,7 +131,7 @@ function PagePickerButton({
             id={listId}
             data-slot="page-picker-list"
             aria-label="Páginas"
-            className="absolute top-full left-0 z-30 mt-1 flex w-max flex-col items-center rounded-xl glass-edge glass-shadow-sm bg-effect-glass-light-45 py-2 backdrop-blur-[10px]"
+            className="absolute top-full left-0 z-30 mt-0.5 flex w-max flex-col items-center rounded-xl glass-edge glass-shadow-sm bg-effect-glass-light-45 py-2 backdrop-blur-[10px]"
           >
             {pages.map((option) => (
               <li key={option} className="w-full">

@@ -46,6 +46,8 @@ export interface SearchInputProps
  * Symbol literais do node (mesmo critério de reuso de ícone já usado em
  * outros átomos deste arquivo).
  *
+ * Dark (achado do usuário, 2026-09-30): placeholder e ícone da busca ficam brancos (zinc-100), como o texto digitado.
+ *
  * 🧩 Regra 8: hover do campo não desenhado no Figma.
  */
 function SearchInput({
@@ -90,7 +92,7 @@ function SearchInput({
         />
       ) : (
         <SearchIcon
-          className="pointer-events-none absolute left-3 size-4 text-neutral-text-tertiary dark:text-zinc-400"
+          className="pointer-events-none absolute left-3 size-4 text-neutral-text-tertiary dark:text-zinc-100"
           aria-hidden="true"
         />
       )}
@@ -101,7 +103,7 @@ function SearchInput({
         placeholder={placeholder}
         aria-label={accessibleName}
         className={cn(
-          "relative h-9 w-full rounded-full bg-transparent pr-3 pl-9 text-base text-zinc-900 placeholder:text-neutral-text-placeholder dark:text-zinc-100",
+          "relative h-9 w-full rounded-full bg-transparent pr-3 pl-9 text-base text-zinc-900 placeholder:text-neutral-text-placeholder dark:text-zinc-100 dark:placeholder:text-zinc-100",
           "transition-colors hover:bg-zinc-500/5 dark:hover:bg-zinc-400/10",
           "focus-visible:outline-none focus-visible:ring-3",
           state === "success" &&
