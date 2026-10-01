@@ -13,6 +13,23 @@ completo](docs/CASE-STUDY.md)).
 Stack: React 19 + TypeScript + Tailwind CSS v4 + shadcn/ui (Radix + CVA) +
 Storybook 10 (CSF3 + MDX).
 
+## Como usar a biblioteca
+
+Não é um pacote npm: o modelo é o do shadcn/ui, em que você **copia** `src/components`, `src/lib`, `src/assets` e
+`src/index.css` para o seu projeto (React 19, Tailwind v4, Vite, alias `@/`) e importa por caminho.
+
+```tsx
+import { Button } from "@/components/atoms/button"
+
+<Button variant="outline">Gerir espaço</Button>
+```
+
+- **Pessoas:** [docs/USAGE.md](docs/USAGE.md) ensina do zero: preparar o projeto, montar uma tela com `AppShell`, escolher
+  componentes, usar tokens e tema escuro, e as regras de terminologia e tom de voz.
+- **Agentes de IA:** [AGENTS.md](AGENTS.md) resume as regras em uma página, diz onde procurar (índice, Storybook, MCP) e
+  o que verificar antes de dizer que terminou.
+- **Catálogo:** [docs/COMPONENTS.md](docs/COMPONENTS.md) lista os 139 componentes com arquivo e página Docs.
+
 ## O que tem aqui
 
 139 componentes organizados por camada atômica (atoms → molecules →
@@ -112,6 +129,7 @@ npm test                 # 501 testes das histórias no navegador, com axe (cont
 npm run check:motion     # todo movimento respeita prefers-reduced-motion
 npm run check:touch      # alvos de toque de 44px no Mobile (gera o Storybook estático e mede)
 npm run check:docs       # Docs com conteúdo que vaza da coluna em 1440px (gera o Storybook estático e mede)
+npm run docs:components  # regenera docs/COMPONENTS.md (índice dos componentes)
 npm run build-storybook  # build estático (storybook-static/)
 ```
 
@@ -122,6 +140,7 @@ npm run build-storybook  # build estático (storybook-static/)
   componente, organizadas por camada atômica.
 - `stories/tokens` — documentação MDX dos tokens de design (cor, tipografia,
   espaçamento, material).
+- `docs/USAGE.md`, `docs/COMPONENTS.md` e `AGENTS.md` — como usar a biblioteca (pessoas e agentes de IA), índice de componentes.
 - `docs/CASE-STUDY.md` — pesquisa de UX que fundamenta o produto (problema,
   personas, teste de usabilidade, decisões de design derivadas).
 - `docs/vault/` — vault Obsidian com o estado atual resumido: regras

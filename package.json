@@ -13,7 +13,8 @@
     "test": "vitest run --project=storybook",
     "check:motion": "node scripts/check-motion.mjs",
     "check:touch": "storybook build && node scripts/check-touch-targets.mjs",
-    "check:docs": "storybook build && node scripts/check-docs-overflow.mjs"
+    "check:docs": "storybook build && node scripts/check-docs-overflow.mjs",
+    "docs:components": "node scripts/gen-component-index.mjs"
   },
   "dependencies": {
     "@fontsource-variable/figtree": "^5.3.0",
