@@ -161,6 +161,12 @@ que ainda citam esses caminhos (`src/components/**/*.tsx`) são anotações
 históricas datadas, não referências quebradas — o achado continua válido
 mesmo com o arquivo-fonte agora vivendo fora deste repo.
 
+## Licença
+
+O **código** é MIT ([LICENSE](LICENSE)): pode usar, copiar e adaptar. A **identidade visual do KanDrive** (logo, mascote Kan,
+ilustrações, padrões gráficos e vídeo de abertura) e o **texto e as imagens do case de UX** não entram na MIT e ficam com
+todos os direitos reservados. Os caminhos exatos estão no fim do arquivo `LICENSE`.
+
 ## Deploy (Vercel)
 
 O `vercel.json` já aponta o build para o Storybook estático:
