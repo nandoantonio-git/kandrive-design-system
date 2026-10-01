@@ -6,8 +6,8 @@ O que vem depois do case publicado, ordenado por **valor para o portfólio** (de
 |---|---|---|---|
 | 0 | Manutenção do case (sem a capa) | Sim (a frase da marca; captura do slide 10) | Não |
 | 1 | Reteste de usabilidade | Sim (recrutar 3 a 5 pessoas) | Não |
-| 2 | Recuperação de senha e cadastro | Sim (autorizar telas novas) | Pouco |
-| 3 | Variações da Home | Sim (autorizar telas novas) | Sim |
+| 2 | Recuperação de senha e cadastro (novas entregas) | Sim (autorizar telas novas) | Pouco |
+| 3 | Variações da Home (novas entregas) | Sim (autorizar telas novas) | Sim |
 | 4 | Migração do `PushButton` e do `IconButton` | Sim (acompanhar) | Sim |
 
 ## Etapa 0: manutenção do case
@@ -18,14 +18,14 @@ Deixa o case apresentável hoje. Origem: [[Revisão final (2026-09-30)]].
 2. **Slide 10:** trocar a captura do Header, que ainda mostra o Header antigo, por uma captura atual do Storybook.
 3. **README:** conferir `docs/assets/hero-storybook.png` e as grades, que são capturas antigas.
 4. **Storybook publicado:** passada visual (primeira página, links, claro e Dark).
-5. **Voz e tom:** confirmar a frase "como a marca quer ser lembrada", que veio truncada no PDF do Módulo 11 (hoje: "a marca que guarda o que você não pode perder").
+5. **Voz e tom:** frase "como a marca quer ser lembrada" confirmada pelo usuário ("a marca que guarda o que você não pode perder").
 
 **Andamento (2026-09-30):**
 - Item 2: a captura do Header no slide 10 mostrava Organizar e Guardar em teal; com a [[Regra 13 - Header]] o Header voltou a ser assim e a imagem voltou a bater com o Figma. Não foi trocada (imagem do usuário). Basta conferir.
 - Item 3: feito. `hero-storybook.png` (agora a página Introdução) e as grades de CardLogin, Sidebar e ArchiveBrowserModal foram regeneradas a partir do site publicado. `fidelity-*.png` e o GIF são registros históricos de comparação e ficaram como estão.
 - Item 4: feito. O site publicado abre na Introdução, o índice tem 638 entradas e o Header no ar já mostra os botões em teal.
 - Item 1: fora do roteiro (capa intocada, decisão do usuário).
-- Item 5: espera você (a frase de "como a marca quer ser lembrada").
+- Item 5: confirmado pelo usuário em 2026-09-30: a frase "a marca que guarda o que você não pode perder" está correta. Nada a mudar no Figma nem no vault.
 
 Feito quando: as capturas conferem com o site e a passada visual não acha defeito. A capa não faz parte do critério.
 
@@ -41,6 +41,8 @@ Feito quando: os resultados novos estão no CASE-STUDY e no slide 03, com a comp
 
 ## Etapa 2: recuperação de senha e cadastro
 
+**Status: adiada para novas entregas (decisão do usuário, 2026-09-30).** Nada será criado agora; os dois links seguem no aviso "Fora do escopo deste case".
+
 Hoje "Esqueceu sua senha?" e "Crie uma agora" abrem o aviso "Fora do escopo deste case" (`Overlay/Fora do escopo`). O slide 07 os lista como fora.
 
 - **Telas novas, só com autorização:** recuperação de senha (pedir e-mail, e-mail enviado, nova senha, concluído) e cadastro (formulário, erro, concluído), em Desktop e Mobile, claro e Dark.
@@ -51,6 +53,8 @@ Hoje "Esqueceu sua senha?" e "Crie uma agora" abrem o aviso "Fora do escopo dest
 Feito quando: os dois links levam a fluxos completos, com testes e axe passando.
 
 ## Etapa 3: variações da Home
+
+**Status: adiada para novas entregas (decisão do usuário, 2026-09-30).** Os quatro itens seguem no aviso "Mesma Home, outro título".
 
 Compartilhados, Recentes, Favoritos e Lixeira são a Home com outro título (decisão de 2026-09-30, já refletida no slide 07 e no aviso `Overlay/Mesma Home`). O plano só vale se o foco mudar para features.
 
