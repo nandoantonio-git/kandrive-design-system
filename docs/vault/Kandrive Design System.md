@@ -43,6 +43,7 @@ As regras abaixo são a "constituição" do projeto — qualquer achado do Figma
 - [[Regra 10 - Liquid Glass]]
 - [[Regra 11 - Protocolo de Verificação]]
 - [[Regra 12 - Sem Travessão]]
+- [[Regra 13 - Header]]
 
 ## Marca e tom de voz
 

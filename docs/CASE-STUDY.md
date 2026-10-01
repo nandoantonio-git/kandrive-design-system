@@ -131,7 +131,7 @@ veio da falta de retorno depois da ação.
 
 No protótipo atual, as decisões 1, 3 e 4 aparecem assim: o rótulo **Total** no
 Status; Organizar e Guardar na barra de seleção, junto dos arquivos (e em
-contorno no Header, para que Adicionar seja o único botão principal); e o
+destaque no Header, em teal com texto branco, porque o teste apontou falta de ênfase neles; ver Regra 13); e o
 prazo de resgate (e-mail em até 8h) em destaque antes de confirmar, com um
 aviso depois de guardar. Nenhuma delas foi retestada com pessoas.
 
