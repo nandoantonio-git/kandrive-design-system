@@ -1,0 +1,62 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as Stories from './FilterMenu.stories';
+
+<Meta of={Stories} />
+
+# FilterMenu
+
+Figma: [`organism/FilterMenu`](https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1?node-id=3500-9883)
+
+🧩 Componente novo, desenhado em 2026-10-01 a pedido do usuário. Não vem do arquivo original: foi criado no Figma e no código na mesma entrega, só com peças que já existiam.
+
+## Uso
+
+É o menu do botão de filtro (o funil). Três grupos, aplicados na hora, sem botão "Aplicar":
+
+- **Tipo:** várias opções (Imagens, Documentos, Vídeos, Outros). Nenhuma marcada significa todos os tipos.
+- **Tamanho:** uma opção (Qualquer tamanho, Menos de 100 MB, De 100 MB a 1 GB, Mais de 1 GB).
+- **Data:** uma opção (Qualquer data, Últimos 7 dias, Últimos 30 dias, Este ano).
+
+"Limpar filtros", no rodapé, volta tudo ao padrão e fica desabilitado quando não há filtro. Esc fecha. Quem abre o menu é o [`FilterButton`](?path=/docs/molecules-busca-e-filtros-filterbutton--docs), que mostra a bolinha com a contagem; o `SearchHeader` já junta os dois.
+
+<Canvas of={Stories.Default} />
+<Controls of={Stories.Default} />
+
+## O filtro funcionando
+
+O menu só guarda a seleção. Para aplicar a uma lista, use `applyFilters(files, value)`, que avalia tipo, tamanho (1 GB = 1024 MB) e data ("Este ano" é o ano civil). `countActiveFilters(value)` dá o número da bolinha. A história abaixo filtra uma lista de exemplo de verdade.
+
+<Canvas of={Stories.ComLista} />
+
+## Anatomia
+
+Cabeçalho "Filtrar", três grupos separados por linhas (título em 12px, `Text/Tertiary`), e o rodapé. Reaproveita `atom/Checkbox`, `molecule/RadioButton` e `atom/CloseButton`, e o vidro dos outros menus (`Effect/Glass/White/70`).
+
+<Canvas of={Stories.Active} />
+
+### Tokens
+
+- Fundo: `Effect/Glass/White/70` com blur e borda de vidro (Regra 10). Raio 6 no balão, 20 no topo da folha.
+- Linhas de 28px no Desktop (mouse) e de 44px no Tablet e no Mobile (toque).
+- Rótulos 16px, `Text/Secondary`; títulos de grupo 12px Bold, `Text/Tertiary`; "Limpar filtros" em `Brand/Primary/Default`.
+- No Figma os rótulos estão a 14px; o código usa 16px porque o `RadioButton` do sistema é 16 (Regra 4, texto de leitura).
+
+## Estados
+
+| Estado | Tratamento |
+| --- | --- |
+| Sem filtro | Opções padrão marcadas ("Qualquer tamanho" e "Qualquer data"); "Limpar filtros" desabilitado |
+| Com filtros | Opções marcadas; "Limpar filtros" ativo |
+| Hover, pressionado, foco | Herdados de `Checkbox`, `RadioButton` e do botão de limpar |
+| Fechar | Botão Fechar (Tablet e Mobile), Esc e clique fora |
+
+## Tablet e Mobile
+
+Folha de baixo, com alça e botão Fechar: 420px no Tablet, 390px no Mobile. O `SearchHeader` escolhe a variante pela largura da tela.
+
+<Canvas of={Stories.Tablet} />
+<Canvas of={Stories.Mobile} />
+
+## Terminologia
+
+"Filtrar", "Tipo", "Tamanho", "Data" e "Limpar filtros". Nenhum termo proibido (Regra 5).
