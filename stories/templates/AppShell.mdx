@@ -1,5 +1,29 @@
-import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { Meta } from '@storybook/addon-docs/blocks';
 import * as AppShellStories from './AppShell.stories';
+import { useEffect, useRef, useState } from 'react';
+
+export const Frame = ({ id, width, height }) => {
+  const box = useRef(null);
+  const [scale, setScale] = useState(1);
+  useEffect(() => {
+    const el = box.current;
+    if (!el) return;
+    const fit = () => setScale(Math.min(1, el.clientWidth / width));
+    fit();
+    const ro = new ResizeObserver(fit);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [width]);
+  return (
+    <div ref={box} style={{ width: '100%', maxWidth: width, height: height * scale, overflow: 'hidden', border: '1px solid #d4d4d8', borderRadius: 12, margin: '16px 0', background: '#fff' }}>
+      <iframe
+        title={id}
+        src={`iframe.html?id=${id}&viewMode=story`}
+        style={{ width, height, border: 0, transform: `scale(${scale})`, transformOrigin: 'top left' }}
+      />
+    </div>
+  );
+};
 
 <Meta of={AppShellStories} />
 
@@ -21,10 +45,11 @@ As páginas passam o que cada tela tem, e o `AppShell` decide o que aparece em c
 - **Settings e Payment:** `mobileFooterSettings`.
 - **Feedback visual:** `drawer={false}`.
 
-<Canvas of={AppShellStories.Desktop} />
-<Controls of={AppShellStories.Desktop} />
+Desktop · 1440: Header + Sidebar. A moldura abaixo é a história real, na largura do Figma, reduzida para caber na coluna.
 
-Veja as stories **Desktop**, **Tablet** e **Mobile…**: cada uma já abre no viewport certo.
+<Frame id="templates-appshell--desktop" width={1440} height={760} />
+
+Cada moldura abre a história na largura real da faixa (1440, 720 ou 390). Na Docs o Canvas inline usaria a largura da coluna e mostraria sempre o layout Desktop; no Canvas do Storybook o viewport de cada história já é o certo.
 
 ## Composição
 
@@ -39,7 +64,7 @@ Veja as stories **Desktop**, **Tablet** e **Mobile…**: cada uma já abre no vi
 
 ### Tablet
 
-<Canvas of={AppShellStories.Tablet} />
+<Frame id="templates-appshell--tablet" width={720} height={760} />
 
 ## Estados
 
@@ -54,19 +79,19 @@ Sem estados interativos próprios: só compõe. O que muda é a gaveta mobile (a
 
 Tela de arquivos: ☰ + TabBar no topo, BottomNav com FAB Adicionar na base.
 
-<Canvas of={AppShellStories.MobileFiles} />
+<Frame id="templates-appshell--mobile-files" width={390} height={844} />
 
 Mão esquerda: o FAB muda de lado.
 
-<Canvas of={AppShellStories.MobileLeftHand} />
+<Frame id="templates-appshell--mobile-left-hand" width={390} height={844} />
 
 Tela de tarefa: só o BottomNav com Confirmar e ✕.
 
-<Canvas of={AppShellStories.MobileTask} />
+<Frame id="templates-appshell--mobile-task" width={390} height={844} />
 
 Settings: a barra de chips na base.
 
-<Canvas of={AppShellStories.MobileSettings} />
+<Frame id="templates-appshell--mobile-settings" width={390} height={844} />
 
 ## Terminologia
 
