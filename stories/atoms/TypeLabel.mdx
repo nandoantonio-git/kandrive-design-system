@@ -19,7 +19,7 @@ Badge de tipo de arquivo (Documento/Imagem/Vídeo, com ponto de cor por tipo) �
 ### Três componentes, um só desenho de família
 
 1. **`FileTypeLabel`** — etiqueta de tipo de arquivo: ponto de cor + rótulo (Imagem/Documentos/Vídeos/Outros). Usada em `organism/PreviewPane` (lista de etiquetas do arquivo) e na legenda de `molecule/StorageStatus`.
-2. **`ScopeTypeLabel`** — chip selecionável usado como seletor de escopo no cabeçalho de `molecule/StorageStatus` (Global/Acesso Rápido/Longo Prazo), com o estado ativo preenchido pela cor da categoria. Aceita a prop opcional `state` para forçar cada estado visual (idle/hover/selected/selected-hover/selected-pressed), útil em documentação/QA; consumidores de produto normalmente só passam `active`.
+2. **`ScopeTypeLabel`** — chip selecionável usado como seletor de escopo no cabeçalho de `molecule/StorageStatus` (Total/Acesso rápido/Longo prazo), com o estado ativo preenchido pela cor da categoria. Aceita a prop opcional `state` para forçar cada estado visual (idle/hover/selected/selected-hover/selected-pressed), útil em documentação/QA; consumidores de produto normalmente só passam `active`.
 3. **`DangerTypeLabel`** — pílula de alerta, usa a mesma cor de destrutivo do `atom/Button` (o texto vermelho, não o fundo preenchido — ver [[Regra 3 - Cores da Marca|Regra 3]]).
 
 <Canvas of={TypeLabelStories.FileTypeMatrix} />
@@ -34,7 +34,7 @@ Os dois rotulam o mesmo par semântico (Acesso Rápido/Longo Prazo), mas em esco
 
 ### Cor por escopo (`ScopeTypeLabel`)
 
-`quick-access` (Acesso Rápido) → rosa · `long-term` (Longo Prazo) → teal escuro · `global` (Global) → teal claro · `default` → branco em idle, teal quando selecionado
+`quick-access` (Acesso rápido) → rosa · `long-term` (Longo prazo) → teal escuro · `global` (Total) → teal claro · `default` → branco em idle, teal quando selecionado
 
 ## Estados
 
@@ -54,4 +54,4 @@ Os dois rotulam o mesmo par semântico (Acesso Rápido/Longo Prazo), mas em esco
 
 ## Terminologia
 
-Rótulos usados: "Global", "Acesso Rápido", "Longo Prazo". Nenhum termo proibido aparece como texto visível.
+Rótulos usados: "Total", "Acesso rápido", "Longo prazo" (Regra 5: "Global" virou "Total"). Nenhum termo proibido aparece como texto visível.

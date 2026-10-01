@@ -18,9 +18,23 @@ const DESTINATIONS: { value: MobileDestination; label: string; Glyph: React.Comp
   { value: "favoritos", label: "Favoritos", Glyph: FavoriteGlyph },
 ]
 
-/** Recorte da barra sob o FAB (do vetor `Subtract` do Figma, lado esquerdo). 94.67 × 92px. */
-const NOTCH_PATH =
-  "path('M0 0 L0.634 0.035 C8.607 0.481 15.992 4.184 23.115 7.792 C31.927 12.256 41.706 14 47 14 C52.147 14 61.299 12.351 69.928 7.923 C77.714 3.926 85.917 0 94.669 0 L94.669 92 L0 92 Z')"
+/**
+ * Recorte da barra sob o FAB (do vetor `Subtract` do Figma, lado esquerdo), 94.67 × 92px. O vidro é uma
+ * peça só: o recorte entra como máscara no canto do FAB e o resto da barra como um retângulo. Antes eram duas
+ * peças de vidro lado a lado, cada uma com o seu blur, e a peça do recorte saía mais escura que o resto
+ * (a "quebra" da barra, achado do usuário em 2026-09-30).
+ */
+const NOTCH_D =
+  "M0 0 L0.634 0.035 C8.607 0.481 15.992 4.184 23.115 7.792 C31.927 12.256 41.706 14 47 14 C52.147 14 61.299 12.351 69.928 7.923 C77.714 3.926 85.917 0 94.669 0 L94.669 92 L0 92 Z"
+const NOTCH_W = 94.67
+function notchMask(side: "left" | "right"): React.CSSProperties {
+  const flip = side === "right" ? ` transform='matrix(-1 0 0 1 ${NOTCH_W} 0)'` : ""
+  const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='${NOTCH_W}' height='92' viewBox='0 0 ${NOTCH_W} 92'><path d='${NOTCH_D}'${flip}/></svg>`
+  const url = `url("data:image/svg+xml,${encodeURIComponent(svg)}")`
+  const other = side === "left" ? "right" : "left"
+  const mask = `${url} ${side} top / ${NOTCH_W}px 92px no-repeat, linear-gradient(#000, #000) ${other} top / calc(100% - ${NOTCH_W}px) 100% no-repeat`
+  return { mask, WebkitMask: mask }
+}
 
 export interface MobileBottomNavProps extends React.ComponentProps<"div"> {
   /** Figma `Action`: add (FAB +) · confirm (FAB ✓ + ✕) · none (sem FAB, barra reta). */
@@ -93,20 +107,19 @@ function MobileBottomNav({
   ...props
 }: MobileBottomNavProps) {
   const left = hand === "left"
-  const glass = "bg-effect-glass-white-70 backdrop-blur-md drop-shadow-[0px_8px_40px_rgba(0,0,0,0.12)] dark:drop-shadow-[0px_8px_40px_rgba(0,0,0,0.5)]"
+  // A sombra mora numa camada só, atrás das duas peças de vidro. Antes cada peça tinha a sua
+  // `drop-shadow`, e a sombra da peça reta caía por cima da peça do recorte e escurecia o lado do FAB
+  // (a "quebra" da barra, achado do usuário em 2026-09-30).
+  const glass = "bg-effect-glass-white-70 backdrop-blur-md"
   return (
     <div data-slot="mobile-bottom-nav" data-hand={hand} data-action={action} className={cn("relative h-[160px] w-full", className)} {...props}>
-      {/* Barra: peça do recorte (largura fixa) + resto fluido */}
-      <div className={cn("absolute inset-x-0 bottom-0 flex h-[92px]", left ? "flex-row" : "flex-row-reverse")} aria-hidden="true">
-        {action === "none" ? (
-          <div className={cn("flex-1", glass)} />
-        ) : (
-          <>
-            <div className={cn("w-[94.67px] shrink-0", glass, !left && "-scale-x-100")} style={{ clipPath: NOTCH_PATH }} />
-            <div className={cn("flex-1", glass)} />
-          </>
-        )}
-      </div>
+      {/* Barra: sombra numa camada atrás e o vidro numa peça só (máscara com o recorte do FAB) */}
+      <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-[92px] shadow-[0px_8px_40px_rgba(0,0,0,0.12)] dark:shadow-[0px_8px_40px_rgba(0,0,0,0.5)]" />
+      <div
+        aria-hidden="true"
+        className={cn("absolute inset-x-0 bottom-0 h-[92px]", glass)}
+        style={action === "none" ? undefined : notchMask(left ? "left" : "right")}
+      />
 
       <nav aria-label="Destinos" className="absolute inset-x-0 bottom-0 grid h-[92px] grid-cols-4 px-2 pt-[26px]">
         {DESTINATIONS.map(({ value, label, Glyph }) => {

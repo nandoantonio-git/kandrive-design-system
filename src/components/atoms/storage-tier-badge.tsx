@@ -26,6 +26,8 @@ export interface StorageTierBadgeProps
  * `Geist:Medium` (exceção pontual, não a fonte padrão do sistema — Regra 4
  * continua Figtree pra tudo mais; ver `--font-geist` em `index.css`).
  *
+ * Respiro (pedido do usuário, 2026-09-30): o texto de "Acesso rápido" encostava na borda com 84px e 9px de
+ * padding. Agora `min-w-[100px]`, `px-3` e 24px de altura; os dois tiers continuam com a mesma largura. Antes:
  * `w-[84px]` fixo (Figma-confirmado, ambas as 2 variantes têm exatamente a
  * mesma largura de caixa) — corrigido em 2026-08-12 (US-026, 3ª passada):
  * sem largura fixa o badge colapsava ao conteúdo (`Acesso rápido` ~87px,
@@ -38,7 +40,7 @@ function StorageTierBadge({ tier, className, ...props }: StorageTierBadgeProps) 
     <span
       data-slot="storage-tier-badge"
       className={cn(
-        "inline-flex h-[21px] w-[84px] shrink-0 items-center justify-center rounded-[8.4px] border border-zinc-200 px-[9px] py-[3px] font-geist text-xs leading-[0.9375rem] font-medium whitespace-nowrap text-zinc-950 dark:border-zinc-700 dark:text-zinc-100",
+        "inline-flex h-6 min-w-[100px] shrink-0 items-center justify-center rounded-[8.4px] border border-zinc-200 px-3 py-[3px] font-geist text-xs leading-[0.9375rem] font-medium whitespace-nowrap text-zinc-950 dark:border-zinc-700 dark:text-zinc-100",
         className
       )}
       {...props}

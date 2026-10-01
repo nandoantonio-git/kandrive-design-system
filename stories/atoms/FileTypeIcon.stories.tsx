@@ -18,10 +18,12 @@ export const Default: Story = {}
 
 export const AllTypes: Story = {
   render: () => (
-    <div className="flex items-end gap-6">
+    <div className="flex items-start gap-6">
       {(["file", "folder", "image", "video"] as const).map((type) => (
         <div key={type} className="flex flex-col items-center gap-2 text-xs text-neutral-text-tertiary">
-          <FileTypeIcon type={type} />
+          <span className="flex size-8 items-center justify-center">
+            <FileTypeIcon type={type} />
+          </span>
           {type}
         </div>
       ))}

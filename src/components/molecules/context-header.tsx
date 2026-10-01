@@ -71,6 +71,15 @@ export interface ContextHeaderProps extends React.ComponentProps<"div"> {
  * teal no hover nem mudava no Dark). O `DeleteButtonGlyph` é compartilhado
  * com `atom/DeleteButton`, então o reenquadramento é só aqui, via `viewBox`.
  */
+/**
+ * Botão de ação do ContextHeader (padronizado em 2026-09-30, achado do usuário: estilos, motion e escala
+ * variavam entre os botões). Todos têm a mesma caixa (24px), o mesmo ícone (16px) e o mesmo
+ * comportamento: cor teal no hover, leve elevação no hover e redução no clique, sempre atrás de
+ * `motion-safe`. Os ícones animados do Figma (Organizar, Guardar) seguem animando pelo `group`.
+ */
+const ACTION_BUTTON =
+  "group touch-target inline-flex size-6 shrink-0 cursor-pointer items-center justify-center rounded-lg text-zinc-800 transition-[color,opacity,transform] motion-reduce:transition-none dark:text-zinc-100 hover:text-brand-teal motion-safe:hover:-translate-y-px motion-safe:active:translate-y-0 motion-safe:active:scale-95 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 active:opacity-60"
+
 function ContextHeader({
   itemsSelected = "X itens selecionados",
   state = "expanded",
@@ -107,7 +116,7 @@ function ContextHeader({
             type="button"
             aria-label="Limpar seleção"
             onClick={onClear}
-            className="touch-target inline-flex size-4 shrink-0 items-center justify-center text-zinc-800 transition-[color,opacity] dark:text-zinc-100 hover:text-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 active:opacity-60"
+            className={ACTION_BUTTON}
           >
             <ClearGlyph aria-hidden="true" className="size-4" />
           </button>
@@ -122,7 +131,7 @@ function ContextHeader({
       data-slot="context-header"
       data-state={state}
       className={cn(
-        "relative flex w-[427px] flex-col items-start overflow-clip rounded-3xl drop-shadow-[0px_2px_16px_rgba(9,9,11,0.08)] transition-[height,opacity] duration-200",
+        "relative flex w-fit min-w-[427px] flex-col items-start overflow-clip rounded-3xl drop-shadow-[0px_2px_16px_rgba(9,9,11,0.08)] transition-[height,opacity] duration-200",
         isCollapsed ? "h-0 opacity-0" : "h-[52px] opacity-100",
         className
       )}
@@ -135,7 +144,7 @@ function ContextHeader({
                 type="button"
                 aria-label="Limpar seleção"
                 onClick={onClear}
-                className="inline-flex size-4 shrink-0 items-center justify-center text-zinc-800 transition-[color,opacity] dark:text-zinc-100 hover:text-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 active:opacity-60"
+                className={ACTION_BUTTON}
               >
                 <ClearGlyph aria-hidden="true" className="size-4" />
               </button>
@@ -146,12 +155,12 @@ function ContextHeader({
 
             <div className="flex shrink-0 items-center gap-6">
               <div aria-hidden="true" className="h-6 w-px bg-zinc-800/20 dark:bg-zinc-100/20" />
-              <div className="flex shrink-0 items-center gap-2">
+              <div className="flex shrink-0 items-center gap-1">
                 <button
                   type="button"
                   aria-label="Organizar"
                   onClick={onOrganize}
-                  className="inline-flex items-center justify-center py-1.5 text-zinc-800 transition-[color,opacity] dark:text-zinc-100 hover:text-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 active:opacity-60"
+                  className={ACTION_BUTTON}
                 >
                   <Icon name="Organize" className="size-4" />
                 </button>
@@ -159,7 +168,7 @@ function ContextHeader({
                   type="button"
                   aria-label="Guardar"
                   onClick={onSave}
-                  className="inline-flex items-center justify-center py-1.5 text-zinc-800 transition-[color,opacity] dark:text-zinc-100 hover:text-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 active:opacity-60"
+                  className={ACTION_BUTTON}
                 >
                   <Icon name="Keep" className="size-4" />
                 </button>
@@ -167,7 +176,7 @@ function ContextHeader({
                   type="button"
                   aria-label="Baixar"
                   onClick={onDownload}
-                  className="inline-flex items-center justify-center py-1.5 text-zinc-800 transition-[color,opacity] dark:text-zinc-100 hover:text-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 active:opacity-60"
+                  className={ACTION_BUTTON}
                 >
                   <Icon name="Download" className="size-4" />
                 </button>
@@ -175,7 +184,7 @@ function ContextHeader({
                   type="button"
                   aria-label="Mover"
                   onClick={onMove}
-                  className="inline-flex items-center justify-center text-zinc-800 transition-[color,opacity] dark:text-zinc-100 hover:text-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 active:opacity-60"
+                  className={ACTION_BUTTON}
                 >
                   <Icon name="FileMoveRight" className="size-4" />
                 </button>
@@ -183,7 +192,7 @@ function ContextHeader({
                   type="button"
                   aria-label="Excluir"
                   onClick={onDelete}
-                  className="inline-flex size-4 shrink-0 items-center justify-center text-zinc-800 transition-[color,opacity] dark:text-zinc-100 hover:text-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 active:opacity-60"
+                  className={ACTION_BUTTON}
                 >
                   <DeleteGlyph aria-hidden="true" viewBox="-3 -2 16 16" className="size-4" />
                 </button>
@@ -191,7 +200,7 @@ function ContextHeader({
                   type="button"
                   aria-label="Mais opções"
                   onClick={onMoreOptions}
-                  className="inline-flex items-center justify-center py-1.5 text-zinc-800 transition-[color,opacity] dark:text-zinc-100 hover:text-brand-teal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50 active:opacity-60"
+                  className={ACTION_BUTTON}
                 >
                   <Icon name="Settings2" className="size-4" />
                 </button>

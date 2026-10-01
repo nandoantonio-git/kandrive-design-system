@@ -84,7 +84,7 @@ function DropNewTag({
       {...props}
     >
       <MenuItemFloating aria-hidden="true" className="absolute top-0 left-0 h-11 w-[100px]" />
-      <div className="absolute top-2.5 left-2.5 h-[25px] w-20 overflow-hidden">
+      <div className="absolute top-2.5 left-2.5 h-[25px] w-20">
       <input
         type="text"
           aria-label="Nome da etiqueta"

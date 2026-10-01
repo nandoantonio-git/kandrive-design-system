@@ -104,25 +104,25 @@ export const ScopeMatrix: StoryObj = {
         <DangerTypeLabel label="Recentes" />
       </div>
       <div className="flex flex-col gap-2">
-        <ScopeTypeLabel kind="quick-access" label="Recentes" />
-        <ScopeTypeLabel kind="quick-access" label="Recentes" state="hover" />
-        <ScopeTypeLabel kind="quick-access" label="Recentes" state="selected" />
-        <ScopeTypeLabel kind="quick-access" label="Recentes" state="selected-hover" />
-        <ScopeTypeLabel kind="quick-access" label="Recentes" state="selected-pressed" />
+        <ScopeTypeLabel kind="quick-access" label="Acesso rápido" />
+        <ScopeTypeLabel kind="quick-access" label="Acesso rápido" state="hover" />
+        <ScopeTypeLabel kind="quick-access" label="Acesso rápido" state="selected" />
+        <ScopeTypeLabel kind="quick-access" label="Acesso rápido" state="selected-hover" />
+        <ScopeTypeLabel kind="quick-access" label="Acesso rápido" state="selected-pressed" />
       </div>
       <div className="flex flex-col gap-2">
-        <ScopeTypeLabel kind="global" label="Recentes" />
-        <ScopeTypeLabel kind="global" label="Recentes" state="hover" />
-        <ScopeTypeLabel kind="global" label="Recentes" state="selected" />
-        <ScopeTypeLabel kind="global" label="Recentes" state="selected-hover" />
-        <ScopeTypeLabel kind="global" label="Recentes" state="selected-pressed" />
+        <ScopeTypeLabel kind="global" label="Total" />
+        <ScopeTypeLabel kind="global" label="Total" state="hover" />
+        <ScopeTypeLabel kind="global" label="Total" state="selected" />
+        <ScopeTypeLabel kind="global" label="Total" state="selected-hover" />
+        <ScopeTypeLabel kind="global" label="Total" state="selected-pressed" />
       </div>
       <div className="flex flex-col gap-2">
-        <ScopeTypeLabel kind="long-term" label="Recentes" />
-        <ScopeTypeLabel kind="long-term" label="Recentes" state="hover" />
-        <ScopeTypeLabel kind="long-term" label="Recentes" state="selected" />
-        <ScopeTypeLabel kind="long-term" label="Recentes" state="selected-hover" />
-        <ScopeTypeLabel kind="long-term" label="Recentes" state="selected-pressed" />
+        <ScopeTypeLabel kind="long-term" label="Longo prazo" />
+        <ScopeTypeLabel kind="long-term" label="Longo prazo" state="hover" />
+        <ScopeTypeLabel kind="long-term" label="Longo prazo" state="selected" />
+        <ScopeTypeLabel kind="long-term" label="Longo prazo" state="selected-hover" />
+        <ScopeTypeLabel kind="long-term" label="Longo prazo" state="selected-pressed" />
       </div>
     </div>
   ),
@@ -134,7 +134,7 @@ export const ScopeSelector: StoryObj = {
     const [scope, setScope] = React.useState<"global" | "quick-access" | "long-term">("global")
     return (
       <div className="flex gap-2">
-        <ScopeTypeLabel kind="global" label="Global" active={scope === "global"} onClick={() => setScope("global")} />
+        <ScopeTypeLabel kind="global" label="Total" active={scope === "global"} onClick={() => setScope("global")} />
         <ScopeTypeLabel kind="quick-access" label="Acesso rápido" active={scope === "quick-access"} onClick={() => setScope("quick-access")} />
         <ScopeTypeLabel kind="long-term" label="Longo prazo" active={scope === "long-term"} onClick={() => setScope("long-term")} />
       </div>
@@ -143,7 +143,7 @@ export const ScopeSelector: StoryObj = {
   // Clicar num chip inativo o ativa (`aria-pressed`) e desativa o anterior.
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
-    const global = canvas.getByRole("button", { name: "Global" })
+    const global = canvas.getByRole("button", { name: "Total" })
     const quick = canvas.getByRole("button", { name: "Acesso rápido" })
     await expect(global).toHaveAttribute("aria-pressed", "true")
     await userEvent.click(quick)

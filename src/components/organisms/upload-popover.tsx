@@ -80,6 +80,9 @@ export interface UploadPopoverProps extends React.ComponentProps<"div"> {
  * `border-zinc-200`/`shadow-lg` antes eram aplicados sempre, nos 2 estados;
  * agora condicionados a `files.length === 0`.
  *
+ * Respiro do número (achado do usuário, 2026-09-30): o anel passou de 24 para 40px e o número para 11px,
+ * para a porcentagem não encostar no traço.
+ *
  * 🧩 Regra 8: pressed e foco dos botões de ação não desenhados no Figma.
  */
 function UploadPopover({
@@ -118,8 +121,8 @@ function UploadPopover({
       />
       <div className="relative flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className="relative grid size-6 shrink-0 place-items-center text-brand-teal">
-            <svg aria-hidden="true" viewBox="0 0 24 24" className="absolute inset-0 size-6 -rotate-90">
+          <span className="relative grid size-10 shrink-0 place-items-center text-brand-teal">
+            <svg aria-hidden="true" viewBox="0 0 24 24" className="absolute inset-0 size-10 -rotate-90">
               <circle cx="12" cy="12" r="9" strokeWidth="2.5" className="stroke-zinc-200 dark:stroke-zinc-700" fill="none" />
               <circle
                 cx="12"
@@ -134,7 +137,7 @@ function UploadPopover({
                 className="transition-[stroke-dashoffset]"
               />
             </svg>
-            <span className="relative text-xs font-bold leading-none text-brand-teal">{clamped}%</span>
+            <span className="relative text-[11px] font-bold leading-none text-brand-teal">{clamped}%</span>
           </span>
           <div className="flex flex-col">
             <span className="text-sm font-bold text-zinc-900 dark:text-zinc-100">Enviando {fileCount} arquivos</span>

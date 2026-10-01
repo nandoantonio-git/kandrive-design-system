@@ -1,6 +1,7 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/atoms/button"
 
 export interface CardNeedMoreHelpProps extends React.ComponentProps<"div"> {
   onContactSupport?: () => void
@@ -11,7 +12,10 @@ export interface CardNeedMoreHelpProps extends React.ComponentProps<"div"> {
  * entrar em contato com o suporte". Usa material Liquid Glass
  * (`bg-effect-glass-white-50`) — ver `Tokens/Materials` (Regra 10).
  *
- * 🧩 Regra 8: hover/pressed/foco do link e do botão não desenhados no Figma.
+ * O botão "Falar com o suporte" usa o `atom/Button` `outline`, como os outros botões secundários do sistema
+ * (antes era um `<button>` com estilo próprio, achado do usuário em 2026-09-30).
+ *
+ * 🧩 Regra 8: hover/pressed/foco do link não desenhados no Figma.
  */
 function CardNeedMoreHelp({ onContactSupport, className, ...props }: CardNeedMoreHelpProps) {
   return (
@@ -33,18 +37,9 @@ function CardNeedMoreHelp({ onContactSupport, className, ...props }: CardNeedMor
         </a>
         .
       </p>
-      <button
-        type="button"
-        onClick={onContactSupport}
-        className={cn(
-          "rounded-lg border border-effect-overlay-subtle bg-effect-overlay-subtle px-[17px] py-[9px]",
-          "text-base font-medium text-brand-secondary-dark shadow-sm",
-          "transition-[color,background-color,transform] hover:bg-zinc-200/40 dark:hover:bg-zinc-800/40 motion-safe:active:scale-[0.98]",
-          "focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-teal-action/50"
-        )}
-      >
+      <Button variant="outline" onClick={onContactSupport}>
         Falar com o suporte
-      </button>
+      </Button>
     </div>
   )
 }
