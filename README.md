@@ -111,6 +111,7 @@ npx oxlint               # lint
 npm test                 # 501 testes das histórias no navegador, com axe (contraste é erro)
 npm run check:motion     # todo movimento respeita prefers-reduced-motion
 npm run check:touch      # alvos de toque de 44px no Mobile (gera o Storybook estático e mede)
+npm run check:docs       # Docs com conteúdo que vaza da coluna em 1440px (gera o Storybook estático e mede)
 npm run build-storybook  # build estático (storybook-static/)
 ```
 
