@@ -1,6 +1,6 @@
 # To-do futuro (2026-09-30)
 
-O que ficou de fora da rodada final da auditoria UX ([[Auditoria UX Sênior (2026-09-30)]]), por decisão do usuário. Nada aqui bloqueia a publicação do case.
+O que ficou de fora da rodada final da auditoria UX ([[Auditoria UX Sênior (2026-09-30)]]), por decisão do usuário. Nada aqui bloqueia a publicação do case. A lista de trabalho agora é o [[Roteiro pós-case (2026-09-30)]]; esta nota fica como histórico.
 
 ## Pesquisa
 - **Reteste** com 3 a 5 pessoas, as mesmas 3 tarefas, no protótipo atual, registrando sucesso, erros e tempo para comparar antes e depois. É o que fecha o C3 de vez.
