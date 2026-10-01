@@ -4,7 +4,7 @@ O que vem depois do case publicado, ordenado por **valor para o portfólio** (de
 
 | Etapa | Item | Depende de você | Mexe em muitas telas |
 |---|---|---|---|
-| 0 | Manutenção do case | Sim (arquivos da capa, captura nova) | Não |
+| 0 | Manutenção do case (sem a capa) | Sim (a frase da marca; captura do slide 10) | Não |
 | 1 | Reteste de usabilidade | Sim (recrutar 3 a 5 pessoas) | Não |
 | 2 | Recuperação de senha e cadastro | Sim (autorizar telas novas) | Pouco |
 | 3 | Variações da Home | Sim (autorizar telas novas) | Sim |
@@ -14,7 +14,7 @@ O que vem depois do case publicado, ordenado por **valor para o portfólio** (de
 
 Deixa o case apresentável hoje. Origem: [[Revisão final (2026-09-30)]].
 
-1. **Capa (slide 01):** o notebook e o celular estão escondidos (`Mockup - desktop 1` `3273:51477` e `Mockup - mobile 1` `3273:51475`). Restaurar do histórico de versões do Figma ou usar os PNGs dos mockups sem a tela. Só mexer em imagem de nó do usuário com o `imageHash` antigo à mão.
+1. **Capa (slide 01):** fora do roteiro por decisão do usuário (2026-09-30): não mexer em capa alguma. Os mockups continuam escondidos até o usuário decidir; nada será alterado na capa.
 2. **Slide 10:** trocar a captura do Header, que ainda mostra o Header antigo, por uma captura atual do Storybook.
 3. **README:** conferir `docs/assets/hero-storybook.png` e as grades, que são capturas antigas.
 4. **Storybook publicado:** passada visual (primeira página, links, claro e Dark).
@@ -24,9 +24,10 @@ Deixa o case apresentável hoje. Origem: [[Revisão final (2026-09-30)]].
 - Item 2: a captura do Header no slide 10 mostrava Organizar e Guardar em teal; com a [[Regra 13 - Header]] o Header voltou a ser assim e a imagem voltou a bater com o Figma. Não foi trocada (imagem do usuário). Basta conferir.
 - Item 3: feito. `hero-storybook.png` (agora a página Introdução) e as grades de CardLogin, Sidebar e ArchiveBrowserModal foram regeneradas a partir do site publicado. `fidelity-*.png` e o GIF são registros históricos de comparação e ficaram como estão.
 - Item 4: feito. O site publicado abre na Introdução, o índice tem 638 entradas e o Header no ar já mostra os botões em teal.
-- Itens 1 e 5: esperam você (arquivos dos mockups da capa e a frase de "como a marca quer ser lembrada").
+- Item 1: fora do roteiro (capa intocada, decisão do usuário).
+- Item 5: espera você (a frase de "como a marca quer ser lembrada").
 
-Feito quando: a capa tem os mockups, as capturas conferem com o site e a passada visual não acha defeito.
+Feito quando: as capturas conferem com o site e a passada visual não acha defeito. A capa não faz parte do critério.
 
 ## Etapa 1: reteste
 
@@ -78,3 +79,7 @@ Feito quando: nenhuma instância usa o `PushButton` e a matriz do `IconButton` v
 
 - [[Revisão final (2026-09-30)]]
 - [[Auditoria UX Sênior (2026-09-30)]]
+
+## Achado: AppShell em modo Docs (2026-09-30)
+
+As 6 telas do `AppShell` na página Docs saem quase iguais: o Canvas inline usa a largura da coluna (~960px), e a casca troca de layout pela largura da janela, não do container. Desktop, Tablet e as 4 Mobile mostram Header + Sidebar. `mobileFrame` (390px) não resolve, porque o `AppShell` usa breakpoints de viewport, não container queries. Sugestão e decisão: ver o relatório no chat; o Canvas das histórias (com viewport) funciona.
