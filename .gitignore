@@ -34,3 +34,6 @@ storybook-static
 docs/vault/.obsidian/
 
 graphify-out/
+
+# Configuração local do Claude Code
+.claude/
