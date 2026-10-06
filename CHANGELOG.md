@@ -4,6 +4,12 @@ Histórico de mudanças do KanDrive Design System: código, Storybook, Figma e v
 
 ## Não lançado
 
+### 2026-10-06
+
+#### Alterado
+
+- README: abertura reposicionada como design system completo do KanDrive, seção "Destaques", roteiro "O que avaliar primeiro", uso/local mais escaneável, linguagem mais profissional e making-of resumido.
+
 ### 2026-10-01
 
 #### Adicionado
