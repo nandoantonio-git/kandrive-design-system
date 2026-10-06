@@ -1,22 +1,37 @@
-# Kandrive Design System
+# KanDrive Design System
 
-**[Storybook ao vivo →](https://kandrive-design-system.vercel.app)** · [Figma (slides, telas e protótipo)](https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1) · [Case study de pesquisa UX](docs/CASE-STUDY.md) · [Fonte da pesquisa (nexus)](https://github.com/thomasreichmann/nexus)
+Sistema de design completo para um SaaS de armazenamento de longo prazo, conectando pesquisa UX, Figma, tokens, componentes React e validação visual em Storybook.
 
-Design system em Storybook pro **Kandrive** — um SaaS conceitual de
-armazenamento massivo e de longo prazo (cold storage sobre AWS S3
-Glacier), nascido de uma pesquisa de UX real (desk research, netnografia,
-survey e teste de usabilidade com 4 participantes — [case study
-completo](docs/CASE-STUDY.md)).
+**[Storybook ao vivo](https://kandrive-design-system.vercel.app)** · [Figma KanDrive V0.2.1](https://www.figma.com/design/2g7udqxWbGA8F9Or7PGNg3/KanDrive-V0.2.1) · [Case study de pesquisa UX](docs/CASE-STUDY.md) · [Fonte da pesquisa, Nexus](https://github.com/thomasreichmann/nexus)
 
-![Storybook do Kandrive Design System](docs/assets/hero-storybook.png)
+O KanDrive é um SaaS conceitual para guardar grandes volumes de arquivos por muito tempo, com uma experiência simples, segura e viável sobre AWS S3 Glacier. Este repositório transforma a pesquisa de UX em um design system navegável, testável e reutilizável.
 
-Stack: React 19 + TypeScript + Tailwind CSS v4 + shadcn/ui (Radix + CVA) +
-Storybook 10 (CSF3 + MDX).
+![Storybook do KanDrive Design System](docs/assets/hero-storybook.png)
+
+Stack: React 19 + TypeScript + Tailwind CSS v4 + shadcn/ui (Radix + CVA) + Storybook 10 (CSF3 + MDX).
+
+## Destaques
+
+- 141 componentes organizados em atoms, molecules, organisms, templates e pages.
+- Storybook público com documentação, estados, tokens e exemplos por componente.
+- Figma KanDrive V0.2.1 como fonte visual, com rastreabilidade por node sempre que disponível.
+- Tokens de cor, tipografia, espaçamento, materiais, marca e responsividade.
+- Tema claro e escuro via tokens, sem duplicar cores no componente.
+- Acessibilidade verificada com axe, contraste como erro e alvos de toque de 44px no Mobile.
+- Comparações Figma x Storybook e verificação visual por screenshot real.
+- Pesquisa UX documentada em case study, com desk research, netnografia, survey e teste de usabilidade.
+
+## O que avaliar primeiro
+
+1. **Storybook ao vivo:** veja a navegação por camadas, Docs e exemplos interativos.
+2. **Figma:** confira a origem visual, telas e protótipo do KanDrive V0.2.1.
+3. **Case study:** entenda o problema, a pesquisa e as decisões de produto.
+4. **Índice de componentes:** use [docs/COMPONENTS.md](docs/COMPONENTS.md) para localizar rapidamente cada componente.
+5. **Guia de uso:** siga [docs/USAGE.md](docs/USAGE.md) para copiar a biblioteca para outro projeto.
 
 ## Como usar a biblioteca
 
-Não é um pacote npm: o modelo é o do shadcn/ui, em que você **copia** `src/components`, `src/lib`, `src/assets` e
-`src/index.css` para o seu projeto (React 19, Tailwind v4, Vite, alias `@/`) e importa por caminho.
+Este repositório não é um pacote npm. O modelo é parecido com shadcn/ui: você copia `src/components`, `src/lib`, `src/assets` e `src/index.css` para um projeto React 19 com Tailwind v4, Vite e alias `@/`, e importa os componentes por caminho.
 
 ```tsx
 import { Button } from "@/components/atoms/button"
@@ -24,23 +39,21 @@ import { Button } from "@/components/atoms/button"
 <Button variant="outline">Gerir espaço</Button>
 ```
 
-- **Pessoas:** [docs/USAGE.md](docs/USAGE.md) ensina do zero: preparar o projeto, montar uma tela com `AppShell`, escolher
-  componentes, usar tokens e tema escuro, e as regras de terminologia e tom de voz.
-- **Agentes de IA:** [AGENTS.md](AGENTS.md) resume as regras em uma página, diz onde procurar (índice, Storybook, MCP) e
-  o que verificar antes de dizer que terminou.
+Documentação de apoio:
+
+- **Pessoas:** [docs/USAGE.md](docs/USAGE.md) ensina a preparar o projeto, montar uma tela com `AppShell`, escolher componentes, usar tokens, tema escuro, terminologia e tom de voz.
+- **Agentes de IA:** [AGENTS.md](AGENTS.md) resume as regras, onde procurar evidência, como usar Storybook/MCP e o que verificar antes de declarar uma tarefa pronta.
 - **Catálogo:** [docs/COMPONENTS.md](docs/COMPONENTS.md) lista os 141 componentes com arquivo e página Docs.
 
 ## O que tem aqui
 
-141 componentes organizados por camada atômica (atoms → molecules →
-organisms → templates → pages), cada um com:
+141 componentes organizados por camada atômica, de atoms a pages. Cada componente inclui:
 
-- Estados reais e interativos (hover/press/seleção via mouse e teclado —
-  não só uma prop `state` congelada pra documentação)
-- Doc `.mdx` própria citando o node Figma de origem e o nível de confiança
-  de cada decisão (Figma-confirmado vs. inferido — ver `Regra 9` abaixo)
-- Página de tokens (`Tokens/Colors`, `Typography`, `Spacing`, `Materials`, `Marca` e `Responsividade`)
-  com especime visual real e valor copiável ao clicar, não só uma tabela
+- Estados reais e interativos, como hover, press, seleção, teclado e disabled.
+- Documentação `.mdx` com Figma de origem, uso, props, estados e terminologia.
+- Nível de confiança explícito para decisões confirmadas no Figma versus decisões inferidas.
+- Tokens visuais com amostra real e valor copiável.
+- Histórias pensadas para validação visual, não apenas para demonstração estática.
 
 | | | |
 |---|---|---|
@@ -48,76 +61,53 @@ organisms → templates → pages), cada um com:
 
 ## Interatividade real, não simulada
 
-Boa parte da auditoria deste projeto foi caçar um antipadrão específico:
-componentes cujos estados (`hover`/`pressed`/`selected`) só existiam como
-uma prop `state` estática — sem nenhum `:hover` real, sem handler de
-clique. Bonito no Storybook, inútil como prova de comportamento.
+Uma parte importante da auditoria foi remover um antipadrão comum em design systems: componentes que parecem corretos no Storybook, mas só exibem estados congelados por prop, sem comportamento real.
 
-![Demonstração de hover/clique real em atom/ImageItem](docs/assets/demo-real-interactivity.gif)
+![Demonstração de hover e clique real em atom/ImageItem](docs/assets/demo-real-interactivity.gif)
 
-Corrigido em todos os átomos afetados (`ImageItem`, `ArchiveItem`,
-`FolderItem`, `VideoItem`, `FileList`, `FolderCard`...): a prop `state`
-continua existindo como *override* explícito pra documentação/auditoria
-(freeze-frame de um estado específico), mas por padrão o componente reage
-a mouse e teclado de verdade — `useState` interno + handlers reais de
-`onMouseEnter/Leave/Down/Up/Click/KeyDown`, `role="button"`,
-`aria-pressed`.
+Os átomos afetados, como `ImageItem`, `ArchiveItem`, `FolderItem`, `VideoItem`, `FileList` e `FolderCard`, mantêm a prop `state` como override explícito para documentação e auditoria. Por padrão, porém, eles respondem a mouse e teclado com estado interno, handlers reais, `role="button"` e `aria-pressed` quando aplicável.
 
-## Disciplina de fidelidade Figma↔código
+## Fidelidade Figma x código
 
-Toda implementação segue um protocolo de verificação de 2 pontas antes de
-ser considerada "pronta": ler o node real no Figma (`get_design_context` +
-`get_metadata` + `get_variable_defs`) **e** conferir o resultado
-renderizado via screenshot real (Playwright, não só o build passando).
-Isso vale tanto pra evitar inventar valores quanto pra pegar bugs de
-CSS que `tsc`/build não detectam.
+A implementação segue um protocolo de verificação em duas pontas antes de ser considerada pronta.
+
+| Etapa | Evidência esperada |
+|------|---------------------|
+| Fonte visual | Node real no Figma, com contexto, metadados e variáveis quando disponíveis |
+| Implementação | Componente React com Tailwind e tokens do sistema |
+| Verificação | Screenshot real via Playwright ou Storybook publicado |
+| Documentação | Página Docs, comentários datados quando necessário e registro em changelog/vault |
+
+Isso evita inventar valores e ajuda a detectar problemas que typecheck e build não pegam, como diferenças de espaçamento, bordas, contraste, vidro ou comportamento responsivo.
 
 | | |
 |---|---|
-| ![Comparação Figma×Storybook — atom/ImageItem](docs/assets/fidelity-imageitem.png) | ![Comparação Figma×Storybook — atom/AddButton](docs/assets/fidelity-addbutton.png) |
+| ![Comparação Figma x Storybook, atom/ImageItem](docs/assets/fidelity-imageitem.png) | ![Comparação Figma x Storybook, atom/AddButton](docs/assets/fidelity-addbutton.png) |
 
-Regra do projeto (`Regra 9`): **nunca apresentar inferência como fato**.
-Cada peça de UI documentada carrega uma citação literal do Figma quando
-existe (`atom/buttonAdd`, node `1421:20509`, etc.) e, quando um detalhe
-não está no Figma, isso é documentado explicitamente como gap ou decisão
-humana — nunca inventado silenciosamente. Exemplo real desse processo: o
-histórico de reconciliação do material Liquid Glass (ver `making-of`
-abaixo) mostra uma borda que foi classificada como "provável placeholder"
-numa auditoria, revista como "borda real do material" numa seguinte, e
-revista de novo pra um highlight direcional de vidro depois de comparação
-visual mais cuidadosa, e revista uma 3ª vez em 2026-08-21 quando parte
-dessa correção acabou introduzindo bordas cinzas indevidas em 4
-componentes — o processo é iterativo e documentado a cada correção, nunca
-apagado.
+Regra do projeto: nunca apresentar inferência como fato. Cada peça documentada carrega uma citação literal do Figma quando existe. Quando o detalhe não está no Figma, ele é tratado como gap ou decisão humana, sem virar “fato” silencioso.
 
-## Processo: engenharia com um agente de IA
+## Processo com IA, revisão humana e rastreabilidade
 
-Este design system foi construído em colaboração com o Claude Code, num
-processo que se parece mais com *tech lead revisando PRs* do que "pedir
-pro robô fazer". Na prática isso significou:
+O design system foi construído em colaboração com agentes de IA, mas com o rigor de revisão de engenharia e design:
 
-- **Protocolo de verificação obrigatório** (acima) antes de qualquer
-  implementação ser considerada correta — nenhuma mudança visual é aceita
-  só porque o build passou.
-- **Achados do usuário viram correções documentadas**, não silenciosas —
-  cada arquivo de componente carrega comentários datados explicando *por
-  que* uma decisão mudou (ex.: "borda plana → highlight direcional,
-  achado do usuário em 2026-08-20").
-- **Auditoria sistemática antes de declarar pronto** — handoff pra
-  engenharia só foi declarado depois de uma varredura completa checando
-  interatividade real, terminologia consistente e fidelidade Figma
-  componente a componente.
+- Nenhuma mudança visual é aceita apenas porque o build passou.
+- Achados do usuário viram correções documentadas, não ajustes invisíveis.
+- Comentários datados registram por que uma decisão mudou quando isso afeta fidelidade visual ou regra do sistema.
+- Auditorias verificam interatividade real, terminologia, acessibilidade e aderência ao Figma componente a componente.
 
-Orquestrar um agente de IA com esse nível de rigor — sabendo o que
-verificar, quando questionar uma correção proposta, e como manter um
-histórico de decisões auditável — é, na prática, a mesma habilidade de
-revisão de engenharia de sempre, aplicada a um colaborador mais rápido.
+A orquestração de IA aqui é tratada como prática de design engineering: especificar bem, revisar criticamente, validar com evidência e manter histórico auditável.
 
-## Desenvolvimento
+## Rodar localmente
 
 ```bash
 npm install
-npm run storybook       # Storybook em http://localhost:6006
+npm run storybook
+```
+
+Acesse:
+
+```text
+http://localhost:6006
 ```
 
 ## Verificação
@@ -125,49 +115,35 @@ npm run storybook       # Storybook em http://localhost:6006
 ```bash
 npx tsc -b               # typecheck
 npx oxlint               # lint
-npm test                 # 510 testes das histórias no navegador, com axe (contraste é erro)
+npm test                 # 510 testes das histórias no navegador, com axe
 npm run check:motion     # todo movimento respeita prefers-reduced-motion
-npm run check:touch      # alvos de toque de 44px no Mobile (gera o Storybook estático e mede)
-npm run check:docs       # Docs com conteúdo que vaza da coluna em 1440px (gera o Storybook estático e mede)
-npm run docs:components  # regenera docs/COMPONENTS.md (índice dos componentes)
-npm run build-storybook  # build estático (storybook-static/)
+npm run check:touch      # alvos de toque de 44px no Mobile
+npm run check:docs       # Docs sem conteúdo vazando da coluna em 1440px
+npm run docs:components  # regenera docs/COMPONENTS.md
+npm run build-storybook  # build estático em storybook-static/
 ```
 
 ## Estrutura
 
-- `stories/atoms`, `stories/molecules`, `stories/organisms`,
-  `stories/templates`, `stories/pages` — stories CSF3 + MDX por
-  componente, organizadas por camada atômica.
-- `stories/tokens` — documentação MDX dos tokens de design (cor, tipografia,
-  espaçamento, material).
-- `docs/USAGE.md`, `docs/COMPONENTS.md` e `AGENTS.md` — como usar a biblioteca (pessoas e agentes de IA), índice de componentes.
-- `docs/CASE-STUDY.md` — pesquisa de UX que fundamenta o produto (problema,
-  personas, teste de usabilidade, decisões de design derivadas).
-- `docs/vault/` — vault Obsidian com o estado atual resumido: regras
-  travadas, catálogo de componentes por camada, conflitos **ainda em
-  aberto** (`docs/vault/Estado/Conflitos Abertos.md`).
+- `stories/atoms`, `stories/molecules`, `stories/organisms`, `stories/templates`, `stories/pages`: histórias CSF3 + MDX por componente, organizadas por camada atômica.
+- `stories/tokens`: documentação MDX dos tokens de design.
+- `src/components`: componentes React organizados pelas mesmas camadas do Storybook.
+- `src/index.css`: tokens, tema, breakpoints e materiais como Liquid Glass.
+- `docs/USAGE.md`, `docs/COMPONENTS.md` e `AGENTS.md`: guia de uso, índice de componentes e guia rápido para agentes.
+- `docs/CASE-STUDY.md`: pesquisa de UX que fundamenta o produto.
+- `docs/vault/`: resumo vivo de regras, glossário, decisões e conflitos ainda em aberto.
 
-### Making-of (fora deste repositório)
+## Making-of
 
-O rastro completo de auditoria/processo — `checkpoints.md` (log
-cronológico sessão a sessão), `conflicts.md` (log completo de conflitos,
-incluindo os já resolvidos), `figma-inventory.md` (inventário de 2347
-nodes da página Figma) e `terminology-audit.md`, mais os manifestos
-pass-a-pass da auditoria de ponto-fixo (`audits/`) — foi movido em
-2026-08-21 pra um repositório separado (making-of), mantendo este
-repositório enxuto pra entrega. O vault (`docs/vault/`) permanece aqui
-como o resumo vivo e atualizado desse processo. Comentários de componente
-que ainda citam esses caminhos (`src/components/**/*.tsx`) são anotações
-históricas datadas, não referências quebradas — o achado continua válido
-mesmo com o arquivo-fonte agora vivendo fora deste repo.
+O rastro completo de auditoria e processo vive em um repositório separado de making-of, com checkpoints, conflitos, inventário Figma, auditorias e manifestos pass-a-pass. Este repositório mantém o design system enxuto para entrega, enquanto `docs/vault/` preserva o resumo vivo e atualizado das decisões mais importantes.
+
+Comentários históricos em `src/components/**/*.tsx` continuam válidos mesmo quando citam caminhos do making-of movidos para fora deste repositório.
 
 ## Licença
 
-O **código** é MIT ([LICENSE](LICENSE)): pode usar, copiar e adaptar. A **identidade visual do KanDrive** (logo, mascote Kan,
-ilustrações, padrões gráficos e vídeo de abertura) e o **texto e as imagens do case de UX** não entram na MIT e ficam com
-todos os direitos reservados. Os caminhos exatos estão no fim do arquivo `LICENSE`.
+O **código** é MIT ([LICENSE](LICENSE)): pode usar, copiar e adaptar. A **identidade visual do KanDrive** (logo, mascote Kan, ilustrações, padrões gráficos e vídeo de abertura) e o **texto e as imagens do case de UX** não entram na MIT e ficam com todos os direitos reservados. Os caminhos exatos estão no fim do arquivo `LICENSE`.
 
-## Deploy (Vercel)
+## Deploy na Vercel
 
 O `vercel.json` já aponta o build para o Storybook estático:
 
@@ -178,5 +154,4 @@ O `vercel.json` já aponta o build para o Storybook estático:
 }
 ```
 
-Basta importar este repositório como root do projeto na
-Vercel — nenhuma configuração adicional é necessária.
+Basta importar este repositório como root do projeto na Vercel. Nenhuma configuração adicional é necessária.
